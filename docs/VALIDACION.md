@@ -1,13 +1,14 @@
-# Validación de esta entrega
+# Validación — 16/10/2026
 
-- `npm test`: 13 pruebas aprobadas de motor, API, servidor y controlador de interfaz con DOM simulado.
-- `npm run check`: sintaxis de módulos educativos, interfaz y funciones.
-- Catálogo: tres cursos, ocho temas y 24 preguntas por curso; fuentes y respuestas válidas, casos por curso, ECG finitos y escalas temporales consistentes.
-- Progreso: migración del piloto anterior, separación por curso, repaso de errores y validación de resultados únicos para aprobar un tema.
-- Recorridos del controlador: navegación entre los tres cursos, teoría sin acreditar evaluación, preguntas sin teoría ni explicación previa, completar lección, persistencia, protección ante doble respuesta, caso con error y reintento hasta el debriefing, repaso, identificación ECG y error de configuración del tutor.
-- Servidor: entrada principal y consultorio accesibles, módulos con MIME correcto, funciones y ZIP fuera del directorio público.
-- API: autenticación, métodos, formato, límites, falta de configuración, corpus elegido en servidor y aislado por curso y errores del proveedor sin detalles internos. El proveedor se simuló; no hubo consulta facturada ni validación de un modelo real.
+- `npm test`: 21 pruebas del motor, catálogo, API, servidor, interfaz, simulacros y mercado.
+- `npm run check`: sintaxis de módulos y funciones. `git diff --check`: sin errores de espacios.
+- Catálogo: seis cursos, 80 temas y 280 preguntas; se conservan nueve casos y nueve patrones ECG.
+- Simulacros: selección sin duplicados, cobertura de ocho áreas, opciones mezcladas, plazo, respuestas modificables, omisiones, restauración y corrección al entregar.
+- Puntos: sin recompensa al repetir inmediatamente, bonificaciones únicas por tema/curso, repaso vencido limitado a cinco puntos diarios, saldo y compras sin duplicados.
+- Playwright con Chromium: móvil 390×844 y escritorio 1440×1000. Se verificaron navegación de seis cursos, teoría separada, simulacro guardado tras recarga, corrección única, imágenes del mercado, compra, persistencia y escape del nombre. Sin errores JavaScript ni desborde horizontal en los recorridos comprobados. Capturas revisadas de inicio y mercado; no se afirma prueba en Safari físico.
+- Consultorio oculto en navegación; archivo y almacenamiento previo conservados. No se activa ningún muro de pago.
+- API: autenticación, límites y corpus por curso; proveedor simulado, sin llamadas facturadas. El tutor selecciona hasta seis temas relevantes en el recorrido amplio.
 
-**No se completó la validación visual en navegador.** Playwright está instalado en el entorno pero no tiene binario de navegador. La descarga de Chromium devolvió un archivo inválido y no pudo instalarse. Por lo tanto no se afirma haber comprobado visualmente Safari/iPhone ni ausencia de desbordes. Hay CSS adaptable para móvil, pero requiere revisión visual real.
+Prueba de navegador opcional: `node tools/browser-smoke.mjs`, con Playwright y Chromium instalados; admite `PLAYWRIGHT_MODULE` y `CHROME_BIN`.
 
-No se verificó despliegue en Netlify ni se configuraron credenciales. Las pruebas locales no acreditan disponibilidad del hosting ni validez clínica de los contenidos.
+No se verificó el despliegue público ni se configuraron credenciales. La revisión funcional no sustituye validación clínica/docente. El banco es una primera cobertura amplia, no el temario oficial completo.

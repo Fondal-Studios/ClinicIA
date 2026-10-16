@@ -12,14 +12,14 @@ test('theory never appears before a practice answer; all courses, ECG, review an
  await import('../public/app.mjs');
  const click=async(action,data={})=>{await handlers.click({target:{closest:()=>({dataset:{action,...data}})}});await new Promise(r=>setImmediate(r));};
  const currentQuestion=()=>questions.find(q=>html.includes(`<h1 class="question">${esc(q.prompt)}</h1>`));
- assert.ok(html.includes('Estudiá. Decidí.'));
+ assert.ok(html.includes('Tu próxima plaza'));
  for(const c of courses){
   await click('course',{id:c.id});await click('nav',{view:'theory'});await click('theory',{id:c.lessons[0].id});
-  assert.ok(html.includes(c.lessons[0].body));await click('read',{id:c.lessons[0].id});
+  assert.ok(html.includes(esc(c.lessons[0].body.split('\n\n')[0])));await click('read',{id:c.lessons[0].id});
   assert.equal(JSON.parse(stored).progress[c.id]||0,0,'reading must not pass an assessment');
   // Exercises can start from theory, but the worked examples must disappear entirely.
   await click('start',{mode:'lesson',id:c.lessons[0].id});
-  for(let i=0;i<3;i++){
+  for(let i=0;i<c.lessons[0].questions.length;i++){
    const q=currentQuestion();assert.ok(q&&q.courseId===c.id);
    assert.ok(!html.includes(esc(c.lessons[0].body)),'theory leaks before answer');
    assert.ok(!html.includes(esc(q.why)),'feedback leaks before answer');
@@ -29,7 +29,7 @@ test('theory never appears before a practice answer; all courses, ECG, review an
    await click('next');
   }
   assert.ok(html.includes('Buen trabajo.'));assert.equal(JSON.parse(stored).progress[c.id],1);
-  await click('nav',{view:'cases'});const scenario=cases.find(x=>x.courseId===c.id);await click('case',{id:scenario.id});
+  await click('nav',{view:'cases'});const scenario=cases.find(x=>x.courseId===c.id);if(!scenario)continue;await click('case',{id:scenario.id});
   await click('case-answer',{index:String((scenario.steps[0].answer+1)%scenario.steps[0].options.length)});await click('case-next');
   for(const step of scenario.steps){await click('case-answer',{index:String(step.answer)});await click('case-next');}
   assert.ok(html.includes('Recorrido completado'));assert.equal(JSON.parse(stored).cases[scenario.id],true);
