@@ -23,3 +23,9 @@ El saldo es accesible desde la cabecera en todos los cursos. “Mis puntos” ex
 “Acceso y planes” distingue la prueba gratuita actual de una membresía propuesta no disponible. No hay precio inventado ni botón de cobro. El valor comercial principal es la preparación; los compañeros son personalizaciones secundarias.
 
 Para evaluar conversión cuando existan cuentas y analítica consentida: primera sesión iniciada/completada, retorno al repaso, finalización de simulacro, apertura de puntos/mercado y, tras habilitar ventas, conversión a pago. Este rediseño no demuestra un aumento de ingresos ni incorpora telemetría externa.
+
+## Apertura de tutores para pruebas
+
+Se habilita un tutor inicial visible y vista previa gratuita de los cuatro personajes; el canje persistente conserva las reglas de puntos. Las correcciones, ejercicios y referencias están abiertos. Se elimina la clave compartida de la API educativa/guardia; las funciones clínicas heredadas conservan su autorización. Límite temporal: 60 consultas por hora por instancia del servidor, no protección distribuida ni garantía de límite de gasto global. Antes de ventas o tráfico masivo, incorporar autenticación individual y cuota persistente.
+
+La corrección editorial y la conversación IA están etiquetadas por separado. La IA exige configuración real del proveedor; no se comercializa como operativa mientras falte.

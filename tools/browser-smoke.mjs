@@ -21,6 +21,20 @@ await page.locator('nav a[href$="/theory"]').click();await page.locator('#topic-
 await page.locator('[data-action="theory"]').first().click();await page.locator('[data-action="start"][data-mode="lesson"]').click();
 assert.equal(await page.locator('.worked-example,.concept-trap,.feedback').count(),0);await noOverflow();
 await page.locator('[data-action="answer"]').first().click();assert.equal(await page.locator('.feedback').count(),1);
+assert.equal(await page.locator('.feedback .tutor-dialogue').count(),1);
+await page.locator('[data-action="explain-answer"]').click();assert.ok((await page.locator('#ask').inputValue()).includes('Explicame'));
+assert.equal(await page.locator('#access').count(),0);
+await page.locator('nav a[href$="/guard"]').click();await page.getByRole('heading',{name:'Tu guardia ahora.',exact:true}).waitFor();
+await page.locator('[data-action="guard-prompt"][data-index="1"]').click();assert.ok((await page.locator('#ask').inputValue()).includes('ABCDE'));
+let sent=[];await page.route('**/api/tutor',async route=>{sent.push(route.request().postDataJSON());await route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({answer:'Respuesta simulada para comprobar conversación, no consejo clínico.'})});});
+await page.locator('[data-action="ask"]').click();await page.locator('.chat-message.assistant').waitFor();assert.equal(sent[0].mode,'guard');
+await page.locator('#ask').fill('¿Qué información falta?');await page.locator('[data-action="ask"]').click();await page.waitForFunction(()=>document.querySelectorAll('.chat-message.assistant').length===2);assert.equal(sent[1].history.length,2);
+assert.ok(!(await page.evaluate(()=>JSON.stringify(localStorage))).includes('¿Qué información falta?'));
+await page.screenshot({path:'/tmp/clinicia-guard-mobile.png',fullPage:true});
+await page.unroute('**/api/tutor');await page.route('**/api/tutor',route=>route.fulfill({status:503,contentType:'application/json',body:JSON.stringify({error:'Proveedor no configurado'})}));
+await page.locator('#ask').fill('sepsis');await page.locator('[data-action="ask"]').click();await page.getByText('Proveedor no configurado',{exact:true}).waitFor();assert.ok((await page.locator('.reference-results').innerText()).includes('sin IA'));
+await page.unroute('**/api/tutor');await page.locator('[data-action="chat-clear"]').click();assert.equal(await page.locator('.chat-message').count(),0);
+
 await page.locator('nav a[href$="/exams"]').click();await page.locator('[data-action="exam-start"][data-id="sprint"]').click();
 const prompt=await page.locator('h1.question').innerText();const q=questions.find(q=>q.prompt===prompt);assert.ok(q);
 await page.locator(`[data-action="exam-answer"][data-index="${q.answer}"]`).click();assert.equal(await page.locator('.feedback,.correct').count(),0);
@@ -30,7 +44,7 @@ await page.locator('[data-action="exam-submit"]').click();await page.getByText('
 let progress=await page.evaluate(()=>JSON.parse(localStorage.getItem('clinicia-learning-v1')));assert.equal(progress.examHistory.length,1);assert.equal(progress.evidence[q.id].total,1);
 await page.reload();progress=await page.evaluate(()=>JSON.parse(localStorage.getItem('clinicia-learning-v1')));assert.equal(progress.evidence[q.id].total,1);
 await page.locator('nav a[href$="/market"]').click();await page.locator('.market-grid').waitFor();await page.waitForFunction(()=>[...document.querySelectorAll('.sprite-stage img')].every(i=>i.complete&&i.naturalWidth>0));await noOverflow();await page.evaluate(()=>window.scrollTo(0,0));await page.waitForTimeout(100);await page.screenshot({path:'/tmp/clinicia-market-mobile.png',fullPage:true});
-assert.equal(await page.locator('.sprite-stage img').count(),4);assert.ok(await page.locator('.sprite-stage img').evaluateAll(imgs=>imgs.every(i=>i.complete&&i.naturalWidth>0)));
+await page.locator('[data-action="preview-tutor"][data-id="veyra"]').click();assert.ok((await page.locator('.companion').innerText()).includes('Veyra'));assert.equal(await page.locator('.sprite-stage img').count(),4);assert.ok(await page.locator('.sprite-stage img').evaluateAll(imgs=>imgs.every(i=>i.complete&&i.naturalWidth>0)));
 // Seed an earned ledger to test cosmetic purchase/UI without grinding 80 questions.
 await page.evaluate(ids=>{const s=JSON.parse(localStorage.getItem('clinicia-learning-v1'));s.wallet.ledger=Object.fromEntries(ids.map(id=>['first:'+id,1]));localStorage.setItem('clinicia-learning-v1',JSON.stringify(s));},questions.slice(0,100).map(q=>q.id));
 await page.reload();await page.locator('[data-action="buy"][data-id="ynara"]').click();assert.equal(await page.locator('.wallet .result').innerText(),'20');assert.equal(await page.locator('.companion img').count(),1);

@@ -24,7 +24,7 @@ Abrir http://localhost:3000. Las lecciones y los escenarios no requieren proveed
 
 El repositorio incluye `netlify.toml`: directorio público `public`, funciones `netlify/functions`, sin paso de compilación. Configurar en el entorno del proveedor, nunca en el repositorio:
 
-- `CLINIC_ACCESS_TOKEN`: clave aleatoria de al menos 24 caracteres para un piloto cerrado. Se introduce en el tutor y se usa por solicitud, sin persistir en el navegador.
+- `CLINIC_ACCESS_TOKEN`: permanece requerida para las funciones clínicas heredadas. El tutor de pruebas está abierto sin clave y limita las llamadas al proveedor a 60 por hora por instancia; no es un control distribuido de facturación.
 - `ANTHROPIC_API_KEY`: credencial del proveedor.
 - `ANTHROPIC_MODEL`: identificador de modelo habilitado en esa cuenta. No se presupone disponibilidad de un modelo específico.
 - `LEGACY_CLINICAL_ENABLED=true`: solo si se habilita explícitamente la IA del consultorio previo. Por defecto permanece bloqueada.
@@ -39,6 +39,14 @@ Listo para ejecutar y revisar como **piloto educativo local**. Contenido redacta
 
 El progreso es local y exportable; no hay cuentas, sincronización, pagos ni ranking multijugador. El mapa ordena las competencias del propio usuario por evidencia y cobertura, no por horas ni XP. Las simulaciones son recorridos de decisiones con devolución, no un modelo fisiológico ni entrenamiento de destreza manual. El laboratorio ECG usa ilustraciones sintéticas y no analiza archivos clínicos.
 
-Para comercializar: cuentas y aislamiento por usuario, base de datos, control de acceso individual, límites de consumo distribuidos, recuperación/importación de progreso, validación clínica/editorial, controles de privacidad y pagos. El token compartido habilita un piloto reducido; no reemplaza autenticación individual.
+Para comercializar: cuentas y aislamiento por usuario, base de datos, control de acceso individual, límites de consumo distribuidos, recuperación/importación de progreso, validación clínica/editorial, controles de privacidad y pagos. Las consultas abiertas del piloto usan un límite por instancia; antes de escalar se necesitan autenticación individual y cuotas distribuidas.
 
 Ver `docs/RESIDENCIAS.md`, `docs/MONETIZACION.md`, `docs/AUDITORIA.md`, `docs/PROVENANCE.md` y `docs/VALIDACION.md`.
+
+## Tutor activo y Tu guardia ahora
+
+El personaje aparece por defecto, corrige prácticas y casos con el contenido editorial y participa en la devolución de simulacros. El botón de explicación abre la conversación dentro de la pregunta. Los cuatro personajes pueden previsualizarse gratis, sin alterar compras o puntos; la selección de prueba dura mientras la página siga abierta.
+
+“Tu guardia ahora” agrega un chat para profesionales, plantillas de consulta/pase y búsqueda local de referencias. La conversación mantiene contexto efímero, se borra al salir de sección o pulsar Borrar conversación y no entra en la exportación ni en el almacenamiento de pacientes. Enviar al proveedor comparte hasta seis mensajes recientes; el proveedor puede aplicar sus propias políticas de retención. No se promete privacidad del proveedor como si fuera almacenamiento exclusivamente local.
+
+La IA necesita servidor Node/Netlify y las variables ANTHROPIC_API_KEY y ANTHROPIC_MODEL. GitHub Pages únicamente sirve la interfaz, las correcciones editoriales y la búsqueda local; no ejecuta /api/tutor. No hay respuesta simulada que se presente como IA. “Tu guardia ahora” es un piloto de apoyo al razonamiento pendiente de validación clínica, no un sistema aprobado para conducir atención.
