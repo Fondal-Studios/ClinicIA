@@ -1,0 +1,14 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {fresh,restore,answer,competencies,dueQuestions} from '../public/learn/engine.mjs';
+import {completeLesson} from '../public/learn/fondal-core.mjs';
+import {questions,courses,sources} from '../public/learn/courses.mjs';
+import {cases,choose,advance} from '../public/learn/cases.mjs';
+import {sample} from '../public/learn/ecg.mjs';
+test('schema, question identity, answer ranges and citation integrity',()=>{assert.equal(new Set(questions.map(q=>q.id)).size,questions.length);for(const q of questions){assert.ok(sources[q.source]);assert.ok(q.options[q.answer]);assert.ok(q.why&&q.skill);}assert.equal(courses[0].lessons.length,6);});
+test('no assessment starts as competence',()=>{assert.ok(competencies(fresh()).every(c=>c.score===0&&c.assessed===0));});
+test('errors due now, success due tomorrow, question coverage matters',()=>{let s=answer(fresh(),'recognize',false,0);assert.equal(dueQuestions(s,0).length,1);s=answer(s,'recognize',true,0);assert.equal(dueQuestions(s,0).length,0);assert.equal(dueQuestions(s,86400000).length,1);const c=competencies(s).find(c=>c.skill==='reconocimiento');assert.equal(c.score,25);assert.equal(c.assessed,1);});
+test('invalid questions and corrupt persisted evidence cannot inflate competence',()=>{let s=fresh();assert.equal(answer(s,'fake',true),s);const restored=restore({version:2,progress:{acls:999},evidence:{recognize:{correct:99,total:1}},reviews:{recognize:{due:'tomorrow',level:999}}});assert.equal(restored.progress.acls,6);assert.deepEqual(restored.evidence,{});assert.deepEqual(restored.reviews,{});});
+test('lesson progression cannot skip locked lessons',()=>{const s=fresh();assert.equal(completeLesson(s,'acls',3,new Date(),courses,{correct:2,total:2}),s);});
+test('replaying a known answer does not fill an unassessed competency',()=>{let s=fresh();for(let i=0;i<100;i++)s=answer(s,'recognize',true);assert.equal(competencies(s).find(c=>c.skill==='reconocimiento').score,50);});
+test('all cases can finish; wrong branches retry and double submissions do not count',()=>{for(const c of cases){let s={id:c.id,step:0,attempts:0,errors:0,feedback:null};s=choose(s,1);assert.equal(s.errors,1);assert.equal(choose(s,0),s);s=advance(s);assert.equal(s.step,0);for(let i=0;i<c.steps.length;i++)s=advance(choose(s,c.steps[i].answer));assert.equal(s.finished,true);assert.equal(s.errors,1);}});
+test('synthetic rhythms are finite and bradycardia contains fewer beats',()=>{let high=0,low=0;for(let i=1;i<6000;i++){const t=i/1000;for(const r of ['sinus','vf','asystole','tachy','brady'])assert.ok(Number.isFinite(sample(r,t)));if(sample('tachy',t)>.7&&sample('tachy',t-.001)<=.7)high++;if(sample('brady',t)>.7&&sample('brady',t-.001)<=.7)low++;}assert.ok(high>low);});

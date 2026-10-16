@@ -1,0 +1,10 @@
+{
+  "name": "clinicia",
+  "version": "0.2.0",
+  "private": true,
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node --test test/*.test.mjs",
+    "check": "node --check public/app.mjs && node --check public/learn/ecg.mjs && node --check public/learn/engine.mjs && node --check public/learn/courses.mjs && node --check public/learn/cases.mjs && node --check public/learn/fondal-core.mjs && node --check netlify/functions/tutor.js && node --check netlify/functions/extract-patient.js && node --check netlify/functions/rewrite-field.js && node --check netlify/functions/structure-consulta.js"
+  }
+}

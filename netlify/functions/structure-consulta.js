@@ -1,3 +1,4 @@
+const {authorize,reply}=require('../lib/access');
 // Función serverless (Netlify Function).
 // Recibe la transcripción cruda de una consulta y le pide a la API de Claude
 // que la organice en historia clínica. La clave de la API vive en una
@@ -35,6 +36,8 @@ Formato EXACTO de salida (todas las claves siempre presentes; null o [] cuando n
 }`;
 
 exports.handler = async function (event) {
+  const denied=authorize(event);if(denied)return denied;
+  if(process.env.LEGACY_CLINICAL_ENABLED!=="true")return reply(503,{error:"El consultorio con IA requiere habilitación explícita del servidor."});
   if (event.httpMethod !== "POST") {
     return { statusCode: 405, body: JSON.stringify({ error: "Método no permitido" }) };
   }
@@ -46,15 +49,16 @@ exports.handler = async function (event) {
     return { statusCode: 400, body: JSON.stringify({ error: "JSON inválido en el pedido" }) };
   }
 
-  const transcript = (body.transcript || "").trim();
+  if(!body||typeof body.transcript!=="string")return reply(400,{error:"Transcripción inválida"});
+  const transcript = body.transcript.trim();
   const patientContext = body.patientContext || {};
   if (!transcript) {
     return { statusCode: 400, body: JSON.stringify({ error: "Transcripción vacía" }) };
   }
 
   const apiKey = process.env.ANTHROPIC_API_KEY;
-  if (!apiKey) {
-    return { statusCode: 500, body: JSON.stringify({ error: "Falta configurar ANTHROPIC_API_KEY en Netlify (Site settings → Environment variables)" }) };
+  if (!apiKey || !process.env.ANTHROPIC_MODEL) {
+    return { statusCode: 500, body: JSON.stringify({ error: "Falta configurar ANTHROPIC_MODEL y ANTHROPIC_API_KEY en Netlify (Site settings → Environment variables)" }) };
   }
 
   const userContent =
@@ -66,13 +70,14 @@ exports.handler = async function (event) {
   try {
     const resp = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
+      signal: AbortSignal.timeout(20000),
       headers: {
         "Content-Type": "application/json",
         "x-api-key": apiKey,
         "anthropic-version": "2023-06-01",
       },
       body: JSON.stringify({
-        model: "claude-sonnet-5",
+        model: process.env.ANTHROPIC_MODEL,
         max_tokens: 2000,
         temperature: 0.2,
         system: SYSTEM_PROMPT,
@@ -81,8 +86,8 @@ exports.handler = async function (event) {
     });
 
     if (!resp.ok) {
-      const errText = await resp.text();
-      return { statusCode: 502, body: JSON.stringify({ error: "La API de Claude devolvió un error", detail: errText }) };
+      await resp.text();
+      return { statusCode: 502, body: JSON.stringify({ error: "La API de Claude devolvió un error", detail: "Error del proveedor" }) };
     }
 
     const data = await resp.json();
@@ -95,7 +100,7 @@ exports.handler = async function (event) {
     try {
       parsed = JSON.parse(textBlock.text);
     } catch (e) {
-      return { statusCode: 502, body: JSON.stringify({ error: "La IA no devolvió JSON válido", raw: textBlock.text }) };
+      return { statusCode: 502, body: JSON.stringify({ error: "La IA no devolvió JSON válido", detail: "Formato del proveedor inválido" }) };
     }
 
     return {
@@ -104,6 +109,6 @@ exports.handler = async function (event) {
       body: JSON.stringify(parsed),
     };
   } catch (err) {
-    return { statusCode: 500, body: JSON.stringify({ error: "Fallo de red al llamar a la API", detail: String(err) }) };
+    return { statusCode: 500, body: JSON.stringify({ error: "Fallo de red al llamar a la API", detail: "Error de conexión" }) };
   }
 };

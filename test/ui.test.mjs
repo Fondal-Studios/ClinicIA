@@ -1,0 +1,18 @@
+import assert from 'node:assert/strict';
+const handlers={},values={};let html='',stored='';
+const app={set innerHTML(v){html=v},get innerHTML(){return html},addEventListener:(n,f)=>handlers[n]=f};
+global.document={querySelector:s=>s==='#app'?app:{value:values[s]||''}};
+const events={};global.window={addEventListener:(n,f)=>events[n]=f};let hash='';global.location={get hash(){return hash},set hash(v){hash=v.startsWith('#')?v:'#'+v;queueMicrotask(()=>events.hashchange?.())}};
+global.localStorage={getItem:()=>null,setItem:(_k,v)=>stored=v};global.confirm=()=>true;
+await import(new URL('../public/app.mjs',import.meta.url).href);
+const click=async(action,data={})=>{await handlers.click({target:{closest:()=>({dataset:{action,...data}})}});await new Promise(r=>setImmediate(r));};
+assert.match(html,/Tu próxima guardia/);
+await click('nav',{view:'path'});assert.match(html,/Recorrido ACLS/);
+await click('lesson',{index:'0'});assert.match(html,/Adulto inconsciente/);
+await click('answer',{index:'0'});await click('answer',{index:'0'});assert.equal(JSON.parse(stored).evidence.recognize.total,1);
+await click('next');await click('answer',{index:'0'});await click('next');assert.match(html,/Buen trabajo/);assert.equal(JSON.parse(stored).progress.acls,1);
+await click('nav',{view:'cases'});await click('case',{id:'fv'});await click('case-answer',{index:'1'});assert.match(html,/Revisá la decisión/);await click('case-next');for(let i=0;i<3;i++){await click('case-answer',{index:'0'});await click('case-next');}assert.match(html,/Recorrido completado/);assert.equal(JSON.parse(stored).cases.fv,true);
+await click('nav',{view:'review'});await click('review-start');assert.match(html,/REPASO ESPACIADO/);
+await click('nav',{view:'ecg'});await click('ecg-quiz');assert.match(html,/Qué patrón representa/);await click('ecg-answer',{id:'sinus'});assert.match(html,/Laboratorio ECG/);
+await click('nav',{view:'tutor'});values['#ask']='por qué RCP';values['#access']='test';global.fetch=async()=>({ok:false,json:async()=>({error:'Configuración pendiente'})});await click('ask');assert.match(html,/Configuración pendiente/);
+console.log('DOM-controller smoke passed: all views, lesson completion/double-click protection, persistence, case retry/completion, review, ECG quiz, tutor failure. No browser layout validation.');
