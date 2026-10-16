@@ -26,3 +26,16 @@ Referencias adicionales consultadas el 16/10/2026:
 - ATS/ESICM/SCCM, ventilación en ARDS: https://www.thoracic.org/statements/resources/cc/ards-guidelines.pdf
 
 Los enlaces específicos a los algoritmos de paro, bradicardia y taquicardia pediátrica y cuidados posparo adultos están en `sources` de `public/learn/courses.mjs`. FCCS se presenta como introducción independiente: no reproduce el manual ni cubre todo el programa oficial. Se interpretó «FCSS» de la solicitud como FCCS.
+
+## Residencias, trauma y compañeros
+
+Contenido original con referencias específicas en `public/learn/content/residencias.mjs` y `trauma.mjs`, consultadas el 16/10/2026: MSAL (temario nacional 2026 y guías clínicas), OMS, NICE, CDC, ACS ATLS 11 y NAEMT PHTLS. No se copiaron preguntas oficiales ni manuales comerciales. Pendiente revisión docente.
+
+Los cuatro PNG de `public/assets/tutors/` se copiaron sin modificación, con autorización expresa del usuario, de `drmarianojimenez94-sudo/La-Horda`, commit `1c1671b8c0247d4783848086a09c79386edd8ad8`, rutas `assets/sprites/champions/{ynara,aelith,morveth,veyra}/preview.png`. No se alteró el repositorio fuente.
+
+SHA-256 de los archivos importados:
+
+- `aelith.png`: `757d49f7dfaaca0262b0cfd0a264ff969d53851541b54a2a222cb9a42d52ca28`
+- `morveth.png`: `9e90281d369543c1e9d1d58025c6c402e38e4b11fff329e89dea91d24165f666`
+- `veyra.png`: `ece99f7c11cf806e7f9f6d8e918d7f90d32d79ccb1db3f1359b061284e952be5`
+- `ynara.png`: `a22feff964c5c544b0cd7f869a09d672f441a0e757047d497fa38505ede2a89a`

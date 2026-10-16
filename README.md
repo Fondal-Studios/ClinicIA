@@ -1,10 +1,12 @@
 # ClinicIA
 
-Piloto independiente de entrenamiento clínico para profesionales. Incluye tres trayectos introductorios: ACLS adulto, PALS pediátrico y FCCS de cuidados críticos. Cada uno tiene ocho temas, 24 preguntas y tres casos: 72 preguntas y nueve casos en total, con nueve patrones ECG sintéticos, repaso espaciado y mapa de competencias por curso.
+Piloto independiente de entrenamiento clínico para profesionales. Examen Único es el recorrido principal: 40 temas, 160 preguntas originales y ocho áreas, con teoría, tarjetas, repaso y simulacros de 20, 50 y 100 preguntas. Incluye también ACLS, PALS, FCCS, PHTLS y ATLS: ocho temas y 24 preguntas por trayecto. Total: seis cursos, 80 temas y 280 preguntas, además de nueve casos y nueve patrones ECG sintéticos.
+
+El mercado permite canjear puntos de estudio por cuatro compañeros de La Horda y dos marcos, equiparlos y darles un nombre. Todo el contenido permanece abierto para pruebas; no hay pagos ni bloqueo tras preguntas.
 
 Teoría, práctica y repaso tienen pantallas separadas. La práctica muestra la explicación y la referencia únicamente después de responder; las opciones cambian de orden. La teoría incluye ejemplos resueltos explícitos. Leer no acredita una evaluación aprobada.
 
-El consultorio previo se conserva en `public/consultorio.html`, con la misma clave de almacenamiento `clinia_v1`. El progreso educativo usa otra clave y no lee pacientes.
+El consultorio previo está oculto en la navegación, pero se conserva en `public/consultorio.html`, con la misma clave de almacenamiento `clinia_v1`. El progreso educativo usa otra clave y no lee pacientes.
 
 ## Ejecutar
 
@@ -39,4 +41,4 @@ El progreso es local y exportable; no hay cuentas, sincronización, pagos ni ran
 
 Para comercializar: cuentas y aislamiento por usuario, base de datos, control de acceso individual, límites de consumo distribuidos, recuperación/importación de progreso, validación clínica/editorial, controles de privacidad y pagos. El token compartido habilita un piloto reducido; no reemplaza autenticación individual.
 
-Ver `docs/AUDITORIA.md`, `docs/PROVENANCE.md` y `docs/VALIDACION.md`.
+Ver `docs/RESIDENCIAS.md`, `docs/MONETIZACION.md`, `docs/AUDITORIA.md`, `docs/PROVENANCE.md` y `docs/VALIDACION.md`.
