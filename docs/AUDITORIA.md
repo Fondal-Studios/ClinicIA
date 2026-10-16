@@ -38,3 +38,9 @@ Las lecciones exigen 80% para avanzar. Con dos preguntas por lección, esto impl
 5. Tutor con evaluación adversarial, trazabilidad granular de afirmaciones y revisión de referencias. El contexto actual es un corpus pequeño incluido en el código; no es un RAG bibliográfico completo.
 6. El consultorio conserva su motor clínico anterior: su salida no cuenta con un esquema exhaustivo validado en servidor. Queda deshabilitado por defecto para IA; usar datos ficticios en el piloto.
 7. Publicación y verificación en el hosting real: guardar código en GitHub no demuestra despliegue saludable.
+
+## Revisión del aprendizaje — 16/10/2026
+
+La captura aportada mostraba que el resumen teórico revelaba la respuesta antes de la pregunta. Se separaron teoría, práctica y repaso. Las explicaciones y referencias de las preguntas aparecen después de responder. Se incorporaron PALS y FCCS, ocho temas y 24 preguntas por trayecto, nueve casos totales y nueve patrones ECG sintéticos. La selección de opciones se aleatoriza y el progreso, errores y tutor se separan por curso. Se conserva el progreso compatible de la versión anterior.
+
+Continúan pendientes la revisión clínica docente, la verificación visual en dispositivos reales y la comprobación del despliegue público. Esta ampliación no convierte los trayectos introductorios en cursos oficiales ni certificados.

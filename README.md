@@ -1,6 +1,8 @@
 # ClinicIA
 
-Piloto independiente de entrenamiento clínico para profesionales. La ruta inicial es ACLS adulto: seis microlecciones, doce preguntas con devolución, cinco ECG sintéticos explorables, tres escenarios ramificados, repaso espaciado y mapa de competencias.
+Piloto independiente de entrenamiento clínico para profesionales. Incluye tres trayectos introductorios: ACLS adulto, PALS pediátrico y FCCS de cuidados críticos. Cada uno tiene ocho temas, 24 preguntas y tres casos: 72 preguntas y nueve casos en total, con nueve patrones ECG sintéticos, repaso espaciado y mapa de competencias por curso.
+
+Teoría, práctica y repaso tienen pantallas separadas. La práctica muestra la explicación y la referencia únicamente después de responder; las opciones cambian de orden. La teoría incluye ejemplos resueltos explícitos. Leer no acredita una evaluación aprobada.
 
 El consultorio previo se conserva en `public/consultorio.html`, con la misma clave de almacenamiento `clinia_v1`. El progreso educativo usa otra clave y no lee pacientes.
 
@@ -31,9 +33,9 @@ La raíz del repositorio redirige a `public/` para navegación estática. El tut
 
 ## Estado real
 
-Listo para ejecutar y revisar como **piloto educativo local**. Contenido redactado para esta aplicación con fuentes AHA 2025 enlazadas, consultadas el 16 de octubre de 2026; **pendiente de validación docente**. No es un curso oficial, certificación AHA, herramienta diagnóstica ni sistema para dirigir una emergencia real.
+Listo para ejecutar y revisar como **piloto educativo local**. Contenido redactado para esta aplicación con fuentes AHA/AAP 2025, SCCM/SSC 2026 y referencias de cuidados críticos enlazadas, consultadas el 16 de octubre de 2026; **pendiente de validación docente**. No es un curso oficial, certificación AHA, herramienta diagnóstica ni sistema para dirigir una emergencia real.
 
-El progreso es local y exportable; no hay cuentas, sincronización, pagos ni ranking multijugador. El mapa ordena las competencias del propio usuario por evidencia y cobertura, no por horas ni XP. Las simulaciones son recorridos de decisiones con reloj virtual, no un modelo fisiológico ni entrenamiento de destreza manual. El laboratorio ECG usa ilustraciones sintéticas y no analiza archivos clínicos.
+El progreso es local y exportable; no hay cuentas, sincronización, pagos ni ranking multijugador. El mapa ordena las competencias del propio usuario por evidencia y cobertura, no por horas ni XP. Las simulaciones son recorridos de decisiones con devolución, no un modelo fisiológico ni entrenamiento de destreza manual. El laboratorio ECG usa ilustraciones sintéticas y no analiza archivos clínicos.
 
 Para comercializar: cuentas y aislamiento por usuario, base de datos, control de acceso individual, límites de consumo distribuidos, recuperación/importación de progreso, validación clínica/editorial, controles de privacidad y pagos. El token compartido habilita un piloto reducido; no reemplaza autenticación individual.
 

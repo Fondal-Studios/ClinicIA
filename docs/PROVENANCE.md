@@ -13,3 +13,16 @@ Referencias consultadas el 16/10/2026:
 - AHA 2025, algoritmo de bradicardia con pulso: https://cpr.heart.org/-/media/CPR-Files/CPR-Guidelines-Files/2025-Accessible/Algorithm-ACLS-Bradycardia-LngDscrp-250725-Ed.pdf?sc_lang=en
 
 No se reproducen gráficos oficiales ni se afirma afiliación. Los contenidos son resúmenes y ejercicios originales pendientes de revisión docente; las fuentes están enlazadas por lección y escenario.
+
+## Ampliación ACLS, PALS y FCCS
+
+Referencias adicionales consultadas el 16/10/2026:
+
+- AHA/AAP 2025, Pediatric Basic Life Support: https://cpr.heart.org/en/resuscitation-science/cpr-and-ecc-guidelines/pediatric-basic-life-support
+- AHA/AAP 2025, Pediatric Advanced Life Support: https://cpr.heart.org/en/resuscitation-science/cpr-and-ecc-guidelines/pediatric-advanced-life-support
+- SCCM, alcance público de FCCS: https://www.sccm.org/education-center/educational-programming/fundamentals/fundamental-critical-care-support
+- Surviving Sepsis Campaign, guía adulta 2026: https://sccm.org/survivingsepsiscampaign/guidelines-and-resources/surviving-sepsis-campaign-adult-guidelines
+- Resuscitation Council UK, ABCDE: https://www.resus.org.uk/library/abcde-approach
+- ATS/ESICM/SCCM, ventilación en ARDS: https://www.thoracic.org/statements/resources/cc/ards-guidelines.pdf
+
+Los enlaces específicos a los algoritmos de paro, bradicardia y taquicardia pediátrica y cuidados posparo adultos están en `sources` de `public/learn/courses.mjs`. FCCS se presenta como introducción independiente: no reproduce el manual ni cubre todo el programa oficial. Se interpretó «FCSS» de la solicitud como FCCS.
