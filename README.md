@@ -1,6 +1,6 @@
 # ClinicIA
 
-Piloto independiente de entrenamiento clínico para profesionales. Examen Único es el recorrido principal: 40 temas, 160 preguntas originales y ocho áreas, con teoría, tarjetas, repaso y simulacros de 20, 50 y 100 preguntas. Incluye también ACLS, PALS, FCCS, PHTLS y ATLS: ocho temas y 24 preguntas por trayecto. Total: seis cursos, 80 temas y 280 preguntas, además de nueve casos y nueve patrones ECG sintéticos.
+Piloto independiente de entrenamiento clínico para profesionales. Examen Único es el recorrido principal: 40 temas, 160 preguntas originales y ocho áreas, con teoría, tarjetas, repaso y simulacros de 20, 50, 100 y 160 preguntas. Incluye también ACLS, PALS, FCCS, PHTLS y ATLS: ocho temas y 24 preguntas por trayecto. Revalida agrega un módulo introductorio en español de 5 temas y 20 preguntas. Total: siete cursos, 85 temas y 300 preguntas, además de nueve casos y nueve patrones ECG sintéticos.
 
 El mercado permite canjear puntos de estudio por cuatro compañeros de La Horda y dos marcos, equiparlos y darles un nombre. Todo el contenido permanece abierto para pruebas; no hay pagos ni bloqueo tras preguntas.
 
@@ -50,3 +50,14 @@ El personaje aparece por defecto, corrige prácticas y casos con el contenido ed
 “Tu guardia ahora” agrega un chat para profesionales, plantillas de consulta/pase y búsqueda local de referencias. La conversación mantiene contexto efímero, se borra al salir de sección o pulsar Borrar conversación y no entra en la exportación ni en el almacenamiento de pacientes. Enviar al proveedor comparte hasta seis mensajes recientes; el proveedor puede aplicar sus propias políticas de retención. No se promete privacidad del proveedor como si fuera almacenamiento exclusivamente local.
 
 La IA necesita servidor Node/Netlify y las variables ANTHROPIC_API_KEY y ANTHROPIC_MODEL. GitHub Pages únicamente sirve la interfaz, las correcciones editoriales y la búsqueda local; no ejecuta /api/tutor. No hay respuesta simulada que se presente como IA. “Tu guardia ahora” es un piloto de apoyo al razonamiento pendiente de validación clínica, no un sistema aprobado para conducir atención.
+
+
+## Demo para compartir — 16/10/2026
+
+Abrir `public/#examen-unico/demo` en GitHub Pages o `/#examen-unico/demo` en Node/Netlify. El demo guía una sesión de tres preguntas, corrección, repaso y acceso a Mi primera guardia. Compartir utiliza el menú del dispositivo o copia el enlace; no incluye progreso ni conversaciones.
+
+Se conserva el trabajo de `codex/active-tutor-guard`, ya fusionado en main antes de esta intervención. No se duplican los chats ni sus endpoints.
+
+Revalida es un módulo inicial, no preparación integral. MIR y ENARM aparecen como objetivos con acceso explícito a la base común: todavía no tienen bancos propios. No se agregan preguntas clonadas para inflar cifras. Cada curso dispone de una evaluación integral de su banco actual. El simulacro extendido de residencias usa 160 preguntas únicas; no se presenta como formato oficial.
+
+Validación: pruebas de API, aislamiento de cursos, restauración del simulacro, navegación del demo y correcciones. Revisión visual en navegador pendiente en esta ejecución. Ver `docs/DEMO-LANZAMIENTO.md` para los requisitos restantes de venta.
