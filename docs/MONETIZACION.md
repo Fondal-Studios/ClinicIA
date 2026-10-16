@@ -13,3 +13,13 @@ Reglas exigentes: 1 punto por respuesta correcta en el primer intento de una pre
 Preparar posteriormente acceso de muestra de dos o tres preguntas en contenidos relevantes y oferta de versión paga. No se implementa un interruptor oculto que pueda bloquear hoy las pruebas. Antes de activarlo, definir productos, precios, derechos de acceso y experiencia de compra.
 
 El saldo, historial y compras actuales son locales en el navegador y pueden manipularse por el propietario del dispositivo. No constituyen una economía segura para ventas. Para monetizar: cuentas, libro de movimientos y validación de recompensas en servidor, idempotencia de compras, persistencia por usuario, pagos y recuperación. Los tutores actuales reutilizan arte existente autorizado por el usuario, sin modificar La Horda.
+
+## Diseño orientado a conversión — 16/10/2026
+
+La portada explica el propósito (preparación de residencias), presenta una acción principal de prueba de diez preguntas y muestra el método antes del catálogo. Las cifras son las del banco real; no hay testimonios, descuentos ni urgencia ficticios.
+
+El saldo es accesible desde la cabecera en todos los cursos. “Mis puntos” explica las cuatro reglas, un ejemplo de nueve puntos y el siguiente premio alcanzable. La práctica confirma si hubo recompensa tras responder; el mercado muestra los puntos faltantes.
+
+“Acceso y planes” distingue la prueba gratuita actual de una membresía propuesta no disponible. No hay precio inventado ni botón de cobro. El valor comercial principal es la preparación; los compañeros son personalizaciones secundarias.
+
+Para evaluar conversión cuando existan cuentas y analítica consentida: primera sesión iniciada/completada, retorno al repaso, finalización de simulacro, apertura de puntos/mercado y, tras habilitar ventas, conversión a pago. Este rediseño no demuestra un aumento de ingresos ni incorpora telemetría externa.

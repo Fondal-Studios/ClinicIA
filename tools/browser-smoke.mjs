@@ -11,6 +11,10 @@ const errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('dialog',
 const url=process.env.TEST_URL||`http://127.0.0.1:${server.address().port}`;
 await page.goto(url);await page.locator('.exam-hero').waitFor();
 assert.equal(await page.locator('a[href*="consultorio"]').count(),0);
+assert.ok((await page.locator('h1').innerText()).includes('Estudiá para tu residencia'));
+await page.locator('header [data-view="points"]').click();await page.getByText('Así ganás tus puntos.').waitFor();assert.equal(await page.locator('.reward-rules article').count(),4);assert.ok((await page.locator('.points-example').innerText()).includes('9 puntos'));
+await page.locator('nav a[href$="/plans"]').click();assert.ok((await page.locator('.offer.featured').innerText()).includes('Gratis'));assert.equal(await page.locator('[data-action="buy"]').count(),0);
+await page.locator('nav a[href$="/home"]').click();
 const noOverflow=async()=>assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1),'horizontal overflow');
 await noOverflow();await page.evaluate(()=>window.scrollTo(0,0));await page.waitForTimeout(100);await page.screenshot({path:'/tmp/clinicia-home-mobile.png',fullPage:true});
 await page.locator('nav a[href$="/theory"]').click();await page.locator('#topic-search').fill('diabetes');await page.locator('[data-action="filter"]').click();assert.ok((await page.locator('.path article').count())>0);
