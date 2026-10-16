@@ -12,3 +12,9 @@
 Prueba de navegador opcional: `node tools/browser-smoke.mjs`, con Playwright y Chromium instalados; admite `PLAYWRIGHT_MODULE` y `CHROME_BIN`.
 
 No se verificó el despliegue público ni se configuraron credenciales. La revisión funcional no sustituye validación clínica/docente. El banco es una primera cobertura amplia, no el temario oficial completo.
+
+## Tutor activo y guardia
+
+21 pruebas actualizadas: API sin clave de piloto, contexto de guardia y continuidad de mensajes, rechazo de modo inválido y errores del proveedor. Chromium: corrección con personaje, consulta dentro de ejercicio, plantillas de guardia, conversación de dos turnos con proveedor simulado, falta de configuración y referencias sin IA; sin persistencia del texto clínico en localStorage. No se realizó consulta a un modelo real.
+
+Se verificó HTTP 200 en la página pública de GitHub Pages antes de esta entrega; esa plataforma no sirve el backend conversacional. La conexión de IA en hosting con servidor sigue pendiente.
