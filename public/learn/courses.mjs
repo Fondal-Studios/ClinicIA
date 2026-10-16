@@ -1,3 +1,4 @@
+import {revalidaCourse,revalidaSources} from './content/revalida.mjs';
 import {residencyCourse,residencySources} from './content/residencias.mjs';
 import {phtlsCourse,atlsCourse,traumaSources} from './content/trauma.mjs';
 // Original educational content. Sources verified 2026-10-16; instructor validation pending.
@@ -1292,8 +1293,8 @@ export const courses = [
     "reviewStatus": "Pendiente de validación docente"
   }
 ];
-Object.assign(sources,residencySources,traumaSources);
+Object.assign(sources,residencySources,traumaSources,revalidaSources);
 courses.unshift(residencyCourse);
-courses.push(phtlsCourse,atlsCourse);
+courses.push(phtlsCourse,atlsCourse,revalidaCourse);
 export const catalog=courses;
 export const questions=courses.flatMap(c=>c.lessons.flatMap((l,li)=>l.questions.map((q,qi)=>({...q,source:q.source||l.source,courseId:c.id,lessonId:l.id,area:l.area||q.skill,li,qi}))));
