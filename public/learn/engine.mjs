@@ -24,7 +24,7 @@ export function restore(raw){
  for(const c of cases)if(raw?.cases?.[c.id]===true)out.cases[c.id]=true;
  out.wallet=restoreWallet(raw?.wallet);
  out.bookmarks=Object.fromEntries(questions.filter(q=>raw?.bookmarks?.[q.id]===true).map(q=>[q.id,true]));
- out.examHistory=(Array.isArray(raw?.examHistory)?raw.examHistory:[]).filter(e=>e&&Array.isArray(e.rows)&&Array.isArray(e.areas)&&e.rows.every(r=>r&&questions.some(q=>q.id===r.id))&&e.areas.every(a=>a&&typeof a.area==='string'&&Number.isFinite(a.total)&&Number.isFinite(a.correct))&&Number.isFinite(e.elapsedMs)&&typeof e.id==='string'&&Number.isFinite(e.completedAt)&&Number.isInteger(e.correct)&&Number.isInteger(e.total)&&e.correct>=0&&e.correct<=e.total&&e.total>0&&e.total<=100).slice(-30);
+ out.examHistory=(Array.isArray(raw?.examHistory)?raw.examHistory:[]).filter(e=>e&&Array.isArray(e.rows)&&Array.isArray(e.areas)&&e.rows.every(r=>r&&questions.some(q=>q.id===r.id))&&e.areas.every(a=>a&&typeof a.area==='string'&&Number.isFinite(a.total)&&Number.isFinite(a.correct))&&Number.isFinite(e.elapsedMs)&&typeof e.id==='string'&&Number.isFinite(e.completedAt)&&Number.isInteger(e.correct)&&Number.isInteger(e.total)&&e.correct>=0&&e.correct<=e.total&&e.total>0&&e.total<=questions.length).slice(-30);
  return out;
 }
 export function answer(state,id,right,now=Date.now()){
