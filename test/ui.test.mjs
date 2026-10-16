@@ -8,7 +8,7 @@ test('theory never appears before a practice answer; all courses, ECG, review an
  global.document={querySelector:s=>s==='#app'?app:{value:values[s]||''}};
  global.window={addEventListener:(n,f)=>events[n]=f,scrollTo:()=>{}};
  let hash='';global.location={get hash(){return hash;},set hash(v){hash=v.startsWith('#')?v:'#'+v;queueMicrotask(()=>events.hashchange?.());}};
- global.localStorage={getItem:()=>null,setItem:(_k,v)=>{stored=v;}};global.confirm=()=>true;
+ global.localStorage={getItem:()=>null,setItem:(_k,v)=>{if(_k==='clinicia-learning-v1')stored=v;}};global.confirm=()=>true;
  await import('../public/app.mjs');
  const click=async(action,data={})=>{await handlers.click({target:{closest:()=>({dataset:{action,...data}})}});await new Promise(r=>setImmediate(r));};
  const currentQuestion=()=>questions.find(q=>html.includes(`<h1 class="question">${esc(q.prompt)}</h1>`));
@@ -42,5 +42,13 @@ test('theory never appears before a practice answer; all courses, ECG, review an
  await click('course',{id:'fccs'});await click('nav',{view:'tutor'});values['#ask']='¿Cómo reevaluar?';values['#access']='test';let body;
  global.fetch=async(_url,args)=>{body=JSON.parse(args.body);return {ok:false,json:async()=>({error:'Configuración pendiente'})};};
  await click('ask');assert.equal(body.courseId,'fccs');assert.ok(html.includes('Configuración pendiente'));
+ await click('nav',{view:'catalog'});assert.ok(html.includes('Revalida · Brasil')&&html.includes('NO BANCO MIR'));
+ await click('destination',{id:'revalida',view:'home'});assert.ok(html.includes('20 preguntas originales'));
+ await click('nav',{view:'demo'});assert.ok(html.includes('Enlace al demo'));
+ await click('start',{mode:'demo'});assert.equal(currentQuestion().courseId,'revalida');
+ await click('nav',{view:'exams'});assert.ok(html.includes('Revalida · diagnóstico inicial'));
+ await click('exam-start',{id:'revalida-integral'});assert.equal(currentQuestion().courseId,'revalida');
+ await click('destination',{id:'acls',view:'exams'});assert.ok(html.includes('Tenés un simulacro en curso'));
+ await click('destination',{id:'revalida',view:'exams'});await click('exam-submit');assert.ok(html.includes('Tu resultado'));
  const persisted=JSON.parse(stored);assert.equal(persisted.progress.acls,1);assert.equal(persisted.progress.pals,1);assert.equal(persisted.progress.fccs,1);
 });
