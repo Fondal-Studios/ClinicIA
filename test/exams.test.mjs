@@ -1,9 +1,9 @@
 import test from 'node:test';import assert from 'node:assert/strict';
 import {questions} from '../public/learn/courses.mjs';
-import {examCourse,examTemplates,createExam,restoreExam,selectExamAnswer,gradeExam,dailyQuestions} from '../public/learn/exams.mjs';
+import {examCourse,examPool,examTemplates,createExam,restoreExam,selectExamAnswer,gradeExam,dailyQuestions} from '../public/learn/exams.mjs';
 import {fresh,answer,finishLesson,restore} from '../public/learn/engine.mjs';
 import {freshWallet,balance,purchase,equip,restoreWallet,marketItems} from '../public/learn/market.mjs';
-test('all exam templates have unique balanced questions, stable option orders and valid timing',()=>{for(const t of examTemplates){const e=createExam(t.id,1000);assert.equal(e.ids.length,t.count);assert.ok(e.ids.every(id=>questions.find(q=>q.id===id).courseId===examCourse(t)));assert.equal(new Set(e.ids).size,t.count);assert.equal(e.deadline,1000+t.minutes*60000);assert.equal(new Set(e.ids.map(id=>questions.find(q=>q.id===id).area)).size,new Set(questions.filter(q=>q.courseId===examCourse(t)).map(q=>q.area)).size);assert.deepEqual(restoreExam(JSON.parse(JSON.stringify(e))),e);for(const id of e.ids)assert.equal(new Set(e.orders[id]).size,questions.find(q=>q.id===id).options.length);}});
+test('all exam templates have unique balanced questions, stable option orders and valid timing',()=>{for(const t of examTemplates){const e=createExam(t.id,1000);assert.equal(e.ids.length,t.count);assert.ok(e.ids.every(id=>questions.find(q=>q.id===id).courseId===examCourse(t)));assert.equal(new Set(e.ids).size,t.count);assert.equal(e.deadline,1000+t.minutes*60000);assert.equal(new Set(e.ids.map(id=>questions.find(q=>q.id===id).area)).size,new Set(examPool(t).map(q=>q.area)).size);assert.deepEqual(restoreExam(JSON.parse(JSON.stringify(e))),e);for(const id of e.ids)assert.equal(new Set(e.orders[id]).size,questions.find(q=>q.id===id).options.length);}});
 test('exam answers can change before deadline, never after; omissions grade zero',()=>{let e=createExam('sprint',0);const id=e.ids[0],q=questions.find(q=>q.id===id);e=selectExamAnswer(e,id,1,1);e=selectExamAnswer(e,id,q.answer,2);assert.equal(e.answers[id],q.answer);assert.equal(selectExamAnswer(e,id,2,e.deadline),e);const r=gradeExam(e,3);assert.equal(r.correct,1);assert.equal(r.omitted,19);assert.equal(r.rows.length,20);assert.equal(r.areas.reduce((n,a)=>n+a.total,0),20);assert.equal(r.areas.reduce((n,a)=>n+a.correct,0),1);});
 test('corrupt exam identity, order, duplicates and duration are rejected',()=>{const e=createExam('sprint',0);assert.equal(restoreExam({...e,deadline:Infinity}),null);assert.equal(restoreExam({...e,ids:e.ids.map(()=>e.ids[0])}),null);assert.equal(restoreExam({...e,orders:{}}),null);assert.equal(restoreExam({...e,templateId:'unknown'}),null);});
 test('daily challenge is reproducible per day and changes across days',()=>{const a=dailyQuestions('2026-10-16').map(q=>q.id);assert.deepEqual(a,dailyQuestions('2026-10-16').map(q=>q.id));assert.notDeepEqual(a,dailyQuestions('2026-10-17').map(q=>q.id));assert.equal(new Set(a).size,10);});
@@ -13,3 +13,12 @@ test('market checks balance, prevents double spend and only equips owned items',
 test('wallet restoration drops forged prices, unknown items, invalid equip and unaffordable ownership',()=>{const w=restoreWallet({ledger:{'first:fake':9000,'perfect:eu-hta':5000},owned:['ynara','free-money'],equipped:'veyra'});assert.equal(balance(w),0);assert.deepEqual(w.owned,[]);assert.equal(w.equipped,null);assert.equal(marketItems.filter(i=>i.kind==='tutor').length,4);});
 
 test("extended and Revalida results survive reload without crossing course pools",()=>{for(const id of ["extendido","revalida-integral"]){const e=createExam(id,0),r=gradeExam(e,100);const s=restore({...fresh(),examHistory:[r]});assert.equal(s.examHistory[0].total,e.ids.length);const foreign=questions.find(q=>!e.ids.includes(q.id));assert.equal(restoreExam({...e,ids:[foreign.id,...e.ids.slice(1)]}),null);}});
+
+test('area exams reject foreign-area questions and diagnostic includes every area',()=>{
+ for(const t of examTemplates.filter(t=>t.area)){
+  const e=createExam(t.id,0),foreign=questions.find(q=>q.courseId===examCourse(t)&&q.area!==t.area);
+  assert.ok(e.ids.every(id=>questions.find(q=>q.id===id).area===t.area));
+  assert.equal(restoreExam({...e,ids:[foreign.id,...e.ids.slice(1)]}),null);
+ }
+ const e=createExam('diagnostico',0);assert.equal(new Set(e.ids.map(id=>questions.find(q=>q.id===id).area)).size,8);
+});
