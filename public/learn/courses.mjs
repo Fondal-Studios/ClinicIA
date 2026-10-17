@@ -1,3 +1,5 @@
+import {improveQuestions} from './content/distractors.mjs';
+import {neonatalCourse,obstetricCourse,perinatalSources} from './content/perinatal.mjs';
 import {revalidaCourse,revalidaSources} from './content/revalida.mjs';
 import {residencyCourse,residencySources} from './content/residencias.mjs';
 import {phtlsCourse,atlsCourse,traumaSources} from './content/trauma.mjs';
@@ -1293,8 +1295,9 @@ export const courses = [
     "reviewStatus": "Pendiente de validación docente"
   }
 ];
-Object.assign(sources,residencySources,traumaSources,revalidaSources);
+Object.assign(sources,residencySources,traumaSources,revalidaSources,perinatalSources);
 courses.unshift(residencyCourse);
-courses.push(phtlsCourse,atlsCourse,revalidaCourse);
+courses.push(phtlsCourse,atlsCourse,revalidaCourse,neonatalCourse,obstetricCourse);
+improveQuestions(courses);
 export const catalog=courses;
 export const questions=courses.flatMap(c=>c.lessons.flatMap((l,li)=>l.questions.map((q,qi)=>({...q,source:q.source||l.source,courseId:c.id,lessonId:l.id,area:l.area||q.skill,li,qi}))));

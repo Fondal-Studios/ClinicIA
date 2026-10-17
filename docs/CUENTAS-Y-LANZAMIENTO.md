@@ -30,3 +30,7 @@ Web instalable con manifest, iconos, botón de instalación y guía para Safari.
 `/lanzamiento.html`: bio, textos y tres imágenes descargables para Instagram. Perfil propuesto pendiente de disponibilidad y alta; no afirmar que existe. Se necesita correo/teléfono y validación de Meta.
 
 Cobros intencionalmente desactivados. Para lanzamiento comercial: revisión docente, responsable y soporte, oferta/precio/plazo, condiciones, cuenta Mercado Pago validada y prueba de pago/webhook/reembolso. No hay checkout ficticio, promesa de plaza ni suscripción activa. Mantener abierto el piloto como pidió el usuario hasta validación.
+
+## Autorización de puesta en marcha (16/10/2026)
+
+El titular autorizó publicación y publicidad con tope total de USD 20 para la puesta en marcha. Se reservó hasta USD 7 para el primer mes de base; el remanente es un máximo para publicidad inicial cerrada, no una campaña ilimitada. El primer intento de crear la base falló con HTTP 402 por falta de medio de pago: no se creó ningún recurso. El usuario informó luego que cargó la tarjeta y pidió terminar primero la revisión editorial y los módulos nuevos, verificar y después retomar cuentas. No lanzar anuncios sin cuenta publicitaria conectada y límite de presupuesto. Verificar importes e impuestos al activar para respetar el total autorizado.
