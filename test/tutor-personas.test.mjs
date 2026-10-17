@@ -16,7 +16,7 @@ process.env.TUTOR_PROVIDER='groq';process.env.GROQ_API_KEY='test-secret';delete 
 let request,url;
 global.fetch=async(u,args)=>{url=u;request=JSON.parse(args.body);assert.equal(args.headers.Authorization,'Bearer test-secret');return {ok:true,json:async()=>({choices:[{finish_reason:'stop',message:{content:'Repasemos el concepto.'}}]})};};
 const event={httpMethod:'POST',headers:{},body:JSON.stringify({question:'Explicá RCP',courseId:'acls',tutorId:'aelith',studyProfile:{due:3,seen:'FORGED'},mode:'study'})};
-const r=await handler(event);assert.equal(r.statusCode,200);assert.equal(JSON.parse(r.body).provider,'groq');assert.match(url,/api.groq.com/);assert.equal(request.model,'llama-3.3-70b-versatile');assert.match(request.messages[0].content,/PERSONAJE: Aelith/);assert.match(request.messages[0].content,/"due":3/);assert.ok(!request.messages[0].content.includes('FORGED'));assert.ok(!r.body.includes('test-secret'));
+const r=await handler(event);assert.equal(r.statusCode,200);assert.equal(JSON.parse(r.body).provider,'groq');assert.match(url,/api.groq.com/);assert.equal(request.model,'llama-3.3-70b-versatile');assert.match(request.messages[0].content,/PERSONAJE: Aelith/);assert.match(request.messages[0].content,/100–120/);assert.match(request.messages[0].content,/"due":3/);assert.ok(!request.messages[0].content.includes('FORGED'));assert.ok(!r.body.includes('test-secret'));
 const followup={...event,body:JSON.stringify({question:'¿Por qué?',courseId:'examen-unico',history:[{role:'user',content:'Explicame sensibilidad, especificidad y valor predictivo positivo de las pruebas diagnósticas.'}]})};
 assert.equal((await handler(followup)).statusCode,200);
 assert.match(request.messages[0].content,/30 verdaderos positivos/);
