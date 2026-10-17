@@ -24,7 +24,7 @@ Verificación: sólo se acepta un pago consultado a la API con external_referenc
 Limitaciones explícitas: la conciliación es iniciada por el usuario desde «Verificar estado», no hay webhook ni proceso automático; no hay integración de facturación, gestión automática de devoluciones ni control de acceso premium. El piloto permanece abierto. No anunciar estos componentes como terminados para venta masiva.
 
 ## Validación
-34 pruebas automáticas: cuentas, reportes, aislamiento de órdenes, importe manipulado, vendedor incorrecto, idempotencia, reintegros simulados, planes, simulaciones, fuentes y ausencia de respuestas antes de contestar. Integración de proveedor validada con dobles de prueba; falta prueba con una cuenta de Mercado Pago real en entorno de pruebas.
+35 pruebas automáticas: cuentas, reportes, aislamiento de órdenes, importe manipulado, vendedor incorrecto, idempotencia, reintegros simulados, planes, simulaciones, fuentes y ausencia de respuestas antes de contestar. Integración de proveedor validada con dobles de prueba; falta prueba con una cuenta de Mercado Pago real en entorno de pruebas.
 
 ## Fuentes consultadas
 - NICE CG103: https://www.nice.org.uk/guidance/cg103/chapter/Recommendations
@@ -32,3 +32,5 @@ Limitaciones explícitas: la conciliación es iniciada por el usuario desde «Ve
 - CDC, epidemiología analítica: https://archive.cdc.gov/www_cdc_gov/csels/dsepd/ss1978/lesson1/section7.html
 - Mercado Pago, creación de preferencia: https://www.mercadopago.com.ar/developers/es/reference/online-payments/checkout-pro-preferences/create-preference/post
 - Mercado Pago, consulta por external_reference: https://www.mercadopago.com.ar/developers/es/docs/shopify/how-tos/change-endpoint-to-get-payment-details
+
+Comprobación en la página publicada: menú simplificado, tres casos visibles, decisión incorrecta con devolución y pregunta contextual al tutor. La IA respondió correctamente distinguiendo sensibilidad de VPP. Se añadió formato seguro para negritas y fracciones simples tras observar que el proveedor enviaba marcado sin renderizar. /api/offer confirmó piloto abierto y pagos desactivados; /api/account/me confirmó cuentas configuradas.
