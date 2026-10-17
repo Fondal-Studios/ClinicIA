@@ -21,7 +21,10 @@ exports.handler=async event=>{
  const words=retrievalText.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').split(/[^a-z0-9]+/).filter(w=>(w.length>3||['rcp','ecg','acv','vih','hta','tb'].includes(w))&&!stopWords.has(w));
  const corpus=guard?courses.flatMap(c=>c.lessons):course.lessons;
  const ranked=corpus.map((l,i)=>{const title=l.title.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,''),text=(l.body+' '+l.questions.map(q=>q.prompt).join(' ')).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');return {l,i,score:words.reduce((n,w)=>n+(title.includes(w)?5:0)+(text.includes(w)?1:0),0)};}).sort((a,b)=>b.score-a.score||a.i-b.i);
- const selected=ranked.filter(x=>x.score>0&&x.score>=ranked[0].score*0.4).slice(0,4).map(x=>x.l);
+ const focusIds=Array.isArray(body.focusQuestionIds)?body.focusQuestionIds.slice(0,3).filter(id=>typeof id==='string'):[];
+ const focusLessons=!guard&&/error|repaso|plan/i.test(body.question)?course.lessons.filter(l=>l.questions.some(q=>focusIds.includes(q.id))):[];
+ const selectedRanked=ranked.filter(x=>x.score>0&&x.score>=ranked[0].score*0.4).slice(0,4).map(x=>x.l);
+ const selected=[...new Set([...focusLessons,...selectedRanked])].slice(0,5);
  const sourceIds=[...new Set(selected.flatMap(l=>[l.source,...l.questions.map(q=>q.source||l.source)]))];
  const references=Object.fromEntries(sourceIds.map(id=>[id,sources[id]]));
  const context=selected.map(l=>({title:l.title,content:l.body,source:l.source,examples:l.questions.map(q=>({question:q.prompt,answer:q.options[q.answer],explanation:q.why,source:q.source||l.source}))}));

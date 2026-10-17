@@ -1,3 +1,4 @@
+import {createPayments,paymentSchema} from './payments.mjs';
 import {randomBytes,randomUUID,scrypt as scryptCallback,timingSafeEqual,createHash} from 'node:crypto';
 import {promisify} from 'node:util';
 import {restore} from '../public/learn/engine.mjs';
@@ -13,6 +14,7 @@ CREATE TABLE IF NOT EXISTS clinic_progress(user_id text PRIMARY KEY REFERENCES c
 CREATE TABLE IF NOT EXISTS clinic_events(id bigserial PRIMARY KEY,user_id text REFERENCES clinic_users(id) ON DELETE CASCADE,name text NOT NULL,created_at timestamptz NOT NULL DEFAULT now());
 CREATE INDEX IF NOT EXISTS clinic_events_date ON clinic_events(created_at);
 CREATE TABLE IF NOT EXISTS clinic_limits(key text PRIMARY KEY,count integer NOT NULL,expires_at timestamptz NOT NULL);
+CREATE TABLE IF NOT EXISTS clinic_question_reports(user_id text NOT NULL REFERENCES clinic_users(id) ON DELETE CASCADE,question_id text NOT NULL,reason text NOT NULL,created_at timestamptz NOT NULL DEFAULT now(),PRIMARY KEY(user_id,question_id,reason));
 CREATE TABLE IF NOT EXISTS clinic_settings(key text PRIMARY KEY,value jsonb NOT NULL);
 `;
 function fail(status,message){throw Object.assign(new Error(message),{status});}
@@ -26,7 +28,8 @@ export function cleanProgress(raw){
  const exam=restoreExam(raw.exam);if(exam&&!/^exam-[0-9-]{1,90}$/.test(exam.id))fail(400,'Identificador de simulacro inválido.');return {state:s,exam};
 }
 export async function createAccounts({db,origin='http://localhost:3000',secure=true,adminName,adminHash}){
- await db.exec(schema);
+ await db.exec(schema+paymentSchema);
+ const payments=createPayments({db,origin});
  if(adminName&&adminHash){await db.query(`INSERT INTO clinic_users(id,username,username_key,password_hash,recovery_hash,role,must_change) VALUES($1,$2,$3,$4,$5,'admin',true) ON CONFLICT(username_key) DO NOTHING`,[randomUUID(),adminName,adminName.toLowerCase(),adminHash,digest(randomBytes(32).toString('hex'))]);}
  const dummy=await hashPassword(randomBytes(24).toString('hex'));
  async function limit(key,max,seconds){const r=await db.query(`INSERT INTO clinic_limits(key,count,expires_at) VALUES($1,1,now()+$2*interval '1 second') ON CONFLICT(key) DO UPDATE SET count=CASE WHEN clinic_limits.expires_at<now() THEN 1 ELSE clinic_limits.count+1 END,expires_at=CASE WHEN clinic_limits.expires_at<now() THEN EXCLUDED.expires_at ELSE clinic_limits.expires_at END RETURNING count`,[digest(key),seconds]);if(r.rows[0].count>max)fail(429,'Demasiados intentos. Esperá unos minutos.');}
@@ -42,7 +45,7 @@ export async function createAccounts({db,origin='http://localhost:3000',secure=t
    if(!['GET','POST','PUT','DELETE'].includes(req.method))fail(405,'Método no permitido.');
    if(req.method!=='GET'&&req.headers.origin!==origin)fail(403,'Origen no autorizado.');
    let body={};if(req.method!=='GET'){if(!String(req.headers['content-type']||'').startsWith('application/json'))fail(415,'Se requiere JSON.');let text='';for await(const chunk of req){text+=chunk;if(Buffer.byteLength(text)>500000)fail(413,'Datos demasiado grandes.');}try{body=JSON.parse(text||'{}');}catch{fail(400,'JSON inválido.');}if(!body||typeof body!=='object'||Array.isArray(body))fail(400,'Datos inválidos.');}
-   if(path==='/api/offer'&&req.method==='GET'){const r=await db.query("SELECT value FROM clinic_settings WHERE key='offer'");return send(200,{pilotOpen:true,offer:r.rows[0]?.value||null});}
+   if(path==='/api/offer'&&req.method==='GET'){const r=await db.query("SELECT value FROM clinic_settings WHERE key='offer'");return send(200,{pilotOpen:true,offer:r.rows[0]?.value||null,payments:payments.offer()});}
    if(path==='/api/account/register'||path==='/api/account/login'||path==='/api/account/recover'){
     if(req.method!=='POST')fail(405,'Método no permitido.');
     const username=typeof body.username==='string'?body.username.trim():'',key=username.toLowerCase(),password=body.password;
@@ -74,6 +77,10 @@ export async function createAccounts({db,origin='http://localhost:3000',secure=t
     const recovery=randomBytes(24).toString('hex');await db.query('UPDATE clinic_users SET password_hash=$1,recovery_hash=$2,must_change=false WHERE id=$3',[await hashPassword(body.password),digest(recovery),u.id]);await db.query('DELETE FROM clinic_sessions WHERE user_id=$1',[u.id]);await issue(res,u);return send(200,{user:publicUser({...u,must_change:false}),recoveryCode:recovery});
    }
    if(u.must_change)fail(403,'Cambiá tu contraseña inicial antes de continuar.');
+   if(path==='/api/account/billing'&&req.method==='GET')return send(200,{offer:payments.offer(),orders:await payments.orders(u.id)});
+   if(path==='/api/account/checkout'&&req.method==='POST'){await limit('checkout:'+u.id,5,60);return send(200,await payments.checkout(u.id,body));}
+   if(path==='/api/account/payment-status'&&req.method==='POST'){await limit('payment-check:'+u.id,20,60);if(typeof body.orderId!=='string'||body.orderId.length>50)fail(400,'Orden inválida.');return send(200,await payments.verify(u.id,body.orderId));}
+   if(path==='/api/account/question-report'&&req.method==='POST'){await limit('report:'+u.id,20,3600);if(!questions.some(q=>q.id===body.questionId)||!['ambiguous','incorrect','obvious'].includes(body.reason))fail(400,'Reporte inválido.');await db.query('INSERT INTO clinic_question_reports(user_id,question_id,reason) VALUES($1,$2,$3) ON CONFLICT DO NOTHING',[u.id,body.questionId,body.reason]);return send(200,{ok:true});}
    if(path==='/api/account/progress'){
     if(req.method==='GET'){const r=await db.query('SELECT payload,version,updated_at FROM clinic_progress WHERE user_id=$1',[u.id]);return send(200,r.rows[0]||{payload:null,version:0});}
     if(req.method==='PUT'){
@@ -91,7 +98,8 @@ export async function createAccounts({db,origin='http://localhost:3000',secure=t
      const events=(await db.query(`SELECT name,count(*) AS count FROM clinic_events WHERE created_at>now()-interval '30 days' GROUP BY name ORDER BY count DESC`)).rows;
      const daily=(await db.query(`SELECT to_char(created_at,'YYYY-MM-DD') AS day,count(*) AS events,count(DISTINCT user_id) AS users FROM clinic_events WHERE created_at>now()-interval '14 days' GROUP BY day ORDER BY day`)).rows;
      const users=(await db.query(`SELECT u.username,u.role,u.created_at,u.last_seen,p.updated_at AS saved_at,p.version FROM clinic_users u LEFT JOIN clinic_progress p ON p.user_id=u.id ORDER BY u.created_at DESC LIMIT 100`)).rows;
-     return send(200,{counts,events,daily,users,pilotOpen:true,paymentsActive:false});
+     const reports=(await db.query('SELECT question_id,reason,count(*) AS count FROM clinic_question_reports GROUP BY question_id,reason ORDER BY count DESC LIMIT 100')).rows;
+     return send(200,{counts,events,daily,users,reports,pilotOpen:true,paymentsActive:payments.offer().enabled,paymentSetup:payments.offer()});
     }
    }
    fail(404,'Ruta no encontrada.');
