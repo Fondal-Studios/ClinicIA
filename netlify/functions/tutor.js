@@ -29,7 +29,11 @@ exports.handler=async event=>{
  const messages=[...history,{role:'user',content:body.question.trim()}];
  const options=provider==='groq'?{url:'https://api.groq.com/openai/v1/chat/completions',headers:{'Content-Type':'application/json',Authorization:'Bearer '+process.env.GROQ_API_KEY},body:{model:process.env.GROQ_MODEL||'llama-3.3-70b-versatile',max_tokens:1200,temperature:0.2,messages:[{role:'system',content:system},...messages]}}:{url:'https://api.anthropic.com/v1/messages',headers:{'Content-Type':'application/json','x-api-key':process.env.ANTHROPIC_API_KEY,'anthropic-version':'2023-06-01'},body:{model:process.env.ANTHROPIC_MODEL,max_tokens:1200,temperature:0,system,messages}};
  const resp=await fetch(options.url,{method:'POST',headers:options.headers,body:JSON.stringify(options.body),signal:AbortSignal.timeout(20000)});
- if(!resp.ok)return reply(resp.status===429?429:502,{error:resp.status===429?'La IA alcanzó su cuota temporal. Intentá más tarde; podés seguir con las correcciones del banco.':'El proveedor no pudo responder. Revisá la configuración del servidor.'});
+ if(!resp.ok){
+ console.error('tutor_provider_failure',JSON.stringify({provider,status:resp.status}));
+ const messages={401:'El proveedor rechazó la clave de API. Revisá la credencial en el servidor.',403:'El proveedor no habilitó el acceso a este modelo o cuenta.',404:'El modelo configurado no está disponible.',413:'El contexto excede el límite del proveedor. Intentá una consulta más breve.',429:'La IA alcanzó su cuota temporal. Intentá más tarde; podés seguir con las correcciones del banco.'};
+ return reply(resp.status===429?429:502,{error:messages[resp.status]||'El proveedor no pudo responder. Revisá la configuración del servidor.'});
+ }
  const data=await resp.json();const answer=provider==='groq'?data.choices?.[0]?.message?.content:data.content?.filter(b=>b.type==='text').map(b=>b.text).join('\n');
  const truncated=provider==='groq'?data.choices?.[0]?.finish_reason==='length':data.stop_reason==='max_tokens';
  if(truncated||typeof answer!=='string'||!answer.trim())return reply(502,{error:'El proveedor devolvió una respuesta incompleta. Intentá una pregunta más breve.'});
