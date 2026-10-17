@@ -18,7 +18,7 @@ exports.handler=async event=>{
  if(!course)return reply(400,{error:'Curso inválido.'});
  const retrievalText=[...history.filter(m=>m.role==='user').slice(-2).map(m=>m.content),body.question].join(' ');
  const stopWords=new Set(['para','como','esta','este','esto','estoy','tengo','puede','puedo','porque','sobre','entre','cual','cuales','dame','pregunta','similar','practicar','respuesta','antes','decir','explicame','repasando','espera','quiero','ayudame']);
- const words=retrievalText.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').split(/[^a-z0-9]+/).filter(w=>w.length>3&&!stopWords.has(w));
+ const words=retrievalText.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').split(/[^a-z0-9]+/).filter(w=>(w.length>3||['rcp','ecg','acv','vih','hta','tb'].includes(w))&&!stopWords.has(w));
  const corpus=guard?courses.flatMap(c=>c.lessons):course.lessons;
  const ranked=corpus.map((l,i)=>{const title=l.title.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,''),text=(l.body+' '+l.questions.map(q=>q.prompt).join(' ')).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');return {l,i,score:words.reduce((n,w)=>n+(title.includes(w)?5:0)+(text.includes(w)?1:0),0)};}).sort((a,b)=>b.score-a.score||a.i-b.i);
  const selected=ranked.filter(x=>x.score>0&&x.score>=ranked[0].score*0.4).slice(0,4).map(x=>x.l);
