@@ -13,3 +13,7 @@
   from = "/api/tutor"
   to = "/.netlify/functions/tutor"
   status = 200
+[[redirects]]
+  from = "/api/tutor-class"
+  to = "/.netlify/functions/tutor-class"
+  status = 200

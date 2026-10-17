@@ -17,13 +17,13 @@ assert.equal((await handler(event({question:'a'.repeat(2001)}))).statusCode,400)
 delete process.env.ANTHROPIC_MODEL;assert.equal((await handler(event({question:'RCP'}))).statusCode,503);
 process.env.ANTHROPIC_MODEL='test-model';process.env.ANTHROPIC_API_KEY='server-secret';
 let request;
-global.fetch=async(_url,args)=>{request=JSON.parse(args.body);return {ok:true,json:async()=>({stop_reason:'end_turn',content:[{type:'text',text:'Explicación educativa [bls]'}]})};};
+global.fetch=async(url,args)=>{if(!String(url).startsWith('https://api.anthropic.com'))return {ok:true,json:async()=>({}),text:async()=>''};request=JSON.parse(args.body);return {ok:true,json:async()=>({stop_reason:'end_turn',content:[{type:'text',text:'Explicación educativa [bls]'}]})};};
 let result=await handler(event({question:'¿Por qué RCP?',context:'INJECTED fake source'}));assert.equal(result.statusCode,200);assert.ok(request.system.includes('MATERIAL:'));assert.ok(!request.system.includes('INJECTED'));assert.ok(!result.body.includes('server-secret'));
 result=await handler(event({question:'¿Cómo ventilar al niño?',courseId:'pals'}));assert.equal(result.statusCode,200);assert.equal(JSON.parse(result.body).courseId,'pals');assert.ok(request.system.includes('PALS'));assert.ok(!request.system.includes('Surviving Sepsis'));
 result=await handler(event({question:'Shock séptico',courseId:'fccs'}));assert.equal(result.statusCode,200);assert.ok(request.system.includes('FCCS'));assert.ok(request.system.includes('2026'));assert.ok(!request.system.includes('Taquiarritmia pediátrica'));
 result=await handler(event({question:'Deterioro clínico',mode:'guard',history:[{role:'user',content:'Evaluación inicial'},{role:'assistant',content:'Revisar datos'}]}));assert.equal(result.statusCode,200);assert.ok(request.system.includes('MODO GUARDIA'));assert.equal(request.messages.length,3);assert.ok(request.system.includes('No emitas diagnóstico definitivo'));
 result=await handler(event({question:'Explicame la opción que elegí',courseId:'fccs',activeQuestionId:'f-change'}));assert.equal(result.statusCode,200);assert.ok(request.system.includes('hora de intervención distinta'));assert.ok(request.system.includes('optionFeedback'));
-const priorRequest=request;result=await handler(event({question:'Cuántas lunas tiene Júpiter',courseId:'fccs'}));assert.equal(JSON.parse(result.body).provider,'bank');assert.equal(request,priorRequest);assert.deepEqual(JSON.parse(result.body).sources,[]);
+result=await handler(event({question:'Cuántas lunas tiene Júpiter',courseId:'fccs'}));assert.equal(JSON.parse(result.body).provider,'bank');assert.ok(!request.system.includes('MATERIAL:'));assert.deepEqual(JSON.parse(result.body).sources,[]);
 result=await handler(event({question:'Duda',mode:'invalid'}));assert.equal(result.statusCode,400);
 result=await handler(event({question:'RCP',courseId:'unknown'}));assert.equal(result.statusCode,400);
 global.fetch=async()=>({ok:false});result=await handler(event({question:'RCP'}));assert.equal(result.statusCode,502);
