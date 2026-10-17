@@ -13,6 +13,7 @@ test('theory never appears before a practice answer; all courses, ECG, review an
  const click=async(action,data={})=>{await handlers.click({target:{closest:()=>({dataset:{action,...data}})}});await new Promise(r=>setImmediate(r));};
  const currentQuestion=()=>questions.find(q=>html.includes(`<h1 class="question">${esc(q.prompt)}</h1>`));
  assert.ok(html.includes('Tu próxima plaza'));
+ await click('nav',{view:'journey'});assert.ok(html.includes('Cada concepto abre camino.'));assert.ok(html.includes('Misiones de este curso'));await click('mission-start',{kind:'smart'});assert.ok(currentQuestion());await click('nav',{view:'home'});
  for(const c of courses){
   await click('course',{id:c.id});await click('nav',{view:'theory'});await click('theory',{id:c.lessons[0].id});
   assert.ok(html.includes(esc(c.lessons[0].body.split('\n\n')[0])));await click('read',{id:c.lessons[0].id});
