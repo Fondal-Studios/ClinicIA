@@ -39,6 +39,26 @@ test('theory never appears before a practice answer; all courses, ECG, review an
  await click('nav',{view:'review'});await click('start',{mode:'errors'});assert.equal(currentQuestion().id,missedId);assert.ok(!html.includes(esc(q.why)));
  await click('answer',{index:String(q.answer)});await click('next');await click('nav',{view:'review'});
  assert.ok(html.includes('data-mode="errors" disabled'),'corrected error should leave error queue');
+
+ // A delayed report must never update a different question or a closed session.
+ await click('course',{id:'examen-unico'});await click('smart-start');
+ q=currentQuestion();await click('answer',{index:String(q.answer)});
+ let resolveReport;global.fetch=()=>new Promise(resolve=>{resolveReport=resolve;});
+ const report=click('report-question',{id:q.id,reason:'ambiguous'});
+ await new Promise(r=>setImmediate(r));assert.ok(html.includes('Enviando reporte'));
+ await click('next');resolveReport({ok:true,json:async()=>({})});await report;
+ assert.ok(!html.includes('Reporte guardado'));
+ q=currentQuestion();await click('answer',{index:String(q.answer)});
+ const reportExit=click('report-question',{id:q.id,reason:'ambiguous'});
+ await new Promise(r=>setImmediate(r));await click('nav',{view:'home'});
+ resolveReport({ok:true,json:async()=>({})});await reportExit;assert.ok(html.includes('Tu próxima plaza'));
+ // Navigating away from a case retains the pending correction and its order.
+ await click('course',{id:'pals'});await click('nav',{view:'cases'});await click('case',{id:'p-respiratory'});
+ await click('case-answer',{index:'1'});const draft=JSON.parse(stored).caseDrafts['p-respiratory'];
+ await click('nav',{view:'home'});await click('nav',{view:'cases'});assert.ok(html.includes('Retomar caso'));
+ await click('case',{id:'p-respiratory'});assert.ok(html.includes('Revisá la decisión'));
+ assert.deepEqual(JSON.parse(stored).caseDrafts['p-respiratory'].order,draft.order);
+ await click('course',{id:'fccs'});await click('start-ecg');assert.equal(currentQuestion().courseId,'acls');assert.ok(currentQuestion().rhythm);
  await click('course',{id:'fccs'});await click('nav',{view:'tutor'});values['#ask']='¿Cómo reevaluar?';values['#access']='test';let body;
  global.fetch=async(_url,args)=>{body=JSON.parse(args.body);return {ok:false,json:async()=>({error:'Configuración pendiente'})};};
  await click('ask');assert.equal(body.courseId,'fccs');assert.ok(html.includes('Configuración pendiente'));

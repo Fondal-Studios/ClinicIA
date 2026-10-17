@@ -404,3 +404,22 @@ improveCases(cases);
 cases.push(...residencyCases);
 export function choose(sim,index){if(sim.finished||sim.feedback)return sim;const scenario=cases.find(c=>c.id===sim.id),s=scenario?.steps[sim.step];if(!s||!Number.isInteger(index)||index<0||index>=s.options.length)return sim;return {...sim,attempts:sim.attempts+1,errors:sim.errors+Number(index!==s.answer),history:[...(sim.history||[]),{step:sim.step,selected:index,right:index===s.answer}],feedback:{right:index===s.answer,text:s.why,next:index===s.answer?s.next:s.wrong}};}
 export function advance(sim){if(!sim.feedback)return sim;return {...sim,step:sim.feedback.next??sim.step,finished:sim.feedback.next===null,feedback:null};}
+
+// Persist only educational choices. Rebuild feedback and counts from the bank.
+export const CASE_REVISION=1;
+export function startCase(id){const c=cases.find(c=>c.id===id);return c?{revision:CASE_REVISION,id,step:0,attempts:0,errors:0,history:[],feedback:null,finished:false,order:c.steps[0].options.map((_,i)=>i)}:null;}
+export function restoreCase(raw){
+ if(!raw||raw.revision!==CASE_REVISION||!Array.isArray(raw.history)||raw.history.length>500)return null;
+ let sim=startCase(raw.id);if(!sim)return null;
+ for(const [i,row] of raw.history.entries()){
+  const c=cases.find(c=>c.id===sim.id),step=c.steps[sim.step];
+  if(sim.finished||row?.step!==sim.step||!Number.isInteger(row.selected)||row.selected<0||row.selected>=step.options.length)return null;
+  sim=choose(sim,row.selected);
+  if(i<raw.history.length-1||!raw.feedback)sim=advance(sim);
+ }
+ if(sim.finished||sim.step!==raw.step||Boolean(sim.feedback)!==Boolean(raw.feedback))return null;
+ const count=cases.find(c=>c.id===sim.id).steps[sim.step].options.length,o=raw.order;
+ sim.order=Array.isArray(o)&&o.length===count&&new Set(o).size===count&&o.every(i=>Number.isInteger(i)&&i>=0&&i<count)?[...o]:Array.from({length:count},(_,i)=>i);
+ return sim;
+}
+export function caseSummary(sim){const c=cases.find(c=>c.id===sim.id);if(!c)return null;const history=sim.history||[];return {total:c.steps.length,firstTry:c.steps.filter((_,step)=>history.find(row=>row.step===step)?.right).length,reviewSteps:c.steps.map((_,i)=>i).filter(step=>history.some(row=>row.step===step&&!row.right))};}

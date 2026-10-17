@@ -1,13 +1,13 @@
 import {freshWallet,restoreWallet,grant} from './market.mjs';
 import {initialState,normalizeState,dayKey} from './fondal-core.mjs';
 import {courses,questions} from './courses.mjs';
-import {cases} from './cases.mjs';
+import {cases,restoreCase} from './cases.mjs';
 const knownCourse=id=>courses.some(c=>c.id===id);
 const validCount=n=>Number.isInteger(n)&&n>=0&&n<=100000;
-export const fresh=()=>({...initialState(),version:3,current:'examen-unico',wallet:freshWallet(),examHistory:[],bookmarks:{},evidence:{},reviews:{},cases:{},theoryRead:{},passedLessons:{}});
+export const fresh=()=>({...initialState(),version:3,current:'examen-unico',wallet:freshWallet(),examHistory:[],bookmarks:{},evidence:{},reviews:{},cases:{},caseDrafts:{},theoryRead:{},passedLessons:{}});
 export function restore(raw){
  const base=normalizeState(raw&&typeof raw==='object'?{...raw,version:2}:null);
- const out={...fresh(),...base,version:3,current:knownCourse(raw?.current)?raw.current:'examen-unico',evidence:{},reviews:{},cases:{},theoryRead:{},passedLessons:{}};
+ const out={...fresh(),...base,version:3,current:knownCourse(raw?.current)?raw.current:'examen-unico',evidence:{},reviews:{},cases:{},caseDrafts:{},theoryRead:{},passedLessons:{}};
  for(const q of questions){
   const e=raw?.evidence?.[q.id];
   if(e&&validCount(e.correct)&&validCount(e.total)&&e.total>0&&e.total>=e.correct)out.evidence[q.id]={correct:e.correct,total:e.total};
@@ -21,7 +21,7 @@ export function restore(raw){
   }
   out.progress[c.id]=c.lessons.filter(l=>out.passedLessons[l.id]).length;
  }
- for(const c of cases)if(raw?.cases?.[c.id]===true)out.cases[c.id]=true;
+ for(const c of cases){if(raw?.cases?.[c.id]===true)out.cases[c.id]=true;const draft=restoreCase(raw?.caseDrafts?.[c.id]);if(draft&&draft.id===c.id)out.caseDrafts[c.id]=draft;}
  out.wallet=restoreWallet(raw?.wallet);
  out.bookmarks=Object.fromEntries(questions.filter(q=>raw?.bookmarks?.[q.id]===true).map(q=>[q.id,true]));
  out.examHistory=(Array.isArray(raw?.examHistory)?raw.examHistory:[]).filter(e=>e&&Array.isArray(e.rows)&&Array.isArray(e.areas)&&e.rows.every(r=>r&&questions.some(q=>q.id===r.id))&&e.areas.every(a=>a&&typeof a.area==='string'&&Number.isFinite(a.total)&&Number.isFinite(a.correct))&&Number.isFinite(e.elapsedMs)&&typeof e.id==='string'&&Number.isFinite(e.completedAt)&&Number.isInteger(e.correct)&&Number.isInteger(e.total)&&e.correct>=0&&e.correct<=e.total&&e.total>0&&e.total<=questions.length).slice(-30);
