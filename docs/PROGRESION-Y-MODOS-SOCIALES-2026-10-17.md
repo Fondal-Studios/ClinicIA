@@ -8,6 +8,7 @@
 - Mapa por área con cobertura, aciertos históricos y errores pendientes. El porcentaje es descriptivo, no predictor de examen.
 - Nueve plantillas «Misión de refuerzo»: diez preguntas, 18 minutos; priorizan errores actuales, después preguntas no exploradas y luego menor proporción histórica de aciertos. Empates aleatorios; preguntas y opciones quedan fijas al crear el intento y se recuperan tras recargar. Sin pistas ni corrección hasta entregar.
 - Retroalimentación de XP tras responder en práctica.
+- Corregida la navegación a la misma URL de origen: al iniciar una práctica desde una misión, volver a «Mi aventura» ahora sale correctamente de la sesión, aunque el hash no hubiera cambiado.
 
 43 pruebas automáticas: no duplicación de XP, aislamiento entre cursos, restauración, misiones alcanzables, selección adaptativa, omisiones, tiempo y recorridos previos. Sin nuevas recomendaciones clínicas ni preguntas generadas en esta entrega.
 

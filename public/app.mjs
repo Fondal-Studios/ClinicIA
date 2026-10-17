@@ -158,6 +158,7 @@ function start(mode,id){
 }
 app.addEventListener('change',e=>{if(e.target.id==='course-select'){if(session&&!session.done&&!confirm('¿Salir de esta sesión y cambiar de curso? Las respuestas ya dadas se conservan.')){e.target.value=course().id;return;}switchCourse(e.target.value);}});
 app.addEventListener('click',async e=>{
+ const routeLink=e.target.closest('a[href^="#"]');if(routeLink?.tagName==='A'){const [id,next]=routeLink.getAttribute('href').slice(1).split('/');if(courses.some(c=>c.id===id)&&nav.some(([v])=>v===next)){e.preventDefault();if(id===course().id)navigate(next);else switchCourse(id,next);return;}}
  const b=e.target.closest('[data-action]');if(!b){const link=e.target.closest('a[href^="#"]');if(link&&link.getAttribute('href')===location.hash){clearActivity();readRoute();render(true);}return;}if(b.disabled)return;const a=b.dataset.action,i=Number(b.dataset.index);
  if(a==='answer'&&!session?.feedback)track('answer');if(a==='start')track('practice');if(a==='ask')track(view==='guard'?'guard':'tutor');if(a==='nav'&&['review','market','plans','exams'].includes(b.dataset.view))track(b.dataset.view==='exams'?'exam':b.dataset.view);
 
