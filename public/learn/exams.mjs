@@ -1,5 +1,5 @@
 import {reinforcementQuestions} from './progression.mjs';
-export const BANK_REVISION=3;
+export const BANK_REVISION=4;
 import {questions,courses} from './courses.mjs';
 const pool=(courseId='examen-unico')=>questions.filter(q=>q.courseId===courseId);
 export const examCourse=t=>t.courseId||'examen-unico';

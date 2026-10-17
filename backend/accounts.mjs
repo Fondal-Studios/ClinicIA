@@ -4,7 +4,7 @@ import {randomBytes,randomUUID,scrypt as scryptCallback,timingSafeEqual,createHa
 import {promisify} from 'node:util';
 import {restore} from '../public/learn/engine.mjs';
 import {questions,courses} from '../public/learn/courses.mjs';
-import {restoreExam,examTemplates} from '../public/learn/exams.mjs';
+import {BANK_REVISION,restoreExam,examTemplates} from '../public/learn/exams.mjs';
 const scrypt=promisify(scryptCallback),digest=s=>createHash('sha256').update(s).digest('hex');
 export async function hashPassword(password){const salt=randomBytes(16).toString('hex');return `${salt}:${(await scrypt(password,salt,64)).toString('hex')}`;}
 export async function verifyPassword(password,hash){try{const [salt,key]=hash.split(':');const actual=await scrypt(password,salt,64),expected=Buffer.from(key,'hex');return actual.length===expected.length&&timingSafeEqual(actual,expected);}catch{return false;}}
@@ -25,8 +25,18 @@ const allowedEvents=new Set(['practice','answer','exam','review','market','tutor
 export function cleanProgress(raw){
  if(!raw||typeof raw!=='object'||!raw.state||typeof raw.state!=='object')fail(400,'Progreso inválido.');
  const s=restore(raw.state);
- s.examHistory=s.examHistory.map(e=>{const rows=e.rows.slice(0,questions.length).map(r=>{const q=questions.find(q=>q.id===r.id),selected=Number.isInteger(r.selected)&&r.selected>=0&&r.selected<q.options.length?r.selected:null;return {id:q.id,area:q.area,selected,right:selected===q.answer,omitted:selected===null};});return {bankRevision:Number.isInteger(e.bankRevision)?e.bankRevision:1,id:/^exam-[0-9-]+$/.test(e.id)?e.id.slice(0,100):'exam-0',courseId:courses.find(c=>c.id===e.courseId)?.id||'examen-unico',templateId:examTemplates.find(t=>t.id===e.templateId)?.id||'',completedAt:e.completedAt,elapsedMs:e.elapsedMs,correct:rows.filter(r=>r.right).length,total:rows.length,omitted:rows.filter(r=>r.omitted).length,rows,areas:[...new Set(rows.map(r=>r.area))].map(area=>({area,total:rows.filter(r=>r.area===area).length,correct:rows.filter(r=>r.area===area&&r.right).length}))};});
+ s.examHistory=s.examHistory.map(cleanExamResult).filter(Boolean);
  const exam=restoreExam(raw.exam);if(exam&&!/^exam-[0-9-]{1,90}$/.test(exam.id))fail(400,'Identificador de simulacro inválido.');return {state:s,exam};
+}
+// Old results are historical snapshots: never grade them against today's answer key.
+function cleanExamResult(e){
+ const revision=Number.isInteger(e.bankRevision)?e.bankRevision:1;
+ const courseId=courses.find(c=>c.id===e.courseId)?.id||'examen-unico';
+ if(revision<1||revision>BANK_REVISION||e.rows.length!==e.total||new Set(e.rows.map(r=>r.id)).size!==e.rows.length||e.rows.some(r=>questions.find(q=>q.id===r.id)?.courseId!==courseId))return null;
+ const rows=e.rows.map(r=>{const q=questions.find(q=>q.id===r.id),selected=Number.isInteger(r.selected)&&r.selected>=0&&r.selected<q.options.length?r.selected:null;
+  return {id:q.id,area:q.area,selected,right:revision===BANK_REVISION?selected===q.answer:r.right===true,omitted:revision===BANK_REVISION?selected===null:r.omitted===true};});
+ if(revision!==BANK_REVISION&&(rows.filter(r=>r.right).length!==e.correct||rows.some(r=>r.right&&r.omitted)))return null;
+ return {bankRevision:revision,id:/^exam-[0-9-]+$/.test(e.id)?e.id.slice(0,100):'exam-0',courseId,templateId:examTemplates.find(t=>t.id===e.templateId)?.id||'',completedAt:e.completedAt,elapsedMs:e.elapsedMs,correct:rows.filter(r=>r.right).length,total:rows.length,omitted:rows.filter(r=>r.omitted).length,rows,areas:[...new Set(rows.map(r=>r.area))].map(area=>({area,total:rows.filter(r=>r.area===area).length,correct:rows.filter(r=>r.area===area&&r.right).length}))};
 }
 export async function createAccounts({db,origin='http://localhost:3000',secure=true,adminName,adminHash}){
  await db.exec(schema+paymentSchema+trainingSchema);

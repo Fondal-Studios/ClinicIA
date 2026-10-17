@@ -12,7 +12,7 @@ export function restore(raw){
   const e=raw?.evidence?.[q.id];
   if(e&&validCount(e.correct)&&validCount(e.total)&&e.total>0&&e.total>=e.correct)out.evidence[q.id]={correct:e.correct,total:e.total};
   const r=raw?.reviews?.[q.id];
-  if(r&&Number.isFinite(r.due)&&r.due>=0&&Number.isInteger(r.level)&&r.level>=0&&r.level<=5)out.reviews[q.id]={due:r.due,level:r.level};
+  if(r&&Number.isFinite(r.due)&&r.due>=0&&Number.isInteger(r.level)&&r.level>=0&&r.level<=5)out.reviews[q.id]={due:r.due,level:r.level,spaced:Number.isInteger(r.spaced)&&r.spaced>=0&&r.spaced<=5?Math.min(r.spaced,Math.max(0,r.level-1)):0};
  }
  for(const c of courses){
   for(const [i,l] of c.lessons.entries()){
@@ -28,13 +28,18 @@ export function restore(raw){
  return out;
 }
 export function answer(state,id,right,now=Date.now()){
- if(!questions.some(q=>q.id===id)||typeof right!=='boolean')return state;
- const old=state.evidence[id]||{correct:0,total:0},level=right?Math.min(5,(state.reviews[id]?.level||0)+1):0;
+ if(!questions.some(q=>q.id===id)||typeof right!=='boolean'||!Number.isFinite(now)||now<0)return state;
+ const old=state.evidence[id]||{correct:0,total:0},previous=state.reviews[id];
+ // An immediate retry is practice, not evidence of retention across days.
+ const advanceReview=right&&(!previous||previous.level===0||previous.due<=now);
+ const level=right?(advanceReview?Math.min(5,(previous?.level||0)+1):previous.level):0;
+ const spaced=right?Math.min(4,(previous?.spaced||0)+Number(!!previous&&previous.level>0&&previous.due<=now)):0;
+ const due=right&&!advanceReview?previous.due:now+(right?[1,3,7,14,30][level-1]*86400000:0);
  let wallet=state.wallet||freshWallet();
  if(right&&!state.evidence[id])wallet=grant(wallet,'first:'+id,1);
  const day=dayKey(new Date(now)),reviewKey=`review:${day}:${id}`;
  if(right&&state.reviews[id]?.level>=1&&state.reviews[id].due<=now&&Object.keys(wallet.ledger).filter(k=>k.startsWith(`review:${day}:`)).length<5)wallet=grant(wallet,reviewKey,1);
- return {...state,wallet,evidence:{...state.evidence,[id]:{correct:old.correct+Number(right),total:old.total+1}},reviews:{...state.reviews,[id]:{level,due:now+(right?[1,3,7,14,30][level-1]*86400000:0)}},days:[...new Set([...state.days,dayKey(new Date(now))])]};
+ return {...state,wallet,evidence:{...state.evidence,[id]:{correct:old.correct+Number(right),total:old.total+1}},reviews:{...state.reviews,[id]:{level,due,spaced}},days:[...new Set([...state.days,dayKey(new Date(now))])]};
 }
 export function finishLesson(state,courseId,lessonId,results){
  const course=courses.find(c=>c.id===courseId),lesson=course?.lessons.find(l=>l.id===lessonId);
