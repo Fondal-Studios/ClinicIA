@@ -5,6 +5,7 @@ const event=body=>({httpMethod:'POST',headers:{authorization:'Bearer '+token},bo
 test('open tutor validates input, restricts context, supports guard history and handles missing provider honestly',async()=>{
 const backup={...process.env},originalFetch=global.fetch;
 try{
+process.env.TUTOR_PROVIDER='anthropic';delete process.env.GROQ_API_KEY;
 delete process.env.CLINIC_ACCESS_TOKEN;assert.equal((await handler(event({question:'hola'}))).statusCode,503);
 process.env.CLINIC_ACCESS_TOKEN=token;
 assert.equal((await handler({...event({}),httpMethod:'GET'})).statusCode,405);
@@ -25,5 +26,5 @@ result=await handler(event({question:'Duda',mode:'invalid'}));assert.equal(resul
 result=await handler(event({question:'RCP',courseId:'unknown'}));assert.equal(result.statusCode,400);
 global.fetch=async()=>({ok:false});result=await handler(event({question:'RCP'}));assert.equal(result.statusCode,502);
 global.fetch=async()=>{throw Error('private provider details');};result=await handler(event({question:'RCP'}));assert.equal(result.statusCode,502);assert.ok(!result.body.includes('private provider details'));
-}finally{global.fetch=originalFetch;for(const k of ['CLINIC_ACCESS_TOKEN','ANTHROPIC_MODEL','ANTHROPIC_API_KEY']){if(backup[k]===undefined)delete process.env[k];else process.env[k]=backup[k];}}
+}finally{global.fetch=originalFetch;for(const k of ['CLINIC_ACCESS_TOKEN','ANTHROPIC_MODEL','ANTHROPIC_API_KEY','TUTOR_PROVIDER','GROQ_API_KEY']){if(backup[k]===undefined)delete process.env[k];else process.env[k]=backup[k];}}
 });
