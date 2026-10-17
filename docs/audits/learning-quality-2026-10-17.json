@@ -1,0 +1,1449 @@
+{
+  "scope": "Integridad y simulaciones deterministas; no prueba de eficacia educativa ni validación clínica.",
+  "courses": 11,
+  "questions": 378,
+  "cases": 26,
+  "decisions": 77,
+  "branchChecks": 385,
+  "optionFeedback": 11,
+  "longestOptionHeuristic": {
+    "correct": 97,
+    "total": 378,
+    "note": "Incluye empates; no mide dificultad real."
+  },
+  "blockingIssues": [],
+  "editorialReview": [
+    {
+      "id": "eu-tiroides-1",
+      "prompt": "TSH elevada y T4 libre baja. ¿Qué patrón describe?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "eu-bronquiolitis-3",
+      "prompt": "¿Qué antecedente aumenta preocupación por evolución grave?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "eu-abdomen-ped-2",
+      "prompt": "Vómitos verdes biliosos en un recién nacido. ¿Qué conducta corresponde?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "eu-sangrado-gest-3",
+      "prompt": "¿Qué dato impide un seguimiento expectante rutinario?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "eu-cervix-2",
+      "prompt": "¿Cuál es el objetivo del tamizaje cervicouterino?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "eu-biliar-3",
+      "prompt": "¿Qué imagen suele utilizarse inicialmente para sospecha de litiasis vesicular?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "eu-quemaduras-3",
+      "prompt": "¿Qué factor aumenta necesidad de evaluación especializada?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "eu-quemaduras-4",
+      "prompt": "Al usar una estimación inicial de líquidos, ¿qué sigue siendo obligatorio?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "eu-pruebas-1",
+      "prompt": "Una prueba se evalúa en 300 personas con referencia diagnóstica independiente. Entre 100 enfermos hay 90 positivos y 10 negativos; entre 200 no enfermos hay 20 positivos y 180 negativos. ¿Cuál es la sensibilidad?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "eu-pruebas-2",
+      "prompt": "En una validación hay 60 verdaderos positivos, 20 falsos negativos, 20 falsos positivos y 180 verdaderos negativos. ¿Cuál es la especificidad?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "eu-pruebas-3",
+      "prompt": "Una campaña evalúa 1.000 personas. Hay 30 verdaderos positivos, 70 falsos positivos, 10 falsos negativos y 890 verdaderos negativos. Una persona recibe un resultado positivo. ¿Qué proporción de los positivos tiene la enfermedad?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "eu-delirium-2",
+      "prompt": "Paciente hospitalizado está somnoliento, retraído y desatento, sin agitación. ¿Qué posibilidad existe?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "eu-delirium-3",
+      "prompt": "¿Qué intervención apunta a una causa reversible?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "eu-depresion-3",
+      "prompt": "¿Qué papel cumple una escala de tamizaje?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "eu-consentimiento-1",
+      "prompt": "Paciente firma un formulario sin recibir explicación comprensible. ¿Qué falta?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "eu-consentimiento-3",
+      "prompt": "Familiar solicita información clínica de un adulto capaz que no autorizó compartirla. ¿Qué regla general aplica?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo",
+        "Absolutos: revisar si permiten descarte por estilo"
+      ]
+    },
+    {
+      "id": "eu-paliativos-3",
+      "prompt": "Se decide no realizar una intervención desproporcionada. ¿Qué debe continuar?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "recognize",
+      "prompt": "Adulto inconsciente, jadeo y sin pulso definido. ¿Qué priorizás?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "pulse",
+      "prompt": "¿Cuánto puede durar la comprobación inicial del pulso?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "apnea",
+      "prompt": "Adulto con pulso definido y apnea. ¿Qué priorizás?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "rate",
+      "prompt": "Frecuencia de compresiones en adulto:",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "recoil",
+      "prompt": "¿Qué favorece una RCP de calidad?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "ratio",
+      "prompt": "Dos profesionales realizan RCP adulta sin vía aérea avanzada. ¿Qué relación corresponde?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "shock",
+      "prompt": "¿Qué ritmo es desfibrilable en un paro?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "pea",
+      "prompt": "Hay actividad organizada en el monitor, pero no hay pulso. ¿Cómo lo clasificás?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "ecg-vt",
+      "prompt": "Adulto inconsciente, sin pulso. Observá la tira. ¿Qué rama corresponde?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "aftershock",
+      "prompt": "Tras una descarga por FV, ¿qué sigue?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "nonshock",
+      "prompt": "En asistolia confirmada, ¿qué evitás?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "ecg-flat",
+      "prompt": "Sin pulso. Electrodos conectados; el patrón se confirma en otra derivación. ¿Qué evitás?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "unstable",
+      "prompt": "Taquicardia regular con pulso, hipotensión y shock atribuible al ritmo. ¿Qué rama corresponde?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "stable",
+      "prompt": "Antes de elegir el tratamiento de una taquiarritmia con pulso, ¿qué evaluás?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "ecg-svt",
+      "prompt": "Adulto con pulso, ritmo regular estrecho y perfusión conservada. ¿Qué dato cambia la prioridad?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "brady",
+      "prompt": "Bradicardia sin compromiso cardiopulmonar. ¿Qué corresponde?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "pacing",
+      "prompt": "Persiste el compromiso pese a atropina. ¿Qué contempla el algoritmo?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "ecg-brady",
+      "prompt": "Adulto con pulso, 40/min, lúcido y normotenso. ¿Qué evaluás primero?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "ecg-fv",
+      "prompt": "Paciente sin pulso. ¿Qué patrón muestra la tira?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "ecg-pea",
+      "prompt": "Adulto inconsciente sin pulso palpable. ¿Qué representa este contexto?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "ecg-vt-pulse",
+      "prompt": "TV monomórfica con pulso, presión 70/40 y confusión atribuibles al ritmo. ¿Qué intervención eléctrica corresponde?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "rosc-oxygen",
+      "prompt": "ROSC con SpO₂ fiable. Según el algoritmo AHA 2025, ¿qué rango se busca?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "rosc-map",
+      "prompt": "Después de ROSC, ¿qué objetivo mínimo de presión arterial media indica el algoritmo?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "rosc-prognosis",
+      "prompt": "Paciente comatoso inmediatamente después de ROSC y sedado. ¿Qué conclusión corresponde?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "p-deterioration",
+      "prompt": "Niño con dificultad respiratoria que se vuelve somnoliento. ¿Cómo interpretás el cambio?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "p-pulse",
+      "prompt": "Niño inconsciente, respiración anormal, pulso no definido tras 10 segundos. ¿Qué sigue?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "p-newborn",
+      "prompt": "Recién nacido durante la transición al nacimiento. ¿Qué marco corresponde?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "p-breaths",
+      "prompt": "Niño con pulso y apnea. ¿Qué frecuencia de ventilación corresponde?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "p-chest",
+      "prompt": "No se eleva el tórax al ventilar con bolsa y máscara. ¿Qué hacés?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "p-airway",
+      "prompt": "Niño con pulso, respiraciones ineficaces y cianosis. ¿Qué priorizás?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "p-ratio-two",
+      "prompt": "Niño prepuberal, dos reanimadores, sin vía avanzada. ¿Qué relación usás?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "p-ratio-one",
+      "prompt": "Un solo reanimador, niño prepuberal sin vía avanzada. ¿Qué relación corresponde?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "p-depth",
+      "prompt": "La profundidad pediátrica se orienta a:",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "p-brady-rcp",
+      "prompt": "Niño con FC 45/min y mala perfusión que persisten pese a oxigenación y ventilación efectivas. ¿Qué sigue?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "p-brady-first",
+      "prompt": "Niño hipóxico con bradicardia y respiración ineficaz; aún no recibió soporte respiratorio. ¿Qué priorizás?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "p-atropine",
+      "prompt": "¿En qué mecanismo contempla atropina el algoritmo pediátrico?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "p-svt",
+      "prompt": "Niño con inicio brusco, 210/min, RR fijo, QRS estrecho y sin P claras. ¿Qué es más probable?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "p-sinus",
+      "prompt": "Niño febril: comienzo gradual, P visibles y variación de RR. ¿Qué orienta mejor la conducta?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "p-cardioversion",
+      "prompt": "Niño de 20 kg con TSV inestable; se decide cardioversión sincronizada. ¿Qué energía inicial corresponde a 0,5–1 J/kg?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "p-vf",
+      "prompt": "Niño sin pulso. Mirá la tira: ¿qué tratamiento eléctrico corresponde?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "p-pea",
+      "prompt": "Niño sin pulso con actividad organizada. ¿Qué rama corresponde?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "p-aftershock",
+      "prompt": "Tras descargar una FV pediátrica, ¿qué sigue inmediatamente?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "p-first-energy",
+      "prompt": "Niño de 15 kg en FV. Primera descarga a 2 J/kg:",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "p-second-energy",
+      "prompt": "Niño de 15 kg, persiste FV. Segunda descarga a 4 J/kg:",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "p-epi",
+      "prompt": "Niño de 10 kg en paro. Adrenalina IV/IO 0,01 mg/kg, solución 0,1 mg/mL. ¿Qué volumen corresponde?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "p-fever",
+      "prompt": "Niño comatoso después de ROSC, temperatura central 38,2 °C. ¿Qué requiere atención?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "p-neuro",
+      "prompt": "¿Qué enfoque sirve para pronóstico neurológico pediátrico posparo?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "p-reassess",
+      "prompt": "Mejoró la perfusión tras una intervención. ¿Qué sigue?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "f-priority",
+      "prompt": "Paciente con obstrucción de vía aérea y estudio abdominal pendiente. ¿Qué priorizás?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "f-response",
+      "prompt": "Tras una intervención cambia el estado del paciente. ¿Qué hacés?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "f-team",
+      "prompt": "Paciente deteriorándose y varias tareas simultáneas. ¿Qué organización ayuda?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "f-airway",
+      "prompt": "Paciente con respiración ruidosa, tiraje y dificultad para hablar. ¿Qué evaluás de inmediato?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "f-mask",
+      "prompt": "Ventilación con bolsa sin elevación torácica. ¿Qué revisás antes de darla por eficaz?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "f-help",
+      "prompt": "Las maniobras iniciales no mantienen la vía aérea. ¿Qué corresponde?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "f-co2",
+      "prompt": "Somnolencia, oxígeno suplementario, SpO₂ 97%, PaCO₂ 70 mmHg. ¿Qué problema sigue presente?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "f-fatigue",
+      "prompt": "Paciente con gran esfuerzo respiratorio que se agota y reduce su respuesta. ¿Qué hacés?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "f-oximeter",
+      "prompt": "Shock con mala señal del oxímetro y lectura inesperada. ¿Qué conducta es mejor?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "f-pbw",
+      "prompt": "Paciente con SDRA: peso real 110 kg y predicho 60 kg. Para 6 mL/kg, ¿qué volumen calculás?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "f-plateau",
+      "prompt": "SDRA con presión meseta 34 cmH₂O. ¿Qué corresponde?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "f-actual",
+      "prompt": "¿Qué dato necesitás para estimar peso predicho y volumen protector?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "f-fluids",
+      "prompt": "Shock séptico tras fluidos, con nuevos signos de congestión. ¿Qué hacés?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "f-dynamic",
+      "prompt": "¿Qué evaluación dinámica puede orientar respuesta a volumen?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "f-vasopressor",
+      "prompt": "Adulto con shock séptico, hipotensión persistente pese a reanimación inicial. ¿Cuál es el vasopresor de primera línea habitual?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "f-antibiotics",
+      "prompt": "Adulto con probable shock séptico. ¿Cuándo iniciás antimicrobianos?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "f-possible",
+      "prompt": "Posible sepsis sin shock y diagnóstico incierto. ¿Qué propone SSC 2026?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "f-source",
+      "prompt": "Absceso identificado en paciente séptico. Además de antimicrobianos, ¿qué planificás?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "f-glucose",
+      "prompt": "Paciente confuso, diabético y sudoroso. ¿Qué medición rápida es prioritaria junto con ABC?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "f-hypoxia",
+      "prompt": "Somnolencia nueva con hipoxemia e hipotensión. ¿Qué priorizás?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "f-drugs",
+      "prompt": "Disminuye la respuesta después de recibir sedantes. ¿Qué revisás?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "g-medical-deshidratacion-3",
+      "prompt": "Luego de iniciar la reposición, ¿qué información ayuda a valorar su efecto?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "g-medical-arritmias-3",
+      "prompt": "Durante una taquiarritmia el paciente pierde conciencia y no se identifica pulso. ¿Qué corresponde?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "g-medical-shock-3",
+      "prompt": "Después de una intervención mejora parcialmente la presión. ¿Qué sigue?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "g-medical-sepsis-2",
+      "prompt": "Un puntaje de detección resulta bajo pero el paciente empeora. ¿Qué hacés?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "g-medical-sepsis-3",
+      "prompt": "Tras iniciar el tratamiento, ¿qué debe integrar el seguimiento?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "g-medical-politrauma-2",
+      "prompt": "Paciente con trauma e inestabilidad persistente. ¿Cómo planteás los estudios?",
+      "reasons": [
+        "Absolutos: revisar si permiten descarte por estilo"
+      ]
+    },
+    {
+      "id": "g-medical-politrauma-3",
+      "prompt": "En el traspaso del politrauma, ¿qué información es prioritaria?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "g-support-deshidratacion-1",
+      "prompt": "Una persona en observación por diarrea se vuelve muy somnolienta. ¿Qué comunicás?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "g-support-deshidratacion-2",
+      "prompt": "Te piden registrar pérdidas e ingesta dentro de tus funciones. ¿Cuál registro sirve mejor?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "g-support-sincope-3",
+      "prompt": "El paciente refiere que se desmayó mientras hacía ejercicio. ¿Cómo pasás ese dato?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "g-support-arritmias-1",
+      "prompt": "El monitor alarma por frecuencia alta. El paciente dice sentirse muy mareado. ¿Qué hacés?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "g-support-arritmias-3",
+      "prompt": "No entendiste una indicación durante la atención. ¿Qué respuesta ayuda al equipo?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "g-support-shock-2",
+      "prompt": "El equipo te asigna buscar material que no encontrás. ¿Qué hacés?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "g-support-shock-3",
+      "prompt": "En el pase, ¿qué mensaje describe mejor un deterioro?",
+      "reasons": [
+        "Absolutos: revisar si permiten descarte por estilo",
+        "Respuesta correcta mucho más extensa que los distractores"
+      ]
+    },
+    {
+      "id": "g-support-sepsis-1",
+      "prompt": "Una persona con infección conocida está más confusa, aunque no tiene fiebre. ¿Qué hacés?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "g-support-politrauma-3",
+      "prompt": "Quedó pendiente una tarea durante el pase de trauma. ¿Qué hacés?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "phtls-3-1",
+      "prompt": "Traumatizado con respiración ineficaz pese a oxígeno. ¿Qué problema debe resolverse?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "phtls-4-2",
+      "prompt": "Luego de una intervención torácica, ¿qué sigue?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "phtls-5-2",
+      "prompt": "¿Qué medida evita empeorar una complicación de la hemorragia?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "phtls-6-2",
+      "prompt": "¿Qué factores evitables agravan lesión cerebral secundaria?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "phtls-7-2",
+      "prompt": "Persona mayor anticoagulada con golpe craneal aparentemente menor. ¿Qué antecedente cambia la evaluación?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "phtls-8-1",
+      "prompt": "Dos hospitales: uno cercano sin cirugía y otro de trauma accesible según red. ¿Qué guía el destino?",
+      "reasons": [
+        "Absolutos: revisar si permiten descarte por estilo"
+      ]
+    },
+    {
+      "id": "phtls-8-2",
+      "prompt": "¿Qué información es clave en la prealerta?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "phtls-8-3",
+      "prompt": "Durante el traslado, el paciente cambia clínicamente. ¿Qué debe hacerse?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "atls-1-2",
+      "prompt": "Durante evaluación secundaria aparece deterioro. ¿Qué corresponde?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "atls-1-3",
+      "prompt": "¿Qué organización favorece una reanimación eficaz?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "atls-2-3",
+      "prompt": "Vía aérea amenazada y posible lesión cervical. ¿Cuál es el principio?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "atls-3-1",
+      "prompt": "Sospecha de neumotórax a tensión con compromiso hemodinámico. ¿Qué debe evitarse?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "atls-4-1",
+      "prompt": "Traumatizado con shock y hemoglobina inicial normal. ¿Qué significa?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "atls-4-2",
+      "prompt": "Tras reanimación inicial mejora brevemente y vuelve la hipotensión. ¿Qué preocupa?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "atls-5-1",
+      "prompt": "Inestable que no responde a reanimación y sospecha de hemorragia. ¿Qué guía el uso de imágenes?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "atls-5-3",
+      "prompt": "Paciente estable con sospecha de lesión abdominal. ¿Qué puede aportar la tomografía contrastada cuando está indicada?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "atls-6-1",
+      "prompt": "Glasgow disminuye respecto de la evaluación inicial. ¿Qué implica?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "atls-6-2",
+      "prompt": "¿Qué objetivo sistémico protege frente a lesión cerebral secundaria?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "atls-7-1",
+      "prompt": "¿Cuándo corresponde avanzar en la evaluación secundaria?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "atls-8-2",
+      "prompt": "¿Qué dato debe acompañar una intervención en la entrega?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "rv-sus-1",
+      "prompt": "Una unidad reorganiza los turnos para facilitar la atención de personas con mayores barreras de acceso. ¿Qué principio orienta esa decisión?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "rv-sus-2",
+      "prompt": "Un equipo ofrece prevención, tratamiento y rehabilitación coordinados. ¿Qué principio representa mejor?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "rv-sus-3",
+      "prompt": "Una persona sin seguro privado consulta por primera vez. ¿Qué principio sostiene su acceso al SUS?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "rv-sus-4",
+      "prompt": "Dos barrios reciben idéntico número de turnos pese a tener necesidades muy diferentes. ¿Qué corresponde revisar?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "rv-red-1",
+      "prompt": "Una paciente necesita continuar rehabilitación después de una internación. ¿Qué enfoque es coherente con atención integral?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "rv-red-2",
+      "prompt": "Un programa trata enfermedad pero omite todas las acciones preventivas. ¿Qué dimensión debe incorporar?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "rv-red-3",
+      "prompt": "Una comunidad requiere atención básica y algunos pacientes procedimientos complejos. ¿Qué organización refleja el alcance del SUS?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "rv-red-4",
+      "prompt": "Se evalúa un proyecto sólo por cantidad de cirugías y se ignora prevención y rehabilitación. ¿Qué limitación tiene?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo",
+        "Absolutos: revisar si permiten descarte por estilo"
+      ]
+    },
+    {
+      "id": "rv-prioridades-1",
+      "prompt": "En una estación simulada, la paciente presenta ruido respiratorio y menor conciencia. ¿Qué priorizás?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "rv-prioridades-2",
+      "prompt": "Después de intervenir, la primera medición mejora. ¿Cómo continuás?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "rv-prioridades-4",
+      "prompt": "Durante ABCDE encontrás un problema que amenaza la vida. ¿Qué hacés?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "rv-infancia-1",
+      "prompt": "Un niño con diarrea está letárgico y bebe muy mal. ¿Qué conducta orienta mejor la situación?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "rv-infancia-2",
+      "prompt": "Un niño puede beber y necesita reponer pérdidas por diarrea. ¿Qué opción está diseñada para ello?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "rv-infancia-3",
+      "prompt": "En un niño que tolera alimentación durante un episodio diarreico, ¿qué estrategia general es apropiada?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "rv-infancia-4",
+      "prompt": "Una familia pregunta cómo reducir transmisión. ¿Qué intervención preventiva es pertinente?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "rv-preparacion-1",
+      "prompt": "¿A qué necesidad se dirige Revalida?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "rv-preparacion-2",
+      "prompt": "Un simulacro local da 85% de aciertos. ¿Qué interpretación es correcta?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "rv-preparacion-3",
+      "prompt": "¿Dónde verificás requisitos y cambios de una convocatoria?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "rv-preparacion-4",
+      "prompt": "¿Qué limitación tiene estudiar únicamente preguntas de opción múltiple?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "neo-preparacion-2",
+      "prompt": "Madre y recién nacido necesitan asistencia simultánea. ¿Qué organización es más adecuada?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "neo-preparacion-3",
+      "prompt": "El embarazo no tenía factores de riesgo conocidos. ¿Qué conclusión sobre preparación neonatal es apropiada?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "neo-transicion-1",
+      "prompt": "Recién nacido a término, buen tono y respiración eficaz. ¿Qué enfoque acompaña mejor la transición?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "neo-transicion-2",
+      "prompt": "Durante la atención la temperatura disminuye. ¿Qué prioridad debe incorporarse?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "neo-transicion-3",
+      "prompt": "Un equipo utiliza calor radiante durante reanimación. ¿Qué confirma mejor una estrategia térmica segura?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "neo-ventilar-3",
+      "prompt": "La FC no aumenta y no hay movimiento torácico adecuado con máscara. ¿Qué corresponde primero?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "neo-escalamiento-1",
+      "prompt": "La ventilación es ineficaz por fuga de máscara. ¿Qué cambio corrige mejor el problema dominante?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "neo-seguimiento-1",
+      "prompt": "Recién nacido mejora después de reanimación. ¿Qué plan ofrece mayor continuidad?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "neo-seguimiento-3",
+      "prompt": "Una familia pregunta si recuperar la frecuencia cardíaca garantiza ausencia de secuelas. ¿Qué respuesta es apropiada?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "obs-equipo-1",
+      "prompt": "Gestante con dificultad respiratoria intensa y mala perfusión. ¿Qué debe organizarse primero?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "obs-equipo-2",
+      "prompt": "Se activa una respuesta por deterioro materno. ¿Qué asignación es más eficaz?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "obs-sangrado-2",
+      "prompt": "El equipo estima poco sangrado, pero la paciente se deteriora. ¿Qué corresponde?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "obs-sangrado-3",
+      "prompt": "La presión sube tras soporte, pero continúa la pérdida. ¿Qué indica esto?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "obs-causas-1",
+      "prompt": "Después del parto hay útero blando y sangrado importante. ¿Qué mecanismo orienta inicialmente?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "obs-causas-2",
+      "prompt": "El útero está bien contraído y persiste hemorragia. ¿Qué búsqueda es más pertinente?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "obs-causas-3",
+      "prompt": "¿Qué grupo representa las cuatro T de hemorragia posparto?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "obs-hipertension-1",
+      "prompt": "Gestante hipertensa con cefalea persistente y plaquetas bajas, sin proteinuria. ¿Qué interpretación es adecuada?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "obs-hipertension-2",
+      "prompt": "En eclampsia, ¿qué objetivo principal tiene sulfato de magnesio?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "obs-hipertension-3",
+      "prompt": "Tras controlar una convulsión persiste hipertensión grave. ¿Qué razonamiento es correcto?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "obs-ectopico-2",
+      "prompt": "Sólo existe manchado vaginal, pero hay mala perfusión y dolor abdominal. ¿Qué conclusión evita un error?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "obs-entrega-2",
+      "prompt": "El centro carece de capacidad definitiva y la paciente necesita soporte. ¿Qué organización corresponde?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "fv:0",
+      "prompt": "Escenario ficticio. Adulto inconsciente, sin respiración normal ni pulso definido. Un compañero activa emergencias.",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "fv:1",
+      "prompt": "RCP en curso. El desfibrilador está listo y el análisis confirma FV.",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "fv:2",
+      "prompt": "Se administró una descarga. Elegí el siguiente paso inmediato.",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "aesp:0",
+      "prompt": "Escenario ficticio. Adulto inconsciente, sin pulso, con actividad organizada en el monitor.",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "aesp:1",
+      "prompt": "AESP confirmada. RCP en curso y acceso vascular disponible.",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "aesp:2",
+      "prompt": "El equipo continúa los ciclos. ¿Qué tarea debe acompañarlos?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "taqui:0",
+      "prompt": "Escenario ficticio. Taquicardia regular de complejo estrecho, pulso presente, confusión y presión 75/40. El equipo atribuye el deterioro al ritmo.",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "taqui:1",
+      "prompt": "Monitorización y soporte inicial en curso. La inestabilidad persiste.",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "p-respiratory:0",
+      "prompt": "Niño con pulso de 100/min, apnea y SpO₂ 78%. ¿Qué priorizás?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "p-respiratory:1",
+      "prompt": "La primera ventilación no eleva el tórax. ¿Qué hacés?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "p-respiratory:2",
+      "prompt": "Ahora hay elevación torácica y mejora la saturación. ¿Qué sigue?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "p-slow:0",
+      "prompt": "Niño con respiración ineficaz, hipoxemia, pulso lento y mala perfusión. Todavía no recibió soporte respiratorio. ¿Qué priorizás?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "p-slow:1",
+      "prompt": "Pese a oxigenación y ventilación efectivas, persisten FC 45/min y mala perfusión. ¿Qué agregás?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "p-slow:2",
+      "prompt": "El equipo continúa RCP y soporte. ¿Qué búsqueda acompaña el tratamiento?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "p-arrest:0",
+      "prompt": "Niño de 15 kg sin pulso, RCP en curso y desfibrilador listo. Observá el monitor. ¿Qué rama corresponde?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "p-arrest:1",
+      "prompt": "Se prepara la primera descarga, según 2 J/kg. ¿Qué energía corresponde?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "p-arrest:2",
+      "prompt": "Ya se dio la descarga. ¿Qué sigue?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "f-infection:0",
+      "prompt": "Adulto con probable foco infeccioso, hipotensión y confusión; se reconoce probable shock séptico. ¿Qué priorizás?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "f-infection:1",
+      "prompt": "Después de la reanimación inicial persiste hipotensión. ¿Qué vasopresor se usa habitualmente primero?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "f-infection:2",
+      "prompt": "Tras fluidos aparecen signos de congestión. ¿Qué hacés antes de más volumen?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "f-lung:0",
+      "prompt": "Adulto con SDRA, peso real 100 kg y predicho 60 kg. Para iniciar 6 mL/kg, ¿qué volumen calculás?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "f-lung:1",
+      "prompt": "La presión meseta resulta 34 cmH₂O. ¿Qué corresponde?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "f-lung:2",
+      "prompt": "Después de ajustar, ¿qué verificás?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "f-consciousness:0",
+      "prompt": "Adulto repentinamente confuso. ¿Cómo organizás la primera evaluación?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "f-consciousness:1",
+      "prompt": "Tiene antecedente de diabetes, sudoración y menor respuesta. ¿Qué medición rápida agregás?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "f-consciousness:2",
+      "prompt": "Se inicia tratamiento y se pide apoyo. ¿Qué comunicás?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "g-medical-deshidratacion-caso:2",
+      "prompt": "Luego de iniciar la reposición, ¿qué información ayuda a valorar su efecto?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "g-medical-arritmias-caso:2",
+      "prompt": "Durante una taquiarritmia el paciente pierde conciencia y no se identifica pulso. ¿Qué corresponde?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "g-medical-shock-caso:2",
+      "prompt": "Después de una intervención mejora parcialmente la presión. ¿Qué sigue?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "g-medical-sepsis-caso:1",
+      "prompt": "Un puntaje de detección resulta bajo pero el paciente empeora. ¿Qué hacés?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "g-medical-sepsis-caso:2",
+      "prompt": "Tras iniciar el tratamiento, ¿qué debe integrar el seguimiento?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "g-medical-politrauma-caso:1",
+      "prompt": "Paciente con trauma e inestabilidad persistente. ¿Cómo planteás los estudios?",
+      "reasons": [
+        "Absolutos: revisar si permiten descarte por estilo"
+      ]
+    },
+    {
+      "id": "g-medical-politrauma-caso:2",
+      "prompt": "En el traspaso del politrauma, ¿qué información es prioritaria?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "g-support-deshidratacion-caso:0",
+      "prompt": "Una persona en observación por diarrea se vuelve muy somnolienta. ¿Qué comunicás?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "g-support-deshidratacion-caso:1",
+      "prompt": "Te piden registrar pérdidas e ingesta dentro de tus funciones. ¿Cuál registro sirve mejor?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "g-support-sincope-caso:2",
+      "prompt": "El paciente refiere que se desmayó mientras hacía ejercicio. ¿Cómo pasás ese dato?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "g-support-arritmias-caso:0",
+      "prompt": "El monitor alarma por frecuencia alta. El paciente dice sentirse muy mareado. ¿Qué hacés?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "g-support-arritmias-caso:2",
+      "prompt": "No entendiste una indicación durante la atención. ¿Qué respuesta ayuda al equipo?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "g-support-shock-caso:1",
+      "prompt": "El equipo te asigna buscar material que no encontrás. ¿Qué hacés?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "g-support-shock-caso:2",
+      "prompt": "En el pase, ¿qué mensaje describe mejor un deterioro?",
+      "reasons": [
+        "Absolutos: revisar si permiten descarte por estilo",
+        "Respuesta correcta mucho más extensa que los distractores"
+      ]
+    },
+    {
+      "id": "g-support-sepsis-caso:0",
+      "prompt": "Una persona con infección conocida está más confusa, aunque no tiene fiebre. ¿Qué hacés?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    },
+    {
+      "id": "g-support-politrauma-caso:2",
+      "prompt": "Quedó pendiente una tarea durante el pase de trauma. ¿Qué hacés?",
+      "reasons": [
+        "Fundamento breve: revisar si explica el dato decisivo"
+      ]
+    }
+  ]
+}
