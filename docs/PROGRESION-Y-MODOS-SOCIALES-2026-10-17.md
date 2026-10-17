@@ -42,3 +42,5 @@ AMBOSS: sesiones por objetivo, planes de estudio y vínculo entre preguntas y te
 https://support.amboss.com/hc/en-us/articles/360034825692-Platform-overview
 
 Las salas, el versus y las licencias de grupos son propuestas. La versión publicada sigue siendo individual; no simula presencia de otros estudiantes.
+
+Actualización posterior: salas de cooperación y desafío disponibles como piloto; ver GUARDIA-EQUIPO-2026-10-17.md. Las licencias y cohortes docentes siguen pendientes.

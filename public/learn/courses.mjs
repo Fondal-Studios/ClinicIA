@@ -1,3 +1,4 @@
+import {guardiaCourses,guardiaSources} from './content/guardia.mjs';
 import {expandTheory} from './content/theory-expansion.mjs';
 import {reviseQuestions} from './content/editorial-revisions.mjs';
 import {improveQuestions} from './content/distractors.mjs';
@@ -1297,9 +1298,9 @@ export const courses = [
     "reviewStatus": "Pendiente de validación docente"
   }
 ];
-Object.assign(sources,residencySources,traumaSources,revalidaSources,perinatalSources);
+Object.assign(sources,guardiaSources,residencySources,traumaSources,revalidaSources,perinatalSources);
 courses.unshift(residencyCourse);
-courses.push(phtlsCourse,atlsCourse,revalidaCourse,neonatalCourse,obstetricCourse);
+courses.push(...guardiaCourses,phtlsCourse,atlsCourse,revalidaCourse,neonatalCourse,obstetricCourse);
 improveQuestions(courses);
 reviseQuestions(courses);
 expandTheory(courses);

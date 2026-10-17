@@ -21,6 +21,7 @@ const followup={...event,body:JSON.stringify({question:'¿Por qué?',courseId:'e
 assert.equal((await handler(followup)).statusCode,200);
 assert.match(request.messages[0].content,/30 verdaderos positivos/);
 assert.match(request.messages[0].content,/esperá su respuesta/);
+const guardRole={...event,body:JSON.stringify({question:'Repasemos triage',courseId:'guardia-equipo',mode:'study'})};assert.equal((await handler(guardRole)).statusCode,200);assert.match(request.messages[0].content,/ROL: personal no médico/);
 global.fetch=async()=>({ok:false,status:429});assert.equal((await handler(event)).statusCode,429);
 global.fetch=async()=>({ok:true,json:async()=>({choices:[{finish_reason:'length',message:{content:'Incomplete'}}]})});assert.equal((await handler(event)).statusCode,502);
 delete process.env.GROQ_API_KEY;assert.equal((await handler(event)).statusCode,503);

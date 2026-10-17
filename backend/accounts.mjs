@@ -1,3 +1,4 @@
+import {createTraining,trainingSchema} from './training.mjs';
 import {createPayments,paymentSchema} from './payments.mjs';
 import {randomBytes,randomUUID,scrypt as scryptCallback,timingSafeEqual,createHash} from 'node:crypto';
 import {promisify} from 'node:util';
@@ -28,7 +29,8 @@ export function cleanProgress(raw){
  const exam=restoreExam(raw.exam);if(exam&&!/^exam-[0-9-]{1,90}$/.test(exam.id))fail(400,'Identificador de simulacro inválido.');return {state:s,exam};
 }
 export async function createAccounts({db,origin='http://localhost:3000',secure=true,adminName,adminHash}){
- await db.exec(schema+paymentSchema);
+ await db.exec(schema+paymentSchema+trainingSchema);
+ const training=createTraining({db});
  const payments=createPayments({db,origin});
  if(adminName&&adminHash){await db.query(`INSERT INTO clinic_users(id,username,username_key,password_hash,recovery_hash,role,must_change) VALUES($1,$2,$3,$4,$5,'admin',true) ON CONFLICT(username_key) DO NOTHING`,[randomUUID(),adminName,adminName.toLowerCase(),adminHash,digest(randomBytes(32).toString('hex'))]);}
  const dummy=await hashPassword(randomBytes(24).toString('hex'));
@@ -77,6 +79,8 @@ export async function createAccounts({db,origin='http://localhost:3000',secure=t
     const recovery=randomBytes(24).toString('hex');await db.query('UPDATE clinic_users SET password_hash=$1,recovery_hash=$2,must_change=false WHERE id=$3',[await hashPassword(body.password),digest(recovery),u.id]);await db.query('DELETE FROM clinic_sessions WHERE user_id=$1',[u.id]);await issue(res,u);return send(200,{user:publicUser({...u,must_change:false}),recoveryCode:recovery});
    }
    if(u.must_change)fail(403,'Cambiá tu contraseña inicial antes de continuar.');
+   if(path==='/api/account/training'){await limit('training:'+req.method+u.id,60,3600);return send(200,await training.assessment(u,req.method,body));}
+   if(path==='/api/account/rooms'||/^\/api\/account\/rooms\/[a-f0-9]{12}$/.test(path)){await limit('rooms:'+req.method+u.id,req.method==='GET'?600:120,3600);const code=path.split('/')[4];if(!code&&req.method==='POST')await limit('room-create:'+u.id,5,86400);return send(200,await training.rooms(u,req.method,body,code));}
    if(path==='/api/account/billing'&&req.method==='GET')return send(200,{offer:payments.offer(),orders:await payments.orders(u.id)});
    if(path==='/api/account/checkout'&&req.method==='POST'){await limit('checkout:'+u.id,5,60);return send(200,await payments.checkout(u.id,body));}
    if(path==='/api/account/payment-status'&&req.method==='POST'){await limit('payment-check:'+u.id,20,60);if(typeof body.orderId!=='string'||body.orderId.length>50)fail(400,'Orden inválida.');return send(200,await payments.verify(u.id,body.orderId));}
@@ -89,10 +93,11 @@ export async function createAccounts({db,origin='http://localhost:3000',secure=t
     }
    }
    if(path==='/api/events'&&req.method==='POST'){await limit('events:'+u.id,120,60);if(!allowedEvents.has(body.name))fail(400,'Evento no permitido.');await event(u,body.name);return send(200,{ok:true});}
-   if(path==='/api/account/export'&&req.method==='GET'){const r=await db.query('SELECT payload,version,updated_at FROM clinic_progress WHERE user_id=$1',[u.id]);return send(200,{user:publicUser(u),progress:r.rows[0]||null});}
-   if(path==='/api/account/delete'&&req.method==='POST'){await limit('delete:'+u.id,5,900);if(u.role==='admin')fail(403,'La cuenta administradora no se elimina desde aquí.');if(typeof body.password!=='string'||!await verifyPassword(body.password,u.password_hash))fail(401,'Contraseña incorrecta.');await db.query('DELETE FROM clinic_users WHERE id=$1',[u.id]);res.setHeader('Set-Cookie',`clinic_session=; Path=/; HttpOnly; SameSite=Strict; Max-Age=0${secure?'; Secure':''}`);return send(200,{ok:true});}
+   if(path==='/api/account/export'&&req.method==='GET'){const r=await db.query('SELECT payload,version,updated_at FROM clinic_progress WHERE user_id=$1',[u.id]);return send(200,{user:publicUser(u),progress:r.rows[0]||null,training:await training.assessment(u,'GET',{}),roomMessages:(await db.query("SELECT code,data->'messages' AS messages FROM clinic_rooms WHERE expires_at>now() AND data->'members' @> $1::jsonb",[JSON.stringify([{id:u.id}])])).rows.map(r=>({code:r.code,messages:r.messages.filter(m=>m.name===u.username)}))});}
+   if(path==='/api/account/delete'&&req.method==='POST'){await limit('delete:'+u.id,5,900);if(u.role==='admin')fail(403,'La cuenta administradora no se elimina desde aquí.');if(typeof body.password!=='string'||!await verifyPassword(body.password,u.password_hash))fail(401,'Contraseña incorrecta.');await db.query("DELETE FROM clinic_rooms WHERE data->'members' @> $1::jsonb",[JSON.stringify([{id:u.id}])]);await db.query('DELETE FROM clinic_users WHERE id=$1',[u.id]);res.setHeader('Set-Cookie',`clinic_session=; Path=/; HttpOnly; SameSite=Strict; Max-Age=0${secure?'; Secure':''}`);return send(200,{ok:true});}
    if(path.startsWith('/api/admin')){
     if(u.role!=='admin')fail(403,'Acceso exclusivo para administración.');
+    if(path==='/api/admin/training'&&req.method==='GET')return send(200,await training.roster());
     if(path==='/api/admin/telemetry'&&req.method==='GET'){
      const counts=(await db.query(`SELECT count(*) AS accounts,count(*) FILTER(WHERE last_seen>now()-interval '7 days') AS active7,count(*) FILTER(WHERE created_at>now()-interval '1 day') AS new24 FROM clinic_users WHERE role='student'`)).rows[0];
      const events=(await db.query(`SELECT name,count(*) AS count FROM clinic_events WHERE created_at>now()-interval '30 days' GROUP BY name ORDER BY count DESC`)).rows;
@@ -108,4 +113,4 @@ export async function createAccounts({db,origin='http://localhost:3000',secure=t
  return {handler,identify,event,limit};
 }
 let cached;
-export async function getAccounts(){if(!process.env.DATABASE_URL)return null;if(!cached)cached=(async()=>{const {Pool}=await import('pg');const pool=new Pool({connectionString:process.env.DATABASE_URL,max:5,connectionTimeoutMillis:8000,ssl:process.env.DATABASE_SSL==='true'?{rejectUnauthorized:true}:undefined});pool.on('error',()=>console.error('database_connection_error'));const api=await createAccounts({db:{query:(...a)=>pool.query(...a),exec:s=>pool.query(s)},origin:process.env.APP_ORIGIN||'https://clinicia-heef.onrender.com',secure:process.env.NODE_ENV!=='test',adminName:process.env.ADMIN_USERNAME,adminHash:process.env.ADMIN_PASSWORD_HASH});const timer=setInterval(()=>pool.query("DELETE FROM clinic_sessions WHERE expires_at<now(); DELETE FROM clinic_limits WHERE expires_at<now(); DELETE FROM clinic_events WHERE created_at<now()-interval '90 days'").catch(()=>{}),3600000);timer.unref();return api;})().catch(e=>{cached=null;throw e;});return cached;}
+export async function getAccounts(){if(!process.env.DATABASE_URL)return null;if(!cached)cached=(async()=>{const {Pool}=await import('pg');const pool=new Pool({connectionString:process.env.DATABASE_URL,max:5,connectionTimeoutMillis:8000,ssl:process.env.DATABASE_SSL==='true'?{rejectUnauthorized:true}:undefined});pool.on('error',()=>console.error('database_connection_error'));const api=await createAccounts({db:{query:(...a)=>pool.query(...a),exec:s=>pool.query(s)},origin:process.env.APP_ORIGIN||'https://clinicia-heef.onrender.com',secure:process.env.NODE_ENV!=='test',adminName:process.env.ADMIN_USERNAME,adminHash:process.env.ADMIN_PASSWORD_HASH});const timer=setInterval(()=>pool.query("DELETE FROM clinic_training_attempts WHERE result IS NULL AND created_at<now()-interval '1 day'; DELETE FROM clinic_rooms WHERE expires_at<now(); DELETE FROM clinic_sessions WHERE expires_at<now(); DELETE FROM clinic_limits WHERE expires_at<now(); DELETE FROM clinic_events WHERE created_at<now()-interval '90 days'").catch(()=>{}),3600000);timer.unref();return api;})().catch(e=>{cached=null;throw e;});return cached;}
