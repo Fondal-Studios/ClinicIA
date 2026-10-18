@@ -5,7 +5,7 @@ import {resolve,extname,sep} from 'node:path';
 import {createRequire} from 'node:module';
 const require=createRequire(import.meta.url),root=resolve('public');
 export const server=http.createServer(async(req,res)=>{try{const url=new URL(req.url,'http://localhost');
- if(url.pathname.startsWith('/api/account')||url.pathname.startsWith('/api/admin')||['/api/events','/api/offer'].includes(url.pathname)){const accounts=await getAccounts();if(!accounts){res.writeHead(503,{'Content-Type':'application/json','Cache-Control':'no-store'});return res.end(JSON.stringify({error:'Las cuentas se están habilitando. Podés seguir practicando como invitado.'}));}if(await accounts.handler(req,res,url))return;}
+ if(url.pathname.startsWith('/api/account')||url.pathname.startsWith('/api/admin')||['/api/events','/api/offer','/api/payments/webhook'].includes(url.pathname)){const accounts=await getAccounts();if(!accounts){res.writeHead(503,{'Content-Type':'application/json','Cache-Control':'no-store'});return res.end(JSON.stringify({error:'Las cuentas se están habilitando. Podés seguir practicando como invitado.'}));}if(await accounts.handler(req,res,url))return;}
  if(url.pathname==='/api/tutor'||url.pathname==='/api/tutor-class'){
   // The tutor takes no cookies, so the static GitHub Pages copy may call it cross-origin; account routes never get CORS.
   const origin=req.headers.origin,allowed=(process.env.TUTOR_CORS_ORIGINS||'https://drmarianojimenez94-sudo.github.io').split(',').map(x=>x.trim());
