@@ -325,7 +325,7 @@ button { font-family: inherit; }
 </style>
 </head>
 <body>
-<div style="padding:14px;background:#fff1db;color:#694211;text-align:center;font-size:14px">Consultorio previo · Datos en este navegador. Usá datos ficticios para el piloto. <a href="./index.html">Volver al entrenamiento</a></div>
+<div style="padding:14px;background:#fff1db;color:#694211;text-align:center;font-size:14px">Mi consultorio · Los pacientes se guardan solo en este dispositivo (no en el servidor). Al organizar con IA, el texto dictado se envía al proveedor de IA. Revisá siempre lo que arma la IA antes de guardar. <a href="./index.html">Volver al entrenamiento</a></div>
 <div id="app"></div>
 <div class="toast" id="toast"></div>
 
@@ -336,11 +336,16 @@ button { font-family: inherit; }
 let clinicPilotToken = null;
 const nativeFetch = window.fetch.bind(window);
 function fetch(url, options = {}) {
- if (String(url).startsWith('/.netlify/functions/')) {
-  if (clinicPilotToken === null) clinicPilotToken = prompt('Clave de acceso al piloto de ClinicIA (solo esta sesión):') || '';
-  options = {...options, headers:{...options.headers,Authorization:'Bearer '+clinicPilotToken}};
- }
- return nativeFetch(url,options).then(function(response){ if(response.status===401) clinicPilotToken=null; return response; });
+ const isFn = String(url).startsWith('/.netlify/functions/');
+ const withToken = function () { return isFn && clinicPilotToken ? {...options, headers:{...options.headers,Authorization:'Bearer '+clinicPilotToken}} : options; };
+ return nativeFetch(url, withToken()).then(function(response){
+  // The server only asks for a key when CLINIC_ACCESS_TOKEN is configured there.
+  if (isFn && response.status === 401) {
+   clinicPilotToken = prompt('Este servidor pide una clave de acceso para la IA (solo esta sesión):') || '';
+   if (clinicPilotToken) return nativeFetch(url, withToken()).then(function(r2){ if (r2.status === 401) clinicPilotToken = null; return r2; });
+  }
+  return response;
+ });
 }
 
 
@@ -844,7 +849,7 @@ function renderNewPatient() {
   if (SPEECH_SUPPORTED) {
     html += '<div class="record-hero" style="padding-top:10px;">';
     html += '<button class="mic-button" id="npMicBtn" style="width:100px;height:100px;font-size:34px;">🎙</button>';
-    html += '<div class="hint" id="npHint">Tocá y decí: "Paciente Juan Pérez, documento 30111222, 56 años, teléfono…, obra social…, vive en…"</div>';
+    html += '<div class="hint" id="npHint">Tocá y decí: "Paciente Juan Pérez, documento 30111222, 56 años, teléfono…, obra social…. Motivo de consulta… Enfermedad actual… Antecedentes… Tratamiento…"</div>';
     html += '</div>';
     html += '<div class="transcript-feed" id="npFeed" style="max-height:110px;display:none;"></div>';
   } else {
@@ -860,7 +865,9 @@ function renderNewPatient() {
   html += '<div class="form-row"><div class="form-group"><label>Obra social</label><input id="f_os" oninput="__npMarkDirty(\'os\')"></div>' +
     '<div class="form-group"><label>N° de afiliado</label><input id="f_nroaf" oninput="__npMarkDirty(\'nroaf\')"></div></div>';
   html += '<div class="form-group"><label>Domicilio</label><input id="f_dom" oninput="__npMarkDirty(\'dom\')"></div>';
-  html += '<button class="btn btn-primary" onclick="__createPatient()">Crear paciente</button>';
+  html += '<div class="form-group"><label>Dictado clínico (motivo de consulta, enfermedad actual, antecedentes y tratamiento)</label><textarea id="npDictation" rows="6" placeholder="Se completa solo mientras dictás. También podés escribir o pegar el texto acá."></textarea><div class="small-note">Al tocar «Crear paciente y organizar la historia», la IA ordena este texto en motivo, enfermedad actual, antecedentes y plan/tratamiento y te lo muestra para revisar y aprobar. Los datos personales se completan con el formulario de arriba.</div></div>';
+  html += '<button class="btn btn-primary" onclick="__createPatient(true)">Crear paciente y organizar la historia con IA</button>';
+  html += '<button class="btn btn-secondary" style="margin-top:8px;" onclick="__createPatient(false)">Crear solo con los datos personales</button>';
   html += '</main>';
   app.innerHTML = html;
 
@@ -937,6 +944,8 @@ function __npStartMic() {
           const text = event.results[i][0].transcript.trim();
           if (text) {
             npTranscript.push(text);
+            const dictBox = document.getElementById("npDictation");
+            if (dictBox) dictBox.value = (dictBox.value ? dictBox.value.trim() + " " : "") + text;
             __npApplyParsed();
             const feed = document.getElementById("npFeed");
             if (feed) { feed.style.display = "block"; feed.textContent = npTranscript.join(" "); feed.scrollTop = feed.scrollHeight; }
@@ -974,7 +983,7 @@ function __npStopMic() {
   if (btn) btn.textContent = "🎙";
   if (hint) hint.textContent = "Tocá para seguir dictando, o corregí los campos a mano.";
 }
-window.__createPatient = function () {
+window.__createPatient = function (organize) {
   const nombre = document.getElementById("f_nombre").value.trim();
   const apellido = document.getElementById("f_apellido").value.trim();
   if (!nombre || !apellido) { showToast("Nombre y apellido son obligatorios"); return; }
@@ -993,6 +1002,21 @@ window.__createPatient = function () {
     medicacion_habitual: [], antecedentes_familiares: [], habitos: [],
     createdAt: Date.now(), updatedAt: Date.now(),
   };
+  const dictation = (document.getElementById("npDictation") || { value: "" }).value.trim();
+  if (organize && dictation) {
+    // The dictated clinical text becomes the first (draft) encounter and goes through the same AI + review flow as a consultation.
+    const encId = uid(DB, "nextEncounterId");
+    DB.encounters[encId] = {
+      id: encId, patientId: id, createdAt: Date.now(), updatedAt: Date.now(),
+      status: "draft", withRecording: false, consent: { given: false, at: Date.now(), note: "Dictado por el profesional al crear el paciente" },
+      transcript: [{ text: dictation, ts: Date.now() }], structured: null, permanentSuggestions: [], seconds: 0,
+    };
+    saveStore();
+    showToast("Paciente creado. Organizando la historia…");
+    goto("consultActive", { patientId: id, encounterId: encId });
+    window.__finishConsult();
+    return;
+  }
   saveStore();
   showToast("Paciente creado");
   goto("patient", { patientId: id });
@@ -1476,7 +1500,7 @@ function renderConsultReview() {
     }
   }
 
-  html += '<div class="section-label">Plan</div>';
+  html += '<div class="section-label">Plan y tratamiento</div>';
   if (!s.plan.length) html += '<div class="hc-field"><div class="not-registered">No registrado</div></div>';
   else for (const pl of s.plan) html += '<div class="hc-field">' + esc(pl.texto) + '</div>';
 
@@ -1484,6 +1508,7 @@ function renderConsultReview() {
   const sugs = buildPermanentSuggestions(p, s);
   if (sugs.length) {
     html += '<div class="section-label">Agregar a antecedentes permanentes</div>';
+    if (sugs.length > 1) html += '<button class="btn btn-secondary" style="margin-bottom:10px;" onclick="__acceptAllSugs()">Agregar todos al perfil del paciente</button>';
     sugs.forEach(function (sg, i) {
       html += '<div class="suggest-box"><div class="txt">' + esc(sg.label) + ': ' + esc(sg.texto) + '</div>' +
         '<div class="row"><button class="discard" onclick="__discardSug(' + i + ')">Descartar</button>' +
@@ -1574,7 +1599,7 @@ function buildPermanentSuggestions(patient, s) {
     }
   }
   for (const a of s.alergias || []) {
-    if (a.estado === "positivo_revisar" && !existing(patient.alergias, a.texto)) {
+    if ((a.estado === "positivo_revisar" || a.estado === "positivo") && !existing(patient.alergias, a.texto)) {
       sugs.push({ campo: "alergias", label: "Alergia", texto: a.texto });
     }
   }
@@ -1600,6 +1625,18 @@ window.__acceptSug = function (i) {
   p.updatedAt = Date.now();
   saveStore();
   showToast("Agregado a antecedentes permanentes");
+  renderConsultReview();
+};
+window.__acceptAllSugs = function () {
+  const p = DB.patients[route.patientId];
+  const all = (window.__currentSuggestions || []).filter(Boolean);
+  all.forEach(function (sg) {
+    p[sg.campo] = p[sg.campo] || [];
+    p[sg.campo].push({ texto: sg.texto, addedAt: Date.now(), fromEncounterId: route.encounterId });
+  });
+  p.updatedAt = Date.now();
+  saveStore();
+  showToast(all.length + " antecedentes agregados al perfil");
   renderConsultReview();
 };
 window.__discardSug = function (i) {
@@ -1675,7 +1712,7 @@ function buildPlainTextNote(p, e) {
     lines.push("");
   }
   if (s.plan && s.plan.length) {
-    lines.push("Plan: " + s.plan.map(function (pl) { return pl.texto; }).join("; "));
+    lines.push("Plan y tratamiento: " + s.plan.map(function (pl) { return pl.texto; }).join("; "));
     lines.push("");
   }
   return lines.join("\n").trim();
@@ -1740,7 +1777,7 @@ function renderEncounterView() {
   html += '<div class="section-label">Impresión diagnóstica</div>';
   if (!(s.impresion_diagnostica||[]).length) html += '<div class="hc-field"><div class="not-registered">No registrado</div></div>';
   else for (const d of s.impresion_diagnostica) html += '<div class="hc-field">' + esc(d.texto) + '</div>';
-  html += '<div class="section-label">Plan</div>';
+  html += '<div class="section-label">Plan y tratamiento</div>';
   if (!(s.plan||[]).length) html += '<div class="hc-field"><div class="not-registered">No registrado</div></div>';
   else for (const pl of s.plan) html += '<div class="hc-field">' + esc(pl.texto) + '</div>';
   html += '<div class="section-label">Transcripción original</div>';
