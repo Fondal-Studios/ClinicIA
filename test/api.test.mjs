@@ -8,7 +8,8 @@ try{
 process.env.TUTOR_PROVIDER='anthropic';delete process.env.GROQ_API_KEY;
 delete process.env.CLINIC_ACCESS_TOKEN;assert.equal((await handler(event({question:'hola'}))).statusCode,503);
 process.env.CLINIC_ACCESS_TOKEN=token;
-assert.equal((await handler({...event({}),httpMethod:'GET'})).statusCode,405);
+{const st=await handler({...event({}),httpMethod:'GET'});assert.equal(st.statusCode,200);assert.equal(JSON.parse(st.body).configured,false);}
+assert.equal((await handler({...event({}),httpMethod:'PUT'})).statusCode,405);
 assert.equal((await handler({...event({}),headers:{}})).statusCode,400);
 assert.equal((await handler({...event({}),body:'{'})).statusCode,400);
 assert.equal((await handler(event(null))).statusCode,400);
