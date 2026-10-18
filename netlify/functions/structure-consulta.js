@@ -1,4 +1,5 @@
-const {authorize,reply}=require('../lib/access');
+const {reply}=require('../lib/access');
+const {gate,parseBody,ask}=require('../lib/clinical');
 // Función serverless (Netlify Function).
 // Recibe la transcripción cruda de una consulta y le pide a la API de Claude
 // que la organice en historia clínica. La clave de la API vive en una
@@ -13,6 +14,8 @@ REGLAS ESTRICTAS:
 - Distinguí positivo, negado explícitamente, e incierto por mala transcripción (en ese caso, agregalo a "alertas").
 - Un diagnóstico va en "confirmado" solo si el médico lo afirmó como tal. Toda sospecha o duda va como "diferencial_o_a_descartar".
 - La transcripción NO distingue quién habla. Inferí razonablemente quién dijo cada frase por el contenido (preguntas e indicaciones suelen ser del médico; síntomas y respuestas en primera persona suelen ser del paciente). Si es ambiguo, no asumas con certeza: agregalo a "alertas" pidiendo confirmación, y en "transcripcion_interpretada" marcá esa línea como "INCIERTO".
+- "plan" reúne el tratamiento y las indicaciones dichas por el médico: fármacos con dosis y frecuencia si se mencionaron, estudios solicitados, controles y pautas de alarma. La medicación que el paciente ya tomaba antes va en "medicacion_habitual", no en "plan".
+- Si el dictado trae datos personales (nombre, documento, teléfono, obra social), ignoralos: se cargan por separado.
 - Redactá enfermedad_actual y estudios_complementarios en prosa clínica concisa, sin cambiar el significado de lo dicho.
 - Respondé ÚNICAMENTE con JSON válido, sin texto antes ni después, sin bloques de código markdown, sin explicaciones.
 
@@ -36,79 +39,11 @@ Formato EXACTO de salida (todas las claves siempre presentes; null o [] cuando n
 }`;
 
 exports.handler = async function (event) {
-  const denied=authorize(event);if(denied)return denied;
-  if(process.env.LEGACY_CLINICAL_ENABLED!=="true")return reply(503,{error:"El consultorio con IA requiere habilitación explícita del servidor."});
-  if (event.httpMethod !== "POST") {
-    return { statusCode: 405, body: JSON.stringify({ error: "Método no permitido" }) };
-  }
-
-  let body;
-  try {
-    body = JSON.parse(event.body || "{}");
-  } catch (e) {
-    return { statusCode: 400, body: JSON.stringify({ error: "JSON inválido en el pedido" }) };
-  }
-
-  if(!body||typeof body.transcript!=="string")return reply(400,{error:"Transcripción inválida"});
-  const transcript = body.transcript.trim();
-  const patientContext = body.patientContext || {};
-  if (!transcript) {
-    return { statusCode: 400, body: JSON.stringify({ error: "Transcripción vacía" }) };
-  }
-
-  const apiKey = process.env.ANTHROPIC_API_KEY;
-  if (!apiKey || !process.env.ANTHROPIC_MODEL) {
-    return { statusCode: 500, body: JSON.stringify({ error: "Falta configurar ANTHROPIC_MODEL y ANTHROPIC_API_KEY en Netlify (Site settings → Environment variables)" }) };
-  }
-
-  const userContent =
-    "Antecedentes ya conocidos del paciente (no los repitas como novedad si reaparecen aquí): " +
-    JSON.stringify(patientContext) +
-    "\n\nTranscripción completa de la consulta (sin marcas de hablante):\n" +
-    transcript;
-
-  try {
-    const resp = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      signal: AbortSignal.timeout(20000),
-      headers: {
-        "Content-Type": "application/json",
-        "x-api-key": apiKey,
-        "anthropic-version": "2023-06-01",
-      },
-      body: JSON.stringify({
-        model: process.env.ANTHROPIC_MODEL,
-        max_tokens: 2000,
-        temperature: 0.2,
-        system: SYSTEM_PROMPT,
-        messages: [{ role: "user", content: userContent }],
-      }),
-    });
-
-    if (!resp.ok) {
-      await resp.text();
-      return { statusCode: 502, body: JSON.stringify({ error: "La API de Claude devolvió un error", detail: "Error del proveedor" }) };
-    }
-
-    const data = await resp.json();
-    const textBlock = (data.content || []).find(function (b) { return b.type === "text"; });
-    if (!textBlock) {
-      return { statusCode: 502, body: JSON.stringify({ error: "La respuesta no incluyó texto" }) };
-    }
-
-    let parsed;
-    try {
-      parsed = JSON.parse(textBlock.text);
-    } catch (e) {
-      return { statusCode: 502, body: JSON.stringify({ error: "La IA no devolvió JSON válido", detail: "Formato del proveedor inválido" }) };
-    }
-
-    return {
-      statusCode: 200,
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(parsed),
-    };
-  } catch (err) {
-    return { statusCode: 500, body: JSON.stringify({ error: "Fallo de red al llamar a la API", detail: "Error de conexión" }) };
-  }
+  const denied=gate(event);if(denied)return denied;
+  const body=parseBody(event);
+  if(!body||typeof body.transcript!=="string"||!body.transcript.trim())return reply(400,{error:"Transcripción inválida o vacía"});
+  const patientContext=body.patientContext&&typeof body.patientContext==="object"?body.patientContext:{};
+  const user="Antecedentes ya conocidos del paciente (no los repitas como novedad si reaparecen aquí): " + JSON.stringify(patientContext).slice(0,4000) + "\n\nTranscripción completa de la consulta (sin marcas de hablante):\n" + body.transcript.trim();
+  const r=await ask({system:SYSTEM_PROMPT,user,maxTokens:3000,json:true});
+  return r.error||reply(200,r.parsed);
 };

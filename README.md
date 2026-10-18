@@ -6,7 +6,7 @@ El mercado permite canjear puntos de estudio por cuatro compañeros de La Horda 
 
 Teoría, práctica y repaso tienen pantallas separadas. La práctica muestra la explicación y la referencia únicamente después de responder; las opciones cambian de orden. La teoría incluye ejemplos resueltos explícitos. Leer no acredita una evaluación aprobada.
 
-El consultorio previo está oculto en la navegación, pero se conserva en `public/consultorio.html`, con la misma clave de almacenamiento `clinia_v1`. El progreso educativo usa otra clave y no lee pacientes.
+**Mi consultorio** (`public/consultorio.html`) está activo y visible desde el inicio: carga de pacientes por dictado de voz (datos personales, antecedentes, motivo de consulta, enfermedad actual y plan/tratamiento), con IA para ordenar el dictado y revisión del profesional antes de guardar. Antes estaba oculto; se conserva, con la misma clave de almacenamiento `clinia_v1`. El progreso educativo usa otra clave y no lee pacientes.
 
 ## Ejecutar
 
@@ -27,7 +27,7 @@ El repositorio incluye `netlify.toml`: directorio público `public`, funciones `
 - `CLINIC_ACCESS_TOKEN`: permanece requerida para las funciones clínicas heredadas. El tutor de pruebas está abierto sin clave y limita las llamadas al proveedor a 60 por hora por instancia; no es un control distribuido de facturación.
 - `ANTHROPIC_API_KEY`: credencial del proveedor.
 - `ANTHROPIC_MODEL`: identificador de modelo habilitado en esa cuenta. No se presupone disponibilidad de un modelo específico.
-- `LEGACY_CLINICAL_ENABLED=true`: solo si se habilita explícitamente la IA del consultorio previo. Por defecto permanece bloqueada.
+- `LEGACY_CLINICAL_ENABLED=false`: desactiva la IA del consultorio (por defecto está activa). Si `CLINIC_ACCESS_TOKEN` tiene 24+ caracteres, el consultorio pide esa clave; sin ella, la IA queda abierta con un tope de 240 consultas por hora por instancia. Funciona con `GROQ_API_KEY` o con `ANTHROPIC_API_KEY` y `ANTHROPIC_MODEL`.
 
 El tutor responde 503 de forma explícita cuando no está configurado; no simula respuestas de IA. Al enviar una pregunta, su texto se comparte con Anthropic. El tutor recibe material del curso desde el servidor; no acepta bibliografía enviada por el navegador. Sus respuestas son generadas y requieren revisión.
 
