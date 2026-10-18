@@ -6,5 +6,5 @@ function authorizeTutor(event){
  if(typeof event.body!=='string'||Buffer.byteLength(event.body)>16000)return reply(413,{error:'Solicitud demasiado extensa.'});
  return null;
 }
-function reserveCall(){if(Date.now()-windowStart>=3600000){windowStart=Date.now();count=0;}if(count>=60)return false;count++;return true;}
+function reserveCall(cost=1){if(Date.now()-windowStart>=3600000){windowStart=Date.now();count=0;}if(count+cost>60)return false;count+=cost;return true;}
 module.exports={authorizeTutor,reserveCall};
