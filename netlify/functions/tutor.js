@@ -1,7 +1,9 @@
 const {reply}=require('../lib/access');
 const {authorizeTutor,reserveCall}=require('../lib/tutor-access');
 const {research}=require('../lib/research');
+const {providerStatus}=require('../lib/llm');
 exports.handler=async event=>{
+ if(event.httpMethod==='GET'){const st=providerStatus();return reply(200,{configured:st.ok,provider:st.ok?st.provider:null,message:st.ok?null:st.error});}
  const denied=authorizeTutor(event);if(denied)return denied;
  let body;try{body=JSON.parse(event.body);}catch{return reply(400,{error:'JSON inválido.'});}
  if(!body||typeof body.question!=='string'||!body.question.trim()||body.question.length>2000)return reply(400,{error:'Escribí una pregunta de hasta 2000 caracteres.'});
