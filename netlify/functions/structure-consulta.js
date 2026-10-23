@@ -39,7 +39,7 @@ Formato EXACTO de salida (todas las claves siempre presentes; null o [] cuando n
 }`;
 
 exports.handler = async function (event) {
-  const denied=gate(event);if(denied)return denied;
+  const denied=await gate(event);if(denied)return denied;
   const body=parseBody(event);
   if(!body||typeof body.transcript!=="string"||!body.transcript.trim())return reply(400,{error:"Transcripción inválida o vacía"});
   const patientContext=body.patientContext&&typeof body.patientContext==="object"?body.patientContext:{};

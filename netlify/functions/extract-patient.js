@@ -22,7 +22,7 @@ Respondé ÚNICAMENTE con este JSON, sin texto adicional ni markdown:
 }`;
 
 exports.handler = async function (event) {
-  const denied=gate(event);if(denied)return denied;
+  const denied=await gate(event);if(denied)return denied;
   const body=parseBody(event);
   if(!body||typeof body.transcript!=="string"||!body.transcript.trim())return reply(400,{error:"Transcripción inválida o vacía"});
   const hoy = new Date().toISOString().slice(0, 10);

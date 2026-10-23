@@ -14,7 +14,7 @@ Reglas estrictas:
 Respondé ÚNICAMENTE con el texto redactado final, sin comillas, sin explicaciones, sin markdown, sin texto adicional.`;
 
 exports.handler = async function (event) {
-  const denied=gate(event);if(denied)return denied;
+  const denied=await gate(event);if(denied)return denied;
   const body=parseBody(event);
   if(!body||typeof body.texto!=="string"||!body.texto.trim())return reply(400,{error:"Texto inválido o vacío"});
   const r=await ask({system:SYSTEM_PROMPT,user:body.texto.trim().slice(0,6000),maxTokens:600});
