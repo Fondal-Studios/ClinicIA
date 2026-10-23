@@ -1,5 +1,6 @@
 const {reply}=require('../lib/access');
 const {gate,parseBody,ask}=require('../lib/clinical');
+const {normalizeConsulta}=require('../lib/clinical-schema');
 // Función serverless (Netlify Function).
 // Recibe la transcripción cruda de una consulta y le pide a la API de Claude
 // que la organice en historia clínica. La clave de la API vive en una
@@ -45,5 +46,7 @@ exports.handler = async function (event) {
   const patientContext=body.patientContext&&typeof body.patientContext==="object"?body.patientContext:{};
   const user="Antecedentes ya conocidos del paciente (no los repitas como novedad si reaparecen aquí): " + JSON.stringify(patientContext).slice(0,4000) + "\n\nTranscripción completa de la consulta (sin marcas de hablante):\n" + body.transcript.trim();
   const r=await ask({system:SYSTEM_PROMPT,user,maxTokens:3000,json:true});
-  return r.error||reply(200,r.parsed);
+  if(r.error)return r.error;
+  const out=normalizeConsulta(r.parsed);
+  return out?reply(200,out):reply(502,{error:'La IA no devolvió un resultado válido. Reintentá.'});
 };

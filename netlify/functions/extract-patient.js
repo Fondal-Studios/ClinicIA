@@ -1,5 +1,6 @@
 const {reply}=require('../lib/access');
 const {gate,parseBody,ask}=require('../lib/clinical');
+const {normalizePatient}=require('../lib/clinical-schema');
 // Función serverless (Netlify Function) para el dictado de datos del paciente
 // en la pantalla "Nuevo paciente". Misma lógica que structure-consulta.js:
 // la clave de API vive solo en la variable de entorno de Netlify.
@@ -27,5 +28,7 @@ exports.handler = async function (event) {
   if(!body||typeof body.transcript!=="string"||!body.transcript.trim())return reply(400,{error:"Transcripción inválida o vacía"});
   const hoy = new Date().toISOString().slice(0, 10);
   const r=await ask({system:SYSTEM_PROMPT,user:"Fecha de hoy: " + hoy + "\nDictado: " + body.transcript.trim(),maxTokens:500,json:true});
-  return r.error||reply(200,r.parsed);
+  if(r.error)return r.error;
+  const out=normalizePatient(r.parsed);
+  return out?reply(200,out):reply(502,{error:'La IA no devolvió un resultado válido. Reintentá.'});
 };
