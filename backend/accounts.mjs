@@ -1,6 +1,7 @@
 import {createTraining,trainingSchema} from './training.mjs';
 import {createPayments,paymentSchema} from './payments.mjs';
 import {createClasses,classSchema} from './classes.mjs';
+import {createVault,vaultSchema} from './vault.mjs';
 import {createRequire} from 'node:module';
 import {randomBytes,randomUUID,scrypt as scryptCallback,timingSafeEqual,createHash} from 'node:crypto';
 import {promisify} from 'node:util';
@@ -41,9 +42,10 @@ function cleanExamResult(e){
  return {bankRevision:revision,id:/^exam-[0-9-]+$/.test(e.id)?e.id.slice(0,100):'exam-0',courseId,templateId:examTemplates.find(t=>t.id===e.templateId)?.id||'',completedAt:e.completedAt,elapsedMs:e.elapsedMs,correct:rows.filter(r=>r.right).length,total:rows.length,omitted:rows.filter(r=>r.omitted).length,rows,areas:[...new Set(rows.map(r=>r.area))].map(area=>({area,total:rows.filter(r=>r.area===area).length,correct:rows.filter(r=>r.area===area&&r.right).length}))};
 }
 export async function createAccounts({db,origin='http://localhost:3000',secure=true,adminName,adminHash}){
- await db.exec(schema+paymentSchema+trainingSchema+classSchema);
+ await db.exec(schema+paymentSchema+trainingSchema+classSchema+vaultSchema);
  const training=createTraining({db});
  const payments=createPayments({db,origin});
+ const vault=createVault({db});
  const classes=createClasses({db,ai:createRequire(import.meta.url)('../netlify/lib/class-builder.js')});
  if(adminName&&adminHash){await db.query(`INSERT INTO clinic_users(id,username,username_key,password_hash,recovery_hash,role,must_change) VALUES($1,$2,$3,$4,$5,'admin',true) ON CONFLICT(username_key) DO NOTHING`,[randomUUID(),adminName,adminName.toLowerCase(),adminHash,digest(randomBytes(32).toString('hex'))]);}
  const dummy=await hashPassword(randomBytes(24).toString('hex'));
@@ -99,6 +101,7 @@ export async function createAccounts({db,origin='http://localhost:3000',secure=t
    if(u.must_change)fail(403,'Cambiá tu contraseña inicial antes de continuar.');
    if(path==='/api/account/training'){await limit('training:'+req.method+u.id,60,3600);return send(200,await training.assessment(u,req.method,body));}
    if(path==='/api/account/classes'||path.startsWith('/api/account/classes/')){await limit('classes:'+req.method+u.id,req.method==='GET'?600:240,3600);if(req.method==='POST'&&(body.action==='start'))await limit('class-attempt:'+u.id,60,86400);if(req.method==='POST'&&body.action==='create')await limit('class-create:'+u.id,20,86400);return send(200,await classes.handle(u,req.method,path,body));}
+   if(path==='/api/account/patients'){await limit('vault:'+req.method+u.id,req.method==='GET'?600:300,3600);res.setHeader('Cache-Control','no-store');return send(200,await vault.handle(u,req.method,body));}
    if(path==='/api/account/class-ai'&&req.method==='POST'){await limit('class-ai:'+body.action+u.id,body.action==='draft'?6:40,3600);return send(200,await classes.generate(u,body));}
    if(path==='/api/account/rooms'||/^\/api\/account\/rooms\/[a-f0-9]{12}$/.test(path)){await limit('rooms:'+req.method+u.id,req.method==='GET'?600:120,3600);const code=path.split('/')[4];if(!code&&req.method==='POST')await limit('room-create:'+u.id,5,86400);return send(200,await training.rooms(u,req.method,body,code));}
    if(path==='/api/account/billing'&&req.method==='GET')return send(200,{offer:payments.offer(),orders:await payments.orders(u.id)});

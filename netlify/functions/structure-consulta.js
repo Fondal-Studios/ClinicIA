@@ -1,5 +1,6 @@
 const {reply}=require('../lib/access');
 const {gate,parseBody,ask}=require('../lib/clinical');
+const {deidentify}=require('../lib/deidentify');
 // Función serverless (Netlify Function).
 // Recibe la transcripción cruda de una consulta y le pide a la API de Claude
 // que la organice en historia clínica. La clave de la API vive en una
@@ -42,8 +43,12 @@ exports.handler = async function (event) {
   const denied=gate(event);if(denied)return denied;
   const body=parseBody(event);
   if(!body||typeof body.transcript!=="string"||!body.transcript.trim())return reply(400,{error:"Transcripción inválida o vacía"});
-  const patientContext=body.patientContext&&typeof body.patientContext==="object"?body.patientContext:{};
-  const user="Antecedentes ya conocidos del paciente (no los repitas como novedad si reaparecen aquí): " + JSON.stringify(patientContext).slice(0,4000) + "\n\nTranscripción completa de la consulta (sin marcas de hablante):\n" + body.transcript.trim();
+  // Defence in depth: the client already sends a de-identified text; generic identifiers are masked again here and no name or document ever reaches the provider.
+  const ctx=body.patientContext&&typeof body.patientContext==="object"?body.patientContext:{};
+  const patientContext={edad:Number.isFinite(ctx.edad)?ctx.edad:null,sexo:typeof ctx.sexo==="string"?ctx.sexo.slice(0,20):null,
+    antecedentes_personales:[],alergias:[],medicacion_habitual:[]};
+  for(const k of ["antecedentes_personales","alergias","medicacion_habitual"])if(Array.isArray(ctx[k]))patientContext[k]=ctx[k].slice(0,50).map(x=>deidentify(String(x).slice(0,200)).text);
+  const user="Antecedentes ya conocidos del paciente (no los repitas como novedad si reaparecen aquí): " + JSON.stringify(patientContext) + "\n\nTranscripción completa de la consulta (sin marcas de hablante):\n" + deidentify(body.transcript.trim()).text;
   const r=await ask({system:SYSTEM_PROMPT,user,maxTokens:3000,json:true});
   return r.error||reply(200,r.parsed);
 };
