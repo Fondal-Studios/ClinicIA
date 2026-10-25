@@ -7,7 +7,7 @@ Object.assign(process.env,{GROQ_API_KEY:'gsk_test',PATIENT_VAULT_KEY:'c'.repeat(
 const require=createRequire(import.meta.url),{chromium}=await import(process.env.PLAYWRIGHT_MODULE||'playwright');
 const structured={motivo_consulta:{texto:'Dolor torácico opresivo',estado:'registrado'},enfermedad_actual:{fragmentos:['Dolor de 2 horas de evolución con el esfuerzo'],editado:null},antecedentes_personales:[{texto:'Hipertensión arterial',estado:'positivo'}],antecedentes_quirurgicos:[],internaciones_previas:[],alergias:[{texto:'Penicilina',estado:'positivo'}],medicacion_habitual:[{texto_original:'enalapril 10 mg',principio_activo_probable:'enalapril',dosis:'10 mg',frecuencia:'cada 12 horas'}],habitos:[],antecedentes_familiares:[],examen_fisico:{},estudios_complementarios:[],impresion_diagnostica:[],plan:[{texto:'Aspirina 100 mg cada 24 horas y control en 48 horas'}],alertas:[],transcripcion_interpretada:[]};
 const sentToAI=[];const realFetch=globalThis.fetch;
-globalThis.fetch=async(url,args)=>{url=String(url);if(!url.includes('api.groq.com'))return realFetch(url,args);sentToAI.push(args.body);
+globalThis.fetch=async(url,args)=>{url=String(url);if(new URL(url).hostname!=='api.groq.com')return realFetch(url,args);sentToAI.push(args.body);
  return {ok:true,json:async()=>({choices:[{message:{content:JSON.stringify(structured)},finish_reason:'stop'}]})};};
 const db=new PGlite(),root=resolve('public');let accounts;
 const server=http.createServer(async(req,res)=>{try{const url=new URL(req.url,'http://x'),fn=url.pathname.match(/^\/\.netlify\/functions\/(deidentify|structure-consulta|rewrite-field)$/);
