@@ -7,7 +7,7 @@ const {callModel,parseJson,providerStatus}=require('./llm');
 // provider bill stays bounded. Limits are per warm instance, not billing-grade protection.
 let windowStart=Date.now(),count=0;
 const LIMIT=240;
-function gate(event,{env=process.env}={}){
+function gate(event,{env=process.env,count:counts=true}={}){
  if(event.httpMethod!=='POST')return reply(405,{error:'Método no permitido'});
  if(env.LEGACY_CLINICAL_ENABLED==='false')return reply(503,{error:'El consultorio con IA está desactivado en este servidor.'});
  if(typeof event.body!=='string'||Buffer.byteLength(event.body)>60000)return reply(413,{error:'El dictado es demasiado extenso. Dividilo en partes.'});
@@ -17,8 +17,8 @@ function gate(event,{env=process.env}={}){
   if(given.length!==want.length||!timingSafeEqual(given,want))return reply(401,{error:'Clave de acceso inválida.'});
  }
  if(Date.now()-windowStart>=3600000){windowStart=Date.now();count=0;}
- if(count>=LIMIT)return reply(429,{error:'Se alcanzó el límite horario de consultas de IA de este servidor. Probá más tarde.'});
- count++;return null;
+ if(counts&&count>=LIMIT)return reply(429,{error:'Se alcanzó el límite horario de consultas de IA de este servidor. Probá más tarde.'});
+ if(counts)count++;return null;
 }
 function parseBody(event){try{const b=JSON.parse(event.body||'{}');return b&&typeof b==='object'?b:null;}catch{return null;}}
 // Runs one model call; errors become readable replies and never include the provider's raw detail.

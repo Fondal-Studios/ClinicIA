@@ -762,6 +762,92 @@ window.goto = goto; // expuesto globalmente: los onclick="goto(...)" del HTML co
    ============================================================ */
 const app = document.getElementById("app");
 
+/* ============================================================
+   DATOS PERSONALES: bóveda cifrada en el servidor
+   Nombre, documento, fecha de nacimiento, teléfono, domicilio y
+   obra social viven SOLO en el servidor (cifrados) y se muestran
+   mientras haya sesión. En este dispositivo quedan solo los datos
+   clínicos y un alias. A la IA nunca se envían datos personales:
+   antes de enviar se quitan y se muestra el texto para revisarlo.
+   ============================================================ */
+const VAULT = { status: "loading", byId: {}, message: "" };
+const TRANSIENT_IDENT = {}; // identidad tipeada/dictada en esta sesión de un paciente sin bóveda: solo memoria, para quitarla del texto enviado a la IA
+const IDENT_FIELDS = ["nombre", "apellido", "dni", "fechaNacimiento", "sexo", "telefono", "obraSocial", "nroAfiliado", "domicilio"];
+function vaultApi(body) {
+  return nativeFetch("/api/account/patients", {
+    method: body ? "POST" : "GET", credentials: "same-origin",
+    headers: body ? { "Content-Type": "application/json" } : {}, ...(body ? { body: JSON.stringify(body) } : {}),
+  }).then(function (r) { return r.json().catch(function () { return {}; }).then(function (d) { if (!r.ok) { const e = new Error(d.error || ("HTTP " + r.status)); e.status = r.status; throw e; } return d; }); });
+}
+function vaultLoad() {
+  return vaultApi().then(function (d) {
+    VAULT.byId = {}; (d.patients || []).forEach(function (x) { if (x.identity) VAULT.byId[x.id] = x.identity; });
+    VAULT.status = d.enabled ? "ready" : "disabled";
+  }).catch(function (e) {
+    VAULT.status = e.status === 401 ? "login" : e.status === 503 ? "unavailable" : "error"; VAULT.message = e.message;
+  }).then(function () { if (route.name === "home" || route.name === "patient" || route.name === "patientData") render(); });
+}
+function legacyIdent(p) { return p.nombre ? Object.fromEntries(IDENT_FIELDS.map(function (k) { return [k, p[k] || ""]; })) : null; }
+function ident(p) { return (p.identityId && VAULT.byId[p.identityId]) || TRANSIENT_IDENT[p.id] || legacyIdent(p) || null; }
+function nameOf(p) { const i = ident(p); return i ? i.apellido + ", " + i.nombre : (p.alias || "Paciente #" + p.id); }
+function fullNameOf(p) { const i = ident(p); return i ? i.nombre + " " + i.apellido : (p.alias || "Paciente #" + p.id); }
+function ageOf(p) { const i = ident(p); if (i && i.fechaNacimiento) return calcEdad(i.fechaNacimiento); return p.anioNacimiento ? new Date().getFullYear() - p.anioNacimiento : null; }
+function vaultBanner() {
+  const st = VAULT.status;
+  if (st === "ready") return '<p class="small-note" style="margin:0 0 12px;">🔒 Los datos personales se guardan <strong>cifrados en el servidor</strong> y <strong>no se envían a la IA</strong>. En este dispositivo quedan sólo los datos clínicos.</p>';
+  if (st === "login") return '<div class="alert-box"><div class="title">Iniciá sesión para guardar datos personales</div>Sin sesión, los pacientes se crean sólo con un alias y los nombres no se guardan en ningún lado. <a href="./index.html#hub">Ingresar o crear cuenta</a> y volvé acá.</div>';
+  if (st === "disabled" || st === "unavailable") return '<div class="alert-box"><div class="title">Guardado cifrado no disponible</div>Este servidor todavía no tiene activado el guardado cifrado de datos personales (falta la clave PATIENT_VAULT_KEY o la base de datos). Podés usar el consultorio con alias, sin guardar nombres.</div>';
+  if (st === "error") return '<div class="alert-box"><div class="title">No se pudo consultar el servidor</div>' + esc(VAULT.message || "") + ' Los datos personales no se pueden ver ni guardar ahora.</div>';
+  return "";
+}
+function legacyPatients() { return Object.values(DB.patients).filter(function (p) { return p.nombre && !p.identityId; }); }
+window.__migrateLegacy = async function () {
+  const list = legacyPatients();
+  if (!list.length || VAULT.status !== "ready") return;
+  if (!confirm("Se van a mover los datos personales de " + list.length + " paciente(s) al servidor cifrado y se borrarán de este dispositivo. ¿Continuar?")) return;
+  let moved = 0;
+  for (const p of list) {
+    try {
+      const identity = Object.fromEntries(IDENT_FIELDS.map(function (k) { return [k, p[k] || ""]; }));
+      const r = await vaultApi({ action: "create", identity: identity });
+      p.identityId = r.id; VAULT.byId[r.id] = r.identity;
+      p.anioNacimiento = identity.fechaNacimiento ? Number(identity.fechaNacimiento.slice(0, 4)) : null; p.sexo = identity.sexo || p.sexo || "";
+      for (const k of IDENT_FIELDS) if (k !== "sexo") delete p[k];
+      moved++; saveStore();
+    } catch (e) { showToast("No se pudo mover un paciente: " + e.message); break; }
+  }
+  showToast(moved + " paciente(s) movidos al servidor cifrado"); render();
+};
+// Text for the AI: identifiers removed on our server, shown to the professional before it is sent.
+function scrubText(patient, text) {
+  return nativeFetch("/.netlify/functions/deidentify", {
+    method: "POST", headers: { "Content-Type": "application/json", ...(clinicPilotToken ? { Authorization: "Bearer " + clinicPilotToken } : {}) },
+    body: JSON.stringify({ text: text, identity: patient ? (ident(patient) || {}) : {} }),
+  }).then(function (r) { return r.json().then(function (d) { if (!r.ok) throw new Error(d.error || "No se pudo quitar los datos personales (HTTP " + r.status + ")"); return d; }); });
+}
+function confirmAIPayload(scrubbed, redactions) {
+  return new Promise(function (resolve) {
+    const overlay = document.createElement("div");
+    overlay.className = "consent-overlay";
+    overlay.innerHTML = '<div class="consent-sheet"><h2>Esto es lo que se enviará a la IA</h2>' +
+      '<p>Se quitaron <strong>' + redactions + '</strong> dato(s) personal(es) (nombre, documento, teléfono, domicilio…). Revisá el texto: si queda algo que identifique al paciente o a otra persona, borralo ahora. Los datos personales no salen del servidor de ClinicIA.</p>' +
+      '<textarea id="aiPreviewText" rows="9" style="width:100%;box-sizing:border-box;"></textarea>' +
+      '<div class="btn-block-row"><button class="btn btn-secondary" id="aiPvLocal">Sin IA (motor local)</button><button class="btn btn-primary" id="aiPvSend">Enviar a la IA</button></div></div>';
+    document.body.appendChild(overlay);
+    const ta = overlay.querySelector("#aiPreviewText"); ta.value = scrubbed;
+    overlay.querySelector("#aiPvSend").onclick = function () { const t = ta.value.trim(); document.body.removeChild(overlay); resolve(t || null); };
+    overlay.querySelector("#aiPvLocal").onclick = function () { document.body.removeChild(overlay); resolve(null); };
+  });
+}
+function callStructureSafe(patient, fullText) {
+  return scrubText(patient, fullText).then(function (r) {
+    return confirmAIPayload(r.text, r.redactions).then(function (approved) {
+      if (approved === null) throw new Error("No se envió a la IA (elegiste el motor local).");
+      return callStructureAPI(approved, buildPatientContextForAI(patient));
+    });
+  });
+}
+
 function render() {
   if (route.name === "home") return renderHome();
   if (route.name === "newPatient") return renderNewPatient();
@@ -797,11 +883,13 @@ function renderHome() {
   const patients = Object.values(DB.patients).sort((a, b) => (b.updatedAt || 0) - (a.updatedAt || 0));
   let html = '<main>';
   html += '<div class="brand"><div class="mark">Cl</div><h1>Historia clínica</h1><p>Documentación clínica asistida por voz</p></div>';
-  html += '<div class="search-box"><span class="icon">🔍</span><input id="searchInput" placeholder="Buscar por nombre, apellido o DNI" oninput="__onSearch(this.value)"></div>';
+  html += vaultBanner();
+  if (VAULT.status === "ready" && legacyPatients().length) html += '<button class="btn btn-secondary" style="margin-bottom:12px;" onclick="__migrateLegacy()">🔒 Mover datos personales de ' + legacyPatients().length + ' paciente(s) al servidor cifrado</button>';
+  html += '<div class="search-box"><span class="icon">🔍</span><input id="searchInput" placeholder="Buscar por nombre, apellido, alias o DNI" oninput="__onSearch(this.value)"></div>';
   html += '<button class="btn btn-primary" onclick="goto(\'newPatient\')">+ Nuevo paciente</button>';
   html += '<div id="patientList"></div>';
   html += '<button class="btn btn-ghost" style="margin-top:18px;" onclick="__exportBackup()">⬇️ Exportar todo (respaldo)</button>';
-  html += '<p class="small-note">Todo se guarda solo en este teléfono. Hacé un respaldo de tanto en tanto para no perder la historia clínica si cambiás de equipo.</p>';
+  html += '<p class="small-note">Los datos clínicos se guardan sólo en este dispositivo (los datos personales, cifrados en el servidor). Hacé un respaldo de tanto en tanto para no perder la historia clínica si cambiás de equipo.</p>';
   html += '<button class="btn btn-ghost" style="margin-top:6px;" onclick="__testAIConnection()">🔧 Probar conexión con la IA</button>';
   html += '</main>';
   app.innerHTML = html;
@@ -810,7 +898,7 @@ function renderHome() {
 function renderPatientList(patients, query) {
   const q = (query || "").toLowerCase().trim();
   const filtered = q ? patients.filter(p =>
-    (p.nombre + " " + p.apellido).toLowerCase().includes(q) || (p.dni || "").includes(q)
+    (fullNameOf(p)).toLowerCase().includes(q) || ((ident(p) || {}).dni || "").includes(q)
   ) : patients;
   const label = q ? "Resultados" : "Pacientes recientes";
   let html = '<div class="section-label">' + label + '</div>';
@@ -818,11 +906,11 @@ function renderPatientList(patients, query) {
     html += '<div class="empty-state"><p>' + (q ? "No se encontraron pacientes." : "Todavía no cargaste pacientes.") + '</p></div>';
   } else {
     for (const p of filtered.slice(0, q ? 50 : 8)) {
-      const edad = calcEdad(p.fechaNacimiento);
+      const edad = ageOf(p), idn = ident(p);
       html += '<div class="patient-card" onclick="goto(\'patient\',{patientId:' + p.id + '})">' +
-        '<div class="avatar">' + initials(p.nombre, p.apellido) + '</div>' +
-        '<div class="info"><div class="name">' + esc(p.apellido) + ', ' + esc(p.nombre) + '</div>' +
-        '<div class="meta">' + (edad !== null ? edad + " años" : "Edad no cargada") + (p.dni ? " · DNI " + esc(p.dni) : "") + '</div></div>' +
+        '<div class="avatar">' + (idn ? initials(idn.nombre, idn.apellido) : "#") + '</div>' +
+        '<div class="info"><div class="name">' + esc(nameOf(p)) + '</div>' +
+        '<div class="meta">' + (edad !== null ? edad + " años" : "Edad no cargada") + (idn && idn.dni ? " · DNI " + esc(idn.dni) : "") + '</div></div>' +
         '<div class="chev">›</div></div>';
     }
   }
@@ -856,6 +944,7 @@ function renderNewPatient() {
     html += '<div class="unsupported-banner">Este navegador no soporta dictado por voz. Completá los campos manualmente.</div>';
   }
 
+  html += vaultBanner();
   html += '<div class="form-row"><div class="form-group"><label>Nombre <span class="required-mark">*</span></label><input id="f_nombre" oninput="__npMarkDirty(\'nombre\')"></div>' +
     '<div class="form-group"><label>Apellido <span class="required-mark">*</span></label><input id="f_apellido" oninput="__npMarkDirty(\'apellido\')"></div></div>';
   html += '<div class="form-group"><label>DNI / documento</label><input id="f_dni" inputmode="numeric" oninput="__npMarkDirty(\'dni\')"></div>';
@@ -865,7 +954,7 @@ function renderNewPatient() {
   html += '<div class="form-row"><div class="form-group"><label>Obra social</label><input id="f_os" oninput="__npMarkDirty(\'os\')"></div>' +
     '<div class="form-group"><label>N° de afiliado</label><input id="f_nroaf" oninput="__npMarkDirty(\'nroaf\')"></div></div>';
   html += '<div class="form-group"><label>Domicilio</label><input id="f_dom" oninput="__npMarkDirty(\'dom\')"></div>';
-  html += '<div class="form-group"><label>Dictado clínico (motivo de consulta, enfermedad actual, antecedentes y tratamiento)</label><textarea id="npDictation" rows="6" placeholder="Se completa solo mientras dictás. También podés escribir o pegar el texto acá."></textarea><div class="small-note">Al tocar «Crear paciente y organizar la historia», la IA ordena este texto en motivo, enfermedad actual, antecedentes y plan/tratamiento y te lo muestra para revisar y aprobar. Los datos personales se completan con el formulario de arriba.</div></div>';
+  html += '<div class="form-group"><label>Dictado clínico (motivo de consulta, enfermedad actual, antecedentes y tratamiento)</label><textarea id="npDictation" rows="6" placeholder="Se completa solo mientras dictás. También podés escribir o pegar el texto acá."></textarea><div class="small-note">Al tocar «Crear paciente y organizar la historia», la IA ordena este texto en motivo, enfermedad actual, antecedentes y plan/tratamiento y te lo muestra para revisar y aprobar. Los datos personales se completan con el formulario de arriba, se guardan cifrados en el servidor y se quitan del texto antes de enviarlo a la IA (vas a ver el texto exacto antes de enviar).</div></div>';
   html += '<button class="btn btn-primary" onclick="__createPatient(true)">Crear paciente y organizar la historia con IA</button>';
   html += '<button class="btn btn-secondary" style="margin-top:8px;" onclick="__createPatient(false)">Crear solo con los datos personales</button>';
   html += '</main>';
@@ -896,35 +985,12 @@ function applyPatientFields(parsed) {
   const hint = document.getElementById("npFechaHint");
   if (hint) hint.style.display = parsed.fechaEsAproximada && parsed.fechaNacimiento && !npDirty.fnac ? "block" : "none";
 }
-let npAIDebounceTimer = null;
-let npAIInFlight = false;
-function __npScheduleAIRefine(fullText) {
-  clearTimeout(npAIDebounceTimer);
-  npAIDebounceTimer = setTimeout(function () {
-    if (npAIInFlight) return; // se refina en la próxima tanda si esta sigue en curso
-    npAIInFlight = true;
-    fetch("/.netlify/functions/extract-patient", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ transcript: fullText }),
-    })
-      .then(function (resp) { if (!resp.ok) throw new Error("HTTP " + resp.status); return resp.json(); })
-      .then(function (data) {
-        if (data && data.error) throw new Error(data.error);
-        applyPatientFields(data); // refina lo que el motor local no captó bien
-      })
-      .catch(function (err) {
-        console.error("extract-patient (IA) falló, se mantiene el resultado del motor local:", err);
-      })
-      .finally(function () { npAIInFlight = false; });
-  }, 900);
-}
+// Los datos personales se extraen solo con el motor local: nunca se envían a la IA.
+function __npScheduleAIRefine() {}
 function __npApplyParsed() {
   const fullText = npTranscript.join(" ");
   // Aplicación instantánea con el motor local (siempre funciona, incluso sin red)...
   applyPatientFields(extractPatientData(fullText));
-  // ...y en paralelo, afinamos con la IA real cuando responda.
-  __npScheduleAIRefine(fullText);
 }
 
 window.__npToggleMic = function () {
@@ -983,28 +1049,31 @@ function __npStopMic() {
   if (btn) btn.textContent = "🎙";
   if (hint) hint.textContent = "Tocá para seguir dictando, o corregí los campos a mano.";
 }
-window.__createPatient = function (organize) {
-  const nombre = document.getElementById("f_nombre").value.trim();
-  const apellido = document.getElementById("f_apellido").value.trim();
-  if (!nombre || !apellido) { showToast("Nombre y apellido son obligatorios"); return; }
+window.__createPatient = async function (organize) {
+  const val = function (id) { return (document.getElementById(id) || { value: "" }).value.trim(); };
+  const identity = { nombre: val("f_nombre"), apellido: val("f_apellido"), dni: val("f_dni"), fechaNacimiento: val("f_fnac"), sexo: val("f_sexo"), telefono: val("f_tel"), obraSocial: val("f_os"), nroAfiliado: val("f_nroaf"), domicilio: val("f_dom") };
+  if (!identity.nombre || !identity.apellido) { showToast("Nombre y apellido son obligatorios"); return; }
   __npStopMic();
+  const dictation = val("npDictation");
+  let identityId = null, alias = "";
+  if (VAULT.status === "ready") {
+    try { const r = await vaultApi({ action: "create", identity: identity }); identityId = r.id; VAULT.byId[r.id] = r.identity; }
+    catch (e) { showToast("No se pudieron guardar los datos personales: " + e.message); return; }
+  } else {
+    if (!confirm("Los datos personales NO se van a guardar (" + (VAULT.status === "login" ? "no iniciaste sesión" : "el guardado cifrado no está disponible") + "). El paciente se crea sólo con un alias y los datos clínicos. ¿Continuar?")) return;
+    alias = (prompt("Alias para identificar al paciente en este dispositivo (sin nombre ni documento):", "") || "").trim().slice(0, 40);
+  }
   const id = uid(DB, "nextPatientId");
   DB.patients[id] = {
-    id, nombre, apellido,
-    dni: document.getElementById("f_dni").value.trim(),
-    fechaNacimiento: document.getElementById("f_fnac").value,
-    sexo: document.getElementById("f_sexo").value,
-    telefono: document.getElementById("f_tel").value.trim(),
-    obraSocial: document.getElementById("f_os").value.trim(),
-    nroAfiliado: document.getElementById("f_nroaf").value.trim(),
-    domicilio: document.getElementById("f_dom").value.trim(),
+    id, identityId, alias, sexo: identity.sexo,
+    anioNacimiento: identity.fechaNacimiento ? Number(identity.fechaNacimiento.slice(0, 4)) : null,
     antecedentes_personales: [], antecedentes_quirurgicos: [], alergias: [],
     medicacion_habitual: [], antecedentes_familiares: [], habitos: [],
     createdAt: Date.now(), updatedAt: Date.now(),
   };
-  const dictation = (document.getElementById("npDictation") || { value: "" }).value.trim();
+  if (!identityId) TRANSIENT_IDENT[id] = identity; // solo memoria: sirve para quitar estos datos del texto que va a la IA
   if (organize && dictation) {
-    // The dictated clinical text becomes the first (draft) encounter and goes through the same AI + review flow as a consultation.
+    // El texto dictado pasa por el mismo flujo de revisión que una consulta; antes de ir a la IA se le quitan los datos personales y se muestra para confirmar.
     const encId = uid(DB, "nextEncounterId");
     DB.encounters[encId] = {
       id: encId, patientId: id, createdAt: Date.now(), updatedAt: Date.now(),
@@ -1029,12 +1098,12 @@ function patientEncounters(patientId) {
 function renderPatient() {
   const p = DB.patients[route.patientId];
   if (!p) { goto("home"); return; }
-  const edad = calcEdad(p.fechaNacimiento);
+  const edad = ageOf(p), idn = ident(p);
   const encs = patientEncounters(p.id);
-  let html = topbar(p.nombre + " " + p.apellido);
+  let html = topbar(fullNameOf(p));
   html += '<main>';
-  html += '<div class="patient-header"><div class="name">' + esc(p.nombre) + ' ' + esc(p.apellido) + '</div>' +
-    '<div class="meta">' + (edad !== null ? edad + " años" : "Edad no cargada") + (p.dni ? " · DNI " + esc(p.dni) : " · DNI no cargado") + '</div></div>';
+  html += '<div class="patient-header"><div class="name">' + esc(fullNameOf(p)) + '</div>' +
+    '<div class="meta">' + (edad !== null ? edad + " años" : "Edad no cargada") + (idn ? (idn.dni ? " · DNI " + esc(idn.dni) : " · DNI no cargado") : " · sin datos personales guardados") + '</div></div>';
   html += '<button class="btn btn-primary" onclick="__startConsult(' + p.id + ')">🎙 Nueva consulta</button>';
   html += '<div class="action-grid" style="margin-top:10px;">' +
     '<button class="action-tile" onclick="goto(\'patientData\',{patientId:' + p.id + '})"><span class="ic">🗂</span>Datos del paciente</button>' +
@@ -1070,11 +1139,13 @@ function renderPatientData() {
   const p = DB.patients[route.patientId];
   let html = topbar("Datos del paciente");
   html += '<main>';
+  const d = ident(p) || {};
+  html += vaultBanner();
   const rows = [
-    ["Nombre", p.nombre], ["Apellido", p.apellido], ["DNI", p.dni], ["Fecha de nacimiento", p.fechaNacimiento],
-    ["Edad", calcEdad(p.fechaNacimiento) !== null ? calcEdad(p.fechaNacimiento) + " años" : null],
-    ["Sexo", p.sexo], ["Teléfono", p.telefono], ["Obra social", p.obraSocial],
-    ["N° de afiliado", p.nroAfiliado], ["Domicilio", p.domicilio],
+    ["Nombre", d.nombre], ["Apellido", d.apellido], ["DNI", d.dni], ["Fecha de nacimiento", d.fechaNacimiento],
+    ["Edad", ageOf(p) !== null ? ageOf(p) + " años" : null],
+    ["Sexo", p.sexo || d.sexo], ["Teléfono", d.telefono], ["Obra social", d.obraSocial],
+    ["N° de afiliado", d.nroAfiliado], ["Domicilio", d.domicilio],
   ];
   for (const [label, val] of rows) {
     html += '<div class="hc-field"><div class="field-label">' + label + '</div>' +
@@ -1319,7 +1390,7 @@ window.__addManual = function () {
 /* ---------- Llamada a la IA real (Netlify Function), con respaldo local ---------- */
 function buildPatientContextForAI(patient) {
   return {
-    edad: calcEdad(patient.fechaNacimiento),
+    edad: ageOf(patient),
     sexo: patient.sexo,
     antecedentes_personales: (patient.antecedentes_personales || []).map(function (x) { return x.texto || x; }),
     alergias: (patient.alergias || []).map(function (x) { return x.texto || x; }),
@@ -1364,7 +1435,7 @@ window.__finishConsult = function () {
   app.innerHTML = topbar("Analizando la consulta") +
     '<main><div class="record-hero"><div class="hint">🧠 Organizando la historia clínica con IA…</div></div></main>';
 
-  callStructureAPI(fullText, buildPatientContextForAI(p))
+  callStructureSafe(p, fullText)
     .then(function (structured) {
       e.structured = structured;
       e.structuredBy = "ia";
@@ -1397,7 +1468,7 @@ window.__retryAI = function () {
   const fullText = e.transcript.map(function (l) { return l.text; }).join(" ");
   app.innerHTML = topbar("Analizando la consulta") +
     '<main><div class="record-hero"><div class="hint">🧠 Organizando la historia clínica con IA…</div></div></main>';
-  callStructureAPI(fullText, buildPatientContextForAI(p))
+  callStructureSafe(p, fullText)
     .then(function (structured) {
       e.structured = structured;
       e.structuredBy = "ia";
@@ -1420,10 +1491,13 @@ window.__rewriteField = function (key) {
   if (!original) { showToast("No hay texto para redactar"); return; }
   const btn = document.getElementById("rw_" + key);
   if (btn) { btn.disabled = true; btn.textContent = "Redactando…"; }
-  fetch("/.netlify/functions/rewrite-field", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ texto: original }),
+  const rwPatient = DB.patients[route.patientId];
+  scrubText(rwPatient, original).then(function (clean) {
+    return fetch("/.netlify/functions/rewrite-field", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ texto: clean.text }),
+    });
   })
     .then(function (resp) { if (!resp.ok) throw new Error("HTTP " + resp.status); return resp.json(); })
     .then(function (data) {
@@ -1669,10 +1743,10 @@ window.__approveEncounter = function () {
 /* ---------- COPIAR CONSULTA COMO TEXTO (para compartir rápido) ---------- */
 function buildPlainTextNote(p, e) {
   const s = e.structured || {};
-  const edad = calcEdad(p.fechaNacimiento);
+  const edad = ageOf(p), idn = ident(p) || {};
   const lines = [];
-  lines.push((p.nombre || "") + " " + (p.apellido || "") +
-    (edad !== null ? " - " + edad + " años" : "") + (p.dni ? " - DNI " + p.dni : ""));
+  lines.push(fullNameOf(p) +
+    (edad !== null ? " - " + edad + " años" : "") + (idn.dni ? " - DNI " + idn.dni : ""));
   lines.push("Fecha: " + fmtDate(e.createdAt).full);
   lines.push("");
   function addSection(title, text) {
@@ -1795,6 +1869,7 @@ function renderVitalsReadonly(v) {
 
 /* ---------- INICIO ---------- */
 render();
+vaultLoad();
 })();
 </script>
 </body>
