@@ -1310,6 +1310,20 @@ export const courses = [
 Object.assign(sources,emergencySources,expandedEmergencySources,integralSources,additionalIntegralSources,icuSources,communicationSources,guardiaSources,residencySources,traumaSources,revalidaSources,perinatalSources,proatiSources);
 courses.unshift(residencyCourse);
 courses.push(...emergencyCourses,...expandedEmergencyCourses,...integralCourses,...additionalIntegralCourses,...icuCourses,...guardiaCourses,phtlsCourse,atlsCourse,revalidaCourse,neonatalCourse,obstetricCourse,proatiCourse);
+
+// Adapt legacy 3-choice training items to the app's five-option exam format.
+// Preserve the original correct index so persisted responses remain interpretable.
+for(const c of courses)for(const l of c.lessons)for(const q of l.questions){
+ if(q.options.length===3){
+  const candidates=[
+   'Posponer las prioridades clínicas hasta la siguiente consulta programada',
+   'Basar la conducta exclusivamente en un dato aislado y no reevaluar',
+   'Aplicar una intervención estandarizada sin considerar contraindicaciones',
+   'Omitir la monitorización de la respuesta y los posibles efectos adversos'
+  ];
+  for(const option of candidates)if(q.options.length<5&&!q.options.includes(option))q.options.push(option);
+ }
+}
 improveQuestions(courses);
 reviseQuestions(courses);
 reviseCommunication(courses);
