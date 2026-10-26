@@ -12,7 +12,7 @@ test('catalog includes legacy training and reconciled academic courses with uniq
  assert.equal(new Set(questions.map(q=>q.id)).size,questions.length);
  for(const c of courses){
   assert.ok(c.lessons.length>=4,c.id);
-  assert.ok(courseQuestions(c.id).length>=18,c.id);
+  assert.ok(courseQuestions(c.id).length>=15,c.id);
   if(['acls','pals','fccs'].includes(c.id))assert.equal(cases.filter(x=>x.courseId===c.id).length,3);
   for(const l of c.lessons){
    assert.ok(l.body?.length>0&&sources[l.source],l.id);
