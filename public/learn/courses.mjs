@@ -1,3 +1,4 @@
+import {applyQuestionDifficultyRevisions} from './content/question-difficulty-revisions.mjs';
 import {emergencyCourses,emergencySources} from './content/emergentologia.mjs';
 import {expandedEmergencyCourses,expandedEmergencySources} from './content/emergentologia-ampliada.mjs';
 import {integralCourses,integralSources} from './content/medicina-integral.mjs';
@@ -1330,5 +1331,6 @@ reviseCommunication(courses);
 expandTheory(courses);
 applyBankExtensions(courses);
 applyAuditFixes(courses);
+applyQuestionDifficultyRevisions(courses);
 export const catalog=courses;
 export const questions=courses.flatMap(c=>c.lessons.flatMap((l,li)=>l.questions.map((q,qi)=>({...q,source:q.source||l.source,courseId:c.id,lessonId:l.id,area:l.area||q.skill,li,qi}))));
