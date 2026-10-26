@@ -2,7 +2,9 @@
 // The chat tutor keeps its own inline call so its error mapping stays untouched.
 const clean=v=>typeof v==='string'?v.trim():v;
 // Values pasted into a dashboard often carry a trailing space/newline, which makes the HTTP header invalid.
-function cleanEnv(env){return {...env,GROQ_API_KEY:clean(env.GROQ_API_KEY),GROQ_MODEL:clean(env.GROQ_MODEL),ANTHROPIC_API_KEY:clean(env.ANTHROPIC_API_KEY),ANTHROPIC_MODEL:clean(env.ANTHROPIC_MODEL),TUTOR_PROVIDER:clean(env.TUTOR_PROVIDER)};}
+// API keys are plain printable ASCII: keep only the key itself so stray newlines, quotes or zero-width characters from a paste cannot break the header.
+const apiKey=v=>typeof v==='string'?(v.match(/sk-ant-[A-Za-z0-9_-]+/)?.[0]||v.replace(/[^\x21-\x7E]/g,'')):v;
+function cleanEnv(env){return {...env,GROQ_API_KEY:apiKey(env.GROQ_API_KEY),GROQ_MODEL:clean(env.GROQ_MODEL),ANTHROPIC_API_KEY:apiKey(env.ANTHROPIC_API_KEY),ANTHROPIC_MODEL:clean(env.ANTHROPIC_MODEL),TUTOR_PROVIDER:clean(env.TUTOR_PROVIDER)};}
 function providerStatus(rawEnv=process.env){const env=cleanEnv(rawEnv);
  const provider=env.TUTOR_PROVIDER||(env.GROQ_API_KEY?'groq':'anthropic');
  if(!['groq','anthropic'].includes(provider))return {ok:false,error:'Proveedor de tutor no configurado correctamente.'};

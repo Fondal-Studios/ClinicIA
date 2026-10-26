@@ -38,3 +38,12 @@ test('provider credentials pasted with surrounding whitespace are cleaned before
  assert.equal(await callModel({system:'s',messages:[],env,fetchImpl:async(url,a)=>{sent=a;return ok;}}),'ok');
  assert.equal(sent.headers['x-api-key'],'sk-ant-key');assert.equal(JSON.parse(sent.body).model,'claude-haiku-5-5');
 });
+
+test('a key pasted from a multi-line curl command is reduced to the key itself',async()=>{
+ let sent;const ok={ok:true,json:async()=>({stop_reason:'end_turn',content:[{type:'text',text:'ok'}]})};
+ const env={ANTHROPIC_API_KEY:'x-api-key: sk-ant-usr-AbC_123-xyz" \\\n  --header',ANTHROPIC_MODEL:'m'};
+ await callModel({system:'s',messages:[],env,fetchImpl:async(url,a)=>{sent=a;return ok;}});
+ assert.equal(sent.headers['x-api-key'],'sk-ant-usr-AbC_123-xyz');
+ await callModel({system:'s',messages:[],env:{ANTHROPIC_API_KEY:'sk-ant-ab​cd\ne',ANTHROPIC_MODEL:'m'},fetchImpl:async(url,a)=>{sent=a;return ok;}});
+ assert.equal(sent.headers['x-api-key'],'sk-ant-ab');
+});
