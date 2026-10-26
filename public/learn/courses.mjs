@@ -1,3 +1,4 @@
+import {emergencyCourses,emergencySources} from './content/emergentologia.mjs';
 import {communicationSources,reviseCommunication} from './content/communication-revisions.mjs';
 import {guardiaCourses,guardiaSources} from './content/guardia.mjs';
 import {expandTheory} from './content/theory-expansion.mjs';
@@ -1299,9 +1300,9 @@ export const courses = [
     "reviewStatus": "Pendiente de validación docente"
   }
 ];
-Object.assign(sources,communicationSources,guardiaSources,residencySources,traumaSources,revalidaSources,perinatalSources);
+Object.assign(sources,emergencySources,communicationSources,guardiaSources,residencySources,traumaSources,revalidaSources,perinatalSources);
 courses.unshift(residencyCourse);
-courses.push(...guardiaCourses,phtlsCourse,atlsCourse,revalidaCourse,neonatalCourse,obstetricCourse);
+courses.push(...emergencyCourses,...guardiaCourses,phtlsCourse,atlsCourse,revalidaCourse,neonatalCourse,obstetricCourse);
 improveQuestions(courses);
 reviseQuestions(courses);
 reviseCommunication(courses);
