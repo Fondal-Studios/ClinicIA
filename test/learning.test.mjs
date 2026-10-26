@@ -3,7 +3,28 @@ import {fresh,restore,answer,finishLesson,competencies,dueQuestions,errorQuestio
 import {questions,courses,sources} from '../public/learn/courses.mjs';
 import {cases,choose,advance} from '../public/learn/cases.mjs';
 import {sample,rhythms,ecg} from '../public/learn/ecg.mjs';
-test('twelve catalogs with unique questions and valid references',()=>{assert.deepEqual(courses.map(c=>c.id),['examen-unico','acls','pals','fccs','guardia-medica','guardia-equipo','phtls','atls','revalida','neonatal','obstetricia','proati']);assert.ok(questions.length>=678);assert.equal(new Set(questions.map(q=>q.id)).size,questions.length);for(const c of courses){assert.equal(c.lessons.length,c.id.startsWith('guardia-')?7:c.id==='examen-unico'?40:c.id==='proati'?30:c.id==='revalida'?5:['neonatal','obstetricia'].includes(c.id)?6:8);assert.ok(courseQuestions(c.id).length>=(c.id.startsWith('guardia-')?21:c.id==='examen-unico'?160:c.id==='proati'?300:c.id==='revalida'?20:['neonatal','obstetricia'].includes(c.id)?18:24));if(['acls','pals','fccs'].includes(c.id))assert.equal(cases.filter(x=>x.courseId===c.id).length,3);for(const l of c.lessons){assert.ok(l.body&&sources[l.source]);assert.ok(l.questions.length>=(c.id==='proati'?10:['examen-unico','revalida'].includes(c.id)?4:3));for(const q of l.questions){assert.ok(q.options[q.answer]);assert.ok(q.why&&q.skill&&sources[q.source]);if(q.rhythm)assert.ok(rhythms.some(r=>r.id===q.rhythm));}}}});
+test('catalog includes legacy training and reconciled academic courses with unique ids, references and sufficient content',()=>{
+ const legacy=['examen-unico','acls','pals','fccs','guardia-medica','guardia-equipo','phtls','atls','revalida','neonatal','obstetricia','proati'];
+ for(const id of legacy)assert.ok(courses.some(c=>c.id===id),'Legacy course missing '+id);
+ for(const id of ['via-aerea-avanzada','uci-critico-integral','salud-cardiometabolica','obesidad-integral','diabetes-integral-2026'])assert.ok(courses.some(c=>c.id===id),'Merged course missing '+id);
+ assert.ok(questions.length>=900);
+ assert.equal(new Set(courses.map(c=>c.id)).size,courses.length);
+ assert.equal(new Set(questions.map(q=>q.id)).size,questions.length);
+ for(const c of courses){
+  assert.ok(c.lessons.length>=4,c.id);
+  assert.ok(courseQuestions(c.id).length>=15,c.id);
+  if(['acls','pals','fccs'].includes(c.id))assert.equal(cases.filter(x=>x.courseId===c.id).length,3);
+  for(const l of c.lessons){
+   assert.ok(l.body?.length>0&&sources[l.source],l.id);
+   assert.ok(l.questions.length>=3,l.id);
+   for(const q of l.questions){
+    assert.ok(q.options[q.answer],q.id);
+    assert.ok(q.why&&q.skill&&sources[q.source],q.id);
+    if(q.rhythm)assert.ok(rhythms.some(r=>r.id===q.rhythm));
+   }
+  }
+ }
+});
 test('new state has no competence; course evidence remains isolated',()=>{let s=answer(fresh(),'recognize',true,0);assert.ok(competencies(s,'acls').some(c=>c.score>0));assert.ok(competencies(s,'pals').every(c=>c.score===0));assert.ok(competencies(s,'fccs').every(c=>c.assessed===0));});
 test('error review is immediate and only belongs to its course',()=>{let s=answer(fresh(),'recognize',false,0);s=answer(s,'p-depth',false,0);assert.equal(dueQuestions(s,0,'acls').length,1);assert.equal(dueQuestions(s,0,'pals').length,1);assert.equal(dueQuestions(s,0,'fccs').length,0);s=answer(s,'p-depth',true,0);assert.equal(errorQuestions(s,'pals').length,0);assert.equal(dueQuestions(s,0,'pals').length,0);assert.equal(dueQuestions(s,86400000,'pals').length,1);});
 test('v2 migration preserves legacy answers, passed lessons and scenarios',()=>{const s=restore({version:2,current:'acls',progress:{acls:6},evidence:{recognize:{correct:1,total:2}},reviews:{recognize:{due:100,level:1}},cases:{fv:true}});assert.equal(s.version,3);assert.equal(s.progress.acls,6);assert.equal(Object.keys(s.passedLessons).length,6);assert.deepEqual(s.evidence.recognize,{correct:1,total:2});assert.equal(s.cases.fv,true);assert.equal(s.progress.pals,0);});
