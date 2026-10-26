@@ -47,3 +47,9 @@ test('a key pasted from a multi-line curl command is reduced to the key itself',
  await callModel({system:'s',messages:[],env:{ANTHROPIC_API_KEY:'sk-ant-ab​cd\ne',ANTHROPIC_MODEL:'m'},fetchImpl:async(url,a)=>{sent=a;return ok;}});
  assert.equal(sent.headers['x-api-key'],'sk-ant-ab');
 });
+
+test('Anthropic requests never send sampling parameters (Claude 5 rejects them) and leave room for thinking tokens',async()=>{
+ let body;const ok={ok:true,json:async()=>({stop_reason:'end_turn',content:[{type:'text',text:'ok'}]})};
+ await callModel({system:'s',messages:[],maxTokens:300,env:{ANTHROPIC_API_KEY:'sk-ant-k',ANTHROPIC_MODEL:'claude-haiku-5-5'},fetchImpl:async(u,a)=>{body=JSON.parse(a.body);return ok;}});
+ for(const k of ['temperature','top_p','top_k'])assert.ok(!(k in body),k);assert.equal(body.max_tokens,1324);
+});

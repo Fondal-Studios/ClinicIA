@@ -11,10 +11,13 @@ function providerStatus(rawEnv=process.env){const env=cleanEnv(rawEnv);
  if(provider==='groq'?!env.GROQ_API_KEY:(!env.ANTHROPIC_API_KEY||!env.ANTHROPIC_MODEL))return {ok:false,error:'Tutor pendiente de configuración del proveedor y modelo.'};
  return {ok:true,provider};
 }
+// Claude 5 models reject temperature/top_p/top_k (400) and think adaptively by default; thinking tokens count against max_tokens,
+// so Anthropic requests get headroom. It is only a ceiling: unused headroom is not billed.
+const THINKING_HEADROOM=1024;
 function buildRequest(st,env,{system,messages,maxTokens,json=false,stream=false}){
  const groq=st.provider==='groq';
  return groq?{url:'https://api.groq.com/openai/v1/chat/completions',headers:{'Content-Type':'application/json',Authorization:'Bearer '+env.GROQ_API_KEY},body:{model:env.GROQ_MODEL||'llama-3.3-70b-versatile',max_tokens:maxTokens,temperature:0.2,messages:[{role:'system',content:system},...messages],...(json?{response_format:{type:'json_object'}}:{}),...(stream?{stream:true}:{})}}
-  :{url:'https://api.anthropic.com/v1/messages',headers:{'Content-Type':'application/json','x-api-key':env.ANTHROPIC_API_KEY,'anthropic-version':'2023-06-01'},body:{model:env.ANTHROPIC_MODEL,max_tokens:maxTokens,temperature:0,system,messages,...(stream?{stream:true}:{})}};
+  :{url:'https://api.anthropic.com/v1/messages',headers:{'Content-Type':'application/json','x-api-key':env.ANTHROPIC_API_KEY,'anthropic-version':'2023-06-01'},body:{model:env.ANTHROPIC_MODEL,max_tokens:maxTokens+THINKING_HEADROOM,system,messages,...(stream?{stream:true}:{})}};
 }
 const STATUS_MESSAGES={401:'El proveedor rechazó la clave de API. Revisá la credencial en el servidor.',403:'El proveedor no habilitó el acceso a este modelo o cuenta.',404:'El modelo configurado no está disponible.',413:'El contexto excede el límite del proveedor. Intentá una consulta más breve.',429:'La IA alcanzó su cuota temporal. Intentá más tarde.'};
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
