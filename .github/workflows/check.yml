@@ -9,6 +9,7 @@ jobs:
         with:
           node-version: 22
       - run: npm ci
+      - run: node --input-type=module -e "import {courses,questions} from './public/learn/courses.mjs'; console.log('CATALOG_TOTAL courses='+courses.length+' questions='+questions.length)"
       - run: npm test
       - run: npm run check
       - run: npm run audit:learning
