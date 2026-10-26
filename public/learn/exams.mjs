@@ -1,10 +1,12 @@
 import {reinforcementQuestions} from './progression.mjs';
-export const BANK_REVISION=4;
+export const BANK_REVISION=5;
 import {questions,courses} from './courses.mjs';
 const pool=(courseId='examen-unico')=>questions.filter(q=>q.courseId===courseId);
 export const examCourse=t=>t.courseId||'examen-unico';
 export const examTemplates=[{id:'sprint',title:'Sprint de guardia',count:20,minutes:36,description:'Una vuelta breve por todas las áreas.'},{id:'intermedio',title:'Media distancia',count:50,minutes:90,description:'Entrená concentración y decisiones sostenidas.'},{id:'completo',title:'Simulacro integral',count:100,minutes:180,description:'Cien preguntas, corrección al entregar y mapa de errores.'}];
-examTemplates.push({id:'extendido',title:'Resistencia · banco completo',count:160,minutes:240,description:'Todo el banco de residencias sin repeticiones. Entrenamiento extendido, no formato oficial.'},...courses.filter(c=>c.id!=='examen-unico').map(c=>({id:c.id+'-integral',courseId:c.id,title:c.id==='revalida'?'Revalida · diagnóstico inicial':c.title+' · evaluación integral',count:pool(c.id).length,minutes:Math.ceil(pool(c.id).length*1.8),description:'Todos los temas del módulo, corrección al entregar. No equivale al examen oficial.'})));
+examTemplates.push({id:'extendido',title:'Resistencia · banco completo',count:160,minutes:240,description:'Todo el banco de residencias sin repeticiones. Entrenamiento extendido, no formato oficial.'},...courses.filter(c=>c.id!=='examen-unico').flatMap(c=>{const n=pool(c.id).length,out=[];
+ for(const [suffix,count,title,description] of [['sprint',20,'Sprint','Una vuelta breve por todos los temas del curso.'],['intermedio',50,'Media distancia','Concentración y decisiones sostenidas en este curso.'],['completo',100,'Simulacro de 100','Cien preguntas del curso, corrección al entregar y mapa de errores.']])if(n>=count)out.push({id:c.id+'-'+suffix,courseId:c.id,title:c.title+' · '+title,count,minutes:Math.ceil(count*1.8),description});
+ const all=Math.min(n,160);out.push({id:c.id+'-integral',courseId:c.id,title:c.id==='revalida'?'Revalida · diagnóstico inicial':c.title+' · evaluación integral',count:all,minutes:Math.ceil(all*1.8),description:n>160?'Hasta 160 preguntas de todos los temas, corrección al entregar. No equivale al examen oficial.':'Todos los temas del curso, corrección al entregar. No equivale al examen oficial.'});return out;}));
 
 // Focused exams reuse the available bank; no claim of new or official questions.
 export const examPool=t=>pool(examCourse(t)).filter(q=>!t.area||q.area===t.area);

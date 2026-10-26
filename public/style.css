@@ -50,3 +50,21 @@ aside{overflow-y:auto}.nav-more{margin-top:14px}.nav-more>summary{cursor:pointer
 .area-cards h2{margin:0}@media(max-width:700px){.area-cards{grid-template-columns:1fr}}
 .tutor-switch{display:flex;gap:6px;margin:0 0 18px;flex-wrap:wrap}.tutor-switch a{padding:10px 16px;border-radius:999px;border:1px solid #ccdad4;color:#20483e;text-decoration:none;font-weight:700;background:#fff}.tutor-switch a[aria-current=page]{background:#176b59;color:#fff;border-color:#176b59}
 @media(max-width:999px){.area-screen aside{display:none}}
+/* Course space: four tabs, segmented sub-tabs, tutor shortcut */
+.course-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;overflow:visible}
+.course-tabs a{display:flex;align-items:center;justify-content:center;text-align:center;white-space:normal;min-height:48px;padding:6px 4px;border-radius:12px;font-weight:700;font-size:13px;line-height:1.15}
+.course-tabs a[aria-current=page]{background:#176b59;color:#fff}
+.segmented{display:flex;gap:4px;padding:4px;background:#e4ece8;border-radius:14px;margin:0 0 18px}
+.segmented a{flex:1;text-align:center;padding:12px 6px;border-radius:10px;color:#20483e;font-weight:700;text-decoration:none;font-size:14px;min-height:20px}
+.segmented a[aria-current=page]{background:#176b59;color:#fff}
+.tutor-fab{position:fixed;right:14px;bottom:88px;z-index:41;background:#132c35;color:#fff;border-radius:999px;padding:13px 18px;font-weight:700;text-decoration:none;box-shadow:0 4px 16px #0005}
+@media(min-width:1000px){.tutor-fab{bottom:24px}.course-tabs{grid-template-columns:1fr}.course-tabs a{justify-content:flex-start;padding:10px 14px;font-size:15px}}
+@media(max-width:999px){
+ .course-screen aside{padding:0;border:0;background:transparent}
+ .course-screen aside .brand,.course-screen aside .eyebrow,.course-screen aside .nav-heading,.course-screen aside .aside-bottom{display:none}
+ .course-screen .course-tabs{position:fixed;left:0;right:0;bottom:0;z-index:40;background:#fff;border-top:2px solid #176b59;padding:6px 6px calc(6px + env(safe-area-inset-bottom));margin:0}
+ .course-screen .workspace{padding-bottom:84px}
+ .course-screen .nav-more{margin:4px 16px 0}
+}
+@media(max-width:650px){.account-bar{padding:6px 10px;gap:6px;flex-wrap:nowrap;justify-content:flex-end}.account-bar>div{flex:1;min-width:0}.account-bar>div strong{display:none}.account-bar>div small{display:block;font-size:12px;line-height:1.2;max-width:none}.account-bar button{padding:8px 12px;font-size:13px;white-space:nowrap}}
+.module-head{margin:22px 0 6px;font-size:15px;letter-spacing:.04em;text-transform:uppercase;color:#325f54}

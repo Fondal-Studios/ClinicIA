@@ -20,9 +20,9 @@ const server=http.createServer(async(req,res)=>{try{const url=new URL(req.url,'h
 await new Promise(r=>server.listen(0,'127.0.0.1',r));const base='http://127.0.0.1:'+server.address().port;
 accounts=await createAccounts({db,origin:base,secure:false});
 const browser=await chromium.launch({executablePath:process.env.CHROME_BIN||undefined,headless:true,args:['--no-sandbox','--disable-dev-shm-usage','--disable-gpu','--no-zygote']});
-const person=async name=>{const ctx=await browser.newContext({viewport:{width:390,height:844}});const r=await ctx.request.post(base+'/api/account/register',{headers:{Origin:base},data:{username:name,password:'clave-segura-123',accepted:true}});assert.equal(r.status(),201);const page=await ctx.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('dialog',d=>d.accept());return {ctx,page,errors};};
+const person=async(name,teacher=false)=>{const ctx=await browser.newContext({viewport:{width:390,height:844}});if(teacher)await ctx.addInitScript(()=>{try{localStorage.setItem('clinia_mode','teacher');}catch{}});const r=await ctx.request.post(base+'/api/account/register',{headers:{Origin:base},data:{username:name,password:'clave-segura-123',accepted:true}});assert.equal(r.status(),201);if(teacher){const m=await ctx.request.post(base+'/api/account/modes',{headers:{Origin:base},data:{mode:'teacher',accepted:true}});assert.equal(m.status(),200);}const page=await ctx.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('dialog',d=>d.accept());return {ctx,page,errors};};
 try{
- const t=await person('Profe'),s=await person('Alumna');
+ const t=await person('Profe',true),s=await person('Alumna');
  await t.page.goto(base+'/aulas.html');
  await t.page.locator('textarea').first().fill('Clase de glomerulopatías para residentes: nefrítico vs nefrótico, 30 minutos.');
  await t.page.getByRole('button',{name:'Crear con el tutor'}).click();
@@ -73,6 +73,18 @@ try{
  await t.page.reload();await t.page.getByRole('tab',{name:'Alumnos y códigos'}).click();
  await t.page.getByRole('cell',{name:'Alumna'}).waitFor();await t.page.getByText('✔ Aprobado').waitFor();await t.page.getByText(/1 aprobados \(100%\)/).waitFor();
  await t.page.screenshot({path:'/tmp/clinicia-aulas-teacher.png',fullPage:true});await s.page.screenshot({path:'/tmp/clinicia-aulas-student.png',fullPage:true});
+ // library (teacher mode): browse the bank, add questions and theory to the class, students still never see answers
+ await t.page.goto(base+'/aulas.html#biblioteca');
+ await t.page.getByRole('heading',{name:'Biblioteca'}).waitFor();
+ await t.page.getByText(/resultado\(s\)/).waitFor();
+ await t.page.locator('input[aria-label="Buscar"]').fill('ritmo');await t.page.getByRole('button',{name:'Buscar',exact:true}).click();
+ await t.page.waitForFunction(()=>/\d+ resultado/.test(document.body.innerText));
+ const boxes=t.page.locator('details.card input[type=checkbox]');assert.ok(await boxes.count()>=2);await boxes.nth(0).check();await boxes.nth(1).check();
+ await t.page.getByRole('button',{name:'Agregar 2 al aula'}).click();
+ await t.page.getByText(/Agregado al aula: 2 pregunta/).waitFor({timeout:8000}).catch(async e=>{console.log('STATUS:',await t.page.locator('#aula-status').innerText());throw e;});
+ const lib=await t.page.evaluate(async()=>{const c=(await (await fetch('/api/account/classes')).json()).classes[0];const d=await (await fetch('/api/account/classes/'+c.id)).json();return {n:d.content.questions.length,last:d.content.questions.at(-1),sources:d.content.sources.length};});
+ assert.equal(lib.n,8);assert.ok(lib.last.options.length===5&&lib.last.sources.length===1&&lib.sources>=2);
+ const leakedAgain=await s.page.evaluate(async()=>JSON.stringify(await (await fetch('/api/account/library?facets=1')).json()));assert.ok(leakedAgain.includes('permission')||leakedAgain.includes('error')||leakedAgain.includes('teacher'),'students cannot open the library');
  assert.deepEqual([...t.errors,...s.errors],[]);
  console.log('aulas e2e ok');
 }finally{await browser.close();server.close();await db.close();}
