@@ -1,3 +1,8 @@
+import {emergencyCourses,emergencySources} from './content/emergentologia.mjs';
+import {expandedEmergencyCourses,expandedEmergencySources} from './content/emergentologia-ampliada.mjs';
+import {integralCourses,integralSources} from './content/medicina-integral.mjs';
+import {additionalIntegralCourses,additionalIntegralSources} from './content/medicina-integral-avanzada.mjs';
+import {icuCourses,icuSources} from './content/terapia-intensiva.mjs';
 import {communicationSources,reviseCommunication} from './content/communication-revisions.mjs';
 import {guardiaCourses,guardiaSources} from './content/guardia.mjs';
 import {expandTheory} from './content/theory-expansion.mjs';
@@ -1302,9 +1307,9 @@ export const courses = [
     "reviewStatus": "Pendiente de validación docente"
   }
 ];
-Object.assign(sources,communicationSources,guardiaSources,residencySources,traumaSources,revalidaSources,perinatalSources,proatiSources);
+Object.assign(sources,emergencySources,expandedEmergencySources,integralSources,additionalIntegralSources,icuSources,communicationSources,guardiaSources,residencySources,traumaSources,revalidaSources,perinatalSources,proatiSources);
 courses.unshift(residencyCourse);
-courses.push(...guardiaCourses,phtlsCourse,atlsCourse,revalidaCourse,neonatalCourse,obstetricCourse,proatiCourse);
+courses.push(...emergencyCourses,...expandedEmergencyCourses,...integralCourses,...additionalIntegralCourses,...icuCourses,...guardiaCourses,phtlsCourse,atlsCourse,revalidaCourse,neonatalCourse,obstetricCourse,proatiCourse);
 improveQuestions(courses);
 reviseQuestions(courses);
 reviseCommunication(courses);
