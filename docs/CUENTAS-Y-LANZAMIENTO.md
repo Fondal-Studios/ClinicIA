@@ -7,7 +7,7 @@ Implementación: PostgreSQL con usuarios, hashes scrypt, sesiones opacas almacen
 - Crear PostgreSQL en Virginia, mismo workspace que ClinicIA. La única instancia gratuita del workspace ya está ocupada por otro proyecto. No reutilizar ni modificar esa base.
 - Usar plan básico 256 MB, 1 GB de almacenamiento, sujeto a aprobación del costo. El plan gratuito vence en 30 días; no es la opción de producción.
 - Configurar `DATABASE_URL` con la conexión interna de la nueva base. Nunca publicar esa URL.
-- Configurar `APP_ORIGIN=https://clinicia-heef.onrender.com`, `ADMIN_USERNAME=NanoGM`, `ADMIN_PASSWORD_HASH` con hash scrypt de la clave inicial autorizada.
+- Configurar `APP_ORIGIN=https://clinicia-0fft.onrender.com`, `ADMIN_USERNAME=NanoGM`, `ADMIN_PASSWORD_HASH` con hash scrypt de la clave inicial autorizada.
 - La migración crea tablas con prefijo `clinic_` al atender la primera petición de cuentas. Es idempotente. El bootstrap no restablece contraseñas existentes.
 - El build existente ejecuta npm test; pretest instala dependencias con lockfile. prestart instala sólo dependencias de producción. CI instala y ejecuta pruebas con PostgreSQL embebido PGlite.
 - Verificar registro de estudiante, ingreso, guardado, segundo navegador, conflictos 409, cierre de sesión, recuperación, eliminación y panel de administrador. No declarar cuentas activas antes de comprobarlos en producción.

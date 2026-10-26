@@ -1,6 +1,9 @@
 // Shared provider call for server features that need a single completion (class builder, query planner).
 // The chat tutor keeps its own inline call so its error mapping stays untouched.
-function providerStatus(env=process.env){
+const clean=v=>typeof v==='string'?v.trim():v;
+// Values pasted into a dashboard often carry a trailing space/newline, which makes the HTTP header invalid.
+function cleanEnv(env){return {...env,GROQ_API_KEY:clean(env.GROQ_API_KEY),GROQ_MODEL:clean(env.GROQ_MODEL),ANTHROPIC_API_KEY:clean(env.ANTHROPIC_API_KEY),ANTHROPIC_MODEL:clean(env.ANTHROPIC_MODEL),TUTOR_PROVIDER:clean(env.TUTOR_PROVIDER)};}
+function providerStatus(rawEnv=process.env){const env=cleanEnv(rawEnv);
  const provider=env.TUTOR_PROVIDER||(env.GROQ_API_KEY?'groq':'anthropic');
  if(!['groq','anthropic'].includes(provider))return {ok:false,error:'Proveedor de tutor no configurado correctamente.'};
  if(provider==='groq'?!env.GROQ_API_KEY:(!env.ANTHROPIC_API_KEY||!env.ANTHROPIC_MODEL))return {ok:false,error:'Tutor pendiente de configuración del proveedor y modelo.'};
@@ -14,17 +17,17 @@ function buildRequest(st,env,{system,messages,maxTokens,json=false,stream=false}
 const STATUS_MESSAGES={401:'El proveedor rechazó la clave de API. Revisá la credencial en el servidor.',403:'El proveedor no habilitó el acceso a este modelo o cuenta.',404:'El modelo configurado no está disponible.',413:'El contexto excede el límite del proveedor. Intentá una consulta más breve.',429:'La IA alcanzó su cuota temporal. Intentá más tarde.'};
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 // One retry for transient failures only (network error, 5xx). 429 and 4xx are never retried: they would burn quota or repeat a bad request.
-async function callModel({system,messages,maxTokens=1200,json=false,timeoutMs=20000,retries=1,label='llm',env=process.env,fetchImpl=fetch}){
- const st=providerStatus(env);if(!st.ok)throw Object.assign(new Error(st.error),{status:503});
+async function callModel({system,messages,maxTokens=1200,json=false,timeoutMs=20000,retries=1,label='llm',env:rawEnv=process.env,fetchImpl=fetch}){
+ const env=cleanEnv(rawEnv),st=providerStatus(env);if(!st.ok)throw Object.assign(new Error(st.error),{status:503});
  const groq=st.provider==='groq';
  const req=buildRequest(st,env,{system,messages,maxTokens,json});
  const model=req.body.model,started=Date.now();
  for(let attempt=0;;attempt++){
   let r;
   try{r=await fetchImpl(req.url,{method:'POST',headers:req.headers,body:JSON.stringify(req.body),signal:AbortSignal.timeout(timeoutMs)});}
-  catch{
+  catch(e){
    if(attempt<retries){await sleep(400*(attempt+1));continue;}
-   console.error('llm_call',JSON.stringify({label,provider:st.provider,model,ok:false,error:'network',attempt,ms:Date.now()-started}));
+   console.error('llm_call',JSON.stringify({label,provider:st.provider,model,ok:false,error:'network',errName:e?.name,errCode:e?.cause?.code||e?.code,attempt,ms:Date.now()-started}));
    throw Object.assign(new Error('No se pudo conectar con el proveedor de IA.'),{status:502});
   }
   if(!r.ok){
@@ -46,13 +49,13 @@ async function callModel({system,messages,maxTokens=1200,json=false,timeoutMs=20
 
 // Streaming variant: an async generator of text deltas. The connection is opened (and its HTTP status checked) before the
 // first delta, so callers can still answer with a normal error reply; a failure mid-stream throws from the iterator.
-async function streamModel({system,messages,maxTokens=1200,timeoutMs=60000,label='llm-stream',env=process.env,fetchImpl=fetch}){
- const st=providerStatus(env);if(!st.ok)throw Object.assign(new Error(st.error),{status:503});
+async function streamModel({system,messages,maxTokens=1200,timeoutMs=60000,label='llm-stream',env:rawEnv=process.env,fetchImpl=fetch}){
+ const env=cleanEnv(rawEnv),st=providerStatus(env);if(!st.ok)throw Object.assign(new Error(st.error),{status:503});
  const groq=st.provider==='groq',req=buildRequest(st,env,{system,messages,maxTokens,stream:true}),started=Date.now();
  let r;
  for(let attempt=0;;attempt++){
   try{r=await fetchImpl(req.url,{method:'POST',headers:req.headers,body:JSON.stringify(req.body),signal:AbortSignal.timeout(timeoutMs)});}
-  catch{if(attempt<1){await sleep(400);continue;}throw Object.assign(new Error('No se pudo conectar con el proveedor de IA.'),{status:502});}
+  catch(e){if(attempt<1){await sleep(400);continue;}console.error('llm_call',JSON.stringify({label,provider:st.provider,model:req.body.model,ok:false,stream:true,error:'network',errName:e?.name,errCode:e?.cause?.code||e?.code}));throw Object.assign(new Error('No se pudo conectar con el proveedor de IA.'),{status:502});}
   if(!r.ok&&r.status>=500&&attempt<1){await sleep(400);continue;}
   break;
  }

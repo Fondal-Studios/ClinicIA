@@ -31,3 +31,10 @@ test('callModel retries transient failures once, never retries 429/4xx, and maps
  n=0;await assert.rejects(callModel({system:'s',messages:[],env,fetchImpl:async()=>{n++;return {ok:false,status:401};}}),e=>e.status===502&&/clave de API/.test(e.message));assert.equal(n,1);
  n=0;await assert.rejects(callModel({system:'s',messages:[],env,fetchImpl:async()=>{n++;throw new Error('secret');}}),e=>e.status===502&&!e.message.includes('secret'));assert.equal(n,2);
 });
+
+test('provider credentials pasted with surrounding whitespace are cleaned before they reach the HTTP header',async()=>{
+ let sent;const ok={ok:true,json:async()=>({stop_reason:'end_turn',content:[{type:'text',text:'ok'}]})};
+ const env={ANTHROPIC_API_KEY:'sk-ant-key \n',ANTHROPIC_MODEL:' claude-haiku-5-5\n',TUTOR_PROVIDER:'anthropic '};
+ assert.equal(await callModel({system:'s',messages:[],env,fetchImpl:async(url,a)=>{sent=a;return ok;}}),'ok');
+ assert.equal(sent.headers['x-api-key'],'sk-ant-key');assert.equal(JSON.parse(sent.body).model,'claude-haiku-5-5');
+});

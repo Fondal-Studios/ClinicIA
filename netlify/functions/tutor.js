@@ -8,9 +8,9 @@ async function prepare(event){
  const denied=authorizeTutor(event);if(denied)return denied;
  let body;try{body=JSON.parse(event.body);}catch{return reply(400,{error:'JSON inválido.'});}
  if(!body||typeof body.question!=='string'||!body.question.trim()||body.question.length>2000)return reply(400,{error:'Escribí una pregunta de hasta 2000 caracteres.'});
- const provider=process.env.TUTOR_PROVIDER||(process.env.GROQ_API_KEY?'groq':'anthropic');
- if(!['groq','anthropic'].includes(provider))return reply(503,{error:'Proveedor de tutor no configurado correctamente.'});
- if(provider==='groq'?!process.env.GROQ_API_KEY:(!process.env.ANTHROPIC_API_KEY||!process.env.ANTHROPIC_MODEL))return reply(503,{error:'Tutor pendiente de configuración del proveedor y modelo. Las lecciones y simulaciones funcionan sin IA.'});
+ const st=providerStatus();
+ if(!st.ok)return reply(503,{error:st.error+' Las lecciones y simulaciones funcionan sin IA.'});
+ const provider=st.provider;
  if(body.mode!==undefined&&!['study','guard'].includes(body.mode))return reply(400,{error:'Modo inválido.'});
  const guard=body.mode==='guard';
  if(!(await reserveCall(event)).ok)return reply(429,{error:'Se alcanzó el límite horario de consultas a la IA. Las correcciones y referencias siguen disponibles.'});

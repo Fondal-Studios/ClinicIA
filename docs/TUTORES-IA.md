@@ -48,7 +48,7 @@ Flujo del docente (`/aulas.html`, requiere cuenta): pide una clase al tutor → 
 
 ## Conexión del tutor y diagnóstico (2026-10-18)
 - `GET /api/tutor` informa `{configured, provider, message}` sin revelar claves; la pantalla del tutor lo consulta y muestra «La IA no está conectada» con el motivo cuando falta configuración. Para comprobar el servidor a mano: abrir `https://<servidor>/api/tutor`.
-- La copia estática de GitHub Pages (`*.github.io`) ya no muestra el chat como «pendiente»: llama al servidor de Render (`https://clinicia-heef.onrender.com`, según `docs/CUENTAS-Y-LANZAMIENTO.md`) por CORS. Sólo `/api/tutor` admite CORS, sin cookies; las rutas de cuentas y aulas siguen siendo del mismo origen. Orígenes permitidos: `TUTOR_CORS_ORIGINS` (lista separada por comas; por defecto `https://drmarianojimenez94-sudo.github.io`).
+- La copia estática de GitHub Pages (`*.github.io`) ya no muestra el chat como «pendiente»: llama al servidor de Render (`https://clinicia-0fft.onrender.com`, según `docs/CUENTAS-Y-LANZAMIENTO.md`) por CORS. Sólo `/api/tutor` admite CORS, sin cookies; las rutas de cuentas y aulas siguen siendo del mismo origen. Orígenes permitidos: `TUTOR_CORS_ORIGINS` (lista separada por comas; por defecto `https://drmarianojimenez94-sudo.github.io`).
 - Si la dirección de Render es otra, cambiar `TUTOR_API` en `public/app.mjs`. El plan gratuito de Render duerme el servicio: la primera consulta puede tardar hasta un minuto.
 - Configuración mínima de la IA en el servidor: `GROQ_API_KEY` (gratuita) o `ANTHROPIC_API_KEY` + `ANTHROPIC_MODEL`. Las aulas y las cuentas además requieren `DATABASE_URL`.
 

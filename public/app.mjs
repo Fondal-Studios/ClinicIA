@@ -18,7 +18,7 @@ const examKey='clinicia-active-exam-v1';
 let bankNotice='';
 try{const saved=JSON.parse(localStorage.getItem(examKey));exam=restoreExam(saved);if(saved&&!exam)bankNotice='Actualizamos la revisión editorial de las preguntas. El simulacro anterior en curso no se puede retomar con este banco; tus resultados completados y puntos se conservan.';}catch{}
 const saveExam=()=>{if(accountActive()){changed();return;}try{localStorage.setItem(examKey,JSON.stringify(exam));}catch{storageOk=false;}};
-const TUTOR_API=location.hostname?.endsWith('github.io')?'https://clinicia-heef.onrender.com':'';
+const TUTOR_API=location.hostname?.endsWith('github.io')?'https://clinicia-0fft.onrender.com':'';
 // Reads the tutor's server-sent events. Resolves with the full text, or {error} if the server reported one mid-stream.
 async function readTutorStream(resp,onDelta,onMeta){
  const reader=resp.body.getReader(),decoder=new TextDecoder();let buf='',text='',error=null;
