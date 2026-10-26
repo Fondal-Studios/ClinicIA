@@ -7,6 +7,40 @@ const fmt=d=>d?new Date(d).toLocaleString('es-AR',{dateStyle:'medium',timeStyle:
 let cls=null,draft=null,tab='datos',dirty=false;
 const run=fn=>async(...a)=>{try{say('');await fn(...a);}catch(e){say(e.message);}};
 
+
+/* Tutor creador: a natural-language and optional voice entry point.
+   Uses the existing authenticated class-ai endpoint and the same drafts,
+   editorial review, publishing and student-code flow. */
+function tutorCreator(brief,make,audience){
+ const chat=h('div',{class:'tutor-creator-log','aria-live':'polite'},
+  h('p',{class:'tutor-creator-bubble'},'Hola, soy tu tutor creador. Contame qué querés enseñar, para quién y qué deberían aprender. Puede ser una clase, un taller o un curso introductorio.'),
+  h('p',{class:'muted'},'Ejemplo: «Armame una clase de 45 minutos sobre sepsis para enfermeros, con teoría, casos y evaluación».'));
+ const text=h('textarea',{rows:'4',maxlength:'1500',placeholder:'Escribí como le hablarías al tutor…','aria-label':'Contale al tutor qué curso o clase necesitás'});
+ const reply=h('p',{role:'status',class:'muted'});
+ const talk=h('button',{type:'button'},'Dictar con voz');
+ const compose=h('button',{type:'button',class:'primary',onclick:()=>{
+  const idea=text.value.trim();
+  if(idea.length<15){reply.textContent='Contame un poco más sobre el tema y el público.';text.focus();return;}
+  brief.value=idea;
+  chat.append(h('p',{class:'tutor-creator-bubble user'},idea));
+  reply.textContent='Estoy preparando un borrador con fuentes y preguntas. Lo vas a poder revisar y después publicar para tus alumnos.';
+  make.click();
+ }},'Crear borrador con mi tutor');
+ const Recognition=window.SpeechRecognition||window.webkitSpeechRecognition;
+ if(!Recognition){talk.disabled=true;talk.title='Este navegador no ofrece dictado desde la aplicación. Podés usar el micrófono del teclado.';}
+ else talk.addEventListener('click',()=>{
+  const rec=new Recognition();rec.lang='es-AR';rec.interimResults=false;rec.maxAlternatives=1;
+  talk.disabled=true;reply.textContent='Escuchando…';
+  rec.onresult=e=>{text.value=[text.value,e.results[0][0].transcript].filter(Boolean).join(' ').slice(0,1500);reply.textContent='Dictado listo. Podés editarlo antes de enviarlo.';};
+  rec.onerror=()=>{reply.textContent='No se pudo usar el micrófono. Podés escribir o usar el dictado del teclado.';};
+  rec.onend=()=>{talk.disabled=false;};
+  try{rec.start();}catch{talk.disabled=false;reply.textContent='No se pudo iniciar el micrófono.';}
+ });
+ const copy=h('div',{class:'card tutor-creator'},h('span',{class:'eyebrow'},'TUTOR IA · CREAR CURSOS'),h('h2',{},'Pedile una clase al tutor, hablando o escribiendo'),chat,text,h('div',{class:'actions'},talk,compose),reply,
+  h('p',{class:'muted'},'1. El tutor prepara un borrador con teoría y preguntas. 2. Vos revisás y guardás. 3. Publicás y compartís el código con alumnos. Tus creaciones quedan en Mis clases. No se incorporan automáticamente al catálogo público de ClinicIA.'));
+ return copy;
+}
+
 /* ---------- home ---------- */
 async function home(){
  cls=null;draft=null;dirty=false;location.hash='';
@@ -18,7 +52,7 @@ async function home(){
  const teacher=localStorage.getItem('clinia_mode')==='teacher';
  const activate=h('section',{class:'card'},h('h2',{},'¿Querés crear clases?'),h('p',{},'Activá el modo Profesor: creás clases con el tutor, usás la biblioteca de preguntas y teoría, y ves los resultados de tus alumnos.'),h('button',{type:'button',onclick:()=>document.querySelector('#areas-mode')?.click()},'Cambiar a modo Profesor'));
  const library=h('section',{class:'card'},h('h2',{},'Biblioteca de preguntas y teoría'),h('p',{},'Buscá en todo el banco de ClinicIA y agregá preguntas o teoría a tus clases.'),h('button',{type:'button',onclick:()=>{location.hash='biblioteca';libraryView();}},'Abrir la biblioteca'));
- const parts={create:[h('section',{class:'card'},h('h2',{},'Crear un aula con el tutor'),h('p',{},'Describí el tema, la audiencia y lo que querés lograr. El tutor busca en la web, arma teoría, presentación, preguntas, un caso y un juego, y vos lo editás antes de compartir.'),brief,aud,min,h('div',{class:'actions'},make,h('button',{type:'button',onclick:run(async()=>{open(await api(B,{action:'create',content:{title:'Aula nueva',sections:[],slides:[],questions:[],sources:[]}}));})},'Empezar en blanco')))],mine:[h('h2',{},'Aulas que dirijo o edito'),mine.length?mine.map(c=>row(c,`${c.role==='owner'?'Dueño':'Colaborador'} · ${c.status==='published'?'Publicada':'Borrador'}${c.members!==undefined?' · '+c.members+' alumnos':''}`)):h('p',{class:'muted'},'Todavía no tenés aulas.')],join:[h('section',{class:'card'},h('h2',{},'Unirme con un código'),code,h('label',{class:'option-row'},ok,' Acepto que el docente verá mi nombre de usuario y mis resultados en esta aula.'),h('button',{type:'button',onclick:run(async()=>{open(await api(B,{action:'join',code:code.value,accepted:ok.checked}));})},'Unirme'))],learn:[h('h2',{},'Mis cursos como alumno'),learning.length?learning.map(c=>row(c,(c.passed?'✔ Aprobado':c.best!==null?'Mejor resultado '+c.best+'% (necesitás '+c.passPct+'%)':'Sin evaluar')+(c.dueAt?' · Fecha límite '+fmt(c.dueAt):''))):h('p',{class:'muted'},'Todavía no te uniste a ningún aula.')]};
+ const parts={create:[tutorCreator(brief,make,aud),h('section',{class:'card'},h('h2',{},'Crear un aula con el tutor'),h('p',{},'Describí el tema, la audiencia y lo que querés lograr. El tutor busca en la web, arma teoría, presentación, preguntas, un caso y un juego, y vos lo editás antes de compartir.'),brief,aud,min,h('div',{class:'actions'},make,h('button',{type:'button',onclick:run(async()=>{open(await api(B,{action:'create',content:{title:'Aula nueva',sections:[],slides:[],questions:[],sources:[]}}));})},'Empezar en blanco')))],mine:[h('h2',{},'Mi biblioteca de clases y cursos creados'),mine.length?mine.map(c=>row(c,`${c.role==='owner'?'Dueño':'Colaborador'} · ${c.status==='published'?'Publicada':'Borrador'}${c.members!==undefined?' · '+c.members+' alumnos':''}`)):h('p',{class:'muted'},'Todavía no creaste clases. Pedile al tutor un curso arriba para comenzar.')],join:[h('section',{class:'card'},h('h2',{},'Unirme con un código'),code,h('label',{class:'option-row'},ok,' Acepto que el docente verá mi nombre de usuario y mis resultados en esta aula.'),h('button',{type:'button',onclick:run(async()=>{open(await api(B,{action:'join',code:code.value,accepted:ok.checked}));})},'Unirme'))],learn:[h('h2',{},'Mis cursos como alumno'),learning.length?learning.map(c=>row(c,(c.passed?'✔ Aprobado':c.best!==null?'Mejor resultado '+c.best+'% (necesitás '+c.passPct+'%)':'Sin evaluar')+(c.dueAt?' · Fecha límite '+fmt(c.dueAt):''))):h('p',{class:'muted'},'Todavía no te uniste a ningún aula.')]};
  fill(root,...(teacher?[...parts.create,library,...parts.mine,...parts.join,...parts.learn]:[...parts.join,...parts.learn,activate]));
  function row(c,info){return h('div',{class:'card row'},h('button',{type:'button',onclick:run(async()=>open(await api(B+'/'+c.id)))},c.title),h('small',{},info));}
 }
