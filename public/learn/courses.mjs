@@ -1,4 +1,5 @@
 import {expandedEmergencyCourses,expandedEmergencySources} from './content/emergentologia-ampliada.mjs';
+import {integralCourses,integralSources} from './content/medicina-integral.mjs';
 import {emergencyCourses,emergencySources} from './content/emergentologia.mjs';
 import {communicationSources,reviseCommunication} from './content/communication-revisions.mjs';
 import {guardiaCourses,guardiaSources} from './content/guardia.mjs';
