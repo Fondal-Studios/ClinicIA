@@ -9,7 +9,8 @@
     "prestart": "npm ci --omit=dev --ignore-scripts",
     "pretest": "npm ci --ignore-scripts --include=dev",
     "audit:learning": "node tools/audit-learning.mjs",
-    "audit:academic": "node tools/audit-academic.mjs"
+    "audit:academic": "node tools/audit-academic.mjs",
+    "audit:questions": "node tools/audit-academic.mjs"
   },
   "dependencies": {
     "pg": "^8.23.1"
