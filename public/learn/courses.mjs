@@ -9,6 +9,7 @@ import {residencyCourse,residencySources} from './content/residencias.mjs';
 import {phtlsCourse,atlsCourse,traumaSources} from './content/trauma.mjs';
 import {proatiCourse,proatiSources} from './content/proati.mjs';
 import {applyBankExtensions} from './content/bank.mjs';
+import {applyAuditFixes} from './content/audit-fixes.mjs';
 // Original educational content. Sources verified 2026-10-16; instructor validation pending.
 export const sources = {
   "bls": {
@@ -1309,5 +1310,6 @@ reviseQuestions(courses);
 reviseCommunication(courses);
 expandTheory(courses);
 applyBankExtensions(courses);
+applyAuditFixes(courses);
 export const catalog=courses;
 export const questions=courses.flatMap(c=>c.lessons.flatMap((l,li)=>l.questions.map((q,qi)=>({...q,source:q.source||l.source,courseId:c.id,lessonId:l.id,area:l.area||q.skill,li,qi}))));
