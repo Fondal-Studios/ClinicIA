@@ -2,6 +2,7 @@ import {createTraining,trainingSchema} from './training.mjs';
 import {createPayments,paymentSchema} from './payments.mjs';
 import {createClasses,classSchema} from './classes.mjs';
 import {createVault,vaultSchema} from './vault.mjs';
+import {search as librarySearch,facets as libraryFacets} from './library.mjs';
 import {createRequire} from 'node:module';
 import {randomBytes,randomUUID,scrypt as scryptCallback,timingSafeEqual,createHash} from 'node:crypto';
 import {promisify} from 'node:util';
@@ -20,9 +21,12 @@ CREATE INDEX IF NOT EXISTS clinic_events_date ON clinic_events(created_at);
 CREATE TABLE IF NOT EXISTS clinic_limits(key text PRIMARY KEY,count integer NOT NULL,expires_at timestamptz NOT NULL);
 CREATE TABLE IF NOT EXISTS clinic_question_reports(user_id text NOT NULL REFERENCES clinic_users(id) ON DELETE CASCADE,question_id text NOT NULL,reason text NOT NULL,created_at timestamptz NOT NULL DEFAULT now(),PRIMARY KEY(user_id,question_id,reason));
 CREATE TABLE IF NOT EXISTS clinic_settings(key text PRIMARY KEY,value jsonb NOT NULL);
+ALTER TABLE clinic_users ADD COLUMN IF NOT EXISTS modes text NOT NULL DEFAULT 'student';
 `;
 function fail(status,message){throw Object.assign(new Error(message),{status});}
-function publicUser(u){return {id:u.id,username:u.username,role:u.role,mustChange:u.must_change};}
+export const MODES=['student','teacher','institution','admin'];
+export const modesOf=u=>[...new Set(['student',...String(u.modes||'student').split(',').filter(m=>MODES.includes(m)&&m!=='admin'),...(u.role==='admin'?['admin']:[])])];
+function publicUser(u){return {id:u.id,username:u.username,role:u.role,mustChange:u.must_change,modes:modesOf(u)};}
 const allowedEvents=new Set(['practice','answer','exam','review','market','tutor','guard','plans','install','plus_interest']);
 // Deliberately copy only academic fields. Never persist chat, clinical free text or arbitrary keys.
 export function cleanProgress(raw){
@@ -101,6 +105,16 @@ export async function createAccounts({db,origin='http://localhost:3000',secure=t
    if(u.must_change)fail(403,'Cambiá tu contraseña inicial antes de continuar.');
    if(path==='/api/account/training'){await limit('training:'+req.method+u.id,60,3600);return send(200,await training.assessment(u,req.method,body));}
    if(path==='/api/account/classes'||path.startsWith('/api/account/classes/')){await limit('classes:'+req.method+u.id,req.method==='GET'?600:240,3600);if(req.method==='POST'&&(body.action==='start'))await limit('class-attempt:'+u.id,60,86400);if(req.method==='POST'&&body.action==='create')await limit('class-create:'+u.id,20,86400);return send(200,await classes.handle(u,req.method,path,body));}
+   if(path==='/api/account/modes'&&req.method==='POST'){
+    await limit('modes:'+u.id,20,3600);if(!['teacher','institution'].includes(body.mode)||body.accepted!==true)fail(400,'Modo inválido o falta aceptar las responsabilidades.');
+    const next=[...new Set([...modesOf(u).filter(m=>m!=='student'&&m!=='admin'),body.mode])].join(',')||'student';
+    const r=await db.query('UPDATE clinic_users SET modes=$1 WHERE id=$2 RETURNING *',[next,u.id]);return send(200,{user:publicUser(r.rows[0])});
+   }
+   if(path==='/api/account/library'&&req.method==='GET'){
+    await limit('library:'+u.id,600,3600);const q=Object.fromEntries(url.searchParams);
+    if(q.facets==='1'){if(!modesOf(u).some(m=>['teacher','admin'].includes(m)))fail(403,'La biblioteca está disponible en modo profesor.');return send(200,libraryFacets());}
+    return send(200,librarySearch({...u,modes:modesOf(u).join(',')},{type:q.type,course:q.course,lesson:q.lesson,q:q.q,page:q.page}));
+   }
    if(path==='/api/account/patients'){await limit('vault:'+req.method+u.id,req.method==='GET'?600:300,3600);res.setHeader('Cache-Control','no-store');return send(200,await vault.handle(u,req.method,body));}
    if(path==='/api/account/class-ai'&&req.method==='POST'){await limit('class-ai:'+body.action+u.id,body.action==='draft'?6:40,3600);return send(200,await classes.generate(u,body));}
    if(path==='/api/account/rooms'||/^\/api\/account\/rooms\/[a-f0-9]{12}$/.test(path)){await limit('rooms:'+req.method+u.id,req.method==='GET'?600:120,3600);const code=path.split('/')[4];if(!code&&req.method==='POST')await limit('room-create:'+u.id,5,86400);return send(200,await training.rooms(u,req.method,body,code));}

@@ -7,6 +7,9 @@ import {neonatalCourse,obstetricCourse,perinatalSources} from './content/perinat
 import {revalidaCourse,revalidaSources} from './content/revalida.mjs';
 import {residencyCourse,residencySources} from './content/residencias.mjs';
 import {phtlsCourse,atlsCourse,traumaSources} from './content/trauma.mjs';
+import {proatiCourse,proatiSources} from './content/proati.mjs';
+import {applyBankExtensions} from './content/bank.mjs';
+import {applyAuditFixes} from './content/audit-fixes.mjs';
 // Original educational content. Sources verified 2026-10-16; instructor validation pending.
 export const sources = {
   "bls": {
@@ -1299,12 +1302,14 @@ export const courses = [
     "reviewStatus": "Pendiente de validación docente"
   }
 ];
-Object.assign(sources,communicationSources,guardiaSources,residencySources,traumaSources,revalidaSources,perinatalSources);
+Object.assign(sources,communicationSources,guardiaSources,residencySources,traumaSources,revalidaSources,perinatalSources,proatiSources);
 courses.unshift(residencyCourse);
-courses.push(...guardiaCourses,phtlsCourse,atlsCourse,revalidaCourse,neonatalCourse,obstetricCourse);
+courses.push(...guardiaCourses,phtlsCourse,atlsCourse,revalidaCourse,neonatalCourse,obstetricCourse,proatiCourse);
 improveQuestions(courses);
 reviseQuestions(courses);
 reviseCommunication(courses);
 expandTheory(courses);
+applyBankExtensions(courses);
+applyAuditFixes(courses);
 export const catalog=courses;
 export const questions=courses.flatMap(c=>c.lessons.flatMap((l,li)=>l.questions.map((q,qi)=>({...q,source:q.source||l.source,courseId:c.id,lessonId:l.id,area:l.area||q.skill,li,qi}))));
