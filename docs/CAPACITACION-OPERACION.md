@@ -11,7 +11,7 @@
 
 ## Configuración indispensable
 
-El servidor Node existente requiere `DATABASE_URL` (PostgreSQL), `APP_ORIGIN` con el origen HTTPS exacto y, para certificados, `HOSPITAL_ISSUER_USER_ID` con el ID real verificado de la cuenta de Mariano. No usar un nombre libre enviado por el navegador. Sin ese ID, la emisión falla de forma cerrada aunque el usuario sea administrador. `ADMIN_USERNAME` / `ADMIN_PASSWORD_HASH` permiten inicialización administrativa existente; no insertar contraseñas en Git.
+El servidor Node existente requiere `DATABASE_URL` (PostgreSQL), `APP_ORIGIN` con el origen HTTPS exacto y, para certificados, un ID real verificado de la cuenta administradora de Mariano: `HOSPITAL_ISSUER_USER_ID` o la vinculación inicial mediante `HOSPITAL_ISSUER_USERNAME` descrita abajo. No usar un nombre libre enviado por el navegador. Sin un ID autorizado resuelto, la emisión falla de forma cerrada aunque el usuario sea administrador. `ADMIN_USERNAME` / `ADMIN_PASSWORD_HASH` permiten inicialización administrativa existente; no insertar contraseñas en Git.
 
 La cuenta de Mariano y la identidad del firmante deben verificarse antes de configurar el ID. La API autenticada de capacitación devuelve el ID de la propia cuenta. No se configura un firmante suponiendo que el primer administrador es Mariano. El panel permite probar teoría, exámenes, grupos y prácticas aunque la firma no esté configurada.
 
@@ -19,7 +19,7 @@ No crear un segundo servidor o migrar datos existentes sin identificar la base a
 
 ## Pruebas
 
-`node --test test/*.test.mjs` y `npm run check`. Prueba específica `test/capacitacion.test.mjs`: aislamiento, grupos, recuperación de respuestas, versiones concurrentes, 40/50, prácticas obligatorias, autorización exclusiva, emisión idempotente y conservación de aprobación.
+`npm test` y `npm run check`. `npm test` usa un proceso hijo con entorno de pruebas aislado: no hereda base, claves de proveedores, cuentas administrativas ni cuotas de producción. Las pruebas de integración inyectan PGlite y las pruebas de proveedores usan respuestas simuladas. Se verificaron las 92 pruebas incluso con una URL PostgreSQL señuelo y cuota del entorno padre de 1. Prueba específica `test/capacitacion.test.mjs`: aislamiento, grupos, recuperación de respuestas, versiones concurrentes, 40/50, prácticas obligatorias, autorización exclusiva, emisión idempotente y conservación de aprobación.
 
 `tools/qa-capacitacion.mjs` ofrece una prueba de navegador con PGlite en memoria, datos ficticios y viewport móvil/escritorio. Admite PLAYWRIGHT_MODULE, CHROME_BIN y CHROME_ARGS. Esos datos no van a producción. Capturas en /tmp. El navegador local puede no estar disponible en algunos entornos; no reportar la prueba como aprobada sin ejecución exitosa.
 
