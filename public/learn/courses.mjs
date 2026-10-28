@@ -1,3 +1,4 @@
+import {policeCourse,policeSources} from './content/respuesta-policial.mjs';
 import {applyQuestionDifficultyRevisions} from './content/question-difficulty-revisions.mjs';
 import {emergencyCourses,emergencySources} from './content/emergentologia.mjs';
 import {expandedEmergencyCourses,expandedEmergencySources} from './content/emergentologia-ampliada.mjs';
@@ -1332,5 +1333,8 @@ expandTheory(courses);
 applyBankExtensions(courses);
 applyAuditFixes(courses);
 applyQuestionDifficultyRevisions(courses);
+// Keep the first-responder bank separate from legacy physician-level rewrites.
+Object.assign(sources,policeSources);
+courses.push(policeCourse);
 export const catalog=courses;
 export const questions=courses.flatMap(c=>c.lessons.flatMap((l,li)=>l.questions.map((q,qi)=>({...q,source:q.source||l.source,courseId:c.id,lessonId:l.id,area:l.area||q.skill,li,qi}))));
