@@ -5,6 +5,18 @@ const say=m=>{statusEl.textContent=m||'';};
 const run=fn=>async(...a)=>{try{say('');await fn(...a);}catch(e){say(e.message||'No se pudo completar la operación.');}};
 const M='/api/account/materials',C='/api/account/courses';
 
+/* ---------- scanned pages: read in small steps so no request runs long ---------- */
+async function readScans(materialId,total){
+ let remaining=total;
+ while(remaining>0){
+  say(`Leyendo páginas escaneadas con IA… faltan ${remaining}.`);
+  const d=await api(M,{action:'read-scans',materialId});
+  if(d.remaining>=remaining&&!d.read)throw new Error('No pude leer esas páginas. Reintentá en un momento.');
+  remaining=d.remaining;
+ }
+ say('Listo: se leyeron todas las páginas escaneadas.');
+}
+
 /* ---------- home: upload + materials ---------- */
 async function home(){
  location.hash='';
@@ -22,6 +34,7 @@ async function home(){
   try{
    const r=await fetch(M+'/upload?title='+encodeURIComponent(title.value||f.name.replace(/\.pdf$/i,'')),{method:'POST',headers:{'Content-Type':'application/pdf'},body:f});
    const d=await r.json().catch(()=>({}));if(!r.ok)throw new Error(d.error||'No se pudo subir el PDF.');
+   if(d.material.pendingOcr){say(`Este PDF tiene ${d.material.pendingOcr} páginas escaneadas. Las leo con IA; puede tardar unos minutos.`);try{await readScans(d.material.id,d.material.pendingOcr);}catch(e){say(e.message+' Podés reintentar desde Mis materiales.');await home();return;}}
    await courseView(d.material.id);
   }finally{send.disabled=false;}
  })},'Subir y empezar');
@@ -30,13 +43,13 @@ async function home(){
    h('p',{},'Cargá los apuntes o capítulos de una materia en PDF. La app arma lecciones cortas con ejercicios, y cada ejercicio cita la página de tu material para que puedas verificarlo.'),
    title,h('p',{},file),
    h('label',{class:'check'},ok,' Es material propio o tengo derecho a usarlo.'),
-   h('div',{class:'notice'},'El texto de tu PDF se envía al proveedor de IA (Anthropic) para generar las lecciones. Guardamos solo el texto extraído en tu cuenta, no el archivo, y podés eliminarlo cuando quieras. Las lecciones las genera una IA: verificá siempre con tu material o con tu docente.'),
+   h('div',{class:'notice'},'El texto de tu PDF se envía al proveedor de IA (Anthropic) para generar las lecciones. Guardamos solo el texto extraído en tu cuenta, no el archivo, y podés eliminarlo cuando quieras. Si el PDF está escaneado (sin texto), la IA lee las páginas desde la imagen, hasta 100 páginas por archivo y un cupo mensual, y el archivo se conserva solo hasta terminar de leerlo. Las lecciones las genera una IA: verificá siempre con tu material o con tu docente.'),
    send),
   h('h2',{},'Mis materiales'),
   data.materials.length?data.materials.map(m=>h('div',{class:'card row'},
-   h('div',{},h('strong',{},m.title),h('div',{class:'muted'},m.pageCount+' páginas · '+(m.lessons?m.lessons+' lecciones':'sin lecciones todavía'))),
+   h('div',{},h('strong',{},m.title),h('div',{class:'muted'},m.pageCount+' páginas · '+(m.lessons?m.lessons+' lecciones':'sin lecciones todavía')+(m.ocrPages?' · '+m.ocrPages+' leídas desde imagen':'')+(m.pendingOcr?' · '+m.pendingOcr+' escaneadas sin leer':''))),
    h('div',{class:'row'},
-    h('button',{type:'button',onclick:run(()=>courseView(m.id))},m.lessons?'Seguir':'Generar lecciones'),
+    m.pendingOcr?h('button',{type:'button',onclick:run(async()=>{await readScans(m.id,m.pendingOcr);await home();})},'Leer páginas escaneadas'):h('button',{type:'button',onclick:run(()=>courseView(m.id))},m.lessons?'Seguir':'Generar lecciones'),
     h('button',{type:'button',onclick:run(async()=>{if(!confirm('¿Eliminar este material y sus lecciones?'))return;await api(M,{action:'delete',id:m.id});await home();})},'Eliminar')))):h('p',{class:'muted'},'Todavía no subiste material.'));
 }
 
@@ -61,7 +74,7 @@ async function courseView(materialId){
   h('section',{class:'card'},h('h3',{},'Elegí qué páginas estudiar'),
    h('div',{class:'range'},'Páginas',from,'a',to,h('span',{class:'muted'},'de '+m.pageCount+' (hasta 30 por vez)')),
    h('p',{class:'muted'},'Cada lección cubre unas 4 páginas. Los ejercicios que no se pueden respaldar con una cita textual de tu material se descartan.'),gen),
-  lessons.length?h('div',{class:'path'},lessons.map((l,i)=>{const p=progress[l.id];return h('button',{type:'button',class:'node'+(p?.best>=80?' done':''),onclick:run(()=>play(course,l,m))},h('span',{},h('strong',{},(i+1)+'. '+l.title),h('span',{class:'muted'},'Páginas '+l.pages[0]+(l.pages[1]!==l.pages[0]?'–'+l.pages[1]:'')+' · '+l.exercises.length+' ejercicios')),h('span',{},p?(p.best>=80?'✔ ':'')+p.best+'%':'Empezar'));})):h('p',{class:'muted'},'Todavía no hay lecciones. Elegí un rango de páginas y generalas.'));
+  lessons.length?h('div',{class:'path'},lessons.map((l,i)=>{const p=progress[l.id];return h('button',{type:'button',class:'node'+(p?.best>=80?' done':''),onclick:run(()=>play(course,l,m))},h('span',{},h('strong',{},(i+1)+'. '+l.title),h('span',{class:'muted'},'Páginas '+l.pages[0]+(l.pages[1]!==l.pages[0]?'–'+l.pages[1]:'')+' · '+l.exercises.length+' ejercicios'+(l.ocr?' · leído desde imagen':''))),h('span',{},p?(p.best>=80?'✔ ':'')+p.best+'%':'Empezar'));})):h('p',{class:'muted'},'Todavía no hay lecciones. Elegí un rango de páginas y generalas.'));
 }
 
 /* ---------- lesson player ---------- */
@@ -81,7 +94,7 @@ function play(course,lesson,material){
     checked=true;attempts++;const ok=picked.value===e.answer;if(ok)right++;
     btns.forEach((b,k)=>{b.disabled=true;if(options[k].value===e.answer)b.classList.add('right');else if(b===btn(picked)&&!ok)b.classList.add('wrong');});
     if(!ok&&!retry)queue.push({e,retry:true});
-    fill(feedback,h('div',{class:'feedback '+(ok?'ok':'no')},h('h2',{},ok?'¡Correcto!':'No era esa'),h('p',{},e.explanation),h('div',{class:'evidence'},'Tu material, página '+e.evidence.page+': «'+e.evidence.quote+'»'),!ok&&!retry?h('p',{class:'muted'},'Vas a volver a ver este ejercicio al final.'):null));
+    fill(feedback,h('div',{class:'feedback '+(ok?'ok':'no')},h('h2',{},ok?'¡Correcto!':'No era esa'),h('p',{},e.explanation),h('div',{class:'evidence'},'Tu material, página '+e.evidence.page+': «'+e.evidence.quote+'»'),lesson.ocr?h('p',{class:'muted'},'Esta lección se armó con texto que la IA leyó desde una imagen escaneada. Si una cifra o un nombre te llama la atención, compará con tu original.'):null,!ok&&!retry?h('p',{class:'muted'},'Vas a volver a ver este ejercicio al final.'):null));
     main.textContent=i+1>=queue.length?'Terminar':'Continuar';return;
    }
    i++;step();

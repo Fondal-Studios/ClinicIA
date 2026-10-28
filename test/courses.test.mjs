@@ -109,3 +109,66 @@ test('scanned PDFs without text and oversized uploads are rejected with a clear 
  await assert.rejects(createMaterials({db,ai:{},quota:{},extract:async()=>Array(401).fill('x'.repeat(100))}).upload(u,pdf,'t'),e=>e.status===413);
  await assert.rejects(m.upload(u,Buffer.concat([Buffer.from('%PDF-'),Buffer.alloc(15*1024*1024+1)]),'t'),e=>e.status===413);
 });
+
+test('OCR: marker parsing, Anthropic-only, and page batches are cut out of the original PDF',async()=>{
+ const {parse,ocrPages}=createRequire(import.meta.url)('../netlify/lib/ocr.js');
+ assert.deepEqual(parse('<<<PAGINA 2>>>\nsegunda  pagina\n<<<PAGINA 1>>>\nprimera\n<<<PAGINA 9>>>\nfuera',3),['primera','segunda pagina',null]);
+ assert.deepEqual(parse('texto sin marcas',2),[null,null]);
+ const env={ANTHROPIC_API_KEY:'k',ANTHROPIC_MODEL:'m'},blank=makePdf(Array.from({length:20},()=>[]));
+ await assert.rejects(ocrPages(blank,[0],{env:{GROQ_API_KEY:'g'}}),e=>e.status===503&&/Anthropic/.test(e.message));
+ const seen=[];
+ const fetchImpl=async(u,a)=>{const b=JSON.parse(a.body),doc=b.messages[0].content[0];seen.push({type:doc.type,media:doc.source.media_type,text:b.messages[0].content[1].text,pdfStart:Buffer.from(doc.source.data,'base64').subarray(0,5).toString()});
+  const n=Number(b.messages[0].content[1].text.match(/\d+/)[0]);return {ok:true,json:async()=>({stop_reason:'end_turn',content:[{type:'text',text:Array.from({length:n},(_,i)=>`<<<PAGINA ${i+1}>>>\ntexto ${i+1}`).join('\n')}]})};};
+ const out=await ocrPages(blank,[0,1,2,3,4,5,6,7,8,9,10],{env,fetchImpl});
+ assert.equal(seen.length,2,'11 pages -> batches of 8 and 3');assert.ok(seen.every(s=>s.type==='document'&&s.media==='application/pdf'&&s.pdfStart==='%PDF-'));
+ assert.equal(out.size,11);assert.equal(out.get(0),'texto 1');assert.equal(out.get(8),'texto 1');assert.equal(out.get(10),'texto 3');
+ await assert.rejects(ocrPages(blank,[0],{env,fetchImpl:async()=>({ok:false,status:429})}),e=>e.status===429);
+});
+
+test('scanned PDFs are uploaded, read in steps with AI under a monthly page quota, flagged as AI-read, and the file is dropped',async()=>{
+ const backup={...process.env},realFetch=global.fetch;
+ const db=new PGlite(),api=await createAccounts({db,origin:'http://clinic.test',secure:false});
+ const server=http.createServer((req,res)=>api.handler(req,res,new URL(req.url,'http://clinic.test')));await new Promise(r=>server.listen(0,'127.0.0.1',r));const base='http://127.0.0.1:'+server.address().port;
+ const call=async(path,method='GET',body,cookie='',raw)=>{const r=await realFetch(base+path,{method,headers:{origin:'http://clinic.test',cookie,'content-type':raw?raw.type:'application/json'},...(raw?{body:raw.data}:body?{body:JSON.stringify(body)}:{})});return {status:r.status,cookie:r.headers.get('set-cookie')?.split(';')[0],body:await r.json().catch(()=>null)};};
+ try{
+  Object.assign(process.env,{ANTHROPIC_API_KEY:'k',ANTHROPIC_MODEL:'m',AI_OCR_USER_LIMIT_MONTH:'5',AI_OCR_GLOBAL_LIMIT_MONTH:'50'});delete process.env.GROQ_API_KEY;delete process.env.TUTOR_PROVIDER;delete process.env.DATABASE_URL;
+  const texts=PAGES.map(p=>p.join(' '));let ocrCalls=0,failOcr=false;
+  const lesson={title:'Cardiología',exercises:[
+   {type:'tf',prompt:'La FE reducida es menor al 40%.',answer:true,explanation:'Según el material.',evidence:{page:2,quote:'fraccion de eyeccion menor al 40 por ciento'}},
+   {type:'tf',prompt:'La hipertensión se define con 140 mmHg.',answer:true,explanation:'Página 1.',evidence:{page:1,quote:'presion arterial sistolica mayor o igual a 140 mmHg'}},
+   {type:'tf',prompt:'La FA es la arritmia sostenida más frecuente.',answer:true,explanation:'Página 3.',evidence:{page:3,quote:'La fibrilacion auricular es la arritmia sostenida mas frecuente'}}]};
+  global.fetch=async(url,args)=>{
+   if(String(url).startsWith(base))return realFetch(url,args);
+   const b=JSON.parse(args.body),isOcr=Array.isArray(b.messages[0].content);
+   if(isOcr){ocrCalls++;if(failOcr)return {ok:false,status:500};return {ok:true,json:async()=>({stop_reason:'end_turn',content:[{type:'text',text:texts.map((t,i)=>`<<<PAGINA ${i+1}>>>\n${t}`).join('\n')}]})};}
+   return {ok:true,json:async()=>({stop_reason:'end_turn',content:[{type:'text',text:JSON.stringify(lesson)}]})};
+  };
+  const a=await call('/api/account/register','POST',{username:'EstudianteOcr',password:'una-clave-bien-larga',accepted:true});
+  const b=await call('/api/account/register','POST',{username:'OtroEstudiante',password:'una-clave-bien-larga',accepted:true});
+  const scan=makePdf(PAGES.map(()=>[]));
+  const up=await call('/api/account/materials/upload?title=Escaneado','POST',null,a.cookie,{type:'application/pdf',data:scan});
+  assert.equal(up.status,200,JSON.stringify(up.body));assert.equal(up.body.material.pendingOcr,3);assert.equal(up.body.material.readablePages,0);
+  const id=up.body.material.id;
+  assert.equal((await db.query('SELECT COUNT(*)::int AS n FROM clinic_material_files')).rows[0].n,1);
+  assert.equal(ocrCalls,0,'nothing is sent to the provider until reading starts');
+  assert.equal((await call('/api/account/courses','POST',{action:'generate',materialId:id,from:1,to:3},a.cookie)).status,409);
+  assert.equal((await call('/api/account/materials','POST',{action:'read-scans',materialId:id},b.cookie)).status,404);
+  failOcr=true;assert.equal((await call('/api/account/materials','POST',{action:'read-scans',materialId:id},a.cookie)).status,502);
+  assert.equal((await call('/api/account/materials','GET',null,a.cookie)).body.materials[0].pendingOcr,3,'a failed read leaves the pages pending');
+  failOcr=false;const read=await call('/api/account/materials','POST',{action:'read-scans',materialId:id},a.cookie);
+  assert.deepEqual(read.body,{remaining:0,read:3});
+  assert.equal((await db.query('SELECT COUNT(*)::int AS n FROM clinic_material_files')).rows[0].n,0,'the file is deleted once everything is read');
+  const listed=(await call('/api/account/materials','GET',null,a.cookie)).body.materials[0];assert.equal(listed.pendingOcr,0);assert.equal(listed.ocrPages,3);
+  const gen=await call('/api/account/courses','POST',{action:'generate',materialId:id,from:1,to:3},a.cookie);
+  assert.equal(gen.status,200,JSON.stringify(gen.body));assert.equal(gen.body.course.lessons[0].exercises.length,3);assert.equal(gen.body.course.lessons[0].ocr,true);
+  // monthly quota of pages read from scans: 3 used of 5, another 3-page scan does not fit
+  const again=await call('/api/account/materials/upload?title=Otro','POST',null,a.cookie,{type:'application/pdf',data:scan});
+  assert.equal(again.status,429);assert.match(again.body.error,/límite mensual/);
+  // a PDF with real text is never sent to OCR
+  const before=ocrCalls;assert.equal((await call('/api/account/materials/upload?title=Con texto','POST',null,a.cookie,{type:'application/pdf',data:makePdf(PAGES)})).body.material.pendingOcr,0);assert.equal(ocrCalls,before);
+  // without the Anthropic provider, reading scans reports it clearly
+  delete process.env.ANTHROPIC_API_KEY;process.env.GROQ_API_KEY='g';
+  const g=await call('/api/account/materials/upload?title=Escaneado B','POST',null,b.cookie,{type:'application/pdf',data:scan});assert.equal(g.status,200);
+  const nr=await call('/api/account/materials','POST',{action:'read-scans',materialId:g.body.material.id},b.cookie);assert.equal(nr.status,503);assert.match(nr.body.error,/Anthropic/);
+ }finally{global.fetch=realFetch;for(const k of ['ANTHROPIC_API_KEY','ANTHROPIC_MODEL','AI_OCR_USER_LIMIT_MONTH','AI_OCR_GLOBAL_LIMIT_MONTH','GROQ_API_KEY','TUTOR_PROVIDER','DATABASE_URL']){if(backup[k]===undefined)delete process.env[k];else process.env[k]=backup[k];}await new Promise(r=>server.close(r));}
+});

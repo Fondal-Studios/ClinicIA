@@ -46,7 +46,7 @@ export async function createAccounts({db,origin='http://localhost:3000',secure=t
  const training=createTraining({db});
  const payments=createPayments({db,origin});
  const require=createRequire(import.meta.url);
- const materials=createMaterials({db,ai:require('../netlify/lib/course-builder.js'),quota:require('../netlify/lib/quota.js')});
+ const materials=createMaterials({db,ai:require('../netlify/lib/course-builder.js'),quota:require('../netlify/lib/quota.js'),ocr:require('../netlify/lib/ocr.js')});
  const classes=createClasses({db,ai:createRequire(import.meta.url)('../netlify/lib/class-builder.js')});
  if(adminName&&adminHash){await db.query(`INSERT INTO clinic_users(id,username,username_key,password_hash,recovery_hash,role,must_change) VALUES($1,$2,$3,$4,$5,'admin',true) ON CONFLICT(username_key) DO NOTHING`,[randomUUID(),adminName,adminName.toLowerCase(),adminHash,digest(randomBytes(32).toString('hex'))]);}
  const dummy=await hashPassword(randomBytes(24).toString('hex'));
@@ -118,6 +118,7 @@ export async function createAccounts({db,origin='http://localhost:3000',secure=t
     await limit('materials:'+req.method+u.id,req.method==='GET'?600:120,3600);
     if(req.method==='GET')return send(200,await materials.list(u));
     if(req.method==='POST'&&body.action==='delete')return send(200,await materials.remove(u,body.id));
+    if(req.method==='POST'&&body.action==='read-scans'){await limit('material-ocr:'+u.id,120,3600);return send(200,await materials.readScans(u,body));}
     fail(400,'Acción inválida.');
    }
    if(path==='/api/account/courses'){
@@ -161,4 +162,4 @@ export async function createAccounts({db,origin='http://localhost:3000',secure=t
  return {handler,identify,event,limit,consume};
 }
 let cached;
-export async function getAccounts(){if(!process.env.DATABASE_URL)return null;if(!cached)cached=(async()=>{const {Pool}=await import('pg');const pool=new Pool({connectionString:process.env.DATABASE_URL,max:5,connectionTimeoutMillis:8000,ssl:process.env.DATABASE_SSL==='true'?{rejectUnauthorized:true}:undefined});pool.on('error',()=>console.error('database_connection_error'));const api=await createAccounts({db:{query:(...a)=>pool.query(...a),exec:s=>pool.query(s)},origin:process.env.APP_ORIGIN||'https://clinicia-0fft.onrender.com',secure:process.env.NODE_ENV!=='test',adminName:process.env.ADMIN_USERNAME,adminHash:process.env.ADMIN_PASSWORD_HASH});const timer=setInterval(()=>pool.query("DELETE FROM clinic_training_attempts WHERE result IS NULL AND created_at<now()-interval '1 day'; DELETE FROM clinic_rooms WHERE expires_at<now(); DELETE FROM clinic_sessions WHERE expires_at<now(); DELETE FROM clinic_limits WHERE expires_at<now(); DELETE FROM clinic_events WHERE created_at<now()-interval '90 days'").catch(()=>{}),3600000);timer.unref();return api;})().catch(e=>{cached=null;throw e;});return cached;}
+export async function getAccounts(){if(!process.env.DATABASE_URL)return null;if(!cached)cached=(async()=>{const {Pool}=await import('pg');const pool=new Pool({connectionString:process.env.DATABASE_URL,max:5,connectionTimeoutMillis:8000,ssl:process.env.DATABASE_SSL==='true'?{rejectUnauthorized:true}:undefined});pool.on('error',()=>console.error('database_connection_error'));const api=await createAccounts({db:{query:(...a)=>pool.query(...a),exec:s=>pool.query(s)},origin:process.env.APP_ORIGIN||'https://clinicia-0fft.onrender.com',secure:process.env.NODE_ENV!=='test',adminName:process.env.ADMIN_USERNAME,adminHash:process.env.ADMIN_PASSWORD_HASH});const timer=setInterval(()=>pool.query("DELETE FROM clinic_training_attempts WHERE result IS NULL AND created_at<now()-interval '1 day'; DELETE FROM clinic_rooms WHERE expires_at<now(); DELETE FROM clinic_sessions WHERE expires_at<now(); DELETE FROM clinic_limits WHERE expires_at<now(); DELETE FROM clinic_material_files WHERE created_at<now()-interval '2 days'; DELETE FROM clinic_events WHERE created_at<now()-interval '90 days'").catch(()=>{}),3600000);timer.unref();return api;})().catch(e=>{cached=null;throw e;});return cached;}
