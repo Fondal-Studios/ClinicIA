@@ -15,7 +15,7 @@ try{
   await page.screenshot({path:`/tmp/clinicia-route-${width}.png`,fullPage:true});
   await page.locator('[data-action="path-next"]').click();
   await page.locator('[data-action="read"]').click();
-  await page.locator('nav a[href="#fccs/journey"]').click();
+  await page.locator('details.nav-more summary').click();await page.locator('nav a[href="#fccs/journey"]').click();
   await page.locator('[data-action="path-next"]').click();
   for(let i=0;i<3;i++){
    const prompt=await page.locator('h1.question').innerText(),q=questions.find(q=>q.prompt===prompt);

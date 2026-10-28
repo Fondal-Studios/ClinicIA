@@ -5,7 +5,8 @@ const {reserve}=require('./quota');
 // Shared entry for the consultorio functions (dictation -> patient / consultation).
 // Enabled by default. Set LEGACY_CLINICAL_ENABLED=false to switch it off. If CLINIC_ACCESS_TOKEN (24+ chars) is set the
 // caller must send it as a Bearer token; without it the endpoints are open but limited per user/IP plus a global cap (see quota.js).
-async function gate(event,{env=process.env}={}){
+// `count:false` skips the quota for local-only steps that never call the provider (de-identification).
+async function gate(event,{env=process.env,count:counts=true}={}){
  if(event.httpMethod!=='POST')return reply(405,{error:'Método no permitido'});
  if(env.LEGACY_CLINICAL_ENABLED==='false')return reply(503,{error:'El consultorio con IA está desactivado en este servidor.'});
  if(typeof event.body!=='string'||Buffer.byteLength(event.body)>60000)return reply(413,{error:'El dictado es demasiado extenso. Dividilo en partes.'});
@@ -14,8 +15,10 @@ async function gate(event,{env=process.env}={}){
   const given=Buffer.from((event.headers?.authorization||event.headers?.Authorization||'').replace(/^Bearer /,'')),want=Buffer.from(token);
   if(given.length!==want.length||!timingSafeEqual(given,want))return reply(401,{error:'Clave de acceso inválida.'});
  }
- const q=await reserve(event,{scope:'clinical',env});
- if(!q.ok)return reply(429,{error:'Se alcanzó el límite horario de consultas de IA. Probá más tarde.'});
+ if(counts){
+  const q=await reserve(event,{scope:'clinical',env});
+  if(!q.ok)return reply(429,{error:'Se alcanzó el límite horario de consultas de IA. Probá más tarde.'});
+ }
  return null;
 }
 function parseBody(event){try{const b=JSON.parse(event.body||'{}');return b&&typeof b==='object'?b:null;}catch{return null;}}

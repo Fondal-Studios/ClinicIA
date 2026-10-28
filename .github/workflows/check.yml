@@ -12,3 +12,6 @@ jobs:
       - run: npm test
       - run: npm run check
       - run: npm run audit:learning
+      - run: npm run audit:academic
+      - run: npm run audit:questions
+      - run: node tools/qa-five-graduates.mjs

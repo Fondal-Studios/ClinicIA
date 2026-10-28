@@ -1,5 +1,6 @@
 const {reply}=require('../lib/access');
 const {gate,parseBody,ask}=require('../lib/clinical');
+const {deidentify}=require('../lib/deidentify');
 // Función serverless (Netlify Function) para el botón "Redactar con IA" en la
 // revisión de la consulta: toma texto suelto tal como lo escribió el médico
 // (o el que dejó la transcripción) y lo devuelve como prosa clínica prolija,
@@ -17,6 +18,6 @@ exports.handler = async function (event) {
   const denied=await gate(event);if(denied)return denied;
   const body=parseBody(event);
   if(!body||typeof body.texto!=="string"||!body.texto.trim())return reply(400,{error:"Texto inválido o vacío"});
-  const r=await ask({system:SYSTEM_PROMPT,user:body.texto.trim().slice(0,6000),maxTokens:600});
+  const r=await ask({system:SYSTEM_PROMPT,user:deidentify(body.texto.trim().slice(0,6000)).text,maxTokens:600});
   return r.error||reply(200,{texto:r.text});
 };

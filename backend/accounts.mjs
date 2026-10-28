@@ -1,7 +1,10 @@
+import {createCapacitacion,capacitacionSchema} from './capacitacion.mjs';
 import {createTraining,trainingSchema} from './training.mjs';
 import {createPayments,paymentSchema} from './payments.mjs';
 import {createClasses,classSchema} from './classes.mjs';
 import {createMaterials,materialSchema,LIMITS as materialLimits} from './materials.mjs';
+import {createVault,vaultSchema} from './vault.mjs';
+import {search as librarySearch,facets as libraryFacets} from './library.mjs';
 import {createRequire} from 'node:module';
 import {randomBytes,randomUUID,scrypt as scryptCallback,timingSafeEqual,createHash} from 'node:crypto';
 import {promisify} from 'node:util';
@@ -20,9 +23,12 @@ CREATE INDEX IF NOT EXISTS clinic_events_date ON clinic_events(created_at);
 CREATE TABLE IF NOT EXISTS clinic_limits(key text PRIMARY KEY,count integer NOT NULL,expires_at timestamptz NOT NULL);
 CREATE TABLE IF NOT EXISTS clinic_question_reports(user_id text NOT NULL REFERENCES clinic_users(id) ON DELETE CASCADE,question_id text NOT NULL,reason text NOT NULL,created_at timestamptz NOT NULL DEFAULT now(),PRIMARY KEY(user_id,question_id,reason));
 CREATE TABLE IF NOT EXISTS clinic_settings(key text PRIMARY KEY,value jsonb NOT NULL);
+ALTER TABLE clinic_users ADD COLUMN IF NOT EXISTS modes text NOT NULL DEFAULT 'student';
 `;
 function fail(status,message){throw Object.assign(new Error(message),{status});}
-function publicUser(u){return {id:u.id,username:u.username,role:u.role,mustChange:u.must_change};}
+export const MODES=['student','teacher','institution','admin'];
+export const modesOf=u=>[...new Set(['student',...String(u.modes||'student').split(',').filter(m=>MODES.includes(m)&&m!=='admin'),...(u.role==='admin'?['admin']:[])])];
+function publicUser(u){return {id:u.id,username:u.username,role:u.role,mustChange:u.must_change,modes:modesOf(u)};}
 const allowedEvents=new Set(['practice','answer','exam','review','market','tutor','guard','plans','install','plus_interest']);
 // Deliberately copy only academic fields. Never persist chat, clinical free text or arbitrary keys.
 export function cleanProgress(raw){
@@ -42,9 +48,11 @@ function cleanExamResult(e){
  return {bankRevision:revision,id:/^exam-[0-9-]+$/.test(e.id)?e.id.slice(0,100):'exam-0',courseId,templateId:examTemplates.find(t=>t.id===e.templateId)?.id||'',completedAt:e.completedAt,elapsedMs:e.elapsedMs,correct:rows.filter(r=>r.right).length,total:rows.length,omitted:rows.filter(r=>r.omitted).length,rows,areas:[...new Set(rows.map(r=>r.area))].map(area=>({area,total:rows.filter(r=>r.area===area).length,correct:rows.filter(r=>r.area===area&&r.right).length}))};
 }
 export async function createAccounts({db,origin='http://localhost:3000',secure=true,adminName,adminHash}){
- await db.exec(schema+paymentSchema+trainingSchema+classSchema+materialSchema);
+ await db.exec(schema+paymentSchema+trainingSchema+classSchema+vaultSchema+capacitacionSchema+materialSchema);
  const training=createTraining({db});
+ const capacitacion=createCapacitacion({db});
  const payments=createPayments({db,origin});
+ const vault=createVault({db});
  const require=createRequire(import.meta.url);
  const materials=createMaterials({db,ai:require('../netlify/lib/course-builder.js'),quota:require('../netlify/lib/quota.js'),ocr:require('../netlify/lib/ocr.js')});
  const classes=createClasses({db,ai:createRequire(import.meta.url)('../netlify/lib/class-builder.js')});
@@ -111,8 +119,20 @@ export async function createAccounts({db,origin='http://localhost:3000',secure=t
     const recovery=randomBytes(24).toString('hex');await db.query('UPDATE clinic_users SET password_hash=$1,recovery_hash=$2,must_change=false WHERE id=$3',[await hashPassword(body.password),digest(recovery),u.id]);await db.query('DELETE FROM clinic_sessions WHERE user_id=$1',[u.id]);await issue(res,u);return send(200,{user:publicUser({...u,must_change:false}),recoveryCode:recovery});
    }
    if(u.must_change)fail(403,'Cambiá tu contraseña inicial antes de continuar.');
+   if(path==='/api/account/capacitacion'){await limit('capacitacion:'+req.method+u.id,1800,3600);return send(200,await capacitacion.handle(u,req.method,body));}
    if(path==='/api/account/training'){await limit('training:'+req.method+u.id,60,3600);return send(200,await training.assessment(u,req.method,body));}
    if(path==='/api/account/classes'||path.startsWith('/api/account/classes/')){await limit('classes:'+req.method+u.id,req.method==='GET'?600:240,3600);if(req.method==='POST'&&(body.action==='start'))await limit('class-attempt:'+u.id,60,86400);if(req.method==='POST'&&body.action==='create')await limit('class-create:'+u.id,20,86400);return send(200,await classes.handle(u,req.method,path,body));}
+   if(path==='/api/account/modes'&&req.method==='POST'){
+    await limit('modes:'+u.id,20,3600);if(!['teacher','institution'].includes(body.mode)||body.accepted!==true)fail(400,'Modo inválido o falta aceptar las responsabilidades.');
+    const next=[...new Set([...modesOf(u).filter(m=>m!=='student'&&m!=='admin'),body.mode])].join(',')||'student';
+    const r=await db.query('UPDATE clinic_users SET modes=$1 WHERE id=$2 RETURNING *',[next,u.id]);return send(200,{user:publicUser(r.rows[0])});
+   }
+   if(path==='/api/account/library'&&req.method==='GET'){
+    await limit('library:'+u.id,600,3600);const q=Object.fromEntries(url.searchParams);
+    if(q.facets==='1'){if(!modesOf(u).some(m=>['teacher','admin'].includes(m)))fail(403,'La biblioteca está disponible en modo profesor.');return send(200,libraryFacets());}
+    return send(200,librarySearch({...u,modes:modesOf(u).join(',')},{type:q.type,course:q.course,lesson:q.lesson,q:q.q,page:q.page}));
+   }
+   if(path==='/api/account/patients'){await limit('vault:'+req.method+u.id,req.method==='GET'?600:300,3600);res.setHeader('Cache-Control','no-store');return send(200,await vault.handle(u,req.method,body));}
    if(path==='/api/account/class-ai'&&req.method==='POST'){await limit('class-ai:'+body.action+u.id,body.action==='draft'?6:40,3600);return send(200,await classes.generate(u,body));}
    if(path==='/api/account/materials'){
     await limit('materials:'+req.method+u.id,req.method==='GET'?600:120,3600);

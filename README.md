@@ -33,6 +33,7 @@ El repositorio incluye `netlify.toml`: directorio público `public`, funciones `
 - `CLINIC_ACCESS_TOKEN`: permanece requerida para las funciones clínicas heredadas. El tutor de pruebas está abierto sin clave y limita las llamadas al proveedor a 60 por hora por instancia; no es un control distribuido de facturación.
 - `ANTHROPIC_API_KEY`: credencial del proveedor.
 - `ANTHROPIC_MODEL`: identificador de modelo habilitado en esa cuenta. No se presupone disponibilidad de un modelo específico.
+- `PATIENT_VAULT_KEY`: clave de 32 bytes (`openssl rand -hex 32`) para guardar cifrados, sólo en el servidor, los datos personales de los pacientes de Mi consultorio (requiere cuentas). Ver `docs/PRIVACIDAD-CONSULTORIO.md`.
 - `LEGACY_CLINICAL_ENABLED=false`: desactiva la IA del consultorio (por defecto está activa). Si `CLINIC_ACCESS_TOKEN` tiene 24+ caracteres, el consultorio pide esa clave; sin ella, la IA queda abierta con un tope de 240 consultas por hora por instancia. Funciona con `GROQ_API_KEY` o con `ANTHROPIC_API_KEY` y `ANTHROPIC_MODEL`.
 
 El tutor responde 503 de forma explícita cuando no está configurado; no simula respuestas de IA. Al enviar una pregunta, su texto se comparte con Anthropic. El tutor recibe material del curso desde el servidor; no acepta bibliografía enviada por el navegador. Sus respuestas son generadas y requieren revisión.

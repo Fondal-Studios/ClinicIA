@@ -1,3 +1,10 @@
+import {policeCourse,policeSources} from './content/respuesta-policial.mjs';
+import {applyQuestionDifficultyRevisions} from './content/question-difficulty-revisions.mjs';
+import {emergencyCourses,emergencySources} from './content/emergentologia.mjs';
+import {expandedEmergencyCourses,expandedEmergencySources} from './content/emergentologia-ampliada.mjs';
+import {integralCourses,integralSources} from './content/medicina-integral.mjs';
+import {additionalIntegralCourses,additionalIntegralSources} from './content/medicina-integral-avanzada.mjs';
+import {icuCourses,icuSources} from './content/terapia-intensiva.mjs';
 import {communicationSources,reviseCommunication} from './content/communication-revisions.mjs';
 import {guardiaCourses,guardiaSources} from './content/guardia.mjs';
 import {expandTheory} from './content/theory-expansion.mjs';
@@ -7,6 +14,9 @@ import {neonatalCourse,obstetricCourse,perinatalSources} from './content/perinat
 import {revalidaCourse,revalidaSources} from './content/revalida.mjs';
 import {residencyCourse,residencySources} from './content/residencias.mjs';
 import {phtlsCourse,atlsCourse,traumaSources} from './content/trauma.mjs';
+import {proatiCourse,proatiSources} from './content/proati.mjs';
+import {applyBankExtensions} from './content/bank.mjs';
+import {applyAuditFixes} from './content/audit-fixes.mjs';
 // Original educational content. Sources verified 2026-10-16; instructor validation pending.
 export const sources = {
   "bls": {
@@ -1299,12 +1309,32 @@ export const courses = [
     "reviewStatus": "Pendiente de validación docente"
   }
 ];
-Object.assign(sources,communicationSources,guardiaSources,residencySources,traumaSources,revalidaSources,perinatalSources);
+Object.assign(sources,emergencySources,expandedEmergencySources,integralSources,additionalIntegralSources,icuSources,communicationSources,guardiaSources,residencySources,traumaSources,revalidaSources,perinatalSources,proatiSources);
 courses.unshift(residencyCourse);
-courses.push(...guardiaCourses,phtlsCourse,atlsCourse,revalidaCourse,neonatalCourse,obstetricCourse);
+courses.push(...emergencyCourses,...expandedEmergencyCourses,...integralCourses,...additionalIntegralCourses,...icuCourses,...guardiaCourses,phtlsCourse,atlsCourse,revalidaCourse,neonatalCourse,obstetricCourse,proatiCourse);
+
+// Adapt legacy 3-choice training items to the app's five-option exam format.
+// Preserve the original correct index so persisted responses remain interpretable.
+for(const c of courses)for(const l of c.lessons)for(const q of l.questions){
+ if(q.options.length===3){
+  const candidates=[
+   'Posponer las prioridades clínicas hasta la siguiente consulta programada',
+   'Basar la conducta exclusivamente en un dato aislado y no reevaluar',
+   'Aplicar una intervención estandarizada sin considerar contraindicaciones',
+   'Omitir la monitorización de la respuesta y los posibles efectos adversos'
+  ];
+  for(const option of candidates)if(q.options.length<5&&!q.options.includes(option))q.options.push(option);
+ }
+}
 improveQuestions(courses);
 reviseQuestions(courses);
 reviseCommunication(courses);
 expandTheory(courses);
+applyBankExtensions(courses);
+applyAuditFixes(courses);
+applyQuestionDifficultyRevisions(courses);
+// Keep the first-responder bank separate from legacy physician-level rewrites.
+Object.assign(sources,policeSources);
+courses.push(policeCourse);
 export const catalog=courses;
 export const questions=courses.flatMap(c=>c.lessons.flatMap((l,li)=>l.questions.map((q,qi)=>({...q,source:q.source||l.source,courseId:c.id,lessonId:l.id,area:l.area||q.skill,li,qi}))));
