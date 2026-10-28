@@ -1,5 +1,6 @@
 const {reply}=require('../lib/access');
 const {gate,parseBody,ask}=require('../lib/clinical');
+const {normalizeConsulta}=require('../lib/clinical-schema');
 const {deidentify}=require('../lib/deidentify');
 // Función serverless (Netlify Function).
 // Recibe la transcripción cruda de una consulta y le pide a la API de Claude
@@ -40,7 +41,7 @@ Formato EXACTO de salida (todas las claves siempre presentes; null o [] cuando n
 }`;
 
 exports.handler = async function (event) {
-  const denied=gate(event);if(denied)return denied;
+  const denied=await gate(event);if(denied)return denied;
   const body=parseBody(event);
   if(!body||typeof body.transcript!=="string"||!body.transcript.trim())return reply(400,{error:"Transcripción inválida o vacía"});
   // Defence in depth: the client already sends a de-identified text; generic identifiers are masked again here and no name or document ever reaches the provider.
@@ -50,5 +51,7 @@ exports.handler = async function (event) {
   for(const k of ["antecedentes_personales","alergias","medicacion_habitual"])if(Array.isArray(ctx[k]))patientContext[k]=ctx[k].slice(0,50).map(x=>deidentify(String(x).slice(0,200)).text);
   const user="Antecedentes ya conocidos del paciente (no los repitas como novedad si reaparecen aquí): " + JSON.stringify(patientContext) + "\n\nTranscripción completa de la consulta (sin marcas de hablante):\n" + deidentify(body.transcript.trim()).text;
   const r=await ask({system:SYSTEM_PROMPT,user,maxTokens:3000,json:true});
-  return r.error||reply(200,r.parsed);
+  if(r.error)return r.error;
+  const out=normalizeConsulta(r.parsed);
+  return out?reply(200,out):reply(502,{error:'La IA no devolvió un resultado válido. Reintentá.'});
 };

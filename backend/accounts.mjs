@@ -2,6 +2,7 @@ import {createCapacitacion,capacitacionSchema} from './capacitacion.mjs';
 import {createTraining,trainingSchema} from './training.mjs';
 import {createPayments,paymentSchema} from './payments.mjs';
 import {createClasses,classSchema} from './classes.mjs';
+import {createMaterials,materialSchema,LIMITS as materialLimits} from './materials.mjs';
 import {createVault,vaultSchema} from './vault.mjs';
 import {search as librarySearch,facets as libraryFacets} from './library.mjs';
 import {createRequire} from 'node:module';
@@ -47,15 +48,19 @@ function cleanExamResult(e){
  return {bankRevision:revision,id:/^exam-[0-9-]+$/.test(e.id)?e.id.slice(0,100):'exam-0',courseId,templateId:examTemplates.find(t=>t.id===e.templateId)?.id||'',completedAt:e.completedAt,elapsedMs:e.elapsedMs,correct:rows.filter(r=>r.right).length,total:rows.length,omitted:rows.filter(r=>r.omitted).length,rows,areas:[...new Set(rows.map(r=>r.area))].map(area=>({area,total:rows.filter(r=>r.area===area).length,correct:rows.filter(r=>r.area===area&&r.right).length}))};
 }
 export async function createAccounts({db,origin='http://localhost:3000',secure=true,adminName,adminHash}){
- await db.exec(schema+paymentSchema+trainingSchema+classSchema+vaultSchema+capacitacionSchema);
+ await db.exec(schema+paymentSchema+trainingSchema+classSchema+vaultSchema+capacitacionSchema+materialSchema);
  const training=createTraining({db});
  const capacitacion=createCapacitacion({db});
  const payments=createPayments({db,origin});
  const vault=createVault({db});
+ const require=createRequire(import.meta.url);
+ const materials=createMaterials({db,ai:require('../netlify/lib/course-builder.js'),quota:require('../netlify/lib/quota.js'),ocr:require('../netlify/lib/ocr.js')});
  const classes=createClasses({db,ai:createRequire(import.meta.url)('../netlify/lib/class-builder.js')});
  if(adminName&&adminHash){await db.query(`INSERT INTO clinic_users(id,username,username_key,password_hash,recovery_hash,role,must_change) VALUES($1,$2,$3,$4,$5,'admin',true) ON CONFLICT(username_key) DO NOTHING`,[randomUUID(),adminName,adminName.toLowerCase(),adminHash,digest(randomBytes(32).toString('hex'))]);}
  const dummy=await hashPassword(randomBytes(24).toString('hex'));
  async function limit(key,max,seconds){const r=await db.query(`INSERT INTO clinic_limits(key,count,expires_at) VALUES($1,1,now()+$2*interval '1 second') ON CONFLICT(key) DO UPDATE SET count=CASE WHEN clinic_limits.expires_at<now() THEN 1 ELSE clinic_limits.count+1 END,expires_at=CASE WHEN clinic_limits.expires_at<now() THEN EXCLUDED.expires_at ELSE clinic_limits.expires_at END RETURNING count`,[digest(key),seconds]);if(r.rows[0].count>max)fail(429,'Demasiados intentos. Esperá unos minutos.');}
+ // Cost-weighted counter for AI quotas. Returns instead of throwing so callers choose the message.
+ async function consume(key,max,seconds,cost=1){const r=await db.query(`INSERT INTO clinic_limits(key,count,expires_at) VALUES($1,$3::int,now()+$2*interval '1 second') ON CONFLICT(key) DO UPDATE SET count=CASE WHEN clinic_limits.expires_at<now() THEN $3::int ELSE clinic_limits.count+$3::int END,expires_at=CASE WHEN clinic_limits.expires_at<now() THEN EXCLUDED.expires_at ELSE clinic_limits.expires_at END RETURNING count`,[digest(key),seconds,cost]);return {allowed:r.rows[0].count<=max,count:r.rows[0].count};}
  async function identify(req){const token=(req.headers.cookie||'').split(';').map(s=>s.trim()).find(s=>s.startsWith('clinic_session='))?.slice(15);if(!token||!/^[a-f0-9]{64}$/.test(token))return null;const r=await db.query(`SELECT u.* FROM clinic_sessions s JOIN clinic_users u ON u.id=s.user_id WHERE s.token_hash=$1 AND s.expires_at>now()`,[digest(token)]);return r.rows[0]||null;}
  async function issue(res,u){const token=randomBytes(32).toString('hex');await db.query(`INSERT INTO clinic_sessions(token_hash,user_id,expires_at) VALUES($1,$2,now()+interval '7 days')`,[digest(token),u.id]);res.setHeader('Set-Cookie',`clinic_session=${token}; Path=/; HttpOnly; SameSite=Strict; Max-Age=604800${secure?'; Secure':''}`);}
  async function event(u,name){if(allowedEvents.has(name))await db.query('INSERT INTO clinic_events(user_id,name) VALUES($1,$2)',[u.id,name]);}
@@ -72,6 +77,15 @@ export async function createAccounts({db,origin='http://localhost:3000',secure=t
    }
    if(!['GET','POST','PUT','DELETE'].includes(req.method))fail(405,'Método no permitido.');
    if(req.method!=='GET'&&req.headers.origin!==origin)fail(403,'Origen no autorizado.');
+   if(path==='/api/account/materials/upload'){
+    // Raw PDF body (the JSON parser below caps at 500 KB). Only the extracted text is stored.
+    if(req.method!=='POST')fail(405,'Método no permitido.');
+    const u=await identify(req);if(!u)fail(401,'Ingresá a tu cuenta para continuar.');if(u.must_change)fail(403,'Cambiá tu contraseña inicial antes de continuar.');
+    if(!String(req.headers['content-type']||'').startsWith('application/pdf'))fail(415,'Se requiere un PDF.');
+    await limit('material-upload:'+u.id,10,86400);
+    const chunks=[];let size=0;for await(const chunk of req){size+=chunk.length;if(size>materialLimits.maxBytes)fail(413,'El PDF supera los 15 MB. Dividilo en partes.');chunks.push(chunk);}
+    return send(200,await materials.upload(u,Buffer.concat(chunks),url.searchParams.get('title')));
+   }
    let body={};if(req.method!=='GET'){if(!String(req.headers['content-type']||'').startsWith('application/json'))fail(415,'Se requiere JSON.');let text='';for await(const chunk of req){text+=chunk;if(Buffer.byteLength(text)>500000)fail(413,'Datos demasiado grandes.');}try{body=JSON.parse(text||'{}');}catch{fail(400,'JSON inválido.');}if(!body||typeof body!=='object'||Array.isArray(body))fail(400,'Datos inválidos.');}
    if(path==='/api/offer'&&req.method==='GET'){const r=await db.query("SELECT value FROM clinic_settings WHERE key='offer'");return send(200,{pilotOpen:true,offer:r.rows[0]?.value||null,payments:payments.offer()});}
    if(path==='/api/account/register'||path==='/api/account/login'||path==='/api/account/recover'){
@@ -120,6 +134,20 @@ export async function createAccounts({db,origin='http://localhost:3000',secure=t
    }
    if(path==='/api/account/patients'){await limit('vault:'+req.method+u.id,req.method==='GET'?600:300,3600);res.setHeader('Cache-Control','no-store');return send(200,await vault.handle(u,req.method,body));}
    if(path==='/api/account/class-ai'&&req.method==='POST'){await limit('class-ai:'+body.action+u.id,body.action==='draft'?6:40,3600);return send(200,await classes.generate(u,body));}
+   if(path==='/api/account/materials'){
+    await limit('materials:'+req.method+u.id,req.method==='GET'?600:120,3600);
+    if(req.method==='GET')return send(200,await materials.list(u));
+    if(req.method==='POST'&&body.action==='delete')return send(200,await materials.remove(u,body.id));
+    if(req.method==='POST'&&body.action==='read-scans'){await limit('material-ocr:'+u.id,120,3600);return send(200,await materials.readScans(u,body));}
+    fail(400,'Acción inválida.');
+   }
+   if(path==='/api/account/courses'){
+    await limit('courses:'+req.method+u.id,req.method==='GET'?600:240,3600);
+    if(req.method==='GET')return send(200,await materials.course(u,url.searchParams.get('material')));
+    if(req.method==='POST'&&body.action==='generate'){await limit('course-gen:'+u.id,30,86400);return send(200,await materials.generate(u,body));}
+    if(req.method==='POST'&&body.action==='complete')return send(200,await materials.complete(u,body));
+    fail(400,'Acción inválida.');
+   }
    if(path==='/api/account/rooms'||/^\/api\/account\/rooms\/[a-f0-9]{12}$/.test(path)){await limit('rooms:'+req.method+u.id,req.method==='GET'?600:120,3600);const code=path.split('/')[4];if(!code&&req.method==='POST')await limit('room-create:'+u.id,5,86400);return send(200,await training.rooms(u,req.method,body,code));}
    if(path==='/api/account/billing'&&req.method==='GET')return send(200,{offer:payments.offer(),orders:await payments.orders(u.id)});
    if(path==='/api/account/checkout'&&req.method==='POST'){await limit('checkout:'+u.id,5,60);return send(200,await payments.checkout(u.id,body));}
@@ -151,7 +179,7 @@ export async function createAccounts({db,origin='http://localhost:3000',secure=t
    fail(404,'Ruta no encontrada.');
   }catch(e){if(!e.status)console.error('account_request_failed',e.code||'internal');return send(e.status||503,{error:e.status?e.message:'El guardado no está disponible. Reintentá sin cerrar esta página.'});}
  }
- return {handler,identify,event,limit};
+ return {handler,identify,event,limit,consume};
 }
 let cached;
-export async function getAccounts(){if(!process.env.DATABASE_URL)return null;if(!cached)cached=(async()=>{const {Pool}=await import('pg');const pool=new Pool({connectionString:process.env.DATABASE_URL,max:5,connectionTimeoutMillis:8000,ssl:process.env.DATABASE_SSL==='true'?{rejectUnauthorized:true}:undefined});pool.on('error',()=>console.error('database_connection_error'));const api=await createAccounts({db:{query:(...a)=>pool.query(...a),exec:s=>pool.query(s)},origin:process.env.APP_ORIGIN||'https://clinicia-heef.onrender.com',secure:process.env.NODE_ENV!=='test',adminName:process.env.ADMIN_USERNAME,adminHash:process.env.ADMIN_PASSWORD_HASH});const timer=setInterval(()=>pool.query("DELETE FROM clinic_training_attempts WHERE result IS NULL AND created_at<now()-interval '1 day'; DELETE FROM clinic_rooms WHERE expires_at<now(); DELETE FROM clinic_sessions WHERE expires_at<now(); DELETE FROM clinic_limits WHERE expires_at<now(); DELETE FROM clinic_events WHERE created_at<now()-interval '90 days'").catch(()=>{}),3600000);timer.unref();return api;})().catch(e=>{cached=null;throw e;});return cached;}
+export async function getAccounts(){if(!process.env.DATABASE_URL)return null;if(!cached)cached=(async()=>{const {Pool}=await import('pg');const pool=new Pool({connectionString:process.env.DATABASE_URL,max:5,connectionTimeoutMillis:8000,ssl:process.env.DATABASE_SSL==='true'?{rejectUnauthorized:true}:undefined});pool.on('error',()=>console.error('database_connection_error'));const api=await createAccounts({db:{query:(...a)=>pool.query(...a),exec:s=>pool.query(s)},origin:process.env.APP_ORIGIN||'https://clinicia-0fft.onrender.com',secure:process.env.NODE_ENV!=='test',adminName:process.env.ADMIN_USERNAME,adminHash:process.env.ADMIN_PASSWORD_HASH});const timer=setInterval(()=>pool.query("DELETE FROM clinic_training_attempts WHERE result IS NULL AND created_at<now()-interval '1 day'; DELETE FROM clinic_rooms WHERE expires_at<now(); DELETE FROM clinic_sessions WHERE expires_at<now(); DELETE FROM clinic_limits WHERE expires_at<now(); DELETE FROM clinic_material_files WHERE created_at<now()-interval '2 days'; DELETE FROM clinic_events WHERE created_at<now()-interval '90 days'").catch(()=>{}),3600000);timer.unref();return api;})().catch(e=>{cached=null;throw e;});return cached;}
