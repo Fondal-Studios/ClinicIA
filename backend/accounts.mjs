@@ -1,3 +1,4 @@
+import {resolveHospitalIssuer} from './hospital-issuer.mjs';
 import {createCapacitacion,capacitacionSchema} from './capacitacion.mjs';
 import {createTraining,trainingSchema} from './training.mjs';
 import {createPayments,paymentSchema} from './payments.mjs';
@@ -50,13 +51,15 @@ function cleanExamResult(e){
 export async function createAccounts({db,origin='http://localhost:3000',secure=true,adminName,adminHash}){
  await db.exec(schema+paymentSchema+trainingSchema+classSchema+vaultSchema+capacitacionSchema+materialSchema);
  const training=createTraining({db});
- const capacitacion=createCapacitacion({db});
+
  const payments=createPayments({db,origin});
  const vault=createVault({db});
  const require=createRequire(import.meta.url);
  const materials=createMaterials({db,ai:require('../netlify/lib/course-builder.js'),quota:require('../netlify/lib/quota.js'),ocr:require('../netlify/lib/ocr.js')});
  const classes=createClasses({db,ai:createRequire(import.meta.url)('../netlify/lib/class-builder.js')});
  if(adminName&&adminHash){await db.query(`INSERT INTO clinic_users(id,username,username_key,password_hash,recovery_hash,role,must_change) VALUES($1,$2,$3,$4,$5,'admin',true) ON CONFLICT(username_key) DO NOTHING`,[randomUUID(),adminName,adminName.toLowerCase(),adminHash,digest(randomBytes(32).toString('hex'))]);}
+ const hospitalIssuerId=await resolveHospitalIssuer(db);
+ const capacitacion=createCapacitacion({db,issuerId:hospitalIssuerId});
  const dummy=await hashPassword(randomBytes(24).toString('hex'));
  async function limit(key,max,seconds){const r=await db.query(`INSERT INTO clinic_limits(key,count,expires_at) VALUES($1,1,now()+$2*interval '1 second') ON CONFLICT(key) DO UPDATE SET count=CASE WHEN clinic_limits.expires_at<now() THEN 1 ELSE clinic_limits.count+1 END,expires_at=CASE WHEN clinic_limits.expires_at<now() THEN EXCLUDED.expires_at ELSE clinic_limits.expires_at END RETURNING count`,[digest(key),seconds]);if(r.rows[0].count>max)fail(429,'Demasiados intentos. Esperá unos minutos.');}
  // Cost-weighted counter for AI quotas. Returns instead of throwing so callers choose the message.
@@ -111,7 +114,7 @@ export async function createAccounts({db,origin='http://localhost:3000',secure=t
     await db.query('UPDATE clinic_users SET last_seen=now() WHERE id=$1',[found.id]);await issue(res,found);return send(200,{user:publicUser(found)});
    }
    const u=await identify(req);
-   if(path==='/api/account/me'&&req.method==='GET')return send(200,{user:u?publicUser(u):null,configured:true});
+   if(path==='/api/account/me'&&req.method==='GET')return send(200,{user:u?publicUser(u):null,configured:true,storage:'server-database',hospitalIssuerConfigured:!!hospitalIssuerId});
    if(!u)fail(401,'Ingresá a tu cuenta para continuar.');
    if(path==='/api/account/logout'&&req.method==='POST'){const token=(req.headers.cookie||'').split(';').map(s=>s.trim()).find(s=>s.startsWith('clinic_session='))?.slice(15);if(token)await db.query('DELETE FROM clinic_sessions WHERE token_hash=$1',[digest(token)]);res.setHeader('Set-Cookie',`clinic_session=; Path=/; HttpOnly; SameSite=Strict; Max-Age=0${secure?'; Secure':''}`);return send(200,{ok:true});}
    if(path==='/api/account/password'&&req.method==='POST'){

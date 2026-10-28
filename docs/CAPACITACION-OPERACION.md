@@ -24,3 +24,21 @@ No crear un segundo servidor o migrar datos existentes sin identificar la base a
 `tools/qa-capacitacion.mjs` ofrece una prueba de navegador con PGlite en memoria, datos ficticios y viewport móvil/escritorio. Admite PLAYWRIGHT_MODULE, CHROME_BIN y CHROME_ARGS. Esos datos no van a producción. Capturas en /tmp. El navegador local puede no estar disponible en algunos entornos; no reportar la prueba como aprobada sin ejecución exitosa.
 
 Los módulos siguen sujetos a revisión docente. El tiempo del examen es orientativo (60 minutos), sin bloquear respuestas al vencer: el curso prioriza continuidad y reintentos sin frustración. El guion de Gamma está en RESPUESTA-POLICIAL-GUIA-DOCENTE.md.
+
+## Cuentas y ampliación de evacuación — 28/10/2026
+
+La pantalla `/capacitacion.html` usa las mismas cuentas persistentes que el resto de Clinic IA. Espera la recuperación de sesión antes de iniciar una acción y permite cambiar la contraseña inicial sin abandonar el curso. Mi cuenta muestra el rol del servidor y, para administradores, accesos a los paneles existentes. No se asignan permisos desde el navegador.
+
+`HOSPITAL_ISSUER_USERNAME` permite vincular una cuenta administradora **ya existente** durante el arranque. La aplicación resuelve el nombre en la base y conserva su ID inmutable en `clinic_settings.hospital_issuer`. No crea ni asciende usuarios. Una reutilización posterior del nombre no transfiere la autorización. `HOSPITAL_ISSUER_USER_ID`, si está definido, tiene prioridad y también exige rol administrador. No modificar contraseñas ni copiar credenciales al repositorio. En el servicio existente se configuró el nombre autorizado NanoGM mediante Render, conservando las demás variables.
+
+Se agregan tres minicursos independientes, cada uno con cuatro módulos, 20 preguntas originales con explicación, aprobación 16/20 y reintentos ilimitados:
+
+- Evacuación segura de la escena.
+- Preparación y acompañamiento del traslado.
+- Coordinación de evacuaciones con múltiples afectados.
+
+Los tres tienen alcance teórico; no acreditan destrezas de rescate, transporte ni triage. Las referencias están vinculadas en cada módulo. Requieren revisión docente y adecuación al protocolo local antes de usarlos institucionalmente. El catálogo compartido evita diferencias entre las preguntas del servidor y la pantalla.
+
+Verificación realizada: 92 pruebas automáticas; base PGlite en disco cerrada/reabierta conservando cuenta, contraseña y respuesta; navegador real en 390 y 1440 px; registro y recuperación del intento al ingresar desde un contexto nuevo; cambio de contraseña inicial del administrador, rol y autorización de certificados; apertura y evaluación de los tres minicursos; sin errores JavaScript. Estas pruebas locales no equivalen a ingresar personalmente con NanoGM en producción.
+
+Infraestructura existente identificada: servicio `srv-db9c4om1egvs73en4i2g`, PostgreSQL `dpg-db9d7ce7bikc73fjs6fg-a`, plan `0.1c-256mb`, disponible y sin conexiones externas habilitadas. No se abrió la base a Internet, no se migraron cuentas y no se creó infraestructura duplicada. La creación de un nuevo espacio llamado Clinic IA sigue siendo una tarea administrativa separada.

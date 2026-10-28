@@ -1,6 +1,7 @@
 import {randomUUID} from 'node:crypto';
 import {policeCourse} from '../public/learn/content/respuesta-policial.mjs';
-export const trainingCourses=[policeCourse,...[[3,'refuerzo-rcp','Refuerzo: reconocimiento del paro y DEA'],[4,'refuerzo-hemorragias','Refuerzo: hemorragias y comunicación'],[10,'refuerzo-radio','Refuerzo: comunicación Policía–Hospital']].map(([n,id,title])=>({id,title,lessons:[policeCourse.lessons[n-1]],refresher:true}))];
+import {trainingCourses,trainingLessons} from '../public/learn/content/capacitacion-catalog.mjs';
+export {trainingCourses};
 export const capacitacionSchema=`
 CREATE TABLE IF NOT EXISTS clinic_cohorts(id text PRIMARY KEY,owner_id text NOT NULL REFERENCES clinic_users(id),title text NOT NULL,created_at timestamptz NOT NULL DEFAULT now());
 CREATE TABLE IF NOT EXISTS clinic_cohort_members(cohort_id text NOT NULL REFERENCES clinic_cohorts(id),user_id text NOT NULL REFERENCES clinic_users(id) ON DELETE CASCADE,status text NOT NULL DEFAULT 'pending',PRIMARY KEY(cohort_id,user_id));
@@ -19,7 +20,7 @@ export function createCapacitacion({db,issuerId=process.env.HOSPITAL_ISSUER_USER
  async function cohort(u,id,owner=false){const g=(await db.query('SELECT * FROM clinic_cohorts WHERE id=$1',[id])).rows[0];if(!g)fail(404,'Grupo no encontrado.');if(owner&&g.owner_id!==u.id)fail(403,'Solo el instructor de este grupo puede validar.');return g;}
  async function member(id,userId){const m=(await db.query("SELECT * FROM clinic_cohort_members WHERE cohort_id=$1 AND user_id=$2 AND status='accepted'",[id,userId])).rows[0];if(!m)fail(403,'La solicitud del alumno debe estar aceptada.');}
  async function state(u){
-  return {user:{id:u.id,username:u.username,canTeach:canTeach(u),canIssue:!!issuerId&&u.id===issuerId},issuerConfigured:!!issuerId,
+  return {user:{id:u.id,username:u.username,role:u.role||'student',canTeach:canTeach(u),canIssue:!!issuerId&&u.id===issuerId&&u.role==='admin'},issuerConfigured:!!issuerId,
    groups:(await db.query('SELECT g.id,g.title,g.owner_id,u.username AS instructor,m.status FROM clinic_cohorts g JOIN clinic_users u ON u.id=g.owner_id LEFT JOIN clinic_cohort_members m ON m.cohort_id=g.id AND m.user_id=$1 ORDER BY g.created_at DESC',[u.id])).rows,
    read:(await db.query('SELECT lesson_id FROM clinic_course_reads WHERE user_id=$1',[u.id])).rows.map(x=>x.lesson_id),
    attempts:(await db.query('SELECT id,course_id,result,created_at,submitted_at FROM clinic_course_attempts WHERE user_id=$1 ORDER BY created_at DESC',[u.id])).rows,
@@ -29,13 +30,13 @@ export function createCapacitacion({db,issuerId=process.env.HOSPITAL_ISSUER_USER
  async function handle(u,method,b={}){
   if(method==='GET')return state(u);if(method!=='POST')fail(405,'Método no permitido.');
   const a=b.action;
-  if(a==='read'){if(!policeCourse.lessons.some(l=>l.id===b.lessonId))fail(400,'Tema inválido.');await db.query('INSERT INTO clinic_course_reads VALUES($1,$2) ON CONFLICT DO NOTHING',[u.id,b.lessonId]);return {saved:true};}
+  if(a==='read'){if(!trainingLessons.some(l=>l.id===b.lessonId))fail(400,'Tema inválido.');await db.query('INSERT INTO clinic_course_reads VALUES($1,$2) ON CONFLICT DO NOTHING',[u.id,b.lessonId]);return {saved:true};}
   if(a==='create-group'){if(!canTeach(u))fail(403,'Activá el modo instructor para crear un grupo.');const title=txt(b.title,120);if(title.length<3)fail(400,'Escribí un nombre para el grupo.');const id=randomUUID();await db.query('INSERT INTO clinic_cohorts(id,owner_id,title) VALUES($1,$2,$3)',[id,u.id,title]);return {id};}
   if(a==='join'){await cohort(u,b.groupId);await db.query('INSERT INTO clinic_cohort_members(cohort_id,user_id) VALUES($1,$2) ON CONFLICT DO NOTHING',[b.groupId,u.id]);return {requested:true};}
   if(a==='accept'){await cohort(u,b.groupId,true);const r=await db.query("UPDATE clinic_cohort_members SET status='accepted' WHERE cohort_id=$1 AND user_id=$2 RETURNING user_id",[b.groupId,b.userId]);if(!r.rows.length)fail(404,'Solicitud no encontrada.');await audit(u,a,{groupId:b.groupId,userId:b.userId});return {accepted:true};}
   if(a==='roster'){
    const g=await cohort(u,b.groupId);if(g.owner_id!==u.id&&u.id!==issuerId)fail(403,'No tenés acceso a este grupo.');
-   return {members:(await db.query(`SELECT m.user_id,m.status,u.username,(SELECT count(*) FROM clinic_course_reads r WHERE r.user_id=u.id) AS read_count,(SELECT jsonb_agg(jsonb_build_object('courseId',a.course_id,'result',a.result)) FROM clinic_course_attempts a WHERE a.user_id=u.id AND a.result IS NOT NULL) AS attempts FROM clinic_cohort_members m JOIN clinic_users u ON u.id=m.user_id WHERE m.cohort_id=$1 ORDER BY u.username`,[g.id])).rows,practices:(await db.query('SELECT * FROM clinic_practice_reviews WHERE cohort_id=$1',[g.id])).rows};
+   return {members:(await db.query(`SELECT m.user_id,m.status,u.username,(SELECT count(*) FROM clinic_course_reads r WHERE r.user_id=u.id AND r.lesson_id LIKE 'rtpp-%') AS read_count,(SELECT jsonb_agg(jsonb_build_object('courseId',a.course_id,'result',a.result)) FROM clinic_course_attempts a WHERE a.user_id=u.id AND a.result IS NOT NULL) AS attempts FROM clinic_cohort_members m JOIN clinic_users u ON u.id=m.user_id WHERE m.cohort_id=$1 ORDER BY u.username`,[g.id])).rows,practices:(await db.query('SELECT * FROM clinic_practice_reviews WHERE cohort_id=$1',[g.id])).rows};
   }
   if(a==='practice'||a==='review'){
    await cohort(u,b.groupId,a==='review');const target=a==='review'?b.userId:u.id;await member(b.groupId,target);
@@ -66,7 +67,7 @@ export function createCapacitacion({db,issuerId=process.env.HOSPITAL_ISSUER_USER
    const saved=await db.query('UPDATE clinic_course_attempts SET result=$1,submitted_at=now(),version=version+1 WHERE id=$2 AND version=$3 AND result IS NULL RETURNING result',[JSON.stringify(result),row.id,row.version]);if(!saved.rows.length)fail(409,'El intento cambió. Reabrí la evaluación.');return {result};
   }
   if(a==='issue'){
-   if(!issuerId||u.id!==issuerId)fail(403,'Solo la cuenta autorizada del Dr. Mariano Jiménez puede emitir certificados hospitalarios.');
+   if(!issuerId||u.id!==issuerId||u.role!=='admin')fail(403,'Solo la cuenta autorizada del Dr. Mariano Jiménez puede emitir certificados hospitalarios.');
    const c=course(b.courseId);await cohort(u,b.groupId);await member(b.groupId,b.userId);
    const read=(await db.query('SELECT lesson_id FROM clinic_course_reads WHERE user_id=$1',[b.userId])).rows.map(r=>r.lesson_id);if(c.lessons.some(l=>!read.includes(l.id)))fail(409,'Falta completar teoría.');
    const passed=(await db.query("SELECT id,result FROM clinic_course_attempts WHERE user_id=$1 AND course_id=$2 AND result->>'passed'='true' ORDER BY submitted_at LIMIT 1",[b.userId,c.id])).rows[0];if(!passed)fail(409,'Falta aprobar la evaluación.');

@@ -42,3 +42,21 @@ test('persistent training: groups, isolation, resumable grading, practices and e
   assert.ok((await api.handle(student,'GET')).attempts.some(a=>a.result?.passed));
  }finally{await db.close();}
 });
+
+test('account and training records survive a closed database and new connection on disk',async()=>{
+ const {mkdtemp,rm}=await import('node:fs/promises');const {tmpdir}=await import('node:os');const {join}=await import('node:path');const {hashPassword,verifyPassword}=await import('../backend/accounts.mjs');
+ const dir=await mkdtemp(join(tmpdir(),'clinic-persistence-'));let db;
+ try{
+  db=new PGlite(dir);await db.exec(schema+capacitacionSchema);
+  const passwordHash=await hashPassword('test-only-long-password');
+  await db.query('INSERT INTO clinic_users(id,username,username_key,password_hash,recovery_hash) VALUES($1,$2,$3,$4,$5)',['persist','Persistente','persistente',passwordHash,'test']);
+  const u={id:'persist',username:'Persistente',role:'student'};let service=createCapacitacion({db});
+  await service.handle(u,'POST',{action:'read',lessonId:'rtpp-1'});
+  const a=await service.handle(u,'POST',{action:'start',courseId:'respuesta-policial'});
+  await service.handle(u,'POST',{action:'save-answer',attemptId:a.id,questionId:a.questions[0].id,answer:2,version:0});
+  await db.close();db=new PGlite(dir);service=createCapacitacion({db});
+  const account=(await db.query('SELECT * FROM clinic_users WHERE id=$1',[u.id])).rows[0];assert.equal(await verifyPassword('test-only-long-password',account.password_hash),true);
+  assert.deepEqual((await service.handle(u,'GET')).read,['rtpp-1']);
+  const resumed=await service.handle(u,'POST',{action:'start',courseId:'respuesta-policial'});assert.equal(resumed.id,a.id);assert.equal(resumed.answers[a.questions[0].id],2);assert.equal(resumed.version,1);
+ }finally{if(db)await db.close();await rm(dir,{recursive:true,force:true});}
+});
