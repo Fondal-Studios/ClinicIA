@@ -12,7 +12,7 @@ test('theory never appears before a practice answer; all courses, ECG, review an
  await import('../public/app.mjs');
  const click=async(action,data={})=>{await handlers.click({target:{closest:()=>({dataset:{action,...data}})}});await new Promise(r=>setImmediate(r));};
  const currentQuestion=()=>questions.find(q=>html.includes(`<h1 class="question">${esc(q.prompt)}</h1>`));
- assert.ok(html.includes('¿Qué querés hacer hoy?'));['Formación','Aulas','Mi consultorio','Tutor IA'].forEach(t=>assert.ok(html.includes('<h2>'+t+'</h2>')));
+ assert.ok(html.includes('Aprender para cuidar.'));['Primeros auxilios y respuesta a emergencias','Instructor','Más formación'].forEach(t=>assert.ok(html.includes('<h2>'+t+'</h2>')));assert.ok(!html.includes('consultorio.html'));assert.ok(html.includes('/capacitacion.html'));
  await click('general-practice');assert.ok(html.includes('class="question"'),'general practice starts a mixed Examen Único session without choosing a course');
  hash='#formacion';events.hashchange();assert.ok(html.includes('¿Cómo querés estudiar?'));assert.ok(html.includes('Práctica general')&&html.includes('Preparar un curso o examen'));assert.ok(html.includes('Entrar al curso'));
  hash='#examen-unico/home';events.hashchange();

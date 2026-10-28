@@ -3,7 +3,7 @@
 const AREAS=[
  ['formacion','Formación','./#formacion'],
  ['aulas','Aulas','./aulas.html'],
- ['consultorio','Mi consultorio','./consultorio.html'],
+ ['capacitacion','Primeros auxilios','./capacitacion.html'],
  ['tutor','Tutor IA','./#tutor']
 ];
 export function activeArea(path=location.pathname,hash=location.hash){
@@ -17,10 +17,10 @@ export function activeArea(path=location.pathname,hash=location.hash){
  if(parts[0]==='hub'||parts[0]==='')return '';
  return 'formacion';
 }
-const MODE_LABEL={student:'Estudiante',teacher:'Profesor',institution:'Institución',admin:'Administrador'};
+const MODE_LABEL={student:'Estudiante',teacher:'Instructor',institution:'Institución',admin:'Administrador'};
 const MODE_AREAS={
  student:AREAS,
- teacher:[['aulas','Mis clases','./aulas.html'],['biblioteca','Biblioteca','./aulas.html#biblioteca'],['formacion','Formación','./#formacion'],['tutor','Tutor IA','./#tutor'],['consultorio','Mi consultorio','./consultorio.html']],
+ teacher:[['aulas','Mis clases','./aulas.html'],['biblioteca','Biblioteca','./aulas.html#biblioteca'],['formacion','Formación','./#formacion'],['tutor','Tutor IA','./#tutor'],['capacitacion','Capacitaciones','./capacitacion.html']],
  institution:[['aulas','Aulas','./aulas.html'],['formacion','Formación','./#formacion'],['tutor','Tutor IA','./#tutor']],
  admin:[['admin','Telemetría','./admin.html'],['formacion','Formación','./#formacion'],['aulas','Aulas','./aulas.html']]
 };
@@ -35,12 +35,12 @@ function openModes(bar){
  const user=session.user,have=user?.modes||['student'];
  const box=document.createElement('div');box.className='areas-sheet';box.setAttribute('role','dialog');box.setAttribute('aria-label','Elegir modo');
  const row=(m,desc,on)=>`<button type="button" data-mode="${m}" ${on?'':'disabled'} ${m===currentMode()?'aria-current="true"':''}><strong>${MODE_LABEL[m]}</strong><small>${desc}</small></button>`;
- box.innerHTML=`<h2>¿Cómo querés usar ClinicIA?</h2>${row('student','Estudiar, practicar y rendir exámenes.',true)}${row('teacher',have.includes('teacher')?'Crear clases con el tutor, usar la biblioteca y evaluar.':'Crear clases con el tutor, usar la biblioteca y evaluar. Hay que activarlo.',Boolean(user))}${row('institution','Próximamente: grupos de docentes y alumnos con resultados agregados.',false)}${have.includes('admin')?row('admin','Telemetría y administración.',true):''}${!user?'<p>Para usar el modo Profesor tenés que <a href="./#hub">ingresar con tu cuenta</a>.</p>':''}<button type="button" class="areas-close">Cerrar</button>`;
+ box.innerHTML=`<h2>¿Cómo querés usar ClinicIA?</h2>${row('student','Estudiar, practicar y rendir exámenes.',true)}${row('teacher',have.includes('teacher')?'Crear clases con el tutor, usar la biblioteca y evaluar.':'Crear clases con el tutor, usar la biblioteca y evaluar. Hay que activarlo.',Boolean(user))}${row('institution','Próximamente: grupos de docentes y alumnos con resultados agregados.',false)}${have.includes('admin')?row('admin','Telemetría y administración.',true):''}${!user?'<p>Para usar el modo Instructor tenés que <a href="./#hub">ingresar con tu cuenta</a>.</p>':''}<button type="button" class="areas-close">Cerrar</button>`;
  document.body.append(box);
  const close=()=>box.remove();box.querySelector('.areas-close').onclick=close;
  box.addEventListener('click',async e=>{const b=e.target.closest('[data-mode]');if(!b||b.disabled)return;const m=b.dataset.mode;
   if(m==='teacher'&&!have.includes('teacher')){
-   if(!confirm('Modo Profesor: vas a crear clases con ayuda de IA y ver los resultados de tus alumnos. Te hacés responsable del contenido que publicás: es educativo, puede contener errores y no sirve para decidir sobre pacientes. ¿Activar?'))return;
+   if(!confirm('Modo Instructor: vas a crear clases con ayuda de IA y ver los resultados de tus alumnos. Te hacés responsable del contenido que publicás: es educativo, puede contener errores y no sirve para decidir sobre pacientes. ¿Activar?'))return;
    try{const r=await fetch('/api/account/modes',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify({mode:'teacher',accepted:true})});const d=await r.json();if(!r.ok)throw new Error(d.error||'No se pudo activar');session.user=d.user;}catch(err){alert(err.message);return;}
   }
   try{localStorage.setItem('clinia_mode',m);}catch{}close();bar.innerHTML=areasBarHtml();wire(bar);window.dispatchEvent(new Event('clinia-mode'));

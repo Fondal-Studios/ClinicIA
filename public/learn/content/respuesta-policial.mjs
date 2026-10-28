@@ -14,7 +14,7 @@ export const policeCourse = {
   "title": "Respuesta Táctica Prehospitalaria Policial",
   "category": "primeros-auxilios",
   "summary": "Primeros auxilios y enlace Policía–Hospital: teoría, simulaciones presenciales y 50 preguntas originales.",
-  "scope": "Curso introductorio propio para primeros respondientes. No es una certificación PHTLS, ATLS ni de medicina táctica. Borrador para revisión del Dr. Mariano Jiménez; no emite certificados hospitalarios todavía.",
+  "scope": "Curso introductorio propio para primeros respondientes. No es una certificación PHTLS, ATLS ni de medicina táctica. Revisión docente a cargo del Dr. Mariano Jiménez. La emisión institucional requiere autorización de su cuenta.",
   "reviewStatus": "Pendiente de validación docente",
   "institutionalCertificate": true,
   "examMinutes": 60,
@@ -119,7 +119,7 @@ export const policeCourse = {
           "Evita maniobras peligrosas.",
           "Comunica hallazgos, intervención y evolución."
         ],
-        "validation": "La actividad no se acredita por leerla. Validación por instructor pendiente de implementación."
+        "validation": "La actividad no se acredita por leerla. Solicitá validación desde Mis prácticas en la capacitación; tu instructor registra la observación."
       }
     },
     {
@@ -222,7 +222,7 @@ export const policeCourse = {
           "Evita maniobras peligrosas.",
           "Comunica hallazgos, intervención y evolución."
         ],
-        "validation": "La actividad no se acredita por leerla. Validación por instructor pendiente de implementación."
+        "validation": "La actividad no se acredita por leerla. Solicitá validación desde Mis prácticas en la capacitación; tu instructor registra la observación."
       }
     },
     {
@@ -325,7 +325,7 @@ export const policeCourse = {
           "Evita maniobras peligrosas.",
           "Comunica hallazgos, intervención y evolución."
         ],
-        "validation": "La actividad no se acredita por leerla. Validación por instructor pendiente de implementación."
+        "validation": "La actividad no se acredita por leerla. Solicitá validación desde Mis prácticas en la capacitación; tu instructor registra la observación."
       }
     },
     {
@@ -428,7 +428,7 @@ export const policeCourse = {
           "Evita maniobras peligrosas.",
           "Comunica hallazgos, intervención y evolución."
         ],
-        "validation": "La actividad no se acredita por leerla. Validación por instructor pendiente de implementación."
+        "validation": "La actividad no se acredita por leerla. Solicitá validación desde Mis prácticas en la capacitación; tu instructor registra la observación."
       }
     },
     {
@@ -531,7 +531,7 @@ export const policeCourse = {
           "Evita maniobras peligrosas.",
           "Comunica hallazgos, intervención y evolución."
         ],
-        "validation": "La actividad no se acredita por leerla. Validación por instructor pendiente de implementación."
+        "validation": "La actividad no se acredita por leerla. Solicitá validación desde Mis prácticas en la capacitación; tu instructor registra la observación."
       }
     },
     {
@@ -634,7 +634,7 @@ export const policeCourse = {
           "Evita maniobras peligrosas.",
           "Comunica hallazgos, intervención y evolución."
         ],
-        "validation": "La actividad no se acredita por leerla. Validación por instructor pendiente de implementación."
+        "validation": "La actividad no se acredita por leerla. Solicitá validación desde Mis prácticas en la capacitación; tu instructor registra la observación."
       }
     },
     {
@@ -737,7 +737,7 @@ export const policeCourse = {
           "Evita maniobras peligrosas.",
           "Comunica hallazgos, intervención y evolución."
         ],
-        "validation": "La actividad no se acredita por leerla. Validación por instructor pendiente de implementación."
+        "validation": "La actividad no se acredita por leerla. Solicitá validación desde Mis prácticas en la capacitación; tu instructor registra la observación."
       }
     },
     {
@@ -840,7 +840,7 @@ export const policeCourse = {
           "Evita maniobras peligrosas.",
           "Comunica hallazgos, intervención y evolución."
         ],
-        "validation": "La actividad no se acredita por leerla. Validación por instructor pendiente de implementación."
+        "validation": "La actividad no se acredita por leerla. Solicitá validación desde Mis prácticas en la capacitación; tu instructor registra la observación."
       }
     },
     {
@@ -943,7 +943,7 @@ export const policeCourse = {
           "Evita maniobras peligrosas.",
           "Comunica hallazgos, intervención y evolución."
         ],
-        "validation": "La actividad no se acredita por leerla. Validación por instructor pendiente de implementación."
+        "validation": "La actividad no se acredita por leerla. Solicitá validación desde Mis prácticas en la capacitación; tu instructor registra la observación."
       }
     },
     {
@@ -1046,7 +1046,7 @@ export const policeCourse = {
           "Evita maniobras peligrosas.",
           "Comunica hallazgos, intervención y evolución."
         ],
-        "validation": "La actividad no se acredita por leerla. Validación por instructor pendiente de implementación."
+        "validation": "La actividad no se acredita por leerla. Solicitá validación desde Mis prácticas en la capacitación; tu instructor registra la observación."
       }
     }
   ]
