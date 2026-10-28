@@ -1,3 +1,4 @@
+import {adminRecoverySchema,provisionAdminRecovery,recoverAdmin} from './admin-recovery.mjs';
 import {resolveHospitalIssuer} from './hospital-issuer.mjs';
 import {createCapacitacion,capacitacionSchema} from './capacitacion.mjs';
 import {createTraining,trainingSchema} from './training.mjs';
@@ -49,7 +50,7 @@ function cleanExamResult(e){
  return {bankRevision:revision,id:/^exam-[0-9-]+$/.test(e.id)?e.id.slice(0,100):'exam-0',courseId,templateId:examTemplates.find(t=>t.id===e.templateId)?.id||'',completedAt:e.completedAt,elapsedMs:e.elapsedMs,correct:rows.filter(r=>r.right).length,total:rows.length,omitted:rows.filter(r=>r.omitted).length,rows,areas:[...new Set(rows.map(r=>r.area))].map(area=>({area,total:rows.filter(r=>r.area===area).length,correct:rows.filter(r=>r.area===area&&r.right).length}))};
 }
 export async function createAccounts({db,origin='http://localhost:3000',secure=true,adminName,adminHash}){
- await db.exec(schema+paymentSchema+trainingSchema+classSchema+vaultSchema+capacitacionSchema+materialSchema);
+ await db.exec(schema+paymentSchema+trainingSchema+classSchema+vaultSchema+capacitacionSchema+materialSchema+adminRecoverySchema);
  const training=createTraining({db});
 
  const payments=createPayments({db,origin});
@@ -58,6 +59,7 @@ export async function createAccounts({db,origin='http://localhost:3000',secure=t
  const materials=createMaterials({db,ai:require('../netlify/lib/course-builder.js'),quota:require('../netlify/lib/quota.js'),ocr:require('../netlify/lib/ocr.js')});
  const classes=createClasses({db,ai:createRequire(import.meta.url)('../netlify/lib/class-builder.js')});
  if(adminName&&adminHash){await db.query(`INSERT INTO clinic_users(id,username,username_key,password_hash,recovery_hash,role,must_change) VALUES($1,$2,$3,$4,$5,'admin',true) ON CONFLICT(username_key) DO NOTHING`,[randomUUID(),adminName,adminName.toLowerCase(),adminHash,digest(randomBytes(32).toString('hex'))]);}
+ if(await provisionAdminRecovery(db))console.info('administrator_recovery_ready');
  const hospitalIssuerId=await resolveHospitalIssuer(db);
  const capacitacion=createCapacitacion({db,issuerId:hospitalIssuerId});
  const dummy=await hashPassword(randomBytes(24).toString('hex'));
@@ -106,9 +108,16 @@ export async function createAccounts({db,origin='http://localhost:3000',secure=t
     const found=(await db.query('SELECT * FROM clinic_users WHERE username_key=$1',[key])).rows[0];
     if(path.endsWith('/recover')){
      const code=typeof body.recoveryCode==='string'?body.recoveryCode.trim():'';
-     if(!found||code.length!==48||!timingSafeEqual(Buffer.from(digest(code)),Buffer.from(found.recovery_hash)))fail(401,'No pudimos validar esos datos.');
-     if(password.length<10)fail(400,'Elegí una contraseña de al menos 10 caracteres.');const recovery=randomBytes(24).toString('hex');
-     await db.query('UPDATE clinic_users SET password_hash=$1,recovery_hash=$2,must_change=false WHERE id=$3',[await hashPassword(password),digest(recovery),found.id]);await db.query('DELETE FROM clinic_sessions WHERE user_id=$1',[found.id]);await issue(res,found);return send(200,{user:publicUser({...found,must_change:false}),recoveryCode:recovery});
+     if(!found||!/^[a-f0-9]{48}$/.test(code))fail(401,'No pudimos validar esos datos.');
+     if(password.length<10)fail(400,'Elegí una contraseña de al menos 10 caracteres.');
+     const recovery=randomBytes(24).toString('hex'),passwordHash=await hashPassword(password);
+     let recovered;
+     if(timingSafeEqual(Buffer.from(digest(code)),Buffer.from(found.recovery_hash))){
+      // Compare-and-swap makes permanent recovery codes single-use too.
+      const r=await db.query(`WITH changed AS (UPDATE clinic_users SET password_hash=$1,recovery_hash=$2,must_change=false WHERE id=$3 AND recovery_hash=$4 RETURNING *), revoked AS (DELETE FROM clinic_sessions WHERE user_id IN (SELECT id FROM changed) RETURNING user_id) SELECT * FROM changed`,[passwordHash,digest(recovery),found.id,found.recovery_hash]);recovered=r.rows[0];
+     }else recovered=await recoverAdmin(db,{tokenHash:digest(code),userId:found.id,passwordHash,recoveryHash:digest(recovery)});
+     if(!recovered)fail(401,'No pudimos validar esos datos. El código puede haber vencido o ya haberse utilizado.');
+     await issue(res,recovered);return send(200,{user:publicUser(recovered),recoveryCode:recovery});
     }
     if(!await verifyPassword(password,found?.password_hash||dummy)||!found)fail(401,'Usuario o contraseña incorrectos.');
     await db.query('UPDATE clinic_users SET last_seen=now() WHERE id=$1',[found.id]);await issue(res,found);return send(200,{user:publicUser(found)});
