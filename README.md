@@ -20,6 +20,12 @@ npm run check
 
 Abrir http://localhost:3000. Las lecciones y los escenarios no requieren proveedor de IA. El servidor local publica exclusivamente `public/` y también sirve `/api/tutor`.
 
+## Estudiar con mi material (PDF)
+
+`public/estudio.html`: el estudiante sube un PDF (hasta 15 MB y 400 páginas) y la app arma lecciones cortas con ejercicios (opción múltiple, verdadero/falso y completar). Requiere cuenta (`DATABASE_URL`). Solo se guarda el texto extraído, nunca el archivo, y el texto se envía al proveedor de IA para generar las lecciones.
+
+Cada ejercicio trae una cita textual y la página; el servidor verifica que la cita exista en el texto del PDF (y que la respuesta de los ejercicios de completar esté dentro de la cita) y descarta lo que no pasa. Eso reduce, no elimina, el riesgo de errores: no verifica que la respuesta marcada sea la correcta. Los PDF escaneados sin texto se rechazan (hace falta OCR). Las imágenes y diagramas no se usan. Cuota de generación: `AI_COURSE_USER_LIMIT_HOUR` (60 por hora por defecto) y `AI_COURSE_GLOBAL_LIMIT_HOUR`.
+
 ## Publicar en Netlify
 
 El repositorio incluye `netlify.toml`: directorio público `public`, funciones `netlify/functions`, sin paso de compilación. Configurar en el entorno del proveedor, nunca en el repositorio:

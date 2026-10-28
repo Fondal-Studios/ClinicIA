@@ -19,9 +19,9 @@ async function consume(key,max,seconds,cost,env){
  }
  return memConsume(key,max,seconds,cost);
 }
-// scope: 'tutor' | 'clinical'. Checks the caller's own bucket first, then a global bucket that caps total provider spend.
+// scope: 'tutor' | 'clinical' | 'course'. Checks the caller's own bucket first, then a global bucket that caps total provider spend.
 async function reserve(event,{scope,cost=1,env=process.env}){
- const d=scope==='clinical'?{anon:60,user:240,global:1000}:{anon:30,user:120,global:600};
+ const d=scope==='clinical'?{anon:60,user:240,global:1000}:scope==='course'?{anon:0,user:60,global:400}:{anon:30,user:120,global:600};
  const who=clientKey(event),isUser=who.startsWith('u:');
  const per=num(env[`AI_${scope.toUpperCase()}_${isUser?'USER':'ANON'}_LIMIT_HOUR`],isUser?d.user:d.anon);
  const glob=num(env[`AI_${scope.toUpperCase()}_GLOBAL_LIMIT_HOUR`],d.global);
