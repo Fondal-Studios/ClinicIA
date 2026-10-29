@@ -12,28 +12,28 @@
 
 ## Revisión ítem por ítem
 
-| Ítem | Eje | Clave | Verificación editorial y criterio | Fuente |
+| Ítem | Eje | Clave | Justificación examinada | Fuente |
 |---|---|---|---|---|
 | rv-sus-1 | SUS: universalidade, equidade e integralidade | 2: Priorizar mais recursos conforme risco e barreiras de acesso identificados. | Equidade considera necessidades diferentes e busca reduzir desigualdades. A distribuição uniforme pode perpetuar barreiras quando os riscos e as condições de acesso são desiguais. | sus |
-| rv-sus-2 | SUS: universalidade, equidade e integralidade | 1: Integralidade. | Integralidade contempla diferentes dimensões do cuidado e sua coordenação ao longo do tempo. Encaminhar sem retorno de informação não garante continuidade. | sus |
-| rv-sus-3 | SUS: universalidade, equidade e integralidade | 3: Universalidade. | Universalidade garante o direito às ações e serviços do SUS independentemente de contratação de seguro privado. | sus |
-| rv-sus-4 | SUS: universalidade, equidade e integralidade | 4: Se a distribuição considera necessidades, risco e vulnerabilidades. | A análise de equidade deve combinar necessidades e obstáculos de acesso. Números iguais não implicam atendimento equitativo. | sus |
-| rv-red-1 | Atenção Primária e Rede de Atenção à Saúde | 3: Agendar acompanhamento na APS e comunicar alterações terapêuticas e sinais de alerta. | APS e equipe hospitalar devem coordenar plano terapêutico e sinais de piora; isso reduz lacunas de comunicação entre níveis. | aps |
+| rv-sus-2 | SUS: universalidade, equidade e integralidade | 1: Integralidade do cuidado. | Integralidade contempla diferentes dimensões do cuidado e sua coordenação ao longo do tempo. Encaminhar sem retorno de informação não garante continuidade. | sus |
+| rv-sus-3 | SUS: universalidade, equidade e integralidade | 3: Universalidade de acesso ao SUS. | Universalidade garante o direito às ações e serviços do SUS independentemente de contratação de seguro privado. | sus |
+| rv-sus-4 | SUS: universalidade, equidade e integralidade | 4: Se o planejamento considera o risco e as necessidades de cada bairro. | A análise de equidade deve combinar necessidades e obstáculos de acesso. Números iguais não implicam atendimento equitativo. | sus |
+| rv-red-1 | Atenção Primária e Rede de Atenção à Saúde | 3: Agendar seguimento na APS e comunicar mudanças de tratamento na alta. | APS e equipe hospitalar devem coordenar plano terapêutico e sinais de piora; isso reduz lacunas de comunicação entre níveis. | aps |
 | rv-red-2 | Atenção Primária e Rede de Atenção à Saúde | 2: Promoção e prevenção integradas ao cuidado. | O cuidado integral na APS abrange prevenção, promoção, acompanhamento e tratamento, não apenas controle de sintomas. | aps |
-| rv-red-3 | Atenção Primária e Rede de Atenção à Saúde | 4: Encaminhamento articulado à rede, com retorno de informações à APS. | A APS coordena o cuidado mesmo quando são necessários outros níveis; a contrarreferência favorece continuidade e segurança. | aps |
+| rv-red-3 | Atenção Primária e Rede de Atenção à Saúde | 4: Encaminhar pela rede e garantir retorno clínico à equipe da APS. | A APS coordena o cuidado mesmo quando são necessários outros níveis; a contrarreferência favorece continuidade e segurança. | aps |
 | rv-red-4 | Atenção Primária e Rede de Atenção à Saúde | 1: Ignora ações de promoção, prevenção, seguimento e reabilitação. | A produção cirúrgica é um indicador parcial. Integralidade requer considerar outras dimensões do cuidado e articulação entre serviços. | aps |
-| rv-prioridades-1 | Avaliação inicial, ABCDE e comunicação clínica | 1: Avaliar e proteger a via aérea, solicitando ajuda conforme a gravidade. | Ruído respiratório com alteração de consciência sugere ameaça à via aérea. Avaliação e medidas imediatas não devem aguardar investigação etiológica completa. | abcde |
-| rv-prioridades-2 | Avaliação inicial, ABCDE e comunicação clínica | 4: Reavaliar sistematicamente e ajustar as medidas conforme resposta. | Melhora isolada não garante estabilidade. Reavaliação identifica problemas persistentes, novos achados e efeitos da intervenção. | abcde |
-| rv-prioridades-3 | Avaliação inicial, ABCDE e comunicação clínica | 2: Situação atual, antecedentes relevantes, avaliação e recomendação explícita. | Um passe estruturado com achados e necessidade concreta ajuda a equipe receptora a priorizar ações. | abcde |
+| rv-prioridades-1 | Avaliação inicial, ABCDE e comunicação clínica | 1: Avaliar a via aérea e chamar equipe de apoio imediatamente. | Ruído respiratório com alteração de consciência sugere ameaça à via aérea. Avaliação e medidas imediatas não devem aguardar investigação etiológica completa. | abcde |
+| rv-prioridades-2 | Avaliação inicial, ABCDE e comunicação clínica | 4: Reavaliar os sinais e ajustar as medidas conforme evolução. | Melhora isolada não garante estabilidade. Reavaliação identifica problemas persistentes, novos achados e efeitos da intervenção. | abcde |
+| rv-prioridades-3 | Avaliação inicial, ABCDE e comunicação clínica | 2: Situação, antecedentes, avaliação e pedido clínico objetivo. | Um passe estruturado com achados e necessidade concreta ajuda a equipe receptora a priorizar ações. | abcde |
 | rv-prioridades-4 | Avaliação inicial, ABCDE e comunicação clínica | 3: Controlar a ameaça vital e continuar avaliação e reavaliação. | Hemorragia potencialmente fatal exige controle oportuno enquanto se mobiliza apoio. ABCDE não deve atrasar intervenções imediatas. | abcde |
-| rv-infancia-1 | Diarreia infantil: avaliação e hidratação | 4: Avaliar urgentemente gravidade e iniciar manejo apropriado de desidratação. | Letargia e incapacidade de beber são sinais de gravidade e exigem avaliação imediata e reposição hídrica conforme protocolo, não conduta exclusivamente domiciliar. | diarrea |
+| rv-infancia-1 | Diarreia infantil: avaliação e hidratação | 4: Avaliar urgentemente a gravidade e iniciar reposição hídrica indicada. | Letargia e incapacidade de beber são sinais de gravidade e exigem avaliação imediata e reposição hídrica conforme protocolo, não conduta exclusivamente domiciliar. | diarrea |
 | rv-infancia-2 | Diarreia infantil: avaliação e hidratação | 2: Solução de reidratação oral na formulação apropriada. | A SRO combina água e eletrólitos em proporções apropriadas para reposição de perdas gastrointestinais. | diarrea |
-| rv-infancia-3 | Diarreia infantil: avaliação e hidratação | 1: Manter aleitamento e alimentação apropriada à idade, conforme tolerância. | Manter aleitamento e alimentação adequada ajuda a preservar nutrição, ao lado da reidratação e monitorização. | diarrea |
-| rv-infancia-4 | Diarreia infantil: avaliação e hidratação | 3: Água segura, saneamento, higiene de mãos e imunizações indicadas. | A prevenção integra água e saneamento seguros, higiene, educação e imunização pertinente, conforme epidemiologia local. | diarrea |
-| rv-preparacion-1 | Como se preparar para o Revalida | 3: Revalidação de diplomas médicos obtidos em instituições estrangeiras. | O exame subsidia a revalidação de diplomas de medicina obtidos no exterior, processo efetivado por universidades públicas participantes. | revalida |
-| rv-preparacion-2 | Como se preparar para o Revalida | 1: É desempenho naquele simulado, sem garantia de aprovação oficial. | O resultado em banco privado não é nota nem habilitação oficial. A prova e os requisitos seguem critérios da edição. | revalida |
+| rv-infancia-3 | Diarreia infantil: avaliação e hidratação | 1: Manter aleitamento e alimentação apropriada, conforme aceitação. | Manter aleitamento e alimentação adequada ajuda a preservar nutrição, ao lado da reidratação e monitorização. | diarrea |
+| rv-infancia-4 | Diarreia infantil: avaliação e hidratação | 3: Saneamento, água tratada, higiene e imunização indicada. | A prevenção integra água e saneamento seguros, higiene, educação e imunização pertinente, conforme epidemiologia local. | diarrea |
+| rv-preparacion-1 | Como se preparar para o Revalida | 3: Revalidar diplomas médicos obtidos no exterior, por universidade. | O exame subsidia a revalidação de diplomas de medicina obtidos no exterior, processo efetivado por universidades públicas participantes. | revalida |
+| rv-preparacion-2 | Como se preparar para o Revalida | 1: Representa desempenho naquele treino, não aprovação no Revalida. | O resultado em banco privado não é nota nem habilitação oficial. A prova e os requisitos seguem critérios da edição. | revalida |
 | rv-preparacion-3 | Como se preparar para o Revalida | 4: No edital e nos comunicados oficiais do Inep. | O edital e as comunicações oficiais estabelecem requisitos, datas e procedimentos de cada edição. | revalida |
-| rv-preparacion-4 | Como se preparar para o Revalida | 2: Porque habilidades clínicas exigem observação de comunicação, exame e tomada de decisão em | Questões objetivas não demonstram execução clínica nem comunicação. A preparação precisa incluir estações de habilidades simuladas. | revalida |
+| rv-preparacion-4 | Como se preparar para o Revalida | 2: Porque a etapa prática observa comunicação, exame e decisões clínicas. | Questões objetivas não demonstram execução clínica nem comunicação. A preparação precisa incluir estações de habilidades simuladas. | revalida |
 
 ## Limitaciones y riesgos residuales
 
@@ -50,3 +50,7 @@
 - [Ministério da Saúde · SUS](https://www.gov.br/saude/pt-br/acesso-a-informacao/institucional/sus)
 - [Ministério da Saúde · APS](https://www.gov.br/saude/pt-br/composicao/saps/)
 - [OMS · Diarrhoeal disease](https://www.who.int/news-room/fact-sheets/detail/diarrhoeal-disease)
+
+## Segunda rodada de auditoria editorial
+
+Após substituir alternativas excessivamente longas, a heurística «marcar sempre a alternativa mais longa» passou de 12/20 para 5/20; marcar sempre a alternativa mais curta resultou em 2/20. Os valores são avaliações mecânicas de pistas de redação, **não** evidência de qualidade clínica ou desempenho de alunos brasileiros.
