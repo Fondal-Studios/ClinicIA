@@ -102,4 +102,4 @@ rtpp-10-4 | clave 5/5 | 1 distractores evidentemente débiles | Mientras llega l
 
 rtpp-10-5 | clave 1/5 | 4 distractores evidentemente débiles | Al entregar un paciente con sangrado controlado, ¿qué informás?
 
-**Hallazgos:** 47 distractores con pistas lingüísticas evidentes; no se considera un examen robusto hasta corregirlos y volver a ejecutar pruebas. Revisar con instructor los protocolos locales, RCP/DEA, torniquetes y atragantamiento.
+**Hallazgos:** 47 distractores inicialmente detectados fueron reescritos por heurística; el control posterior encontró 9 expresiones todavía marcadas por la misma regla, además de la necesidad de validación clínica humana. Se comprobaron 50 ítems, cinco opciones por ítem, claves en rango y ausencia de opciones idénticas dentro de cada pregunta. Esta revisión no equivale a ejecutar el banco en navegador ni a validar cada distractor con docentes. Revisar con instructor los protocolos locales, RCP/DEA, torniquetes y atragantamiento.
