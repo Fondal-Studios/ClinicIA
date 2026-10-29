@@ -6,7 +6,7 @@ export const revalidaSources={
  edital:{title:'MEC/Inep · Revalida 2026/1 e matriz',url:'https://mecnormas.mec.gov.br/pesquisa/detalhar/9045'},
  sus:{title:'Ministério da Saúde · Princípios do SUS',url:'https://www.gov.br/saude/pt-br/acesso-a-informacao/institucional/sus'},
  aps:{title:'Ministério da Saúde · Atenção Primária',url:'https://www.gov.br/saude/pt-br/composicao/saps/'},
- abcde:{title:'Manual MSD · Avaliação inicial de pacientes críticos',url:'https://www.msdmanuals.com/pt/profissional/medicina-de-cuidados-cr%C3%ADticos/abordagem-do-paciente-criticamente-enfermo/introdu%C3%A7%C3%A3o-%C3%A0-abordagem-do-paciente-criticamente-enfermo-iii'},
+ abcde:{title:'Resuscitation Council UK · Abordagem ABCDE (referência complementar)',url:'https://www.resus.org.uk/library/abcde-approach'},
  diarrea:{title:'OMS · Diarrhoeal disease',url:'https://www.who.int/news-room/fact-sheets/detail/diarrhoeal-disease'}
 };
 const topic=(id,title,area,source,body,rows)=>({
