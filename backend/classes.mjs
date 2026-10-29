@@ -120,6 +120,7 @@ export function createClasses({db,ai}){
  }
  async function handle(u,method,path,b){
   const parts=path.replace('/api/account/classes','').split('/').filter(Boolean),id=parts[0],sub=parts[1];
+  if(id==='public'&&method==='GET')return {classes:(await db.query("SELECT c.id,c.title,c.category,u.username AS author FROM clinic_classes c JOIN clinic_users u ON u.id=c.owner_id WHERE c.status='published' AND c.is_public=true ORDER BY c.updated_at DESC LIMIT 100")).rows};
   if(!id){
    if(method==='GET'&&b.action==='public-list')return {classes:(await db.query("SELECT c.id,c.title,c.category,u.username AS author FROM clinic_classes c JOIN clinic_users u ON u.id=c.owner_id WHERE c.status='published' AND c.is_public=true ORDER BY c.updated_at DESC LIMIT 100")).rows};
    if(method==='POST'&&b.action==='join-public'){const found=(await db.query("SELECT * FROM clinic_classes WHERE id=$1 AND is_public=true AND status='published'",[b.classId])).rows[0];if(!found)fail(404,'Clase pública no encontrada.');if(found.owner_id===u.id)fail(409,'Esta clase ya es tuya.');await db.query("INSERT INTO clinic_class_members(class_id,user_id,role) VALUES($1,$2,'student') ON CONFLICT(class_id,user_id) DO NOTHING",[found.id,u.id]);return studentView(found,u);}
