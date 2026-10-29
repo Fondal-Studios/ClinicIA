@@ -4,3 +4,5 @@
 .guided-step{background:#e4eee5;border:2px solid #17634f;border-radius:18px;padding:22px;margin:22px 0}.guided-step .primary{min-height:54px;width:100%;font-size:18px}.guided-step progress{height:14px;margin:8px 0 18px}
 
 .lesson-guide{background:#eaf3ed;border-left:5px solid #17634f;padding:18px 22px;border-radius:12px;margin:18px 0}.instructor-summary{display:flex;flex-wrap:wrap;gap:12px;padding:18px;background:#e4eee5;border-radius:14px}.instructor-summary>*{padding:8px 12px;background:white;border-radius:8px}
+
+.clinical-visual{margin:18px 0;padding:12px;border:1px solid #b6cbc4;border-radius:14px;background:white}.clinical-visual svg{display:block;width:100%;height:auto}.clinical-visual figcaption{font-size:13px;color:#526a60;margin-top:8px}
