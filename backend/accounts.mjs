@@ -1,3 +1,4 @@
+import {createEditorial,editorialSchema} from './editorial.mjs';
 import {adminRecoverySchema,provisionAdminRecovery,recoverAdmin} from './admin-recovery.mjs';
 import {resolveHospitalIssuer} from './hospital-issuer.mjs';
 import {createCapacitacion,capacitacionSchema} from './capacitacion.mjs';
@@ -50,7 +51,7 @@ function cleanExamResult(e){
  return {bankRevision:revision,id:/^exam-[0-9-]+$/.test(e.id)?e.id.slice(0,100):'exam-0',courseId,templateId:examTemplates.find(t=>t.id===e.templateId)?.id||'',completedAt:e.completedAt,elapsedMs:e.elapsedMs,correct:rows.filter(r=>r.right).length,total:rows.length,omitted:rows.filter(r=>r.omitted).length,rows,areas:[...new Set(rows.map(r=>r.area))].map(area=>({area,total:rows.filter(r=>r.area===area).length,correct:rows.filter(r=>r.area===area&&r.right).length}))};
 }
 export async function createAccounts({db,origin='http://localhost:3000',secure=true,adminName,adminHash}){
- await db.exec(schema+paymentSchema+trainingSchema+classSchema+vaultSchema+capacitacionSchema+materialSchema+adminRecoverySchema);
+ await db.exec(schema+paymentSchema+trainingSchema+classSchema+vaultSchema+capacitacionSchema+materialSchema+adminRecoverySchema+editorialSchema);
  const training=createTraining({db});
 
  const payments=createPayments({db,origin});
@@ -58,6 +59,7 @@ export async function createAccounts({db,origin='http://localhost:3000',secure=t
  const require=createRequire(import.meta.url);
  const materials=createMaterials({db,ai:require('../netlify/lib/course-builder.js'),quota:require('../netlify/lib/quota.js'),ocr:require('../netlify/lib/ocr.js')});
  const classes=createClasses({db,ai:createRequire(import.meta.url)('../netlify/lib/class-builder.js')});
+ const editorial=createEditorial({db});
  if(adminName&&adminHash){await db.query(`INSERT INTO clinic_users(id,username,username_key,password_hash,recovery_hash,role,must_change) VALUES($1,$2,$3,$4,$5,'admin',true) ON CONFLICT(username_key) DO NOTHING`,[randomUUID(),adminName,adminName.toLowerCase(),adminHash,digest(randomBytes(32).toString('hex'))]);}
  if(await provisionAdminRecovery(db))console.info('administrator_recovery_ready');
  const hospitalIssuerId=await resolveHospitalIssuer(db);
@@ -134,6 +136,9 @@ export async function createAccounts({db,origin='http://localhost:3000',secure=t
    if(path==='/api/account/capacitacion'){await limit('capacitacion:'+req.method+u.id,1800,3600);return send(200,await capacitacion.handle(u,req.method,body));}
    if(path==='/api/account/training'){await limit('training:'+req.method+u.id,60,3600);return send(200,await training.assessment(u,req.method,body));}
    if(path==='/api/account/classes'||path.startsWith('/api/account/classes/')){await limit('classes:'+req.method+u.id,req.method==='GET'?600:240,3600);if(req.method==='POST'&&(body.action==='start'))await limit('class-attempt:'+u.id,60,86400);if(req.method==='POST'&&body.action==='create')await limit('class-create:'+u.id,20,86400);return send(200,await classes.handle(u,req.method,path,body));}
+   if(path==='/api/account/instructor-credentials'&&['GET','POST'].includes(req.method))return send(200,await editorial.credentials(u,req.method,body));
+   if(path==='/api/account/library-submit'&&req.method==='POST')return send(200,await editorial.submit(u,body));
+   if(path==='/api/account/medical-library'&&req.method==='GET')return send(200,await editorial.catalog(url.searchParams.get('q')||''));
    if(path==='/api/account/modes'&&req.method==='POST'){
     await limit('modes:'+u.id,20,3600);if(!['teacher','institution'].includes(body.mode)||body.accepted!==true)fail(400,'Modo inválido o falta aceptar las responsabilidades.');
     const next=[...new Set([...modesOf(u).filter(m=>m!=='student'&&m!=='admin'),body.mode])].join(',')||'student';
@@ -177,6 +182,7 @@ export async function createAccounts({db,origin='http://localhost:3000',secure=t
    if(path==='/api/account/delete'&&req.method==='POST'){await limit('delete:'+u.id,5,900);if(u.role==='admin')fail(403,'La cuenta administradora no se elimina desde aquí.');if(typeof body.password!=='string'||!await verifyPassword(body.password,u.password_hash))fail(401,'Contraseña incorrecta.');await db.query("DELETE FROM clinic_rooms WHERE data->'members' @> $1::jsonb",[JSON.stringify([{id:u.id}])]);await db.query('DELETE FROM clinic_users WHERE id=$1',[u.id]);res.setHeader('Set-Cookie',`clinic_session=; Path=/; HttpOnly; SameSite=Strict; Max-Age=0${secure?'; Secure':''}`);return send(200,{ok:true});}
    if(path.startsWith('/api/admin')){
     if(u.role!=='admin')fail(403,'Acceso exclusivo para administración.');
+    if(path==='/api/admin/editorial'&&['GET','POST'].includes(req.method))return send(200,await editorial.admin(u,req.method,body));
     if(path==='/api/admin/payments/reconcile'&&req.method==='POST'){await limit('reconcile:'+u.id,6,60);return send(200,await payments.reconcilePending());}
     if(path==='/api/admin/training'&&req.method==='GET')return send(200,await training.roster());
     if(path==='/api/admin/telemetry'&&req.method==='GET'){
