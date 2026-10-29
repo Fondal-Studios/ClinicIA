@@ -30,8 +30,8 @@ export function createEditorial({db}){
   return {submissionId,status:'pending'};
  }
  async function catalog(query=''){
-  const rows=(await db.query(`SELECT s.id,s.class_id,c.title,s.specialty,s.module,u.username AS author,s.reviewed_at FROM clinic_library_submissions s JOIN clinic_classes c ON c.id=s.class_id JOIN clinic_users u ON u.id=s.submitted_by WHERE s.status='approved' AND s.content_digest=$1 AND ($2='' OR c.title ILIKE '%'||$2||'%' OR s.specialty ILIKE '%'||$2||'%') ORDER BY s.reviewed_at DESC LIMIT 100`,['',str(query,100)])).rows;
-  return {classes:rows};
+  const rows=(await db.query(`SELECT s.id,s.class_id,c.title,s.specialty,s.module,u.username AS author,s.reviewed_at,s.content_digest,c.content FROM clinic_library_submissions s JOIN clinic_classes c ON c.id=s.class_id JOIN clinic_users u ON u.id=s.submitted_by WHERE s.status='approved' AND ($1='' OR c.title ILIKE '%'||$1||'%' OR s.specialty ILIKE '%'||$1||'%') ORDER BY s.reviewed_at DESC LIMIT 100`,[str(query,100)])).rows;
+  return {classes:rows.filter(r=>validateClass(r.content).digest===r.content_digest).map(({content,content_digest,...r})=>r)};
  }
  async function admin(u,method,b={},query={}){
   if(u.role!=='admin')fail(403,'Acceso exclusivo para administración.');
