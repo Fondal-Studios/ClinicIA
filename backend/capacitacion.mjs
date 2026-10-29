@@ -4,6 +4,7 @@ import {trainingCourses,trainingLessons} from '../public/learn/content/capacitac
 export {trainingCourses};
 export const capacitacionSchema=`
 CREATE TABLE IF NOT EXISTS clinic_cohorts(id text PRIMARY KEY,owner_id text NOT NULL REFERENCES clinic_users(id),title text NOT NULL,created_at timestamptz NOT NULL DEFAULT now());
+CREATE TABLE IF NOT EXISTS clinic_cohort_instructors(cohort_id text NOT NULL REFERENCES clinic_cohorts(id) ON DELETE CASCADE,user_id text NOT NULL REFERENCES clinic_users(id) ON DELETE CASCADE,added_by text NOT NULL REFERENCES clinic_users(id),PRIMARY KEY(cohort_id,user_id));
 CREATE TABLE IF NOT EXISTS clinic_cohort_members(cohort_id text NOT NULL REFERENCES clinic_cohorts(id),user_id text NOT NULL REFERENCES clinic_users(id) ON DELETE CASCADE,status text NOT NULL DEFAULT 'pending',PRIMARY KEY(cohort_id,user_id));
 CREATE TABLE IF NOT EXISTS clinic_course_reads(user_id text NOT NULL REFERENCES clinic_users(id) ON DELETE CASCADE,lesson_id text NOT NULL,PRIMARY KEY(user_id,lesson_id));
 CREATE TABLE IF NOT EXISTS clinic_course_attempts(id text PRIMARY KEY,user_id text NOT NULL REFERENCES clinic_users(id) ON DELETE CASCADE,course_id text NOT NULL,items jsonb NOT NULL,answers jsonb NOT NULL DEFAULT '{}',version integer NOT NULL DEFAULT 0,result jsonb,created_at timestamptz NOT NULL DEFAULT now(),submitted_at timestamptz);
@@ -17,7 +18,8 @@ export function createCapacitacion({db,issuerId=process.env.HOSPITAL_ISSUER_USER
  const course=id=>{const c=trainingCourses.find(c=>c.id===id);if(!c)fail(400,'Curso inválido.');return c;};
  const canTeach=u=>u.role==='admin'||String(u.modes).split(',').includes('teacher');
  const audit=(u,action,data)=>db.query('INSERT INTO clinic_training_audit(id,actor_id,action,data) VALUES($1,$2,$3,$4)',[randomUUID(),u.id,action,JSON.stringify(data)]);
- async function cohort(u,id,owner=false){const g=(await db.query('SELECT * FROM clinic_cohorts WHERE id=$1',[id])).rows[0];if(!g)fail(404,'Grupo no encontrado.');if(owner&&g.owner_id!==u.id)fail(403,'Solo el instructor de este grupo puede validar.');return g;}
+ async function canSupervise(u,g){if(g.owner_id===u.id)return true;if(!canTeach(u))return false;return !!(await db.query('SELECT 1 FROM clinic_cohort_instructors WHERE cohort_id=$1 AND user_id=$2',[g.id,u.id])).rows.length;}
+ async function cohort(u,id,owner=false){const g=(await db.query('SELECT * FROM clinic_cohorts WHERE id=$1',[id])).rows[0];if(!g)fail(404,'Grupo no encontrado.');if(owner&&!await canSupervise(u,g))fail(403,'No tenés permisos para supervisar este grupo.');return g;}
  async function member(id,userId){const m=(await db.query("SELECT * FROM clinic_cohort_members WHERE cohort_id=$1 AND user_id=$2 AND status='accepted'",[id,userId])).rows[0];if(!m)fail(403,'La solicitud del alumno debe estar aceptada.');}
  async function state(u){
   return {user:{id:u.id,username:u.username,role:u.role||'student',canTeach:canTeach(u),canIssue:!!issuerId&&u.id===issuerId&&u.role==='admin'},issuerConfigured:!!issuerId,
@@ -32,11 +34,12 @@ export function createCapacitacion({db,issuerId=process.env.HOSPITAL_ISSUER_USER
   const a=b.action;
   if(a==='read'){if(!trainingLessons.some(l=>l.id===b.lessonId))fail(400,'Tema inválido.');await db.query('INSERT INTO clinic_course_reads VALUES($1,$2) ON CONFLICT DO NOTHING',[u.id,b.lessonId]);return {saved:true};}
   if(a==='create-group'){if(!canTeach(u))fail(403,'Activá el modo instructor para crear un grupo.');const title=txt(b.title,120);if(title.length<3)fail(400,'Escribí un nombre para el grupo.');const id=randomUUID();await db.query('INSERT INTO clinic_cohorts(id,owner_id,title) VALUES($1,$2,$3)',[id,u.id,title]);return {id};}
+  if(a==='add-instructor'){const g=await cohort(u,b.groupId);if(g.owner_id!==u.id)fail(403,'Solo el responsable puede invitar instructores.');const target=(await db.query('SELECT id,role,modes FROM clinic_users WHERE lower(username)=$1',[String(b.username||'').trim().toLowerCase()])).rows[0];if(!target||!canTeach(target))fail(400,'El usuario debe tener modo instructor activo.');await db.query('INSERT INTO clinic_cohort_instructors(cohort_id,user_id,added_by) VALUES($1,$2,$3) ON CONFLICT DO NOTHING',[g.id,target.id,u.id]);await audit(u,a,{groupId:g.id,userId:target.id});return {added:true};}
   if(a==='join'){await cohort(u,b.groupId);await db.query('INSERT INTO clinic_cohort_members(cohort_id,user_id) VALUES($1,$2) ON CONFLICT DO NOTHING',[b.groupId,u.id]);return {requested:true};}
   if(a==='accept'){await cohort(u,b.groupId,true);const r=await db.query("UPDATE clinic_cohort_members SET status='accepted' WHERE cohort_id=$1 AND user_id=$2 RETURNING user_id",[b.groupId,b.userId]);if(!r.rows.length)fail(404,'Solicitud no encontrada.');await audit(u,a,{groupId:b.groupId,userId:b.userId});return {accepted:true};}
   if(a==='roster'){
-   const g=await cohort(u,b.groupId);if(g.owner_id!==u.id&&u.id!==issuerId)fail(403,'No tenés acceso a este grupo.');
-   return {members:(await db.query(`SELECT m.user_id,m.status,u.username,(SELECT count(*) FROM clinic_course_reads r WHERE r.user_id=u.id AND r.lesson_id LIKE 'rtpp-%') AS read_count,(SELECT jsonb_agg(jsonb_build_object('courseId',a.course_id,'result',a.result)) FROM clinic_course_attempts a WHERE a.user_id=u.id AND a.result IS NOT NULL) AS attempts FROM clinic_cohort_members m JOIN clinic_users u ON u.id=m.user_id WHERE m.cohort_id=$1 ORDER BY u.username`,[g.id])).rows,practices:(await db.query('SELECT * FROM clinic_practice_reviews WHERE cohort_id=$1',[g.id])).rows};
+   const g=await cohort(u,b.groupId);if(!await canSupervise(u,g))fail(403,'No tenés acceso a este grupo.');
+   return {instructors:(await db.query('SELECT u.username FROM clinic_cohort_instructors ci JOIN clinic_users u ON u.id=ci.user_id WHERE ci.cohort_id=$1 ORDER BY u.username',[g.id])).rows,members:(await db.query(`SELECT m.user_id,m.status,u.username,(SELECT count(*) FROM clinic_course_reads r WHERE r.user_id=u.id) AS read_count,(SELECT jsonb_agg(jsonb_build_object('courseId',a.course_id,'result',a.result)) FROM clinic_course_attempts a WHERE a.user_id=u.id AND a.result IS NOT NULL) AS attempts FROM clinic_cohort_members m JOIN clinic_users u ON u.id=m.user_id WHERE m.cohort_id=$1 ORDER BY u.username`,[g.id])).rows,practices:(await db.query('SELECT * FROM clinic_practice_reviews WHERE cohort_id=$1',[g.id])).rows};
   }
   if(a==='practice'||a==='review'){
    await cohort(u,b.groupId,a==='review');const target=a==='review'?b.userId:u.id;await member(b.groupId,target);
