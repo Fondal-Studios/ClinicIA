@@ -41,7 +41,11 @@ export function createCapacitacion({db,issuerId=process.env.HOSPITAL_ISSUER_USER
   if(a==='accept'){await cohort(u,b.groupId,true);const r=await db.query("UPDATE clinic_cohort_members SET status='accepted' WHERE cohort_id=$1 AND user_id=$2 RETURNING user_id",[b.groupId,b.userId]);if(!r.rows.length)fail(404,'Solicitud no encontrada.');await audit(u,a,{groupId:b.groupId,userId:b.userId});return {accepted:true};}
   if(a==='roster'){
    const g=await cohort(u,b.groupId);if(!await canSupervise(u,g))fail(403,'No tenés acceso a este grupo.');
-   return {joinCode:g.owner_id===u.id?g.join_code:null,instructors:(await db.query('SELECT u.username FROM clinic_cohort_instructors ci JOIN clinic_users u ON u.id=ci.user_id WHERE ci.cohort_id=$1 ORDER BY u.username',[g.id])).rows,members:(await db.query(`SELECT m.user_id,m.status,u.username,(SELECT count(*) FROM clinic_course_reads r WHERE r.user_id=u.id) AS read_count,(SELECT jsonb_agg(jsonb_build_object('courseId',a.course_id,'result',a.result)) FROM clinic_course_attempts a WHERE a.user_id=u.id AND a.result IS NOT NULL) AS attempts FROM clinic_cohort_members m JOIN clinic_users u ON u.id=m.user_id WHERE m.cohort_id=$1 ORDER BY u.username`,[g.id])).rows,practices:(await db.query('SELECT * FROM clinic_practice_reviews WHERE cohort_id=$1',[g.id])).rows};
+   const members=(await db.query(`SELECT m.user_id,m.status,u.username,u.last_seen,
+(SELECT jsonb_agg(jsonb_build_object('lessonId',r.lesson_id)) FROM clinic_course_reads r WHERE r.user_id=u.id) AS reads,
+(SELECT jsonb_agg(jsonb_build_object('courseId',a.course_id,'result',a.result,'submittedAt',a.submitted_at)) FROM clinic_course_attempts a WHERE a.user_id=u.id AND a.result IS NOT NULL) AS attempts
+FROM clinic_cohort_members m JOIN clinic_users u ON u.id=m.user_id WHERE m.cohort_id=$1 ORDER BY u.username`,[g.id])).rows;
+   return {joinCode:g.owner_id===u.id?g.join_code:null,instructors:(await db.query('SELECT u.username FROM clinic_cohort_instructors ci JOIN clinic_users u ON u.id=ci.user_id WHERE ci.cohort_id=$1 ORDER BY u.username',[g.id])).rows,members:members.map(m=>({...m,read_count:(m.reads||[]).length})),practices:(await db.query('SELECT * FROM clinic_practice_reviews WHERE cohort_id=$1',[g.id])).rows};
   }
   if(a==='practice'||a==='review'){
    await cohort(u,b.groupId,a==='review');const target=a==='review'?b.userId:u.id;await member(b.groupId,target);
