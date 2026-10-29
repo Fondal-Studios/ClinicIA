@@ -106,6 +106,9 @@ export const policeCourse = {
       ],
       "simulation": {
         "required": false,
+        "radioPractice": true,
+        "radioSeconds": 45,
+        "radioInstructions": "En la simulación, prepará un aviso por radio de hasta 45 segundos: identificación del móvil, ubicación y acceso, riesgos, cantidad de víctimas, mecanismo, conciencia y respiración, hemorragia grave, medidas realizadas y recursos solicitados. Confirmá recepción. El límite sirve para practicar claridad; nunca omitas datos críticos por el reloj.",
         "scenario": "Choque en una curva con tránsito activo. Un integrante identifica riesgos, otro representa al testigo y otro recibe el aviso al hospital.",
         "roles": [
           "Respondiente: evalúa y verbaliza las acciones.",
@@ -117,7 +120,7 @@ export const policeCourse = {
           "Reconoce riesgos y pide ayuda.",
           "Identifica la prioridad del módulo.",
           "Evita maniobras peligrosas.",
-          "Comunica hallazgos, intervención y evolución."
+          "Comunica en hasta 45 segundos ubicación, riesgos, víctimas, estado, medidas y solicitud; confirma recepción sin inventar datos."
         ],
         "validation": "La actividad no se acredita por leerla. Solicitá validación desde Mis prácticas en la capacitación; tu instructor registra la observación."
       }
