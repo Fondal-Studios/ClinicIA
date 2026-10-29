@@ -15,12 +15,12 @@ const tracks=[
  ['rot-emergencias','Emergencias',/emergen|shock|paro|rcp|reanim|acv|trauma|triage|dolor torácico|hemorrag|vía aérea/i]
 ];
 function build(id,title,pattern){
- const relevant=pool.flatMap(c=>c.lessons.map(l=>({c,l}))).filter(({c,l})=>pattern.test([c.title,l.title,l.area,l.body].join(' ')));
+ const relevant=pool.flatMap(c=>c.lessons.map(l=>({c,l}))).filter(({c,l})=>pattern.test([l.title,l.area].join(' ')));
  const selected=[];const used=new Set();
- for(const {c,l} of relevant)for(const q of l.questions||[]){
+ for(const {c,l} of relevant){if(selected.length>=50)break;for(const q of l.questions||[]){
   const key=String(q.prompt||'').trim().toLowerCase();if(!key||used.has(key)||!Array.isArray(q.options)||q.options.length<3||!Number.isInteger(q.answer)||q.answer>=q.options.length||!q.why)continue;
   used.add(key);selected.push({q,l});if(selected.length===50)break;
- }
+ }}
  // Do not pad a course with fabricated or duplicated questions.
  const lessons=[0,1,2,3,4].map(i=>{const rows=selected.slice(i*10,(i+1)*10);const base=rows[0]?.l;return {id:id+'-unidad-'+(i+1),title:base?.title||'Unidad '+(i+1),area:title,source:base?.source||'euportal',minutes:20,objective:'Resolver situaciones clínicas frecuentes con supervisión.',body:base?.body||'Material en revisión docente.',simulation:{required:false,scenario:'Paciente simulado: realizar evaluación inicial, formular hipótesis, comunicar riesgos y justificar la derivación o conducta supervisada.',roles:['Rotante','Paciente simulado','Observador'],rotation:'Intercambiar roles y explicar decisiones.',checklist:['Reconoce signos de alarma','Prioriza seguridad','Explica conducta','Comunica con claridad']},questions:rows.map(({q},j)=>({...q,id:id+'-q-'+(i*10+j+1),options:[...q.options],source:q.source||base?.source}))};});
  return {id,title,category:'rotaciones',summary:'Cinco unidades, casos guiados y banco formativo curado de ClinicIA.',scope:'Práctica supervisada; no reemplaza formación ni evaluación docente. Preguntas adaptadas del banco original de ClinicIA, pendientes de revisión editorial.',reviewStatus:'Pendiente de validación docente',rotation:true,examMinutes:60,lessons};
