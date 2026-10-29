@@ -43,7 +43,7 @@ export function createCapacitacion({db,issuerId=process.env.HOSPITAL_ISSUER_USER
   }
   if(a==='practice'||a==='review'){
    await cohort(u,b.groupId,a==='review');const target=a==='review'?b.userId:u.id;await member(b.groupId,target);
-   const l=policeCourse.lessons.find(l=>l.id===b.lessonId);if(!l)fail(400,'Práctica inválida.');
+   const l=trainingLessons.find(l=>l.id===b.lessonId);if(!l)fail(400,'Práctica inválida.');
    if(a==='practice'){
     await db.query("INSERT INTO clinic_practice_reviews(cohort_id,user_id,lesson_id,status) VALUES($1,$2,$3,'pending') ON CONFLICT(cohort_id,user_id,lesson_id) DO UPDATE SET status='pending',updated_at=now() WHERE clinic_practice_reviews.status!='approved'",[b.groupId,target,l.id]);return {pending:true};
    }
