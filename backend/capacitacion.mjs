@@ -23,7 +23,7 @@ export function createCapacitacion({db,issuerId=process.env.HOSPITAL_ISSUER_USER
  async function member(id,userId){const m=(await db.query("SELECT * FROM clinic_cohort_members WHERE cohort_id=$1 AND user_id=$2 AND status='accepted'",[id,userId])).rows[0];if(!m)fail(403,'La solicitud del alumno debe estar aceptada.');}
  async function state(u){
   return {user:{id:u.id,username:u.username,role:u.role||'student',canTeach:canTeach(u),canIssue:!!issuerId&&u.id===issuerId&&u.role==='admin'},issuerConfigured:!!issuerId,
-   groups:(await db.query('SELECT g.id,g.title,g.owner_id,u.username AS instructor,m.status FROM clinic_cohorts g JOIN clinic_users u ON u.id=g.owner_id LEFT JOIN clinic_cohort_members m ON m.cohort_id=g.id AND m.user_id=$1 ORDER BY g.created_at DESC',[u.id])).rows,
+   groups:(await db.query('SELECT g.id,g.title,g.owner_id,u.username AS instructor,m.status,EXISTS(SELECT 1 FROM clinic_cohort_instructors ci WHERE ci.cohort_id=g.id AND ci.user_id=$1) AS \"isInstructor\" FROM clinic_cohorts g JOIN clinic_users u ON u.id=g.owner_id LEFT JOIN clinic_cohort_members m ON m.cohort_id=g.id AND m.user_id=$1 ORDER BY g.created_at DESC',[u.id])).rows,
    read:(await db.query('SELECT lesson_id FROM clinic_course_reads WHERE user_id=$1',[u.id])).rows.map(x=>x.lesson_id),
    attempts:(await db.query('SELECT id,course_id,result,created_at,submitted_at FROM clinic_course_attempts WHERE user_id=$1 ORDER BY created_at DESC',[u.id])).rows,
    practices:(await db.query('SELECT * FROM clinic_practice_reviews WHERE user_id=$1',[u.id])).rows,
