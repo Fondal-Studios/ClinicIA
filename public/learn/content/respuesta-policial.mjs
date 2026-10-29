@@ -36,7 +36,7 @@ export const policeCourse = {
             "Mover el cable con una rama",
             "Mantener distancia y pedir personal competente",
             "Entrar si la víctima habla",
-            "Rociar agua para enfriar"
+            "Acercarse hasta el vehículo antes de informar los riesgos"
           ],
           "answer": 2,
           "why": "La seguridad eléctrica requiere personal competente; los guantes comunes no aíslan.",
@@ -47,11 +47,11 @@ export const policeCourse = {
           "id": "rtpp-1-2",
           "prompt": "¿Qué dato permite enviar ayuda al lugar correcto?",
           "options": [
-            "Solo la edad aproximada",
-            "Solo decir accidente",
-            "Solo el nombre del agente",
+            "Acercarse hasta el vehículo antes de informar los riesgos",
+            "Transmitir una referencia aproximada sin confirmar el acceso",
+            "Priorizar la identificación de los involucrados antes del pedido de apoyo",
             "Ubicación y acceso precisos",
-            "Solo el diagnóstico supuesto"
+            "Mantener la primera evaluación aunque cambie el entorno"
           ],
           "answer": 3,
           "why": "El equipo necesita localizar y acceder a la escena.",
@@ -62,7 +62,7 @@ export const policeCourse = {
           "id": "rtpp-1-3",
           "prompt": "Hay varias víctimas. ¿Qué informás temprano?",
           "options": [
-            "Solo la víctima que grita",
+            "Acercarse hasta el vehículo antes de informar los riesgos",
             "Una historia completa antes de avisar",
             "Únicamente las matrículas",
             "Que todas tienen politrauma",
@@ -81,7 +81,7 @@ export const policeCourse = {
             "Limpiarte las manos después como única medida",
             "Usar la misma gasa para todos",
             "Tocar la herida para medir profundidad",
-            "Esperar a saber el grupo sanguíneo"
+            "Acercarse hasta el vehículo antes de informar los riesgos"
           ],
           "answer": 0,
           "why": "Las barreras reducen exposición; evitá contacto desprotegido.",
@@ -150,10 +150,10 @@ export const policeCourse = {
           "id": "rtpp-2-2",
           "prompt": "¿Qué valorás en B?",
           "options": [
-            "Solo presión arterial",
-            "Solo sangrado de la pierna",
-            "Solo memoria",
-            "Solo temperatura",
+            "Completar primero la valoración neurológica antes de intervenir",
+            "Priorizar la toma de signos vitales antes de controlar el sangrado",
+            "Considerar suficiente una evaluación inicial sin repetirla",
+            "Mantener al paciente descubierto para vigilar todas las lesiones",
             "Respiración y su dificultad"
           ],
           "answer": 4,
@@ -168,7 +168,7 @@ export const policeCourse = {
             "De inmediato junto con activación de ayuda",
             "Después de la historia clínica",
             "Después de medir presión",
-            "Solo al terminar E",
+            "Completar primero la valoración neurológica antes de intervenir",
             "Cuando llegue el resultado de laboratorio"
           ],
           "answer": 0,
@@ -184,7 +184,7 @@ export const policeCourse = {
             "Repetir evaluación inicial y actualizar el aviso",
             "Completar primero el formulario",
             "Asumir que está durmiendo",
-            "Esperar al final del traslado"
+            "Completar primero la valoración neurológica antes de intervenir"
           ],
           "answer": 1,
           "why": "La evaluación es dinámica.",
@@ -238,9 +238,9 @@ export const policeCourse = {
           "id": "rtpp-3-1",
           "prompt": "Adulto no responde y jadea de forma aislada. ¿Qué sospechás?",
           "options": [
-            "Sueño normal",
+            "Esperar a distinguir clínicamente la causa antes de activar emergencias",
             "Respiración normal garantizada",
-            "Solo ansiedad",
+            "Interpretar los jadeos aislados como respiración suficiente",
             "ACV descartado y sin urgencia",
             "Paro cardíaco"
           ],
@@ -254,10 +254,10 @@ export const policeCourse = {
           "prompt": "En una emergencia real reconocés un paro. ¿Qué corresponde?",
           "options": [
             "Activar ayuda e iniciar RCP, solicitando DEA",
-            "Esperar una presión arterial",
+            "Esperar a distinguir clínicamente la causa antes de activar emergencias",
             "Completar antecedentes antes de actuar",
-            "Dar agua para despertarlo",
-            "Esperar a que deje de jadear"
+            "Interpretar los jadeos aislados como respiración suficiente",
+            "Continuar contacto físico mientras el DEA analiza el ritmo"
           ],
           "answer": 0,
           "why": "La respuesta debe empezar inmediatamente.",
@@ -272,7 +272,7 @@ export const policeCourse = {
             "Evitar tocar al paciente siguiendo las indicaciones",
             "Continuar tocando el tórax",
             "Retirar todos los parches",
-            "Tapar el altavoz"
+            "Esperar a distinguir clínicamente la causa antes de activar emergencias"
           ],
           "answer": 1,
           "why": "El equipo sigue las indicaciones y evita contacto durante análisis y descarga.",
@@ -344,7 +344,7 @@ export const policeCourse = {
             "Presión directa con protección",
             "Lavar durante varios minutos antes de comprimir",
             "Dar bebida azucarada",
-            "Esperar un tensiómetro",
+            "Retirar la presión cada minuto para verificar la herida",
             "Retirar repetidamente coágulos"
           ],
           "answer": 0,
@@ -358,9 +358,9 @@ export const policeCourse = {
           "options": [
             "Torniquete en el cuello",
             "Torniquete apropiado",
-            "Dar agua",
+            "Retirar la presión cada minuto para verificar la herida",
             "Aflojar la presión para observar",
-            "Hacer caminar al paciente"
+            "Aplicar torniquete antes de valorar si el sangrado es de extremidad"
           ],
           "answer": 1,
           "why": "El torniquete corresponde a hemorragia grave de extremidad cuando está indicado.",
@@ -371,10 +371,10 @@ export const policeCourse = {
           "id": "rtpp-4-3",
           "prompt": "Torniquete eficaz colocado. ¿Qué comunicás?",
           "options": [
-            "Solo el color del dispositivo",
-            "Solo el nombre del fabricante",
+            "Retirar la presión cada minuto para verificar la herida",
+            "Aplicar torniquete antes de valorar si el sangrado es de extremidad",
             "Hora de colocación y respuesta",
-            "Nada si el sangrado paró",
+            "Omitir registrar la hora si se controla la hemorragia",
             "Que debe aflojarse cada cinco minutos"
           ],
           "answer": 2,
@@ -390,7 +390,7 @@ export const policeCourse = {
             "Dar el alta por estar despierto",
             "Atribuirlo siempre a miedo",
             "Sospechar shock y pedir asistencia urgente",
-            "Esperar una caída completa"
+            "Retirar la presión cada minuto para verificar la herida"
           ],
           "answer": 3,
           "why": "No se necesita una cifra de presión para reconocer deterioro.",
@@ -460,7 +460,7 @@ export const policeCourse = {
           "prompt": "Sospecha cervical y vía aérea comprometida. ¿Qué prioridad rige?",
           "options": [
             "Dejar la obstrucción para no mover",
-            "Esperar radiografías",
+            "Comprobar movilidad cervical activa antes de pedir ayuda",
             "Atender la vía aérea minimizando movimientos",
             "Pedir que camine",
             "Atender primero una herida pequeña"
@@ -609,9 +609,9 @@ export const policeCourse = {
           "options": [
             "Tratar solo el dolor del brazo",
             "Aviso urgente y vigilancia respiratoria",
-            "Esperar a que pueda caminar",
+            "Alinear la deformidad para facilitar el transporte sin evaluación",
             "Hacer una punción sin formación",
-            "Dar comida para recuperar fuerzas"
+            "Retirar el objeto incrustado antes de cubrir la herida"
           ],
           "answer": 1,
           "why": "El deterioro respiratorio es una amenaza vital.",
@@ -665,10 +665,10 @@ export const policeCourse = {
           "id": "rtpp-7-2",
           "prompt": "¿Qué tiempo es clave transmitir ante posible ACV?",
           "options": [
-            "Solo hora de llegada policial",
-            "Solo hora de nacimiento",
-            "Solo duración del turno",
-            "Solo hora de la próxima comida",
+            "Esperar confirmación diagnóstica antes de activar emergencias",
+            "Tomar como inicio de síntomas la hora de llegada del móvil",
+            "Considerar que hablar descarta una emergencia cardiovascular",
+            "Ofrecer líquidos para evaluar la capacidad de deglución",
             "Última vez que se lo vio bien"
           ],
           "answer": 4,
@@ -683,7 +683,7 @@ export const policeCourse = {
             "Activar asistencia y vigilar cambios",
             "Comprimir el tórax por el dolor",
             "Hacerlo correr para probar",
-            "Esperar a confirmar infarto",
+            "Esperar confirmación diagnóstica antes de activar emergencias",
             "Trasladarlo sin comunicar nada"
           ],
           "answer": 0,
@@ -771,7 +771,7 @@ export const policeCourse = {
             "Proteger de golpes y observar duración",
             "Introducir una cuchara en la boca",
             "Sujetar extremidades con fuerza",
-            "Dar agua durante la crisis",
+            "Atribuir la confusión al consumo referido sin evaluar otras causas",
             "Sentarla a la fuerza"
           ],
           "answer": 0,
@@ -785,7 +785,7 @@ export const policeCourse = {
           "options": [
             "Asumir sueño poscrítico normal",
             "Activar respuesta al paro e iniciar RCP según capacitación",
-            "Esperar diez minutos",
+            "Atribuir la confusión al consumo referido sin evaluar otras causas",
             "Dar bebida azucarada",
             "Hacerla caminar"
           ],
@@ -860,7 +860,7 @@ export const policeCourse = {
             "Tos eficaz que no requiere vigilancia",
             "Infarto confirmado",
             "Fractura costal segura",
-            "Sueño normal"
+            "Esperar una evaluación completa antes de activar asistencia"
           ],
           "answer": 0,
           "why": "La imposibilidad de hablar o toser eficazmente indica gravedad.",
@@ -886,7 +886,7 @@ export const policeCourse = {
           "id": "rtpp-9-3",
           "prompt": "Tras exposición a calor aparece confusión intensa. ¿Qué corresponde?",
           "options": [
-            "Esperar a que aparezca fiebre medida",
+            "Esperar una evaluación completa antes de activar asistencia",
             "Hacerlo seguir el operativo",
             "Sospechar golpe de calor, pedir ayuda e iniciar enfriamiento seguro",
             "Dar alcohol",
@@ -901,9 +901,9 @@ export const policeCourse = {
           "id": "rtpp-9-4",
           "prompt": "Ronchas y dificultad respiratoria rápidamente progresiva. ¿Qué hacés?",
           "options": [
-            "Esperar a que desaparezcan las ronchas",
-            "Hacer caminar para ventilar",
-            "Dar comida",
+            "Esperar una evaluación completa antes de activar asistencia",
+            "Explorar la boca a ciegas para intentar retirar el cuerpo extraño",
+            "Postergar el enfriamiento hasta conocer la temperatura exacta",
             "Solicitar asistencia urgente por posible reacción grave",
             "Considerarlo solo un problema de piel"
           ],
@@ -978,7 +978,7 @@ export const policeCourse = {
             "Presión normal por estar despierto",
             "Signos observados y que no se midió presión",
             "Hipotensión confirmada por intuición",
-            "Ningún dato hasta medir"
+            "Enviar primero una interpretación diagnóstica sin datos observables"
           ],
           "answer": 2,
           "why": "Se distingue observación de medición para evitar información falsa.",
@@ -1005,7 +1005,7 @@ export const policeCourse = {
           "prompt": "Mientras llega la ambulancia deja de responder. ¿Qué hacés con el aviso?",
           "options": [
             "Mantener el aviso inicial",
-            "Esperar al arribo para decirlo",
+            "Enviar primero una interpretación diagnóstica sin datos observables",
             "Informar solo al terminar papeles",
             "Borrar el registro anterior",
             "Actualizar de inmediato junto con la respuesta asistencial"
@@ -1020,10 +1020,10 @@ export const policeCourse = {
           "prompt": "Al entregar un paciente con sangrado controlado, ¿qué informás?",
           "options": [
             "Mecanismo, hallazgos, medidas, hora y evolución",
-            "Solo que ya está bien",
-            "Solo número de móvil",
-            "Solo nombre del acompañante",
-            "Solo diagnóstico supuesto"
+            "Enviar primero una interpretación diagnóstica sin datos observables",
+            "Estimar cifras no medidas para completar el reporte",
+            "Dar por recibido el aviso sin confirmación radial",
+            "Esperar el traslado para comunicar un deterioro nuevo"
           ],
           "answer": 0,
           "why": "La entrega debe permitir continuidad del cuidado.",
