@@ -39,7 +39,7 @@ test('teacher creates, edits, publishes; students join by code, take exams grade
   const cur=await api.handle(T,'GET',base,{});const thinSaved=await api.handle(T,'POST',base,{action:'save',version:cur.version,content:thin});
   await assert.rejects(()=>api.handle(T,'POST',base,{action:'publish'}),e=>e.status===409);
   await api.handle(T,'POST',base,{action:'save',version:thinSaved.version,content:saved.content});
-  assert.equal((await api.handle(T,'POST',base,{action:'publish'})).status,'published');
+  const validation=await api.handle(T,'POST',base,{action:'validate'});assert.equal(validation.passed,true);await assert.rejects(()=>api.handle(T,'POST',base,{action:'publish'}),e=>e.status===409);await api.handle(T,'POST',base,{action:'approve-review',confirmClinicalReview:true});assert.equal((await api.handle(T,'POST',base,{action:'publish'})).status,'published');
   // student view hides every answer
   const joined=await api.handle(S1,'POST','/api/account/classes',{action:'join',code:created.studentCode,accepted:true});assert.equal(joined.role,'student');
   const sv=await api.handle(S1,'GET',base,{});assert.equal(sv.content.questions,undefined);assert.equal(sv.content.case.question,undefined);assert.equal(sv.content.questionCount,6);assert.ok(!JSON.stringify(sv).includes('"answer"')&&!JSON.stringify(sv).includes(created.editorCode));
