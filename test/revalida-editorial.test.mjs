@@ -17,7 +17,7 @@ test('Revalida: each item has four unique alternatives, a valid key and explanat
   assert.ok(l.body.includes('Caso guiado:'),l.id);
   assert.ok(l.body.includes('Glossário:'),l.id);
   assert.ok(l.body.includes('Pergunta de reflexão:'),l.id);
-  assert.ok(revalidaSources[l.source]?.url,l.id);
+  assert.ok(revalidaSources[l.source]?.url,l.id);assert.ok(l.simulation?.scenario?.length>50,l.id);assert.equal(l.simulation.roles.length,3,l.id);assert.equal(l.simulation.checklist.length,4,l.id);
   for(const q of l.questions){
    assert.ok(q.prompt.length>=40,q.id);
    assert.equal(q.options.length,4,q.id);
