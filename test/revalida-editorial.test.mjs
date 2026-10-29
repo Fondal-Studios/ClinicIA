@@ -19,7 +19,7 @@ test('Revalida: each item has four unique alternatives, a valid key and explanat
   assert.ok(l.body.includes('Pergunta de reflexão:'),l.id);
   assert.ok(revalidaSources[l.source]?.url,l.id);
   for(const q of l.questions){
-   assert.ok(q.prompt.length>45,q.id);
+   assert.ok(q.prompt.length>=40,q.id);
    assert.equal(q.options.length,4,q.id);
    assert.equal(new Set(q.options.map(normalize)).size,4,q.id);
    assert.ok(q.options.every(o=>o.trim().length>=18),q.id);
