@@ -26,7 +26,7 @@ export const policeCourse = {
       "minutes": 6,
       "source": "police-first-aid",
       "objective": "Reconocer prioridades, actuar dentro del entrenamiento y comunicar hallazgos.",
-      "body": "Reconocer riesgos antes del contacto. Ubicación precisa, accesos, tránsito, electricidad, violencia y cantidad de afectados se comunican temprano. Usar protección personal disponible y pedir recursos; no ingresar en una escena insegura.",
+      "body": "Reconocer riesgos antes del contacto. Ubicación precisa, accesos, tránsito, electricidad, violencia y cantidad de afectados se comunican temprano. Usar protección personal disponible y pedir recursos; no ingresar en una escena insegura.\n\nEscena segura antes de actuar: Observá desde un lugar protegido: tránsito, cables, combustible, armas, humo y personas agresivas. Identificá rutas de acceso y salida. No transformes una víctima en dos por entrar sin control del riesgo.\n\nPara recordar: Aviso inicial: ubicación exacta, acceso, riesgos, número aproximado de víctimas y recursos necesarios.\n\nCaso guiado: Choque en ruta con cables caídos: aislá el área y solicitá apoyo especializado; no toques vehículo ni cables.",
       "questions": [
         {
           "id": "rtpp-1-1",
@@ -129,7 +129,7 @@ export const policeCourse = {
       "minutes": 6,
       "source": "police-first-aid",
       "objective": "Reconocer prioridades, actuar dentro del entrenamiento y comunicar hallazgos.",
-      "body": "Atender hemorragia externa masiva de inmediato. A: vía aérea; B: respiración; C: circulación y sangrado; D: conciencia; E: exposición limitada buscando lesiones y evitando frío. Pedir ayuda temprano y reevaluar ante cambios; no esperar a completar una lista para tratar una amenaza vital.",
+      "body": "Atender hemorragia externa masiva de inmediato. A: vía aérea; B: respiración; C: circulación y sangrado; D: conciencia; E: exposición limitada buscando lesiones y evitando frío. Pedir ayuda temprano y reevaluar ante cambios; no esperar a completar una lista para tratar una amenaza vital.\n\nPrioridad vital y reevaluación: En el primer contacto buscá amenazas inmediatas: hemorragia externa masiva, respuesta, vía aérea y respiración. ABCDE ordena la observación, pero no debe retrasar el control de una amenaza vital evidente.\n\nPara recordar: A: vía aérea; B: respiración; C: circulación; D: estado neurológico; E: exposición limitada y protección térmica.\n\nCaso guiado: Paciente que empeora durante la espera: repetí evaluación y actualizá la comunicación.",
       "questions": [
         {
           "id": "rtpp-2-1",
@@ -232,7 +232,7 @@ export const policeCourse = {
       "minutes": 6,
       "source": "police-bls",
       "objective": "Reconocer prioridades, actuar dentro del entrenamiento y comunicar hallazgos.",
-      "body": "En adulto que no responde y no respira normalmente, incluido jadeo aislado, presumir paro, activar emergencias y pedir DEA. Iniciar RCP según capacitación y seguir las indicaciones del DEA en una emergencia real. En esta clase no hay maniquí: solo se ensaya la secuencia, con gestos sin presión sobre compañeros y DEA apagado. No se evalúan profundidad ni calidad de compresiones.",
+      "body": "En adulto que no responde y no respira normalmente, incluido jadeo aislado, presumir paro, activar emergencias y pedir DEA. Iniciar RCP según capacitación y seguir las indicaciones del DEA en una emergencia real. En esta clase no hay maniquí: solo se ensaya la secuencia, con gestos sin presión sobre compañeros y DEA apagado. No se evalúan profundidad ni calidad de compresiones.\n\nReconocer el paro y pedir DEA: Una persona inconsciente que no respira normalmente, incluso con jadeos aislados, requiere activación inmediata de emergencias, RCP según formación y solicitud de DEA. Seguí las instrucciones del equipo.\n\nPara recordar: Durante análisis y descarga nadie debe tocar al paciente. La simulación de esta clase se realiza sin descargas ni compresiones sobre compañeros.\n\nCaso guiado: Dos policías: uno pide ayuda y DEA, otro inicia la secuencia según entrenamiento.",
       "questions": [
         {
           "id": "rtpp-3-1",
@@ -335,7 +335,7 @@ export const policeCourse = {
       "minutes": 6,
       "source": "police-first-aid",
       "objective": "Reconocer prioridades, actuar dentro del entrenamiento y comunicar hallazgos.",
-      "body": "Reconocer sangrado abundante y deterioro: palidez, sudor frío, debilidad o confusión. Aplicar presión directa; en hemorragia de extremidad amenazante no controlada, usar torniquete apropiado según capacitación. Registrar hora, verificar control y comunicar; no aflojarlo periódicamente. No esperar una cifra de presión para pedir ayuda. En clase usar material simulado: no ocluir la circulación de un compañero.",
+      "body": "Reconocer sangrado abundante y deterioro: palidez, sudor frío, debilidad o confusión. Aplicar presión directa; en hemorragia de extremidad amenazante no controlada, usar torniquete apropiado según capacitación. Registrar hora, verificar control y comunicar; no aflojarlo periódicamente. No esperar una cifra de presión para pedir ayuda. En clase usar material simulado: no ocluir la circulación de un compañero.\n\nHemorragia y shock: El sangrado externo amenazante exige control temprano. Usá protección, presión directa y, cuando esté indicado y estés capacitado, un torniquete apropiado para extremidades. Registrá la hora y no lo aflojes periódicamente.\n\nPara recordar: Palidez, sudor frío, confusión y debilidad son señales de alarma aun sin tensiómetro.\n\nCaso guiado: Herida de pierna con sangrado persistente: comunicar gravedad, medidas y respuesta observada.",
       "questions": [
         {
           "id": "rtpp-4-1",
@@ -438,7 +438,7 @@ export const policeCourse = {
       "minutes": 6,
       "source": "police-first-aid",
       "objective": "Reconocer prioridades, actuar dentro del entrenamiento y comunicar hallazgos.",
-      "body": "En un choque, valorar amenazas vitales antes de lesiones llamativas. Minimizar movimientos y pedir asistencia; no colocar collar rígido automáticamente ni forzar alineación. La vía aérea y respiración tienen prioridad. Mover por peligro inmediato o necesidad vital, con ayuda y coordinación según entrenamiento; no practicar tracciones ni manipulaciones cervicales.",
+      "body": "En un choque, valorar amenazas vitales antes de lesiones llamativas. Minimizar movimientos y pedir asistencia; no colocar collar rígido automáticamente ni forzar alineación. La vía aérea y respiración tienen prioridad. Mover por peligro inmediato o necesidad vital, con ayuda y coordinación según entrenamiento; no practicar tracciones ni manipulaciones cervicales.\n\nTrauma y protección cervical: No fuerces la alineación del cuello ni apliques collar automáticamente. Minimizá movimientos, pedí asistencia y priorizá la respiración. El peligro inmediato puede obligar a una movilización de emergencia coordinada.\n\nPara recordar: No realizar tracciones cervicales sobre compañeros durante las prácticas.\n\nCaso guiado: Choque con dolor cervical y humo creciente: evaluar seguridad, coordinar ayuda y comunicar la decisión.",
       "questions": [
         {
           "id": "rtpp-5-1",
@@ -541,7 +541,7 @@ export const policeCourse = {
       "minutes": 6,
       "source": "police-first-aid",
       "objective": "Reconocer prioridades, actuar dentro del entrenamiento y comunicar hallazgos.",
-      "body": "Sostener una extremidad lesionada en la posición encontrada, sin enderezar deformidades. Proteger heridas y controlar sangrado; no reintroducir huesos ni retirar objetos incrustados. Observar color, sensibilidad y circulación distal antes y después de sostener o colocar una férula conforme a entrenamiento. Dificultad respiratoria tras golpe torácico o deterioro tras golpe en la cabeza requieren aviso urgente.",
+      "body": "Sostener una extremidad lesionada en la posición encontrada, sin enderezar deformidades. Proteger heridas y controlar sangrado; no reintroducir huesos ni retirar objetos incrustados. Observar color, sensibilidad y circulación distal antes y después de sostener o colocar una férula conforme a entrenamiento. Dificultad respiratoria tras golpe torácico o deterioro tras golpe en la cabeza requieren aviso urgente.\n\nFracturas y heridas: Protegé heridas, controlá sangrado y sostené la extremidad en la posición encontrada. No reintroduzcas huesos ni retires objetos incrustados. Observá color, sensibilidad y circulación distal.\n\nPara recordar: Dificultad respiratoria tras trauma torácico o deterioro neurológico tras golpe requieren asistencia urgente.\n\nCaso guiado: Pierna deformada y dedos fríos después de sostenerla: reevaluar y avisar.",
       "questions": [
         {
           "id": "rtpp-6-1",
@@ -644,7 +644,7 @@ export const policeCourse = {
       "minutes": 6,
       "source": "police-first-aid",
       "objective": "Reconocer prioridades, actuar dentro del entrenamiento y comunicar hallazgos.",
-      "body": "Dolor torácico nuevo, dificultad respiratoria o sudoración requieren activación sanitaria; infarto y paro no son lo mismo. Para posible ACV observar cara, brazos y habla, y averiguar cuándo estuvo bien por última vez. Comunicar hallazgos sin exigir diagnóstico definitivo. No dar comida ni bebida si hay alteración de conciencia o dificultad para tragar.",
+      "body": "Dolor torácico nuevo, dificultad respiratoria o sudoración requieren activación sanitaria; infarto y paro no son lo mismo. Para posible ACV observar cara, brazos y habla, y averiguar cuándo estuvo bien por última vez. Comunicar hallazgos sin exigir diagnóstico definitivo. No dar comida ni bebida si hay alteración de conciencia o dificultad para tragar.\n\nReconocer ACV y dolor torácico: Ante asimetría facial, debilidad de brazo o alteración brusca del habla, activá asistencia y comunicá la última hora conocida sin síntomas. Ante dolor torácico con sudoración o dificultad respiratoria, pedí ayuda sin esperar diagnóstico.\n\nPara recordar: No dar comida ni bebida si hay alteración de conciencia o deglución.\n\nCaso guiado: Testigo refiere habla normal hace 20 minutos: registrar ese dato y transmitirlo.",
       "questions": [
         {
           "id": "rtpp-7-1",
@@ -747,7 +747,7 @@ export const policeCourse = {
       "minutes": 6,
       "source": "police-first-aid",
       "objective": "Reconocer prioridades, actuar dentro del entrenamiento y comunicar hallazgos.",
-      "body": "Una persona que parece intoxicada puede tener hipoglucemia, trauma, ACV u otra urgencia. Mantener distancia segura, hablar con calma y solicitar apoyo sanitario. En convulsiones proteger de golpes, observar duración y respiración; no sujetar ni introducir objetos en la boca. En custodia, vigilar conciencia y respiración y comunicar deterioro; este curso no enseña técnicas de reducción.",
+      "body": "Una persona que parece intoxicada puede tener hipoglucemia, trauma, ACV u otra urgencia. Mantener distancia segura, hablar con calma y solicitar apoyo sanitario. En convulsiones proteger de golpes, observar duración y respiración; no sujetar ni introducir objetos en la boca. En custodia, vigilar conciencia y respiración y comunicar deterioro; este curso no enseña técnicas de reducción.\n\nConvulsión y deterioro en custodia: Protegé de golpes durante una convulsión; no sujetes a la persona ni introduzcas objetos en su boca. Observá duración, respiración y recuperación. La agitación o somnolencia no excluyen una urgencia médica.\n\nPara recordar: Mantener distancia segura, desescalar y pedir apoyo sanitario. Vigilar especialmente cambios de conciencia y respiración.\n\nCaso guiado: Persona en custodia pasa de agitada a somnolienta: reevaluar respiración y pedir asistencia urgente.",
       "questions": [
         {
           "id": "rtpp-8-1",
@@ -850,7 +850,7 @@ export const policeCourse = {
       "minutes": 6,
       "source": "police-bls",
       "objective": "Reconocer prioridades, actuar dentro del entrenamiento y comunicar hallazgos.",
-      "body": "Reconocer obstrucción grave cuando no puede hablar, toser eficazmente o respirar; pedir ayuda y aplicar la secuencia vigente según entrenamiento. Si pierde respuesta, iniciar secuencia de RCP; no realizar barrido ciego. Dificultad respiratoria, reacción alérgica grave o confusión tras exposición a calor requieren ayuda urgente. En golpe de calor iniciar enfriamiento seguro mientras llega ayuda.",
+      "body": "Reconocer obstrucción grave cuando no puede hablar, toser eficazmente o respirar; pedir ayuda y aplicar la secuencia vigente según entrenamiento. Si pierde respuesta, iniciar secuencia de RCP; no realizar barrido ciego. Dificultad respiratoria, reacción alérgica grave o confusión tras exposición a calor requieren ayuda urgente. En golpe de calor iniciar enfriamiento seguro mientras llega ayuda.\n\nAtragantamiento, anafilaxia y calor: La incapacidad de hablar o toser eficazmente sugiere obstrucción grave. Pedí ayuda y seguí el algoritmo vigente según capacitación; evitá barridos ciegos. Dificultad respiratoria con ronchas o confusión tras calor requieren respuesta urgente.\n\nPara recordar: No practicar golpes ni compresiones abdominales reales sobre compañeros.\n\nCaso guiado: Persona confusa tras operativo bajo calor: solicitar emergencias e iniciar enfriamiento seguro.",
       "questions": [
         {
           "id": "rtpp-9-1",
@@ -953,7 +953,7 @@ export const policeCourse = {
       "minutes": 6,
       "source": "police-first-aid",
       "objective": "Reconocer prioridades, actuar dentro del entrenamiento y comunicar hallazgos.",
-      "body": "Sustituir “descompensado” por datos observables: ubicación y acceso, riesgos, número de afectados, qué ocurrió y cuándo, respuesta, respiración, sangrado, medidas y evolución. Pedir confirmación de recepción y repetir los datos críticos. Transmitir solo datos necesarios por canales autorizados. En la entrega, comunicar tiempos, cambios y pendientes; no inventar signos vitales no medidos.",
+      "body": "Sustituir “descompensado” por datos observables: ubicación y acceso, riesgos, número de afectados, qué ocurrió y cuándo, respuesta, respiración, sangrado, medidas y evolución. Pedir confirmación de recepción y repetir los datos críticos. Transmitir solo datos necesarios por canales autorizados. En la entrega, comunicar tiempos, cambios y pendientes; no inventar signos vitales no medidos.\n\nEntrega estructurada al hospital: Comunicá datos observables, no diagnósticos inventados: ubicación, mecanismo, hora, respuesta, respiración, sangrado, intervenciones y evolución. Confirmá que el receptor recibió los datos críticos.\n\nPara recordar: Si no mediste un signo vital, decí que no fue medido. Actualizá cualquier deterioro.\n\nCaso guiado: Ensayá un pase radial de 30 a 45 segundos y pedí confirmación de recepción.",
       "questions": [
         {
           "id": "rtpp-10-1",
