@@ -1,6 +1,8 @@
 import {validateClass,contentDigest} from './class-validation.mjs';
 import {randomBytes,randomUUID,randomInt} from 'node:crypto';
 export const classSchema=`CREATE TABLE IF NOT EXISTS clinic_classes(id text PRIMARY KEY,owner_id text NOT NULL REFERENCES clinic_users(id) ON DELETE CASCADE,title text NOT NULL,content jsonb NOT NULL,version integer NOT NULL DEFAULT 1,status text NOT NULL DEFAULT 'draft',pass_pct integer NOT NULL DEFAULT 80,due_at timestamptz,student_code text UNIQUE NOT NULL,editor_code text UNIQUE NOT NULL,created_at timestamptz NOT NULL DEFAULT now(),updated_at timestamptz NOT NULL DEFAULT now());
+ALTER TABLE clinic_classes ADD COLUMN IF NOT EXISTS is_public boolean NOT NULL DEFAULT false;
+ALTER TABLE clinic_classes ADD COLUMN IF NOT EXISTS category text NOT NULL DEFAULT 'medicina-general';
 CREATE TABLE IF NOT EXISTS clinic_class_reviews(class_id text PRIMARY KEY REFERENCES clinic_classes(id) ON DELETE CASCADE,content_digest text NOT NULL,reviewer_id text NOT NULL REFERENCES clinic_users(id),reviewed_at timestamptz NOT NULL DEFAULT now());
 CREATE TABLE IF NOT EXISTS clinic_class_members(class_id text NOT NULL REFERENCES clinic_classes(id) ON DELETE CASCADE,user_id text NOT NULL REFERENCES clinic_users(id) ON DELETE CASCADE,role text NOT NULL DEFAULT 'student',joined_at timestamptz NOT NULL DEFAULT now(),PRIMARY KEY(class_id,user_id));
 CREATE TABLE IF NOT EXISTS clinic_class_attempts(id text PRIMARY KEY,class_id text NOT NULL REFERENCES clinic_classes(id) ON DELETE CASCADE,user_id text NOT NULL REFERENCES clinic_users(id) ON DELETE CASCADE,kind text NOT NULL,items jsonb NOT NULL,result jsonb,created_at timestamptz NOT NULL DEFAULT now(),submitted_at timestamptz);
@@ -45,7 +47,7 @@ export function cleanClass(raw){
 const pool=c=>[...c.questions,...(c.case?[{...c.case.question,prompt:c.case.scenario+' — '+c.case.question.prompt}]:[])];
 const forStudent=c=>({...c,questions:undefined,questionCount:pool(c).length,case:c.case?{scenario:c.case.scenario}:null});
 const readyToPublish=c=>pool(c).length>=3&&c.sections.length+c.slides.length>=1;
-const summary=(r,role,extra={})=>({id:r.id,title:r.title,status:r.status,role,passPct:r.pass_pct,dueAt:r.due_at,version:r.version,updatedAt:r.updated_at,...extra});
+const summary=(r,role,extra={})=>({id:r.id,title:r.title,status:r.status,isPublic:r.is_public,category:r.category,role,passPct:r.pass_pct,dueAt:r.due_at,version:r.version,updatedAt:r.updated_at,...extra});
 const uuid=/^[a-f0-9-]{36}$/;
 
 export function createClasses({db,ai}){
@@ -119,6 +121,8 @@ export function createClasses({db,ai}){
  async function handle(u,method,path,b){
   const parts=path.replace('/api/account/classes','').split('/').filter(Boolean),id=parts[0],sub=parts[1];
   if(!id){
+   if(method==='GET'&&b.action==='public-list')return {classes:(await db.query("SELECT c.id,c.title,c.category,u.username AS author FROM clinic_classes c JOIN clinic_users u ON u.id=c.owner_id WHERE c.status='published' AND c.is_public=true ORDER BY c.updated_at DESC LIMIT 100")).rows};
+   if(method==='POST'&&b.action==='join-public'){const found=(await db.query("SELECT * FROM clinic_classes WHERE id=$1 AND is_public=true AND status='published'",[b.classId])).rows[0];if(!found)fail(404,'Clase pública no encontrada.');if(found.owner_id===u.id)fail(409,'Esta clase ya es tuya.');await db.query("INSERT INTO clinic_class_members(class_id,user_id,role) VALUES($1,$2,'student') ON CONFLICT(class_id,user_id) DO NOTHING",[found.id,u.id]);return studentView(found,u);}
    if(method==='GET')return mine(u);
    if(method==='POST'&&b.action==='create')return create(u,b);
    if(method==='POST'&&b.action==='join')return join(u,b);
@@ -138,6 +142,7 @@ export function createClasses({db,ai}){
   if(a==='publish'){if(!readyToPublish(row.content))fail(409,'Para publicar necesitás al menos 3 preguntas y una sección o diapositiva.');const report=validateClass(row.content);if(!report.passed)fail(409,'La clase no superó los controles automáticos.');const approval=(await db.query('SELECT 1 FROM clinic_class_reviews WHERE class_id=$1 AND content_digest=$2',[row.id,report.digest])).rows[0];if(!approval)fail(409,'La clase requiere aprobación docente para esta versión.');const r=(await db.query("UPDATE clinic_classes SET status='published',updated_at=now() WHERE id=$1 RETURNING *",[row.id])).rows[0];return view(r,'owner');}
   if(a==='validate'){const report=validateClass(row.content);return {...report,approved:!!(await db.query('SELECT 1 FROM clinic_class_reviews WHERE class_id=$1 AND content_digest=$2',[row.id,report.digest])).rows.length};}
   if(a==='approve-review'){const report=validateClass(row.content);if(!report.passed)fail(409,'La clase tiene observaciones. Revisá el informe de validación.');if(b.confirmClinicalReview!==true)fail(400,'Confirmá expresamente la revisión docente de exactitud clínica y bibliografía.');await db.query('INSERT INTO clinic_class_reviews(class_id,content_digest,reviewer_id) VALUES($1,$2,$3) ON CONFLICT(class_id) DO UPDATE SET content_digest=EXCLUDED.content_digest,reviewer_id=EXCLUDED.reviewer_id,reviewed_at=now()',[row.id,report.digest,u.id]);return {approved:true,digest:report.digest};}
+  if(a==='set-visibility'){if(typeof b.isPublic!=='boolean')fail(400,'Elegí si la clase será pública o privada.');const cats=['medicina-general','emergencias','cardiologia','pediatria','trauma','cuidados-criticos','primeros-respondedores','rotaciones','otras-especialidades'];const category=String(b.category||row.category||'medicina-general');if(!cats.includes(category))fail(400,'Categoría inválida.');const r=(await db.query('UPDATE clinic_classes SET is_public=$1,category=$2,updated_at=now() WHERE id=$3 RETURNING *',[b.isPublic,category,row.id])).rows[0];return view(r,'owner');}
   if(a==='unpublish'){const r=(await db.query("UPDATE clinic_classes SET status='draft',updated_at=now() WHERE id=$1 RETURNING *",[row.id])).rows[0];return view(r,'owner');}
   if(a==='rotate-codes'){for(let i=0;i<5;i++){try{const r=(await db.query('UPDATE clinic_classes SET student_code=$1,editor_code=$2 WHERE id=$3 RETURNING *',[newCode(),newCode(),row.id])).rows[0];return view(r,'owner');}catch(e){if(e.code!=='23505'||i===4)throw e;}}}
   if(a==='remove-member'){if(typeof b.userId!=='string')fail(400,'Integrante inválido.');await db.query('DELETE FROM clinic_class_members WHERE class_id=$1 AND user_id=$2',[row.id,b.userId]);return {removed:true};}
