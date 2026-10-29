@@ -31,6 +31,9 @@ test('Revalida: each item has four unique alternatives, a valid key and explanat
   }
  }
  assert.deepEqual(keys,[5,5,5,5]);
+ const all=revalidaCourse.lessons.flatMap(l=>l.questions);
+ const longest=all.filter(q=>q.options.findIndex(o=>o.length===Math.max(...q.options.map(a=>a.length)))===q.answer).length;
+ assert.ok(longest<=7,`Long-answer cue permits ${longest}/20`);
 });
 test('Revalida: main application catalog retains all twenty items',()=>{
  const c=courses.find(c=>c.id==='revalida');
