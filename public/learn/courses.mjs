@@ -1327,13 +1327,15 @@ for(const c of courses)for(const l of c.lessons)for(const q of l.questions){
   for(const option of candidates)if(q.options.length<5&&!q.options.includes(option))q.options.push(option);
  }
 }
-improveQuestions(courses);
-reviseQuestions(courses);
-reviseCommunication(courses);
-expandTheory(courses);
-applyBankExtensions(courses);
-applyAuditFixes(courses);
-applyQuestionDifficultyRevisions(courses);
+// Revalida's reviewed PT-BR bank is the source of truth; older global edits keyed by rv-* IDs must not overwrite its four-alternative items.
+const legacyEditorialCourses=courses.filter(c=>c.id!=='revalida');
+improveQuestions(legacyEditorialCourses);
+reviseQuestions(legacyEditorialCourses);
+reviseCommunication(legacyEditorialCourses);
+expandTheory(legacyEditorialCourses);
+applyBankExtensions(legacyEditorialCourses);
+applyAuditFixes(legacyEditorialCourses);
+applyQuestionDifficultyRevisions(legacyEditorialCourses);
 // Keep the first-responder bank separate from legacy physician-level rewrites.
 Object.assign(sources,policeSources);
 courses.push(policeCourse);

@@ -3,8 +3,8 @@ import {questions,courses,sources} from '../public/learn/courses.mjs';
 import {cases,startCase,choose,advance,restoreCase} from '../public/learn/cases.mjs';
 import assert from 'node:assert/strict';
 const issues=[],review=[];
-const inspect=(q,id,prompt)=>{
- if(!Array.isArray(q.options)||q.options.length!==5||new Set(q.options.map(o=>o.trim().toLowerCase())).size!==5)issues.push({id,reason:'Opciones inválidas o duplicadas'});
+const inspect=(q,id,prompt)=>{const expected=id?.startsWith('rv-')?4:5;
+ if(!Array.isArray(q.options)||q.options.length!==expected||new Set(q.options.map(o=>o.trim().toLowerCase())).size!==expected)issues.push({id,reason:'Opciones inválidas o duplicadas'});
  if(!Number.isInteger(q.answer)||!q.options[q.answer])issues.push({id,reason:'Clave inválida'});
  if(!q.why?.trim()||!prompt?.trim())issues.push({id,reason:'Falta enunciado o fundamento'});
  if(q.optionFeedback&&(q.optionFeedback.length!==q.options.length||q.optionFeedback.some(s=>!s?.trim())))issues.push({id,reason:'Devolución incompleta por alternativa'});

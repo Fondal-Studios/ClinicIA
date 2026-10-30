@@ -73,7 +73,7 @@ test('theory never appears before a practice answer; all courses, ECG, review an
  global.fetch=async(_url,args)=>{body=JSON.parse(args.body);return {ok:false,json:async()=>({error:'Configuración pendiente'})};};
  await click('ask');assert.equal(body.courseId,'fccs');assert.ok(html.includes('Configuración pendiente'));
  await click('nav',{view:'catalog'});assert.ok(html.includes('Revalida · Brasil')&&html.includes('NO BANCO MIR'));
- await click('destination',{id:'revalida',view:'home'});assert.ok(html.includes('20 preguntas originales'));
+ await click('destination',{id:'revalida',view:'home'});assert.ok(html.includes('100 questões autorais em português'));
  await click('nav',{view:'demo'});assert.ok(html.includes('Enlace al demo'));
  await click('start',{mode:'demo'});assert.equal(currentQuestion().courseId,'revalida');
  await click('nav',{view:'exams'});assert.ok(html.includes('Revalida · diagnóstico inicial'));

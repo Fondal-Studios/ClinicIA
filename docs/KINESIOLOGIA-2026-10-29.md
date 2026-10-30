@@ -42,7 +42,7 @@ Las preguntas y escenarios son originales. Las recomendaciones clínicas se dist
 
 ## Hallazgos de la auditoría del repositorio
 
-Base revisada: `8c4aa1fbc034caa04d33d455aa09ecdab6c1bced` (main).
+Base inicial revisada: `8c4aa1fbc034caa04d33d455aa09ecdab6c1bced`. Durante el trabajo main avanzó a `d769ffbc3c83f681a7b8caa738390c3a6546324c` con la PR #41. Se incorporó esa actualización y se resolvió el conflicto de catálogo/teoría conservando Revalida y Kinesiología.
 
 | Hallazgo | Acción / estado |
 | --- | --- |
@@ -50,16 +50,16 @@ Base revisada: `8c4aa1fbc034caa04d33d455aa09ecdab6c1bced` (main).
 | `courses.slice(1)` mostraba rotaciones como refuerzos de primeros auxilios y podía repetir el curso policial | Filtro por identificador y propiedad `rotation` |
 | Reescrituras editoriales globales podían modificar nuevos cursos | El contenido kinésico se incorpora después de los transformadores heredados |
 | Teoría sólo mostraba una referencia | En los módulos nuevos se muestran todas las fuentes, secciones y acceso; referencias específicas en preguntas y decisiones |
-| Exámenes/grupos: dos pruebas llaman `join` con `groupId`, aunque la API vigente requiere `joinCode` | Fallos preexistentes reproducidos en checkout sin cambios; no se altera autorización ni API para hacer pasar pruebas antiguas |
-| Rotación de Ginecología contiene 30 preguntas, mientras su prueba exige 50 | Fallo preexistente reproducido; este trabajo no rellena el banco con preguntas duplicadas o de otra especialidad |
-| Auditor académico general detecta 132 explicaciones heredadas breves | Ninguna corresponde a Kinesiología; pendiente de una revisión del banco anterior |
+| Exámenes/grupos: dos pruebas llaman `join` con `groupId`, aunque la API vigente requiere `joinCode` | Hallazgos iniciales reproducidos sin cambios; corregidos posteriormente por main/PR #41, cuya actualización se conserva |
+| Rotación de Ginecología contiene 30 preguntas, mientras su prueba exige 50 | Hallazgo inicial reproducido; main/PR #41 corrigió los bancos de rotaciones y se conserva esa corrección |
+| Auditor académico general detecta 115 explicaciones heredadas breves en el main actualizado (132 en la base inicial) | Ninguna corresponde a Kinesiología; pendiente de una revisión del banco anterior |
 
-Las PR ajenas de Revalida y biblioteca no se incorporan a esta rama.
+La actualización de Revalida ya fusionada en main se conserva; la PR abierta de biblioteca no se incorpora.
 
 ## Verificación
 
 - 25 pruebas específicas/integración aprobadas: Kinesiología, navegación, lectura/práctica sin filtración de respuestas, motor, casos, claves de seguridad y simulación de recorridos.
-- Suite general ejecutada en serie con entorno sin credenciales: 99 pruebas, 96 aprobadas y los tres fallos previos descritos. La prueba de navegación agregada posteriormente pasó en la corrida específica final.
+- Suite general final, después de incorporar main/PR #41, ejecutada en serie con entorno sin credenciales: **104 pruebas aprobadas, 0 fallos**. La corrida inicial fue 96/99; los tres fallos previos quedaron resueltos por la actualización de main, sin deshabilitar pruebas.
 - `npm run check`, `audit:learning`, `audit:academic`, `audit:questions --strict` y `qa-five-graduates.mjs`: ejecución completada sin errores bloqueantes de esos auditores.
 - Auditor heurístico final: 80 preguntas nuevas, cero duplicados, cero preguntas marcadas y ningún sesgo de estrategia detectado en los cuatro cursos. Cada clave A–E aparece cuatro veces por curso. Esto no demuestra dificultad ni validez clínica.
 - Serialización de progreso de cuenta, lectura, errores, examen 16/20 y acceso docente verificados mediante funciones existentes; no se usaron cuentas ni datos reales.
