@@ -1,3 +1,4 @@
+import {revalidaCourse,revalidaSources} from './revalida.mjs';
 // Curated rotation banks from ClinicIA's existing original teaching questions.
 // Distinct identifiers and no repeated question within a rotation. Faculty validation pending.
 import {residencyCourse,residencySources} from './residencias.mjs';
@@ -6,7 +7,7 @@ import {phtlsCourse,atlsCourse,traumaSources} from './trauma.mjs';
 import {emergencyCourses,emergencySources} from './emergentologia.mjs';
 import {expandedEmergencyCourses,expandedEmergencySources} from './emergentologia-ampliada.mjs';
 import {integralCourses,integralSources} from './medicina-integral.mjs';
-const pool=[residencyCourse,neonatalCourse,obstetricCourse,phtlsCourse,atlsCourse,...emergencyCourses,...expandedEmergencyCourses,...integralCourses];
+const pool=[residencyCourse,neonatalCourse,obstetricCourse,phtlsCourse,atlsCourse,...emergencyCourses,...expandedEmergencyCourses,...integralCourses,revalidaCourse];
 const tracks=[
  ['rot-ginecologia','Ginecología y obstetricia',/embarazo|obstetric|gineco|prenatal|parto|puerper|eclamp|anticoncep|cervi|gesta/i],
  ['rot-pediatria','Pediatría',/pediatr|niñ|lactante|neonat|recién nacido|infantil|bronquiol|vacun|deshidrat/i],
@@ -26,5 +27,5 @@ function build(id,title,pattern){
  return {id,title,category:'rotaciones',summary:'Cinco unidades, casos guiados y banco formativo curado de ClinicIA.',scope:'Práctica supervisada; no reemplaza formación ni evaluación docente. Preguntas adaptadas del banco original de ClinicIA, pendientes de revisión editorial.',reviewStatus:'Pendiente de validación docente',rotation:true,examMinutes:60,lessons};
 }
 export const rotationCourses=tracks.map(([id,title,pattern])=>build(id,title,pattern));
-export const rotationSources={...residencySources,...perinatalSources,...traumaSources,...emergencySources,...expandedEmergencySources,...integralSources};
+export const rotationSources={...residencySources,...perinatalSources,...traumaSources,...emergencySources,...expandedEmergencySources,...integralSources,...revalidaSources};
 export const rotationAudit=rotationCourses.map(c=>({id:c.id,questions:c.lessons.reduce((n,l)=>n+l.questions.length,0)}));
