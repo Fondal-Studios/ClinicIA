@@ -1,3 +1,4 @@
+import {kinesiologyCourses,kinesiologySources} from './content/kinesiologia.mjs';
 import {policeCourse,policeSources} from './content/respuesta-policial.mjs';
 import {applyQuestionDifficultyRevisions} from './content/question-difficulty-revisions.mjs';
 import {emergencyCourses,emergencySources} from './content/emergentologia.mjs';
@@ -1336,5 +1337,8 @@ applyQuestionDifficultyRevisions(courses);
 // Keep the first-responder bank separate from legacy physician-level rewrites.
 Object.assign(sources,policeSources);
 courses.push(policeCourse);
+// Keep the authored physiotherapy curriculum out of legacy content rewrites.
+Object.assign(sources,kinesiologySources);
+courses.push(...kinesiologyCourses);
 export const catalog=courses;
 export const questions=courses.flatMap(c=>c.lessons.flatMap((l,li)=>l.questions.map((q,qi)=>({...q,source:q.source||l.source,courseId:c.id,lessonId:l.id,area:l.area||q.skill,li,qi}))));

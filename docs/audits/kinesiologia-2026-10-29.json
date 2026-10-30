@@ -1,0 +1,1263 @@
+{
+  "checked": "2026-10-29",
+  "base": "8c4aa1fbc034caa04d33d455aa09ecdab6c1bced",
+  "scope": "Bibliografía, coherencia editorial y pruebas de software. Revisión docente clínica independiente pendiente.",
+  "references": {
+    "kin-icf": {
+      "title": "OMS · CIF: funcionamiento, actividad y participación",
+      "url": "https://www.who.int/docs/default-source/classification/icf/icfbeginnersguide.pdf",
+      "year": 2002,
+      "type": "Marco conceptual",
+      "section": "Componentes de la CIF",
+      "access": "Texto completo gratuito",
+      "checked": "2026-10-29"
+    },
+    "kin-whodas": {
+      "title": "OMS · WHODAS 2.0",
+      "url": "https://www.who.int/classifications/international-classification-of-functioning-disability-and-health/who-disability-assessment-schedule",
+      "year": 2010,
+      "type": "Instrumento de evaluación",
+      "section": "Dominios y uso estandarizado",
+      "access": "Descripción oficial gratuita",
+      "checked": "2026-10-29"
+    },
+    "kin-redflags": {
+      "title": "NICE NG127 · Reconocimiento y derivación neurológica",
+      "url": "https://www.nice.org.uk/guidance/ng127/chapter/Recommendations-for-adults-aged-over-16",
+      "year": 2019,
+      "type": "Guía clínica",
+      "section": "1.7.3: sospecha de síndrome de cauda equina",
+      "access": "Texto completo gratuito",
+      "checked": "2026-10-29"
+    },
+    "kin-lbp": {
+      "title": "OMS 2023 · Dolor lumbar primario crónico",
+      "url": "https://www.who.int/publications-detail-redirect/9789240081789",
+      "year": 2023,
+      "type": "Guía clínica",
+      "section": "Atención no quirúrgica en adultos, ámbito primario y comunitario",
+      "access": "Texto completo gratuito",
+      "checked": "2026-10-29"
+    },
+    "kin-ng59": {
+      "title": "NICE NG59 · Lumbalgia y ciática",
+      "url": "https://www.nice.org.uk/guidance/ng59/chapter/recommendations",
+      "year": 2016,
+      "type": "Guía clínica",
+      "section": "1.1: evaluación; 1.2: ejercicio y terapias físicas. Consultar actualizaciones en la fuente",
+      "access": "Texto completo gratuito",
+      "checked": "2026-10-29"
+    },
+    "kin-oa": {
+      "title": "NICE NG226 · Artrosis",
+      "url": "https://www.nice.org.uk/guidance/ng226/chapter/recommendations",
+      "year": 2022,
+      "type": "Guía clínica",
+      "section": "1.3: ejercicio terapéutico individualizado",
+      "access": "Texto completo gratuito",
+      "checked": "2026-10-29"
+    },
+    "kin-falls": {
+      "title": "NICE NG249 · Evaluación y prevención de caídas",
+      "url": "https://www.nice.org.uk/guidance/ng249/chapter/Recommendations/",
+      "year": 2025,
+      "type": "Guía clínica",
+      "section": "Evaluación integral e intervenciones personalizadas",
+      "access": "Texto completo gratuito",
+      "checked": "2026-10-29"
+    },
+    "kin-walk": {
+      "title": "ATS · Prueba de marcha de seis minutos",
+      "url": "https://www.thoracic.org/statements/resources/pfet/sixminute.pdf",
+      "year": 2002,
+      "type": "Estándar técnico",
+      "section": "Preparación, seguridad y estandarización; documento fundacional",
+      "access": "Texto completo gratuito",
+      "checked": "2026-10-29"
+    },
+    "kin-pr": {
+      "title": "ATS 2023 · Rehabilitación pulmonar en adultos",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10449064/",
+      "year": 2023,
+      "type": "Guía GRADE",
+      "section": "Resumen de recomendaciones: EPOC, enfermedad intersticial y modalidades",
+      "access": "Texto completo gratuito",
+      "checked": "2026-10-29"
+    },
+    "kin-bts": {
+      "title": "BTS · Bronquiectasias en adultos",
+      "url": "https://bmjopenrespres.bmj.com/content/5/1/e000348",
+      "year": 2018,
+      "type": "Guía clínica",
+      "section": "Técnicas, tolerancia y posiciones para limpieza bronquial",
+      "access": "Texto completo gratuito",
+      "checked": "2026-10-29"
+    },
+    "kin-ers": {
+      "title": "ERS 2025 · Bronquiectasias en adultos",
+      "url": "https://publications.ersnet.org/content/erj/66/6/2501126",
+      "year": 2025,
+      "type": "Guía GRADE",
+      "section": "PICO 1: enseñanza de técnicas de limpieza bronquial",
+      "access": "Texto completo gratuito",
+      "checked": "2026-10-29"
+    },
+    "kin-oxygen": {
+      "title": "AARC 2022 · Oxígeno en adultos hospitalizados",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34728574/",
+      "year": 2022,
+      "type": "Guía clínica",
+      "section": "Resumen: objetivos y monitorización",
+      "access": "Resumen científico gratuito; no requiere texto pago para este módulo",
+      "checked": "2026-10-29"
+    },
+    "kin-postcovid": {
+      "title": "OMS · Rehabilitación en condición pos-COVID-19",
+      "url": "https://www.who.int/teams/health-care-readiness/post-covid-19-condition",
+      "year": 2023,
+      "type": "Recomendaciones oficiales",
+      "section": "Rehabilitación y exacerbación de síntomas posesfuerzo (PESE)",
+      "access": "Recomendaciones oficiales gratuitas",
+      "checked": "2026-10-29"
+    },
+    "kin-icu": {
+      "title": "NICE CG83 · Rehabilitación después de enfermedad crítica",
+      "url": "https://www.nice.org.uk/guidance/cg83/chapter/Recommendations",
+      "year": 2009,
+      "type": "Guía clínica",
+      "section": "1.1–1.25: evaluación, objetivos, transiciones y seguimiento",
+      "access": "Texto completo gratuito",
+      "checked": "2026-10-29"
+    },
+    "kin-safety": {
+      "title": "Hodgson et al. · Seguridad de movilización en UCI",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4301888/",
+      "year": 2014,
+      "type": "Consenso experto",
+      "section": "Dominios respiratorio, cardiovascular, neurológico y dispositivos",
+      "access": "Texto completo gratuito",
+      "checked": "2026-10-29"
+    },
+    "kin-padis": {
+      "title": "SCCM PADIS · Actualización focalizada 2025",
+      "url": "https://www.sccm.org/clinical-resources/guidelines/guidelines/focused-update-padis-guideline",
+      "year": 2025,
+      "type": "Guía GRADE",
+      "section": "Movilización y rehabilitación mejoradas: recomendación condicional",
+      "access": "Recomendaciones oficiales gratuitas",
+      "checked": "2026-10-29"
+    },
+    "kin-team": {
+      "title": "TEAM 2022 · Movilización activa durante ventilación mecánica",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/36286256/",
+      "year": 2022,
+      "type": "Ensayo aleatorizado",
+      "section": "Resultados principales y eventos adversos",
+      "access": "Resumen científico gratuito; lectura complementaria",
+      "checked": "2026-10-29"
+    },
+    "kin-vent": {
+      "title": "AARC 2024 · Evaluación paciente–ventilador",
+      "url": "https://www.aarc.org/wp-content/uploads/2024/10/patient-ventilator-assessment-aarc-cpg.pdf",
+      "year": 2024,
+      "type": "Guía GRADE",
+      "section": "Evaluación de volumen, presiones, vía aérea e interfaz",
+      "access": "Texto completo gratuito",
+      "checked": "2026-10-29"
+    },
+    "kin-ards": {
+      "title": "ATS 2024 · Manejo del SDRA en adultos",
+      "url": "https://doi.org/10.1164/rccm.202311-2011ST",
+      "year": 2024,
+      "type": "Guía GRADE",
+      "section": "Recomendaciones vigentes de ventilación protectora y prono",
+      "access": "Texto completo gratuito",
+      "checked": "2026-10-29"
+    },
+    "kin-niv": {
+      "title": "ERS/ATS 2017 · Ventilación no invasiva en insuficiencia respiratoria aguda",
+      "url": "https://www.thoracic.org/statements/resources/cc/niv-guidelines.pdf",
+      "year": 2017,
+      "type": "Guía GRADE",
+      "section": "Exacerbación de EPOC y selección/seguimiento de VNI",
+      "access": "Texto completo gratuito",
+      "checked": "2026-10-29"
+    },
+    "kin-suction": {
+      "title": "AARC 2022 · Aspiración de la vía aérea artificial",
+      "url": "https://www.aarc.org/wp-content/uploads/2022/10/cpg-artificial-airway-suctioning.pdf",
+      "year": 2022,
+      "type": "Guía clínica y consenso",
+      "section": "Indicaciones, preoxigenación, técnica y prevención de daño",
+      "access": "Texto completo gratuito",
+      "checked": "2026-10-29"
+    },
+    "kin-sbt": {
+      "title": "AARC 2024 · Pruebas de respiración espontánea",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11285503/",
+      "year": 2024,
+      "type": "Guía GRADE",
+      "section": "Cuatro recomendaciones y distinción liberación/extubación",
+      "access": "Texto completo gratuito",
+      "checked": "2026-10-29"
+    }
+  },
+  "courses": [
+    {
+      "id": "kine-clinica",
+      "title": "Kinesiología clínica: evaluación y ejercicio terapéutico",
+      "questions": 20,
+      "lessons": 5,
+      "cases": 1,
+      "heuristic": {
+        "questions": 20,
+        "strategies": {
+          "azar": {
+            "mean": 0.187,
+            "sd": 0.089,
+            "max": 0.45
+          },
+          "mas_larga": {
+            "mean": 0.05,
+            "sd": 0,
+            "max": 0.05
+          },
+          "mas_corta": {
+            "mean": 0.227,
+            "sd": 0.043,
+            "max": 0.3
+          },
+          "comparte_con_enunciado": {
+            "mean": 0.168,
+            "sd": 0.065,
+            "max": 0.35
+          },
+          "mas_parecida_a_las_demas": {
+            "mean": 0.336,
+            "sd": 0.071,
+            "max": 0.5
+          },
+          "la_distinta": {
+            "mean": 0.097,
+            "sd": 0.066,
+            "max": 0.25
+          },
+          "mas_especifica": {
+            "mean": 0.322,
+            "sd": 0.058,
+            "max": 0.45
+          },
+          "descarta_absolutos": {
+            "mean": 0.182,
+            "sd": 0.077,
+            "max": 0.35
+          },
+          "copia_de_la_teoria": {
+            "mean": 0.563,
+            "sd": 0.057,
+            "max": 0.7
+          }
+        },
+        "sesgoDelBanco": [],
+        "preguntasMarcadas": 0,
+        "items": [],
+        "duplicadas": [],
+        "pistasEntrePreguntas": []
+      },
+      "items": [
+        {
+          "id": "kine-clinica-m1-q1",
+          "lesson": "Evaluación funcional y objetivos compartidos",
+          "prompt": "Marta tiene fuerza conservada en camilla pero no logra preparar el desayuno de pie. ¿Qué dato falta para planificar su rehabilitación?",
+          "answer": 0,
+          "correct": "Desempeño en tareas y barreras del entorno",
+          "rationale": "El desempeño en tareas y las barreras explican la limitación que importa a Marta. Una medida corporal aislada no representa su participación.",
+          "source": "kin-icf",
+          "url": "https://www.who.int/docs/default-source/classification/icf/icfbeginnersguide.pdf"
+        },
+        {
+          "id": "kine-clinica-m1-q2",
+          "lesson": "Evaluación funcional y objetivos compartidos",
+          "prompt": "Dos personas presentan igual movilidad de rodilla; una vive en planta baja y otra sube escaleras para entrar. ¿Qué cambia en la evaluación?",
+          "answer": 1,
+          "correct": "Las demandas funcionales y ambientales",
+          "rationale": "Las demandas funcionales y ambientales pueden generar necesidades diferentes aun con la misma alteración corporal. El objetivo debe reflejar la vida cotidiana.",
+          "source": "kin-icf",
+          "url": "https://www.who.int/docs/default-source/classification/icf/icfbeginnersguide.pdf"
+        },
+        {
+          "id": "kine-clinica-m1-q3",
+          "lesson": "Evaluación funcional y objetivos compartidos",
+          "prompt": "¿Cuál de estas metas permite evaluar mejor el avance de una paciente que quiere volver a cocinar?",
+          "answer": 2,
+          "correct": "Preparar una merienda con el apoyo acordado",
+          "rationale": "Preparar una merienda con el apoyo acordado conecta una actividad concreta con la meta personal. Hay que agregar plazo y condiciones después de la evaluación basal.",
+          "source": "kin-icf",
+          "url": "https://www.who.int/docs/default-source/classification/icf/icfbeginnersguide.pdf"
+        },
+        {
+          "id": "kine-clinica-m1-q4",
+          "lesson": "Evaluación funcional y objetivos compartidos",
+          "prompt": "Un colega propone quitar preguntas de WHODAS y conservar la puntuación total original. ¿Qué respuesta es adecuada?",
+          "answer": 3,
+          "correct": "Usar una versión validada según su manual",
+          "rationale": "Usar una versión validada preserva la interpretación de WHODAS. Quitar ítems y conservar el total produce una medida distinta, sin equivalencia demostrada.",
+          "source": "kin-whodas",
+          "url": "https://www.who.int/classifications/international-classification-of-functioning-disability-and-health/who-disability-assessment-schedule"
+        },
+        {
+          "id": "kine-clinica-m2-q1",
+          "lesson": "Seguridad y señales de alarma",
+          "prompt": "Con lumbociatalgia, un adulto refiere desde hoy retención urinaria y adormecimiento perineal. ¿Qué hacés primero?",
+          "answer": 4,
+          "correct": "Activar evaluación urgente por posible cauda equina",
+          "rationale": "Activar evaluación urgente responde a la combinación de dolor irradiado y cambios esfinterianos/perineales nuevos. Probar ejercicio primero puede retrasar la atención.",
+          "source": "kin-redflags",
+          "url": "https://www.nice.org.uk/guidance/ng127/chapter/Recommendations-for-adults-aged-over-16"
+        },
+        {
+          "id": "kine-clinica-m2-q2",
+          "lesson": "Seguridad y señales de alarma",
+          "prompt": "La persona con síntomas urinarios nuevos todavía puede caminar. ¿Cómo modifica eso el pase por sospecha neurológica?",
+          "answer": 0,
+          "correct": "Mantiene la necesidad de evaluación inmediata",
+          "rationale": "La marcha conservada no descarta una urgencia neurológica. La necesidad de evaluación inmediata se sostiene por los síntomas nuevos descritos.",
+          "source": "kin-redflags",
+          "url": "https://www.nice.org.uk/guidance/ng127/chapter/Recommendations-for-adults-aged-over-16"
+        },
+        {
+          "id": "kine-clinica-m2-q3",
+          "lesson": "Seguridad y señales de alarma",
+          "prompt": "¿Qué información vuelve más útil una derivación por dolor lumbar con alarma neurológica?",
+          "answer": 1,
+          "correct": "Síntomas nuevos, inicio, evolución y solicitud",
+          "rationale": "Síntomas nuevos, inicio y evolución permiten al receptor priorizar el problema. Una solicitud explícita y su recepción cierran la comunicación.",
+          "source": "kin-redflags",
+          "url": "https://www.nice.org.uk/guidance/ng127/chapter/Recommendations-for-adults-aged-over-16"
+        },
+        {
+          "id": "kine-clinica-m2-q4",
+          "lesson": "Seguridad y señales de alarma",
+          "prompt": "Durante la entrevista aparece adormecimiento perineal nuevo en una lumbalgia irradiada. ¿Qué afirmación describe tu conclusión?",
+          "answer": 2,
+          "correct": "Hay una sospecha que requiere evaluación urgente",
+          "rationale": "Hay una sospecha que requiere evaluación urgente, no un diagnóstico confirmado. Reconocer incertidumbre no justifica demorar el circuito de atención.",
+          "source": "kin-redflags",
+          "url": "https://www.nice.org.uk/guidance/ng127/chapter/Recommendations-for-adults-aged-over-16"
+        },
+        {
+          "id": "kine-clinica-m3-q1",
+          "lesson": "Dolor lumbar: educación y actividad",
+          "prompt": "Tomás tiene lumbalgia primaria crónica sin alarmas y dejó de llevar compras por temor. ¿Qué propuesta es más apropiada?",
+          "answer": 3,
+          "correct": "Acordar actividad gradual con educación y revisión",
+          "rationale": "Acordar actividad gradual con educación ayuda a recuperar una tarea relevante. La revisión permite adaptar el plan; inmovilidad o promesas estructurales no resuelven esa necesidad.",
+          "source": "kin-lbp",
+          "url": "https://www.who.int/publications-detail-redirect/9789240081789"
+        },
+        {
+          "id": "kine-clinica-m3-q2",
+          "lesson": "Dolor lumbar: educación y actividad",
+          "prompt": "Un informe lumbar describe cambios degenerativos; la función mejora y no hay síntomas nuevos. ¿Qué dato debe pesar al progresar?",
+          "answer": 4,
+          "correct": "La respuesta clínica y funcional al plan",
+          "rationale": "La respuesta clínica y funcional debe guiar la progresión junto con la seguridad. Un hallazgo de imagen aislado no fija la capacidad ni el pronóstico individual.",
+          "source": "kin-ng59",
+          "url": "https://www.nice.org.uk/guidance/ng59/chapter/recommendations"
+        },
+        {
+          "id": "kine-clinica-m3-q3",
+          "lesson": "Dolor lumbar: educación y actividad",
+          "prompt": "Una paciente siente alivio con terapia manual y pregunta si puede abandonar el componente activo. ¿Qué explicás?",
+          "answer": 0,
+          "correct": "Integrar el alivio al programa con ejercicio",
+          "rationale": "Integrar el alivio al programa con ejercicio conserva el objetivo de función y autonomía. NICE sitúa la terapia manual dentro de un paquete que incluye ejercicio.",
+          "source": "kin-ng59",
+          "url": "https://www.nice.org.uk/guidance/ng59/chapter/recommendations"
+        },
+        {
+          "id": "kine-clinica-m3-q4",
+          "lesson": "Dolor lumbar: educación y actividad",
+          "prompt": "¿A cuál situación corresponde directamente la guía OMS de dolor lumbar primario crónico utilizada en este tema?",
+          "answer": 1,
+          "correct": "Adulto en atención comunitaria con cuadro primario crónico",
+          "rationale": "El alcance es el adulto con dolor lumbar primario crónico en atención primaria/comunitaria. Las otras situaciones requieren evaluación y recomendaciones específicas.",
+          "source": "kin-lbp",
+          "url": "https://www.who.int/publications-detail-redirect/9789240081789"
+        },
+        {
+          "id": "kine-clinica-m4-q1",
+          "lesson": "Ejercicio terapéutico en artrosis",
+          "prompt": "Elena mejora al levantarse de la silla, pero no cumple una rutina extensa. ¿Qué cambio favorece un plan sostenible?",
+          "answer": 2,
+          "correct": "Acordar tareas accesibles conservando la meta",
+          "rationale": "Acordar tareas accesibles responde a las barreras reales y conserva la meta funcional. Agregar más carga sin explorar el problema puede empeorar la adherencia.",
+          "source": "kin-oa",
+          "url": "https://www.nice.org.uk/guidance/ng226/chapter/recommendations"
+        },
+        {
+          "id": "kine-clinica-m4-q2",
+          "lesson": "Ejercicio terapéutico en artrosis",
+          "prompt": "Una persona con artrosis pregunta qué registrar además del nombre de cada ejercicio. ¿Qué conjunto permite ajustar la dosis?",
+          "answer": 3,
+          "correct": "Frecuencia, intensidad, tiempo y respuesta",
+          "rationale": "Frecuencia, intensidad, tiempo y respuesta permiten reconstruir la dosis y ajustarla. El tipo de actividad, los descansos y la ayuda también deben quedar documentados.",
+          "source": "kin-oa",
+          "url": "https://www.nice.org.uk/guidance/ng226/chapter/recommendations"
+        },
+        {
+          "id": "kine-clinica-m4-q3",
+          "lesson": "Ejercicio terapéutico en artrosis",
+          "prompt": "Tras iniciar ejercicio aparece molestia leve transitoria, sin pérdida funcional. ¿Cómo lo interpretás?",
+          "answer": 4,
+          "correct": "Revisar tolerancia y evolución antes de ajustar",
+          "rationale": "Revisar tolerancia y evolución evita equiparar cada molestia con daño. La respuesta posterior y la función ayudan a decidir si se mantiene o adapta la dosis.",
+          "source": "kin-oa",
+          "url": "https://www.nice.org.uk/guidance/ng226/chapter/recommendations"
+        },
+        {
+          "id": "kine-clinica-m4-q4",
+          "lesson": "Ejercicio terapéutico en artrosis",
+          "prompt": "En un control aparece rodilla caliente y muy dolorosa con un cambio marcado respecto del patrón habitual. ¿Cuál es la prioridad?",
+          "answer": 0,
+          "correct": "Reevaluar el cuadro antes de continuar la carga",
+          "rationale": "Reevaluar el cuadro reconoce que un cambio agudo no debe atribuirse automáticamente a artrosis. Continuar la carga sin revisar la causa puede ser inadecuado.",
+          "source": "kin-oa",
+          "url": "https://www.nice.org.uk/guidance/ng226/chapter/recommendations"
+        },
+        {
+          "id": "kine-clinica-m5-q1",
+          "lesson": "Caídas, autonomía y continuidad",
+          "prompt": "Roberto cae de noche, refiere mareos al incorporarse y tiene buena fuerza en camilla. ¿Qué enfoque corresponde?",
+          "answer": 1,
+          "correct": "Evaluar múltiples factores y coordinar el mareo",
+          "rationale": "Evaluar múltiples factores incluye el mareo, el entorno y las tareas. La fuerza conservada no explica ni descarta el mecanismo de la caída.",
+          "source": "kin-falls",
+          "url": "https://www.nice.org.uk/guidance/ng249/chapter/Recommendations/"
+        },
+        {
+          "id": "kine-clinica-m5-q2",
+          "lesson": "Caídas, autonomía y continuidad",
+          "prompt": "¿Qué información hace más útil el alta kinésica de una persona con riesgo de caídas?",
+          "answer": 2,
+          "correct": "Tareas posibles, ayuda requerida y seguimiento",
+          "rationale": "Tareas posibles, ayuda requerida y seguimiento permiten continuar cuidados y organizar apoyos. El listado de técnicas no comunica autonomía ni riesgos pendientes.",
+          "source": "kin-falls",
+          "url": "https://www.nice.org.uk/guidance/ng249/chapter/Recommendations/"
+        },
+        {
+          "id": "kine-clinica-m5-q3",
+          "lesson": "Caídas, autonomía y continuidad",
+          "prompt": "Una familia pide entrenar equilibrio con ojos cerrados sin supervisión porque vio un video. ¿Qué respuesta es adecuada?",
+          "answer": 3,
+          "correct": "Elegir un desafío seguro según evaluación y apoyo",
+          "rationale": "Elegir un desafío seguro exige evaluar capacidad, entorno y apoyo. Un video no determina la dificultad apropiada para una persona con riesgo de caídas.",
+          "source": "kin-falls",
+          "url": "https://www.nice.org.uk/guidance/ng249/chapter/Recommendations/"
+        },
+        {
+          "id": "kine-clinica-m5-q4",
+          "lesson": "Caídas, autonomía y continuidad",
+          "prompt": "El paciente asiente al escuchar las indicaciones, pero duda al mostrar la transferencia acordada. ¿Cómo cerrás la sesión?",
+          "answer": 4,
+          "correct": "Practicar la explicación y comprobar comprensión",
+          "rationale": "Practicar la explicación y comprobar comprensión detecta dificultades concretas antes del alta. El asentimiento verbal no muestra que pueda ejecutar el plan.",
+          "source": "kin-falls",
+          "url": "https://www.nice.org.uk/guidance/ng249/chapter/Recommendations/"
+        }
+      ]
+    },
+    {
+      "id": "kine-respiratoria",
+      "title": "Kinesiología respiratoria y rehabilitación pulmonar",
+      "questions": 20,
+      "lessons": 5,
+      "cases": 1,
+      "heuristic": {
+        "questions": 20,
+        "strategies": {
+          "azar": {
+            "mean": 0.191,
+            "sd": 0.084,
+            "max": 0.35
+          },
+          "mas_larga": {
+            "mean": 0.067,
+            "sd": 0.024,
+            "max": 0.1
+          },
+          "mas_corta": {
+            "mean": 0.192,
+            "sd": 0.034,
+            "max": 0.25
+          },
+          "comparte_con_enunciado": {
+            "mean": 0.144,
+            "sd": 0.055,
+            "max": 0.25
+          },
+          "mas_parecida_a_las_demas": {
+            "mean": 0.234,
+            "sd": 0.096,
+            "max": 0.45
+          },
+          "la_distinta": {
+            "mean": 0.226,
+            "sd": 0.078,
+            "max": 0.4
+          },
+          "mas_especifica": {
+            "mean": 0.345,
+            "sd": 0.07,
+            "max": 0.55
+          },
+          "descarta_absolutos": {
+            "mean": 0.22,
+            "sd": 0.107,
+            "max": 0.5
+          },
+          "copia_de_la_teoria": {
+            "mean": 0.654,
+            "sd": 0.058,
+            "max": 0.75
+          }
+        },
+        "sesgoDelBanco": [],
+        "preguntasMarcadas": 0,
+        "items": [],
+        "duplicadas": [],
+        "pistasEntrePreguntas": []
+      },
+      "items": [
+        {
+          "id": "kine-respiratoria-m1-q1",
+          "lesson": "Evaluación respiratoria y capacidad de esfuerzo",
+          "prompt": "Ana caminó 40 metros menos, pero cambió recorrido y bastón entre evaluaciones. ¿Qué concluís primero?",
+          "answer": 0,
+          "correct": "La comparación tiene condiciones diferentes",
+          "rationale": "La comparación tiene condiciones diferentes y no permite atribuir automáticamente el descenso a progresión. El registro debe aclarar recorrido, ayudas y soporte.",
+          "source": "kin-walk",
+          "url": "https://www.thoracic.org/statements/resources/pfet/sixminute.pdf"
+        },
+        {
+          "id": "kine-respiratoria-m1-q2",
+          "lesson": "Evaluación respiratoria y capacidad de esfuerzo",
+          "prompt": "Durante una prueba de marcha aparece dolor torácico nuevo y presíncope. ¿Qué corresponde?",
+          "answer": 1,
+          "correct": "Detener y activar evaluación clínica",
+          "rationale": "Detener y activar evaluación clínica prioriza síntomas potencialmente importantes. Completar una medición no justifica continuar ante dolor torácico y presíncope.",
+          "source": "kin-walk",
+          "url": "https://www.thoracic.org/statements/resources/pfet/sixminute.pdf"
+        },
+        {
+          "id": "kine-respiratoria-m1-q3",
+          "lesson": "Evaluación respiratoria y capacidad de esfuerzo",
+          "prompt": "¿Qué expresa principalmente la distancia de una marcha de seis minutos estandarizada?",
+          "answer": 2,
+          "correct": "Desempeño funcional bajo esas condiciones",
+          "rationale": "La distancia representa desempeño funcional bajo condiciones definidas. No determina por sí sola etiología, consumo máximo ni indicación de oxígeno.",
+          "source": "kin-walk",
+          "url": "https://www.thoracic.org/statements/resources/pfet/sixminute.pdf"
+        },
+        {
+          "id": "kine-respiratoria-m1-q4",
+          "lesson": "Evaluación respiratoria y capacidad de esfuerzo",
+          "prompt": "Una SpO₂ aparentemente normal acompaña respiración trabajosa y somnolencia nueva. ¿Qué dato orienta la conducta?",
+          "answer": 3,
+          "correct": "El deterioro clínico exige reevaluación",
+          "rationale": "El deterioro clínico exige reevaluación: la SpO₂ no mide ventilación ni excluye hipercapnia. El número no debe desplazar la observación del paciente.",
+          "source": "kin-oxygen",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/34728574/"
+        },
+        {
+          "id": "kine-respiratoria-m2-q1",
+          "lesson": "Rehabilitación pulmonar: selección y componentes",
+          "prompt": "¿Qué propuesta representa mejor rehabilitación pulmonar para EPOC estable?",
+          "answer": 4,
+          "correct": "Evaluación, entrenamiento, educación y seguimiento",
+          "rationale": "Evaluación, entrenamiento, educación y seguimiento forman un programa integral. Un dispositivo o una técnica aislada no cubren los componentes de rehabilitación.",
+          "source": "kin-pr",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10449064/"
+        },
+        {
+          "id": "kine-respiratoria-m2-q2",
+          "lesson": "Rehabilitación pulmonar: selección y componentes",
+          "prompt": "Una persona egresa tras exacerbación de EPOC y consulta por rehabilitación. ¿Qué enfoque es coherente con ATS 2023?",
+          "answer": 0,
+          "correct": "Coordinar ingreso tras valorar estabilidad y necesidades",
+          "rationale": "Coordinar ingreso reconoce la recomendación de rehabilitación después de hospitalización por exacerbación. La estabilidad y necesidades determinan cómo se implementa.",
+          "source": "kin-pr",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10449064/"
+        },
+        {
+          "id": "kine-respiratoria-m2-q3",
+          "lesson": "Rehabilitación pulmonar: selección y componentes",
+          "prompt": "Luis tiene enfermedad estable y prefiere telerehabilitación. ¿Qué necesitás comprobar?",
+          "answer": 1,
+          "correct": "Recursos, comprensión y seguimiento seguro",
+          "rationale": "Recursos, comprensión y seguimiento seguro hacen viable la modalidad. ATS respalda ofrecer elección en enfermedad estable, sin eliminar evaluación ni individualización.",
+          "source": "kin-pr",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10449064/"
+        },
+        {
+          "id": "kine-respiratoria-m2-q4",
+          "lesson": "Rehabilitación pulmonar: selección y componentes",
+          "prompt": "¿Cómo se interpreta la recomendación ATS de rehabilitación en hipertensión pulmonar frente a EPOC estable?",
+          "answer": 2,
+          "correct": "Es condicional y requiere mayor contextualización",
+          "rationale": "Es condicional: la decisión requiere considerar incertidumbre, características individuales y equipo tratante. No equivale a prohibición ni a garantía de un desenlace.",
+          "source": "kin-pr",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10449064/"
+        },
+        {
+          "id": "kine-respiratoria-m3-q1",
+          "lesson": "Higiene bronquial individualizada",
+          "prompt": "Julia con bronquiectasias presenta reflujo al adoptar declive. ¿Qué ajuste tiene mejor fundamento?",
+          "answer": 3,
+          "correct": "Revisar la posición y enseñar una alternativa tolerada",
+          "rationale": "Revisar la posición y enseñar una alternativa tolerada mantiene el objetivo de limpieza bronquial. La intolerancia a una postura no invalida todas las técnicas.",
+          "source": "kin-bts",
+          "url": "https://bmjopenrespres.bmj.com/content/5/1/e000348"
+        },
+        {
+          "id": "kine-respiratoria-m3-q2",
+          "lesson": "Higiene bronquial individualizada",
+          "prompt": "La guía ERS 2025 recomienda enseñar limpieza bronquial con fuerza alta y certeza muy baja. ¿Cómo lo explicás?",
+          "answer": 4,
+          "correct": "Integra beneficios e incertidumbre para decidir",
+          "rationale": "La recomendación integra beneficios, valores, accesibilidad e incertidumbre. Su fuerza no transforma la certeza muy baja en evidencia sin limitaciones.",
+          "source": "kin-ers",
+          "url": "https://publications.ersnet.org/content/erj/66/6/2501126"
+        },
+        {
+          "id": "kine-respiratoria-m3-q3",
+          "lesson": "Higiene bronquial individualizada",
+          "prompt": "Un paciente pide el dispositivo más costoso porque espera que sea superior. ¿Qué respuesta corresponde?",
+          "answer": 0,
+          "correct": "Seleccionar técnica según evaluación y preferencias",
+          "rationale": "Seleccionar según evaluación y preferencias respeta la ausencia de superioridad universal. El aprendizaje y la tolerancia importan más que el precio del dispositivo.",
+          "source": "kin-ers",
+          "url": "https://publications.ersnet.org/content/erj/66/6/2501126"
+        },
+        {
+          "id": "kine-respiratoria-m3-q4",
+          "lesson": "Higiene bronquial individualizada",
+          "prompt": "Aparece hemoptisis nueva durante un programa habitual de higiene bronquial. ¿Cuál es la siguiente decisión?",
+          "answer": 1,
+          "correct": "Reevaluar el cuadro y la técnica con el equipo",
+          "rationale": "Reevaluar el cuadro y la técnica reconoce un cambio clínico que puede modificar el plan. Aumentar intensidad o cambiar el dispositivo no sustituye esa valoración.",
+          "source": "kin-bts",
+          "url": "https://bmjopenrespres.bmj.com/content/5/1/e000348"
+        },
+        {
+          "id": "kine-respiratoria-m4-q1",
+          "lesson": "Monitorización y ajuste del esfuerzo",
+          "prompt": "En ejercicio cae la SpO₂ fuera del objetivo indicado y aparece mayor disnea. ¿Qué hacés?",
+          "answer": 2,
+          "correct": "Pausar y evaluar el cambio con el plan clínico",
+          "rationale": "Pausar y evaluar integra la señal con la disnea y el objetivo individual. No corresponde ignorar el cambio ni perseguir el número para completar una rutina.",
+          "source": "kin-oxygen",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/34728574/"
+        },
+        {
+          "id": "kine-respiratoria-m4-q2",
+          "lesson": "Monitorización y ajuste del esfuerzo",
+          "prompt": "¿Qué limita extrapolar el rango AARC de oxígeno a un plan domiciliario?",
+          "answer": 3,
+          "correct": "La guía citada corresponde a adultos hospitalizados",
+          "rationale": "La guía citada corresponde a adultos hospitalizados. Una prescripción domiciliaria y su ajuste requieren contexto, evaluación y un plan específico.",
+          "source": "kin-oxygen",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/34728574/"
+        },
+        {
+          "id": "kine-respiratoria-m4-q3",
+          "lesson": "Monitorización y ajuste del esfuerzo",
+          "prompt": "Una persona tolera una tarea al dividirla en períodos con descanso. ¿Qué registro permite evaluar ese ajuste?",
+          "answer": 4,
+          "correct": "Duración, pausas, síntomas y recuperación",
+          "rationale": "Duración, pausas, síntomas y recuperación describen la dosis real y su tolerancia. La saturación final aislada puede ocultar dificultades durante la tarea.",
+          "source": "kin-pr",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10449064/"
+        },
+        {
+          "id": "kine-respiratoria-m4-q4",
+          "lesson": "Monitorización y ajuste del esfuerzo",
+          "prompt": "La tolerancia empeora durante varios días a igual carga. ¿Qué estrategia es más razonable?",
+          "answer": 0,
+          "correct": "Reevaluar evolución clínica y barreras del plan",
+          "rationale": "Reevaluar evolución clínica y barreras permite identificar por qué cambió la respuesta. Aumentar carga automáticamente puede agravar una situación no reconocida.",
+          "source": "kin-pr",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10449064/"
+        },
+        {
+          "id": "kine-respiratoria-m5-q1",
+          "lesson": "Autocuidado, pos-COVID y seguimiento",
+          "prompt": "Paula con condición pos-COVID empeora de forma marcada al día siguiente del ejercicio. ¿Qué dato debe cambiar el plan?",
+          "answer": 1,
+          "correct": "La respuesta diferida compatible con PESE",
+          "rationale": "La respuesta diferida compatible con PESE obliga a adaptar el plan. Tolerar una sesión en el momento no garantiza tolerancia en los días posteriores.",
+          "source": "kin-postcovid",
+          "url": "https://www.who.int/teams/health-care-readiness/post-covid-19-condition"
+        },
+        {
+          "id": "kine-respiratoria-m5-q2",
+          "lesson": "Autocuidado, pos-COVID y seguimiento",
+          "prompt": "¿Qué estrategia es coherente ante PESE identificada por el equipo?",
+          "answer": 2,
+          "correct": "Conservación de energía y pacing individualizado",
+          "rationale": "Conservación de energía y pacing individualizado ayudan a adaptar actividades. Los incrementos fijos que ignoran el empeoramiento no respetan este patrón.",
+          "source": "kin-postcovid",
+          "url": "https://www.who.int/teams/health-care-readiness/post-covid-19-condition"
+        },
+        {
+          "id": "kine-respiratoria-m5-q3",
+          "lesson": "Autocuidado, pos-COVID y seguimiento",
+          "prompt": "En un registro de rehabilitación pos-COVID, ¿qué dato aporta algo que no muestra el oxímetro al finalizar?",
+          "answer": 3,
+          "correct": "Efecto de la actividad en días posteriores",
+          "rationale": "El efecto de la actividad en días posteriores permite reconocer deterioro diferido. La oximetría final no representa toda la experiencia ni la recuperación funcional.",
+          "source": "kin-postcovid",
+          "url": "https://www.who.int/teams/health-care-readiness/post-covid-19-condition"
+        },
+        {
+          "id": "kine-respiratoria-m5-q4",
+          "lesson": "Autocuidado, pos-COVID y seguimiento",
+          "prompt": "Durante seguimiento aparece síncope nuevo tras esfuerzo. ¿Cómo se aborda antes de ajustar el ejercicio?",
+          "answer": 4,
+          "correct": "Solicitar evaluación clínica del nuevo síntoma",
+          "rationale": "Solicitar evaluación clínica del síncope nuevo evita atribuir un posible evento relevante a desacondicionamiento. El diagnóstico previo no explica automáticamente todos los cambios.",
+          "source": "kin-postcovid",
+          "url": "https://www.who.int/teams/health-care-readiness/post-covid-19-condition"
+        }
+      ]
+    },
+    {
+      "id": "kine-uci",
+      "title": "Kinesiología en UCI: movilización y recuperación funcional",
+      "questions": 20,
+      "lessons": 5,
+      "cases": 1,
+      "heuristic": {
+        "questions": 20,
+        "strategies": {
+          "azar": {
+            "mean": 0.2,
+            "sd": 0.104,
+            "max": 0.5
+          },
+          "mas_larga": {
+            "mean": 0.015,
+            "sd": 0.023,
+            "max": 0.05
+          },
+          "mas_corta": {
+            "mean": 0.45,
+            "sd": 0,
+            "max": 0.45
+          },
+          "comparte_con_enunciado": {
+            "mean": 0.115,
+            "sd": 0.069,
+            "max": 0.3
+          },
+          "mas_parecida_a_las_demas": {
+            "mean": 0.173,
+            "sd": 0.083,
+            "max": 0.45
+          },
+          "la_distinta": {
+            "mean": 0.21,
+            "sd": 0.082,
+            "max": 0.4
+          },
+          "mas_especifica": {
+            "mean": 0.37,
+            "sd": 0.079,
+            "max": 0.55
+          },
+          "descarta_absolutos": {
+            "mean": 0.21,
+            "sd": 0.098,
+            "max": 0.5
+          },
+          "copia_de_la_teoria": {
+            "mean": 0.436,
+            "sd": 0.053,
+            "max": 0.55
+          }
+        },
+        "sesgoDelBanco": [],
+        "preguntasMarcadas": 0,
+        "items": [],
+        "duplicadas": [],
+        "pistasEntrePreguntas": []
+      },
+      "items": [
+        {
+          "id": "kine-uci-m1-q1",
+          "lesson": "Evaluación inicial en cuidados intensivos",
+          "prompt": "Una persona sedada no sigue órdenes para una prueba de fuerza. ¿Qué registro es correcto?",
+          "answer": 0,
+          "correct": "Prueba voluntaria no interpretable en este momento",
+          "rationale": "Prueba voluntaria no interpretable distingue una barrera de evaluación de un déficit demostrado. La ausencia de cooperación no permite inventar fuerza ni diagnóstico.",
+          "source": "kin-icu",
+          "url": "https://www.nice.org.uk/guidance/cg83/chapter/Recommendations"
+        },
+        {
+          "id": "kine-uci-m1-q2",
+          "lesson": "Evaluación inicial en cuidados intensivos",
+          "prompt": "¿Qué información ayuda a interpretar que un paciente necesite ayuda para girar en cama?",
+          "answer": 1,
+          "correct": "Función previa y asistencia requerida actualmente",
+          "rationale": "Función previa y asistencia actual permiten reconocer una pérdida y plantear metas. La tarea y condiciones deben describirse para comparar la evolución.",
+          "source": "kin-icu",
+          "url": "https://www.nice.org.uk/guidance/cg83/chapter/Recommendations"
+        },
+        {
+          "id": "kine-uci-m1-q3",
+          "lesson": "Evaluación inicial en cuidados intensivos",
+          "prompt": "Un paciente recién despierto participa poco en el giro. ¿Qué meta inicial es más útil?",
+          "answer": 2,
+          "correct": "Aumentar participación segura en esa tarea",
+          "rationale": "Aumentar participación segura en esa tarea parte del desempeño actual. Las metas deben acordarse y revisarse, no imponerse por comparación o calendario.",
+          "source": "kin-icu",
+          "url": "https://www.nice.org.uk/guidance/cg83/chapter/Recommendations"
+        },
+        {
+          "id": "kine-uci-m1-q4",
+          "lesson": "Evaluación inicial en cuidados intensivos",
+          "prompt": "¿Qué nota permite continuar mejor una sesión en el turno siguiente?",
+          "answer": 3,
+          "correct": "Tarea, ayuda, respuesta y motivo de interrupción",
+          "rationale": "Tarea, ayuda, respuesta y motivo de interrupción describen qué fue posible y qué limitaría la próxima sesión. Una lista de técnicas no ofrece esa información.",
+          "source": "kin-icu",
+          "url": "https://www.nice.org.uk/guidance/cg83/chapter/Recommendations"
+        },
+        {
+          "id": "kine-uci-m2-q1",
+          "lesson": "Preparación y criterios de seguridad",
+          "prompt": "La presión actual está en el objetivo, pero aumentó rápidamente el soporte vasopresor. ¿Qué implica para movilizar?",
+          "answer": 4,
+          "correct": "Reevaluar estabilidad con el equipo antes de iniciar",
+          "rationale": "Reevaluar estabilidad integra tendencia y soporte, no sólo la cifra. El plan de ayer no describe necesariamente el riesgo actual.",
+          "source": "kin-safety",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4301888/"
+        },
+        {
+          "id": "kine-uci-m2-q2",
+          "lesson": "Preparación y criterios de seguridad",
+          "prompt": "Para sentar a un paciente ventilado, el equipo no acordó quién protegerá la vía aérea. ¿Qué falta resolver?",
+          "answer": 0,
+          "correct": "Roles, personal y control de dispositivos",
+          "rationale": "Roles, personal y control de dispositivos son parte de la preparación inmediata. Una meta motora no compensa un plan incompleto de seguridad.",
+          "source": "kin-safety",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4301888/"
+        },
+        {
+          "id": "kine-uci-m2-q3",
+          "lesson": "Preparación y criterios de seguridad",
+          "prompt": "Durante la movilización se tensa un catéter y aparece malestar. ¿Qué corresponde?",
+          "answer": 1,
+          "correct": "Pausar y asegurar al paciente y los dispositivos",
+          "rationale": "Pausar y asegurar al paciente y los dispositivos responde a un riesgo inmediato. Una saturación aceptable no garantiza seguridad mecánica de las líneas.",
+          "source": "kin-safety",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4301888/"
+        },
+        {
+          "id": "kine-uci-m2-q4",
+          "lesson": "Preparación y criterios de seguridad",
+          "prompt": "¿Qué limita usar un umbral aislado como semáforo universal de movilización?",
+          "answer": 2,
+          "correct": "Omite la evolución del soporte y otros riesgos",
+          "rationale": "Un umbral aislado no integra tendencias, contexto ni otros dominios de seguridad. La evaluación multidominio permite reconocer riesgos que una cifra no muestra.",
+          "source": "kin-safety",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4301888/"
+        },
+        {
+          "id": "kine-uci-m3-q1",
+          "lesson": "Progresión funcional y respuesta",
+          "prompt": "Clara tolera menos minutos sentada que ayer, pero necesita una persona en lugar de dos. ¿Cómo interpretás el cambio?",
+          "answer": 3,
+          "correct": "Integrar asistencia y tolerancia con el tiempo",
+          "rationale": "Integrar asistencia y tolerancia con el tiempo evita reducir el resultado a una sola variable. Menos ayuda y menos tiempo pueden reflejar cambios distintos.",
+          "source": "kin-safety",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4301888/"
+        },
+        {
+          "id": "kine-uci-m3-q2",
+          "lesson": "Progresión funcional y respuesta",
+          "prompt": "¿Cuál registro distingue mejor actividad activa asistida de movilización pasiva?",
+          "answer": 4,
+          "correct": "Participación de la persona y ayuda aportada",
+          "rationale": "Participación de la persona y ayuda aportada describen la naturaleza de la actividad. El tiempo o equipamiento no permiten inferir participación muscular.",
+          "source": "kin-safety",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4301888/"
+        },
+        {
+          "id": "kine-uci-m3-q3",
+          "lesson": "Progresión funcional y respuesta",
+          "prompt": "Un paciente completa sedestación con síntomas nuevos y mala tolerancia. ¿Qué decisión sigue?",
+          "answer": 0,
+          "correct": "Reevaluar antes de intentar el siguiente nivel",
+          "rationale": "Reevaluar antes del siguiente nivel prioriza la respuesta real. Completar una tarea no prueba que sea seguro progresar inmediatamente.",
+          "source": "kin-safety",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4301888/"
+        },
+        {
+          "id": "kine-uci-m3-q4",
+          "lesson": "Progresión funcional y respuesta",
+          "prompt": "¿Qué debe incluir el cierre de una actividad junto a la cama?",
+          "answer": 1,
+          "correct": "Confort, posición, dispositivos y comunicación",
+          "rationale": "Confort, posición, dispositivos y comunicación aseguran continuidad después del esfuerzo. La evaluación no termina al completar el movimiento.",
+          "source": "kin-safety",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4301888/"
+        },
+        {
+          "id": "kine-uci-m4-q1",
+          "lesson": "Qué dice la evidencia sobre movilización",
+          "prompt": "La unidad interpreta PADIS 2025 como obligación de máxima intensidad. ¿Cuál es la lectura más adecuada?",
+          "answer": 2,
+          "correct": "Recomendación condicional con adaptación individual",
+          "rationale": "La recomendación condicional exige adaptación individual y al contexto. PADIS no convierte intensidad máxima ni caminar en objetivos obligatorios para cada paciente.",
+          "source": "kin-padis",
+          "url": "https://www.sccm.org/clinical-resources/guidelines/guidelines/focused-update-padis-guideline"
+        },
+        {
+          "id": "kine-uci-m4-q2",
+          "lesson": "Qué dice la evidencia sobre movilización",
+          "prompt": "¿Qué interpretación es compatible con TEAM 2022?",
+          "answer": 3,
+          "correct": "Aumentar esa estrategia no mejoró el desenlace principal",
+          "rationale": "Aumentar esa estrategia no mejoró el desenlace principal y hubo más eventos relacionados. El ensayo no compara toda rehabilitación con su ausencia ni prueba una regla universal.",
+          "source": "kin-team",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/36286256/"
+        },
+        {
+          "id": "kine-uci-m4-q3",
+          "lesson": "Qué dice la evidencia sobre movilización",
+          "prompt": "Un resultado muestra más sesiones, pero no informa función ni eventos. ¿Qué falta para juzgar valor clínico?",
+          "answer": 4,
+          "correct": "Resultados relevantes y posibles daños",
+          "rationale": "Resultados relevantes y posibles daños permiten valorar beneficio clínico. El número de sesiones es una medida de actividad, no una demostración de recuperación.",
+          "source": "kin-padis",
+          "url": "https://www.sccm.org/clinical-resources/guidelines/guidelines/focused-update-padis-guideline"
+        },
+        {
+          "id": "kine-uci-m4-q4",
+          "lesson": "Qué dice la evidencia sobre movilización",
+          "prompt": "Antes de extrapolar un ensayo de movilización a tu UCI, ¿qué comparación es prioritaria?",
+          "answer": 0,
+          "correct": "Pacientes y tratamiento comparado en cada contexto",
+          "rationale": "Pacientes y tratamiento comparado en cada contexto determinan aplicabilidad. Un resultado no se transporta a otro contexto únicamente por la reputación del estudio.",
+          "source": "kin-padis",
+          "url": "https://www.sccm.org/clinical-resources/guidelines/guidelines/focused-update-padis-guideline"
+        },
+        {
+          "id": "kine-uci-m5-q1",
+          "lesson": "Transición a sala y recuperación pos-UCI",
+          "prompt": "Daniel camina acompañado, pero olvida indicaciones y tiene miedo intenso. ¿Qué debe incluir el alta?",
+          "answer": 1,
+          "correct": "Necesidades físicas y no físicas con seguimiento",
+          "rationale": "Necesidades físicas y no físicas con seguimiento describen mejor la recuperación. La marcha no elimina barreras para autocuidado, comprensión o participación.",
+          "source": "kin-icu",
+          "url": "https://www.nice.org.uk/guidance/cg83/chapter/Recommendations"
+        },
+        {
+          "id": "kine-uci-m5-q2",
+          "lesson": "Transición a sala y recuperación pos-UCI",
+          "prompt": "NICE propone revisión a dos o tres meses para necesidades pos-UCI. ¿Qué implica si hay deterioro una semana después del alta?",
+          "answer": 2,
+          "correct": "Reevaluar antes por el cambio clínico",
+          "rationale": "Reevaluar antes responde al cambio clínico. Un plazo orientativo de seguimiento no es una instrucción para demorar problemas nuevos.",
+          "source": "kin-icu",
+          "url": "https://www.nice.org.uk/guidance/cg83/chapter/Recommendations"
+        },
+        {
+          "id": "kine-uci-m5-q3",
+          "lesson": "Transición a sala y recuperación pos-UCI",
+          "prompt": "¿Qué componente del pase facilita continuidad real de rehabilitación?",
+          "answer": 3,
+          "correct": "Necesidad, responsable y forma de acceso",
+          "rationale": "Necesidad, responsable y forma de acceso permiten que el siguiente equipo actúe. Un documento descriptivo sin continuidad definida puede dejar necesidades sin atención.",
+          "source": "kin-icu",
+          "url": "https://www.nice.org.uk/guidance/cg83/chapter/Recommendations"
+        },
+        {
+          "id": "kine-uci-m5-q4",
+          "lesson": "Transición a sala y recuperación pos-UCI",
+          "prompt": "Un cuidador no entiende cómo ayudar en casa. ¿Qué acción mejora el cierre del plan?",
+          "answer": 4,
+          "correct": "Revisar instrucciones y comprobar su comprensión",
+          "rationale": "Revisar instrucciones y comprobar comprensión permite detectar dudas y ajustar apoyos. Una firma o la simple entrega no equivalen a un plan comprendido.",
+          "source": "kin-icu",
+          "url": "https://www.nice.org.uk/guidance/cg83/chapter/Recommendations"
+        }
+      ]
+    },
+    {
+      "id": "kine-ventilacion",
+      "title": "Soporte ventilatorio básico para kinesiólogos",
+      "questions": 20,
+      "lessons": 5,
+      "cases": 1,
+      "heuristic": {
+        "questions": 20,
+        "strategies": {
+          "azar": {
+            "mean": 0.214,
+            "sd": 0.08,
+            "max": 0.4
+          },
+          "mas_larga": {
+            "mean": 0.159,
+            "sd": 0.04,
+            "max": 0.25
+          },
+          "mas_corta": {
+            "mean": 0.227,
+            "sd": 0.05,
+            "max": 0.35
+          },
+          "comparte_con_enunciado": {
+            "mean": 0.251,
+            "sd": 0.078,
+            "max": 0.45
+          },
+          "mas_parecida_a_las_demas": {
+            "mean": 0.345,
+            "sd": 0.074,
+            "max": 0.55
+          },
+          "la_distinta": {
+            "mean": 0.121,
+            "sd": 0.067,
+            "max": 0.3
+          },
+          "mas_especifica": {
+            "mean": 0.234,
+            "sd": 0.087,
+            "max": 0.5
+          },
+          "descarta_absolutos": {
+            "mean": 0.206,
+            "sd": 0.107,
+            "max": 0.5
+          },
+          "copia_de_la_teoria": {
+            "mean": 0.506,
+            "sd": 0.077,
+            "max": 0.65
+          }
+        },
+        "sesgoDelBanco": [],
+        "preguntasMarcadas": 0,
+        "items": [],
+        "duplicadas": [],
+        "pistasEntrePreguntas": []
+      },
+      "items": [
+        {
+          "id": "kine-ventilacion-m1-q1",
+          "lesson": "Evaluación del paciente conectado al ventilador",
+          "prompt": "Suena una alarma y el paciente presenta mayor trabajo respiratorio. ¿Cuál es la prioridad?",
+          "answer": 0,
+          "correct": "Valorar al paciente y activar asistencia del equipo",
+          "rationale": "Valorar al paciente y activar asistencia prioriza el deterioro. La alarma no se resuelve sólo silenciándola ni modificando parámetros sin evaluación.",
+          "source": "kin-vent",
+          "url": "https://www.aarc.org/wp-content/uploads/2024/10/patient-ventilator-assessment-aarc-cpg.pdf"
+        },
+        {
+          "id": "kine-ventilacion-m1-q2",
+          "lesson": "Evaluación del paciente conectado al ventilador",
+          "prompt": "¿Qué distinción mejora un pase sobre ventilación mecánica?",
+          "answer": 1,
+          "correct": "La relación del soporte con la respuesta clínica observada",
+          "rationale": "La relación del soporte con la respuesta clínica observada describen la relación paciente–ventilador. Copiar la configuración no informa por sí solo qué ocurre con la persona.",
+          "source": "kin-vent",
+          "url": "https://www.aarc.org/wp-content/uploads/2024/10/patient-ventilator-assessment-aarc-cpg.pdf"
+        },
+        {
+          "id": "kine-ventilacion-m1-q3",
+          "lesson": "Evaluación del paciente conectado al ventilador",
+          "prompt": "Un registro dice presión alta sin identificar la medición. ¿Qué aclaración es necesaria?",
+          "answer": 2,
+          "correct": "El tipo de presión y las condiciones en que se obtuvo",
+          "rationale": "Qué presión, cómo se midió y contexto son necesarios porque pico y meseta no son intercambiables. Una etiqueta ambigua no permite interpretar el hallazgo.",
+          "source": "kin-vent",
+          "url": "https://www.aarc.org/wp-content/uploads/2024/10/patient-ventilator-assessment-aarc-cpg.pdf"
+        },
+        {
+          "id": "kine-ventilacion-m1-q4",
+          "lesson": "Evaluación del paciente conectado al ventilador",
+          "prompt": "¿Qué dato recomienda AARC para documentar el volumen corriente en relación con el tamaño corporal?",
+          "answer": 3,
+          "correct": "Mililitros por kilogramo de peso predicho",
+          "rationale": "Mililitros por kilogramo de peso predicho permite valorar el volumen en relación con tamaño pulmonar estimado. El peso actual, especialmente con obesidad o edema, no es equivalente.",
+          "source": "kin-vent",
+          "url": "https://www.aarc.org/wp-content/uploads/2024/10/patient-ventilator-assessment-aarc-cpg.pdf"
+        },
+        {
+          "id": "kine-ventilacion-m2-q1",
+          "lesson": "Ventilación protectora y posición prona",
+          "prompt": "Un ejemplo tiene peso predicho validado de 60 kg. ¿Cuánto corresponde a 6 mL/kg?",
+          "answer": 4,
+          "correct": "360 mL por respiración",
+          "rationale": "360 mL por respiración resulta de multiplicar 60 kg por 6 mL/kg. Verificar el cálculo no sustituye la decisión clínica ni autoriza a programar ese valor.",
+          "source": "kin-ards",
+          "url": "https://doi.org/10.1164/rccm.202311-2011ST"
+        },
+        {
+          "id": "kine-ventilacion-m2-q2",
+          "lesson": "Ventilación protectora y posición prona",
+          "prompt": "Un paciente con SDRA pesa 110 kg por obesidad; su peso predicho es 65 kg. ¿Qué base se usa para expresar el volumen protector?",
+          "answer": 0,
+          "correct": "El peso predicho de 65 kg",
+          "rationale": "El peso predicho de 65 kg es la referencia de la estrategia protectora. El peso actual por obesidad o edema no representa el tamaño pulmonar estimado.",
+          "source": "kin-ards",
+          "url": "https://doi.org/10.1164/rccm.202311-2011ST"
+        },
+        {
+          "id": "kine-ventilacion-m2-q3",
+          "lesson": "Ventilación protectora y posición prona",
+          "prompt": "¿Qué describe mejor el prono en SDRA grave según la recomendación citada?",
+          "answer": 1,
+          "correct": "Intervención prolongada coordinada por equipo entrenado",
+          "rationale": "Intervención prolongada coordinada requiere planificación y seguridad. ATS recomienda más de 12 horas por día en SDRA grave; el detalle operativo depende del equipo y protocolo.",
+          "source": "kin-ards",
+          "url": "https://doi.org/10.1164/rccm.202311-2011ST"
+        },
+        {
+          "id": "kine-ventilacion-m2-q4",
+          "lesson": "Ventilación protectora y posición prona",
+          "prompt": "Durante revisión del plan de SDRA moderado a grave se propone reclutamiento prolongado por rutina. ¿Qué indica ATS 2024?",
+          "answer": 2,
+          "correct": "Recomienda evitar maniobras de reclutamiento prolongadas",
+          "rationale": "ATS recomienda evitar maniobras de reclutamiento prolongadas en ese contexto. Esta recomendación no se confunde con otras decisiones individualizadas de soporte.",
+          "source": "kin-ards",
+          "url": "https://doi.org/10.1164/rccm.202311-2011ST"
+        },
+        {
+          "id": "kine-ventilacion-m3-q1",
+          "lesson": "Ventilación no invasiva: selección y fracaso",
+          "prompt": "¿Qué escenario coincide con una indicación respaldada de VNI bilevel en ERS/ATS?",
+          "answer": 3,
+          "correct": "EPOC exacerbada con acidosis respiratoria evaluada",
+          "rationale": "EPOC exacerbada con acidosis respiratoria es una indicación respaldada, con selección y vigilancia. No se extrapola a toda disnea ni justifica retrasar una intubación necesaria.",
+          "source": "kin-niv",
+          "url": "https://www.thoracic.org/statements/resources/cc/niv-guidelines.pdf"
+        },
+        {
+          "id": "kine-ventilacion-m3-q2",
+          "lesson": "Ventilación no invasiva: selección y fracaso",
+          "prompt": "Con VNI, mejora SpO₂ pero empeoran somnolencia y trabajo respiratorio. ¿Cómo interpretás la respuesta?",
+          "answer": 4,
+          "correct": "Deterioro que requiere reevaluación y posible escalamiento",
+          "rationale": "Deterioro que requiere reevaluación integra conciencia y trabajo respiratorio. La SpO₂ mejorada no excluye hipercapnia ni fracaso del soporte.",
+          "source": "kin-niv",
+          "url": "https://www.thoracic.org/statements/resources/cc/niv-guidelines.pdf"
+        },
+        {
+          "id": "kine-ventilacion-m3-q3",
+          "lesson": "Ventilación no invasiva: selección y fracaso",
+          "prompt": "Una interfaz produce fuga y lesión en el puente nasal. ¿Qué revisión corresponde?",
+          "answer": 0,
+          "correct": "Ajuste, tamaño, piel y tolerancia de la interfaz",
+          "rationale": "Ajuste, tamaño, piel y tolerancia deben revisarse en conjunto. Apretar más sin evaluación puede agravar lesión y no resolver la causa de la fuga.",
+          "source": "kin-vent",
+          "url": "https://www.aarc.org/wp-content/uploads/2024/10/patient-ventilator-assessment-aarc-cpg.pdf"
+        },
+        {
+          "id": "kine-ventilacion-m3-q4",
+          "lesson": "Ventilación no invasiva: selección y fracaso",
+          "prompt": "¿Qué recurso es esencial cuando se prueba VNI en una situación con riesgo elevado de fracaso?",
+          "answer": 1,
+          "correct": "Vigilancia y capacidad de escalamiento oportuno",
+          "rationale": "Vigilancia y capacidad de escalamiento permiten responder ante fracaso. La selección inicial o una firma no reemplazan la reevaluación del tratamiento.",
+          "source": "kin-niv",
+          "url": "https://www.thoracic.org/statements/resources/cc/niv-guidelines.pdf"
+        },
+        {
+          "id": "kine-ventilacion-m4-q1",
+          "lesson": "Vía aérea artificial y aspiración segura",
+          "prompt": "Antes de aspirar una vía aérea artificial, ¿qué pregunta organiza mejor la decisión?",
+          "answer": 2,
+          "correct": "Qué hallazgos indican necesidad en este momento",
+          "rationale": "Qué hallazgos indican necesidad centra la maniobra en evaluación clínica. El horario o número de alarmas no establecen por sí solos que haya secreciones a remover.",
+          "source": "kin-suction",
+          "url": "https://www.aarc.org/wp-content/uploads/2022/10/cpg-artificial-airway-suctioning.pdf"
+        },
+        {
+          "id": "kine-ventilacion-m4-q2",
+          "lesson": "Vía aérea artificial y aspiración segura",
+          "prompt": "Un colega propone instilar solución salina antes de toda aspiración. ¿Qué expresa AARC 2022?",
+          "answer": 3,
+          "correct": "Evitar en general la instilación rutinaria de salina",
+          "rationale": "Evitar en general la instilación rutinaria de salina es la recomendación citada. Su uso no reemplaza preparación, evaluación ni técnica adecuada.",
+          "source": "kin-suction",
+          "url": "https://www.aarc.org/wp-content/uploads/2022/10/cpg-artificial-airway-suctioning.pdf"
+        },
+        {
+          "id": "kine-ventilacion-m4-q3",
+          "lesson": "Vía aérea artificial y aspiración segura",
+          "prompt": "¿Cómo interpretás el máximo de 15 segundos por procedimiento de aspiración?",
+          "answer": 4,
+          "correct": "Es un límite y puede requerirse interrumpir antes",
+          "rationale": "Es un límite, no una duración obligatoria. La intolerancia exige interrumpir antes y reevaluar; no habilita repeticiones sucesivas sin revisar la necesidad.",
+          "source": "kin-suction",
+          "url": "https://www.aarc.org/wp-content/uploads/2022/10/cpg-artificial-airway-suctioning.pdf"
+        },
+        {
+          "id": "kine-ventilacion-m4-q4",
+          "lesson": "Vía aérea artificial y aspiración segura",
+          "prompt": "La aspiración superficial fue eficaz. ¿Qué justifica pasar a aspiración profunda inmediatamente?",
+          "answer": 0,
+          "correct": "No hay indicación de profundizar si ya fue eficaz",
+          "rationale": "No hay indicación de profundizar si ya fue eficaz. AARC reserva la aspiración profunda para cuando la superficial no resulta efectiva, reduciendo intervenciones innecesarias.",
+          "source": "kin-suction",
+          "url": "https://www.aarc.org/wp-content/uploads/2022/10/cpg-artificial-airway-suctioning.pdf"
+        },
+        {
+          "id": "kine-ventilacion-m5-q1",
+          "lesson": "Prueba de respiración espontánea y extubación",
+          "prompt": "Un paciente tolera PRE, pero tiene tos débil y secreciones abundantes. ¿Qué conclusión corresponde?",
+          "answer": 1,
+          "correct": "Requiere valorar seguridad de extubación además de la PRE",
+          "rationale": "Requiere valorar seguridad de extubación porque proteger la vía aérea y manejar secreciones son problemas adicionales. Tolerar PRE no decide por sí solo retirar el tubo.",
+          "source": "kin-sbt",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11285503/"
+        },
+        {
+          "id": "kine-ventilacion-m5-q2",
+          "lesson": "Prueba de respiración espontánea y extubación",
+          "prompt": "¿Qué indica AARC 2024 sobre el índice de respiración rápida superficial para decidir preparación para PRE?",
+          "answer": 2,
+          "correct": "No es necesario como requisito para decidir la prueba",
+          "rationale": "No es necesario como requisito según la recomendación condicional. La decisión sigue incluyendo reversión de la causa, oxigenación, estabilidad y esfuerzo inspiratorio.",
+          "source": "kin-sbt",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11285503/"
+        },
+        {
+          "id": "kine-ventilacion-m5-q3",
+          "lesson": "Prueba de respiración espontánea y extubación",
+          "prompt": "Durante una PRE aparece intolerancia y se propone subir FiO₂ para anotarla como aprobada. ¿Qué corresponde?",
+          "answer": 3,
+          "correct": "Evaluar intolerancia y restituir soporte según protocolo",
+          "rationale": "Evaluar intolerancia y restituir soporte prioriza seguridad. AARC sugiere no aumentar FiO₂ durante PRE; tratar deterioro no debe ocultarse ni registrarse como éxito sin contexto.",
+          "source": "kin-sbt",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11285503/"
+        },
+        {
+          "id": "kine-ventilacion-m5-q4",
+          "lesson": "Prueba de respiración espontánea y extubación",
+          "prompt": "Según AARC 2024, ¿qué modalidad puede usarse para una PRE?",
+          "answer": 4,
+          "correct": "Con o sin presión de soporte según el protocolo",
+          "rationale": "Con o sin presión de soporte son opciones contempladas en la recomendación condicional. La modalidad se implementa con evaluación y protocolo, sin confundirla con ventilación controlada.",
+          "source": "kin-sbt",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11285503/"
+        }
+      ]
+    }
+  ]
+}
