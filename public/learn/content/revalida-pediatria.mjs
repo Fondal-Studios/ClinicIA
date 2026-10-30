@@ -10,7 +10,7 @@ export const pediatriaTopics=[
     "rows": [
       [
         "Lactente saudável ganha peso de forma consistente e recebe leite materno exclusivo aos três meses. Qual orientação geral é adequada?",
-        "Apoiar aleitamento materno exclusivo até cerca de seis meses, conforme recomendação.",
+        "Manter aleitamento materno exclusivo até seis meses.",
         "Introduzir refrigerantes como fonte de energia.",
         "Suspender aleitamento por ser superior a três meses.",
         "Usar alimentos sólidos como substituto obrigatório do leite.",
@@ -18,7 +18,7 @@ export const pediatriaTopics=[
       ],
       [
         "Em puericultura, qual medida melhor identifica alterações de crescimento?",
-        "Registrar peso e estatura em curvas adequadas e avaliar trajetória.",
+        "Avaliar trajetória em curvas de crescimento.",
         "Interpretar exclusivamente um peso isolado sem idade.",
         "Comparar apenas com o peso do irmão mais velho.",
         "Solicitar tomografia como rastreio rotineiro.",
@@ -26,7 +26,7 @@ export const pediatriaTopics=[
       ],
       [
         "Criança perde habilidades previamente adquiridas. Qual atitude é mais apropriada?",
-        "Investigar regressão do desenvolvimento e encaminhar conforme avaliação.",
+        "Investigar regressão de marcos do desenvolvimento.",
         "Considerar sempre variação normal sem investigar.",
         "Orientar espera de vários anos para reavaliação.",
         "Avaliar apenas peso corporal.",
@@ -34,7 +34,7 @@ export const pediatriaTopics=[
       ],
       [
         "Família tem dúvidas sobre calendário vacinal após atrasos. Qual procedimento é adequado?",
-        "Conferir histórico e atualizar conforme o calendário vigente, sem reiniciar séries sem indicação.",
+        "Atualizar imunizações conforme calendário.",
         "Reiniciar todas as séries independentemente das doses prévias.",
         "Suspender vacinação até a idade adulta.",
         "Usar apenas sorologia para definir todo o esquema.",
@@ -51,7 +51,7 @@ export const pediatriaTopics=[
     "rows": [
       [
         "Criança com diarreia, olhos fundos e sede intensa consegue beber. Qual princípio orienta manejo sem sinais de choque?",
-        "Classificar desidratação e iniciar reidratação oral monitorada conforme plano indicado.",
+        "Classificar desidratação e indicar SRO monitorada.",
         "Manter jejum completo para parar evacuações.",
         "Usar bebida gaseificada em substituição à SRO.",
         "Esperar resultado de cultura antes de reidratar.",
@@ -59,7 +59,7 @@ export const pediatriaTopics=[
       ],
       [
         "Criança com diarreia está letárgica e incapaz de beber. Qual prioridade?",
-        "Avaliação de emergência e reposição conforme sinais de desidratação grave.",
+        "Avaliar urgência e tratar desidratação grave.",
         "Plano domiciliar sem retorno.",
         "Prescrição isolada de antidiarreico.",
         "Introduzir alimentos secos antes de avaliar perfusão.",
@@ -67,7 +67,7 @@ export const pediatriaTopics=[
       ],
       [
         "Lactente com diarreia ainda mama. Qual orientação habitual?",
-        "Manter aleitamento e alimentação adequada junto da hidratação.",
+        "Manter aleitamento e alimentação apropriada.",
         "Suspender leite materno por 72 horas.",
         "Oferecer apenas suco adoçado.",
         "Reduzir todas as mamadas para evitar fezes.",
@@ -75,7 +75,7 @@ export const pediatriaTopics=[
       ],
       [
         "Criança tratada por diarreia recebe alta. O que deve ser ensinado ao cuidador?",
-        "Reconhecer piora, pouca diurese, vômitos persistentes e necessidade de retorno.",
+        "Orientar sinais de alarme e retorno.",
         "Retornar apenas após 30 dias independentemente dos sintomas.",
         "Interromper higiene de mãos quando cessar febre.",
         "Não usar líquidos após novos episódios de evacuação.",
@@ -92,7 +92,7 @@ export const pediatriaTopics=[
     "rows": [
       [
         "Lactente muito jovem apresenta febre e prostração. Qual conduta é mais segura?",
-        "Avaliação imediata considerando risco de infecção grave e idade.",
+        "Avaliar imediatamente febre em lactente prostrado.",
         "Tratar somente com antitérmico por telefone.",
         "Aguardar cinco dias para localizar foco.",
         "Descartar infecção porque não há tosse.",
@@ -100,7 +100,7 @@ export const pediatriaTopics=[
       ],
       [
         "Criança com sibilância e esforço respiratório importante. Qual prioridade?",
-        "Avaliar oxigenação, esforço e gravidade antes de definir tratamento.",
+        "Avaliar oxigenação e esforço respiratório.",
         "Solicitar apenas espirometria ambulatorial.",
         "Liberar porque sibilância é sempre leve.",
         "Aguardar confirmação viral antes de avaliar respiração.",
@@ -108,7 +108,7 @@ export const pediatriaTopics=[
       ],
       [
         "Criança tem estridor em repouso e retrações. Qual risco principal?",
-        "Comprometimento de via aérea superior e necessidade de avaliação imediata.",
+        "Investigar obstrução de via aérea superior.",
         "Infecção urinária confirmada pelo ruído.",
         "Broncoespasmo como única possibilidade.",
         "Quadro sempre autolimitado sem avaliação.",
@@ -116,7 +116,7 @@ export const pediatriaTopics=[
       ],
       [
         "Criança febril evolui com manchas arroxeadas que não desaparecem à pressão e prostração. Qual ação?",
-        "Reconhecer possível infecção invasiva e encaminhar imediatamente.",
+        "Encaminhar imediatamente por possível sepse invasiva.",
         "Agendar retorno em uma semana.",
         "Orientar observação domiciliar sem exame.",
         "Tratar como alergia leve sem avaliação.",
@@ -133,7 +133,7 @@ export const pediatriaTopics=[
     "rows": [
       [
         "Recém-nascido apresenta gemência e tiragens persistentes. Qual atitude?",
-        "Avaliar desconforto respiratório neonatal e solicitar suporte especializado.",
+        "Investigar desconforto respiratório neonatal.",
         "Considerar normal após primeiro dia sem examinar.",
         "Oferecer água para aliviar gemência.",
         "Aguardar consultas de puericultura.",
@@ -141,7 +141,7 @@ export const pediatriaTopics=[
       ],
       [
         "Neonato tem dificuldade de mamar, hipotermia e letargia. O que considerar?",
-        "Infecção neonatal ou outras causas graves, com avaliação urgente.",
+        "Investigar doença grave no recém-nascido.",
         "Apenas atraso do desenvolvimento motor.",
         "Quadro fisiológico de todas as primeiras semanas.",
         "Alta sem avaliação de sinais vitais.",
@@ -149,7 +149,7 @@ export const pediatriaTopics=[
       ],
       [
         "Lactente apresenta convulsão ativa. Qual primeira abordagem?",
-        "Proteger a criança, avaliar ABC e acionar suporte conforme protocolo.",
+        "Proteger, avaliar ABC e acionar suporte.",
         "Introduzir objeto na boca para manter língua.",
         "Restringir fortemente todos os membros.",
         "Aguardar final da crise sem observar respiração.",
@@ -157,7 +157,7 @@ export const pediatriaTopics=[
       ],
       [
         "Criança após queda tem sonolência progressiva e vômitos repetidos. O que é prioritário?",
-        "Avaliar trauma craniano e sinais neurológicos de alarme urgentemente.",
+        "Investigar trauma craniano com alerta neurológico.",
         "Atribuir sempre a dor e liberar.",
         "Focar apenas em escoriações sem reavaliar.",
         "Orientar retorno apenas se houver febre.",
