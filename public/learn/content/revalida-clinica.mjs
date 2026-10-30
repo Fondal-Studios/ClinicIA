@@ -10,7 +10,7 @@ export const clinicaTopics=[
     "rows": [
       [
         "Na UBS, paciente assintomático tem PA elevada em uma medida isolada. Qual a melhor próxima etapa?",
-        "Repetir medições adequadas e programar confirmação diagnóstica.",
+        "Confirmar a PA com medidas adequadas.",
         "Rotular hipertensão definitiva por um único valor.",
         "Solicitar tomografia cerebral de rotina.",
         "Iniciar tratamento intravenoso imediato.",
@@ -18,7 +18,7 @@ export const clinicaTopics=[
       ],
       [
         "Pessoa com PA elevada apresenta déficit neurológico focal súbito. O que deve ser priorizado?",
-        "Avaliação urgente de possível lesão aguda de órgão-alvo e protocolo de AVC.",
+        "Avaliar urgência neurológica e acionar protocolo.",
         "Apenas repetir PA na semana seguinte.",
         "Concluir diário domiciliar antes do encaminhamento.",
         "Aguardar ausência de sintomas para investigar.",
@@ -26,7 +26,7 @@ export const clinicaTopics=[
       ],
       [
         "Paciente com diagnóstico de HAS usa medicamentos irregularmente. Antes de classificar resistência, qual informação é essencial?",
-        "Adesão, técnica de medida e esquema prescrito.",
+        "Verificar adesão e técnica de aferição.",
         "Somente história familiar de infarto.",
         "Preferência de marca comercial do aparelho.",
         "Resultado de radiografia de tórax isolado.",
@@ -34,7 +34,7 @@ export const clinicaTopics=[
       ],
       [
         "Na visita de seguimento, qual medida reduz risco cardiovascular além do controle pressórico?",
-        "Avaliar tabagismo, diabetes e estilo de vida no cuidado longitudinal.",
+        "Estratificar o risco cardiovascular global.",
         "Suspender seguimento quando a PA normaliza uma vez.",
         "Concentrar toda prevenção em exames de imagem.",
         "Desconsiderar atividade física por não ser fármaco.",
@@ -51,7 +51,7 @@ export const clinicaTopics=[
     "rows": [
       [
         "Pessoa sem sintomas apresenta glicemia alterada em exame de rotina. Qual atitude é adequada antes do diagnóstico definitivo?",
-        "Confirmar conforme critérios laboratoriais e contexto clínico.",
+        "Confirmar o diagnóstico com testes adequados.",
         "Classificar tipo 1 com base na glicemia isolada.",
         "Prescrever insulina intravenosa independentemente dos sintomas.",
         "Ignorar exame se o paciente estiver assintomático.",
@@ -59,7 +59,7 @@ export const clinicaTopics=[
       ],
       [
         "Usuário de insulina apresenta sudorese, tremor e confusão. Qual hipótese precisa de avaliação imediata?",
-        "Hipoglicemia com aferição capilar e tratamento segundo nível de consciência.",
+        "Verificar glicemia e tratar hipoglicemia.",
         "Hiperglicemia hiperosmolar confirmada pelos sintomas.",
         "Infecção bacteriana como única causa possível.",
         "Acidose láctica obrigatória em todo usuário de insulina.",
@@ -67,7 +67,7 @@ export const clinicaTopics=[
       ],
       [
         "Paciente com diabetes e albuminúria persistente necessita acompanhamento. Qual avaliação é mais pertinente?",
-        "Função renal, controle pressórico e risco cardiovascular.",
+        "Avaliar função renal e risco cardiovascular.",
         "Somente glicemia capilar antes do almoço.",
         "Dosagem isolada de amilase sem sintomas.",
         "Radiografia abdominal anual como rastreamento renal.",
@@ -75,7 +75,7 @@ export const clinicaTopics=[
       ],
       [
         "Pessoa com diabetes relata ferida no pé e redução da sensibilidade. Qual é a melhor abordagem?",
-        "Avaliar infecção, perfusão e neuropatia e organizar cuidado oportuno.",
+        "Examinar perfusão, neuropatia e infecção.",
         "Usar antibiótico empírico em toda ferida sem exame.",
         "Aguardar cicatrização antes de examinar pulsos.",
         "Indicar caminhada intensa como tratamento único.",
@@ -92,7 +92,7 @@ export const clinicaTopics=[
     "rows": [
       [
         "Idoso com febre, tosse, taquipneia e saturação baixa chega à UBS. O que priorizar?",
-        "Avaliar gravidade e providenciar suporte e encaminhamento oportuno.",
+        "Investigar gravidade respiratória e hipoxemia.",
         "Tratar sempre em casa porque a tosse é frequente.",
         "Prescrever antibiótico sem avaliar oxigenação.",
         "Esperar cultura antes de verificar sinais vitais.",
@@ -100,7 +100,7 @@ export const clinicaTopics=[
       ],
       [
         "Paciente com infecção suspeita, confusão aguda e hipotensão. Qual risco deve ser considerado?",
-        "Sepse com disfunção orgânica e necessidade de avaliação imediata.",
+        "Reconhecer possível sepse com disfunção.",
         "Infecção leve por ausência de foco confirmado.",
         "Efeito normal da idade sem investigação.",
         "Condição exclusivamente psiquiátrica.",
@@ -108,7 +108,7 @@ export const clinicaTopics=[
       ],
       [
         "Pessoa saudável com quadro viral de vias aéreas superiores, sem sinais de gravidade. Qual conduta é mais coerente?",
-        "Orientação sintomática, sinais de alarme e reavaliação conforme evolução.",
+        "Orientar cuidado sintomático e sinais de alerta.",
         "Antibiótico sistêmico obrigatoriamente para todo resfriado.",
         "Tomografia de tórax de rotina para todas as viroses.",
         "Corticoterapia prolongada como prevenção padrão.",
@@ -116,7 +116,7 @@ export const clinicaTopics=[
       ],
       [
         "Paciente com dispneia súbita e taquicardia após cirurgia recente. Qual hipótese deve ser investigada?",
-        "Tromboembolismo pulmonar entre os diagnósticos de risco.",
+        "Investigar tromboembolismo pulmonar.",
         "Rinite alérgica como explicação suficiente.",
         "Asma descartada por cirurgia prévia.",
         "Ansiedade diagnosticada sem avaliação clínica.",
@@ -133,7 +133,7 @@ export const clinicaTopics=[
     "rows": [
       [
         "Adulto apresenta dor torácica opressiva e sudorese há 30 minutos. Qual ação inicial é mais apropriada?",
-        "Avaliação imediata, ECG e protocolo para síndrome coronariana aguda.",
+        "Realizar ECG e avaliar síndrome coronariana.",
         "Liberar apenas porque a dor diminuiu.",
         "Esperar dosagem de colesterol antes de fazer ECG.",
         "Atribuir dor a refluxo sem avaliação de risco.",
@@ -141,7 +141,7 @@ export const clinicaTopics=[
       ],
       [
         "Mulher apresenta fraqueza súbita em um braço e fala alterada. Qual informação é central para a equipe?",
-        "Última vez vista sem déficits e avaliação urgente de AVC.",
+        "Registrar a última vez sem déficit neurológico.",
         "Última consulta odontológica.",
         "Peso informado no último ano sem sintomas.",
         "Apenas história familiar remota de hipertensão.",
@@ -149,7 +149,7 @@ export const clinicaTopics=[
       ],
       [
         "Paciente com falta de ar e edema agudo de pulmão é atendido na emergência. Qual prioridade é apropriada?",
-        "Avaliar oxigenação, esforço respiratório e estabilidade hemodinâmica.",
+        "Avaliar oxigenação e estabilidade circulatória.",
         "Manter deitado sem monitorização por rotina.",
         "Oferecer grande volume de fluidos sem reavaliação.",
         "Encerrar avaliação após ausculta isolada.",
@@ -157,7 +157,7 @@ export const clinicaTopics=[
       ],
       [
         "Pessoa com dor torácica e ECG inicial sem isquemia evidente permanece sintomática. O que fazer?",
-        "Manter avaliação clínica e exames seriados conforme protocolo e risco.",
+        "Prosseguir avaliação seriada conforme risco.",
         "Excluir definitivamente evento coronariano pelo ECG isolado.",
         "Retornar apenas se houver febre.",
         "Focar exclusivamente no resultado da radiografia.",
