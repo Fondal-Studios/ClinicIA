@@ -8,7 +8,7 @@ import {mfcTopics,mfcSources} from './revalida-mfc.mjs';
 // IDs retained to preserve existing learning progress.
 export const revalidaSources={...clinicaSources,...cirurgiaSources,...pediatriaSources,...ginecoSources,...mfcSources,
  revalida:{title:'Inep · Revalida (informações oficiais)',url:'https://www.gov.br/inep/pt-br/areas-de-atuacao/avaliacao-e-exames-educacionais/revalida'},
- edital:{title:'MEC/Inep · Revalida 2026/1 e matriz',url:'https://mecnormas.mec.gov.br/pesquisa/detalhar/9045'},
+ edital:{title:'Inep · Editais e legislação do Revalida 2026',url:'https://www.gov.br/inep/pt-br/centrais-de-conteudo/legislacao/revalida/2026'},
  sus:{title:'Ministério da Saúde · Princípios do SUS',url:'https://www.gov.br/saude/pt-br/acesso-a-informacao/institucional/sus'},
  aps:{title:'Ministério da Saúde · Atenção Primária',url:'https://www.gov.br/saude/pt-br/composicao/saps/'},
  abcde:{title:'Resuscitation Council UK · Abordagem ABCDE (referência complementar)',url:'https://www.resus.org.uk/library/abcde-approach'},
