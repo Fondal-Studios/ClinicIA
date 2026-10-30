@@ -22,7 +22,7 @@ const ginecoSupplement={
 pool.push({lessons:[ginecoSupplement]});
 
 const pediatriaSupplement={id:'rotaciones-pediatria-supplement',title:'Pediatría: urgencias y prevención',area:'Pediatría',
- source:'diarreia',body:'Casos de atención pediátrica que requieren valoración de signos de alarma. Revisión docente pendiente.',
+ source:'diarrea',body:'Casos de atención pediátrica que requieren valoración de signos de alarma. Revisión docente pendiente.',
  questions:[
   {id:'rot-ped-s1',prompt:'Lactante con tos, taquipnea y retracciones subcostales. ¿Qué dato requiere valoración prioritaria?',options:['Saturación de oxígeno y esfuerzo respiratorio','Antecedentes de caries sin examen respiratorio','Resultado de colesterol familiar','Preferencia de horario de consulta'],answer:0,why:'Las retracciones y la taquipnea sugieren dificultad respiratoria; medir oxigenación y valorar gravedad orienta soporte y derivación.'},
   {id:'rot-ped-s2',prompt:'Niño previamente sano presenta petequias que no blanquean, fiebre y mal estado general. ¿Qué conducta corresponde?',options:['Observar una semana si la temperatura baja','Evaluar y derivar de urgencia por posible infección invasiva','Indicar solo antipirético sin examinar perfusión','Solicitar controles de rutina sin nueva valoración'],answer:1,why:'Fiebre con lesiones purpúricas y compromiso sistémico exige investigar infección bacteriana invasiva y actuar de urgencia.'}
