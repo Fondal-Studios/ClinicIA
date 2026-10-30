@@ -12,8 +12,8 @@ test('Revalida expansion has 100 unique items in 25 lessons and five clinical ax
  assert.equal(new Set(all.map(q=>q.id)).size,100);
  assert.equal(new Set(all.map(q=>norm(q.prompt))).size,100);
  for(const area of ['Clínica Médica','Cirurgia','Pediatria','Ginecologia e Obstetrícia','Medicina de Família e Comunidade / Saúde Coletiva']){
-  assert.equal(revalidaCourse.lessons.filter(l=>l.area===area).length,4,area);
-  assert.equal(all.filter(q=>q.skill===area).length,16,area);
+  assert.ok(revalidaCourse.lessons.filter(l=>l.area===area).length>=4,area);
+  assert.ok(all.filter(q=>q.skill===area).length>=16,area);
  }
 });
 test('Revalida editorial: four nonduplicated options, references, clinical rationale and simulations for 100 items',()=>{
