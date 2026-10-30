@@ -8,6 +8,18 @@ import {emergencyCourses,emergencySources} from './emergentologia.mjs';
 import {expandedEmergencyCourses,expandedEmergencySources} from './emergentologia-ampliada.mjs';
 import {integralCourses,integralSources} from './medicina-integral.mjs';
 const pool=[residencyCourse,neonatalCourse,obstetricCourse,phtlsCourse,atlsCourse,...emergencyCourses,...expandedEmergencyCourses,...integralCourses,revalidaCourse];
+
+const ginecoSupplement={
+ id:'rotaciones-gineco-supplement',title:'Ginecología: situaciones de atención primaria',area:'Ginecología y obstetricia',
+ source:'prenatal',body:'Casos complementarios sobre controles ginecológicos, gestación y comunicación clínica. Revisión docente pendiente.',
+ questions:[
+  {id:'rot-gyn-s1',prompt:'Gestante con vómitos persistentes, intolerancia oral y signos de deshidratación. ¿Qué priorizás?',options:['Evaluar hidratación y gravedad, indicar manejo y derivación según estado','Continuar seguimiento habitual sin valorar signos vitales','Posponer la evaluación hasta el control ecográfico rutinario','Suponer un síntoma leve por ocurrir en el primer trimestre'],answer:0,why:'La hiperémesis puede generar deshidratación y alteraciones metabólicas; la gravedad define manejo y necesidad de derivación.'},
+  {id:'rot-gyn-s2',prompt:'Paciente embarazada presenta pérdida de líquido por vagina antes del término. ¿Qué conducta corresponde?',options:['Considerar fisiológica toda pérdida de líquido claro','Evaluar urgencia obstétrica por posible rotura prematura de membranas','Indicar ducha vaginal y control en una semana','Descartar riesgo fetal si no hay dolor'],answer:1,why:'La sospecha de rotura de membranas necesita evaluación obstétrica sin demoras y prevención de complicaciones.'},
+  {id:'rot-gyn-s3',prompt:'Puérpera presenta dolor mamario, eritema local y fiebre. ¿Cuál es la evaluación indicada?',options:['Atribuir todos los síntomas a ingurgitación fisiológica','Interrumpir lactancia definitivamente sin evaluación','Evaluar mastitis y signos sistémicos para indicar manejo adecuado','Solicitar únicamente un examen cervical'],answer:2,why:'Fiebre y eritema focal durante lactancia requieren valorar mastitis e identificar complicaciones o gravedad.'},
+  {id:'rot-gyn-s4',prompt:'Paciente con lesión visible en cuello uterino y sangrado de contacto solicita control. ¿Qué corresponde?',options:['Repetir rastreo poblacional sin exploración','Prescribir anticonceptivos como única respuesta','Aguardar el siguiente tamizaje si es joven','Realizar evaluación diagnóstica de la lesión y derivar según hallazgos'],answer:3,why:'Los síntomas y una lesión visible exigen evaluación diagnóstica; el tamizaje no reemplaza la investigación clínica.'}
+ ]};
+
+pool.push({lessons:[ginecoSupplement]});
 const tracks=[
  ['rot-ginecologia','Ginecología y obstetricia',/embarazo|obstetric|gineco|prenatal|parto|puerper|eclamp|anticoncep|cervi|gesta/i],
  ['rot-pediatria','Pediatría',/pediatr|niñ|lactante|neonat|recién nacido|infantil|bronquiol|vacun|deshidrat/i],
