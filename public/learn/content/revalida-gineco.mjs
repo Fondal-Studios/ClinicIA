@@ -10,7 +10,7 @@ export const ginecoTopics=[
     "rows": [
       [
         "Gestante de 28 semanas apresenta cefaleia intensa, escotomas e PA muito elevada. Qual é a prioridade?",
-        "Avaliar imediatamente possível pré-eclâmpsia com sinais de gravidade e encaminhar.",
+        "Investigar pré-eclâmpsia grave urgentemente.",
         "Agendar aferição na próxima consulta mensal.",
         "Tratar cefaleia isolada sem examinar outros sinais.",
         "Considerar normal por ocorrer após 20 semanas.",
@@ -18,7 +18,7 @@ export const ginecoTopics=[
       ],
       [
         "Gestante sem intercorrências pergunta sobre finalidade do pré-natal. Qual resposta é mais adequada?",
-        "Acompanhar saúde materna e fetal, identificar riscos e organizar prevenção e cuidado.",
+        "Realizar acompanhamento materno-fetal integral.",
         "Substituir toda assistência ao parto por exames.",
         "Realizar apenas ultrassonografias sem avaliação clínica.",
         "Priorizar exclusivamente medida de peso.",
@@ -26,7 +26,7 @@ export const ginecoTopics=[
       ],
       [
         "Gestante apresenta sangramento vaginal no primeiro trimestre e dor abdominal. Qual condição deve ser descartada?",
-        "Gestação ectópica e outras causas de sangramento, considerando estabilidade.",
+        "Excluir gestação ectópica e avaliar estabilidade.",
         "Placenta prévia obrigatória desde o primeiro exame.",
         "Trabalho de parto sempre confirmado pelo sangramento.",
         "Anemia como única explicação da dor.",
@@ -34,7 +34,7 @@ export const ginecoTopics=[
       ],
       [
         "Mulher em pré-natal relata diminuição importante dos movimentos fetais. O que orientar?",
-        "Avaliação obstétrica oportuna conforme idade gestacional e protocolo.",
+        "Encaminhar para avaliação obstétrica oportuna.",
         "Aguardar várias semanas sem avaliação.",
         "Considerar normal em toda gestação.",
         "Focar apenas na glicemia materna.",
@@ -51,7 +51,7 @@ export const ginecoTopics=[
     "rows": [
       [
         "Gestante em trabalho de parto apresenta sangramento abundante e hipotensão. Qual atitude?",
-        "Solicitar apoio, estabilizar e avaliar emergência hemorrágica.",
+        "Tratar como emergência hemorrágica obstétrica.",
         "Manter observação sem monitorar circulação.",
         "Priorizar documentação antes de avaliar sangramento.",
         "Aguardar dilatação completa antes de pedir ajuda.",
@@ -59,7 +59,7 @@ export const ginecoTopics=[
       ],
       [
         "Em assistência ao parto, qual conduta respeita direitos e segurança?",
-        "Explicar intervenções, obter consentimento e garantir acompanhante conforme normas.",
+        "Informar, consentir e respeitar os direitos.",
         "Executar procedimentos sem informar a mulher.",
         "Impedir participação nas decisões por rotina.",
         "Substituir comunicação por documentação isolada.",
@@ -67,7 +67,7 @@ export const ginecoTopics=[
       ],
       [
         "Após parto, puérpera apresenta útero flácido e sangramento intenso. Qual hipótese prioritária?",
-        "Atonia uterina como causa frequente de hemorragia pós-parto.",
+        "Suspeitar de atonia uterina e agir prontamente.",
         "Infecção urinária como principal causa imediata.",
         "Retenção urinária como diagnóstico suficiente.",
         "Distúrbio tireoidiano confirmado pela flacidez.",
@@ -75,7 +75,7 @@ export const ginecoTopics=[
       ],
       [
         "Puérpera tem febre, dor uterina e secreção malcheirosa após parto. Qual suspeita?",
-        "Infecção puerperal, com avaliação e tratamento oportunos.",
+        "Investigar infecção puerperal.",
         "Loquiação fisiológica obrigatória sem avaliação.",
         "Depressão pós-parto como única hipótese.",
         "Lactação normal como explicação exclusiva.",
@@ -92,7 +92,7 @@ export const ginecoTopics=[
     "rows": [
       [
         "Mulher em idade reprodutiva chega com dor pélvica e síncope. Qual exame inicial é essencial no raciocínio?",
-        "Teste de gravidez e avaliação imediata de instabilidade.",
+        "Realizar teste gestacional e avaliar instabilidade.",
         "Papanicolau como avaliação da síncope.",
         "Dosagem de colesterol como prioridade.",
         "Espirometria de rotina.",
@@ -100,7 +100,7 @@ export const ginecoTopics=[
       ],
       [
         "Paciente tem dor pélvica, febre e dor à mobilização do colo. Qual hipótese investigar?",
-        "Doença inflamatória pélvica e outras causas infecciosas ou cirúrgicas.",
+        "Investigar doença inflamatória pélvica.",
         "Cistite descartando todas as outras causas.",
         "Dor funcional confirmada pela idade.",
         "Câncer cervical obrigatório sem exame.",
@@ -108,7 +108,7 @@ export const ginecoTopics=[
       ],
       [
         "Pessoa relata sangramento uterino intenso e tontura. O que priorizar?",
-        "Avaliar sinais vitais, repercussão hemodinâmica e causas.",
+        "Avaliar repercussão hemodinâmica do sangramento.",
         "Solicitar apenas exame citopatológico.",
         "Aguardar exames hormonais antes da estabilidade.",
         "Desconsiderar gravidez sem testagem quando possível.",
@@ -116,7 +116,7 @@ export const ginecoTopics=[
       ],
       [
         "Paciente solicita contracepção. Qual abordagem é mais adequada?",
-        "Aconselhamento compartilhado sobre eficácia, contraindicações e preferências.",
+        "Compartilhar escolha contraceptiva informada.",
         "Indicar um método único sem considerar história.",
         "Escolher apenas pelo custo da farmácia.",
         "Dispensar informações sobre efeitos e retorno.",
@@ -133,7 +133,7 @@ export const ginecoTopics=[
     "rows": [
       [
         "Paciente pergunta sobre rastreamento de câncer do colo uterino. Qual atitude?",
-        "Verificar faixa etária e recomendações atuais do SUS para orientar o teste indicado.",
+        "Seguir critérios atuais de rastreamento no SUS.",
         "Aplicar o mesmo teste anual a toda idade.",
         "Suspender prevenção após um resultado negativo isolado.",
         "Basear rastreamento somente em sintomas.",
@@ -141,7 +141,7 @@ export const ginecoTopics=[
       ],
       [
         "Pessoa com sangramento após relação sexual frequente procura UBS. Qual abordagem?",
-        "Avaliar colo e causas de sangramento, sem confundir investigação com rastreamento.",
+        "Investigar o sangramento pós-coital.",
         "Tratar como rastreamento de rotina sem exame.",
         "Encaminhar para exame de colesterol primeiro.",
         "Atribuir sempre a efeito de anticoncepcional.",
@@ -149,7 +149,7 @@ export const ginecoTopics=[
       ],
       [
         "Mulher com história familiar importante de câncer de mama busca orientação. O que considerar?",
-        "Estratificar risco e individualizar aconselhamento e investigação.",
+        "Estratificar risco familiar de câncer de mama.",
         "Dispensar anamnese porque exame físico é sempre suficiente.",
         "Aplicar rastreamento idêntico independentemente do risco.",
         "Aguardar sintomas para discutir história familiar.",
@@ -157,7 +157,7 @@ export const ginecoTopics=[
       ],
       [
         "Pessoa com resultado de rastreio alterado não compareceu à avaliação complementar. Qual ação fortalece cuidado?",
-        "Busca ativa e facilitação de seguimento conforme fluxo assistencial.",
+        "Facilitar seguimento de rastreio alterado.",
         "Arquivar exame sem comunicar por ausência de sintomas.",
         "Repetir indefinidamente o rastreio sem investigação.",
         "Esperar novo exame espontâneo daqui a muitos anos.",
