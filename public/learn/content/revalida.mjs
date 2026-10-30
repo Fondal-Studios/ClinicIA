@@ -53,7 +53,7 @@ function expandedLesson(t){
    reviewStatus:'Revisão editorial automatizada; validação docente pendente'};
  });
  const casePrompt=questions[0].prompt;
- const extension='\\n\\nRaciocínio guiado: identifique os dados relevantes, diferencie sinais de alarme dos achados de acompanhamento e justifique a prioridade no contexto do SUS. Considere também hipóteses alternativas e reavalie a evolução clínica.\\n\\nCaso de discussão: '+casePrompt+' Apresente seu raciocínio em português, explique os riscos e elabore um plano de atendimento ou encaminhamento supervisionado.\\n\\nChecklist de estudo: avaliação inicial, hipótese principal, diagnósticos diferenciais, decisão segura e comunicação com paciente ou equipe.';
+ const extension='\n\nRaciocínio guiado: identifique os dados relevantes, diferencie sinais de alarme dos achados de acompanhamento e justifique a prioridade no contexto do SUS. Considere também hipóteses alternativas e reavalie a evolução clínica.\n\nCaso de discussão: '+casePrompt+' Apresente seu raciocínio em português, explique os riscos e elabore um plano de atendimento ou encaminhamento supervisionado.\n\nChecklist de estudo: avaliação inicial, hipótese principal, diagnósticos diferenciais, decisão segura e comunicação com paciente ou equipe.';
  return {
   id:'rv-'+t.id,title:t.title,module:t.area,area:t.area,source:t.source,minutes:15,
   body:t.body+extension,objective:'Reconhecer sinais de risco, escolher abordagem segura e explicar a conduta no SUS.',
