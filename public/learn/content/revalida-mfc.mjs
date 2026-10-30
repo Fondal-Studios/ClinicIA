@@ -10,7 +10,7 @@ export const mfcTopics=[
     "rows": [
       [
         "Usuário com múltiplas condições crônicas retorna à mesma equipe ao longo de anos. Que atributo da APS está presente?",
-        "Longitudinalidade e vínculo com equipe de referência.",
+        "Reconhecer longitudinalidade e vínculo.",
         "Atenção exclusivamente episódica.",
         "Encaminhamento sem contrarreferência.",
         "Centralização em uma única internação.",
@@ -18,7 +18,7 @@ export const mfcTopics=[
       ],
       [
         "Comunidade apresenta dificuldade de transporte e alto risco de doença. Qual ação expressa equidade?",
-        "Organizar busca ativa e acesso conforme vulnerabilidade identificada.",
+        "Alocar cuidado conforme risco e vulnerabilidade.",
         "Distribuir sempre recursos iguais sem avaliação do território.",
         "Exigir transporte próprio de todos os usuários.",
         "Atender somente quem chega antes na fila.",
@@ -26,7 +26,7 @@ export const mfcTopics=[
       ],
       [
         "Pessoa volta à UBS após avaliação especializada. Qual ação reforça coordenação?",
-        "Incorporar contrarreferência e atualizar plano compartilhado.",
+        "Integrar contrarreferência e plano terapêutico.",
         "Encerrar o acompanhamento na UBS.",
         "Solicitar que o paciente escolha apenas um nível.",
         "Ignorar mudanças de medicação realizadas no hospital.",
@@ -34,7 +34,7 @@ export const mfcTopics=[
       ],
       [
         "Uma UBS avalia apenas número de consultas, sem resultados de seguimento. Qual limitação?",
-        "Produção de atendimentos não mede sozinha acesso, continuidade e qualidade.",
+        "Avaliar indicadores de acesso e continuidade.",
         "Número de consultas é suficiente para comprovar equidade.",
         "Basta quantificar cirurgias para medir APS.",
         "Indicadores nunca contribuem para gestão de saúde.",
@@ -51,7 +51,7 @@ export const mfcTopics=[
     "rows": [
       [
         "Pessoa tabagista deseja cessar. Qual intervenção inicial é apropriada?",
-        "Avaliar dependência, oferecer aconselhamento e discutir tratamento disponível.",
+        "Oferecer abordagem estruturada para cessação.",
         "Prescrever punição ou censura como principal ferramenta.",
         "Adiar discussão até internação por doença grave.",
         "Trocar toda intervenção por exame de sangue isolado.",
@@ -59,7 +59,7 @@ export const mfcTopics=[
       ],
       [
         "Adulto com alto risco cardiovascular pergunta sobre mudança de hábitos. Qual orientação é mais completa?",
-        "Construir metas viáveis para alimentação, atividade física e adesão às medidas de saúde.",
+        "Definir metas preventivas viáveis com o paciente.",
         "Recomendar uma intervenção idêntica para todas as pessoas.",
         "Considerar prevenção inútil se já usa medicamentos.",
         "Priorizar suplemento sem avaliação de hábitos.",
@@ -67,7 +67,7 @@ export const mfcTopics=[
       ],
       [
         "Família apresenta caderneta incompleta de vacinação. Qual etapa inicial na APS?",
-        "Revisar doses e indicar atualização conforme calendário atual e condições individuais.",
+        "Conferir caderneta e atualizar vacinas.",
         "Recomeçar todas as vacinas automaticamente.",
         "Cancelar doses futuras por atraso.",
         "Basear conduta apenas na idade do responsável.",
@@ -75,7 +75,7 @@ export const mfcTopics=[
       ],
       [
         "Usuário de 67 anos com quedas recorrentes pede orientação. Qual abordagem?",
-        "Avaliar medicações, marcha, ambiente e fatores modificáveis de risco.",
+        "Avaliar causas multifatoriais de quedas.",
         "Recomendar repouso permanente sem exame.",
         "Indicar imobilização indefinida por prevenção.",
         "Descartar risco se não houve fratura até agora.",
@@ -92,7 +92,7 @@ export const mfcTopics=[
     "rows": [
       [
         "Pessoa relata desesperança e fala sobre não querer mais viver. Qual conduta prioritária?",
-        "Avaliar diretamente risco de suicídio e garantir segurança com apoio apropriado.",
+        "Avaliar diretamente risco suicida e segurança.",
         "Mudar de assunto para não influenciar a pessoa.",
         "Agendar retorno de rotina sem avaliação de risco.",
         "Informar que pensar nisso é sempre falta de caráter.",
@@ -100,7 +100,7 @@ export const mfcTopics=[
       ],
       [
         "Paciente com humor deprimido persistente e prejuízo funcional. Qual abordagem inicial?",
-        "Avaliar sintomas, duração, funcionalidade, comorbidades e risco de autoagressão.",
+        "Avaliar sintomas, funcionalidade e autoagressão.",
         "Diagnosticar exclusivamente por um sintoma isolado.",
         "Excluir transtorno mental por exame laboratorial normal.",
         "Prescrever tratamento sem avaliar contexto.",
@@ -108,7 +108,7 @@ export const mfcTopics=[
       ],
       [
         "Pessoa com uso nocivo de álcool procura ajuda e demonstra ambivalência. Qual estratégia favorece vínculo?",
-        "Escuta empática, entrevista motivacional e decisão compartilhada.",
+        "Utilizar escuta empática e entrevista motivacional.",
         "Confronto moralizante sem plano de cuidado.",
         "Imposição de abstinência como condição para acolhimento.",
         "Desconsiderar riscos clínicos por ser tema comportamental.",
@@ -116,7 +116,7 @@ export const mfcTopics=[
       ],
       [
         "Paciente com episódio de agitação intensa e alteração abrupta da consciência. Qual hipótese deve ser considerada?",
-        "Delirium ou outra causa clínica aguda que exige avaliação de segurança.",
+        "Investigar delirium e causas clínicas agudas.",
         "Transtorno psiquiátrico confirmado sem exame.",
         "Mudança de personalidade isolada por envelhecimento.",
         "Ansiedade leve como explicação obrigatória.",
@@ -133,7 +133,7 @@ export const mfcTopics=[
     "rows": [
       [
         "Paciente adulto com capacidade decisória recusa procedimento após informação clara. Qual conduta?",
-        "Esclarecer riscos e alternativas, respeitar decisão e documentar, conforme contexto legal.",
+        "Respeitar recusa informada e documentar.",
         "Realizar procedimento sem consentimento sempre que indicado.",
         "Omitir informações para melhorar aceitação.",
         "Solicitar consentimento apenas depois do procedimento.",
@@ -141,7 +141,7 @@ export const mfcTopics=[
       ],
       [
         "Em atendimento, um familiar pede detalhes clínicos sem autorização do paciente capaz. Qual atitude geral?",
-        "Preservar sigilo e negociar compartilhamento com consentimento do paciente.",
+        "Manter sigilo sem consentimento adequado.",
         "Entregar prontuário completo por vínculo familiar.",
         "Compartilhar dados em grupo de mensagens da equipe ampliada.",
         "Ignorar confidencialidade quando há curiosidade da família.",
@@ -149,7 +149,7 @@ export const mfcTopics=[
       ],
       [
         "Equipe suspeita de agravo sujeito a notificação compulsória. Qual procedimento é apropriado?",
-        "Verificar critérios e notificar à vigilância conforme normas vigentes.",
+        "Notificar segundo critérios e fluxo vigentes.",
         "Aguardar confirmação absoluta em todos os casos antes de qualquer notificação.",
         "Substituir notificação por aviso verbal a vizinhos.",
         "Registrar apenas em agenda pessoal.",
@@ -157,7 +157,7 @@ export const mfcTopics=[
       ],
       [
         "Duas áreas têm a mesma incidência de doença, mas uma apresenta mortalidade maior. Qual análise é pertinente?",
-        "Investigar acesso, gravidade, condições sociais e qualidade assistencial.",
+        "Investigar acesso, gravidade e fatores contextuais.",
         "Concluir causalidade de um fator único sem dados.",
         "Desconsiderar diferenças de população e cuidado.",
         "Interpretar números absolutos sem denominadores.",
