@@ -1,7 +1,12 @@
+import {clinicaTopics,clinicaSources} from './revalida-clinica.mjs';
+import {cirurgiaTopics,cirurgiaSources} from './revalida-cirurgia.mjs';
+import {pediatriaTopics,pediatriaSources} from './revalida-pediatria.mjs';
+import {ginecoTopics,ginecoSources} from './revalida-gineco.mjs';
+import {mfcTopics,mfcSources} from './revalida-mfc.mjs';
 // Revalida introductory pilot — original PT-BR clinical-education items, 2026-10-29.
 // Not official INEP questions; clinical review by a Brazilian faculty member pending.
 // IDs retained to preserve existing learning progress.
-export const revalidaSources={
+export const revalidaSources={...clinicaSources,...cirurgiaSources,...pediatriaSources,...ginecoSources,...mfcSources,
  revalida:{title:'Inep · Revalida (informações oficiais)',url:'https://www.gov.br/inep/pt-br/areas-de-atuacao/avaliacao-e-exames-educacionais/revalida'},
  edital:{title:'MEC/Inep · Revalida 2026/1 e matriz',url:'https://mecnormas.mec.gov.br/pesquisa/detalhar/9045'},
  sus:{title:'Ministério da Saúde · Princípios do SUS',url:'https://www.gov.br/saude/pt-br/acesso-a-informacao/institucional/sus'},
@@ -34,3 +39,35 @@ export const revalidaCourse={
  topic("infancia","Diarreia infantil: avaliação e hidratação","Pediatria","diarrea","Na criança com diarreia, avaliar hidratação depende do estado geral, capacidade de beber, olhos, mucosas e outros achados clínicos de acordo com protocolos pediátricos vigentes. Letargia e incapacidade de ingerir líquidos são sinais de alarme que exigem avaliação imediata. Em quadros sem gravidade, soluções de reidratação oral (SRO), manutenção do aleitamento e alimentação adequada integram o tratamento; não substitua SRO por bebidas muito açucaradas. Orientar a família sobre sinais de alerta e retorno faz parte da consulta.\n\nCaso guiado: criança com três dias de diarreia, diurese reduzida e dificuldade para beber. Explique como reconhecer desidratação, quando encaminhar e como orientar cuidadores com linguagem compreensível. Glossário: aleitamento = lactancia; fezes = heces; sede = sed.\n\nPergunta de reflexão: quais sinais exigiriam avaliação urgente e quais podem ser acompanhados com orientações e reavaliação?",[["Uma criança com diarreia está letárgica e não consegue beber. Qual conduta inicial?",["Prescrever apenas dieta habitual e retorno eletivo.","Adiar avaliação até a chegada de exame parasitológico.","Orientar apenas líquidos adoçados em casa.","Avaliar urgentemente a gravidade e iniciar reposição hídrica indicada."],3,"Letargia e incapacidade de beber são sinais de gravidade e exigem avaliação imediata e reposição hídrica conforme protocolo, não conduta exclusivamente domiciliar."],["Criança com diarreia, consciente, capaz de beber e sem sinais de gravidade, precisa repor perdas. Qual líquido é preferencial?",["Refrigerante diluído em água.","Solução de reidratação oral na formulação apropriada.","Bebida esportiva como substituto habitual.","Água isolada como única reposição independentemente das perdas."],1,"A SRO combina água e eletrólitos em proporções apropriadas para reposição de perdas gastrointestinais."],["Lactente com diarreia tolera mamadas. Qual orientação geral é adequada?",["Manter aleitamento e alimentação apropriada, conforme aceitação.","Suspender todas as mamadas até normalizar as fezes.","Oferecer bebidas açucaradas em lugar do leite materno.","Restringir a hidratação para reduzir episódios de evacuação."],0,"Manter aleitamento e alimentação adequada ajuda a preservar nutrição, ao lado da reidratação e monitorização."],["Equipe da APS organiza prevenção de doenças diarreicas na comunidade. Qual conjunto de medidas é mais apropriado?",["Uso regular de antibióticos profiláticos para todas as famílias.","Reduzir acesso à vacinação enquanto houver surtos.","Saneamento, água tratada, higiene e imunização indicada.","Substituir saneamento por campanhas exclusivas de medicamentos."],2,"A prevenção integra água e saneamento seguros, higiene, educação e imunização pertinente, conforme epidemiologia local."]]),
  topic("preparacion","Como se preparar para o Revalida","Preparação e Ética","revalida","O Revalida é um exame de avaliação de competências de médicos graduados fora do Brasil, utilizado no processo de revalidação de diplomas por universidades públicas participantes. A preparação deve considerar a Matriz de Referência vigente, edital atualizado e competências das cinco grandes áreas: Clínica Médica, Cirurgia, Pediatria, Ginecologia e Obstetrícia, e Medicina de Família e Comunidade/Saúde Coletiva. A prova escrita não substitui a preparação para estações de habilidades clínicas. Resultados de simulados próprios não equivalem a aprovação oficial.\n\nCaso guiado: profissional brasileiro formado no exterior tem nota alta em simulado, mas dificuldade de entrevistar paciente em português. Proponha plano equilibrado de estudo teórico, comunicação clínica, tomada de decisão e estações simuladas. Glossário: prova objetiva = examen de opción múltiple; edital = convocatoria; revalidação = reválida.\n\nPergunta de reflexão: como distinguir desempenho de treinamento, requisitos administrativos e avaliação prática?",[["O Revalida subsidia qual processo no Brasil?",["Registro automático em qualquer conselho de especialidade.","Admissão direta em programas de residência médica.","Revalidar diplomas médicos obtidos no exterior, por universidade.","Equivalência automática de qualquer curso de pós-graduação."],2,"O exame subsidia a revalidação de diplomas de medicina obtidos no exterior, processo efetivado por universidades públicas participantes."],["Um estudante obteve 90% em um simulado privado. Como interpretar esse resultado?",["Representa desempenho naquele treino, não aprovação no Revalida.","Representa conclusão automática da etapa de habilidades clínicas.","Autoriza automaticamente o exercício da medicina no Brasil.","Substitui a análise dos requisitos do edital."],0,"O resultado em banco privado não é nota nem habilitação oficial. A prova e os requisitos seguem critérios da edição."],["Onde verificar documentos e regras específicos da edição do Revalida?",["Em relatos não datados de redes sociais.","Exclusivamente em plataformas comerciais de preparação.","Na média das notas de simulados anteriores.","No edital e nos comunicados oficiais do Inep."],3,"O edital e as comunicações oficiais estabelecem requisitos, datas e procedimentos de cada edição."],["Por que um treinamento apenas de múltipla escolha é insuficiente para a segunda etapa?",["Porque todos os itens da segunda etapa são teóricos.","Porque a etapa prática observa comunicação, exame e decisões clínicas.","Porque a etapa prática avalia exclusivamente memorização de legislação.","Porque a etapa prática dispensa treino de segurança do paciente."],1,"Questões objetivas não demonstram execução clínica nem comunicação. A preparação precisa incluir estações de habilidades simuladas."]])
 ]};
+
+// Expanded 2026 learning bank, authored for this app; not Inep questions.
+// Introductory question IDs are kept to preserve historical learning references.
+function expandedLesson(t){
+ const questions=t.rows.map(([prompt,correct,...rest],i)=>{
+  const why=rest.pop(),wrong=rest;
+  if(wrong.length!==3)throw new Error('Expected three distractors: '+t.id+'-'+i);
+  const answer=i%4;
+  const options=[...wrong];options.splice(answer,0,correct);
+  return {id:'rv-'+t.id+'-'+(i+1),prompt,options,answer,why,
+   source:t.source,skill:t.area,language:'pt-BR',
+   reviewStatus:'Revisão editorial automatizada; validação docente pendente'};
+ });
+ const casePrompt=questions[0].prompt;
+ const extension='\\n\\nRaciocínio guiado: identifique os dados relevantes, diferencie sinais de alarme dos achados de acompanhamento e justifique a prioridade no contexto do SUS. Considere também hipóteses alternativas e reavalie a evolução clínica.\\n\\nCaso de discussão: '+casePrompt+' Apresente seu raciocínio em português, explique os riscos e elabore um plano de atendimento ou encaminhamento supervisionado.\\n\\nChecklist de estudo: avaliação inicial, hipótese principal, diagnósticos diferenciais, decisão segura e comunicação com paciente ou equipe.';
+ return {
+  id:'rv-'+t.id,title:t.title,module:t.area,area:t.area,source:t.source,minutes:15,
+  body:t.body+extension,objective:'Reconhecer sinais de risco, escolher abordagem segura e explicar a conduta no SUS.',
+  simulation:{required:false,scenario:casePrompt,
+   roles:['Médico candidato','Paciente ou familiar','Examinador observador'],
+   rotation:'Realizar estação simulada em português e trocar os papéis.',
+   checklist:['Comunicação clínica em português','Anamnese e achados relevantes','Reconhecimento de riscos','Justificativa e plano compartilhado'],
+   validation:'Estação formativa; não representa uma avaliação oficial do Inep.'},
+  questions
+ };
+}
+const expandedTopics=[...clinicaTopics,...cirurgiaTopics,...pediatriaTopics,...ginecoTopics,...mfcTopics];
+revalidaCourse.lessons.push(...expandedTopics.map(expandedLesson));
+revalidaCourse.subtitle='Preparação inicial ampliada · 100 questões em português';
+revalidaCourse.summary='100 questões autorais com explicações, 25 unidades e casos simulados em cinco eixos. Preparação independente, ainda sujeita a revisão docente brasileira.';
+revalidaCourse.scope='Banco de treino com 100 itens autorais de quatro alternativas e teoria introdutória dos cinco eixos. Não é reprodução de provas oficiais, não certifica preparo nem cobre integralmente a matriz ou estações do Inep. Revisão clínica e linguística especializada permanece necessária.';
+revalidaCourse.examMinutes=180;
