@@ -10,8 +10,8 @@ test('persistent training: groups, isolation, resumable grading, practices and e
  let api=createCapacitacion({db,issuerId:issuer.id});const call=(u,b)=>api.handle(u,'POST',b);const reject=async(u,b,code)=>assert.rejects(call(u,b),e=>e.status===code);
  try{
   await reject(student,{action:'create-group',title:'Policía'},403);
-  const {id:groupId}=await call(teacher,{action:'create-group',title:'Policía Cafayate'});
-  await call(student,{action:'join',groupId});await reject(other,{action:'accept',groupId,userId:'s'},403);
+  const {id:groupId,joinCode}=await call(teacher,{action:'create-group',title:'Polícia Cafayate'});
+  await call(student,{action:'join',joinCode});await reject(other,{action:'accept',groupId,userId:'s'},403);
   await call(teacher,{action:'accept',groupId,userId:'s'});
   await reject(other,{action:'roster',groupId},403);
   for(const l of policeCourse.lessons)await call(student,{action:'read',lessonId:l.id});

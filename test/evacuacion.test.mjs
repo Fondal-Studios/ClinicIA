@@ -20,7 +20,7 @@ test('evacuation reads, persisted 20-question assessment, 16/20 pass, 15/20 fail
  for(const x of [u,admin])await db.query('INSERT INTO clinic_users(id,username,username_key,password_hash,recovery_hash,role) VALUES($1,$2,$3,$4,$5,$6)',[x.id,x.username,x.username.toLowerCase(),'unused','unused',x.role||'student']);
  const api=createCapacitacion({db,issuerId:admin.id});const call=(x,b)=>api.handle(x,'POST',b);
  try{
- const {id:groupId}=await call(admin,{action:'create-group',title:'Evacuación'});await call(u,{action:'join',groupId});await call(admin,{action:'accept',groupId,userId:u.id});
+ const {id:groupId,joinCode}=await call(admin,{action:'create-group',title:'Evacuación'});await call(u,{action:'join',joinCode});await call(admin,{action:'accept',groupId,userId:u.id});
  for(const c of evacuationCourses){for(const l of c.lessons)await call(u,{action:'read',lessonId:l.id});
   for(const correct of [15,16]){const a=await call(u,{action:'start',courseId:c.id});assert.equal(a.questions.length,20);const qs=c.lessons.flatMap(l=>l.questions);
    for(let i=0;i<20;i++)await call(u,{action:'save-answer',attemptId:a.id,questionId:qs[i].id,answer:i<correct?qs[i].answer:(qs[i].answer+1)%3,version:i});

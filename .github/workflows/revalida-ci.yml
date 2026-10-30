@@ -1,0 +1,28 @@
+name: Revalida editorial and integration checks
+on:
+  pull_request:
+    paths:
+      - 'public/learn/content/revalida.mjs'
+      - 'public/learn/courses.mjs'
+      - 'public/app.mjs'
+      - 'test/revalida-editorial.test.mjs'
+      - 'test/editorial.test.mjs'
+      - '.github/workflows/revalida-ci.yml'
+  workflow_dispatch:
+jobs:
+  revalida:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - run: npm ci
+      - name: Verify module and app syntax
+        run: |
+          node --check public/app.mjs
+          node --check public/learn/content/revalida.mjs
+          node --check public/learn/courses.mjs
+      - name: Verify all 20 items and bilingual clinical simulations
+        run: node --test test/revalida-editorial.test.mjs
