@@ -48,36 +48,36 @@ questions:[
     "id": "rot-cir-s2",
     "prompt": "Adulto con dolor en fosa ilíaca derecha y fiebre tiene sospecha de apendicitis. ¿Qué es correcto?",
     "options": [
-      "Integrar historia, examen y estudios según riesgo.",
       "Confirmar diagnóstico por fiebre aislada.",
+      "Integrar historia, examen y estudios según riesgo.",
       "Descartar apendicitis si no hay vómitos.",
       "Indicar alta por dolor localizado."
     ],
-    "answer": 0,
+    "answer": 1,
     "why": "Apendicitis requiere evaluación clínica y, según el contexto, imágenes y consulta quirúrgica."
   },
   {
     "id": "rot-cir-s3",
     "prompt": "Paciente con vómitos, distensión, dolor y ausencia de eliminación de gases. ¿Qué sospechás?",
     "options": [
-      "Obstrucción intestinal y valoración de gravedad.",
       "Gastritis como diagnóstico definitivo.",
       "Dispepsia funcional sin examen abdominal.",
+      "Obstrucción intestinal y valoración de gravedad.",
       "Alergia alimentaria confirmada."
     ],
-    "answer": 0,
+    "answer": 2,
     "why": "El conjunto orienta a obstrucción y requiere evaluar estrangulación, deshidratación y necesidad de intervención."
   },
   {
     "id": "rot-cir-s4",
     "prompt": "Dolor súbito muy intenso y abdomen rígido tras antecedente ulceroso. ¿Qué priorizás?",
     "options": [
-      "Evaluar posible perforación de víscera hueca.",
       "Posponer examen hasta que tolere dieta.",
       "Atribuir a síndrome de intestino irritable.",
-      "Considerar diagnóstico cerrado de apendicitis."
+      "Considerar diagnóstico cerrado de apendicitis.",
+      "Evaluar posible perforación de víscera hueca."
     ],
-    "answer": 0,
+    "answer": 3,
     "why": "El inicio brusco con signos peritoneales exige investigar perforación y estabilizar."
   },
   {
@@ -96,36 +96,36 @@ questions:[
     "id": "rot-cir-s6",
     "prompt": "Paciente con dolor en hipocondrio derecho, fiebre e ictericia. ¿Qué cuadro debe considerarse?",
     "options": [
-      "Colangitis aguda y necesidad de evaluación urgente.",
       "Colelitiasis simple sin signos sistémicos.",
+      "Colangitis aguda y necesidad de evaluación urgente.",
       "Gastritis funcional como única causa.",
       "Hepatitis vírica confirmada clínicamente."
     ],
-    "answer": 0,
+    "answer": 1,
     "why": "Triada de dolor, fiebre e ictericia exige considerar infección de vía biliar y gravedad."
   },
   {
     "id": "rot-cir-s7",
     "prompt": "Adulto con dolor epigástrico irradiado a espalda y vómitos. ¿Qué diagnóstico investigar?",
     "options": [
-      "Pancreatitis aguda con criterios clínicos y bioquímicos.",
       "Reflujo sin necesidad de examen.",
       "Apendicitis confirmada por la irradiación.",
+      "Pancreatitis aguda con criterios clínicos y bioquímicos.",
       "Cólico renal sin evaluación clínica."
     ],
-    "answer": 0,
+    "answer": 2,
     "why": "La presentación es compatible con pancreatitis y requiere confirmar e investigar gravedad."
   },
   {
     "id": "rot-cir-s8",
     "prompt": "Tras cirugía abdominal, aumenta el dolor, aparece fiebre y rigidez. ¿Qué complicación buscar?",
     "options": [
-      "Infección intraabdominal o dehiscencia de anastomosis.",
       "Dolor posoperatorio fisiológico sin límites.",
       "Reacción emocional como diagnóstico seguro.",
-      "Intolerancia alimentaria leve sin examen."
+      "Intolerancia alimentaria leve sin examen.",
+      "Infección intraabdominal o dehiscencia de anastomosis."
     ],
-    "answer": 0,
+    "answer": 3,
     "why": "Fiebre y peritonismo postoperatorios obligan a evaluar complicaciones potencialmente graves."
   },
   {
@@ -144,36 +144,36 @@ questions:[
     "id": "rot-cir-s10",
     "prompt": "Adulto con traumatismo abdominal, hipotensión y palidez tras choque. ¿Cuál es la prioridad?",
     "options": [
-      "Control de hemorragia y evaluación de posible sangrado interno.",
       "Alta al comprobar que puede caminar.",
+      "Control de hemorragia y evaluación de posible sangrado interno.",
       "Inspección de lesiones leves antes de ABCDE.",
       "Inmovilización de dedos como medida principal."
     ],
-    "answer": 0,
+    "answer": 1,
     "why": "La instabilidad tras trauma puede indicar hemorragia oculta y exige respuesta inmediata."
   },
   {
     "id": "rot-cir-s11",
     "prompt": "Persona con quemadura extensa y dificultad respiratoria tras incendio. ¿Qué preocupación inicial es clave?",
     "options": [
-      "Lesión inhalatoria, via aérea y estabilidad.",
       "Solo hidratación de la piel quemada.",
       "Cambio cosmético de apósitos.",
+      "Lesión inhalatoria, via aérea y estabilidad.",
       "Seguimiento electivo sin oxigenación."
     ],
-    "answer": 0,
+    "answer": 2,
     "why": "La exposición a humo con dificultad respiratoria exige valorar vía aérea y lesión inhalatoria."
   },
   {
     "id": "rot-cir-s12",
     "prompt": "Pierna con dolor desproporcionado, edema intenso y alteraciones de sensibilidad tras fractura. ¿Qué sospechás?",
     "options": [
-      "Síndrome compartimental agudo.",
       "Cicatrización ósea normal.",
       "Distensión muscular leve confirmada.",
-      "Neuropatía crónica como única causa."
+      "Neuropatía crónica como única causa.",
+      "Síndrome compartimental agudo."
     ],
-    "answer": 0,
+    "answer": 3,
     "why": "Dolor desproporcionado y signos neurológicos pueden indicar presión compartimental crítica."
   },
   {
@@ -192,36 +192,36 @@ questions:[
     "id": "rot-cir-s14",
     "prompt": "Previo a cirurgia, paciente informa alergia grave a antibiótico planificado. ¿Qué acción es segura?",
     "options": [
-      "Verificar el antecedente y adaptar profilaxis según protocolo.",
       "Administrar igual para comprobar reacción.",
+      "Verificar el antecedente y adaptar profilaxis según protocolo.",
       "Omitir registro para evitar demoras.",
       "Elegir una dosis mayor por seguridad."
     ],
-    "answer": 0,
+    "answer": 1,
     "why": "Alergias graves requieren revisión de profilaxis y comunicación del equipo."
   },
   {
     "id": "rot-cir-s15",
     "prompt": "Durante el cierre operatorio, el recuento de gasas no coincide. ¿Qué corresponde?",
     "options": [
-      "Detener cierre según protocolo y resolver discrepancia.",
       "Finalizar porque no hay sangrado.",
       "Anotar diferencia solo en la alta.",
+      "Detener cierre según protocolo y resolver discrepancia.",
       "Suponer error de registro sin comprobación."
     ],
-    "answer": 0,
+    "answer": 2,
     "why": "La discrepancia de contaje exige conciliación para prevenir objetos retenidos."
   },
   {
     "id": "rot-cir-s16",
     "prompt": "Paciente operado presenta disnea súbita y taquicardia. ¿Qué diagnóstico es importante descartar?",
     "options": [
-      "Tromboembolismo pulmonar y otras urgencias respiratorias.",
       "Dolor habitual de incisión sin evaluación.",
       "Hipertensión crónica como única explicación.",
-      "Ansiedad sin comprobación de oxigenación."
+      "Ansiedad sin comprobación de oxigenación.",
+      "Tromboembolismo pulmonar y otras urgencias respiratorias."
     ],
-    "answer": 0,
+    "answer": 3,
     "why": "El posoperatorio aumenta riesgo trombótico; se necesita evaluación oportuna."
   },
   {
