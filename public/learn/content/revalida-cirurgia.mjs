@@ -10,7 +10,7 @@ export const cirurgiaTopics=[
     "rows": [
       [
         "Adulto com dor que começou periumbilical e migrou para fossa ilíaca direita, com febre baixa. Qual hipótese merece investigação?",
-        "Apendicite aguda com avaliação clínica e cirúrgica oportuna.",
+        "Investigar apendicite aguda.",
         "Colecistite como diagnóstico confirmado pela migração.",
         "Cistite sem necessidade de exame abdominal.",
         "Gastroenterite obrigatória pelo início periumbilical.",
@@ -18,7 +18,7 @@ export const cirurgiaTopics=[
       ],
       [
         "Paciente com dor abdominal intensa, rigidez involuntária e instabilidade. Qual atitude é prioritária?",
-        "Reanimação, avaliação urgente de peritonite e suporte cirúrgico.",
+        "Iniciar suporte e avaliação cirúrgica urgente.",
         "Alta após analgesia sem reavaliação.",
         "Solicitar colonoscopia eletiva como primeira medida.",
         "Aguardar desaparecimento da dor em domicílio.",
@@ -26,7 +26,7 @@ export const cirurgiaTopics=[
       ],
       [
         "Idosa apresenta dor em hipocôndrio direito, febre e sinal de Murphy. Qual hipótese é importante?",
-        "Colecistite aguda, com investigação de gravidade e imagem conforme disponibilidade.",
+        "Investigar colecistite e gravidade.",
         "Pancreatite descartada sem exames.",
         "Gastrite confirmada pelo local da dor.",
         "Neoplasia comprovada pela febre isolada.",
@@ -34,7 +34,7 @@ export const cirurgiaTopics=[
       ],
       [
         "Mulher em idade fértil apresenta dor pélvica aguda e atraso menstrual. Qual exame inicial é essencial?",
-        "Teste de gravidez e avaliação de instabilidade enquanto se investigam causas.",
+        "Realizar teste de gravidez e avaliar estabilidade.",
         "Radiografia de tórax como único exame.",
         "Colonoscopia antes de excluir gestação.",
         "Eletroencefalograma na avaliação inicial.",
@@ -51,7 +51,7 @@ export const cirurgiaTopics=[
     "rows": [
       [
         "Vítima de colisão apresenta sangramento externo volumoso em perna. Qual é a prioridade?",
-        "Controle imediato da hemorragia com medidas apropriadas e acionamento de suporte.",
+        "Controlar imediatamente a hemorragia.",
         "Documentar integralmente a história antes de conter sangue.",
         "Priorizar imobilização de lesão pequena na mão.",
         "Esperar resultados de hemograma para agir.",
@@ -59,7 +59,7 @@ export const cirurgiaTopics=[
       ],
       [
         "Paciente após trauma torácico tem dispneia, hipotensão e assimetria ventilatória. O que fazer?",
-        "Reconhecer possível ameaça torácica e acionar manejo de emergência conforme treinamento.",
+        "Reconhecer ameaça torácica e pedir suporte.",
         "Assumir contusão simples até imagem eletiva.",
         "Encerrar abordagem após medir temperatura.",
         "Priorizar pesquisa de alergia alimentar antes da respiração.",
@@ -67,7 +67,7 @@ export const cirurgiaTopics=[
       ],
       [
         "Paciente politraumatizado está hipotérmico. Qual prevenção integra o cuidado inicial?",
-        "Limitar exposição e adotar medidas de aquecimento durante reavaliação.",
+        "Prevenir hipotermia durante o atendimento.",
         "Manter roupas molhadas até completar radiografias.",
         "Utilizar gelo sobre todo o corpo após trauma.",
         "Adiar controle térmico até o pós-operatório.",
@@ -75,7 +75,7 @@ export const cirurgiaTopics=[
       ],
       [
         "Vítima está consciente após colisão e relata dor cervical. Qual conduta é mais segura?",
-        "Minimizar movimentos desnecessários e avaliar prioridades vitais e risco.",
+        "Evitar mobilização cervical desnecessária.",
         "Testar rotação forçada do pescoço à beira da estrada.",
         "Solicitar marcha para descartar lesão cervical.",
         "Ajustar a coluna por tração antes de avaliar respiração.",
@@ -92,7 +92,7 @@ export const cirurgiaTopics=[
     "rows": [
       [
         "Após ferimento por objeto sujo, qual abordagem inicial é mais apropriada?",
-        "Avaliar extensão, irrigação conforme indicação e situação vacinal antitetânica.",
+        "Avaliar ferida, limpeza e situação antitetânica.",
         "Fechar qualquer ferida imediatamente sem limpeza.",
         "Prescrever antibiótico como substituto do exame.",
         "Desconsiderar lesão tendínea se há pouco sangramento.",
@@ -100,7 +100,7 @@ export const cirurgiaTopics=[
       ],
       [
         "Pessoa operada apresenta febre, dor crescente e secreção purulenta na incisão. Qual suspeita investigar?",
-        "Infecção de sítio cirúrgico e necessidade de avaliação clínica.",
+        "Investigar infecção de sítio cirúrgico.",
         "Cicatrização normal confirmada por febre.",
         "Reação alérgica obrigatória sem exame.",
         "Complicação descartada porque já recebeu alta.",
@@ -108,7 +108,7 @@ export const cirurgiaTopics=[
       ],
       [
         "Após cirurgia abdominal, paciente apresenta dispneia súbita e taquicardia. Qual risco tempo-dependente considerar?",
-        "Tromboembolismo venoso e outras causas respiratórias graves.",
+        "Investigar tromboembolismo pós-operatório.",
         "Somente dor da incisão sem avaliação pulmonar.",
         "Obstrução urinária como diagnóstico exclusivo.",
         "Alta se não há tosse.",
@@ -116,7 +116,7 @@ export const cirurgiaTopics=[
       ],
       [
         "Ferida em mão apresenta perda de extensão ativa de um dedo após corte. O que priorizar?",
-        "Avaliação de possível lesão tendínea e encaminhamento adequado.",
+        "Avaliar possível lesão de tendão.",
         "Fechamento superficial sem examinar movimento.",
         "Prescrever apenas pomada e dispensar exame funcional.",
         "Considerar tendões íntegros pela ausência de febre.",
@@ -133,7 +133,7 @@ export const cirurgiaTopics=[
     "rows": [
       [
         "Antes de procedimento em membro lateralizado, qual verificação reduz erro de sítio?",
-        "Confirmar identidade, procedimento, lado e marcação com equipe e paciente.",
+        "Confirmar paciente, cirurgia e lateralidade.",
         "Basear a decisão apenas na agenda impressa.",
         "Escolher lado segundo disponibilidade da sala.",
         "Assumir correto o lado informado verbalmente por um único profissional.",
@@ -141,7 +141,7 @@ export const cirurgiaTopics=[
       ],
       [
         "Pessoa relata alergia grave a antibiótico antes da cirurgia. Qual providência é essencial?",
-        "Registrar, comunicar à equipe e revisar profilaxia antimicrobiana planejada.",
+        "Reavaliar profilaxia diante da alergia.",
         "Ignorar relato porque é frequente na população.",
         "Administrar o mesmo fármaco e avaliar depois.",
         "Suspender checklist para evitar atrasos.",
@@ -149,7 +149,7 @@ export const cirurgiaTopics=[
       ],
       [
         "Na sala de cirurgia, há discordância sobre contagem de compressas. Qual atitude é indicada?",
-        "Interromper encerramento conforme protocolo e reconciliar contagem com a equipe.",
+        "Investigar e resolver divergência da contagem.",
         "Encerrar a operação porque não há sangramento.",
         "Registrar divergência apenas na alta.",
         "Considerar contagem facultativa se procedimento curto.",
@@ -157,7 +157,7 @@ export const cirurgiaTopics=[
       ],
       [
         "Paciente tem hipotensão e taquicardia importantes horas após cirurgia. Qual ação inicial é adequada?",
-        "Avaliar instabilidade e causas, incluindo sangramento, com apoio imediato.",
+        "Investigar hemorragia e instabilidade pós-operatória.",
         "Atribuir sintomas à ansiedade sem examinar.",
         "Aguardar consulta de rotina no dia seguinte.",
         "Priorizar avaliação nutricional antes dos sinais vitais.",
