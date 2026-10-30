@@ -1,7 +1,7 @@
 import {policeCourse} from './learn/content/respuesta-policial.mjs';
 import {trainingCourses as courses,trainingLessons,trainingSources} from './learn/content/capacitacion-catalog.mjs';
 const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const requestedProfile=new URLSearchParams(window.location.search).get('perfil');
+const requestedProfile=new URLSearchParams(globalThis.location?.search||'').get('perfil');
 let state=null,view=requestedProfile==='instructor'?'instructor':'student-tracks',active=courses.find(c=>c.id==='respuesta-policial'),lesson=null,attempt=null,pos=0,result=null,roster=null,groupId='',busy=false,initialLoad=Promise.resolve();
 const status=m=>$('#status').textContent=m;
 async function api(data){const r=await fetch('/api/account/capacitacion',{method:data?'POST':'GET',headers:data?{'Content-Type':'application/json'}:{},body:data?JSON.stringify(data):undefined,credentials:'same-origin',signal:AbortSignal.timeout(20000)});const d=await r.json();if(!r.ok)throw new Error(d.error||'No se pudo guardar.');return d;}
