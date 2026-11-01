@@ -39,7 +39,7 @@ test('teacher creates, edits, publishes; students join by code, take exams grade
   const cur=await api.handle(T,'GET',base,{});const thinSaved=await api.handle(T,'POST',base,{action:'save',version:cur.version,content:thin});
   await assert.rejects(()=>api.handle(T,'POST',base,{action:'publish'}),e=>e.status===409);
   await api.handle(T,'POST',base,{action:'save',version:thinSaved.version,content:saved.content});
-  const validation=await api.handle(T,'POST',base,{action:'validate'});assert.equal(validation.passed,true);await assert.rejects(()=>api.handle(T,'POST',base,{action:'publish'}),e=>e.status===409);await api.handle(T,'POST',base,{action:'approve-review',confirmClinicalReview:true});assert.equal((await api.handle(T,'POST',base,{action:'publish'})).status,'published');
+  const validation=await api.handle(T,'POST',base,{action:'validate'});assert.equal(validation.passed,true);await assert.rejects(()=>api.handle(T,'POST',base,{action:'publish'}),e=>e.status===409);await api.handle(T,'POST',base,{action:'approve-review',digest:validation.digest,confirmClinicalReview:true});assert.equal((await api.handle(T,'POST',base,{action:'publish',digest:validation.digest})).status,'published');
   // student view hides every answer
   const joined=await api.handle(S1,'POST','/api/account/classes',{action:'join',code:created.studentCode,accepted:true});assert.equal(joined.role,'student');
   const sv=await api.handle(S1,'GET',base,{});assert.equal(sv.content.questions,undefined);assert.equal(sv.content.case.question,undefined);assert.equal(sv.content.questionCount,6);assert.ok(!JSON.stringify(sv).includes('"answer"')&&!JSON.stringify(sv).includes(created.editorCode));
@@ -77,5 +77,59 @@ test('teacher creates, edits, publishes; students join by code, take exams grade
   await assert.rejects(()=>api.generate(X,{action:'regenerate',classId:created.id,kind:'question'}),e=>e.status===404);
   await assert.rejects(()=>api.handle(T,'POST',base,{action:'delete'}),e=>e.status===400);
   assert.deepEqual(await api.handle(T,'POST',base,{action:'delete',confirm:true}),{deleted:true});assert.equal((await db.query('SELECT count(*)::int AS n FROM clinic_class_attempts')).rows[0].n,0);
+ }finally{await db.close();}
+});
+
+test('editorial review requires owner attestation of the saved digest and never publishes a stale version',async()=>{
+ const db=new PGlite();await db.exec(schema+classSchema);
+ await db.query("INSERT INTO clinic_users(id,username,username_key,password_hash,recovery_hash) VALUES('owner','Owner','owner','h','h'),('editor','Editor','editor','h','h'),('student','Student','student','h','h'),('outsider','Outsider','outsider','h','h')");
+ let intercept=null;
+ const guardedDb={query:async(sql,args)=>{if(intercept&&intercept.match(sql)){const f=intercept;intercept=null;await f.run();}return db.query(sql,args);}};
+ const api=createClasses({db:guardedDb,ai:{}}),owner={id:'owner'},editor={id:'editor'},student={id:'student'};
+ try{
+  const created=await api.handle(owner,'POST','/api/account/classes',{action:'create',content:draft()}),base='/api/account/classes/'+created.id;
+  const call=(action,extra={},user=owner)=>api.handle(user,'POST',base,{action,...extra});
+  const current=()=>api.handle(owner,'GET',base,{});
+  await api.handle(editor,'POST','/api/account/classes',{action:'join',code:created.editorCode,accepted:true});
+  let report=await call('validate');assert.equal(report.version,created.version);assert.equal(report.approved,false);
+  await assert.rejects(()=>call('approve-review',{confirmClinicalReview:true}),e=>e.status===409);
+  await assert.rejects(()=>call('approve-review',{digest:report.digest}),e=>e.status===400);
+  await assert.rejects(()=>call('publish',{digest:report.digest}),e=>e.status===409);
+  for(const action of ['validate','approve-review','publish']){
+   await assert.rejects(()=>call(action,{digest:report.digest,confirmClinicalReview:true},editor),e=>e.status===403);
+   await assert.rejects(()=>call(action,{digest:report.digest,confirmClinicalReview:true},{id:'outsider'}),e=>e.status===404);
+  }
+  await call('approve-review',{digest:report.digest,confirmClinicalReview:true});
+  assert.equal((await call('validate')).approved,true);
+  // Repeated owner attestation is idempotent and does not publish by itself.
+  await call('approve-review',{digest:report.digest,confirmClinicalReview:true});assert.equal((await current()).status,'draft');
+  await call('publish',{digest:report.digest});
+  await api.handle(student,'POST','/api/account/classes',{action:'join',code:created.studentCode,accepted:true});
+  for(const action of ['validate','approve-review','publish'])await assert.rejects(()=>call(action,{digest:report.digest,confirmClinicalReview:true},student),e=>e.status===403);
+  // Saving unchanged JSON content does not withdraw an approved published class.
+  let c=await current();c=await call('save',{version:c.version,content:c.content,passPct:75});assert.equal(c.status,'published');assert.equal((await call('validate')).approved,true);
+  const oldDigest=report.digest,changed=structuredClone(c.content);changed.sections[0].body+=' Nueva explicación.';
+  c=await call('save',{version:c.version,content:changed},editor);assert.equal(c.status,'draft');report=await call('validate');assert.equal(report.approved,false);assert.notEqual(report.digest,oldDigest);
+  await assert.rejects(()=>call('publish',{digest:oldDigest}),e=>e.status===409);
+  await assert.rejects(()=>call('approve-review',{digest:oldDigest,confirmClinicalReview:true}),e=>e.status===409);
+  await assert.rejects(()=>call('publish',{digest:report.digest}),e=>e.status===409);
+  await assert.rejects(()=>api.handle(student,'GET',base,{}),e=>e.status===409);
+  await assert.rejects(()=>call('start',{kind:'exam'},student),e=>e.status===409);
+  await assert.rejects(()=>call('submit',{attemptId:'00000000-0000-0000-0000-000000000000',answers:[]},student),e=>e.status===404);
+  // Structural failure cannot be acknowledged away.
+  const invalid=structuredClone(c.content);invalid.objectives=[];c=await call('save',{version:c.version,content:invalid});report=await call('validate');assert.equal(report.passed,false);
+  await assert.rejects(()=>call('approve-review',{digest:report.digest,confirmClinicalReview:true}),e=>e.status===409);
+  await assert.rejects(()=>call('publish',{digest:report.digest}),e=>e.status===409);
+  c=await call('save',{version:c.version,content:changed});report=await call('validate');
+  const concurrentSave=()=>db.query("UPDATE clinic_classes SET content=jsonb_set(content,'{summary}',to_jsonb('Concurrent update'::text)),version=version+1,status='draft' WHERE id=$1",[created.id]);
+  // Simulate a save after the handler read but before the review's guarded write.
+  intercept={match:sql=>sql.startsWith('WITH reviewed AS'),run:concurrentSave};
+  await assert.rejects(()=>call('approve-review',{digest:report.digest,confirmClinicalReview:true}),e=>e.status===409);
+  report=await call('validate');assert.equal(report.approved,false);
+  await call('approve-review',{digest:report.digest,confirmClinicalReview:true});
+  // Same race at publication must leave the changed class as draft.
+  intercept={match:sql=>sql.startsWith("UPDATE clinic_classes SET status='published'"),run:()=>db.query("UPDATE clinic_classes SET content=jsonb_set(content,'{summary}',to_jsonb('Another change'::text)),version=version+1,status='draft' WHERE id=$1",[created.id])};
+  await assert.rejects(()=>call('publish',{digest:report.digest}),e=>e.status===409);
+  assert.equal((await current()).status,'draft');assert.equal((await call('validate')).approved,false);
  }finally{await db.close();}
 });
