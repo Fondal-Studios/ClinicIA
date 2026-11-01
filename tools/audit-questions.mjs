@@ -50,13 +50,13 @@ for(const c of courses){
  const stat=a=>{const m=a.reduce((x,y)=>x+y,0)/a.length,sd=Math.sqrt(a.reduce((x,y)=>x+(y-m)**2,0)/a.length);return {mean:+m.toFixed(3),sd:+sd.toFixed(3),max:+Math.max(...a).toFixed(3)};};
  const strategies=Object.fromEntries(Object.keys(STRATEGIES).map(k=>[k,stat(perRound[k])]));
  // course-level bias: a cue beats the 20% chance level by more than 8 points and by more than 3 sd of binomial noise
- const noise=Math.sqrt(0.2*0.8/Math.max(qs.length,1));
- const biased=CUES.filter(k=>strategies[k].mean>0.2+Math.max(0.08,3*noise));
+ const chance=c.id==='revalida'?0.25:0.2;const noise=Math.sqrt(chance*(1-chance)/Math.max(qs.length,1));
+ const biased=CUES.filter(k=>strategies[k].mean>chance+Math.max(0.08,3*noise));
  const items=[];
  for(const q of qs){
   const ok=q.options[q.answer],others=q.options.filter((_,i)=>i!==q.answer),problems=[],cues=CUES.filter(k=>hits[k].get(q.id)/ROUNDS>=0.7);
   // structural / coherence lint
-  if(!Array.isArray(q.options)||q.options.length!==5)problems.push('no tiene 5 alternativas');
+  if(!Array.isArray(q.options)||q.options.length!==(c.id==='revalida'?4:5))problems.push('número de alternativas incorrecto');
   if(new Set(q.options.map(x=>norm(x).trim())).size!==q.options.length)problems.push('alternativas duplicadas');
   if(!Number.isInteger(q.answer)||!q.options[q.answer])problems.push('clave inválida');
   if(!q.why||q.why.trim().length<40)problems.push('fundamento ausente o muy breve');

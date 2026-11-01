@@ -12,9 +12,14 @@ test('theory never appears before a practice answer; all courses, ECG, review an
  await import('../public/app.mjs');
  const click=async(action,data={})=>{await handlers.click({target:{closest:()=>({dataset:{action,...data}})}});await new Promise(r=>setImmediate(r));};
  const currentQuestion=()=>questions.find(q=>html.includes(`<h1 class="question">${esc(q.prompt)}</h1>`));
- assert.ok(html.includes('Aprender para cuidar.'));['Primeros auxilios y respuesta a emergencias','Instructor','Más formación'].forEach(t=>assert.ok(html.includes('<h2>'+t+'</h2>')));assert.ok(!html.includes('consultorio.html'));assert.ok(html.includes('/capacitacion.html'));
+ assert.ok(html.includes('¿Qué querés estudiar hoy?'));['Mis cursos y rotaciones','Preparar Revalida o residencias','Continuar aprendiendo'].forEach(t=>assert.ok(html.includes('<h2>'+t+'</h2>')));assert.ok(!html.includes('consultorio.html'));assert.ok(html.includes('/capacitacion.html'));
  await click('general-practice');assert.ok(html.includes('class="question"'),'general practice starts a mixed Examen Único session without choosing a course');
  hash='#formacion';events.hashchange();assert.ok(html.includes('¿Cómo querés estudiar?'));assert.ok(html.includes('Práctica general')&&html.includes('Preparar un curso o examen'));assert.ok(html.includes('Entrar al curso'));
+
+ hash='#personal-sanitario';events.hashchange();assert.ok(html.includes('<h1>Personal sanitario</h1>')&&html.includes('href="#kinesiologia"'));
+ hash='#kinesiologia';events.hashchange();assert.ok(html.includes('<strong>Kinesiólogos</strong>'));
+ for(const c of courses.filter(c=>c.category==='kinesiologia'))assert.ok(html.includes('data-id="'+c.id+'"'));
+ assert.ok(!html.includes('data-id="respuesta-policial"'),'first responder courses do not enter physiotherapy');
  hash='#examen-unico/home';events.hashchange();
  assert.ok(html.includes('Tu próxima plaza'));assert.ok(html.includes('class="crumb"')&&html.includes('Formación</a> › <strong>Examen Único</strong>'));
  await click('nav',{view:'journey'});assert.ok(html.includes('Cada concepto abre camino.'));assert.ok(html.includes('Misiones de este curso'));assert.ok(html.includes('Un próximo paso claro.'));await click('path-next');assert.ok(html.includes(esc(courses[0].lessons[0].title)));await click('nav',{view:'journey'});await click('mission-start',{kind:'smart'});assert.ok(currentQuestion());let prevented=false;await handlers.click({preventDefault:()=>{prevented=true;},target:{closest:()=>({tagName:'A',getAttribute:()=> '#examen-unico/journey'})}});assert.ok(prevented);assert.ok(html.includes('Cada concepto abre camino.'));await click('nav',{view:'home'});
@@ -68,7 +73,7 @@ test('theory never appears before a practice answer; all courses, ECG, review an
  global.fetch=async(_url,args)=>{body=JSON.parse(args.body);return {ok:false,json:async()=>({error:'Configuración pendiente'})};};
  await click('ask');assert.equal(body.courseId,'fccs');assert.ok(html.includes('Configuración pendiente'));
  await click('nav',{view:'catalog'});assert.ok(html.includes('Revalida · Brasil')&&html.includes('NO BANCO MIR'));
- await click('destination',{id:'revalida',view:'home'});assert.ok(html.includes('20 preguntas originales'));
+ await click('destination',{id:'revalida',view:'home'});assert.ok(html.includes('100 questões autorais em português'));
  await click('nav',{view:'demo'});assert.ok(html.includes('Enlace al demo'));
  await click('start',{mode:'demo'});assert.equal(currentQuestion().courseId,'revalida');
  await click('nav',{view:'exams'});assert.ok(html.includes('Revalida · diagnóstico inicial'));

@@ -1,0 +1,35 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {rotationCourses} from '../public/learn/content/rotaciones.mjs';
+
+test('merged training keeps student routes, instructor groups, rotations and police radio practice',async()=>{
+ const handlers={},nodes=new Map();
+ const node=id=>{if(!nodes.has(id))nodes.set(id,{innerHTML:'',textContent:''});return nodes.get(id);};
+ const user={id:'teacher',username:'Docente',canTeach:true,canIssue:false};
+ const state={user,read:[],attempts:[],practices:[],certificates:[],groups:[{id:'group',title:'Rotación',owner_id:user.id}]};
+ global.document={querySelector:node,querySelectorAll:()=>[],addEventListener:(event,fn)=>{(handlers[event]??=[]).push(fn);}};
+ global.window={scrollTo(){}};
+ global.fetch=async(url,options)=>({ok:true,json:async()=>url.endsWith('/me')?{user}:options?.body&&JSON.parse(options.body).action==='roster'?{joinCode:'ABCDEF123456',members:[{user_id:'student',username:'Alumno',status:'accepted',read_count:0,attempts:[],reads:[]}],practices:[],instructors:[]}:state});
+ await import('../public/capacitacion.mjs');
+ const click=async(action,data={})=>{for(const fn of handlers.click||[])fn({target:{closest:()=>({dataset:{action,...data}})}});await new Promise(r=>setImmediate(r));};
+ const html=()=>node('#content').innerHTML;
+ assert.match(html(),/¿Qué formación buscás\?/);
+ assert.doesNotMatch(html(),/Crear grupo|Alumnos y prácticas/);
+ await click('groups');assert.match(html(),/id="join-code"/);assert.doesNotMatch(html(),/data-action="join"/);
+ await click('track-rotations');assert.match(html(),/Rotaciones para residentes/);
+ await click('course',{id:rotationCourses[0].id});
+ await click('lesson',{id:rotationCourses[0].lessons[0].id});
+ assert.match(html(),/data-action="practice"/,'rotation simulations must survive police-only block consolidation');
+ await click('back');assert.match(html(),new RegExp(rotationCourses[0].title));
+ await click('course',{id:'respuesta-policial'});await click('lesson',{id:'rtpp-3'});
+ assert.match(html(),/Simulación integradora del bloque/);assert.match(html(),/data-id="rtpp-1"/);
+ await click('lesson',{id:'rtpp-6'});assert.match(html(),/data-id="rtpp-4"/);assert.match(html(),/data-id="rtpp-5"/);
+ await click('course',{id:'refuerzo-hemorragias'});await click('lesson',{id:'rtpp-4'});
+ assert.match(html(),/Ensayo en grupos de tres/);assert.match(html(),/data-action="practice" data-id="rtpp-4"/);
+ await click('choose-instructor');assert.match(html(),/Panel de instructor/);
+ await click('roster',{id:'group'});assert.match(html(),/ABCDEF123456/);assert.match(html(),/id="rotation-filter"/);
+ assert.match(html(),/data-lesson="rtpp-1"/,'instructor must be able to review radio verification');
+ assert.match(html(),/Ver avance por rotación/);
+ await click('choose-student');assert.match(html(),/¿Qué formación buscás\?/);assert.doesNotMatch(html(),/Alumnos y prácticas/);
+ await click('choose-instructor');assert.match(html(),/Panel de instructor/);
+});
