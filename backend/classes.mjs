@@ -1,3 +1,4 @@
+import {createEditorial} from './editorial.mjs';
 import {validateClass,contentDigest} from './class-validation.mjs';
 import {randomBytes,randomUUID,randomInt} from 'node:crypto';
 export const classSchema=`CREATE TABLE IF NOT EXISTS clinic_classes(id text PRIMARY KEY,owner_id text NOT NULL REFERENCES clinic_users(id) ON DELETE CASCADE,title text NOT NULL,content jsonb NOT NULL,version integer NOT NULL DEFAULT 1,status text NOT NULL DEFAULT 'draft',pass_pct integer NOT NULL DEFAULT 80,due_at timestamptz,student_code text UNIQUE NOT NULL,editor_code text UNIQUE NOT NULL,created_at timestamptz NOT NULL DEFAULT now(),updated_at timestamptz NOT NULL DEFAULT now());
@@ -5,6 +6,7 @@ ALTER TABLE clinic_classes ADD COLUMN IF NOT EXISTS is_public boolean NOT NULL D
 ALTER TABLE clinic_classes ADD COLUMN IF NOT EXISTS category text NOT NULL DEFAULT 'medicina-general';
 CREATE TABLE IF NOT EXISTS clinic_class_reviews(class_id text PRIMARY KEY REFERENCES clinic_classes(id) ON DELETE CASCADE,content_digest text NOT NULL,reviewer_id text NOT NULL REFERENCES clinic_users(id),reviewed_at timestamptz NOT NULL DEFAULT now());
 CREATE TABLE IF NOT EXISTS clinic_class_members(class_id text NOT NULL REFERENCES clinic_classes(id) ON DELETE CASCADE,user_id text NOT NULL REFERENCES clinic_users(id) ON DELETE CASCADE,role text NOT NULL DEFAULT 'student',joined_at timestamptz NOT NULL DEFAULT now(),PRIMARY KEY(class_id,user_id));
+ALTER TABLE clinic_class_members ADD COLUMN IF NOT EXISTS enrollment_source text NOT NULL DEFAULT 'code';
 CREATE TABLE IF NOT EXISTS clinic_class_attempts(id text PRIMARY KEY,class_id text NOT NULL REFERENCES clinic_classes(id) ON DELETE CASCADE,user_id text NOT NULL REFERENCES clinic_users(id) ON DELETE CASCADE,kind text NOT NULL,items jsonb NOT NULL,result jsonb,created_at timestamptz NOT NULL DEFAULT now(),submitted_at timestamptz);
 CREATE INDEX IF NOT EXISTS clinic_class_attempts_idx ON clinic_class_attempts(class_id,user_id);`;
 const fail=(status,message)=>{throw Object.assign(new Error(message),{status});};
@@ -51,12 +53,14 @@ const summary=(r,role,extra={})=>({id:r.id,title:r.title,status:r.status,isPubli
 const uuid=/^[a-f0-9-]{36}$/;
 
 export function createClasses({db,ai}){
+ const editorial=createEditorial({db});
  async function load(id){return (await db.query('SELECT * FROM clinic_classes WHERE id=$1',[id])).rows[0]||null;}
  async function roleOf(row,u){if(row.owner_id===u.id)return 'owner';const m=(await db.query('SELECT role FROM clinic_class_members WHERE class_id=$1 AND user_id=$2',[row.id,u.id])).rows[0];return m?.role||null;}
- async function access(id,u,{write=false,owner=false,submitAttempt=false}={}){
+ async function access(id,u,{write=false,owner=false,submitAttempt=false,leaving=false}={}){
   if(!uuid.test(id||''))fail(404,'Aula no encontrada.');const row=await load(id);if(!row)fail(404,'Aula no encontrada.');const role=await roleOf(row,u);if(!role)fail(404,'Aula no encontrada.');
   if(owner&&role!=='owner')fail(403,'Sólo quien creó el aula puede hacerlo.');if(write&&role==='student')fail(403,'Los alumnos no pueden editar el aula.');
-  if(role==='student'&&row.status!=='published'&&!submitAttempt)fail(409,'El docente todavía no publicó o retiró esta aula.');
+  if(role==='student'&&!submitAttempt&&!leaving){const membership=(await db.query('SELECT enrollment_source FROM clinic_class_members WHERE class_id=$1 AND user_id=$2',[id,u.id])).rows[0];if(membership?.enrollment_source==='public'){const approved=await editorial.approvedRow(id);if(!approved||approved.version!==row.version)fail(409,'La contribución requiere nueva revisión administrativa.');}}
+  if(role==='student'&&row.status!=='published'&&!submitAttempt&&!leaving)fail(409,'El docente todavía no publicó o retiró esta aula.');
   return {row,role};
  }
  async function stats(classId,userId){
@@ -66,7 +70,7 @@ export function createClasses({db,ai}){
  async function mine(u){
   const rows=(await db.query(`SELECT c.*,CASE WHEN c.owner_id=$1 THEN 'owner' ELSE m.role END AS role FROM clinic_classes c LEFT JOIN clinic_class_members m ON m.class_id=c.id AND m.user_id=$1 WHERE c.owner_id=$1 OR m.user_id=$1 ORDER BY c.updated_at DESC LIMIT 100`,[u.id])).rows;
   const out=[];for(const r of rows){
-   if(r.role==='student'){if(r.status!=='published')continue;const me=(await stats(r.id,u.id))[0];out.push(summary(r,'student',{best:me?.best??null,passed:Boolean(me?.passed)}));}
+   if(r.role==='student'){if(r.status!=='published')continue;const membership=(await db.query('SELECT enrollment_source FROM clinic_class_members WHERE class_id=$1 AND user_id=$2',[r.id,u.id])).rows[0];if(membership?.enrollment_source==='public'){const approved=await editorial.approvedRow(r.id);if(!approved||approved.version!==r.version)continue;}const me=(await stats(r.id,u.id))[0];out.push(summary(r,'student',{best:me?.best??null,passed:Boolean(me?.passed)}));}
    else out.push(summary(r,r.role,{members:Number((await db.query("SELECT count(*) AS n FROM clinic_class_members WHERE class_id=$1 AND role='student'",[r.id])).rows[0].n)}));
   }
   return {classes:out};
@@ -88,7 +92,7 @@ export function createClasses({db,ai}){
   if(row.owner_id===u.id)fail(409,'Sos quien creó esta aula.');
   const asEditor=row.editor_code===code;if(!asEditor&&row.status!=='published')fail(409,'Esta aula todavía no está publicada. Pedile al docente que la publique.');
   if(!asEditor&&Number((await db.query('SELECT count(*) AS n FROM clinic_class_members WHERE class_id=$1',[row.id])).rows[0].n)>=300)fail(409,'El aula alcanzó el máximo de 300 integrantes.');
-  await db.query(`INSERT INTO clinic_class_members(class_id,user_id,role) VALUES($1,$2,$3) ON CONFLICT(class_id,user_id) DO UPDATE SET role=CASE WHEN EXCLUDED.role='editor' THEN 'editor' ELSE clinic_class_members.role END`,[row.id,u.id,asEditor?'editor':'student']);
+  await db.query(`INSERT INTO clinic_class_members(class_id,user_id,role) VALUES($1,$2,$3) ON CONFLICT(class_id,user_id) DO UPDATE SET role=CASE WHEN EXCLUDED.role='editor' THEN 'editor' ELSE clinic_class_members.role END,enrollment_source='code'`,[row.id,u.id,asEditor?'editor':'student']);
   const role=await roleOf(row,u);return role==='student'?studentView(row,u):view(row,role);
  }
  async function start(u,row,role,b){
@@ -115,15 +119,22 @@ export function createClasses({db,ai}){
    if(b.passPct!==undefined){if(!Number.isInteger(b.passPct)||b.passPct<50||b.passPct>100)fail(400,'El porcentaje de aprobación va de 50 a 100.');pass=b.passPct;}
    if(b.dueAt!==undefined){if(b.dueAt===null||b.dueAt==='')due=null;else{const d=new Date(b.dueAt);if(!Number.isFinite(d.getTime()))fail(400,'Fecha límite inválida.');due=d.toISOString();}}
   }
-  const r=(await db.query(`UPDATE clinic_classes SET title=$1,content=$2,pass_pct=$3,due_at=$4,status=CASE WHEN content IS DISTINCT FROM $2::jsonb THEN 'draft' ELSE status END,version=version+1,updated_at=now() WHERE id=$5 AND version=$6 RETURNING *`,[content.title,JSON.stringify(content),pass,due,row.id,b.version])).rows[0];
+  const r=(await db.query(`UPDATE clinic_classes SET title=$1,content=$2,pass_pct=$3,due_at=$4,status=CASE WHEN content IS DISTINCT FROM $2::jsonb THEN 'draft' ELSE status END,is_public=CASE WHEN content IS DISTINCT FROM $2::jsonb THEN false ELSE is_public END,version=version+1,updated_at=now() WHERE id=$5 AND version=$6 RETURNING *`,[content.title,JSON.stringify(content),pass,due,row.id,b.version])).rows[0];
   if(!r)fail(409,'Otra persona modificó el aula. Recargala y repetí tus cambios.');return view(r,role);
  }
  async function handle(u,method,path,b){
   const parts=path.replace('/api/account/classes','').split('/').filter(Boolean),id=parts[0],sub=parts[1];
-  if(id==='public'&&method==='GET')return {classes:(await db.query("SELECT c.id,c.title,c.category,u.username AS author FROM clinic_classes c JOIN clinic_users u ON u.id=c.owner_id WHERE c.status='published' AND c.is_public=true ORDER BY c.updated_at DESC LIMIT 100")).rows};
+  if(id==='public'&&method==='GET')return editorial.catalog();
   if(!id){
-   if(method==='GET'&&b.action==='public-list')return {classes:(await db.query("SELECT c.id,c.title,c.category,u.username AS author FROM clinic_classes c JOIN clinic_users u ON u.id=c.owner_id WHERE c.status='published' AND c.is_public=true ORDER BY c.updated_at DESC LIMIT 100")).rows};
-   if(method==='POST'&&b.action==='join-public'){const found=(await db.query("SELECT * FROM clinic_classes WHERE id=$1 AND is_public=true AND status='published'",[b.classId])).rows[0];if(!found)fail(404,'Clase pública no encontrada.');if(found.owner_id===u.id)fail(409,'Esta clase ya es tuya.');await db.query("INSERT INTO clinic_class_members(class_id,user_id,role) VALUES($1,$2,'student') ON CONFLICT(class_id,user_id) DO NOTHING",[found.id,u.id]);return studentView(found,u);}
+   if(method==='GET'&&b.action==='public-list')return editorial.catalog();
+   if(method==='POST'&&b.action==='join-public'){
+    const approved=await editorial.approvedRow(b.classId);if(!approved)fail(404,'Clase pública no encontrada.');const found=await load(b.classId);
+    if(found.owner_id===u.id)fail(409,'Esta clase ya es tuya.');if(found.version!==approved.version)fail(409,'La clase cambió. Volvé a consultar la biblioteca.');
+    const joined=await db.query(`WITH eligible AS (SELECT c.id FROM clinic_classes c JOIN clinic_library_submissions s ON s.class_id=c.id JOIN clinic_instructor_credentials k ON k.user_id=c.owner_id
+     WHERE c.id=$2 AND c.version=$3 AND c.status='published' AND c.is_public=true AND s.id=$4 AND s.status='approved' AND s.reviewed_by IS NOT NULL AND s.reviewed_by<>s.submitted_by AND s.content_digest=$5 AND k.verification_status='verified' AND k.verified_by IS NOT NULL AND k.verified_by<>k.user_id FOR SHARE OF c,s,k)
+     INSERT INTO clinic_class_members(class_id,user_id,role,enrollment_source) SELECT id,$1,'student','public' FROM eligible ON CONFLICT(class_id,user_id) DO UPDATE SET role=clinic_class_members.role RETURNING class_id`,[u.id,found.id,approved.version,approved.id,approved.content_digest]);
+    if(!joined.rows.length)fail(409,'La clase cambió. Volvé a consultar la biblioteca.');return studentView(found,u);
+   }
    if(method==='GET')return mine(u);
    if(method==='POST'&&b.action==='create')return create(u,b);
    if(method==='POST'&&b.action==='join')return join(u,b);
@@ -137,7 +148,7 @@ export function createClasses({db,ai}){
   if(method!=='POST')fail(405,'Método no permitido.');
   const a=b.action;
   if(a==='start'||a==='submit'){const {row,role}=await access(id,u,{submitAttempt:a==='submit'});return a==='start'?start(u,row,role,b):submit(u,row,b);}
-  if(a==='leave'){const {row,role}=await access(id,u);if(role==='owner')fail(409,'Quien creó el aula no puede abandonarla; eliminala si ya no la necesitás.');await db.query('DELETE FROM clinic_class_members WHERE class_id=$1 AND user_id=$2',[row.id,u.id]);return {left:true};}
+  if(a==='leave'){const {row,role}=await access(id,u,{leaving:true});if(role==='owner')fail(409,'Quien creó el aula no puede abandonarla; eliminala si ya no la necesitás.');await db.query('DELETE FROM clinic_class_members WHERE class_id=$1 AND user_id=$2',[row.id,u.id]);return {left:true};}
   if(a==='save'){const {row,role}=await access(id,u,{write:true});return save(u,row,role,b);}
   const {row}=await access(id,u,{owner:true});
   if(a==='validate'){const report=validateClass(row.content);return {...report,version:row.version,approved:!!(await db.query('SELECT 1 FROM clinic_class_reviews WHERE class_id=$1 AND content_digest=$2',[row.id,report.digest])).rows.length};}
@@ -161,7 +172,7 @@ export function createClasses({db,ai}){
    if(!r)fail(409,'La clase requiere aprobación docente para esta versión. Volvé a verificar si hubo cambios.');
    return view(r,'owner');
   }
-  if(a==='set-visibility'){if(typeof b.isPublic!=='boolean')fail(400,'Elegí si la clase será pública o privada.');const cats=['medicina-general','emergencias','cardiologia','pediatria','trauma','cuidados-criticos','primeros-respondedores','rotaciones','otras-especialidades'];const category=String(b.category||row.category||'medicina-general');if(!cats.includes(category))fail(400,'Categoría inválida.');const r=(await db.query('UPDATE clinic_classes SET is_public=$1,category=$2,updated_at=now() WHERE id=$3 RETURNING *',[b.isPublic,category,row.id])).rows[0];return view(r,'owner');}
+  if(a==='set-visibility'){if(typeof b.isPublic!=='boolean')fail(400,'Elegí si la clase será pública o privada.');if(b.isPublic===true)fail(403,'La integración pública requiere revisión administrativa desde la biblioteca.');const cats=['medicina-general','emergencias','cardiologia','pediatria','trauma','cuidados-criticos','primeros-respondedores','rotaciones','otras-especialidades'];const category=String(b.category||row.category||'medicina-general');if(!cats.includes(category))fail(400,'Categoría inválida.');const r=(await db.query('UPDATE clinic_classes SET is_public=$1,category=$2,updated_at=now() WHERE id=$3 RETURNING *',[b.isPublic,category,row.id])).rows[0];return view(r,'owner');}
   if(a==='unpublish'){const r=(await db.query("UPDATE clinic_classes SET status='draft',updated_at=now() WHERE id=$1 RETURNING *",[row.id])).rows[0];return view(r,'owner');}
   if(a==='rotate-codes'){for(let i=0;i<5;i++){try{const r=(await db.query('UPDATE clinic_classes SET student_code=$1,editor_code=$2 WHERE id=$3 RETURNING *',[newCode(),newCode(),row.id])).rows[0];return view(r,'owner');}catch(e){if(e.code!=='23505'||i===4)throw e;}}}
   if(a==='remove-member'){if(typeof b.userId!=='string')fail(400,'Integrante inválido.');await db.query('DELETE FROM clinic_class_members WHERE class_id=$1 AND user_id=$2',[row.id,b.userId]);return {removed:true};}

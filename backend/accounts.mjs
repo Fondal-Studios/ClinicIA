@@ -73,7 +73,7 @@ export async function createAccounts({db,origin='http://localhost:3000',secure=t
  async function event(u,name){if(allowedEvents.has(name))await db.query('INSERT INTO clinic_events(user_id,name) VALUES($1,$2)',[u.id,name]);}
  async function handler(req,res,url){
   const path=url.pathname;
-  if(!path.startsWith('/api/account')&&!path.startsWith('/api/admin')&&path!=='/api/events'&&path!=='/api/offer'&&path!=='/api/payments/webhook')return false;
+  if(!path.startsWith('/api/library/')&&!path.startsWith('/api/account')&&!path.startsWith('/api/admin')&&path!=='/api/events'&&path!=='/api/offer'&&path!=='/api/payments/webhook')return false;
   res.setHeader('Cache-Control','no-store');
   const send=(status,data)=>{res.writeHead(status,{'Content-Type':'application/json'});res.end(JSON.stringify(data));return true;};
   try{
@@ -94,6 +94,8 @@ export async function createAccounts({db,origin='http://localhost:3000',secure=t
     return send(200,await materials.upload(u,Buffer.concat(chunks),url.searchParams.get('title')));
    }
    let body={};if(req.method!=='GET'){if(!String(req.headers['content-type']||'').startsWith('application/json'))fail(415,'Se requiere JSON.');let text='';for await(const chunk of req){text+=chunk;if(Buffer.byteLength(text)>500000)fail(413,'Datos demasiado grandes.');}try{body=JSON.parse(text||'{}');}catch{fail(400,'JSON inválido.');}if(!body||typeof body!=='object'||Array.isArray(body))fail(400,'Datos inválidos.');}
+   if(req.method==='GET'&&path==='/api/library/classes')return send(200,await editorial.catalog(url.searchParams.get('q')||''));
+   if(req.method==='GET'&&path.startsWith('/api/library/classes/'))return send(200,await editorial.publicClass(path.slice('/api/library/classes/'.length)));
    if(path==='/api/offer'&&req.method==='GET'){const r=await db.query("SELECT value FROM clinic_settings WHERE key='offer'");return send(200,{pilotOpen:true,offer:r.rows[0]?.value||null,payments:payments.offer()});}
    if(path==='/api/account/register'||path==='/api/account/login'||path==='/api/account/recover'){
     if(req.method!=='POST')fail(405,'Método no permitido.');
@@ -137,6 +139,7 @@ export async function createAccounts({db,origin='http://localhost:3000',secure=t
    if(path==='/api/account/training'){await limit('training:'+req.method+u.id,60,3600);return send(200,await training.assessment(u,req.method,body));}
    if(path==='/api/account/classes'||path.startsWith('/api/account/classes/')){await limit('classes:'+req.method+u.id,req.method==='GET'?600:240,3600);if(req.method==='POST'&&(body.action==='start'))await limit('class-attempt:'+u.id,60,86400);if(req.method==='POST'&&body.action==='create')await limit('class-create:'+u.id,20,86400);return send(200,await classes.handle(u,req.method,path,body));}
    if(path==='/api/account/instructor-credentials'&&['GET','POST'].includes(req.method))return send(200,await editorial.credentials(u,req.method,body));
+   if(path==='/api/account/library-submit'&&req.method==='GET')return send(200,await editorial.own(u));
    if(path==='/api/account/library-submit'&&req.method==='POST')return send(200,await editorial.submit(u,body));
    if(path==='/api/account/medical-library'&&req.method==='GET')return send(200,await editorial.catalog(url.searchParams.get('q')||''));
    if(path==='/api/account/modes'&&req.method==='POST'){
