@@ -1,10 +1,12 @@
+import {classContribution} from './class-contribution.mjs';
+import {classReview} from './class-review.mjs';
 import {fill,add,h,httpsOnly,sourceLinks,match,slideshow,attemptRunner} from './class-ui.mjs';
 import {api} from './training-ui.mjs';
 const root=document.querySelector('#aula'),statusEl=document.querySelector('#aula-status');
 const say=m=>{statusEl.textContent=m||'';};
 const B='/api/account/classes';
 const fmt=d=>d?new Date(d).toLocaleString('es-AR',{dateStyle:'medium',timeStyle:'short'}):'';
-let cls=null,draft=null,tab='datos',dirty=false;
+let cls=null,draft=null,tab='datos',dirty=false,renderRevision=0;
 const run=fn=>async(...a)=>{try{say('');await fn(...a);}catch(e){say(e.message);}};
 
 
@@ -37,7 +39,7 @@ function tutorCreator(brief,make,audience){
   try{rec.start();}catch{talk.disabled=false;reply.textContent='No se pudo iniciar el micrófono.';}
  });
  const copy=h('div',{class:'card tutor-creator'},h('span',{class:'eyebrow'},'TUTOR IA · CREAR CURSOS'),h('h2',{},'Pedile una clase al tutor, hablando o escribiendo'),chat,text,h('div',{class:'actions'},talk,compose),reply,
-  h('p',{class:'muted'},'1. El tutor prepara un borrador con teoría y preguntas. 2. Vos revisás y guardás. 3. Publicás y compartís el código con alumnos. Tus creaciones quedan en Mis clases. No se incorporan automáticamente al catálogo público de ClinicIA.'));
+  h('p',{class:'muted'},'1. El tutor prepara un borrador con teoría y preguntas. 2. Vos revisás y guardás. 3. Comprobás la versión guardada, registrás tu revisión docente explícita y luego publicás para compartir el código con alumnos. Tus creaciones quedan en Mis clases. No se incorporan automáticamente al catálogo público de ClinicIA.'));
  return copy;
 }
 
@@ -51,7 +53,7 @@ async function home(){
  const make=h('button',{type:'button',onclick:run(async()=>{make.disabled=true;say('El tutor está buscando fuentes y armando el aula… puede tardar hasta un minuto.');try{const d=await api('/api/account/class-ai',{action:'draft',brief:brief.value,audience:aud.value,minutes:Number(min.value)>0?Number(min.value):undefined});const c=await api(B,{action:'create',content:d.class});say('Aula creada como borrador. Revisala y editala antes de publicar.');open(c);}finally{make.disabled=false;}})},'Crear con el tutor');
  const teacher=localStorage.getItem('clinia_mode')==='teacher';
  const activate=h('section',{class:'card'},h('h2',{},'¿Querés crear clases?'),h('p',{},'Activá el modo Instructor: creás clases con el tutor, usás la biblioteca de preguntas y teoría, y ves los resultados de tus alumnos.'),h('button',{type:'button',onclick:()=>document.querySelector('#areas-mode')?.click()},'Cambiar a modo Instructor'));
- const library=h('section',{class:'card'},h('h2',{},'Biblioteca de preguntas y teoría'),h('p',{},'Buscá en todo el banco de ClinicIA y agregá preguntas o teoría a tus clases.'),h('button',{type:'button',onclick:()=>{location.hash='biblioteca';libraryView();}},'Abrir la biblioteca'));
+ const library=h('section',{class:'card'},h('h2',{},'Biblioteca de preguntas y teoría'),h('a',{href:'/biblioteca.html#instructor'},'Biblioteca compartida y aportes revisados'),h('p',{},'Buscá en todo el banco de ClinicIA y agregá preguntas o teoría a tus clases.'),h('button',{type:'button',onclick:()=>{location.hash='biblioteca';libraryView();}},'Abrir la biblioteca'));
  const parts={create:[tutorCreator(brief,make,aud),h('section',{class:'card'},h('h2',{},'Crear un aula con el tutor'),h('p',{},'Describí el tema, la audiencia y lo que querés lograr. El tutor busca en la web, arma teoría, presentación, preguntas, un caso y un juego, y vos lo editás antes de compartir.'),brief,aud,min,h('div',{class:'actions'},make,h('button',{type:'button',onclick:run(async()=>{open(await api(B,{action:'create',content:{title:'Aula nueva',sections:[],slides:[],questions:[],sources:[]}}));})},'Empezar en blanco')))],mine:[h('h2',{},'Mi biblioteca de clases y cursos creados'),mine.length?mine.map(c=>row(c,`${c.role==='owner'?'Dueño':'Colaborador'} · ${c.status==='published'?'Publicada':'Borrador'}${c.members!==undefined?' · '+c.members+' alumnos':''}`)):h('p',{class:'muted'},'Todavía no creaste clases. Pedile al tutor un curso arriba para comenzar.')],join:[h('section',{class:'card'},h('h2',{},'Unirme con un código'),code,h('label',{class:'option-row'},ok,' Acepto que el docente verá mi nombre de usuario y mis resultados en esta aula.'),h('button',{type:'button',onclick:run(async()=>{open(await api(B,{action:'join',code:code.value,accepted:ok.checked}));})},'Unirme'))],learn:[h('h2',{},'Mis cursos como alumno'),learning.length?learning.map(c=>row(c,(c.passed?'✔ Aprobado':c.best!==null?'Mejor resultado '+c.best+'% (necesitás '+c.passPct+'%)':'Sin evaluar')+(c.dueAt?' · Fecha límite '+fmt(c.dueAt):''))):h('p',{class:'muted'},'Todavía no te uniste a ningún aula.')]};
  fill(root,...(teacher?[...parts.create,library,...parts.mine,...parts.join,...parts.learn]:[...parts.join,...parts.learn,activate]));
  function row(c,info){return h('div',{class:'card row'},h('button',{type:'button',onclick:run(async()=>open(await api(B+'/'+c.id)))},c.title),h('small',{},info));}
@@ -92,7 +94,6 @@ function questionEditor(q,arr,i,kind){
  add(card,labeled('Por qué es correcta',bind(q,'why',{area:2,max:900})),q.sources?.length?sourceLinks(q.sources,byId(draft)):null);return card;
 }
 function editor(){
- const t=[['datos','Datos'],['teoria','Teoría'],['presentacion','Presentación'],['preguntas','Preguntas'],['caso','Caso y juego'],['alumnos','Alumnos y códigos'],['vista','Vista alumno']];
  const body=h('div');
  if(tab==='datos')add(body,labeled('Título',bind(draft,'title',{max:140})),labeled('Resumen',bind(draft,'summary',{area:3,max:500})),h('h3',{},'Objetivos'),...draft.objectives.map((_,i)=>h('div',{class:'card'},bind(draft.objectives,i,{area:2,max:200}),itemTools(draft.objectives,i))),adder(draft.objectives,()=>'','Agregar objetivo'),
   cls.role==='owner'?h('div',{class:'card'},h('h3',{},'Aprobación'),labeled('Porcentaje para aprobar (50–100)',(()=>{const e=bind(cls,'passPct',{type:'number'});e.min='50';e.max='100';return e;})()),labeled('Fecha límite (opcional)',(()=>{const e=h('input',{type:'datetime-local'});if(cls.dueAt){const d=new Date(cls.dueAt);d.setMinutes(d.getMinutes()-d.getTimezoneOffset());e.value=d.toISOString().slice(0,16);}e.addEventListener('input',()=>{cls.dueAt=e.value?new Date(e.value).toISOString():null;dirty=true;});return e;})())):h('p',{class:'muted'},'Sólo quien creó el aula cambia el porcentaje de aprobación y la fecha límite.'));
@@ -103,7 +104,9 @@ function editor(){
   add(body,h('h3',{},'Caso ficticio'),draft.case?h('div',{class:'card'},labeled('Escenario',bind(draft.case,'scenario',{area:4,max:1500})),questionEditor(draft.case.question,null,0,'c'),h('button',{type:'button',onclick:()=>{draft.case=null;dirty=true;render();}},'Quitar caso')):h('button',{type:'button',onclick:()=>{draft.case={scenario:'',question:newQ()};dirty=true;render();}},'+ Agregar caso'),
    h('h3',{},'Juego de unir conceptos (mínimo 4 pares)'));
   const pairs=draft.game?.pairs||[];add(body,...pairs.map((p,i)=>h('div',{class:'card'},labeled('Concepto',bind(p,'term',{max:80})),labeled('Definición',bind(p,'definition',{max:200})),itemTools(pairs,i))),h('button',{type:'button',onclick:()=>{draft.game=draft.game||{type:'match',pairs:[]};draft.game.pairs.push({term:'',definition:''});dirty=true;render();}},'+ Agregar par'));
- }else if(tab==='alumnos')return people();
+ }else if(tab==='revision'){const current=cls,revision=renderRevision;return classReview({cls:current,dirty,request:body=>api(B+'/'+current.id,body),isCurrent:()=>cls===current&&renderRevision===revision&&!dirty,onPublished:published=>{cls={...cls,...published};draft=structuredClone(cls.content);tab='alumnos';render();say('Publicada. Compartí el código con tus alumnos.');}});}
+ else if(tab==='contribution'){const current=cls,revision=renderRevision;return classContribution({cls:current,dirty,request:api,isCurrent:()=>cls===current&&renderRevision===revision&&!dirty});}
+ else if(tab==='alumnos')return people();
  else if(tab==='vista'){add(body,dirty?h('p',{class:'chat-status'},'Guardá los cambios para verlos acá.'):null);const sv=studentSnapshot();const ts=studentTabs(sv);if(!ts.some(([id])=>id===tab2))tab2=ts[0][0];add(body,h('p',{class:'muted'},'Así lo ve un alumno. Podés hacer prácticas y evaluaciones de prueba (no aparecen como alumnos).'),h('div',{class:'tabs'},ts.map(([id,l])=>h('button',{type:'button','aria-selected':String(tab2===id),onclick:()=>{tab2=id;render();}},l))),(()=>{const keep=tab;tab=tab2;const el=studentBody(sv,cls.id,cls.content.sources);tab=keep;return el;})());}
  return body;
 }
@@ -126,15 +129,16 @@ async function people(){
 }
 async function save(){
  const r=await api(B+'/'+cls.id,{action:'save',version:cls.version,content:draft,...(cls.role==='owner'?{passPct:cls.passPct,dueAt:cls.dueAt||null}:{})});
- cls=r;draft=structuredClone(r.content);dirty=false;say('Cambios guardados.');render();
+ cls=r;draft=structuredClone(r.content);dirty=false;say(r.status==='draft'?'Cambios guardados como borrador. Revisá esta versión antes de publicar.':'Cambios guardados.');render();
 }
 function render(){
+ renderRevision++;
  headEl=h('div');head();
  if(cls.role==='student'){const c=cls.content,ts=studentTabs(c);if(!ts.some(([id])=>id===tab))tab=ts[0][0];fill(root,h('p',{},h('button',{type:'button',onclick:run(home)},'← Mis aulas')),headEl,tabs(ts),studentBody(c,cls.id,c.sources),h('p',{class:'muted'},'Contenido educativo creado por tu docente con ayuda de IA y fuentes de la web; no reemplaza protocolos locales ni sirve para decidir sobre pacientes reales.'),h('div',{class:'actions'},h('button',{type:'button',onclick:run(async()=>{if(!confirm('¿Salir del aula?'))return;await api(B+'/'+cls.id,{action:'leave'});home();})},'Salir del aula'),h('button',{type:'button',onclick:()=>print()},'Imprimir / guardar PDF')));return;}
- const t=[['datos','Datos'],['teoria','Teoría'],['presentacion','Presentación'],['preguntas','Preguntas'],['caso','Caso y juego'],['alumnos','Alumnos y códigos'],['vista','Vista alumno']];
+ const t=[['datos','Datos'],['teoria','Teoría'],['presentacion','Presentación'],['preguntas','Preguntas'],['caso','Caso y juego'],['alumnos','Alumnos y códigos'],['vista','Vista alumno'],...(cls.role==='owner'?[['revision','Revisión y publicación'],['contribution','Aportar a biblioteca']]:[])];
  const owner=cls.role==='owner';
  const bar=h('div',{class:'row'},h('button',{type:'button',onclick:run(async()=>{if(dirty&&!confirm('Tenés cambios sin guardar. ¿Salir igual?'))return;home();})},'← Mis aulas'),h('button',{type:'button',onclick:run(save)},'Guardar cambios'),
-  owner?(cls.status==='published'?h('button',{type:'button',onclick:run(async()=>{if(dirty)throw new Error('Guardá los cambios antes de cambiar la publicación.');cls={...cls,...await api(B+'/'+cls.id,{action:'unpublish'})};render();})},'Retirar publicación'):h('button',{type:'button',onclick:run(async()=>{if(dirty)throw new Error('Guardá los cambios antes de publicar.');cls={...cls,...await api(B+'/'+cls.id,{action:'publish'})};say('Publicada. Compartí el código con tus alumnos.');tab='alumnos';render();})},'Publicar')):null,
+  owner?(cls.status==='published'?h('button',{type:'button',onclick:run(async()=>{if(dirty)throw new Error('Guardá los cambios antes de cambiar la publicación.');cls={...cls,...await api(B+'/'+cls.id,{action:'unpublish'})};render();})},'Retirar publicación'):h('button',{type:'button',onclick:()=>{tab='revision';render();}},'Revisar y publicar')):null,
   owner?h('button',{type:'button',onclick:run(async()=>{if(!confirm('Se elimina el aula con todos los intentos de sus alumnos. ¿Continuar?'))return;await api(B+'/'+cls.id,{action:'delete',confirm:true});home();})},'Eliminar aula'):null);
  const holder=h('div');fill(root,bar,headEl,tabs(t),holder);
  const content=editor();Promise.resolve(content).then(el=>fill(holder,el));

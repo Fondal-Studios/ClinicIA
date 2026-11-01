@@ -3,13 +3,16 @@
 const AREAS=[
  ['formacion','Formación','./#formacion'],
  ['aulas','Aulas','./aulas.html'],
+ ['biblioteca','Biblioteca','./biblioteca.html'],
  ['capacitacion','Primeros auxilios','./capacitacion.html'],
  ['tutor','Tutor IA','./#tutor']
 ];
 export function activeArea(path=location.pathname,hash=location.hash){
+ if(/\/biblioteca\.html$/.test(path))return 'biblioteca';
  if(/\/(aulas|clase)\.html$/.test(path))return 'aulas';
  if(/\/consultorio\.html$/.test(path))return 'consultorio';
  if(/\/(guardia|salas)\.html$/.test(path))return 'formacion';
+ if(/\/editorial-admin\.html$/.test(path))return 'editorial';
  if(/\/admin\.html$/.test(path))return 'admin';
  if(/\/(pagos|privacidad|lanzamiento|formacion-admin)\.html$/.test(path))return '';
  const parts=hash.replace(/^#/,'').split('/'),last=parts[parts.length-1];
@@ -20,9 +23,9 @@ export function activeArea(path=location.pathname,hash=location.hash){
 const MODE_LABEL={student:'Estudiante',teacher:'Instructor',institution:'Institución',admin:'Administrador'};
 const MODE_AREAS={
  student:AREAS,
- teacher:[['aulas','Mis clases','./aulas.html'],['biblioteca','Biblioteca','./aulas.html#biblioteca'],['formacion','Formación','./#formacion'],['tutor','Tutor IA','./#tutor'],['capacitacion','Capacitaciones','./capacitacion.html']],
- institution:[['aulas','Aulas','./aulas.html'],['formacion','Formación','./#formacion'],['tutor','Tutor IA','./#tutor']],
- admin:[['admin','Telemetría','./admin.html'],['formacion','Formación','./#formacion'],['aulas','Aulas','./aulas.html']]
+ teacher:[['aulas','Mis clases','./aulas.html'],['biblioteca','Biblioteca','./biblioteca.html'],['formacion','Formación','./#formacion'],['tutor','Tutor IA','./#tutor'],['capacitacion','Capacitaciones','./capacitacion.html']],
+ institution:[['aulas','Aulas','./aulas.html'],['biblioteca','Biblioteca','./biblioteca.html'],['formacion','Formación','./#formacion'],['tutor','Tutor IA','./#tutor']],
+ admin:[['admin','Telemetría','./admin.html'],['editorial','Revisión editorial','./editorial-admin.html'],['formacion','Formación','./#formacion'],['aulas','Aulas','./aulas.html'],['biblioteca','Biblioteca','./biblioteca.html']]
 };
 let session={user:null,mode:'student'};
 const storedMode=()=>{try{return localStorage.getItem('clinia_mode')||'';}catch{return '';}};

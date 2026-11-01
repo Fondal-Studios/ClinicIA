@@ -106,6 +106,9 @@ export const policeCourse = {
       ],
       "simulation": {
         "required": false,
+        "radioPractice": true,
+        "radioSeconds": 45,
+        "radioInstructions": "En la simulación, prepará un aviso por radio de hasta 45 segundos: identificación del móvil, ubicación y acceso, riesgos, cantidad de víctimas, mecanismo, conciencia y respiración, hemorragia grave, medidas realizadas y recursos solicitados. Confirmá recepción. El límite sirve para practicar claridad; nunca omitas datos críticos por el reloj.",
         "scenario": "Choque en una curva con tránsito activo. Un integrante identifica riesgos, otro representa al testigo y otro recibe el aviso al hospital.",
         "roles": [
           "Respondiente: evalúa y verbaliza las acciones.",
@@ -117,7 +120,7 @@ export const policeCourse = {
           "Reconoce riesgos y pide ayuda.",
           "Identifica la prioridad del módulo.",
           "Evita maniobras peligrosas.",
-          "Comunica hallazgos, intervención y evolución."
+          "Comunica en hasta 45 segundos ubicación, riesgos, víctimas, estado, medidas y solicitud; confirma recepción sin inventar datos."
         ],
         "validation": "La actividad no se acredita por leerla. Solicitá validación desde Mis prácticas en la capacitación; tu instructor registra la observación."
       }
@@ -129,7 +132,7 @@ export const policeCourse = {
       "minutes": 6,
       "source": "police-first-aid",
       "objective": "Reconocer prioridades, actuar dentro del entrenamiento y comunicar hallazgos.",
-      "body": "Atender hemorragia externa masiva de inmediato. A: vía aérea; B: respiración; C: circulación y sangrado; D: conciencia; E: exposición limitada buscando lesiones y evitando frío. Pedir ayuda temprano y reevaluar ante cambios; no esperar a completar una lista para tratar una amenaza vital.\n\nPrioridad vital y reevaluación: En el primer contacto buscá amenazas inmediatas: hemorragia externa masiva, respuesta, vía aérea y respiración. ABCDE ordena la observación, pero no debe retrasar el control de una amenaza vital evidente.\n\nPara recordar: A: vía aérea; B: respiración; C: circulación; D: estado neurológico; E: exposición limitada y protección térmica.\n\nCaso guiado: Paciente que empeora durante la espera: repetí evaluación y actualizá la comunicación.",
+      "body": "Evaluación inicial del paciente traumatizado: una guía para reconocer amenazas vitales, no para reemplazar al equipo sanitario. Primero asegurá la escena, utilizá protección personal y pedí ayuda. Las prioridades pueden requerir actuaciones simultáneas si hay varios respondientes.\\n\\nX — HEMORRAGIA EXTERNA MASIVA. Una pérdida de sangre muy importante puede ser mortal en minutos. Sospechala ante sangre que se acumula rápidamente, sangrado abundante persistente o ropa empapada. Iniciá presión manual directa sobre la herida con una barrera de protección y solicitá ayuda urgente. Un torniquete comercial está indicado en una hemorragia grave de una extremidad cuando corresponda y quien lo coloca esté entrenado. No se utiliza en cuello, tórax ni abdomen.\\n\\nA — VÍA AÉREA. Comprobá si la persona puede hablar o emitir sonidos. Si no responde, verificá respiración normal y actuá según tu capacitación. Evitá maniobras invasivas y movimientos innecesarios en un traumatizado.\\n\\nB — RESPIRACIÓN. Observá si el pecho se mueve, si la respiración es normal o si hay dificultad importante. Los jadeos aislados no son respiración normal. Si una persona no responde y no respira normalmente, activá inmediatamente el protocolo de paro y RCP/DEA.\\n\\nC — CIRCULACIÓN. Buscá otros sangrados y signos de perfusión comprometida: palidez, sudor frío, debilidad, confusión o empeoramiento progresivo. No esperes a medir presión arterial para solicitar asistencia.\\n\\nD — ESTADO NEUROLÓGICO. Observá si está alerta, responde a la voz, reacciona al estímulo o no responde. Registrá cambios; no confundas alteración de conciencia con intoxicación sin evaluación sanitaria.\\n\\nE — EXPOSICIÓN Y ENTORNO. Buscá lesiones visibles exponiendo solo lo necesario, respetando la privacidad. Cubrí nuevamente a la víctima para evitar pérdida de calor.\\n\\nREEVALUACIÓN. Repetí la observación cuando cambie el estado del paciente y actualizá la información al servicio de emergencias. No hay que terminar todas las letras antes de atender una amenaza vital evidente.\\n\\nCASO PARA RAZONAR. Una persona caída presenta hemorragia intensa en una pierna y responde con frases cortas. ¿Cuál es la prioridad? Reconocer el sangrado potencialmente mortal, activar ayuda y comenzar control de hemorragia dentro de la capacitación disponible. Después continuar la evaluación y reevaluar.\\n\\nALCANCE. El esquema XABCDE es una adaptación pedagógica de prioridades de trauma. Las recomendaciones AHA/Cruz Roja 2024 respaldan el control temprano de hemorragias, pero no establecen que el orden XABCDE sea obligatorio en todas las situaciones. Seguí los protocolos institucionales vigentes.",
       "questions": [
         {
           "id": "rtpp-2-1",
