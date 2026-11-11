@@ -5,7 +5,7 @@
 - **Entrada sin contraseña para la clase** (acceso rápido): el participante abre el enlace de la clase, escribe nombre y apellido y recibe **un usuario y un código** (`XXXX-XXXX`). Es una cuenta real y persistente en el servidor: si cambia de celular o se cierra el navegador, entra con «Entrar con mi código». Guarda su avance y las respuestas del examen.
 - **Grupo con aceptación automática**: el instructor crea el grupo, copia el **enlace de la clase** y quien entra con él queda en el grupo. También puede desactivar la aceptación automática o usar **«Aceptar a todos»**. La validación de prácticas sigue siendo solo del instructor (y de supervisores vinculados).
 - **Material para proyectar y usar en la clase** (panel del instructor → «Material de la clase»):
-  1. `/clase-apertura.html`: **presentación de apertura de 10 minutos** (10 diapositivas con tiempos, notas del instructor con tecla N, pantalla completa con F, cronómetro).
+  1. **Tu PowerPoint de apertura (10 a 15 minutos)** abre la clase. `/clase-apertura.html` queda como **respaldo o guion de 10 minutos** (10 diapositivas con tiempos, notas del instructor con tecla N, pantalla completa con F, cronómetro).
   2. `/plan-clase.html`: **plan de 180 minutos** (9:00 a 12:00) con acciones del instructor y de los participantes, lista de preparación, qué decir sobre límites y plan B.
   3. `/clase-policial.html`: diapositivas por módulo y simulaciones.
   4. `/planilla-practicas.html`: **planilla de observación en papel** (A/R por práctica obligatoria, con los criterios de cada una).
@@ -15,7 +15,7 @@
 1. Confirmar que el servidor publicó esta versión: abrir `/clase-apertura.html` y `/api/account/me` (debe decir `"configured":true`).
 2. Entrar con tu cuenta en `/capacitacion.html?perfil=instructor` → «Activar modo instructor» si lo pide.
 3. Crear el grupo («Policía · clase 12/11»), dejar tildada la aceptación automática, **copiar el enlace** y probarlo desde otro celular en modo incógnito.
-4. Abrir en la computadora y dejar abiertas las pestañas: apertura, plan, planilla. **No dependas de la conexión del salón para las diapositivas**: quedan en el navegador y se pueden guardar como PDF (imprimir). Probar la señal con varias personas y tener un celular con datos de respaldo.
+4. Abrir tu PowerPoint con el proyector (y guardar una copia en PDF y en el celular). En la computadora dejar abiertas las pestañas: plan, planilla y la apertura de respaldo. **No dependas de la conexión del salón para las diapositivas**: quedan en el navegador y se pueden guardar como PDF (imprimir). Probar la señal con varias personas y tener un celular con datos de respaldo.
 5. Vincular a la ayudante como supervisora (panel → «Vincular supervisor») solo si ya tiene modo instructor.
 6. Si va a emitir certificados esa misma cuenta debe ser la autorizada en el servidor (`HOSPITAL_ISSUER_USERNAME`); si no, los certificados quedan pendientes.
 
