@@ -20,7 +20,7 @@ try{
  const ins=await ctx();let r=await ins.c.request.post(origin+'/api/account/login',{headers:{Origin:origin},data:{username:'instructor_demo',password:'clave-inicial-demo-1'}});assert.equal(r.status(),200);
  r=await ins.c.request.post(origin+'/api/account/password',{headers:{Origin:origin},data:{currentPassword:'clave-inicial-demo-1',password:'otra-clave-segura-2'}});assert.equal(r.status(),200);
  await ins.p.goto(origin+'/capacitacion.html?perfil=instructor');await ins.p.getByRole('heading',{name:'Panel de instructor'}).waitFor();
- for(const t of ['1 · Presentación de apertura (10 min)','2 · Plan de la jornada de 3 horas','4 · Planilla de observación (papel)'])await ins.p.getByRole('link',{name:t}).waitFor();
+ for(const t of ['1 · Apertura de respaldo (10 min)','2 · Plan de la jornada de 3 horas (tu PowerPoint abre)','4 · Planilla de observación (papel)'])await ins.p.getByRole('link',{name:t}).waitFor();
  await ins.p.locator('input[name=title]').fill('Policía · clase de prueba');await ins.p.getByRole('button',{name:'Crear grupo'}).click();
  await ins.p.getByRole('button',{name:'Policía · clase de prueba'}).click();await ins.p.getByText('Compartí con la clase').waitFor();
  const link=(await ins.p.locator('.share-box .big-code').innerText()).trim();assert.match(link,/capacitacion\.html\?codigo=[A-F0-9]{12}$/);await ins.p.screenshot({path:'/tmp/clase-instructor.png',fullPage:true});
@@ -30,7 +30,7 @@ try{
  await al.p.getByRole('heading',{name:'Guardá tu código'}).waitFor();await al.p.getByText('Ya estás en el grupo de la clase').waitFor();
  const [username,code]=await al.p.locator('.access-code .big-code').allInnerTexts();assert.match(username,/^Maria_Fernandez_[A-Z0-9]{3}$/);assert.match(code,/^[A-Z2-9]{4}-[A-Z2-9]{4}$/);await al.p.screenshot({path:'/tmp/clase-codigo.png',fullPage:true});
  await al.p.getByRole('button',{name:'Empezar el curso'}).click();await al.p.getByRole('button',{name:'Continuar el curso',exact:true}).waitFor();
- await al.p.getByRole('button',{name:'Continuar el curso',exact:true}).click();await al.p.getByRole('button',{name:'Abrir módulo',exact:true}).first().click();await al.p.getByRole('heading',{name:'Ensayo en grupos de tres'}).waitFor();assert.ok(await noScroll(al.p));
+ await al.p.getByRole('button',{name:'Continuar el curso',exact:true}).click();await al.p.getByRole('button',{name:'Abrir módulo',exact:true}).first().click();await al.p.getByRole('heading',{name:'Ensayo en grupos de tres'}).waitFor();assert.ok(await al.p.locator('figure.clinical-visual svg[role=img] title').first().count(),'ilustración visible');assert.ok(await noScroll(al.p));await al.p.screenshot({path:'/tmp/clase-modulo.png',fullPage:true});
  // the instructor sees the participant without accepting anything
  await ins.p.getByRole('button',{name:'Actualizar lista'}).click();await ins.p.getByRole('heading',{name:username.trim()}).waitFor();await ins.p.getByText('Aceptado ·').first().waitFor();
  // another phone: back in with username and code
