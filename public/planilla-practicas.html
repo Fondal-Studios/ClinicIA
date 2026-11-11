@@ -1,0 +1,21 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Planilla de observación de prácticas · ClinicIA</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#111;background:#fff;padding:16px}h1{font-size:20px;margin:0 0 4px}p{margin:4px 0}.bar{margin-bottom:12px}.bar button{padding:10px 14px;font:700 14px inherit;border-radius:8px;border:1px solid #176b59;background:#176b59;color:#fff;cursor:pointer}
+table{border-collapse:collapse;width:100%;font-size:12px;margin-top:10px}th,td{border:1px solid #666;padding:4px 5px;vertical-align:top}th{background:#e8efec}.n{width:26px;text-align:center}.c{width:62px;text-align:center}.name{min-width:150px}.small{font-size:11px;color:#333}
+.crit{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0}.crit div{border:1px solid #888;padding:6px 8px;font-size:12px}.crit ul{margin:4px 0 0 16px;padding:0}
+@media print{.bar{display:none}body{padding:0}@page{size:A4 landscape;margin:10mm}tr{break-inside:avoid}}
+</style></head><body>
+<div class="bar"><button onclick="print()">Imprimir / Guardar PDF</button> · <a href="/plan-clase.html">Plan de la jornada</a></div>
+<h1>Planilla de observación · Primeros respondedores</h1>
+<p>Fecha: ____ / ____ / ________ · Grupo: ______________________ · Observador/a: ______________________</p>
+<p class="small">Marcá <strong>A</strong> (aprobada) o <strong>R</strong> (necesita repetir) <u>solo</u> si observaste la práctica completa. Dejá en blanco lo no observado: queda pendiente. Registrá luego cada resultado en el panel del instructor (Prácticas por revisar).</p>
+<div class="crit" id="crit"></div>
+<table id="grid"></table>
+<script type="module">
+import {policeCourse} from '/learn/content/respuesta-policial.mjs';
+const req=policeCourse.lessons.filter(l=>l.simulation?.required);
+const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+document.querySelector('#crit').innerHTML=req.map(l=>`<div><strong>${esc(l.title)}</strong><ul>${l.simulation.checklist.map(c=>`<li>${esc(c)}</li>`).join('')}</ul></div>`).join('');
+const head=`<tr><th class="n">#</th><th class="name">Nombre y apellido</th>${req.map(l=>`<th class="c">${esc(l.title.split(' ').slice(0,3).join(' '))}<br><span class="small">A / R</span></th>`).join('')}<th>Observaciones</th></tr>`;
+document.querySelector('#grid').innerHTML=head+Array.from({length:32},(_,i)=>`<tr><td class="n">${i+1}</td><td class="name">&nbsp;</td>${req.map(()=>'<td class="c">&nbsp;</td>').join('')}<td>&nbsp;</td></tr>`).join('');
+</script></body></html>

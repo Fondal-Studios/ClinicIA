@@ -8,7 +8,7 @@ import {createMaterials,materialSchema,LIMITS as materialLimits} from './materia
 import {createVault,vaultSchema} from './vault.mjs';
 import {search as librarySearch,facets as libraryFacets} from './library.mjs';
 import {createRequire} from 'node:module';
-import {randomBytes,randomUUID,scrypt as scryptCallback,timingSafeEqual,createHash} from 'node:crypto';
+import {randomBytes,randomUUID,randomInt,scrypt as scryptCallback,timingSafeEqual,createHash} from 'node:crypto';
 import {promisify} from 'node:util';
 import {restore} from '../public/learn/engine.mjs';
 import {questions,courses} from '../public/learn/courses.mjs';
@@ -93,6 +93,19 @@ export async function createAccounts({db,origin='http://localhost:3000',secure=t
    }
    let body={};if(req.method!=='GET'){if(!String(req.headers['content-type']||'').startsWith('application/json'))fail(415,'Se requiere JSON.');let text='';for await(const chunk of req){text+=chunk;if(Buffer.byteLength(text)>500000)fail(413,'Datos demasiado grandes.');}try{body=JSON.parse(text||'{}');}catch{fail(400,'JSON inválido.');}if(!body||typeof body!=='object'||Array.isArray(body))fail(400,'Datos inválidos.');}
    if(path==='/api/offer'&&req.method==='GET'){const r=await db.query("SELECT value FROM clinic_settings WHERE key='offer'");return send(200,{pilotOpen:true,offer:r.rows[0]?.value||null,payments:payments.offer()});}
+   if(path==='/api/account/quick'&&req.method==='POST'){
+    // Class access: a name and a short code instead of a password. The account is real and persistent; the code is the password.
+    const ip=secure?(req.headers['x-forwarded-for']||'unknown').split(',').at(-1).trim():req.socket.remoteAddress;await limit('quick-ip:'+ip,300,900);
+    const name=typeof body.name==='string'?body.name.replace(/\s+/g,' ').trim():'';if(name.length<2||name.length>40)fail(400,'Escribí tu nombre y apellido.');
+    if(body.accepted!==true)fail(400,'Aceptá que tu instructor verá tu nombre y tu avance.');
+    const base=name.normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^A-Za-z0-9]+/g,'_').replace(/^_+|_+$/g,'').slice(0,22)||'Alumno',alphabet='ABCDEFGHJKMNPQRSTUVWXYZ23456789',pick=n=>Array.from({length:n},()=>alphabet[randomInt(alphabet.length)]).join('');
+    const code=pick(4)+'-'+pick(4);let u;
+    for(let i=0;i<8&&!u;i++){const username=base+'_'+pick(3),key=username.toLowerCase(),cand={id:randomUUID(),username,role:'student',must_change:false};
+     try{await db.query('INSERT INTO clinic_users(id,username,username_key,password_hash,recovery_hash) VALUES($1,$2,$3,$4,$5)',[cand.id,username,key,await hashPassword(code),digest(randomBytes(24).toString('hex'))]);u=cand;}catch(e){if(e.code!=='23505')throw e;}}
+    if(!u)fail(503,'No pudimos crear el acceso. Probá de nuevo.');
+    let group=null;if(typeof body.joinCode==='string'&&body.joinCode.trim()){try{group=await capacitacion.handle({...u,modes:'student'},'POST',{action:'join',joinCode:body.joinCode});}catch(e){group={error:e.message};}}
+    await issue(res,u);return send(201,{user:publicUser(u),accessCode:code,displayName:name,group});
+   }
    if(path==='/api/account/register'||path==='/api/account/login'||path==='/api/account/recover'){
     if(req.method!=='POST')fail(405,'Método no permitido.');
     const username=typeof body.username==='string'?body.username.trim():'',key=username.toLowerCase(),password=body.password;

@@ -9,3 +9,8 @@
 
 /* Accessible touch navigation, zoom and reduced motion */
 button,a,input,select,summary{touch-action:manipulation}button,.button{min-height:48px}input[type=radio],input[type=checkbox]{min-width:24px;min-height:24px}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:4px solid #b85c00;outline-offset:3px}@media(max-width:600px){nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}nav button,nav a{min-height:48px;white-space:normal;text-align:center}.actions{display:grid;grid-template-columns:1fr}.actions button{width:100%}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+.doors{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}.doors article{display:flex;flex-direction:column;gap:12px;justify-content:space-between}
+.big-code{font:700 clamp(20px,5vw,30px)/1.2 ui-monospace,monospace;letter-spacing:.06em;overflow-wrap:anywhere;margin:4px 0 14px}
+.access-code{text-align:center}.access-code .big-code{background:#eef6f2;border:2px dashed #176b59;border-radius:12px;padding:14px}
+.share-box{border:2px solid #176b59;border-radius:14px;padding:14px;margin:14px 0}.check{display:flex;gap:10px;align-items:flex-start}.check input{margin-top:4px}
+button.link{background:none;border:0;color:#176b59;text-decoration:underline;padding:0;font:inherit;cursor:pointer}
