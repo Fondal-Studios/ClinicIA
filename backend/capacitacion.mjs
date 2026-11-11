@@ -19,7 +19,7 @@ const fail=(n,m)=>{throw Object.assign(new Error(m),{status:n});};
 const txt=(v,max=500)=>typeof v==='string'?v.trim().slice(0,max):'';
 export function createCapacitacion({db,issuerId=process.env.HOSPITAL_ISSUER_USER_ID||''}){
  const course=id=>{const c=trainingCourses.find(c=>c.id===id);if(!c)fail(400,'Curso inválido.');return c;};
- const canTeach=u=>u.role==='admin'||String(u.modes).split(',').includes('teacher');
+ const canTeach=()=>true; // cualquier cuenta puede crear y supervisar sus propios grupos; la firma de certificados sigue restringida al emisor configurado
  const audit=(u,action,data)=>db.query('INSERT INTO clinic_training_audit(id,actor_id,action,data) VALUES($1,$2,$3,$4)',[randomUUID(),u.id,action,JSON.stringify(data)]);
  async function canSupervise(u,g){if(g.owner_id===u.id)return true;if(!canTeach(u))return false;return !!(await db.query('SELECT 1 FROM clinic_cohort_instructors WHERE cohort_id=$1 AND user_id=$2',[g.id,u.id])).rows.length;}
  async function cohort(u,id,owner=false){const g=(await db.query('SELECT * FROM clinic_cohorts WHERE id=$1',[id])).rows[0];if(!g)fail(404,'Grupo no encontrado.');if(owner&&!await canSupervise(u,g))fail(403,'No tenés permisos para supervisar este grupo.');return g;}

@@ -9,7 +9,7 @@ test('persistent training: groups, isolation, resumable grading, practices and e
  for(const u of [student,teacher,other,issuer])await db.query('INSERT INTO clinic_users(id,username,username_key,password_hash,recovery_hash,role,modes) VALUES($1,$2,$3,$4,$5,$6,$7)',[u.id,u.username,u.username.toLowerCase(),'unused','unused',u.role||'student',u.modes||'student']);
  let api=createCapacitacion({db,issuerId:issuer.id});const call=(u,b)=>api.handle(u,'POST',b);const reject=async(u,b,code)=>assert.rejects(call(u,b),e=>e.status===code);
  try{
-  await reject(student,{action:'create-group',title:'Policía'},403);
+  assert.ok((await call(student,{action:'create-group',title:'Grupo propio de cualquier cuenta'})).id,'cualquier cuenta puede crear su propio grupo');
   const {id:groupId,joinCode}=await call(teacher,{action:'create-group',title:'Polícia Cafayate'});
   await call(student,{action:'join',joinCode});await reject(other,{action:'accept',groupId,userId:'s'},403);
   await call(teacher,{action:'accept',groupId,userId:'s'});

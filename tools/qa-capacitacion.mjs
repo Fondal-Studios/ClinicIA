@@ -12,11 +12,11 @@ accounts=await createAccounts({db,origin,secure:false,adminName:'qa_admin',admin
 const browser=await chromium.launch({headless:true,executablePath:process.env.CHROME_BIN,args:process.env.CHROME_ARGS?JSON.parse(process.env.CHROME_ARGS):['--no-sandbox','--disable-dev-shm-usage']});
 try{
  const page=await browser.newPage({viewport:{width:390,height:844}}),errors=[];page.on('pageerror',e=>errors.push(e.message));
- await page.goto(origin+'/capacitacion.html');await page.getByRole('heading',{name:'Prepararse para ayudar. Coordinar para cuidar.'}).waitFor();
+ await page.goto(origin+'/capacitacion.html');await page.getByRole('heading',{name:'¿Cómo vas a entrar?'}).waitFor();await page.getByRole('button',{name:'Entrar como primer respondedor'}).click();await page.getByRole('heading',{name:'Prepararse para ayudar. Coordinar para cuidar.'}).waitFor();
  assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
  await page.screenshot({path:'/tmp/clinic-mobile.png',fullPage:true});
  await page.getByRole('button',{name:'Continuar el curso',exact:true}).click();await page.getByRole('button',{name:'Abrir módulo',exact:true}).first().click();
- await page.getByRole('heading',{name:'Ensayo en grupos de tres'}).waitFor();assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+ await page.getByRole('heading',{name:'Ensayo en grupos de tres'}).waitFor();assert.ok(await page.locator('figure.clinical-visual svg[role=img] title').first().count(),'ilustración del módulo visible');assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
  await page.screenshot({path:'/tmp/clinic-simulation.png',fullPage:true});
  await page.getByRole('button',{name:'Ingresar / crear cuenta',exact:true}).click();await page.locator('select[name=action]').selectOption('register');await page.locator('input[name=username]').fill('qa_alumno');await page.locator('input[name=password]').fill('qa-only-long-password');await page.locator('input[name=accepted]').check();await page.getByRole('button',{name:'Continuar',exact:true}).click();await page.getByRole('button',{name:'Ya lo guardé: continuar'}).click();
  await page.getByRole('button',{name:'Continuar el curso',exact:true}).click();await page.getByRole('button',{name:'Rendir / continuar evaluación'}).click();await page.locator('input[type=radio]').first().check();await page.getByText('Respuesta guardada en tu cuenta',{exact:true}).waitFor();
