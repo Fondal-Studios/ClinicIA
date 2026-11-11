@@ -9,7 +9,7 @@ test('student entry separates healthcare physiotherapy from first responders and
  await import('../public/capacitacion.mjs');
  const click=async action=>{for(const fn of handlers.click||[])fn({target:{closest:()=>({dataset:{action}})}});await new Promise(r=>setImmediate(r));};
  await click('choose-student');let html=node('#content').innerHTML;
- assert.ok(html.includes('<h2>Personal sanitario</h2>'));assert.ok(html.includes('<h2>Primeros respondedores</h2>'));
+ assert.ok(html.includes('<h2>Médicos</h2>'));assert.ok(html.includes('<h2>Primeros respondedores</h2>'));assert.ok(html.includes('<h2>Instructores</h2>'));
  await click('track-medical');html=node('#content').innerHTML;
  assert.ok(html.includes('<h1>Personal sanitario</h1>'));assert.ok(html.includes('<h2>Kinesiólogos</h2>'));
  assert.ok(html.includes('href="/#kinesiologia"'));assert.ok(!html.includes('data-id="respuesta-policial"'));
