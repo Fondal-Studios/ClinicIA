@@ -29,10 +29,15 @@ try{
  await al.p.locator('input[name=name]').fill('María Fernández');await al.p.locator('input[name=accepted]').check();await al.p.getByRole('button',{name:'Entrar a la clase'}).click();
  await al.p.getByRole('heading',{name:'Guardá tu código'}).waitFor();await al.p.getByText('Ya estás en el grupo de la clase').waitFor();
  const [username,code]=await al.p.locator('.access-code .big-code').allInnerTexts();assert.match(username,/^Maria_Fernandez_[A-Z0-9]{3}$/);assert.match(code,/^[A-Z2-9]{4}-[A-Z2-9]{4}$/);await al.p.screenshot({path:'/tmp/clase-codigo.png',fullPage:true});
- await al.p.getByRole('button',{name:'Empezar el curso'}).click();await al.p.getByRole('button',{name:'Continuar el curso',exact:true}).waitFor();
+ await al.p.getByRole('button',{name:'Empezar el curso'}).click();await al.p.getByRole('button',{name:'Continuar el curso',exact:true}).waitFor();await al.p.getByText('Pase del primer respondiente').waitFor();assert.equal(await al.p.locator('.pase .tier').count(),13);assert.ok(await noScroll(al.p));await al.p.screenshot({path:'/tmp/clase-pase.png'});
  await al.p.getByRole('button',{name:'Continuar el curso',exact:true}).click();await al.p.getByRole('button',{name:'Abrir módulo',exact:true}).first().click();await al.p.getByRole('heading',{name:'Ensayo en grupos de tres'}).waitFor();assert.ok(await al.p.locator('figure.clinical-visual svg[role=img] title').first().count(),'ilustración visible');assert.ok(await noScroll(al.p));await al.p.screenshot({path:'/tmp/clase-modulo.png',fullPage:true});
  // the instructor sees the participant without accepting anything
  await ins.p.getByRole('button',{name:'Actualizar lista'}).click();await ins.p.getByRole('heading',{name:username.trim()}).waitFor();await ins.p.getByText('Aceptado ·').first().waitFor();
+ // instructor guide, student list and per-module validation
+ await ins.p.getByRole('heading',{name:/Curso que vas a dar: Respuesta Táctica/}).waitFor();assert.equal(await ins.p.locator('#teach-course option').count()>=2,true);
+ await ins.p.getByText('Cómo arrancar (primeros 15 minutos)').waitFor();await ins.p.getByText('Módulo 3 · Reconocimiento del paro, RCP y DEA').first().click();await ins.p.locator('strong:visible',{hasText:'Qué mirar al validar:'}).first().waitFor();
+ await ins.p.getByRole('heading',{name:/Lista de alumnos \(1 aceptados/}).waitFor();await ins.p.getByRole('cell',{name:username.trim()}).waitFor();
+ await ins.p.getByText(/Módulo 3 · Reconocimiento del paro, RCP y DEA · leyeron/).click();await ins.p.getByText('Validar práctica de '+username.trim()).first().waitFor();assert.ok(await noScroll(ins.p));await ins.p.screenshot({path:'/tmp/clase-guia.png',fullPage:true});
  // another phone: back in with username and code
  const otro=await ctx();await otro.p.goto(link);await otro.p.getByRole('button',{name:'Entrar con mi código'}).click();await otro.p.locator('input[name=username]').fill(username.trim());await otro.p.locator('input[name=password]').fill(code.trim().toLowerCase());await otro.p.getByRole('button',{name:'Entrar',exact:true}).click();
  await otro.p.getByRole('button',{name:'Continuar el curso',exact:true}).waitFor();

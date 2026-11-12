@@ -14,3 +14,22 @@ button,a,input,select,summary{touch-action:manipulation}button,.button{min-heigh
 .access-code{text-align:center}.access-code .big-code{background:#eef6f2;border:2px dashed #176b59;border-radius:12px;padding:14px}
 .share-box{border:2px solid #176b59;border-radius:14px;padding:14px;margin:14px 0}.check{display:flex;gap:10px;align-items:flex-start}.check input{margin-top:4px}
 button.link{background:none;border:0;color:#176b59;text-decoration:underline;padding:0;font:inherit;cursor:pointer}
+
+/* Tema Cafayate: azul policial, malbec, torrontés dorado y tierra de la quebrada. Solo estética. */
+body.cafayate{--navy:#0f2a4a;--malbec:#6b1f3a;--oro:#d9a441;--tierra:#b5532f;--crema:#f7f1e6;background:var(--crema);color:#1d2a3a}
+body.cafayate .top{background:linear-gradient(90deg,var(--navy),#16396a 60%,var(--malbec));color:#fff;border-bottom:4px solid var(--oro)}
+body.cafayate .top a,body.cafayate .top span,body.cafayate .top .brand span{color:var(--oro)}body.cafayate .top .brand{color:#fff}
+body.cafayate .top button{background:transparent;color:#fff;border-color:var(--oro)}
+body.cafayate a{color:var(--malbec)}body.cafayate h1,body.cafayate h2{color:var(--navy)}
+body.cafayate button.primary,body.cafayate .button.primary{background:var(--malbec);border-color:var(--malbec);color:#fff}
+body.cafayate .guided-step,body.cafayate .instructor-summary{background:#f1e6d3;border-color:var(--oro)}body.cafayate .guided-step{border-color:var(--malbec)}
+body.cafayate .lesson-guide{background:#f1e6d3;border-left-color:var(--malbec)}body.cafayate .share-box{border-color:var(--navy)}
+body.cafayate .eyebrow{color:var(--tierra)}body.cafayate progress{accent-color:var(--malbec)}
+body.cafayate .hero{background:linear-gradient(135deg,var(--navy),#1b4a82 60%,var(--malbec));color:#fff;border-radius:18px;padding:22px;border-bottom:5px solid var(--oro)}
+body.cafayate .hero h1,body.cafayate .hero .lead{color:#fff}body.cafayate .hero .eyebrow{color:var(--oro)}
+.pase{background:linear-gradient(135deg,#0f2a4a,#16396a 65%,#6b1f3a);color:#fff;border-radius:18px;padding:18px;margin:18px 0;border-bottom:5px solid #d9a441}
+.pase h2{color:#fff;margin:2px 0 0;font-size:22px}.pase-kicker{color:#d9a441;font-weight:700;letter-spacing:.12em;font-size:11px}
+.pase-head{display:flex;justify-content:space-between;align-items:center;gap:12px}.pase-lvl{text-align:center;background:#00000033;border:2px solid #d9a441;border-radius:14px;padding:6px 14px}.pase-lvl strong{font-size:30px;color:#d9a441;display:block;line-height:1}.pase-lvl span{font-size:11px}
+.pase-track{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}.tier{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;font-weight:700;background:#ffffff1f;border:2px dashed #ffffff66;color:#ffffffaa}.tier.on{background:#d9a441;border:2px solid #fff3c4;color:#3b1226;box-shadow:0 0 12px #d9a44199}
+.pase-note{font-size:13px;color:#e8eef7;margin:0}
+body.cafayate .hero .pill{background:#d9a441;color:#3b1226;font-weight:700}
