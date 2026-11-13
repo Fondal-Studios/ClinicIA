@@ -44,3 +44,9 @@ test('a classroom sharing one IP can re-enter with codes more than 40 times in 1
   assert.ok(same.includes(429),'repeated guesses on a single account are still blocked');
  }finally{server.close();}
 });
+
+test('health endpoint reports whether accounts are configured and which commit runs, without secrets',async()=>{
+ const {server}=await import('../server.mjs');await new Promise(r=>server.listen(0,'127.0.0.1',r));
+ try{const r=await fetch('http://127.0.0.1:'+server.address().port+'/api/health');const j=await r.json();assert.equal(r.status,200);assert.equal(j.ok,true);assert.equal(typeof j.accountsConfigured,'boolean');assert.deepEqual(Object.keys(j).sort(),['accountsConfigured','commit','ok']);}
+ finally{server.close();}
+});
