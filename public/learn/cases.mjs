@@ -1,5 +1,9 @@
 import {kinesiologyCases} from './content/kinesiologia.mjs';
 import {nursingCases} from './content/enfermeria.mjs';
+import {gerMedCases} from './content/gerontologia-medicos.mjs';
+import {gerNursingCases} from './content/gerontologia-enfermeria.mjs';
+import {gerKineCases} from './content/gerontologia-kinesiologia.mjs';
+import {gerNutritionCases} from './content/gerontologia-nutricion.mjs';
 import {nutritionCases} from './content/nutricion.mjs';
 import {guardiaCases} from './content/guardia.mjs';
 import {residencyCases} from './content/residency-cases.mjs';
@@ -405,7 +409,7 @@ export const cases=[
   }
 ];
 improveCases(cases);
-cases.push(...residencyCases,...guardiaCases,...kinesiologyCases,...nursingCases,...nutritionCases);
+cases.push(...residencyCases,...guardiaCases,...kinesiologyCases,...nursingCases,...nutritionCases,...gerMedCases,...gerNursingCases,...gerKineCases,...gerNutritionCases);
 export function choose(sim,index){if(sim.finished||sim.feedback)return sim;const scenario=cases.find(c=>c.id===sim.id),s=scenario?.steps[sim.step];if(!s||!Number.isInteger(index)||index<0||index>=s.options.length)return sim;return {...sim,attempts:sim.attempts+1,errors:sim.errors+Number(index!==s.answer),history:[...(sim.history||[]),{step:sim.step,selected:index,right:index===s.answer}],feedback:{right:index===s.answer,text:s.why,next:index===s.answer?s.next:s.wrong}};}
 export function advance(sim){if(!sim.feedback)return sim;return {...sim,step:sim.feedback.next??sim.step,finished:sim.feedback.next===null,feedback:null};}
 

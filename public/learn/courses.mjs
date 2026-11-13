@@ -1,6 +1,10 @@
 import {kinesiologyCourses,kinesiologySources} from './content/kinesiologia.mjs';
 import {nursingCourses,nursingSources} from './content/enfermeria.mjs';
 import {applyQuestionUpgrades} from './content/apply-upgrades.mjs';
+import {gerMedCourses,gerMedSources} from './content/gerontologia-medicos.mjs';
+import {gerNursingCourses,gerNursingSources} from './content/gerontologia-enfermeria.mjs';
+import {gerKineCourses,gerKineSources} from './content/gerontologia-kinesiologia.mjs';
+import {gerNutritionCourses,gerNutritionSources} from './content/gerontologia-nutricion.mjs';
 import {nutritionCourses,nutritionSources} from './content/nutricion.mjs';
 import {policeCourse,policeSources} from './content/respuesta-policial.mjs';
 import {applyQuestionDifficultyRevisions} from './content/question-difficulty-revisions.mjs';
@@ -1347,6 +1351,8 @@ Object.assign(sources,kinesiologySources);
 courses.push(...kinesiologyCourses);
 Object.assign(sources,nursingSources,nutritionSources);
 courses.push(...nursingCourses,...nutritionCourses);
+Object.assign(sources,gerMedSources,gerNursingSources,gerKineSources,gerNutritionSources);
+courses.push(...gerMedCourses,...gerNursingCourses,...gerKineCourses,...gerNutritionCourses);
 // Last step: the one-by-one reviewed distractors replace legacy filler options (correct answer text and position never change).
 applyQuestionUpgrades(courses);
 export const catalog=courses;

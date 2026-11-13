@@ -1,6 +1,10 @@
 import test from 'node:test';import assert from 'node:assert/strict';
 import {nursingCourses,nursingCases,nursingSources} from '../public/learn/content/enfermeria.mjs';
 import {nutritionCourses,nutritionCases,nutritionSources} from '../public/learn/content/nutricion.mjs';
+import {gerMedCourses,gerMedCases} from '../public/learn/content/gerontologia-medicos.mjs';
+import {gerNursingCourses,gerNursingCases} from '../public/learn/content/gerontologia-enfermeria.mjs';
+import {gerKineCourses,gerKineCases} from '../public/learn/content/gerontologia-kinesiologia.mjs';
+import {gerNutritionCourses,gerNutritionCases} from '../public/learn/content/gerontologia-nutricion.mjs';
 import {courses,questions,sources} from '../public/learn/courses.mjs';
 import {cases,startCase,choose,advance,restoreCase} from '../public/learn/cases.mjs';
 import {fresh,restore,answer,finishLesson,errorQuestions} from '../public/learn/engine.mjs';
@@ -8,6 +12,8 @@ import {createExam,restoreExam,selectExamAnswer,gradeExam} from '../public/learn
 import {cleanProgress} from '../backend/accounts.mjs';
 import {search,facets} from '../backend/library.mjs';
 import {trainingCourses} from '../public/learn/content/capacitacion-catalog.mjs';
+const gerCourses=[...gerMedCourses,...gerNursingCourses,...gerKineCourses,...gerNutritionCourses],gerCases=[...gerMedCases,...gerNursingCases,...gerKineCases,...gerNutritionCases];
+const allCourses=[...nursingCourses,...nutritionCourses,...gerCourses],allCases=[...nursingCases,...nutritionCases,...gerCases];
 const groups=[['enfermeria',nursingCourses,nursingCases,nursingSources],['nutricionistas',nutritionCourses,nutritionCases,nutritionSources]];
 test('nursing (emergencies) and nutrition (obesity, fat metabolism) each have two integrated courses outside first-responder training',()=>{
  for(const [pro,list,cs,src] of groups){
@@ -23,14 +29,14 @@ test('nursing (emergencies) and nutrition (obesity, fat metabolism) each have tw
 });
 test('question keys are balanced, prompts unique across the whole bank and every citation resolves',()=>{
  const seen=new Set(questions.map(q=>q.id));assert.equal(seen.size,questions.length,'question ids unique');
- const newOnes=[...nursingCourses,...nutritionCourses];
+ const newOnes=allCourses;
  for(const c of newOnes){const keys=[0,0,0,0,0];for(const l of c.lessons)for(const q of l.questions){keys[q.answer]++;assert.equal(q.options.length,5);assert.equal(new Set(q.options).size,5);assert.ok(q.why.length>=80);for(const r of q.references)assert.ok(sources[r],r);}assert.deepEqual(keys,[4,4,4,4,4],c.id);}
  const prompts=questions.map(q=>q.prompt.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase());
  for(const c of newOnes)for(const q of c.lessons.flatMap(l=>l.questions)){const p=q.prompt.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();assert.equal(prompts.filter(x=>x===p).length,1,'duplicate prompt '+q.id);}
 });
 test('each new course supports isolated practice, cloud serialization, a full 20-question exam and teacher search',()=>{
  const teacher={role:'student',modes:'student,teacher'};
- for(const c of [...nursingCourses,...nutritionCourses]){
+ for(const c of allCourses){
   let s=fresh();s.current=c.id;const l=c.lessons[0],q=l.questions[0];s=answer(s,q.id,false,0);
   assert.equal(errorQuestions(s,c.id).length,1);assert.equal(errorQuestions(s,'acls').length,0);
   s=answer(s,q.id,true,1);s.theoryRead[l.id]=true;s=finishLesson(s,c.id,l.id,l.questions.map(x=>({id:x.id,right:true})));
@@ -54,4 +60,11 @@ test('all four new cases recover from each wrong answer',()=>{
    }
   }
  }
+});
+test('five gerontology courses exist: two for physicians, one each for nursing, kinesiology and nutrition, in the right professional tracks',()=>{
+ assert.equal(gerMedCourses.length,2);assert.equal(gerNursingCourses.length,1);assert.equal(gerKineCourses.length,1);assert.equal(gerNutritionCourses.length,1);
+ assert.deepEqual(gerMedCourses.map(c=>c.professionalCategory),['medicos','medicos']);
+ assert.equal(gerNursingCourses[0].category,'enfermeria');assert.equal(gerKineCourses[0].category,'kinesiologia');assert.equal(gerNutritionCourses[0].category,'nutricion');
+ for(const c of gerCourses){assert.ok(courses.includes(c));assert.equal(c.lessons.flatMap(l=>l.questions).length,20);assert.ok(c.reviewStatus.includes('pendiente'));}
+ assert.equal(gerCases.length,5);
 });
