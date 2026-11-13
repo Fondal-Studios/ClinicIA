@@ -46,5 +46,10 @@ try{
  // printable material opens without errors
  for(const [path,heading] of [['/clase-apertura.html','Primeros auxilios para primeros respondedores'],['/plan-clase.html','Clase para primeros respondedores · 9:00 a 12:00'],['/planilla-practicas.html','Planilla de observación · Primeros respondedores']]){const m=await ctx();await m.p.goto(origin+path);await m.p.getByRole('heading',{name:heading}).first().waitFor({state:'attached'});await m.p.screenshot({path:'/tmp/clase-'+path.slice(1,-5)+'.png',fullPage:path!=='/clase-apertura.html'});await m.c.close();}
  const deck=await ctx();await deck.p.goto(origin+'/clase-apertura.html');for(let i=0;i<9;i++)await deck.p.getByRole('button',{name:'Siguiente →'}).click();await deck.p.getByRole('heading',{name:'Empezamos'}).waitFor();
+ // slow network: the account check answers late; what the person already typed must not be wiped
+ const slow=await ctx();await slow.p.route('**/api/account/me',async r=>{await new Promise(x=>setTimeout(x,2500));await r.continue();});
+ await slow.p.goto(link);await slow.p.getByRole('heading',{name:'Entrá a la clase'}).waitFor();await slow.p.locator('input[name=name]').fill('Lucía Gómez Lenta');await slow.p.locator('input[name=accepted]').check();
+ await slow.p.waitForTimeout(3500);assert.equal(await slow.p.locator('input[name=name]').inputValue(),'Lucía Gómez Lenta','el nombre escrito se conserva');assert.equal(await slow.p.locator('input[name=accepted]').isChecked(),true);
+ await slow.p.getByRole('button',{name:'Entrar a la clase'}).click();await slow.p.getByRole('heading',{name:'Guardá tu código'}).waitFor();
  assert.deepEqual(errors,[]);console.log('qa-clase OK');
 }finally{await browser.close();await new Promise(r=>server.close(r));await db.close();}

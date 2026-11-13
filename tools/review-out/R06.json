@@ -1,0 +1,571 @@
+{
+ "batch": "R06",
+ "upgrades": {
+  "diabetes-integral-2026-q1": {
+   "options": [
+    "La interpretación de HbA1c y glucemia requiere contexto y confirmación según presentación.",
+    "Una única HbA1c ≥ 6,5 % en una persona asintomática basta para confirmar el diagnóstico sin repetirla.",
+    "La HbA1c conserva su validez diagnóstica en anemia hemolítica o hemoglobinopatías sin otros ajustes.",
+    "Una glucemia al azar de 160 mg/dl con síntomas leves alcanza para establecer el diagnóstico.",
+    "Una glucemia en ayunas de 110 mg/dl define diabetes por superar el valor considerado normal."
+   ],
+   "prompt": "Para el diagnóstico de diabetes tipo 2 en adultos, ¿qué concepto describe mejor la interpretación de HbA1c y glucemia?",
+   "why": "Según los Standards of Care de la ADA, sin hiperglucemia inequívoca el diagnóstico exige dos resultados alterados (en la misma muestra o en muestras distintas), y la HbA1c puede ser poco confiable con anemia o hemoglobinopatías. El error tentador es tomar un único valor limítrofe como diagnóstico: 110 mg/dl en ayunas corresponde a prediabetes, no a diabetes."
+  },
+  "diabetes-integral-2026-q2": {
+   "options": [
+    "Iniciar metformina con ese único valor para no demorar el tratamiento",
+    "Confirmar diagnóstico apropiadamente",
+    "Repetir el estudio solo si aparecen poliuria o polidipsia",
+    "Descartar diabetes por ausencia de síntomas y de antecedentes familiares",
+    "Reemplazar la confirmación por un perfil capilar domiciliario de una semana"
+   ],
+   "prompt": "Mujer de 52 años, asintomática, con glucemia en ayunas de 131 mg/dl en un control laboral de rutina. ¿Cuál es la conducta más adecuada?",
+   "why": "Un valor aislado por encima del umbral en una persona asintomática debe confirmarse con una nueva determinación (o con otra prueba) antes de rotular y tratar. Iniciar fármacos con un solo dato es sobretratamiento, y esperar síntomas o usar glucómetro capilar no sirve como confirmación diagnóstica."
+  },
+  "diabetes-integral-2026-q3": {
+   "options": [
+    "Repetir la HbA1c cuando difiere de la glucemia en ayunas",
+    "Considerar la clínica al elegir entre HbA1c y glucemia plasmática",
+    "Usar solo síntomas inespecíficos",
+    "Confirmar con una segunda muestra un valor apenas por encima del umbral",
+    "Evaluar factores que alteran la HbA1c, como anemia o embarazo"
+   ],
+   "prompt": "En el estudio diagnóstico de una persona con sospecha de diabetes tipo 2, ¿cuál es el error que debe evitarse?",
+   "why": "El diagnóstico se basa en pruebas con umbrales definidos (HbA1c, glucemia en ayunas, TTOG o glucemia al azar con síntomas), no en síntomas inespecíficos como cansancio o somnolencia. Las otras opciones son prácticas correctas: repetir, confirmar y considerar las limitaciones de cada prueba."
+  },
+  "diabetes-integral-2026-q4": {
+   "options": [
+    "Definir diabetes con la HbA1c aislada pese a la anemia ferropénica",
+    "Usar una medición capilar ocasional como confirmación diagnóstica",
+    "Interpretar la glucemia sin comprobar el ayuno ni las unidades",
+    "Evaluar beneficios, daños y preferencias.",
+    "Aplicar un único umbral sin valorar síntomas ni otras pruebas de laboratorio"
+   ],
+   "prompt": "Antes de cerrar el diagnóstico de diabetes en un adulto con HbA1c 6,8 % y anemia ferropénica, ¿qué enfoque mejora la seguridad de las decisiones que siguen?",
+   "why": "Un diagnóstico seguro pondera beneficios, daños y preferencias de la persona antes de etiquetar y tratar, y contrasta la HbA1c con glucemia plasmática cuando hay anemia. Cada alternativa propone cerrar el diagnóstico con una prueba débil o mal interpretada."
+  },
+  "diabetes-integral-2026-q5": {
+   "options": [
+    "Repetir la HbA1c recién a los cinco años si se mantiene asintomática",
+    "Dar de alta el control glucémico si la HbA1c baja una sola vez de 6,5 %",
+    "Limitar el control a un pesaje anual sin repetir estudios glucémicos",
+    "Reemplazar el seguimiento por metformina fija desde el inicio",
+    "Reevaluar resultados y ajustar el plan."
+   ],
+   "prompt": "Una mujer de 49 años con prediabetes (HbA1c 6,1 %) inició cambios de estilo de vida. Al planificar el seguimiento, ¿qué enfoque es más apropiado?",
+   "why": "La prediabetes requiere reevaluación periódica (al menos anual) del estado glucémico, de la adherencia a los cambios y de los factores de riesgo, ajustando el plan según la respuesta. Un valor aislado no justifica el alta, y el fármaco no sustituye el seguimiento."
+  },
+  "diabetes-integral-2026-q6": {
+   "options": [
+    "La diabetes requiere evaluación integrada de presión, lípidos y riesgo cardiovascular.",
+    "El control glucémico estricto es suficiente por sí solo para reducir los eventos cardiovasculares.",
+    "El riesgo cardiovascular se estima únicamente según la duración de la diabetes y el LDL.",
+    "La estatina se reserva para quienes tienen un LDL superior a 190 mg/dl o un evento previo.",
+    "La presión arterial se evalúa solo cuando existe infarto o ACV en el antecedente."
+   ],
+   "prompt": "En una persona de 55 años con diabetes tipo 2, ¿qué concepto describe mejor el abordaje del riesgo cardiovascular?",
+   "why": "La ADA recomienda abordar en conjunto presión arterial, lípidos, tabaquismo y glucemia, con estatinas en la mayoría de los adultos con diabetes de 40 a 75 años aun sin eventos previos. Centrarse en un solo factor, como la HbA1c, deja sin tratar gran parte del riesgo."
+  },
+  "diabetes-integral-2026-q7": {
+   "options": [
+    "Intensificar solo la terapia hipoglucemiante hasta normalizar la HbA1c",
+    "Valorar riesgo global",
+    "Tratar la hipertensión y diferir las estatinas hasta el próximo año",
+    "Indicar aspirina de rutina en prevención primaria a todos los casos",
+    "Estratificar el riesgo solo con el LDL, sin considerar presión ni tabaquismo"
+   ],
+   "prompt": "Varón de 61 años con diabetes de 8 años, HbA1c 7,1 %, tensión 152/94 mmHg y LDL 138 mg/dl, sin eventos previos. ¿Cuál es la conducta más adecuada?",
+   "why": "Con varios factores de riesgo concurrentes corresponde estimar el riesgo global y tratar presión y lípidos en paralelo, además de la glucemia. La aspirina en prevención primaria no es de rutina: se discute según riesgo y sangrado."
+  },
+  "diabetes-integral-2026-q8": {
+   "options": [
+    "Indicar una estatina de intensidad moderada a un adulto de 50 años sin eventos previos",
+    "Medir la presión arterial en cada visita y confirmarla con automedición domiciliaria",
+    "Atender solo glucemia",
+    "Considerar un iSGLT2 o un aGLP-1 por su beneficio cardiovascular más allá de la HbA1c",
+    "Preguntar por tabaquismo y ofrecer tratamiento para dejar de fumar en cada control"
+   ],
+   "prompt": "Al abordar el riesgo cardiovascular en la diabetes tipo 2, ¿cuál es el error que debe evitarse?",
+   "why": "Limitar la atención a la glucemia desatiende presión, lípidos, tabaquismo y fármacos con beneficio cardiovascular. Las otras opciones son recomendaciones habituales de la ADA."
+  },
+  "diabetes-integral-2026-q9": {
+   "options": [
+    "Reducir la prevención vascular a bajar la HbA1c sin controlar la presión",
+    "Interpretar el LDL aislado sin estimar el riesgo ni los antecedentes cardiovasculares",
+    "Estimar el riesgo solo por el tiempo de evolución de la diabetes",
+    "Evaluar beneficios, daños y preferencias.",
+    "Iniciar medicación preventiva sin revisar comorbilidades ni preferencias"
+   ],
+   "prompt": "Mujer de 63 años con diabetes y varios factores de riesgo. ¿Qué enfoque mejora la seguridad de la prevención cardiovascular?",
+   "why": "La prevención segura pondera beneficios, daños y preferencias de la persona sobre la base del riesgo global. Las alternativas toman un solo dato (HbA1c, LDL, años de evolución) o indican fármacos sin individualizar."
+  },
+  "diabetes-integral-2026-q10": {
+   "options": [
+    "Repetir el perfil lipídico recién al año sin controlar creatinina ni potasio",
+    "Suspender la estatina si el LDL baja, porque ya cumplió su objetivo",
+    "Dar por lograda la meta con tensión menor de 140/90 y no ajustar más",
+    "Basar los ajustes en la HbA1c sin repetir presión ni lípidos",
+    "Reevaluar resultados y ajustar el plan."
+   ],
+   "prompt": "Un paciente de 66 años con diabetes inició estatina e IECA hace 3 meses. Al planificar el seguimiento, ¿qué enfoque es más apropiado?",
+   "why": "Tras iniciar estatina e IECA se reevalúan respuesta lipídica, presión, creatinina y potasio y se ajusta el plan. Suspender la estatina por un LDL bajo es un error: el descenso es efecto del tratamiento."
+  },
+  "diabetes-integral-2026-q11": {
+   "options": [
+    "La albuminuria y el filtrado estimado son componentes de vigilancia renal.",
+    "Una creatinina sérica normal descarta enfermedad renal y permite espaciar el tamizaje.",
+    "La albuminuria se evalúa solo en personas con hipertensión o retinopatía asociada.",
+    "El tamizaje renal comienza a los cinco años del diagnóstico en toda diabetes tipo 2.",
+    "Una sola relación albúmina/creatinina alterada confirma la enfermedad renal diabética."
+   ],
+   "prompt": "En un adulto con diabetes tipo 2, ¿qué concepto describe mejor la vigilancia de la enfermedad renal?",
+   "why": "La ADA indica evaluar anualmente eGFR y albuminuria desde el diagnóstico en diabetes tipo 2. La creatinina sola no detecta daño precoz y la albuminuria persistente requiere confirmación en más de una muestra."
+  },
+  "diabetes-integral-2026-q12": {
+   "options": [
+    "Confiar en la creatinina normal y repetir el control en cinco años",
+    "Evaluar eGFR y albuminuria",
+    "Solicitar proteinuria de 24 horas y omitir el cálculo del filtrado",
+    "Medir con tira reactiva y descartar albuminuria si resulta negativa",
+    "Derivar a nefrología de entrada para biopsia renal"
+   ],
+   "prompt": "Mujer de 60 años con diabetes tipo 2 de 6 años, creatinina 0,9 mg/dl y sin estudios de orina previos. ¿Cuál es la conducta más adecuada?",
+   "why": "Corresponde estimar el filtrado glomerular y cuantificar la albuminuria (relación albúmina/creatinina). La creatinina aislada es insensible, la tira reactiva no detecta albuminuria moderada y la biopsia es un sobretratamiento diagnóstico sin criterios atípicos."
+  },
+  "diabetes-integral-2026-q13": {
+   "options": [
+    "Repetir la albuminuria ante un valor alterado antes de confirmar el diagnóstico",
+    "Estimar el filtrado con una ecuación basada en creatinina",
+    "Esperar creatinina muy alta",
+    "Considerar fiebre, ejercicio intenso o infección urinaria como causas transitorias de albuminuria",
+    "Medir la albuminuria al menos una vez al año aunque el filtrado sea normal"
+   ],
+   "prompt": "En el seguimiento renal de la diabetes tipo 2, ¿cuál es el error que debe evitarse?",
+   "why": "Esperar a que la creatinina esté muy elevada implica detectar el daño tardíamente, cuando ya hay pérdida importante de función. Las otras opciones son prácticas correctas del tamizaje."
+  },
+  "diabetes-integral-2026-q14": {
+   "options": [
+    "Solicitar la función renal basándose solamente en la creatinina sérica",
+    "Valorar el eGFR pero no cuantificar la albuminuria persistente",
+    "Atribuir la albuminuria a nefropatía diabética sin descartar otras causas",
+    "Evaluar beneficios, daños y preferencias.",
+    "Ajustar los fármacos por el eGFR sin considerar el riesgo cardiovascular asociado"
+   ],
+   "prompt": "Mujer de 57 años con diabetes tipo 2, eGFR 52 ml/min/1,73 m² y relación albúmina/creatinina de 120 mg/g. ¿Qué enfoque mejora la seguridad del abordaje?",
+   "why": "Un abordaje seguro integra eGFR, albuminuria y riesgo cardiovascular, y pondera beneficios, daños y preferencias al elegir tratamiento. Cada alternativa es parcial: mira un solo parámetro o asigna la causa sin confirmarla."
+  },
+  "diabetes-integral-2026-q15": {
+   "options": [
+    "Suspender el fármaco ante cualquier descenso inicial del eGFR sin evaluar su magnitud",
+    "Controlar la función renal solo si aparecen síntomas urinarios",
+    "Espaciar el control de albuminuria y filtrado a cada tres años si el valor es estable",
+    "Dar por logrado el objetivo renal al normalizarse la HbA1c",
+    "Reevaluar resultados y ajustar el plan."
+   ],
+   "prompt": "Un hombre de 64 años con diabetes tipo 2 y eGFR 48 inició un iSGLT2 hace 6 semanas. Al planificar el seguimiento, ¿qué enfoque es más apropiado?",
+   "why": "Se reevalúan filtrado, albuminuria, potasio y tolerancia, y se ajusta el plan. Con los iSGLT2 un leve descenso inicial del eGFR es esperable y no obliga a suspender; el objetivo renal no se mide con la HbA1c."
+  },
+  "diabetes-integral-2026-q16": {
+   "options": [
+    "La hipoglucemia exige reconocer síntomas, gravedad y medicamentos implicados.",
+    "La hipoglucemia se define únicamente por la presencia de síntomas neuroglucopénicos.",
+    "Solo los episodios que requieren asistencia de terceros justifican revisar el tratamiento.",
+    "El riesgo depende de la edad de la persona y no del esquema farmacológico.",
+    "La pérdida de los síntomas de alarma indica mejor control y permite intensificar el esquema."
+   ],
+   "prompt": "En una persona con diabetes tipo 2 tratada con insulina y sulfonilurea, ¿qué concepto describe mejor el abordaje de la hipoglucemia?",
+   "why": "La ADA clasifica la hipoglucemia por nivel (glucemia menor de 70 mg/dl, menor de 54 mg/dl y evento grave con asistencia de terceros) y exige revisar los fármacos implicados en todos los niveles. La falta de percepción de síntomas es un factor de riesgo, no un signo de buen control."
+  },
+  "diabetes-integral-2026-q17": {
+   "options": [
+    "Flexibilizar la meta de HbA1c sin investigar los desencadenantes",
+    "Revisar tratamiento y prevención",
+    "Indicar colaciones nocturnas sin revisar la medicación causal",
+    "Atribuir los episodios al promedio de HbA1c y mantener el esquema",
+    "Esperar un tercer episodio antes de modificar el esquema"
+   ],
+   "prompt": "Mujer de 74 años con diabetes tipo 2 en glimepirida e insulina basal, con dos glucemias de 52 mg/dl de madrugada en el último mes. ¿Cuál es la conducta más adecuada?",
+   "why": "Los episodios repetidos con insulina y sulfonilurea obligan a revisar dosis, fármacos y causas, y a reforzar la prevención. Las colaciones o el relajamiento de metas sin corregir la causa dejan intacto el riesgo."
+  },
+  "diabetes-integral-2026-q18": {
+   "options": [
+    "Preguntar activamente por episodios nocturnos o asintomáticos en cada visita",
+    "Desintensificar un esquema con insulina ante hipoglucemias recurrentes",
+    "Ignorar episodios",
+    "Indicar glucagón de rescate y capacitar a familiares en su uso",
+    "Usar monitoreo continuo para detectar hipoglucemias sin síntomas"
+   ],
+   "prompt": "Al abordar la hipoglucemia en una persona con diabetes tipo 2, ¿cuál es el error que debe evitarse?",
+   "why": "Ignorar los episodios deja sin corregir la causa y aumenta el riesgo de eventos graves. Las demás opciones son medidas preventivas recomendadas."
+  },
+  "diabetes-integral-2026-q19": {
+   "options": [
+    "Modificar los objetivos glucémicos sin investigar los desencadenantes",
+    "Interpretar los episodios nocturnos solo según la HbA1c promedio",
+    "Reducir el riesgo con colaciones sin revisar la medicación causal",
+    "Evaluar beneficios, daños y preferencias.",
+    "Valorar la hipoglucemia sin correlacionar síntomas y monitoreo"
+   ],
+   "prompt": "Un hombre de 70 años con diabetes tipo 2 y enfermedad renal usa insulina y sulfonilurea. ¿Qué enfoque mejora la seguridad del abordaje de la hipoglucemia?",
+   "why": "Un abordaje seguro pondera beneficios, daños y preferencias, y revisa los fármacos con riesgo (sulfonilurea, insulina) y la función renal. Las alternativas atacan el síntoma o usan un promedio que oculta los episodios."
+  },
+  "diabetes-integral-2026-q20": {
+   "options": [
+    "Considerar resuelto el problema si no hubo episodios que requirieran asistencia",
+    "Retirar el monitoreo para evitar mediciones que generen ansiedad",
+    "Reintensificar el esquema apenas la HbA1c supere la meta original",
+    "Programar un nuevo control a los seis meses sin revisar registros intermedios",
+    "Reevaluar resultados y ajustar el plan."
+   ],
+   "prompt": "Una paciente de 72 años redujo su sulfonilurea hace 4 semanas por hipoglucemias. Al planificar el seguimiento, ¿qué enfoque es más apropiado?",
+   "why": "Se reevalúan los registros de glucemia, la frecuencia de hipoglucemias y la HbA1c, y se ajusta el plan con metas individualizadas. Reintensificar sin evidencia de seguridad o dejar de monitorear expone a recaídas."
+  },
+  "diabetes-integral-2026-q21": {
+   "options": [
+    "La educación alimentaria debe considerar recursos, cultura y necesidades clínicas.",
+    "Existe un único patrón alimentario ideal para toda persona con diabetes tipo 2.",
+    "La educación nutricional es eficaz si se entrega una sola vez, al momento del diagnóstico.",
+    "El plan se fija según el peso corporal, sin considerar el perfil glucémico ni la medicación.",
+    "Las bebidas edulcoradas sin calorías eximen de revisar el patrón alimentario global."
+   ],
+   "prompt": "En la educación alimentaria de una persona con diabetes tipo 2, ¿qué concepto describe mejor el abordaje?",
+   "why": "La ADA recomienda planes alimentarios individualizados, culturalmente adecuados y compatibles con los recursos, con apoyo educativo continuo. No hay un patrón único ideal y la educación debe reforzarse en el tiempo."
+  },
+  "diabetes-integral-2026-q22": {
+   "options": [
+    "Entregar una dieta hipocalórica estándar ya impresa",
+    "Individualizar plan con equipo",
+    "Indicar alimentos y suplementos específicos para diabéticos de alto costo",
+    "Derivar a nutrición solo si no baja de peso en tres meses",
+    "Prohibir los hidratos de carbono y reevaluar en un año"
+   ],
+   "prompt": "Un hombre de 55 años, repartidor con turnos rotativos y presupuesto limitado, consulta por diabetes tipo 2 y sobrepeso. ¿Cuál es la conducta más adecuada?",
+   "why": "El plan debe construirse con la persona y el equipo según horarios, recursos y preferencias. Una pauta estándar, costosa o restrictiva sin seguimiento suele fracasar."
+  },
+  "diabetes-integral-2026-q23": {
+   "options": [
+    "Adaptar el patrón alimentario a las preferencias culturales y al presupuesto",
+    "Derivar a un nutricionista con formación en diabetes desde el diagnóstico",
+    "Imponer una dieta universal",
+    "Reducir el consumo de bebidas azucaradas y reemplazarlas por agua",
+    "Reforzar la educación nutricional en los controles posteriores"
+   ],
+   "prompt": "Al brindar educación nutricional a una persona con diabetes tipo 2, ¿cuál es el error que debe evitarse?",
+   "why": "Una dieta universal ignora diferencias de recursos, cultura y clínica. Las demás opciones son prácticas recomendadas."
+  },
+  "diabetes-integral-2026-q24": {
+   "options": [
+    "Usar un plan calórico rígido sin valorar sus hábitos laborales",
+    "Priorizar el conteo de hidratos sin educación individualizada",
+    "Indicar el mismo patrón alimentario pese a recursos diferentes",
+    "Evaluar beneficios, daños y preferencias.",
+    "Evaluar la adherencia solo por los cambios de peso"
+   ],
+   "prompt": "Mujer de 45 años, docente con doble turno, con diabetes tipo 2 y obesidad. ¿Qué enfoque mejora la seguridad del abordaje nutricional?",
+   "why": "Un abordaje seguro pondera beneficios, daños y preferencias, y adapta el plan a rutina y recursos. Medir la adherencia solo por el peso o aplicar pautas rígidas no refleja la realidad de la persona."
+  },
+  "diabetes-integral-2026-q25": {
+   "options": [
+    "Concluir que el plan fracasó y pasar a una dieta más restrictiva",
+    "Atribuir la falta de respuesta a escasa fuerza de voluntad y reiterar indicaciones",
+    "Agregar un segundo fármaco sin revisar el registro alimentario ni la adherencia",
+    "Mantener el mismo plan sin cambios hasta el control anual",
+    "Reevaluar resultados y ajustar el plan."
+   ],
+   "prompt": "Un hombre de 58 años inició un plan alimentario hace tres meses; bajó 1 kg y su HbA1c no cambió. ¿Qué enfoque es más apropiado en el seguimiento?",
+   "why": "Se revisan barreras, registro alimentario y resultados, y se ajusta el plan (incluida la necesidad de tratamiento farmacológico). Culpar al paciente o escalar sin analizar causas no resuelve el problema."
+  },
+  "diabetes-integral-2026-q26": {
+   "options": [
+    "El ejercicio aporta beneficios, pero requiere precauciones en usuarios de fármacos hipoglucemiantes.",
+    "En quien usa solo metformina debe evitarse el ejercicio por riesgo de hipoglucemia.",
+    "Todo adulto con diabetes debe hacer solo ejercicio de alta intensidad para obtener beneficio.",
+    "El entrenamiento de fuerza no aporta beneficio glucémico, que depende solo del aeróbico.",
+    "La actividad física se pospone hasta lograr una HbA1c menor de 7 %."
+   ],
+   "prompt": "¿Qué concepto describe mejor la recomendación de actividad física en la diabetes tipo 2?",
+   "why": "La ADA recomienda actividad aeróbica y de fuerza regulares, con precauciones y ajuste del tratamiento en quienes usan insulina o secretagogos por el riesgo de hipoglucemia. La metformina sola tiene bajo riesgo y no se espera a una meta de HbA1c para comenzar."
+  },
+  "diabetes-integral-2026-q27": {
+   "options": [
+    "Recomendar ejercicio intenso sin revisar el tratamiento hipoglucemiante",
+    "Revisar riesgos y ajustar",
+    "Suspender toda actividad por riesgo teórico de hipoglucemia",
+    "Indicar hidratos antes de cada sesión sin monitorear",
+    "Ajustar la dosis tras una única sesión sin monitoreo ulterior"
+   ],
+   "prompt": "Un hombre de 60 años con diabetes tipo 2 en insulina y glimepirida quiere empezar a correr tres veces por semana. ¿Cuál es la conducta más adecuada?",
+   "why": "Se alienta el ejercicio, revisando riesgos de hipoglucemia y ajustando fármacos con monitoreo. Contraindicarlo es excesivo y ajustar con una sola sesión o sin controles es poco seguro."
+  },
+  "diabetes-integral-2026-q28": {
+   "options": [
+    "Recomendar entrenamiento de fuerza dos a tres veces por semana",
+    "Interrumpir los períodos prolongados de sedentarismo con pausas activas breves",
+    "Ignorar riesgo de hipoglucemia",
+    "Medir la glucemia antes de ejercitarse y ante síntomas durante la sesión",
+    "Incluir ejercicio aeróbico regular adaptado a las limitaciones articulares"
+   ],
+   "prompt": "Al indicar actividad física a una persona con diabetes tipo 2 que usa insulina, ¿cuál es el error que debe evitarse?",
+   "why": "Ignorar el riesgo de hipoglucemia con insulina puede causar eventos durante o después del ejercicio. Las otras opciones son recomendaciones habituales."
+  },
+  "diabetes-integral-2026-q29": {
+   "options": [
+    "Prescribir el mismo programa que a una persona sin comorbilidades",
+    "Priorizar el ejercicio aeróbico sin ponderar la artrosis de rodilla",
+    "diferir toda actividad hasta suspender la insulina y la sulfonilurea",
+    "Evaluar beneficios, daños y preferencias.",
+    "Reducir la insulina con un protocolo fijo en la mayoría de los los días de ejercicio"
+   ],
+   "prompt": "Una mujer de 62 años con diabetes tipo 2 usa insulina y sulfonilurea y tiene artrosis de rodilla. ¿Qué enfoque mejora la seguridad de la actividad física?",
+   "why": "Un abordaje seguro pondera beneficios, daños y preferencias, adaptando tipo e intensidad a las comorbilidades y al riesgo de hipoglucemia. Los protocolos fijos o posponer el ejercicio no lo hacen."
+  },
+  "diabetes-integral-2026-q30": {
+   "options": [
+    "Suspender el programa por riesgo de nuevas hipoglucemias",
+    "Indicar hidratos extra tras cada sesión y mantener el esquema sin revisarlo",
+    "Esperar la HbA1c del trimestre antes de cambiar algo",
+    "Duplicar la duración del ejercicio para mejorar la tolerancia",
+    "Reevaluar resultados y ajustar el plan."
+   ],
+   "prompt": "Un hombre de 59 años empezó caminatas y entrenamiento de fuerza hace un mes y tuvo dos glucemias de 62 mg/dl tras el ejercicio. ¿Qué enfoque es más apropiado en el seguimiento?",
+   "why": "Se revisan registros y dosis y se ajusta el plan manteniendo el ejercicio. Suspender el programa pierde beneficios, y sumar hidratos o esperar meses sin revisar deja la causa sin tratar."
+  },
+  "diabetes-integral-2026-q31": {
+   "options": [
+    "Las decisiones farmacológicas dependen de comorbilidades, seguridad y preferencias.",
+    "La metformina se mantiene como único fármaco hasta que la HbA1c supere la meta.",
+    "La elección se basa en la potencia para bajar la HbA1c por encima de los demás factores.",
+    "Ante enfermedad cardiovascular o renal, la elección depende solo del costo y de la HbA1c.",
+    "La insulina es el paso obligatorio tras la falla de la metformina, antes de otras clases."
+   ],
+   "prompt": "En la diabetes tipo 2, ¿qué concepto describe mejor la selección del tratamiento farmacológico?",
+   "why": "La ADA propone elegir según comorbilidades (enfermedad cardiovascular, renal, insuficiencia cardíaca), riesgo de hipoglucemia, peso, costo y preferencias. No hay una secuencia única obligatoria."
+  },
+  "diabetes-integral-2026-q32": {
+   "options": [
+    "Agregar una sulfonilurea por su bajo costo y potencia glucémica",
+    "Individualizar según evidencia",
+    "Escalar a insulina como siguiente paso obligatorio del algoritmo",
+    "Elegir el fármaco de mayor reducción de HbA1c y diferir la evaluación renal",
+    "Repetir la misma secuencia que a un paciente sin comorbilidades"
+   ],
+   "prompt": "Un hombre de 66 años con diabetes tipo 2, infarto previo y eGFR 45 ml/min/1,73 m² tiene HbA1c 7,8 % con metformina. ¿Cuál es la conducta más adecuada?",
+   "why": "Con enfermedad cardiovascular y renal conviene individualizar y priorizar clases con beneficio demostrado (iSGLT2, aGLP-1), más allá de la potencia sobre la HbA1c o el costo."
+  },
+  "diabetes-integral-2026-q33": {
+   "options": [
+    "Preferir un fármaco con beneficio cardiorrenal demostrado ante enfermedad establecida",
+    "Considerar el costo y la cobertura al elegir entre alternativas equivalentes",
+    "Elegir siempre el mismo fármaco",
+    "Mantener la metformina mientras el eGFR lo permita al sumar otro fármaco",
+    "Revisar periódicamente la dosis según la función renal"
+   ],
+   "prompt": "En la selección del tratamiento farmacológico de la diabetes tipo 2, ¿cuál es el error que debe evitarse?",
+   "why": "Elegir siempre el mismo fármaco desconoce las diferencias de comorbilidad, seguridad y preferencias. Las demás opciones son prácticas razonables."
+  },
+  "diabetes-integral-2026-q34": {
+   "options": [
+    "Dejar en segundo plano la evaluación renal y cardiovascular al elegir el fármaco",
+    "Escalar la medicación sin revisar eventos adversos o barreras",
+    "Usar una única secuencia de fármacos independiente del riesgo",
+    "Evaluar beneficios, daños y preferencias.",
+    "Priorizar el efecto sobre la HbA1c sin considerar hipoglucemia ni peso"
+   ],
+   "prompt": "Una mujer de 71 años con diabetes tipo 2, fragilidad leve y eGFR 40 requiere ajustar el tratamiento. ¿Qué enfoque mejora la seguridad?",
+   "why": "Un enfoque seguro pondera beneficios, daños y preferencias en una persona frágil con función renal reducida. Las alternativas toman un solo criterio y desatienden la seguridad."
+  },
+  "diabetes-integral-2026-q35": {
+   "options": [
+    "Duplicar la dosis sin verificar adherencia ni tolerancia",
+    "Agregar un tercer fármaco sin evaluar las causas de la falta de respuesta",
+    "Suspender el fármaco ante cualquier efecto adverso leve sin alternativa",
+    "Mantener el esquema hasta que la HbA1c alcance la meta",
+    "Reevaluar resultados y ajustar el plan."
+   ],
+   "prompt": "Un paciente con diabetes tipo 2 inició un nuevo fármaco hace 3 meses y su HbA1c sigue por encima de la meta. ¿Qué enfoque es más apropiado en el seguimiento?",
+   "why": "Se revisan adherencia, tolerancia y barreras y se ajusta el plan sin demora. Esperar o escalar sin analizar es inercia terapéutica o sobretratamiento."
+  },
+  "diabetes-integral-2026-q36": {
+   "options": [
+    "La prevención de complicaciones requiere cribados periódicos y educación.",
+    "El cribado de retinopatía puede omitirse si la agudeza visual es normal.",
+    "El examen del pie se justifica solo ante úlceras o deformidades visibles.",
+    "El cribado de retinopatía comienza a los cinco años del diagnóstico en la diabetes tipo 2.",
+    "Descartada la neuropatía, el examen del pie no necesita repetirse."
+   ],
+   "prompt": "En la diabetes tipo 2, ¿qué concepto describe mejor la prevención de complicaciones oculares y del pie?",
+   "why": "La ADA recomienda fondo de ojo al momento del diagnóstico en diabetes tipo 2 y examen del pie al menos una vez al año, con educación continua. La retinopatía y la neuropatía pueden ser asintomáticas."
+  },
+  "diabetes-integral-2026-q37": {
+   "options": [
+    "Indicar el fondo de ojo solo si la HbA1c está por encima de la meta",
+    "Planificar controles apropiados",
+    "Reemplazar el examen del pie por preguntar por dolor y parestesias",
+    "Delegar el cribado ocular en la agudeza visual medida en el consultorio",
+    "Indicar control anual del pie y diferir el ocular a los cinco años"
+   ],
+   "prompt": "Un hombre de 63 años con diabetes tipo 2 de 10 años, sin síntomas visuales ni dolor en los pies, nunca tuvo fondo de ojo. ¿Cuál es la conducta más adecuada?",
+   "why": "Se planifican controles oculares y podológicos periódicos aunque no haya síntomas. La agudeza visual no reemplaza el fondo de ojo y la neuropatía puede no doler."
+  },
+  "diabetes-integral-2026-q38": {
+   "options": [
+    "Examinar los pies con monofilamento y pulsos en la consulta anual",
+    "Derivar a oftalmología a quien tiene retinopatía diagnosticada, aun con buena visión",
+    "Esperar síntomas avanzados",
+    "Educar sobre calzado adecuado e inspección diaria de los pies",
+    "Espaciar el fondo de ojo tras estudios normales consecutivos"
+   ],
+   "prompt": "En la prevención de complicaciones oculares y del pie en la diabetes, ¿cuál es el error que debe evitarse?",
+   "why": "Esperar síntomas avanzados implica detectar las lesiones tarde. Las demás opciones son prácticas recomendadas, incluido espaciar el fondo de ojo tras estudios normales."
+  },
+  "diabetes-integral-2026-q39": {
+   "options": [
+    "Sustituir la evaluación oftalmológica por la agudeza visual referida",
+    "Reducir la frecuencia de controles en quienes tienen lesiones previas",
+    "Interpretar la ausencia de dolor como ausencia de neuropatía",
+    "Evaluar beneficios, daños y preferencias.",
+    "Limitar el examen del pie a la inspección sin evaluar sensibilidad ni pulsos"
+   ],
+   "prompt": "Un hombre de 68 años con diabetes tipo 2 presenta callosidades plantares. ¿Qué enfoque mejora la seguridad del abordaje ocular y podológico?",
+   "why": "Un abordaje seguro pondera beneficios, daños y preferencias y mantiene el cribado completo. Un pie con lesiones previas requiere más vigilancia, no menos."
+  },
+  "diabetes-integral-2026-q40": {
+   "options": [
+    "Repetir fondo de ojo y examen del pie recién a los cinco años por estabilidad",
+    "Retrasar la derivación oftalmológica hasta que haya pérdida de agudeza visual",
+    "Suponer que un buen control glucémico elimina el examen del pie",
+    "Limitar la educación podológica a la primera consulta",
+    "Reevaluar resultados y ajustar el plan."
+   ],
+   "prompt": "Una mujer de 66 años con retinopatía no proliferativa leve y neuropatía periférica fue controlada hace 6 meses. ¿Qué enfoque es más apropiado en el seguimiento?",
+   "why": "Con complicaciones establecidas se reevalúan resultados y se ajusta la frecuencia de controles y la educación. Esperar pérdida visual o confiar en la HbA1c deja pasar daño evitable."
+  },
+  "diabetes-integral-2026-q41": {
+   "options": [
+    "La selección de monitoreo debe responder a necesidades terapéuticas y alfabetización digital.",
+    "El monitoreo continuo está indicado en toda persona con diabetes tipo 2, con cualquier tratamiento.",
+    "El automonitoreo capilar carece de utilidad cuando se dispone de una HbA1c trimestral.",
+    "La HbA1c reemplaza al monitoreo de glucosa en quienes tienen riesgo de hipoglucemia.",
+    "La elección depende del costo del dispositivo, sin valorar la capacidad de uso."
+   ],
+   "prompt": "En la diabetes tipo 2, ¿qué concepto describe mejor la elección del sistema de monitoreo glucémico?",
+   "why": "La ADA propone elegir el monitoreo según el tratamiento (por ejemplo, insulina) y la capacidad de la persona para usar los datos. La HbA1c no detecta hipoglucemias ni variabilidad."
+  },
+  "diabetes-integral-2026-q42": {
+   "options": [
+    "Mantener glucemias capilares ocasionales y evaluar con la HbA1c",
+    "Elegir herramientas útiles",
+    "Elegir el dispositivo por disponibilidad y no por la capacidad de uso",
+    "Interpretar el tiempo en rango sin considerar los episodios de hipoglucemia",
+    "Tomar lecturas aisladas sin relacionarlas con el tratamiento"
+   ],
+   "prompt": "Una mujer de 69 años con diabetes tipo 2 en insulina basal-bolo tiene hipoglucemias frecuentes y maneja bien su celular. ¿Cuál es la conducta más adecuada?",
+   "why": "Con insulina e hipoglucemias frecuentes conviene un monitoreo continuo y adaptado a la persona. Una HbA1c o lecturas aisladas no capturan los episodios."
+  },
+  "diabetes-integral-2026-q43": {
+   "options": [
+    "Ofrecer monitoreo continuo a quienes usan insulina y tienen hipoglucemias",
+    "Capacitar en la interpretación de los datos del sensor antes de decidir cambios",
+    "Imponer dispositivos a todos",
+    "Complementar el sensor con la HbA1c para contrastar los datos",
+    "Retirar el sensor si la persona no lo usa ni consulta sus datos"
+   ],
+   "prompt": "Al indicar tecnología de monitoreo en la diabetes, ¿cuál es el error que debe evitarse?",
+   "why": "Imponer un dispositivo a todos ignora indicación, preferencias y capacidad de uso. Las demás opciones son prácticas razonables."
+  },
+  "diabetes-integral-2026-q44": {
+   "options": [
+    "Usar monitoreo continuo en la mayoría de los los pacientes sin reevaluar de forma sistemática el beneficio incremental",
+    "Seleccionar el dispositivo más costoso asumiendo que garantiza mejor control",
+    "Ajustar la insulina por un valor aislado del sensor sin confirmar con la clínica",
+    "Evaluar beneficios, daños y preferencias.",
+    "dejar de lado la glucemia capilar de confirmación ante síntomas discordantes con el sensor"
+   ],
+   "prompt": "Un hombre de 57 años con diabetes tipo 2 en insulina basal consulta por un sensor continuo. ¿Qué enfoque mejora la seguridad?",
+   "why": "Un abordaje seguro pondera beneficios, daños y preferencias, y confirma los valores del sensor cuando no concuerdan con los síntomas. Las alternativas generalizan o ajustan con un dato aislado."
+  },
+  "diabetes-integral-2026-q45": {
+   "options": [
+    "Sustituir el tiempo en rango por la HbA1c como único indicador",
+    "Mantener el sensor sin revisar los datos hasta el control anual",
+    "Ajustar el tratamiento según la lectura del sensor de un solo día",
+    "Suspender el sensor si no logra normalizar todas las lecturas",
+    "Reevaluar resultados y ajustar el plan."
+   ],
+   "prompt": "Un paciente con diabetes tipo 2 usa un sensor continuo desde hace 3 meses. ¿Qué enfoque es más apropiado en el seguimiento?",
+   "why": "Se revisan tiempo en rango, hipoglucemias y variabilidad y se ajusta el plan. La HbA1c sola no capta estos datos y un día aislado no justifica cambios."
+  },
+  "diabetes-integral-2026-q46": {
+   "options": [
+    "El malestar relacionado con diabetes puede afectar autocuidado y calidad de vida.",
+    "El distrés por diabetes equivale a depresión mayor y se trata con antidepresivos.",
+    "La mala adherencia refleja falta de información y se corrige con más educación.",
+    "La evaluación psicosocial se reserva para quienes ya tienen un diagnóstico psiquiátrico.",
+    "El malestar emocional solo se evalúa si la persona lo plantea espontáneamente."
+   ],
+   "prompt": "En la atención de una persona con diabetes tipo 2, ¿qué concepto describe mejor el vínculo entre salud emocional y adherencia?",
+   "why": "La ADA recomienda tamizar de forma rutinaria distrés, depresión y ansiedad. El distrés por diabetes no es sinónimo de depresión y la adherencia depende de múltiples barreras, no solo de información."
+  },
+  "diabetes-integral-2026-q47": {
+   "options": [
+    "Reforzar la educación y fijar metas más estrictas",
+    "Explorar barreras sin juicio",
+    "Indicar un antidepresivo antes de evaluar el distrés por diabetes",
+    "Derivar a salud mental sin explorar barreras económicas ni terapéuticas",
+    "Retirar la insulina por la falta de adherencia sin explorar causas"
+   ],
+   "prompt": "Una mujer de 48 años con diabetes tipo 2 falta a los controles, no se aplica la insulina y refiere cansancio y desánimo. ¿Cuál es la conducta más adecuada?",
+   "why": "Se exploran barreras (costo, miedo, carga del tratamiento, ánimo) sin juicio antes de decidir. Medicar, derivar o retirar el tratamiento sin ese paso es prematuro."
+  },
+  "diabetes-integral-2026-q48": {
+   "options": [
+    "Tamizar depresión y distrés por diabetes con instrumentos validados",
+    "Simplificar el esquema terapéutico cuando la carga resulta excesiva",
+    "Interpretar dificultades como desinterés",
+    "Considerar barreras económicas y de acceso en la evaluación",
+    "Acordar metas con la persona aun cuando difieran de las del equipo"
+   ],
+   "prompt": "Ante dificultades de adherencia en la diabetes, ¿cuál es el error que debe evitarse?",
+   "why": "Interpretar las dificultades como desinterés bloquea la exploración de barreras reales. Las demás opciones son prácticas centradas en la persona."
+  },
+  "diabetes-integral-2026-q49": {
+   "options": [
+    "Atribuir las dificultades de autocuidado solo a educación insuficiente",
+    "Intensificar metas con evaluación limitada del distrés por diabetes",
+    "Confundir las preferencias de la persona con falta de adherencia",
+    "Evaluar beneficios, daños y preferencias.",
+    "Priorizar indicadores bioquímicos sin abordar la carga terapéutica"
+   ],
+   "prompt": "Un hombre de 60 años con diabetes tipo 2 y HbA1c alta persistente refiere agotamiento por el tratamiento. ¿Qué enfoque mejora la seguridad?",
+   "why": "Un abordaje seguro pondera beneficios, daños y preferencias y reconoce la carga terapéutica. Las alternativas culpan al paciente o persiguen solo cifras."
+  },
+  "diabetes-integral-2026-q50": {
+   "options": [
+    "Repetir el tamizaje emocional solo ante una descompensación aguda",
+    "Derivar a salud mental y suspender el seguimiento de metas metabólicas",
+    "Centrar el seguimiento en la HbA1c y retomar lo emocional en un año",
+    "Considerar resuelto el distrés cuando mejora la HbA1c",
+    "Reevaluar resultados y ajustar el plan."
+   ],
+   "prompt": "Una mujer de 55 años con distrés por diabetes elevado inició insulina hace 2 meses. ¿Qué enfoque es más apropiado en el seguimiento?",
+   "why": "Se reevalúan distrés, adherencia y resultados y se ajusta el plan. El malestar emocional puede persistir con una HbA1c mejor y requiere seguimiento propio."
+  }
+ },
+ "flags": [
+  {
+   "id": "diabetes-integral-2026-q4",
+   "problema": "La opción correcta genérica «Evaluar beneficios, daños y preferencias.» se repite en 10 preguntas y no responde de forma específica a varios enunciados de diagnóstico; la clave es válida solo por descarte.",
+   "propuesta": "Reemplazar por opciones correctas específicas por tema en una futura revisión de claves.",
+   "fuente": "ADA Standards of Care in Diabetes (criterio general de atención centrada en la persona)"
+  }
+ ],
+ "stats": {
+  "revisadas": 50,
+  "reescritas": 50,
+  "flags": 1,
+  "noVerificadas": [
+   "Sin acceso web: criterios ADA (diagnóstico, niveles de hipoglucemia, cribado renal/ocular/pie, estatinas 40-75 años) tomados de conocimiento de los Standards of Care, no abiertos en la fuente durante esta revisión"
+  ]
+ }
+}

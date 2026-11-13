@@ -1,0 +1,706 @@
+{
+ "batch": "R12",
+ "upgrades": {
+  "g-medical-triage-1": {
+   "options": [
+    "Roja: evaluación inmediata",
+    "Amarilla: evaluación prioritaria tras el paciente en curso",
+    "Amarilla hasta objetivar hipoxemia con oximetría",
+    "Verde: reevaluar en la próxima ronda de signos vitales",
+    "Roja sólo si la saturación medida es menor de 90 %"
+   ]
+  },
+  "g-medical-triage-2": {
+   "options": [
+    "Reevaluar inmediatamente y actualizar la prioridad",
+    "Indicar un ECG en 10 minutos y mantener la categoría hasta verlo",
+    "Pasar a categoría intermedia y reevaluar en la próxima ronda",
+    "Derivarlo al circuito de consultorio con turno prioritario",
+    "Esperar la troponina para decidir el cambio de categoría"
+   ]
+  },
+  "g-medical-triage-3": {
+   "options": [
+    "Usar el protocolo local y su capacitación específica",
+    "Equiparar rojo con nivel 1 y amarillo con nivel 2 de la escala local",
+    "Usar IITT para clasificar al ingreso y la escala local sólo para registrar",
+    "Aplicar el criterio más conservador de ambos sistemas en cada paciente",
+    "Emplear IITT cuando la demanda supere la capacidad de la guardia"
+   ]
+  },
+  "g-medical-deshidratacion-1": {
+   "options": [
+    "Rehidratación oral apropiada y reevaluación",
+    "Hidratación intravenosa inicial y paso a vía oral cuando ceda la diarrea",
+    "Solución salina intravenosa en bolo sin intentar la vía oral",
+    "Rehidratación oral con agua sola, sin sales ni solutos",
+    "Antidiarreico y alta, sin esquema de rehidratación"
+   ]
+  },
+  "g-medical-deshidratacion-2": {
+   "options": [
+    "Necesita reevaluación y tratamiento urgente del deterioro",
+    "Se aumenta el volumen por vía oral y se reevalúa en una hora",
+    "Se mantiene la vía oral y se suma un antiemético",
+    "Se solicitan electrolitos y se espera el resultado para elegir la vía",
+    "Se atribuye a la medicación antidiarreica y se observa en decúbito"
+   ]
+  },
+  "g-medical-deshidratacion-3": {
+   "options": [
+    "Evolución clínica, perfusión, ingesta y pérdidas",
+    "Peso, diuresis y sed, sin repetir la valoración de la perfusión",
+    "Volumen indicado, volumen infundido y número de deposiciones",
+    "Frecuencia de las deposiciones y tolerancia oral, sin repetir el examen",
+    "Creatinina e ionograma al finalizar la reposición, sin valorar el cuadro clínico"
+   ]
+  },
+  "g-medical-sincope-1": {
+   "options": [
+    "Que ocurrió durante el esfuerzo",
+    "Que recuperó la conciencia en menos de un minuto",
+    "Que es joven y no refiere antecedentes conocidos",
+    "Que la presión arterial actual es normal",
+    "Que ocurrió al levantarse de la cama"
+   ],
+   "prompt": "Adulto se desmaya mientras corre y ahora se encuentra bien. ¿Qué dato aumenta la sospecha de una causa cardiovascular grave?"
+  },
+  "g-medical-sincope-2": {
+   "options": [
+    "ECG de 12 derivaciones",
+    "Tomografía de cráneo sin contraste en todos los casos",
+    "Electroencefalograma de rutina ante toda pérdida de conciencia",
+    "Ecocardiograma transtorácico en todos los casos antes del alta",
+    "Monitoreo Holter de 24 horas en todos los pacientes"
+   ]
+  },
+  "g-medical-sincope-3": {
+   "options": [
+    "La recuperación incompleta requiere evaluación adicional urgente según el estado",
+    "Orienta a una convulsión; alcanza con derivar a neurología de forma programada",
+    "Es esperable tras la hipoperfusión y se reevalúa al finalizar el turno",
+    "Indica hipoglucemia y se corrige con glucosa sin otro estudio",
+    "Se explica por el estrés del episodio si los signos vitales son normales"
+   ]
+  },
+  "g-medical-arritmias-1": {
+   "options": [
+    "Cardioversión sincronizada según protocolo y equipo capacitado",
+    "Adenosina en bolo rápido como primera medida pese al deterioro",
+    "Amiodarona intravenosa en infusión lenta con monitoreo, sin descarga",
+    "Maniobras vagales y reevaluación antes de considerar la descarga",
+    "Desfibrilación no sincronizada con la energía máxima del equipo"
+   ]
+  },
+  "g-medical-arritmias-2": {
+   "options": [
+    "Buscar y tratar la causa junto a la reevaluación",
+    "Administrar adenosina para descartar un mecanismo de reentrada",
+    "Indicar un betabloqueante para llevar la frecuencia por debajo de 100",
+    "Cardiovertir en forma sincronizada si supera 150 por minuto sostenidos",
+    "Realizar maniobras vagales y observar si la frecuencia cede"
+   ]
+  },
+  "g-medical-arritmias-3": {
+   "options": [
+    "Pasar al abordaje de paro y evaluar el ritmo",
+    "Cardioversión sincronizada inmediata con la energía ya programada",
+    "Administrar amiodarona y verificar el pulso a los cinco minutos",
+    "Confirmar con ECG de 12 derivaciones antes de iniciar compresiones",
+    "Tratar como taquicardia inestable con pulso y repetir la sincronización"
+   ]
+  },
+  "g-medical-shock-1": {
+   "options": [
+    "La presión aislada no excluye hipoperfusión",
+    "La normotensión con confusión sugiere un cuadro neurológico primario",
+    "La hipotensión es requisito para iniciar el tratamiento del shock",
+    "Con presión conservada alcanza con repetir la medición en una hora",
+    "La piel fría se explica por el ambiente y no cambia la valoración"
+   ]
+  },
+  "g-medical-shock-2": {
+   "options": [
+    "Tratar la amenaza y pedir apoyo antes de continuar",
+    "Completar el ABCDE hasta la exposición y tratar los hallazgos en orden",
+    "Confirmar la causa con laboratorio e imágenes antes de tratar",
+    "Obtener acceso venoso y esperar resultados antes de intervenir",
+    "Reevaluar desde la vía aérea al terminar y recién entonces pedir ayuda"
+   ]
+  },
+  "g-medical-shock-3": {
+   "options": [
+    "Reevaluar perfusión, conciencia y respuesta global",
+    "Repetir la presión y suspender la monitorización si se normaliza",
+    "Duplicar la intervención hasta normalizar la presión",
+    "Considerar resuelta la causa y dirigir la atención a la derivación",
+    "Mantener la intervención sin cambios y reevaluar al cambio de turno"
+   ]
+  },
+  "g-medical-sepsis-1": {
+   "options": [
+    "Evaluación y tratamiento urgente por posible sepsis con deterioro",
+    "Hemocultivos y puntaje completos antes de indicar el antibiótico",
+    "Reevaluación en la próxima ronda con antibiótico dentro de las 6 horas",
+    "Descartar sepsis hasta que aparezca fiebre documentada",
+    "Hidratación oral y control en 2 horas por posible otra causa de confusión"
+   ]
+  },
+  "g-medical-sepsis-2": {
+   "options": [
+    "Reevaluar clínicamente y escalar la atención",
+    "Repetir el puntaje cada hora y actuar sólo al alcanzar el umbral",
+    "Esperar el lactato antes de modificar la vigilancia",
+    "Mantener la conducta previa porque el puntaje es específico",
+    "Reducir la vigilancia porque el puntaje descarta el cuadro"
+   ]
+  },
+  "g-medical-sepsis-3": {
+   "options": [
+    "Respuesta clínica y revisión del foco y del plan terapéutico",
+    "Temperatura y leucocitos, con ajuste al recibir el cultivo definitivo",
+    "Presión arterial y diuresis, sin reevaluar el foco infeccioso",
+    "Normalización de la fiebre como criterio para suspender la monitorización",
+    "Cumplimiento de los tiempos del antibiótico como único indicador"
+   ]
+  },
+  "g-medical-politrauma-1": {
+   "options": [
+    "Control de la hemorragia y activación del equipo",
+    "Acceso venoso y reposición con cristaloides antes de controlar el sangrado",
+    "Inmovilización cervical completa y luego control del sangrado",
+    "Analgesia intravenosa y reevaluación del sangrado en 10 minutos",
+    "Radiografía y ecografía FAST antes de decidir el control del sangrado"
+   ]
+  },
+  "g-medical-politrauma-2": {
+   "options": [
+    "Seleccionar los necesarios sin retrasar control de amenazas vitales",
+    "Trasladar a tomografía para definir la lesión antes de la cirugía",
+    "Pedir sólo estudios de laboratorio y esperar su resultado",
+    "Realizar la serie radiográfica completa antes de reevaluar",
+    "Repetir imágenes hasta identificar una única fuente de sangrado"
+   ]
+  },
+  "g-medical-politrauma-3": {
+   "options": [
+    "Mecanismo, hallazgos, intervenciones, respuesta y pendientes",
+    "Diagnóstico principal, medicación administrada y resultado de laboratorio",
+    "Lesiones identificadas e imágenes realizadas, sin los pendientes",
+    "Antecedentes, alergias y datos de filiación del paciente",
+    "Signos vitales de ingreso y de egreso, con el destino indicado"
+   ]
+  },
+  "g-support-triage-1": {
+   "options": [
+    "Avisar de inmediato al equipo clínico y facilitar su acceso",
+    "Registrar su ingreso con prioridad y avisar al finalizar la identificación",
+    "Ubicarlo cerca del office de enfermería para vigilarlo mientras espera",
+    "Pedir a un acompañante que lo vigile y avisar si empeora",
+    "Indicarle que respire despacio y esperar su llamado"
+   ]
+  },
+  "g-support-triage-2": {
+   "options": [
+    "Comunicar el cambio y solicitar reevaluación urgente",
+    "Subirlo de categoría en el sistema y avisar después",
+    "Esperar la ronda de enfermería y comunicar el cambio ahí",
+    "Registrar el cambio en la planilla de espera para el próximo control",
+    "Preguntarle si prefiere ser atendido antes y registrar su respuesta"
+   ]
+  },
+  "g-support-triage-3": {
+   "options": [
+    "La prioridad se ajusta a la urgencia evaluada por el equipo",
+    "Se ordena por la edad de cada persona",
+    "Se prioriza a quienes esperaron más de dos horas",
+    "Se detalla qué tiene el paciente que pasó antes para justificar el cambio",
+    "Se aclara que el orden lo define la administración según las camas libres"
+   ]
+  },
+  "g-support-deshidratacion-1": {
+   "options": [
+    "El cambio de conciencia y su momento de inicio, de inmediato",
+    "El volumen de suero administrado hasta el momento, al terminar la infusión",
+    "La cantidad de deposiciones desde el ingreso, en el siguiente control",
+    "La somnolencia junto con una hipótesis de causa tras revisar la historia",
+    "El cambio de conciencia, al completar el registro de balance del turno"
+   ]
+  },
+  "g-support-deshidratacion-2": {
+   "options": [
+    "Cantidades observadas, horarios y lo que no pudo medirse",
+    "Un total estimado por turno, redondeado a valores habituales",
+    "Las cantidades y tu criterio sobre si la pérdida es relevante",
+    "Sólo los valores fuera de lo esperado, omitiendo los normales",
+    "Cantidades observadas agrupadas por turno, sin horarios individuales"
+   ]
+  },
+  "g-support-deshidratacion-3": {
+   "options": [
+    "Pedir evaluación inmediata antes de ofrecer líquidos por boca",
+    "Ofrecer sorbos pequeños con la cabecera elevada mientras se espera",
+    "Permitir sólo agua en cucharita o cubitos de hielo",
+    "Pedir al familiar que no insista y ofrecer de nuevo en una hora",
+    "Ofrecer solución de rehidratación oral porque ya está indicada"
+   ]
+  },
+  "g-support-sincope-1": {
+   "options": [
+    "Pedir evaluación, evitar que se levante sola y comunicar lo observado",
+    "Acostarla con las piernas elevadas y avisar sólo si vuelve a perder el conocimiento",
+    "Ofrecerle agua con azúcar y observar si se normaliza",
+    "Acompañarla a la guardia sin avisar si dice sentirse bien",
+    "Sentarla en una silla y dejar el episodio registrado para el pase"
+   ]
+  },
+  "g-support-sincope-2": {
+   "options": [
+    "Qué hacía, duración aproximada y cómo se recuperó",
+    "Qué medicación toma y qué cree que provocó el episodio",
+    "La hora exacta y el nombre del testigo, sin describir lo ocurrido",
+    "Si había comido y qué diagnóstico te parece más probable",
+    "Tu impresión de si fue una lipotimia o una convulsión, con la hora"
+   ]
+  },
+  "g-support-sincope-3": {
+   "options": [
+    "Lo destacás al equipo aunque ahora esté recuperado",
+    "Lo registrás en el pase de turno junto con el resto de los datos",
+    "Lo comunicás sólo si la persona vuelve a desmayarse",
+    "Lo informás al equipo cuando se complete la ficha de ingreso",
+    "Lo dejás a criterio del paciente, que decide si es relevante"
+   ]
+  },
+  "g-support-arritmias-1": {
+   "options": [
+    "Avisar de inmediato y describir el estado del paciente",
+    "Verificar electrodos y cables y avisar si la alarma persiste",
+    "Tomar el pulso manual y registrar el valor",
+    "Pedirle que se recueste y esperar a que se le pase el mareo",
+    "Avisar al finalizar la ronda, anotando la hora de la alarma"
+   ]
+  },
+  "g-support-arritmias-2": {
+   "options": [
+    "Seguir la tarea asignada y confirmar instrucciones de seguridad",
+    "Cargar el equipo con la energía habitual y esperar la orden de descarga",
+    "Colocar los parches para adelantar el procedimiento",
+    "Retirar el oxígeno y los objetos metálicos según tu criterio",
+    "Operar el equipo si el líder lo pide de palabra, aunque no estés habilitado"
+   ]
+  },
+  "g-support-arritmias-3": {
+   "options": [
+    "Pedir aclaración y repetir la indicación entendida",
+    "Ejecutar lo que parezca más razonable y consultar luego",
+    "Preguntar a un compañero y seguir su interpretación",
+    "Esperar a que el líder la repita por iniciativa propia",
+    "Responder «entendido» y revisar la duda en el pase"
+   ]
+  },
+  "g-support-shock-1": {
+   "options": [
+    "Avisar de inmediato sobre esos cambios",
+    "Tomar la presión y avisar si es menor de 90",
+    "Ofrecerle agua azucarada y observar durante 15 minutos",
+    "Acostarla y registrar los cambios para el próximo control",
+    "Pedir a la familia que informe si empeora"
+   ]
+  },
+  "g-support-shock-2": {
+   "options": [
+    "Comunicarlo enseguida para reorganizar la tarea",
+    "Buscarlo en otro sector unos minutos más y avisar si no aparece",
+    "Reemplazarlo por un equivalente disponible y avisar al finalizar",
+    "Preparar el resto del material y anotar el faltante en el registro",
+    "Pedirlo a otro servicio sin informar al equipo"
+   ]
+  },
+  "g-support-shock-3": {
+   "options": [
+    "Desde hace cinco minutos responde más lento; ya avisé al equipo y está pendiente reevaluación",
+    "Responde más lento, aviso hecho; no hay otros datos para pasar",
+    "Desde hace un rato está más dormido, pero la presión es normal",
+    "Se deterioró durante el turno; la reevaluación queda a cargo del equipo",
+    "Está más lento que antes, según la familia, sin hora ni aviso"
+   ]
+  },
+  "g-support-sepsis-1": {
+   "options": [
+    "Avisar del cambio sin esperar que aparezca fiebre",
+    "Registrar la confusión y avisar si la temperatura supera 38 °C",
+    "Avisar al terminar la toma de signos vitales programada",
+    "Atribuirlo a la medicación y comunicarlo en la próxima ronda",
+    "Controlar la temperatura en 30 minutos y avisar si hay fiebre"
+   ]
+  },
+  "g-support-sepsis-2": {
+   "options": [
+    "Comunicar la demora al equipo responsable",
+    "Llevar la muestra al laboratorio y avisar cuando haya resultado",
+    "Rotularla como urgente y esperar el retiro habitual",
+    "Priorizar la entrega sin informar el motivo del retraso",
+    "Dejarla refrigerada y registrar la hora de recolección"
+   ]
+  },
+  "g-support-sepsis-3": {
+   "options": [
+    "No diagnosticar; comunicar los signos observados al equipo clínico",
+    "Decir que parece un cuadro infeccioso y esperar la confirmación del equipo",
+    "Responder que depende de los cultivos y que aún no hay resultados",
+    "Indicar que corresponde sepsis si los signos vitales están alterados",
+    "Remitir la consulta al administrativo que cargó el ingreso"
+   ]
+  },
+  "g-support-politrauma-1": {
+   "options": [
+    "Activar ayuda y seguir las instrucciones del equipo dentro de tu función",
+    "Taponar la herida con apósitos hasta que ceda y recién después avisar",
+    "Trasladarla por tus propios medios a la sala de shock para ganar tiempo",
+    "Pedir los datos de filiación y cobertura para acelerar la admisión",
+    "Colocarla en posición lateral de seguridad y esperar al médico"
+   ]
+  },
+  "g-support-politrauma-2": {
+   "options": [
+    "Confirmar quién coordina y tu tarea antes de moverla",
+    "Movilizarla en bloque con otros dos agentes siguiendo lo que parece más seguro",
+    "Ayudar a pasarla a la camilla como a cualquier paciente",
+    "Quitarle el collar cervical para que esté más cómoda en el traslado",
+    "Dejar la tarea al primero que se anime a dar la voz de mando"
+   ]
+  },
+  "g-support-politrauma-3": {
+   "options": [
+    "Nombrar la tarea y confirmar quién la recibe",
+    "Dejarla anotada en la historia clínica para que la lea el receptor",
+    "Mencionarla de forma general sin detallar cuál es",
+    "Avisar al líder saliente y asumir que él lo transmite",
+    "Completarla vos fuera de tu función para no dejar pendientes"
+   ]
+  },
+  "neo-preparacion-1": {
+   "options": [
+    "Asignar roles y comprobar material de ventilación",
+    "Preparar medicación y acceso umbilical, y repartir roles al nacer",
+    "Revisar sólo el equipo de ventilación y definir roles en el nacimiento",
+    "Preparar calor y material de aspiración sin definir un líder",
+    "Pedir al obstetra que decida la asignación en ese momento"
+   ]
+  },
+  "neo-preparacion-2": {
+   "options": [
+    "Equipos con responsables y comunicación definidos",
+    "Un solo equipo que atienda al recién nacido y luego a la madre",
+    "Un líder obstétrico único que delegue las tareas neonatales",
+    "Un equipo neonatal que asista también a la madre cuando haga falta",
+    "Equipos independientes que se comunican sólo al finalizar"
+   ]
+  },
+  "neo-preparacion-3": {
+   "options": [
+    "Mantener capacidad de asistencia en el nacimiento",
+    "Reservar la preparación completa para partos prematuros",
+    "Preparar sólo aspiración y calor, con la ventilación en otra sala",
+    "Basar la preparación en el puntaje de riesgo prenatal",
+    "Convocar al equipo sólo ante líquido meconial o sufrimiento fetal"
+   ]
+  },
+  "neo-transicion-1": {
+   "options": [
+    "Cuidado térmico y observación junto a su madre cuando corresponde",
+    "Aspiración sistemática de boca y nariz y luego contacto con la madre",
+    "Ligadura inmediata del cordón y evaluación bajo calor radiante",
+    "Oxígeno a flujo libre profiláctico durante los primeros minutos",
+    "Ventilación con presión positiva de prueba y observación en cuna"
+   ]
+  },
+  "neo-transicion-2": {
+   "options": [
+    "Corregir pérdida de calor y controlar temperatura",
+    "Subir la potencia del calor radiante al máximo hasta normalizarla",
+    "Aumentar la temperatura de la sala y suspender la medición durante la asistencia",
+    "Mantenerlo destapado para observar color y respiración",
+    "Aceptar 35,5 °C como temperatura adecuada durante la reanimación"
+   ]
+  },
+  "neo-transicion-3": {
+   "options": [
+    "Medición y ajuste según temperatura",
+    "Verificar que la fuente esté encendida a potencia máxima",
+    "Controlar la temperatura ambiente de la sala de partos",
+    "Observar el color y el tono bajo la fuente",
+    "Medir una vez al inicio y mantener el ajuste durante la reanimación"
+   ]
+  },
+  "neo-ventilar-1": {
+   "options": [
+    "Ventilación asistida eficaz",
+    "Compresiones torácicas coordinadas desde el inicio",
+    "Adrenalina por vía umbilical mientras se prepara la ventilación",
+    "Oxígeno a flujo libre y reevaluación a los 30 segundos",
+    "Aspiración endotraqueal sistemática antes de ventilar"
+   ]
+  },
+  "neo-ventilar-2": {
+   "options": [
+    "Aumento de la frecuencia cardíaca",
+    "Mejoría del color de la piel del rostro",
+    "Uso de oxígeno al 100 % en la bolsa",
+    "Regularidad de la frecuencia de insuflación pautada",
+    "Ventilación sostenida durante 30 segundos"
+   ]
+  },
+  "neo-ventilar-3": {
+   "options": [
+    "Corregir técnica, fuga u obstrucción y reevaluar",
+    "Aumentar el oxígeno al 100 % y mantener la técnica",
+    "Iniciar compresiones si la FC no sube en el primer minuto",
+    "Colocar un acceso umbilical y preparar adrenalina",
+    "Intubar de inmediato sin corregir antes la fuga ni la posición"
+   ]
+  },
+  "neo-compresiones-1": {
+   "options": [
+    "Agregar compresiones coordinadas con ventilación",
+    "Continuar ventilando y reevaluar un minuto más antes de comprimir",
+    "Administrar adrenalina intravenosa antes de iniciar compresiones",
+    "Aumentar el oxígeno al 100 % y mantener sólo la ventilación",
+    "Administrar un bolo de volumen y reevaluar la frecuencia"
+   ]
+  },
+  "neo-compresiones-3": {
+   "options": [
+    "Reevaluar respiración y soporte sin iniciar compresiones por la cifra previa",
+    "Iniciar compresiones por haber tenido FC menor de 60 al inicio",
+    "Suspender la ventilación porque la frecuencia ya es normal",
+    "Administrar adrenalina para sostener la FC por encima de 100",
+    "Continuar ventilando sin reevaluar la respiración, pues la FC mejoró"
+   ]
+  },
+  "neo-escalamiento-1": {
+   "options": [
+    "Mejorar sellado y entrega de ventilación",
+    "Subir la FiO2 al 100 % y mantener la técnica de sellado",
+    "Pasar a compresiones si la FC no responde en 30 segundos",
+    "Colocar un acceso umbilical para administrar volumen",
+    "Intubar al recién nacido sin corregir antes la fuga"
+   ]
+  },
+  "neo-escalamiento-2": {
+   "options": [
+    "Oximetría fiable interpretada según el momento de transición",
+    "Saturación objetivo de 95 % desde el primer minuto de vida",
+    "Gasometría de sangre del cordón como guía de ajuste continuo",
+    "Lectura de oximetría en el pie sin esperar una señal estable",
+    "Frecuencia respiratoria y tono muscular como sustitutos de la saturación"
+   ]
+  },
+  "neo-escalamiento-3": {
+   "options": [
+    "Adrenalina con acceso y ejecución por personal entrenado",
+    "Atropina intravenosa por bradicardia persistente",
+    "Bicarbonato de sodio en bolo antes de la adrenalina",
+    "Expansión con cristaloide antes de cualquier medicación",
+    "Dopamina en infusión para sostener la frecuencia"
+   ]
+  },
+  "neo-seguimiento-1": {
+   "options": [
+    "Vigilancia clínica y metabólica apropiada al episodio",
+    "Alojamiento conjunto con controles de rutina de enfermería",
+    "Control de temperatura y saturación durante la primera hora y alta",
+    "Seguimiento ambulatorio a los siete días por pediatría",
+    "Observación neurológica sin controles de glucemia"
+   ]
+  },
+  "neo-seguimiento-2": {
+   "options": [
+    "Resume las tareas pendientes y quién se hará cargo de cada una.",
+    "Repite los signos vitales y la hora del último control.",
+    "Confirma que la historia clínica del recién nacido ya fue recibida.",
+    "Describe la medicación y los dispositivos que traía en el traslado.",
+    "Indica que ya tiene a punto la cuna y el equipo de ventilación."
+   ]
+  },
+  "neo-seguimiento-3": {
+   "options": [
+    "Explicar la mejoría y la necesidad de seguimiento sin asegurar un resultado",
+    "Informar que la recuperación rápida indica un buen pronóstico neurológico",
+    "Aclarar que sólo las secuelas graves se detectan en la primera semana",
+    "Explicar que sin hallazgos en la ecografía transfontanelar no habrá secuelas",
+    "Indicar que el riesgo depende de la duración de la ventilación, ya terminada"
+   ]
+  },
+  "obs-equipo-1": {
+   "options": [
+    "Soporte materno inmediato y ayuda del equipo",
+    "Cardiotocografía continua para decidir la vía de finalización",
+    "Traslado a quirófano para cesárea de urgencia por compromiso fetal",
+    "Estudio de imágenes pulmonares antes de iniciar el soporte",
+    "Estabilización materna recién tras completar la evaluación fetal"
+   ]
+  },
+  "obs-equipo-2": {
+   "options": [
+    "Responsables concretos con confirmación de tareas",
+    "Un líder que asigne tareas por grupos y verifique al finalizar",
+    "Roles definidos al inicio, sin repetir la asignación ante cambios",
+    "Indicación a todo el equipo de elegir la tarea más urgente",
+    "Tareas por jerarquía profesional, sin nombrar a cada receptor"
+   ]
+  },
+  "obs-equipo-3": {
+   "options": [
+    "Reevaluar amenazas y respuesta global",
+    "Suspender el soporte al normalizarse la presión y observar la confusión",
+    "Solicitar tomografía cerebral antes de reevaluar la perfusión",
+    "Considerar hipoglucemia y tratar sin más evaluación",
+    "Reducir la vigilancia a la espera de que ceda la confusión"
+   ]
+  },
+  "obs-sangrado-1": {
+   "options": [
+    "Sangrado y compromiso fisiológico",
+    "Hemoglobina inicial, que descarta pérdidas relevantes",
+    "Presión arterial, mientras no haya hipotensión franca",
+    "Estimación visual del volumen perdido hasta el momento",
+    "Hemograma seriado a las dos horas"
+   ]
+  },
+  "obs-sangrado-2": {
+   "options": [
+    "Revisar medición, fuentes y perfusión de inmediato",
+    "Repetir la estimación visual en una hora y vigilar el pulso",
+    "Solicitar hemograma y coagulación y actuar según el resultado",
+    "Indicar uterotónicos y observar la respuesta sin buscar otras fuentes",
+    "Controlar la presión cada 15 minutos antes de reevaluar"
+   ]
+  },
+  "obs-sangrado-3": {
+   "options": [
+    "Respuesta circulatoria parcial con fuente aún pendiente",
+    "Hemostasia lograda con la reposición, que debe continuar un tiempo",
+    "Descenso de la pérdida, que permite espaciar los controles",
+    "Causa resuelta, a la espera de la normalización de la hemoglobina",
+    "Respuesta completa al soporte con control del origen del sangrado"
+   ]
+  },
+  "obs-causas-1": {
+   "options": [
+    "Atonía uterina",
+    "Desgarro cervical con útero bien contraído",
+    "Retención placentaria con tono uterino conservado",
+    "Coagulopatía adquirida como mecanismo inicial",
+    "Hematoma del ligamento ancho con tono normal"
+   ]
+  },
+  "obs-causas-2": {
+   "options": [
+    "Trauma, tejido retenido y alteraciones de coagulación",
+    "Atonía segmentaria y respuesta a uterotónicos de segunda línea",
+    "Sólo laceraciones del canal, con revisión instrumental",
+    "Retención placentaria y sobredistensión uterina previa",
+    "Coagulopatía, con corrección empírica antes de revisar la cavidad"
+   ]
+  },
+  "obs-causas-3": {
+   "options": [
+    "Tono, trauma, tejido y trombina",
+    "Tono, trauma, tejido y transfusión",
+    "Tono, trauma, trombosis y temperatura",
+    "Tono, tejido, trombina y taquicardia",
+    "Trauma, tejido, trombina y tensión arterial"
+   ]
+  },
+  "obs-hipertension-1": {
+   "options": [
+    "Puede haber preeclampsia con afectación orgánica",
+    "Corresponde hipertensión gestacional hasta que aparezca proteinuria",
+    "Es compatible con púrpura trombocitopénica idiopática aislada",
+    "La cefalea es tensional y no modifica la categoría",
+    "Debe reevaluarse en 24 horas hasta confirmar proteinuria"
+   ]
+  },
+  "obs-hipertension-2": {
+   "options": [
+    "Control y prevención de convulsiones",
+    "Descenso de la presión como antihipertensivo de primera línea",
+    "Neuroprotección fetal como objetivo principal a cualquier edad gestacional",
+    "Prevención del desprendimiento placentario",
+    "Mejoría de la función renal y de la diuresis"
+   ]
+  },
+  "obs-hipertension-3": {
+   "options": [
+    "Mantener evaluación y tratamiento específico de la presión",
+    "Considerar que el magnesio controla la presión y diferir el antihipertensivo",
+    "Tratar la presión sólo si reaparece la convulsión",
+    "Esperar el resultado de laboratorio antes de iniciar antihipertensivo",
+    "Normalizar la presión de inmediato con dosis altas"
+   ]
+  },
+  "obs-ectopico-1": {
+   "options": [
+    "Ectópico complicado con hemorragia interna",
+    "Aborto incompleto con sangrado moderado",
+    "Cólico renoureteral con reacción vagal",
+    "Mola hidatiforme sin complicaciones",
+    "Torsión anexial sin hemorragia"
+   ]
+  },
+  "obs-ectopico-2": {
+   "options": [
+    "Puede existir hemorragia interna relevante",
+    "El manchado orienta a amenaza de aborto y se controla en 48 horas",
+    "La hipotensión se atribuye a la deshidratación por el dolor",
+    "Con β-hCG en descenso se excluye hemorragia interna",
+    "Una ecografía previa sin líquido libre descarta el cuadro"
+   ]
+  },
+  "obs-ectopico-3": {
+   "options": [
+    "Evaluación urgente y soporte, modificando el seguimiento previo",
+    "Repetir la β-hCG a las 48 horas y actuar según su evolución",
+    "Indicar metotrexato por la ecografía previa no concluyente",
+    "Mantener la conducta expectante y reforzar la hidratación oral",
+    "Derivar a ecografía programada para el día siguiente con reposo"
+   ]
+  },
+  "obs-entrega-1": {
+   "options": [
+    "¿Quién revisará el resultado y cómo se comunicará la conducta acordada?",
+    "¿Quién registrará el pedido en la historia y a qué hora quedó indicado?",
+    "¿Cuándo se solicitó el estudio y quién lo indicó originalmente?",
+    "¿Qué sospecha diagnóstica motivó el pedido y qué resultado se espera?",
+    "¿Cuánto tarda habitualmente el estudio y quién coordina el servicio?"
+   ]
+  },
+  "obs-entrega-2": {
+   "options": [
+    "Coordinar derivación y soporte en paralelo",
+    "Estabilizar localmente hasta la mejoría completa y luego derivar",
+    "Trasladar de inmediato y completar el soporte en el centro receptor",
+    "Priorizar la derivación sin soporte hasta definir el destino",
+    "Solicitar la derivación y esperar su confirmación antes de iniciar soporte"
+   ]
+  },
+  "obs-entrega-3": {
+   "options": [
+    "Analizar decisiones, comunicación y oportunidades de mejora",
+    "Cronometrar cada tarea y compararla con el estándar",
+    "Identificar el error técnico más grave y reentrenar a quien lo cometió",
+    "Verificar el cumplimiento del algoritmo sin discutir la comunicación",
+    "Calificar el desempeño individual para el legajo del residente"
+   ]
+  }
+ },
+ "flags": [],
+ "stats": {
+  "revisadas": 78,
+  "reescritas": 77,
+  "flags": 0,
+  "noVerificadas": []
+ }
+}

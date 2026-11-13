@@ -1,0 +1,572 @@
+{
+ "batch": "R03",
+ "upgrades": {
+  "salud-cardiometabolica-m1-q1": {
+   "options": [
+    "Estimar riesgo global y adaptar intervenciones",
+    "Llevar cada factor a su meta por separado sin integrarlos en un riesgo único",
+    "Indicar estatina solo si el LDL supera un punto de corte fijo",
+    "Reservar la prevención farmacológica para quienes ya tuvieron un evento",
+    "Graduar la intensidad preventiva según la edad y el sexo de la paciente"
+   ],
+   "prompt": "Mujer de 58 años con hipertensión tratada, tabaquismo activo, LDL 150 mg/dl y glucemia en ayunas 108 mg/dl, sin eventos previos. En la consulta inicial, ¿qué enfoque es preferible?",
+   "why": "Con varios factores coexistentes, el riesgo absoluto surge de combinarlos (presión, lípidos, tabaco, glucemia, edad, antecedentes) y de él depende la intensidad de la intervención. Tratar factores aislados o usar un solo umbral de LDL subestima o sobreestima el riesgo real."
+  },
+  "salud-cardiometabolica-m1-q2": {
+   "options": [
+    "Priorizar el factor más alterado y dejar los demás para más adelante",
+    "Estimar riesgo global y adaptar intervenciones",
+    "Intensificar solo el control glucémico, que es el factor de mayor peso",
+    "Aplicar la misma intensidad preventiva a todo paciente con diabetes",
+    "Calcular el riesgo una sola vez y no reestimarlo al cambiar los factores"
+   ],
+   "prompt": "En el seguimiento a tres meses de un varón de 49 años con diabetes tipo 2, presión 148/92 mm Hg y ex tabaquista, ¿qué enfoque es preferible para organizar la prevención?",
+   "why": "El riesgo debe recalcularse y las metas ajustarse a medida que cambian presión, lípidos, glucemia y hábitos. Enfocarse solo en la glucemia deja sin tratar otros factores que aportan más al riesgo cardiovascular en la diabetes."
+  },
+  "salud-cardiometabolica-m1-q3": {
+   "options": [
+    "Considerar de bajo riesgo a toda persona menor de 45 años sin diabetes",
+    "Excluir los antecedentes obstétricos por no figurar en las ecuaciones de riesgo",
+    "Estimar riesgo global y adaptar intervenciones",
+    "Reservar la estimación de riesgo para pacientes con síntomas cardiovasculares",
+    "Definir el riesgo solo con el IMC y el perímetro de cintura"
+   ],
+   "prompt": "En una reunión interdisciplinaria se discute una mujer de 42 años con antecedente de preeclampsia, madre con infarto a los 52 años e IMC 31. ¿Qué enfoque es preferible?",
+   "why": "La edad joven no equivale a bajo riesgo: la preeclampsia y los antecedentes familiares prematuros son modificadores de riesgo que deben incorporarse a la estimación global, aunque las ecuaciones por sí solas no los capten."
+  },
+  "salud-cardiometabolica-m1-q4": {
+   "options": [
+    "Estimar riesgo global y adaptar intervenciones",
+    "Iniciar estatina de alta intensidad en todo varón mayor de 60 años",
+    "Descartar la prevención farmacológica si el LDL es menor de 130 mg/dl",
+    "Solicitar una angiotomografía coronaria a todos antes de decidir",
+    "Decidir según la presión arterial, el factor modificable más prevalente"
+   ],
+   "prompt": "En la discusión de un caso: varón de 63 años sin eventos previos, no fumador ni diabético, LDL 120 mg/dl y presión 128/78 mm Hg. ¿Qué enfoque es preferible para decidir la prevención?",
+   "why": "En prevención primaria la decisión de tratar y su intensidad surgen del riesgo absoluto estimado y de los factores que lo modifican, discutidos con el paciente. Ni la edad sola, ni un corte de LDL, ni un estudio de imagen indiscriminado reemplazan esa estimación."
+  },
+  "salud-cardiometabolica-m1-q5": {
+   "options": [
+    "Centrar la explicación en el colesterol, que es el factor que más pesa en su riesgo",
+    "Estimar riesgo global y adaptar intervenciones",
+    "Presentar el riesgo como un valor fijo que no cambia al modificar hábitos",
+    "Priorizar la medicación y dejar los cambios de estilo de vida para después",
+    "Entregar una lista de metas idéntica a la de cualquier paciente con varios factores"
+   ],
+   "prompt": "Al preparar educación, una paciente de 52 años con LDL 145 mg/dl, presión 135/85 mm Hg y tabaquismo pregunta por qué le piden tantos controles si «solo tiene el colesterol algo alto». ¿Qué enfoque es preferible?",
+   "why": "Explicar que su riesgo resulta de la suma de factores (colesterol, presión, tabaco) y que puede reducirse actuando sobre varios de ellos permite metas adaptadas a ella. El LDL es solo una parte del riesgo y el estilo de vida es parte central de la intervención."
+  },
+  "salud-cardiometabolica-m2-q1": {
+   "options": [
+    "Iniciar tratamiento farmacológico con esa lectura y ajustar según respuesta",
+    "Confirmar con mediciones válidas y contexto",
+    "Rotular hipertensión de bata blanca y no repetir la medición",
+    "Solicitar MAPA solo si hay daño de órgano blanco demostrado",
+    "Indicar ecocardiograma y fondo de ojo antes de repetir la presión"
+   ],
+   "prompt": "Varón de 52 años asintomático, sin lesión de órgano blanco conocida, con 148/94 mm Hg en una única medición de consultorio. ¿Qué corresponde?",
+   "why": "Una cifra elevada aislada no hace diagnóstico: hay que repetirla con técnica estandarizada y confirmarla fuera del consultorio (automedición o MAPA), que se indica justamente para distinguir hipertensión sostenida de efecto de bata blanca, con o sin daño de órgano."
+  },
+  "salud-cardiometabolica-m2-q2": {
+   "options": [
+    "Atribuir la cifra a la ansiedad y no volver a medir",
+    "Clasificarla como prehipertensión y dar solo consejos sin más mediciones",
+    "Confirmar con mediciones válidas y contexto",
+    "Pedir estudios de causa secundaria ante cualquier cifra elevada aislada",
+    "Reservar el MAPA para cifras superiores a 160/100 mm Hg"
+   ],
+   "prompt": "En el seguimiento a tres meses, una mujer de 38 años ansiosa, que llegó apurada, registró 138/86 mm Hg en una visita. ¿Qué corresponde?",
+   "why": "La conducta es repetir con paciente en reposo, manguito adecuado y varias lecturas, y complementar con mediciones domiciliarias o ambulatorias. Descartar o confirmar por una sola lectura, o estudiar causas secundarias sin confirmar, son errores de cierre prematuro."
+  },
+  "salud-cardiometabolica-m2-q3": {
+   "options": [
+    "Confirmar con mediciones válidas y contexto",
+    "Diagnosticar hipertensión resistente y sumar un tercer fármaco",
+    "Priorizar las cifras de consultorio por ser las de mayor respaldo en los estudios",
+    "Indicar tratamiento por la presión sistólica de consultorio sin considerar la diastólica",
+    "Repetir la medición en consultorio hasta obtener una cifra normal"
+   ],
+   "prompt": "En una reunión interdisciplinaria se presenta un hombre de 60 años con 154/96 mm Hg en consultorio y automedición domiciliaria promedio de 126/78 mm Hg. ¿Qué corresponde ante la lectura elevada de consultorio?",
+   "why": "La discordancia entre consultorio y domicilio obliga a confirmar con mediciones válidas fuera del consultorio y a interpretarlas en contexto (técnica, ansiedad, tratamiento previo). Escalar el tratamiento por la lectura de consultorio puede sobretratar un efecto de bata blanca."
+  },
+  "salud-cardiometabolica-m2-q4": {
+   "options": [
+    "Ajustar el tratamiento por los síntomas referidos sin confirmar el patrón",
+    "Confirmar con mediciones válidas y contexto",
+    "Ignorar la cifra por las condiciones de la toma y no repetirla",
+    "Clasificar el estadio de hipertensión solo con la sistólica",
+    "Considerar suficiente una segunda lectura en la misma visita para cerrar el diagnóstico"
+   ],
+   "prompt": "En la discusión de un caso: mujer de 45 años con 144/90 mm Hg en consultorio, que había tomado café y se había medido con el brazo sin apoyo. ¿Qué corresponde?",
+   "why": "Las condiciones de la toma (cafeína, brazo sin apoyo, manguito) alteran la lectura, por lo que hay que repetirla con técnica correcta y confirmar con mediciones en otros momentos o fuera del consultorio. Descartar la cifra sin repetirla es tan erróneo como tratarla."
+  },
+  "salud-cardiometabolica-m2-q5": {
+   "options": [
+    "Que una sola cifra alta basta para diagnosticar y empezar medicación",
+    "Que la presión de consultorio rara vez tiene valor y sobre todo importa la de la farmacia",
+    "Confirmar con mediciones válidas y contexto",
+    "Que una cifra alta aislada se interpreta recién cuando aparecen síntomas",
+    "Que el diagnóstico depende principalmente de la presión sistólica"
+   ],
+   "prompt": "Al preparar educación, un paciente con 150/95 mm Hg en su primera medición pregunta si ya debe empezar medicación. ¿Qué corresponde explicarle?",
+   "why": "Para confirmar hipertensión se necesitan mediciones válidas repetidas y, cuando es posible, fuera del consultorio; enseñar la técnica de automedición forma parte de la confirmación. La presión de consultorio sí es útil, pero no alcanza sola."
+  },
+  "salud-cardiometabolica-m3-q1": {
+   "options": [
+    "Posponer la estatina 12 meses y repetir el perfil tras dieta",
+    "Indicar un fibrato como terapia inicial para reducir eventos",
+    "Evaluación integral y reducción de riesgo",
+    "Fijar como meta un colesterol total menor de 200 mg/dl",
+    "Priorizar elevar el HDL con niacina"
+   ],
+   "prompt": "Varón de 60 años con diabetes, hipertensión, LDL 165 mg/dl y sin eventos previos. En la consulta inicial, con LDL elevado y riesgo cardiovascular alto, ¿qué priorizás?",
+   "why": "En riesgo alto el beneficio de bajar el LDL con estatina está bien establecido y no conviene demorarlo; se integra con el control de presión, glucemia y tabaco. Fibratos o niacina para subir HDL no mostraron reducción de eventos comparable."
+  },
+  "salud-cardiometabolica-m3-q2": {
+   "options": [
+    "Evaluación integral y reducción de riesgo",
+    "Considerar logrado el objetivo porque el LDL bajó más de 30 %",
+    "Reemplazar la estatina por un fibrato",
+    "Agregar un inhibidor de PCSK9 sin verificar adherencia ni dosis tolerada",
+    "Dejar sin cambios hasta el control anual"
+   ],
+   "prompt": "En el seguimiento a tres meses de un paciente con estatina de alta intensidad cuyo LDL bajó de 170 a 110 mg/dl y riesgo cardiovascular alto, ¿qué priorizás?",
+   "why": "Hay que reevaluar adherencia, dosis tolerada y respuesta frente al objetivo según el riesgo antes de escalar a terapia combinada (ezetimibe y luego otros fármacos). Escalar sin esa revisión, o conformarse con una reducción parcial, son errores frecuentes."
+  },
+  "salud-cardiometabolica-m3-q3": {
+   "options": [
+    "Tratarlo como hipercolesterolemia secundaria a la dieta y reevaluar en 6 meses",
+    "Evaluación integral y reducción de riesgo",
+    "Calcular el riesgo a 10 años con ecuaciones y esperar a que alcance el umbral",
+    "Tratar al paciente y omitir el estudio de familiares de primer grado",
+    "Indicar plasmaféresis desde el inicio"
+   ],
+   "prompt": "En una reunión interdisciplinaria se presenta un paciente de 35 años con LDL 210 mg/dl y padre con infarto a los 48 años. Con LDL elevado y riesgo alto, ¿qué priorizás?",
+   "why": "Ante sospecha de hipercolesterolemia familiar el riesgo es alto desde edades tempranas y las ecuaciones a 10 años lo subestiman: corresponde evaluar causas secundarias, tratar con estatina de alta intensidad y estudiar a los familiares."
+  },
+  "salud-cardiometabolica-m3-q4": {
+   "options": [
+    "Considerar cumplido el objetivo por tener un LDL menor de 100 mg/dl",
+    "Reducir la estatina por tener un LDL aceptable",
+    "Evaluación integral y reducción de riesgo",
+    "Reservar la intensificación para cuando el HDL sea menor de 40 mg/dl",
+    "Reemplazar la estatina por omega-3 como estrategia principal"
+   ],
+   "prompt": "En la discusión de un caso: mujer de 66 años con ACV isquémico previo y LDL 98 mg/dl con estatina. Con riesgo cardiovascular alto, ¿qué priorizás?",
+   "why": "En prevención secundaria el objetivo de LDL es más estricto que en prevención primaria y puede requerir sumar ezetimibe u otros fármacos; se evalúa de manera integral y se refuerza la reducción del riesgo, sin reemplazar la estatina por suplementos."
+  },
+  "salud-cardiometabolica-m3-q5": {
+   "options": [
+    "Evaluación integral y reducción de riesgo",
+    "Asegurar que con dieta sola se normaliza cualquier LDL elevado",
+    "Indicar suplementos de omega-3 en lugar de estatina",
+    "Suspender la estatina cuando se alcance la meta porque ya no hace falta",
+    "No controlar el LDL mientras no haya síntomas"
+   ],
+   "prompt": "Al preparar educación, un paciente con LDL 180 mg/dl y riesgo alto pregunta si le alcanza con la dieta. ¿Qué priorizás?",
+   "why": "La dieta y el estilo de vida son la base, pero en riesgo alto casi siempre se necesita tratamiento farmacológico sostenido y control periódico; el LDL no da síntomas, y suspender el fármaco al lograr la meta hace que el valor vuelva a subir."
+  },
+  "salud-cardiometabolica-m4-q1": {
+   "options": [
+    "Evaluar riesgo y ofrecer intervención estructurada",
+    "Iniciar insulina basal para evitar la progresión",
+    "Diagnosticar diabetes tipo 2 con este único valor",
+    "Esperar a que la HbA1c supere 6,5 % para intervenir",
+    "Indicar una sulfonilurea como prevención farmacológica de elección"
+   ],
+   "prompt": "En la consulta inicial, mujer de 45 años con IMC 31, antecedente de diabetes gestacional y HbA1c 6,0 %. ¿Qué estrategia inicial es apropiada?",
+   "why": "Una HbA1c de 5,7-6,4 % indica prediabetes con alto riesgo de progresión; se estratifica el riesgo y se ofrece un programa estructurado de cambio de estilo de vida, valorando metformina en perfiles de alto riesgo. Esperar a la diabetes pierde la ventana de prevención."
+  },
+  "salud-cardiometabolica-m4-q2": {
+   "options": [
+    "Suspender el seguimiento glucémico por haber perdido peso",
+    "Evaluar riesgo y ofrecer intervención estructurada",
+    "Indicar pioglitazona como primera opción para prevenir la diabetes",
+    "Controlar la HbA1c cada 5 años mientras no tenga síntomas",
+    "Dar consejos generales sin programa estructurado ni metas definidas"
+   ],
+   "prompt": "En el seguimiento a tres meses, un varón de 50 años con HbA1c 6,2 % bajó 2 kg. ¿Qué estrategia es apropiada?",
+   "why": "El beneficio preventivo proviene de programas estructurados con metas definidas y seguimiento; los consejos generales aislados rinden poco. Se mantiene el control glucémico periódico (al menos anual) y se refuerza el plan."
+  },
+  "salud-cardiometabolica-m4-q3": {
+   "options": [
+    "Repetir la HbA1c cada mes hasta que defina diabetes",
+    "Derivar a endocrinología para iniciar fármacos en la mayoría de los los casos",
+    "Evaluar riesgo y ofrecer intervención estructurada",
+    "Reservar la intervención para quienes superen 126 mg/dl en ayunas",
+    "Prescribir una dieta muy baja en calorías sin reevaluar de forma sistemática riesgo ni preferencias"
+   ],
+   "prompt": "En una reunión interdisciplinaria se presenta un paciente con glucemia en ayunas 112 mg/dl y HbA1c 6,1 %. ¿Qué estrategia inicial es apropiada?",
+   "why": "Glucemia en ayunas alterada y HbA1c en rango de prediabetes configuran riesgo elevado: se evalúa el riesgo cardiometabólico global y se ofrece intervención estructurada de estilo de vida, sin esperar el umbral de diabetes ni medicar a todos de entrada."
+  },
+  "salud-cardiometabolica-m4-q4": {
+   "options": [
+    "Evaluar riesgo y ofrecer intervención estructurada",
+    "Indicar metformina y diferir cualquier cambio de estilo de vida",
+    "Tranquilizarlo por ser joven y repetir el estudio en 5 años",
+    "Solicitar péptido C y anticuerpos anti-GAD de rutina",
+    "Restringir la intervención a cirugía bariátrica de entrada"
+   ],
+   "prompt": "En la discusión de un caso: varón de 34 años, IMC 36, HbA1c 5,9 % y hermana con diabetes tipo 2. ¿Qué estrategia inicial es apropiada?",
+   "why": "La edad joven no excluye riesgo alto cuando hay obesidad y antecedente familiar: se evalúa el riesgo y se ofrece un programa estructurado de estilo de vida; el fármaco, si se usa, complementa y no reemplaza las medidas conductuales."
+  },
+  "salud-cardiometabolica-m4-q5": {
+   "options": [
+    "Indicarle que ya tiene diabetes y debe iniciar medicación",
+    "Evaluar riesgo y ofrecer intervención estructurada",
+    "Asegurarle que sin síntomas no hay aumento del riesgo cardiovascular",
+    "Explicar que la prediabetes siempre progresa a diabetes y no es modificable",
+    "Recomendar eliminar por completo los hidratos de carbono como única medida"
+   ],
+   "prompt": "Al preparar educación, un paciente con HbA1c 5,9 % pregunta si ya es diabético. ¿Qué estrategia es apropiada?",
+   "why": "Se le explica que tiene prediabetes, que el riesgo es real pero modificable y que existen programas estructurados con peso y actividad física que reducen la progresión; no es una condición inevitable ni exige medicación inmediata."
+  },
+  "salud-cardiometabolica-m5-q1": {
+   "options": [
+    "Hallazgo benigno mientras el eGFR sea mayor de 90 mL/min/1,73 m²",
+    "Mayor riesgo renal y cardiovascular",
+    "Marcador de progresión renal sin relación con eventos cardiovasculares",
+    "Artefacto de la tira reactiva sin valor pronóstico",
+    "Diagnóstico establecido de síndrome nefrótico"
+   ],
+   "prompt": "En la consulta inicial, una persona con diabetes tipo 2 tiene relación albúmina/creatinina urinaria de 80 mg/g en dos de tres muestras tomadas con más de 3 meses de diferencia y creatinina normal. ¿Qué significa la albuminuria persistente?",
+   "why": "La albuminuria persistente marca daño renal y se asocia a mayor riesgo de progresión renal y de eventos cardiovasculares, aun con creatinina y eGFR normales. No es benigna por tener filtrado conservado."
+  },
+  "salud-cardiometabolica-m5-q2": {
+   "options": [
+    "Signo de infección urinaria oculta que requiere antibióticos",
+    "Contraindicación para continuar IECA o ARA II",
+    "Mayor riesgo renal y cardiovascular",
+    "Hallazgo propio del envejecimiento sin consecuencias",
+    "Evidencia de lesión renal aguda reversible que no requiere seguimiento"
+   ],
+   "prompt": "En el seguimiento a tres meses, un hipertenso con creatinina normal mantiene una relación albúmina/creatinina de 45 mg/g. ¿Qué significa la albuminuria persistente?",
+   "why": "Confirmada en el tiempo, la albuminuria identifica mayor riesgo renal y cardiovascular y es una indicación para optimizar presión y, si corresponde, usar bloqueo del sistema renina-angiotensina; no es una contraindicación de IECA/ARA II."
+  },
+  "salud-cardiometabolica-m5-q3": {
+   "options": [
+    "Mayor riesgo renal y cardiovascular",
+    "Indicador de riesgo renal exclusivo de pacientes con diabetes",
+    "Hallazgo sin importancia si la creatinina es normal",
+    "Marcador de progresión renal sin relación con eventos cardiovasculares",
+    "Efecto esperable del ejercicio reciente sin valor pronóstico"
+   ],
+   "prompt": "En una reunión interdisciplinaria se discute un paciente sin diabetes con albuminuria persistente y eGFR 95 mL/min/1,73 m². ¿Qué significa?",
+   "why": "La albuminuria persistente es un marcador de riesgo independientemente de la diabetes y del eGFR, y se asocia a más eventos cardiovasculares y mayor progresión renal; una creatinina normal no la descarta ni la tranquiliza."
+  },
+  "salud-cardiometabolica-m5-q4": {
+   "options": [
+    "Hallazgo benigno mientras el eGFR sea mayor de 90 mL/min/1,73 m²",
+    "Mayor riesgo renal y cardiovascular",
+    "Cuadro compatible con síndrome nefrótico",
+    "Indicación de suspender IECA o ARA II",
+    "Indicador de riesgo cardiovascular que no afecta la función renal futura"
+   ],
+   "prompt": "En la discusión de un caso: mujer de 70 años con albuminuria persistente y eGFR 55 mL/min/1,73 m². ¿Qué significa la combinación?",
+   "why": "Un eGFR bajo y la albuminuria se potencian: ambos aumentan el riesgo de progresión a enfermedad renal avanzada y de eventos cardiovasculares, por lo que se estratifica y trata de forma más intensiva."
+  },
+  "salud-cardiometabolica-m5-q5": {
+   "options": [
+    "Artefacto de la tira reactiva sin valor pronóstico",
+    "Hallazgo propio del envejecimiento sin consecuencias",
+    "Mayor riesgo renal y cardiovascular",
+    "Marcador exclusivo de nefropatía diabética",
+    "Signo de infección urinaria oculta"
+   ],
+   "prompt": "Al preparar educación, un paciente pregunta por qué le importa su proteína en orina si «los riñones le andan bien». ¿Qué significa la albuminuria persistente?",
+   "why": "Se le explica que la albuminuria persistente es un aviso temprano de mayor riesgo para riñón y corazón, incluso con función renal aún normal, y que justifica controlar presión y glucemia y repetir el estudio."
+  },
+  "salud-cardiometabolica-m6-q1": {
+   "options": [
+    "Reemplazar grasa saturada por hidratos de carbono refinados",
+    "Pasar a aceite de coco como grasa principal de cocción",
+    "Sustituir grasas trans por insaturadas",
+    "Seguir una dieta con menos del 10 % de grasa como patrón estándar",
+    "Reemplazar la carne roja por fiambres y embutidos magros"
+   ],
+   "prompt": "En la consulta inicial, un adulto con LDL elevado consume facturas, margarinas duras y frituras. ¿Qué cambio dietario suele favorecer la salud cardiometabólica?",
+   "why": "Eliminar las grasas trans y reemplazarlas por insaturadas (aceites vegetales no tropicales, frutos secos, pescado) mejora el perfil lipídico y reduce eventos. Cambiar grasa por hidratos refinados o productos procesados no aporta ese beneficio."
+  },
+  "salud-cardiometabolica-m6-q2": {
+   "options": [
+    "Sustituir grasas trans por insaturadas",
+    "Suplementar con vitamina E y betacaroteno en lugar de cambiar la dieta",
+    "Reemplazar las gaseosas por jugos de fruta envasados",
+    "Usar aceite de palma como principal grasa de fritura",
+    "Eliminar los frutos secos por su densidad calórica"
+   ],
+   "prompt": "En el seguimiento a tres meses, un paciente con riesgo cardiometabólico pregunta qué cambio dietario es mejor. ¿Cuál suele favorecer la salud cardiometabólica?",
+   "why": "Los cambios con respaldo son de patrón alimentario, no suplementos: reemplazar grasas trans por insaturadas junto con más fibra y menos ultraprocesados. Los suplementos antioxidantes no mostraron beneficio cardiovascular y los frutos secos suelen ser protectores."
+  },
+  "salud-cardiometabolica-m6-q3": {
+   "options": [
+    "Consumir productos «light» ultraprocesados en reemplazo de comidas caseras",
+    "Sustituir grasas trans por insaturadas",
+    "Reemplazar los cereales integrales por harinas refinadas más digeribles",
+    "Reemplazar el aceite de oliva por manteca por considerarla más natural",
+    "Reemplazar grasa saturada por hidratos de carbono refinados"
+   ],
+   "prompt": "En una reunión interdisciplinaria se discute cómo reducir el consumo de productos industrializados de un paciente. ¿Qué cambio dietario suele favorecer la salud cardiometabólica?",
+   "why": "La calidad de la grasa importa: sustituir grasas trans por insaturadas mejora el riesgo, mientras que reemplazos por refinados, ultraprocesados o grasas saturadas no ofrecen el mismo beneficio."
+  },
+  "salud-cardiometabolica-m6-q4": {
+   "options": [
+    "Aumentar las carnes procesadas bajas en grasa",
+    "Pasar a aceite de coco como grasa principal",
+    "Sustituir grasas trans por insaturadas",
+    "Adoptar una dieta cetogénica rica en grasa saturada como primera línea",
+    "Reemplazar el pescado por carnes rojas magras como fuente principal de proteína"
+   ],
+   "prompt": "En la discusión de un caso: varón de 55 años que quiere «comer más sano» tras su infarto. ¿Qué cambio dietario suele favorecer la salud cardiometabólica?",
+   "why": "En prevención secundaria, además de patrón mediterráneo y menos procesados, se prioriza eliminar grasas trans y reemplazarlas por grasas insaturadas; ni el coco ni la grasa saturada ni los procesados cumplen ese rol."
+  },
+  "salud-cardiometabolica-m6-q5": {
+   "options": [
+    "Sustituir grasas trans por insaturadas",
+    "Aumentar el uso de margarina dura en lugar de manteca",
+    "Reemplazar las gaseosas por jugos de fruta envasados",
+    "Suplementar con vitamina E en lugar de cambiar la dieta",
+    "Eliminar los frutos secos por su densidad calórica"
+   ],
+   "prompt": "Al preparar educación, una paciente pregunta qué cambio simple puede hacer en su cocina. ¿Qué cambio dietario suele favorecer la salud cardiometabólica?",
+   "why": "Un cambio concreto y sostenible es cocinar con aceites insaturados y evitar grasas trans de margarinas duras, frituras y productos de panadería industrial. Los suplementos o jugos envasados no reemplazan ese cambio."
+  },
+  "salud-cardiometabolica-m7-q1": {
+   "options": [
+    "Progresión gradual de actividad aeróbica y fuerza",
+    "Exigir una prueba de esfuerzo a todo adulto sedentario antes de cualquier actividad",
+    "Comenzar con intervalos de alta intensidad tres veces por semana",
+    "Fijar de entrada 300 minutos semanales de actividad vigorosa",
+    "Limitar la actividad a flexibilidad y equilibrio hasta bajar de peso"
+   ],
+   "prompt": "En la consulta inicial, un adulto de 45 años sedentario, IMC 29 y asintomático. ¿Qué plan es razonable?",
+   "why": "Se comienza con actividad de intensidad leve a moderada y se progresa en tiempo e intensidad, sumando fuerza dos veces por semana. En asintomáticos no se exige una prueba de esfuerzo previa, y comenzar con alta intensidad aumenta lesiones y abandono."
+  },
+  "salud-cardiometabolica-m7-q2": {
+   "options": [
+    "Considerar cumplida la meta y mantener el plan sin cambios",
+    "Progresión gradual de actividad aeróbica y fuerza",
+    "Pasar de inmediato a 10.000 pasos diarios sin progresión escalonada",
+    "Suspender las caminatas y cambiar a ejercicios de fuerza de alta carga",
+    "Indicar reposo de un día extra por semana hasta ajustar el peso"
+   ],
+   "prompt": "En el seguimiento a tres meses, una paciente logra 90 minutos semanales de caminata. ¿Qué plan es razonable?",
+   "why": "Con la adherencia lograda corresponde progresar de manera gradual hacia las metas de tiempo y sumar fuerza, ajustando a la capacidad funcional. Saltar a metas altas de golpe o abandonar el componente aeróbico no es razonable."
+  },
+  "salud-cardiometabolica-m7-q3": {
+   "options": [
+    "Indicar reposo articular hasta que desaparezca el dolor",
+    "Prescribir ejercicios de fuerza con cargas máximas",
+    "Progresión gradual de actividad aeróbica y fuerza",
+    "Limitar a actividad aeróbica de impacto, como trote",
+    "Restringir a flexibilidad y estiramientos"
+   ],
+   "prompt": "En una reunión interdisciplinaria se discute un paciente de 68 años con artrosis de rodilla e hipertensión controlada. ¿Qué plan es razonable?",
+   "why": "Se adapta la actividad a la limitación (bicicleta, natación, marcha) con progresión gradual y fuerza de baja a moderada carga; el reposo prolongado empeora la capacidad funcional."
+  },
+  "salud-cardiometabolica-m7-q4": {
+   "options": [
+    "Progresión gradual de actividad aeróbica y fuerza",
+    "Limitarse a interrumpir el tiempo sentado, sin prescribir ejercicio estructurado",
+    "Iniciar con deportes de contacto recreativos para mejorar la adherencia",
+    "Fijar metas de pasos sin evaluar su capacidad funcional",
+    "Indicar fuerza intensa desde el inicio independientemente de su capacidad"
+   ],
+   "prompt": "En la discusión de un caso: mujer de 50 años con trabajo de escritorio y 10 horas diarias sentada. ¿Qué plan es razonable?",
+   "why": "Reducir el tiempo sentado ayuda, pero no reemplaza el ejercicio aeróbico y de fuerza: se progresa gradualmente según capacidad, con metas realistas."
+  },
+  "salud-cardiometabolica-m7-q5": {
+   "options": [
+    "Explicar que menos de 150 minutos semanales no aportan beneficio",
+    "Progresión gradual de actividad aeróbica y fuerza",
+    "Indicar que el ejercicio de fuerza está contraindicado en hipertensos",
+    "Recomendar ejercicio solo si logra bajar de peso",
+    "Fijar 10.000 pasos como objetivo único desde la primera semana"
+   ],
+   "prompt": "Al preparar educación, un paciente hipertenso sedentario pregunta cómo empezar. ¿Qué plan es razonable?",
+   "why": "Se enseña que cualquier aumento de actividad suma, que conviene comenzar de a poco e ir aumentando, y que la fuerza es compatible con la hipertensión controlada."
+  },
+  "salud-cardiometabolica-m8-q1": {
+   "options": [
+    "Narcolepsia tipo 1",
+    "Apnea obstructiva del sueño",
+    "Hiperaldosteronismo primario",
+    "Síndrome de piernas inquietas",
+    "Efecto sedante de los antihipertensivos"
+   ],
+   "prompt": "En la consulta inicial, un hombre de 54 años con IMC 33, ronquidos intensos, pausas respiratorias presenciadas y somnolencia diurna, hipertenso con tres fármacos. ¿Qué trastorno hay que investigar primero?",
+   "why": "Ronquido, pausas, somnolencia, obesidad e hipertensión resistente sugieren apnea obstructiva, que se confirma con poligrafía o polisomnografía. Otras causas, como el hiperaldosteronismo, se estudian después o en paralelo, pero no explican el cuadro."
+  },
+  "salud-cardiometabolica-m8-q2": {
+   "options": [
+    "Hipotiroidismo",
+    "Depresión con hipersomnia",
+    "Apnea obstructiva del sueño",
+    "Insomnio crónico",
+    "Reflujo gastroesofágico nocturno"
+   ],
+   "prompt": "En el seguimiento a tres meses, un paciente con presión mal controlada refiere ronquidos intensos y somnolencia diurna que no mejoran. ¿Qué trastorno hay que investigar primero?",
+   "why": "Ronquidos y somnolencia en un hipertenso con control difícil orientan a apnea obstructiva, que empeora el control tensional. Estudiar el sueño precede a rotular el síntoma como un problema psicológico o de higiene del sueño."
+  },
+  "salud-cardiometabolica-m8-q3": {
+   "options": [
+    "Apnea obstructiva del sueño",
+    "Anemia ferropénica",
+    "Narcolepsia con cataplejía",
+    "Síndrome de piernas inquietas",
+    "Hiperaldosteronismo primario"
+   ],
+   "prompt": "En una reunión interdisciplinaria se discute una mujer posmenopáusica con IMC 34, presión elevada, ronquidos y cefalea matinal. ¿Qué trastorno hay que investigar primero?",
+   "why": "Ronquidos y cefalea matinal con obesidad e hipertensión apuntan a apnea obstructiva, frecuente tras la menopausia; se confirma con estudio del sueño."
+  },
+  "salud-cardiometabolica-m8-q4": {
+   "options": [
+    "Hipotiroidismo",
+    "Apnea obstructiva del sueño",
+    "Depresión con hipersomnia",
+    "Efecto sedante de los antihipertensivos",
+    "Insomnio crónico por mala higiene del sueño"
+   ],
+   "prompt": "En la discusión de un caso: varón de 48 años hipertenso, cuello ancho, ronquido y cansancio diurno con accidentes casi ocurridos al volante. ¿Qué trastorno hay que investigar primero?",
+   "why": "La somnolencia al volante junto a ronquido y obesidad requiere descartar apnea obstructiva sin demora por el riesgo de accidentes y el impacto en la presión."
+  },
+  "salud-cardiometabolica-m8-q5": {
+   "options": [
+    "Síndrome de fatiga crónica",
+    "Reflujo gastroesofágico nocturno",
+    "Apnea obstructiva del sueño",
+    "Anemia ferropénica",
+    "Depresión con hipersomnia"
+   ],
+   "prompt": "Al preparar educación, un paciente hipertenso dice que ronca y se siente cansado de día. ¿Qué trastorno hay que investigar primero?",
+   "why": "Ronquido y somnolencia diurna en un hipertenso justifican evaluar apnea obstructiva (cuestionarios y estudio del sueño); tratarla mejora síntomas y puede ayudar al control de la presión."
+  },
+  "salud-cardiometabolica-m9-q1": {
+   "options": [
+    "Usar advertencias sobre riesgo de muerte para motivar el cambio",
+    "Condicionar la atención a una pérdida de peso previa",
+    "Comunicación respetuosa y objetivos compartidos",
+    "Atribuir las experiencias previas fallidas a falta de motivación",
+    "Indicar un plan restrictivo estricto desde la primera visita"
+   ],
+   "prompt": "En la consulta inicial, una mujer de 40 años con obesidad evita las consultas por malas experiencias previas. ¿Qué favorece la adherencia?",
+   "why": "El estigma de peso aleja a las personas de la atención. Un trato respetuoso, con objetivos acordados y centrados en salud y no solo en peso, mejora el vínculo y la adherencia."
+  },
+  "salud-cardiometabolica-m9-q2": {
+   "options": [
+    "Comunicación respetuosa y objetivos compartidos",
+    "Calificar el resultado como fracaso por no alcanzar la meta ponderal pactada",
+    "Usar la báscula como único indicador de éxito en cada visita",
+    "Aumentar la restricción calórica para acelerar la pérdida",
+    "Indicar un fármaco antiobesidad sin revisar los objetivos con el paciente"
+   ],
+   "prompt": "En el seguimiento a tres meses, un paciente bajó 2 kg pero mejoró su presión y glucemia, y se siente frustrado. ¿Qué favorece la adherencia?",
+   "why": "Reconocer mejoras metabólicas aunque el peso baje poco y acordar nuevos objetivos sostiene la motivación; centrarse solo en la balanza desalienta y favorece el abandono."
+  },
+  "salud-cardiometabolica-m9-q3": {
+   "options": [
+    "Registrar al paciente como no adherente y reducir las consultas",
+    "Comunicación respetuosa y objetivos compartidos",
+    "Reforzar los mensajes de advertencia sobre las consecuencias",
+    "Reducir la frecuencia de controles hasta que muestre compromiso",
+    "Derivar a cirugía bariátrica sin explorar sus preferencias"
+   ],
+   "prompt": "En una reunión interdisciplinaria, un colega dice que un paciente con obesidad «no se cuida». ¿Qué favorece la adherencia?",
+   "why": "Atribuir la no adherencia a la voluntad ignora barreras reales y estigmatiza; explorar obstáculos y fijar objetivos en común mejora la participación."
+  },
+  "salud-cardiometabolica-m9-q4": {
+   "options": [
+    "Prescribir una dieta hipocalórica fija igual para todos",
+    "Evitar hablar del peso aunque el paciente lo solicite",
+    "Comunicación respetuosa y objetivos compartidos",
+    "Prohibir actividades de ocio hasta bajar de peso",
+    "Derivar a cirugía bariátrica sin explorar comorbilidades"
+   ],
+   "prompt": "En la discusión de un caso: paciente con obesidad y episodios de atracones que dice sentirse juzgado. ¿Qué favorece la adherencia?",
+   "why": "Con atracones se evalúa la salud mental y se construye una relación sin juicio; las dietas rígidas pueden empeorarlos."
+  },
+  "salud-cardiometabolica-m9-q5": {
+   "options": [
+    "Comunicación respetuosa y objetivos compartidos",
+    "Presentar el peso como resultado de falta de fuerza de voluntad",
+    "Enfatizar mensajes de miedo sobre mortalidad",
+    "Prometer que los fármacos eliminan la necesidad de cambios de conducta",
+    "Indicar que la actividad física solo vale si baja de peso"
+   ],
+   "prompt": "Al preparar educación, una paciente con obesidad pregunta por qué siempre le hablan solo del peso. ¿Qué favorece la adherencia?",
+   "why": "Pedir permiso para hablar del peso, escuchar sus prioridades y acordar objetivos de salud compartidos favorece el vínculo y la adherencia."
+  },
+  "salud-cardiometabolica-m10-q1": {
+   "options": [
+    "Plan individualizado y seguimiento",
+    "Introducir los cambios de todos los hábitos de entrada con metas máximas",
+    "Derivar a cada especialidad para que decidan por separado",
+    "Dejar el seguimiento para cuando aparezcan síntomas",
+    "Aplicar el protocolo estándar del servicio sin ajustarlo al paciente"
+   ],
+   "prompt": "En la consulta inicial, un hombre de 55 años con hipertensión, prediabetes, tabaquismo y sedentarismo. Con múltiples objetivos preventivos, ¿qué ayuda más?",
+   "why": "Se priorizan pocos cambios factibles y de mayor impacto (por ejemplo tabaco), con metas medibles y controles programados; intentar todo a la vez suele fracasar."
+  },
+  "salud-cardiometabolica-m10-q2": {
+   "options": [
+    "Cerrar el seguimiento por haber alcanzado la primera meta",
+    "Plan individualizado y seguimiento",
+    "Mantener las metas iniciales sin revisarlas",
+    "Intensificar simultáneamente todos los objetivos pendientes",
+    "Considerar el plan fracasado por no lograr el peso"
+   ],
+   "prompt": "En el seguimiento a tres meses, una paciente logró dejar de fumar pero no bajó de peso. ¿Qué ayuda más?",
+   "why": "Se reconoce el logro, se revisan y reordenan las prioridades y se sostiene el seguimiento longitudinal; el abandono del tabaco es un avance importante."
+  },
+  "salud-cardiometabolica-m10-q3": {
+   "options": [
+    "Dejar que cada profesional fije sus propias metas sin coordinar",
+    "Centralizar las decisiones en un solo profesional sin informar al resto",
+    "Plan individualizado y seguimiento",
+    "Evaluar al paciente por separado en cada especialidad sin plan común",
+    "Reservar la interconsulta para complicaciones ya establecidas"
+   ],
+   "prompt": "En una reunión interdisciplinaria participan nutrición, salud mental y medicina. ¿Qué ayuda más?",
+   "why": "El plan común y coordinado entre profesionales, con un seguimiento compartido, evita mensajes contradictorios y mejora la adherencia."
+  },
+  "salud-cardiometabolica-m10-q4": {
+   "options": [
+    "Plan individualizado y seguimiento",
+    "Imponer el esquema del equipo sin ponderar sus preferencias",
+    "Dejar todas las decisiones al paciente sin información sobre su riesgo",
+    "Cerrar el caso al negarse a la medicación",
+    "diferir cualquier intervención hasta que acepte la medicación"
+   ],
+   "prompt": "En la discusión de un caso: un paciente de riesgo alto prefiere no tomar medicación por el momento. ¿Qué ayuda más?",
+   "why": "La decisión compartida incluye informar el riesgo, respetar preferencias y definir un plan individualizado con seguimiento para revisar la decisión."
+  },
+  "salud-cardiometabolica-m10-q5": {
+   "options": [
+    "Entregarle la lista completa de objetivos con igual prioridad",
+    "Plan individualizado y seguimiento",
+    "Indicarle volver solo si se siente mal",
+    "Decirle que el mismo plan sirve para cualquier paciente",
+    "Pedirle que elija por su cuenta sin orientación sobre prioridades"
+   ],
+   "prompt": "Al preparar educación, un paciente con múltiples objetivos pregunta por dónde empezar. ¿Qué ayuda más?",
+   "why": "Se acuerda con él un plan con pocos objetivos jerarquizados y controles programados, adaptado a su riesgo y su contexto."
+  }
+ },
+ "flags": [
+  {
+   "id": "salud-cardiometabolica-m6-q1",
+   "problema": "La correcta 'Sustituir grasas trans por insaturadas' es válida pero imprecisa: la recomendación es eliminar las grasas trans industriales y reducir las saturadas reemplazándolas por insaturadas.",
+   "propuesta": "Reformular la correcta (en las 5 variantes del m6) como 'Reemplazar grasas saturadas y trans por insaturadas'.",
+   "fuente": "AHA Dietary Guidance to Improve Cardiovascular Health 2021 (no verificada en línea)"
+  }
+ ],
+ "stats": {
+  "revisadas": 50,
+  "reescritas": 50,
+  "flags": 1,
+  "noVerificadas": [
+   "Todas: no se abrieron las fuentes (cardio-ada, cardio-aclm); claves validadas por conocimiento clínico general",
+   "Cifras de umbral (HbA1c 5,7-6,4 %, UACR, LDL meta en prevención secundaria) citadas de memoria"
+  ]
+ }
+}

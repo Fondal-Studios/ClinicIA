@@ -1,0 +1,612 @@
+{
+ "batch": "R10",
+ "upgrades": {
+  "recognize": {
+   "options": [
+    "Activar ayuda e iniciar RCP",
+    "Ventilar con bolsa-máscara y reevaluar el pulso en un minuto",
+    "Colocar el desfibrilador y analizar el ritmo antes de comprimir",
+    "Asegurar una vía aérea avanzada antes de iniciar compresiones",
+    "Registrar un ECG de 12 derivaciones para definir la causa"
+   ],
+   "why": "El jadeo agónico puede acompañar al paro y no es una respiración efectiva. Con un paciente inconsciente sin pulso definido, activar la respuesta e iniciar compresiones no se demora por ventilar, monitorizar o buscar la causa."
+  },
+  "pulse": {
+   "options": [
+    "Hasta 10 segundos",
+    "Hasta 5 segundos",
+    "Hasta 15 segundos",
+    "Hasta 20 segundos",
+    "Hasta 30 segundos"
+   ],
+   "prompt": "¿Cuál es el tiempo máximo recomendado para la comprobación inicial del pulso?",
+   "why": "La comprobación debe durar al menos 5 y no más de 10 segundos; prolongarla retrasa las compresiones, y un pulso dudoso se trata como ausente."
+  },
+  "apnea": {
+   "options": [
+    "Ventilación de rescate y reevaluación",
+    "Compresiones torácicas de inmediato, por tratarse de un paro respiratorio",
+    "Oxígeno a alto flujo con reservorio y observación sin asistir la ventilación",
+    "Colocar el DEA y analizar el ritmo antes de ventilar",
+    "Vía aérea avanzada y compresiones continuas sin reevaluar el pulso"
+   ],
+   "why": "Con pulso definido y sin respiración efectiva se asiste la ventilación (una cada 6 segundos en el adulto) y se reevalúa el pulso cada 2 minutos; las compresiones se reservan para la ausencia de pulso."
+  },
+  "recoil": {
+   "options": [
+    "Apoyar parte del peso sobre el tórax entre compresiones para sostener la presión",
+    "Permitir retroceso completo",
+    "Pausar cada minuto para valorar el pulso y la perfusión",
+    "Superar las 140/min cuando el flujo parece insuficiente",
+    "Limitar la profundidad a 3–4 cm para sostener la frecuencia"
+   ],
+   "why": "Permitir el retroceso completo deja que el corazón se llene entre compresiones; apoyarse sobre el tórax reduce el retorno venoso y la perfusión coronaria."
+  },
+  "shock": {
+   "options": [
+    "Asistolia confirmada en dos derivaciones",
+    "Fibrilación ventricular",
+    "Actividad eléctrica sin pulso",
+    "Taquicardia ventricular con pulso",
+    "Ritmo idioventricular sin pulso"
+   ],
+   "why": "En el paro, la FV y la TV sin pulso son los ritmos desfibrilables. La asistolia y la AESP siguen la rama no desfibrilable; la TV con pulso no es un paro y se trata según estabilidad (cardioversión sincronizada)."
+  },
+  "ecg-vt": {
+   "options": [
+    "Cardioversión sincronizada, por tratarse de una taquicardia",
+    "Desfibrilación y RCP",
+    "Amiodarona IV antes de decidir la descarga",
+    "Adenosina en bolo rápido antes de decidir la descarga",
+    "Estimulación transcutánea con captura ventricular"
+   ],
+   "why": "Un ritmo ancho y rápido compatible con TV en un paciente sin pulso sigue la rama del paro: RCP de alta calidad y desfibrilación no sincronizada; los fármacos no reemplazan la descarga."
+  },
+  "aftershock": {
+   "options": [
+    "Reanudar RCP",
+    "Comprobar el pulso antes de reiniciar las compresiones",
+    "Analizar el ritmo de nuevo y repetir la descarga si persiste la FV",
+    "Administrar adrenalina antes de reanudar las compresiones",
+    "Asegurar la vía aérea avanzada antes de retomar la RCP"
+   ],
+   "why": "Tras la descarga se reanudan las compresiones de inmediato y el ritmo y el pulso se reevalúan al cabo de 2 minutos; el análisis o el pulso inmediato demoran la perfusión coronaria."
+  },
+  "nonshock": {
+   "options": [
+    "RCP de alta calidad con ciclos de 2 minutos",
+    "Descarga eléctrica",
+    "Adrenalina IV/IO cada 3–5 minutos",
+    "Búsqueda de causas reversibles (Hs y Ts)",
+    "Verificación de electrodos, derivación y ganancia del monitor"
+   ],
+   "why": "La asistolia no responde a la descarga: se continúa con RCP de calidad, adrenalina y búsqueda de causas reversibles, tras descartar artefacto."
+  },
+  "ecg-flat": {
+   "options": [
+    "Compresiones torácicas de alta calidad continuas",
+    "Adrenalina IV/IO cada 3–5 minutos según el algoritmo",
+    "Desfibrilación",
+    "Ventilación con bolsa y oxígeno suplementario",
+    "Búsqueda de causas reversibles (Hs y Ts)"
+   ],
+   "why": "Con asistolia confirmada en más de una derivación no hay indicación de descarga: se continúa RCP, adrenalina y búsqueda de causas reversibles."
+  },
+  "unstable": {
+   "options": [
+    "Desfibrilación no sincronizada de rutina",
+    "Cardioversión sincronizada",
+    "Adenosina 6 mg en bolo rápido y reevaluación",
+    "Amiodarona IV en 10 minutos y observación",
+    "Maniobras vagales repetidas hasta que ceda"
+   ],
+   "why": "Con pulso pero hipotensión o shock atribuibles al ritmo, la taquicardia es inestable y la rama indicada es la cardioversión sincronizada (con sedación si es posible); los fármacos no deben demorarla."
+  },
+  "stable": {
+   "options": [
+    "Frecuencia cardíaca como único umbral de decisión",
+    "Estabilidad y características del ritmo",
+    "Duración del episodio y antecedentes cardiológicos",
+    "Troponina y electrolitos antes de definir la rama",
+    "Ancho del QRS como único criterio de elección"
+   ],
+   "why": "La rama depende de si hay signos de inestabilidad atribuibles al ritmo (hipotensión, alteración del estado mental, shock, dolor isquémico, falla cardíaca aguda) y de la regularidad y ancho del QRS; ningún dato aislado alcanza."
+  },
+  "ecg-svt": {
+   "options": [
+    "Hipotensión atribuible al ritmo",
+    "Antecedente de episodios previos de palpitaciones similares",
+    "Frecuencia de 180/min con presión arterial conservada",
+    "Inicio súbito de las palpitaciones hace una hora",
+    "Palpitaciones intensas con sensorio y presión conservados"
+   ],
+   "why": "Hipotensión, alteración del estado mental, shock, dolor isquémico o falla cardíaca aguda atribuibles al ritmo definen inestabilidad y llevan a cardioversión sincronizada; la frecuencia o el inicio súbito por sí solos no."
+  },
+  "brady": {
+   "options": [
+    "Atropina 1 mg IV por la frecuencia aislada",
+    "Evaluar causas y observar",
+    "Estimulación transcutánea inmediata",
+    "Infusión de dopamina o adrenalina de entrada",
+    "Cardioversión sincronizada a 100 J"
+   ],
+   "why": "Sin hipotensión, alteración del sensorio, dolor isquémico ni falla cardíaca, la bradicardia no requiere tratamiento inmediato: se buscan causas (fármacos, isquemia, hipoxia, electrolitos) y se observa."
+  },
+  "pacing": {
+   "options": [
+    "Estimulación transcutánea y/o infusiones",
+    "Repetir atropina cada 3–5 minutos sin tope hasta que ceda",
+    "Bolo de amiodarona para estabilizar la conducción",
+    "Cardioversión sincronizada para restablecer el ritmo sinusal",
+    "Bolos de líquidos como única medida para sostener la presión"
+   ],
+   "why": "Si persiste el compromiso tras atropina (1 mg, máximo 3 mg), se pasa a marcapasos transcutáneo o infusión de adrenalina o dopamina, con consulta experta y búsqueda de causa."
+  },
+  "ecg-brady": {
+   "options": [
+    "Atropina 1 mg IV antes de evaluar síntomas o causas",
+    "Causas y repercusión clínica",
+    "Colocar marcapasos por la frecuencia de 40/min",
+    "Iniciar infusión de adrenalina por el número aislado",
+    "Iniciar compresiones porque la frecuencia es menor de 60/min"
+   ],
+   "why": "Un adulto lúcido y normotenso no tiene bradicardia inestable: primero se valoran repercusión y causas. El umbral de 60/min con mala perfusión para iniciar RCP corresponde a pediatría, no a esta situación."
+  },
+  "ecg-fv": {
+   "options": [
+    "Fibrilación ventricular",
+    "Taquicardia ventricular monomórfica",
+    "Fibrilación auricular con conducción aberrante",
+    "Asistolia con línea de base ondulante",
+    "Ritmo idioventricular acelerado"
+   ],
+   "why": "La FV muestra actividad caótica sin complejos QRS reconocibles; es desfibrilable, a diferencia de la asistolia o de ritmos organizados."
+  },
+  "ecg-vt-pulse": {
+   "options": [
+    "Cardioversión sincronizada",
+    "Desfibrilación no sincronizada a energía máxima",
+    "Amiodarona IV en infusión y observación antes de cualquier descarga",
+    "Estimulación transcutánea para sobreestimular la TV",
+    "Adenosina en bolo rápido para revertir el ritmo"
+   ],
+   "why": "Con hipotensión y confusión atribuibles al ritmo, la TV monomórfica con pulso es inestable y se trata con cardioversión sincronizada; una descarga no sincronizada puede caer en el período vulnerable y provocar FV."
+  },
+  "rosc-prognosis": {
+   "options": [
+    "Concluir mal pronóstico por la ausencia de despertar inmediato",
+    "Esperar evaluación diferida y multimodal",
+    "Basar la decisión en una tomografía cerebral aislada a las pocas horas",
+    "Usar un electroencefalograma único precoz como prueba definitiva",
+    "Definir el pronóstico según la duración de la RCP"
+   ],
+   "why": "El examen precoz está confundido por sedantes, hipotermia o shock; el pronóstico se establece más tarde (al menos 72 horas tras normotermia) con varios hallazgos concordantes: examen, EEG, biomarcadores, neuroimagen y potenciales evocados."
+  },
+  "p-deterioration": {
+   "options": [
+    "Mejoría: menor esfuerzo indica que cede la dificultad respiratoria",
+    "Deterioro que exige intervención",
+    "Fatiga esperable que admite reevaluar más tarde",
+    "Efecto de la oxigenoterapia, que permite espaciar los controles",
+    "Evolución habitual que no modifica la prioridad"
+   ],
+   "why": "En un niño con dificultad respiratoria, la somnolencia con menor esfuerzo suele indicar hipoxia, hipercapnia o agotamiento inminente, no mejoría: exige asistir la ventilación."
+  },
+  "p-pulse": {
+   "options": [
+    "Iniciar RCP y activar ayuda",
+    "Prolongar la búsqueda del pulso otros veinte segundos",
+    "Tratar como apnea con pulso y ventilar sin comprimir",
+    "Colocar un monitor y definir el ritmo antes de comprimir",
+    "Administrar oxígeno y reevaluar en un minuto"
+   ],
+   "why": "Si tras hasta 10 segundos no se palpa pulso, o hay pulso lento con mala perfusión, se inicia RCP y se activa la respuesta; el monitor y el oxígeno no deben demorar las compresiones."
+  },
+  "p-newborn": {
+   "options": [
+    "Reanimación neonatal",
+    "Algoritmo PALS de paro pediátrico con compresiones precoces",
+    "RCP pediátrica con relación 15:2 desde el nacimiento",
+    "RCP adulta con relación 30:2 por dos reanimadores",
+    "Algoritmo PALS de bradicardia con prioridad en el acceso vascular"
+   ],
+   "why": "La transición inmediata al nacimiento tiene un algoritmo propio (reanimación neonatal) centrado en la ventilación, distinto de PALS y de la RCP pediátrica o adulta."
+  },
+  "p-chest": {
+   "options": [
+    "Revisar posición, apertura y sellado",
+    "Aumentar la frecuencia de ventilación sin corregir la fuga",
+    "Considerar eficaz la ventilación por el movimiento de la bolsa",
+    "Pasar a intubación al primer intento fallido sin corregir la técnica",
+    "Mantener la técnica y esperar la respuesta de la saturación"
+   ],
+   "why": "Si el tórax no se eleva, la ventilación no es efectiva: se corrigen sellado, posición y apertura de la vía aérea y se busca obstrucción antes de pasar a una vía aérea avanzada."
+  },
+  "p-airway": {
+   "options": [
+    "Apoyo de vía aérea y ventilación",
+    "Oxígeno a alto flujo con reservorio sin asistir las respiraciones",
+    "Compresiones torácicas por la cianosis aislada",
+    "Acceso vascular y adrenalina antes de ventilar",
+    "Gasometría arterial antes de iniciar soporte respiratorio"
+   ],
+   "why": "En el niño con pulso, la causa más frecuente de deterioro es respiratoria: abrir la vía aérea y ventilar con oxígeno es la prioridad, sin esperar estudios ni acceso vascular."
+  },
+  "p-depth": {
+   "options": [
+    "Un tercio del diámetro anteroposterior",
+    "Un cuarto del diámetro anteroposterior",
+    "La mitad del diámetro anteroposterior",
+    "Dos centímetros en todas las edades",
+    "Entre 5 y 6 cm en todo niño prepuberal"
+   ],
+   "why": "En pediatría la profundidad se ajusta al tamaño: al menos un tercio del diámetro anteroposterior (unos 5 cm en el niño y 4 cm en el lactante); el valor adulto de 5–6 cm no se aplica a todo niño."
+  },
+  "p-brady-first": {
+   "options": [
+    "Ventilación y oxigenación",
+    "Atropina antes de corregir la hipoxia",
+    "Marcapasos transcutáneo como primera medida",
+    "Bolo de cristaloides sin soporte ventilatorio",
+    "Adrenalina IV antes de evaluar la ventilación"
+   ],
+   "why": "En el niño la bradicardia suele ser hipóxica: se corrigen primero ventilación y oxigenación; atropina, adrenalina y marcapasos quedan para cuando persiste el compromiso pese a eso."
+  },
+  "p-atropine": {
+   "options": [
+    "Tono vagal aumentado o bloqueo AV primario",
+    "Bradicardia por hipoxia, antes de corregirla",
+    "Taquicardia supraventricular por reentrada",
+    "Asistolia, en lugar de adrenalina",
+    "Fibrilación ventricular refractaria a dos descargas"
+   ],
+   "why": "La atropina se reserva para bradicardia por aumento del tono vagal o bloqueo AV primario; en la bradicardia hipóxica se corrige primero la ventilación y la oxigenación."
+  },
+  "p-sinus": {
+   "options": [
+    "Buscar y tratar la causa",
+    "Cardioversión sincronizada por la frecuencia aislada",
+    "Adenosina en bolo rápido como prueba terapéutica",
+    "Tratar como TSV pese a la variación del RR",
+    "Iniciar un antiarrítmico antes de valorar fiebre e hidratación"
+   ],
+   "why": "Inicio gradual, ondas P visibles y RR variable indican taquicardia sinusal, que es una respuesta a fiebre, dolor o hipovolemia: se trata la causa, no el ritmo."
+  },
+  "p-vf": {
+   "options": [
+    "Desfibrilación",
+    "Cardioversión sincronizada a 0,5–1 J/kg",
+    "Estimulación transcutánea",
+    "Amiodarona antes de la primera descarga",
+    "Adrenalina antes de la primera descarga"
+   ],
+   "why": "En el niño sin pulso con FV (o TV sin pulso) se desfibrila y se reanuda la RCP; la cardioversión sincronizada es para ritmos con pulso."
+  },
+  "p-pea": {
+   "options": [
+    "No desfibrilable",
+    "Desfibrilable, porque hay actividad eléctrica organizada",
+    "Cardioversión sincronizada, por tratarse de taquicardia",
+    "Estimulación transcutánea como primera rama",
+    "ROSC: pasar a cuidados posparo y observar"
+   ],
+   "prompt": "Niño sin pulso con complejos QRS organizados en el monitor. ¿Qué rama corresponde?",
+   "why": "La actividad eléctrica sin pulso (AESP) no es desfibrilable: se continúa RCP, adrenalina y búsqueda de causas reversibles."
+  },
+  "p-fever": {
+   "options": [
+    "La hipertermia",
+    "Nada: hasta 38,5 °C es aceptable posparo",
+    "Dejar que ascienda hasta que despierte",
+    "Enfriar por debajo de 32 °C para proteger el cerebro",
+    "Solo la temperatura periférica, porque la central es poco fiable"
+   ],
+   "why": "Tras ROSC se evita la fiebre: la temperatura central por encima de 37,5 °C se trata activamente, con normotermia o hipotermia terapéutica leve."
+  },
+  "p-neuro": {
+   "options": [
+    "Una exploración neurológica aislada en las primeras horas",
+    "Evaluación multimodal en distintos momentos",
+    "La duración de las compresiones como criterio único",
+    "La ausencia de respuesta durante la sedación como criterio suficiente",
+    "Un EEG único del primer día como pronóstico definitivo"
+   ],
+   "why": "El pronóstico neurológico se establece con varios hallazgos (examen, EEG, neuroimagen, biomarcadores) en distintos momentos; un dato aislado o precoz puede estar confundido por sedación o shock."
+  },
+  "p-reassess": {
+   "options": [
+    "Reevaluación seriada",
+    "Suspender el monitoreo continuo al normalizarse la perfusión",
+    "Cerrar la evaluación tras la primera respuesta favorable",
+    "Repetir la misma intervención automáticamente a intervalos fijos",
+    "Dar por resuelta la causa al normalizarse la frecuencia cardíaca"
+   ],
+   "why": "Una mejoría inicial puede ser transitoria o enmascarar la causa; en PALS se reevalúa de forma seriada la respuesta a cada intervención y se ajusta."
+  },
+  "f-priority": {
+   "options": [
+    "Resolver la amenaza de vía aérea",
+    "Completar las imágenes abdominales antes de intervenir en la vía aérea",
+    "Obtener gasometría y laboratorio para caracterizar el deterioro",
+    "Esperar la valoración del cirujano antes de actuar sobre la vía aérea",
+    "Completar la historia clínica antes del soporte respiratorio"
+   ],
+   "why": "Una amenaza vital de la vía aérea se resuelve antes de continuar la secuencia o completar estudios; la secuencia ABCDE ordena las prioridades."
+  },
+  "f-response": {
+   "options": [
+    "Reevaluar ABCDE",
+    "Continuar con el paso siguiente sin repetir los anteriores",
+    "Esperar otro cambio clínico antes de reevaluar",
+    "Repetir la última maniobra sin evaluar su efecto",
+    "Pedir laboratorio como sustituto del examen clínico"
+   ],
+   "why": "El abordaje ABCDE es cíclico: después de cada intervención o cambio clínico se vuelve a evaluar desde el principio."
+  },
+  "f-team": {
+   "options": [
+    "Pedir ayuda y asignar tareas claras",
+    "Concentrar todas las intervenciones en el líder",
+    "Repartir tareas sin nombrar responsables ni confirmar su ejecución",
+    "Rotar al responsable en cada intervención sin pase de información",
+    "Completar la evaluación antes de pedir apoyo"
+   ],
+   "why": "Pedir ayuda temprano y asignar tareas con nombre y confirmación permite realizar intervenciones en paralelo y evita que el líder quede saturado."
+  },
+  "f-airway": {
+   "options": [
+    "Permeabilidad de vía aérea",
+    "Presión arterial y perfusión periférica como primer paso",
+    "Dolor como causa suficiente de la taquipnea",
+    "Necesidad de sedación antes de valorar la permeabilidad",
+    "Gasometría arterial antes de examinar la vía aérea"
+   ],
+   "why": "Ruido respiratorio, tiraje y dificultad para hablar sugieren obstrucción parcial de la vía aérea, que se evalúa primero según la secuencia ABCDE; la sedación o los estudios pueden empeorarla o demorar su resolución."
+  },
+  "f-mask": {
+   "options": [
+    "Apertura, sellado y obstrucción",
+    "Volumen de la bolsa seleccionado y frecuencia programada",
+    "Frecuencia de compresión de la bolsa como único criterio",
+    "Saturación previa a la maniobra como confirmación",
+    "Tiempo transcurrido desde el inicio de la ventilación"
+   ],
+   "why": "Que la bolsa esté conectada no garantiza ventilación efectiva: si el tórax no se eleva se revisan apertura de la vía aérea, sellado de la máscara y obstrucción."
+  },
+  "f-help": {
+   "options": [
+    "Solicitar apoyo experto y continuar soporte",
+    "Repetir los intentos con la misma técnica sin plan alternativo",
+    "Sedar más al paciente antes de asegurar la oxigenación",
+    "Esperar la gasometría antes de pedir ayuda",
+    "Colocar un acceso central antes de resolver la vía aérea"
+   ],
+   "why": "Si las maniobras iniciales no sostienen la vía aérea hay que escalar: pedir ayuda experta, seguir oxigenando y preparar una alternativa, no insistir con la misma técnica."
+  },
+  "f-co2": {
+   "options": [
+    "Retención de CO₂",
+    "Oxigenación normal que demuestra ventilación adecuada",
+    "Hiperventilación con eliminación excesiva de CO₂",
+    "Alcalosis respiratoria por el oxígeno suplementario",
+    "Hipoxemia oculta por la lectura del oxímetro"
+   ],
+   "why": "La SpO₂ solo refleja oxigenación: con PaCO₂ de 70 mmHg y somnolencia hay hipoventilación, y el oxígeno puede enmascararla."
+  },
+  "f-fatigue": {
+   "options": [
+    "Reevaluar y escalar soporte",
+    "Reducir la vigilancia por el menor esfuerzo visible",
+    "Interpretar el cambio como alivio de la disnea",
+    "Esperar la caída de la saturación antes de reevaluar",
+    "Mantener el soporte sin cambios hasta obtener una imagen"
+   ],
+   "why": "La disminución del esfuerzo en un paciente agotado no es mejoría: puede preceder al fallo ventilatorio, por lo que se reevalúa y se escala el soporte."
+  },
+  "f-oximeter": {
+   "options": [
+    "Integrar clínica y verificar con medición fiable",
+    "Ajustar todo el tratamiento según la lectura aislada",
+    "Descartar hipoxemia por una cifra aparentemente normal",
+    "Confiar en la lectura si el sensor muestra curva visible",
+    "Usar la saturación como medida directa de ventilación"
+   ],
+   "why": "En shock la perfusión periférica pobre vuelve poco fiable el oxímetro; se interpreta con la clínica y se confirma con gasometría arterial."
+  },
+  "f-plateau": {
+   "options": [
+    "Revisar la estrategia protectora",
+    "Mantener el volumen corriente, pues se calculó con el peso real",
+    "Aumentar el volumen para reducir la frecuencia",
+    "Aceptar hasta 40 cmH₂O mientras la saturación sea adecuada",
+    "Interpretarla como presión pico sin más evaluación"
+   ]
+  },
+  "f-actual": {
+   "options": [
+    "Talla y sexo de la fórmula",
+    "Peso real y edad",
+    "Peso al ingreso y balance hídrico acumulado",
+    "Índice de masa corporal y peso actual",
+    "Perímetro abdominal y peso actual"
+   ],
+   "why": "El peso predicho se calcula con la talla y el sexo; refleja el tamaño pulmonar y no cambia con el peso real, el edema o el balance hídrico."
+  },
+  "f-fluids": {
+   "options": [
+    "Reevaluar perfusión y tolerancia antes de más volumen",
+    "Repetir bolos iguales pese a la nueva congestión",
+    "Decidir más volumen según la presión venosa central aislada",
+    "Guiarse solo por el volumen acumulado respecto de la meta",
+    "Atribuir la congestión a la infección y continuar la reposición"
+   ],
+   "why": "En el shock séptico cada bolo se decide según respuesta y daño potencial: ante congestión nueva se reevalúa con medidas dinámicas de perfusión y tolerancia antes de más volumen."
+  },
+  "f-dynamic": {
+   "options": [
+    "Cambio de volumen sistólico con elevación pasiva de piernas",
+    "Presión venosa central aislada",
+    "Presión de oclusión de la arteria pulmonar aislada",
+    "Frecuencia cardíaca de una única medición",
+    "Lactato en una única medición"
+   ],
+   "why": "La elevación pasiva de piernas con medición del volumen sistólico simula un bolo reversible y valora la respuesta funcional a precarga; las medidas estáticas predicen mal la respuesta a volumen."
+  },
+  "f-vasopressor": {
+   "options": [
+    "Noradrenalina",
+    "Dopamina como primera elección habitual",
+    "Dobutamina como vasopresor inicial",
+    "Vasopresina en monoterapia como primera elección",
+    "Fenilefrina como primera elección sistemática"
+   ],
+   "why": "La noradrenalina es el vasopresor de primera línea en el shock séptico; la vasopresina o la adrenalina se agregan si la meta de presión no se logra, y la dopamina quedó relegada por más arritmias."
+  },
+  "f-antibiotics": {
+   "options": [
+    "De inmediato, idealmente dentro de una hora",
+    "Dentro de las 3 horas, tras completar la investigación diagnóstica",
+    "Dentro de las 6 horas, una vez estabilizada la hemodinamia",
+    "Después de obtener el resultado de los hemocultivos",
+    "Luego de completar las imágenes para localizar el foco"
+   ],
+   "why": "Ante probable shock séptico los antimicrobianos se administran de inmediato (idealmente en la primera hora), con hemocultivos previos solo si no los demoran; la ventana de 3 horas es para sepsis posible sin shock."
+  },
+  "f-possible": {
+   "options": [
+    "Investigación rápida y acotada; si persiste sospecha, antimicrobianos dentro de tres horas",
+    "Antimicrobianos de inmediato en toda sospecha, sin investigación previa",
+    "Investigación completa hasta tener hemocultivos definitivos y luego decidir",
+    "Investigación rápida y acotada; si persiste la sospecha, antimicrobianos dentro de seis horas",
+    "Procalcitonina como único criterio para decidir el inicio de antimicrobianos"
+   ],
+   "why": "En sepsis posible sin shock se hace una investigación rápida y acotada y, si persiste la sospecha de infección, se inician antimicrobianos dentro de las 3 horas; con probable o definida, de inmediato."
+  },
+  "f-source": {
+   "options": [
+    "Evaluación del control del foco",
+    "Prolongar el antibiótico sin valorar el drenaje",
+    "Esperar a que el antibiótico esterilice la colección antes de valorar intervención",
+    "Postergar el control del foco hasta normalizar los signos vitales",
+    "Cambiar a un antibiótico de más amplio espectro en lugar de drenar"
+   ],
+   "why": "Un absceso requiere control del foco (drenaje o cirugía) en cuanto sea factible; los antimicrobianos solos penetran mal en una colección."
+  },
+  "f-hypoxia": {
+   "options": [
+    "Corregir ABC mientras evaluás neurología",
+    "Completar el examen neurológico antes de tratar el ABC",
+    "Realizar neuroimagen antes de corregir la hipoxemia",
+    "Administrar sedación antes de valorar la circulación",
+    "Esperar la interconsulta sin soporte inicial"
+   ],
+   "why": "La hipoxemia y la hipotensión pueden explicar la somnolencia: se corrige el ABC al mismo tiempo que se evalúa la neurología, sin esperar imágenes ni interconsultas."
+  },
+  "f-drugs": {
+   "options": [
+    "Medicaciones y causas reversibles",
+    "Atribuirlo a una lesión neurológica irreversible",
+    "Considerarlo esperable sin comprobar la ventilación",
+    "Esperar la eliminación del fármaco sin reevaluar el ABC",
+    "Tomar la dosis administrada como prueba de seguridad"
+   ],
+   "why": "La caída de respuesta tras sedantes puede deberse al fármaco, a hipoventilación o a hipercapnia: se revisan medicaciones y causas reversibles y se reevalúa el ABC."
+  },
+  "f-handoff": {
+   "options": [
+    "Solicito valoración presencial ahora para acordar el siguiente paso.",
+    "La paciente ingresó esta mañana por un cuadro respiratorio y recibió oxígeno.",
+    "Desde la última valoración aumentaron su trabajo respiratorio y su frecuencia.",
+    "Mi impresión es que el soporte actual resulta insuficiente para sostenerla.",
+    "La última intervención produjo una mejoría parcial que no se sostuvo."
+   ],
+   "why": "El pedido (la R de SBAR) indica qué ayuda se necesita y cuándo. Los otros datos corresponden a antecedentes, valoración o situación, no a la recomendación."
+  },
+  "pea": {
+   "options": [
+    "Fibrilación ventricular fina",
+    "AESP",
+    "Taquicardia ventricular sin pulso",
+    "Asistolia",
+    "Bradicardia sinusal con perfusión conservada"
+   ],
+   "prompt": "Hay complejos QRS estrechos organizados en el monitor, pero no hay pulso. ¿Cómo lo clasificás?"
+  },
+  "ecg-pea": {
+   "options": [
+    "Bradicardia sinusal con perfusión conservada",
+    "AESP",
+    "Fibrilación ventricular",
+    "Taquicardia ventricular sin pulso",
+    "Asistolia"
+   ]
+  },
+  "p-brady-rcp": {
+   "options": [
+    "Iniciar RCP",
+    "Administrar adrenalina 0,01 mg/kg y reevaluar sin comprimir",
+    "Administrar atropina 0,02 mg/kg como alternativa a las compresiones",
+    "Iniciar estimulación transcutánea inmediata",
+    "Realizar cardioversión sincronizada a 1 J/kg"
+   ]
+  },
+  "p-svt": {
+   "options": [
+    "TSV",
+    "Taquicardia sinusal",
+    "Fibrilación auricular con conducción rápida",
+    "Taquicardia ventricular monomórfica",
+    "Ritmo idioventricular acelerado"
+   ]
+  },
+  "p-aftershock": {
+   "options": [
+    "RCP",
+    "Comprobación del pulso antes de reanudar compresiones",
+    "Segunda descarga de inmediato si el monitor sigue mostrando FV",
+    "Administrar adrenalina antes de reanudar compresiones",
+    "Intubación antes de reiniciar compresiones"
+   ]
+  },
+  "f-glucose": {
+   "options": [
+    "Glucemia",
+    "Hemoglobina glicosilada",
+    "Cetonuria como única medición inicial",
+    "Osmolaridad plasmática calculada",
+    "Urea y creatinina antes de medir la glucemia"
+   ]
+  }
+ },
+ "flags": [
+  {
+   "id": "ecg-vt",
+   "problema": "El enunciado depende de una tira ECG que no pude ver; la clave es coherente con el texto (sin pulso: desfibrilar) pero no verifiqué la imagen.",
+   "propuesta": "Revisar visualmente que la tira muestre TV/FV.",
+   "fuente": "AHA 2025 Adult Cardiac Arrest Algorithm"
+  },
+  {
+   "id": "f-vasopressor",
+   "problema": "El porqué cita SSC 2026; confirmé la guía 2026 (publicada 23-mar-2026) pero no el texto exacto de la recomendación de noradrenalina.",
+   "propuesta": "Mantener clave (noradrenalina primera línea en SSC 2021); verificar redacción 2026.",
+   "fuente": "https://www.sccm.org/clinical-resources/guidelines/guidelines/surviving-sepsis-campaign-international-guidelines-for-management-of-sepsis-and-septic-shock-2026"
+  },
+  {
+   "id": "p-first-energy",
+   "problema": "Dice 'primera descarga a 2 J/kg'; AHA 2025 pediátrica admite 2–4 J/kg (después ≥4 J/kg). La clave 30 J es correcta con el dato dado, pero conviene aclarar en el fundamento.",
+   "propuesta": "Agregar al porqué que 2–4 J/kg es el rango y la pregunta fija 2 J/kg.",
+   "fuente": "AHA 2025 Pediatric Advanced Life Support (no abierto; sin verificar)"
+  }
+ ],
+ "stats": {
+  "revisadas": 72,
+  "reescritas": 52,
+  "flags": 3,
+  "noVerificadas": [
+   "tiras ECG (ecg-*, p-vf): imágenes no visibles",
+   "dosis/energía pediátrica y 2025 PALS: AHA bloqueada, basado en conocimiento previo",
+   "SSC 2026 noradrenalina: texto exacto no confirmado",
+   "SpO2 90–98% (rosc-oxygen): confirmado vía algoritmo PCAC AHA 2025 en resumen secundario"
+  ]
+ }
+}

@@ -1,4 +1,11 @@
 import {kinesiologyCourses,kinesiologySources} from './content/kinesiologia.mjs';
+import {nursingCourses,nursingSources} from './content/enfermeria.mjs';
+import {applyQuestionUpgrades} from './content/apply-upgrades.mjs';
+import {gerMedCourses,gerMedSources} from './content/gerontologia-medicos.mjs';
+import {gerNursingCourses,gerNursingSources} from './content/gerontologia-enfermeria.mjs';
+import {gerKineCourses,gerKineSources} from './content/gerontologia-kinesiologia.mjs';
+import {gerNutritionCourses,gerNutritionSources} from './content/gerontologia-nutricion.mjs';
+import {nutritionCourses,nutritionSources} from './content/nutricion.mjs';
 import {policeCourse,policeSources} from './content/respuesta-policial.mjs';
 import {applyQuestionDifficultyRevisions} from './content/question-difficulty-revisions.mjs';
 import {emergencyCourses,emergencySources} from './content/emergentologia.mjs';
@@ -1342,5 +1349,11 @@ courses.push(policeCourse);
 // Keep the authored physiotherapy curriculum out of legacy content rewrites.
 Object.assign(sources,kinesiologySources);
 courses.push(...kinesiologyCourses);
+Object.assign(sources,nursingSources,nutritionSources);
+courses.push(...nursingCourses,...nutritionCourses);
+Object.assign(sources,gerMedSources,gerNursingSources,gerKineSources,gerNutritionSources);
+courses.push(...gerMedCourses,...gerNursingCourses,...gerKineCourses,...gerNutritionCourses);
+// Last step: the one-by-one reviewed distractors replace legacy filler options (correct answer text and position never change).
+applyQuestionUpgrades(courses);
 export const catalog=courses;
 export const questions=courses.flatMap(c=>c.lessons.flatMap((l,li)=>l.questions.map((q,qi)=>({...q,source:q.source||l.source,courseId:c.id,lessonId:l.id,area:l.area||q.skill,li,qi}))));

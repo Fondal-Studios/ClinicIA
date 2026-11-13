@@ -1,0 +1,791 @@
+{
+ "batch": "R09",
+ "upgrades": {
+  "uci-critico-q1": {
+   "options": [
+    "Evaluar ABCDE y glucemia",
+    "Solicitar una TC de cráneo antes de asegurar la vía aérea y medir la glucemia",
+    "Indicar naloxona empírica como única medida y esperar la respuesta",
+    "Administrar una benzodiazepina para ordenar la conducta y evaluar después",
+    "Iniciar tratamiento antihipertensivo según la cifra de presión arterial"
+   ],
+   "prompt": "Un paciente de 68 años, diabético e hipertenso, es hallado obnubilado en su domicilio y llega a la guardia respondiendo a la voz con frases incoherentes, sin foco motor evidente. ¿Qué prioridad clínica corresponde?",
+   "why": "La alteración aguda del sensorio es una emergencia con causas inmediatamente reversibles (hipoglucemia, hipoxemia, hipoperfusión). Por eso el primer paso es la evaluación sistemática ABCDE con glucemia capilar, antes de estudios de imagen o tratamientos dirigidos a una causa supuesta. Tentadora pero errónea: pedir la TC o dar un antídoto empírico sin asegurar vía aérea, ventilación, circulación y glucemia."
+  },
+  "uci-critico-q2": {
+   "options": [
+    "Solicitar una TC de cráneo",
+    "Evaluar ABCDE y glucemia",
+    "Dar naloxona empírica",
+    "Pedir punción lumbar",
+    "Intubar de rutina"
+   ],
+   "prompt": "En la UCI, un paciente de 54 años cursando una neumonía pasa en 20 minutos de estar vigil a responder solo al dolor. ¿Qué acción se debe priorizar?",
+   "why": "La alteración aguda del sensorio es una emergencia con causas inmediatamente reversibles (hipoglucemia, hipoxemia, hipoperfusión). Por eso el primer paso es la evaluación sistemática ABCDE con glucemia capilar, antes de estudios de imagen o tratamientos dirigidos a una causa supuesta. Tentadora pero errónea: pedir la TC o dar un antídoto empírico sin asegurar vía aérea, ventilación, circulación y glucemia."
+  },
+  "uci-critico-q3": {
+   "options": [
+    "Atribuir el cuadro a su patología de base y pedir interconsulta",
+    "Indicar antibióticos empíricos y aguardar el resultado de los cultivos",
+    "Evaluar ABCDE y glucemia",
+    "Realizar una punción lumbar de entrada para descartar meningitis",
+    "Intubar de rutina por el Glasgow sin evaluar primero la oxigenación"
+   ],
+   "prompt": "Una paciente de 75 años, institucionalizada, es traída por somnolencia de comienzo agudo y «rara» desde la mañana. Ante esta alteración aguda del sensorio, ¿cuál es la opción más segura?",
+   "why": "La alteración aguda del sensorio es una emergencia con causas inmediatamente reversibles (hipoglucemia, hipoxemia, hipoperfusión). Por eso el primer paso es la evaluación sistemática ABCDE con glucemia capilar, antes de estudios de imagen o tratamientos dirigidos a una causa supuesta. Tentadora pero errónea: pedir la TC o dar un antídoto empírico sin asegurar vía aérea, ventilación, circulación y glucemia."
+  },
+  "uci-critico-q4": {
+   "options": [
+    "Realizar una punción lumbar de entrada para descartar meningitis",
+    "Intubar de rutina por el Glasgow sin evaluar primero la oxigenación",
+    "Solicitar una TC de cráneo antes de asegurar la vía aérea y medir la glucemia",
+    "Evaluar ABCDE y glucemia",
+    "Indicar naloxona empírica como única medida y esperar la respuesta"
+   ],
+   "prompt": "Durante un traslado intrahospitalario, un paciente de 60 años en el posoperatorio comienza con confusión y sudoración fría. ¿Qué decisión es más justificable?",
+   "why": "La alteración aguda del sensorio es una emergencia con causas inmediatamente reversibles (hipoglucemia, hipoxemia, hipoperfusión). Por eso el primer paso es la evaluación sistemática ABCDE con glucemia capilar, antes de estudios de imagen o tratamientos dirigidos a una causa supuesta. Tentadora pero errónea: pedir la TC o dar un antídoto empírico sin asegurar vía aérea, ventilación, circulación y glucemia."
+  },
+  "uci-critico-q5": {
+   "options": [
+    "Solicitar una TC de cráneo antes de asegurar la vía aérea y medir la glucemia",
+    "Indicar naloxona empírica como única medida y esperar la respuesta",
+    "Administrar una benzodiazepina para ordenar la conducta y evaluar después",
+    "Iniciar tratamiento antihipertensivo según la cifra de presión arterial",
+    "Evaluar ABCDE y glucemia"
+   ],
+   "prompt": "Un hombre de 45 años con antecedente de consumo de alcohol llega con Glasgow 11 de inicio brusco, sin trauma referido. ¿Qué intervención inicial es coherente?",
+   "why": "La alteración aguda del sensorio es una emergencia con causas inmediatamente reversibles (hipoglucemia, hipoxemia, hipoperfusión). Por eso el primer paso es la evaluación sistemática ABCDE con glucemia capilar, antes de estudios de imagen o tratamientos dirigidos a una causa supuesta. Tentadora pero errónea: pedir la TC o dar un antídoto empírico sin asegurar vía aérea, ventilación, circulación y glucemia."
+  },
+  "uci-critico-q6": {
+   "options": [
+    "Sedar al paciente para reducir el consumo de oxígeno sin modificar el soporte",
+    "Reevaluar oxigenación y necesidad de escalada",
+    "Confiar en la SpO2 aislada sin gasometría arterial ni examen clínico",
+    "Indicar diuréticos de rutina sin precisar el mecanismo de la hipoxemia",
+    "Reducir el soporte ventilatorio para evitar barotrauma sin reevaluar"
+   ],
+   "prompt": "Un paciente de 62 años con neumonía grave, en cánula nasal de alto flujo con FiO2 0,6, mantiene SpO2 88 % y aumenta la frecuencia respiratoria con uso de músculos accesorios. ¿Qué prioridad clínica corresponde?",
+   "why": "En la hipoxemia persistente lo central es reevaluar de forma seriada (clínica, SpO2, gasometría, trabajo respiratorio) y decidir a tiempo la escalada del soporte (alto flujo, ventilación no invasiva, intubación, prono). El error tentador es tranquilizarse con un signo aislado como la SpO2 o la frecuencia cardíaca: la fatiga respiratoria puede precipitar un paro si se demora la escalada."
+  },
+  "uci-critico-q7": {
+   "options": [
+    "Subir la FiO2 y reevaluar mañana",
+    "Sedar sin modificar el soporte",
+    "Reevaluar oxigenación y necesidad de escalada",
+    "Indicar diuréticos de rutina",
+    "Pedir tomografía de tórax primero"
+   ],
+   "prompt": "Una mujer de 50 años con COVID-19 grave persiste hipoxémica pese a la oxigenoterapia y empieza a fatigarse. ¿Qué acción se debe priorizar?",
+   "why": "En la hipoxemia persistente lo central es reevaluar de forma seriada (clínica, SpO2, gasometría, trabajo respiratorio) y decidir a tiempo la escalada del soporte (alto flujo, ventilación no invasiva, intubación, prono). El error tentador es tranquilizarse con un signo aislado como la SpO2 o la frecuencia cardíaca: la fatiga respiratoria puede precipitar un paro si se demora la escalada."
+  },
+  "uci-critico-q8": {
+   "options": [
+    "Indicar ECMO de entrada sin optimizar ventilación ni decúbito prono",
+    "Dar broncodilatadores de rescate como única medida ante el trabajo respiratorio",
+    "Pedir una tomografía de tórax antes de reevaluar el soporte en curso",
+    "Reevaluar oxigenación y necesidad de escalada",
+    "Aguardar una mejoría espontánea porque la frecuencia cardíaca es normal"
+   ],
+   "prompt": "Un paciente con EPOC e infección respiratoria presenta hipoxemia persistente y trabajo respiratorio creciente tras 2 horas de ventilación no invasiva. ¿Cuál es la opción más segura?",
+   "why": "En la hipoxemia persistente lo central es reevaluar de forma seriada (clínica, SpO2, gasometría, trabajo respiratorio) y decidir a tiempo la escalada del soporte (alto flujo, ventilación no invasiva, intubación, prono). El error tentador es tranquilizarse con un signo aislado como la SpO2 o la frecuencia cardíaca: la fatiga respiratoria puede precipitar un paro si se demora la escalada."
+  },
+  "uci-critico-q9": {
+   "options": [
+    "Pedir una tomografía de tórax antes de reevaluar el soporte en curso",
+    "Aguardar una mejoría espontánea porque la frecuencia cardíaca es normal",
+    "Sedar al paciente para reducir el consumo de oxígeno sin modificar el soporte",
+    "Confiar en la SpO2 aislada sin gasometría arterial ni examen clínico",
+    "Reevaluar oxigenación y necesidad de escalada"
+   ],
+   "prompt": "En una simulación, un paciente de 70 años con insuficiencia respiratoria mantiene SpO2 89 % con máscara con reservorio y respiración paradojal. ¿Qué decisión es más justificable?",
+   "why": "En la hipoxemia persistente lo central es reevaluar de forma seriada (clínica, SpO2, gasometría, trabajo respiratorio) y decidir a tiempo la escalada del soporte (alto flujo, ventilación no invasiva, intubación, prono). El error tentador es tranquilizarse con un signo aislado como la SpO2 o la frecuencia cardíaca: la fatiga respiratoria puede precipitar un paro si se demora la escalada."
+  },
+  "uci-critico-q10": {
+   "options": [
+    "Reevaluar oxigenación y necesidad de escalada",
+    "Sedar al paciente para reducir el consumo de oxígeno sin modificar el soporte",
+    "Confiar en la SpO2 aislada sin gasometría arterial ni examen clínico",
+    "Indicar diuréticos de rutina sin precisar el mecanismo de la hipoxemia",
+    "Reducir el soporte ventilatorio para evitar barotrauma sin reevaluar"
+   ],
+   "prompt": "Un joven de 30 años con neumonía bilateral sigue con PaO2/FiO2 baja y taquipnea progresiva a pesar del soporte actual. ¿Qué intervención inicial es coherente?",
+   "why": "En la hipoxemia persistente lo central es reevaluar de forma seriada (clínica, SpO2, gasometría, trabajo respiratorio) y decidir a tiempo la escalada del soporte (alto flujo, ventilación no invasiva, intubación, prono). El error tentador es tranquilizarse con un signo aislado como la SpO2 o la frecuencia cardíaca: la fatiga respiratoria puede precipitar un paro si se demora la escalada."
+  },
+  "uci-critico-q11": {
+   "options": [
+    "Calcular el volumen corriente según el peso real del paciente",
+    "Fijar 10 mL/kg para evitar atelectasias y mejorar el reclutamiento",
+    "Usar estrategia protectora ajustada al peso predicho",
+    "Priorizar normalizar pH y PaCO2 aunque suban las presiones de la vía aérea",
+    "Aceptar una presión meseta de hasta 40 cmH2O como objetivo"
+   ],
+   "prompt": "Un paciente de 55 años con SDRA moderado por neumonía está intubado y se debe fijar el volumen corriente. ¿Qué prioridad clínica corresponde?",
+   "why": "En el SDRA la ventilación protectora (ARDSNet) usa un volumen corriente de unos 6 mL/kg de peso predicho, calculado con sexo y talla (no con el peso real), limitando la presión meseta a 30 cmH2O o menos. El error tentador es ajustar al peso real, lo que en el obeso sobredistiende pulmones que son pequeños, o priorizar la normalización gasométrica a costa de lesión pulmonar inducida por el ventilador; la hipercapnia permisiva se tolera."
+  },
+  "uci-critico-q12": {
+   "options": [
+    "Fijar el volumen según el peso real",
+    "Usar 10 mL/kg para reclutar",
+    "Aceptar meseta de hasta 40 cmH2O",
+    "Usar estrategia protectora ajustada al peso predicho",
+    "Normalizar el pH a cualquier costo"
+   ],
+   "prompt": "Una mujer de 1,58 m con SDRA y presión meseta de 33 cmH2O en ventilación controlada. ¿Qué acción se debe priorizar?",
+   "why": "En el SDRA la ventilación protectora (ARDSNet) usa un volumen corriente de unos 6 mL/kg de peso predicho, calculado con sexo y talla (no con el peso real), limitando la presión meseta a 30 cmH2O o menos. El error tentador es ajustar al peso real, lo que en el obeso sobredistiende pulmones que son pequeños, o priorizar la normalización gasométrica a costa de lesión pulmonar inducida por el ventilador; la hipercapnia permisiva se tolera."
+  },
+  "uci-critico-q13": {
+   "options": [
+    "Usar PEEP cero para disminuir el riesgo de barotrauma",
+    "Elegir volúmenes altos con frecuencia baja para reclutar alvéolos",
+    "Guiar el volumen corriente por la talla del paciente sin considerar el sexo",
+    "Calcular el volumen corriente según el peso real del paciente",
+    "Usar estrategia protectora ajustada al peso predicho"
+   ],
+   "prompt": "Un hombre obeso de 1,75 m y 130 kg con SDRA por sepsis abdominal requiere ventilación invasiva. ¿Cuál es la opción más segura?",
+   "why": "En el SDRA la ventilación protectora (ARDSNet) usa un volumen corriente de unos 6 mL/kg de peso predicho, calculado con sexo y talla (no con el peso real), limitando la presión meseta a 30 cmH2O o menos. El error tentador es ajustar al peso real, lo que en el obeso sobredistiende pulmones que son pequeños, o priorizar la normalización gasométrica a costa de lesión pulmonar inducida por el ventilador; la hipercapnia permisiva se tolera."
+  },
+  "uci-critico-q14": {
+   "options": [
+    "Usar estrategia protectora ajustada al peso predicho",
+    "Guiar el volumen corriente por la talla del paciente sin considerar el sexo",
+    "Calcular el volumen corriente según el peso real del paciente",
+    "Fijar 10 mL/kg para evitar atelectasias y mejorar el reclutamiento",
+    "Priorizar normalizar pH y PaCO2 aunque suban las presiones de la vía aérea"
+   ],
+   "prompt": "En una simulación, un paciente con SDRA y PaO2/FiO2 de 120 inicia ventilación mecánica. ¿Qué decisión es más justificable?",
+   "why": "En el SDRA la ventilación protectora (ARDSNet) usa un volumen corriente de unos 6 mL/kg de peso predicho, calculado con sexo y talla (no con el peso real), limitando la presión meseta a 30 cmH2O o menos. El error tentador es ajustar al peso real, lo que en el obeso sobredistiende pulmones que son pequeños, o priorizar la normalización gasométrica a costa de lesión pulmonar inducida por el ventilador; la hipercapnia permisiva se tolera."
+  },
+  "uci-critico-q15": {
+   "options": [
+    "Fijar 10 mL/kg para evitar atelectasias y mejorar el reclutamiento",
+    "Usar estrategia protectora ajustada al peso predicho",
+    "Priorizar normalizar pH y PaCO2 aunque suban las presiones de la vía aérea",
+    "Aceptar una presión meseta de hasta 40 cmH2O como objetivo",
+    "Usar PEEP cero para disminuir el riesgo de barotrauma"
+   ],
+   "prompt": "Un paciente de 40 años intubado por SDRA tiene pH 7,28 y PaCO2 55 mmHg con parámetros protectores. ¿Qué intervención inicial es coherente?",
+   "why": "En el SDRA la ventilación protectora (ARDSNet) usa un volumen corriente de unos 6 mL/kg de peso predicho, calculado con sexo y talla (no con el peso real), limitando la presión meseta a 30 cmH2O o menos. El error tentador es ajustar al peso real, lo que en el obeso sobredistiende pulmones que son pequeños, o priorizar la normalización gasométrica a costa de lesión pulmonar inducida por el ventilador; la hipercapnia permisiva se tolera."
+  },
+  "uci-critico-q16": {
+   "options": [
+    "Aumentar sedación y relajación para sincronizar al paciente con el ventilador",
+    "Subir el límite de alarma de presión pico para evitar interrupciones",
+    "Atribuir la alarma a un artefacto del transductor y silenciarla",
+    "Revisar circuito, tubo, paciente y mecánica",
+    "Incrementar el volumen corriente para compensar la ventilación perdida"
+   ],
+   "prompt": "Un paciente de 66 años intubado por neumonía presenta un aumento brusco de la presión pico con alarma sostenida. ¿Qué prioridad clínica corresponde?",
+   "why": "Un aumento brusco de presión de vía aérea puede deberse a obstrucción o acodamiento del tubo, secreciones, intubación selectiva, neumotórax, broncoespasmo o asincronía. Se desconecta del ventilador si hay inestabilidad y se revisa sistemáticamente circuito, tubo, paciente y mecánica (pico versus meseta). Subir sedación o alarmas sin buscar la causa puede enmascarar un neumotórax a tensión o una obstrucción del tubo."
+  },
+  "uci-critico-q17": {
+   "options": [
+    "Subir el límite de alarma de presión",
+    "Silenciar la alarma como artefacto",
+    "Aumentar el volumen corriente",
+    "Profundizar sedación y relajación",
+    "Revisar circuito, tubo, paciente y mecánica"
+   ],
+   "prompt": "En ventilación controlada por volumen, la presión de vía aérea sube de 25 a 45 cmH2O en un minuto y cae la saturación. ¿Qué acción se debe priorizar?",
+   "why": "Un aumento brusco de presión de vía aérea puede deberse a obstrucción o acodamiento del tubo, secreciones, intubación selectiva, neumotórax, broncoespasmo o asincronía. Se desconecta del ventilador si hay inestabilidad y se revisa sistemáticamente circuito, tubo, paciente y mecánica (pico versus meseta). Subir sedación o alarmas sin buscar la causa puede enmascarar un neumotórax a tensión o una obstrucción del tubo."
+  },
+  "uci-critico-q18": {
+   "options": [
+    "Revisar circuito, tubo, paciente y mecánica",
+    "Cambiar el modo ventilatorio a presión control sin buscar la causa",
+    "Indicar broncodilatadores inhalados de rutina sin examinar al paciente",
+    "Posponer la evaluación hasta tener el informe de la radiografía de tórax",
+    "Aumentar sedación y relajación para sincronizar al paciente con el ventilador"
+   ],
+   "prompt": "Un paciente de 58 años con asma grave intubado muestra aumento brusco de presión de vía aérea y caída de la presión arterial. ¿Cuál es la opción más segura?",
+   "why": "Un aumento brusco de presión de vía aérea puede deberse a obstrucción o acodamiento del tubo, secreciones, intubación selectiva, neumotórax, broncoespasmo o asincronía. Se desconecta del ventilador si hay inestabilidad y se revisa sistemáticamente circuito, tubo, paciente y mecánica (pico versus meseta). Subir sedación o alarmas sin buscar la causa puede enmascarar un neumotórax a tensión o una obstrucción del tubo."
+  },
+  "uci-critico-q19": {
+   "options": [
+    "Posponer la evaluación hasta tener el informe de la radiografía de tórax",
+    "Revisar circuito, tubo, paciente y mecánica",
+    "Aumentar sedación y relajación para sincronizar al paciente con el ventilador",
+    "Subir el límite de alarma de presión pico para evitar interrupciones",
+    "Atribuir la alarma a un artefacto del transductor y silenciarla"
+   ],
+   "prompt": "En una simulación, un paciente pediátrico mayor intubado presenta aumento brusco de la presión pico tras la movilización. ¿Qué decisión es más justificable?",
+   "why": "Un aumento brusco de presión de vía aérea puede deberse a obstrucción o acodamiento del tubo, secreciones, intubación selectiva, neumotórax, broncoespasmo o asincronía. Se desconecta del ventilador si hay inestabilidad y se revisa sistemáticamente circuito, tubo, paciente y mecánica (pico versus meseta). Subir sedación o alarmas sin buscar la causa puede enmascarar un neumotórax a tensión o una obstrucción del tubo."
+  },
+  "uci-critico-q20": {
+   "options": [
+    "Subir el límite de alarma de presión pico para evitar interrupciones",
+    "Atribuir la alarma a un artefacto del transductor y silenciarla",
+    "Revisar circuito, tubo, paciente y mecánica",
+    "Incrementar el volumen corriente para compensar la ventilación perdida",
+    "Cambiar el modo ventilatorio a presión control sin buscar la causa"
+   ],
+   "prompt": "Un paciente de 72 años sedado presenta tos, asincronía y presión pico elevada de aparición súbita. ¿Qué intervención inicial es coherente?",
+   "why": "Un aumento brusco de presión de vía aérea puede deberse a obstrucción o acodamiento del tubo, secreciones, intubación selectiva, neumotórax, broncoespasmo o asincronía. Se desconecta del ventilador si hay inestabilidad y se revisa sistemáticamente circuito, tubo, paciente y mecánica (pico versus meseta). Subir sedación o alarmas sin buscar la causa puede enmascarar un neumotórax a tensión o una obstrucción del tubo."
+  },
+  "uci-critico-q21": {
+   "options": [
+    "Extubar al lograr saturación normal con FiO2 baja",
+    "Reducir durante días la frecuencia mandatoria sin realizar una prueba de respiración espontánea",
+    "Esperar la normalización de la radiografía de tórax antes de evaluar el destete",
+    "Mantener sedación profunda hasta la extubación para evitar autoextubación",
+    "Evaluar preparación para prueba de respiración espontánea"
+   ],
+   "prompt": "Un paciente de 64 años intubado por neumonía mejora: febril ausente, FiO2 0,35, PEEP 5 y secreciones escasas. ¿Qué prioridad clínica corresponde?",
+   "why": "En la recuperación respiratoria se deben tamizar a diario los criterios de preparación (causa resuelta, oxigenación adecuada, estabilidad hemodinámica, esfuerzo inspiratorio) y realizar una prueba de respiración espontánea, evaluando además protección de la vía aérea. Extubar solo por la saturación o prolongar la ventilación sin reevaluar aumenta, respectivamente, el riesgo de reintubación y de complicaciones de la ventilación prolongada."
+  },
+  "uci-critico-q22": {
+   "options": [
+    "Evaluar preparación para prueba de respiración espontánea",
+    "Extubar al normalizar la saturación",
+    "Bajar la frecuencia mandatoria sin prueba",
+    "Esperar la radiografía de tórax normal",
+    "Indicar traqueostomía de rutina"
+   ],
+   "prompt": "Un paciente postoperado de 50 años, hemodinámicamente estable y con sedación suspendida, tiene buen esfuerzo inspiratorio. ¿Qué acción se debe priorizar?",
+   "why": "En la recuperación respiratoria se deben tamizar a diario los criterios de preparación (causa resuelta, oxigenación adecuada, estabilidad hemodinámica, esfuerzo inspiratorio) y realizar una prueba de respiración espontánea, evaluando además protección de la vía aérea. Extubar solo por la saturación o prolongar la ventilación sin reevaluar aumenta, respectivamente, el riesgo de reintubación y de complicaciones de la ventilación prolongada."
+  },
+  "uci-critico-q23": {
+   "options": [
+    "Indicar traqueostomía de rutina ante el primer intento de destete",
+    "Evaluar preparación para prueba de respiración espontánea",
+    "Extubar a las 24 horas de ventilación sin valorar conciencia ni tos",
+    "Extubar al lograr saturación normal con FiO2 baja",
+    "Reducir durante días la frecuencia mandatoria sin realizar una prueba de respiración espontánea"
+   ],
+   "prompt": "Una paciente de 70 años en ventilación mecánica desde hace 5 días, con causa de intubación resuelta, está despierta y obedece órdenes. ¿Cuál es la opción más segura?",
+   "why": "En la recuperación respiratoria se deben tamizar a diario los criterios de preparación (causa resuelta, oxigenación adecuada, estabilidad hemodinámica, esfuerzo inspiratorio) y realizar una prueba de respiración espontánea, evaluando además protección de la vía aérea. Extubar solo por la saturación o prolongar la ventilación sin reevaluar aumenta, respectivamente, el riesgo de reintubación y de complicaciones de la ventilación prolongada."
+  },
+  "uci-critico-q24": {
+   "options": [
+    "Extubar al lograr saturación normal con FiO2 baja",
+    "Reducir durante días la frecuencia mandatoria sin realizar una prueba de respiración espontánea",
+    "Evaluar preparación para prueba de respiración espontánea",
+    "Esperar la normalización de la radiografía de tórax antes de evaluar el destete",
+    "Mantener sedación profunda hasta la extubación para evitar autoextubación"
+   ],
+   "prompt": "En una simulación, un paciente en recuperación respiratoria tiene presión de soporte de 8 cmH2O y gasometría normal. ¿Qué decisión es más justificable?",
+   "why": "En la recuperación respiratoria se deben tamizar a diario los criterios de preparación (causa resuelta, oxigenación adecuada, estabilidad hemodinámica, esfuerzo inspiratorio) y realizar una prueba de respiración espontánea, evaluando además protección de la vía aérea. Extubar solo por la saturación o prolongar la ventilación sin reevaluar aumenta, respectivamente, el riesgo de reintubación y de complicaciones de la ventilación prolongada."
+  },
+  "uci-critico-q25": {
+   "options": [
+    "Esperar la normalización de la radiografía de tórax antes de evaluar el destete",
+    "Mantener sedación profunda hasta la extubación para evitar autoextubación",
+    "Indicar traqueostomía de rutina ante el primer intento de destete",
+    "Evaluar preparación para prueba de respiración espontánea",
+    "Extubar a las 24 horas de ventilación sin valorar conciencia ni tos"
+   ],
+   "prompt": "Un hombre de 58 años con EPOC está en recuperación respiratoria tras una exacerbación y ya no requiere vasopresores. ¿Qué intervención inicial es coherente?",
+   "why": "En la recuperación respiratoria se deben tamizar a diario los criterios de preparación (causa resuelta, oxigenación adecuada, estabilidad hemodinámica, esfuerzo inspiratorio) y realizar una prueba de respiración espontánea, evaluando además protección de la vía aérea. Extubar solo por la saturación o prolongar la ventilación sin reevaluar aumenta, respectivamente, el riesgo de reintubación y de complicaciones de la ventilación prolongada."
+  },
+  "uci-critico-q26": {
+   "options": [
+    "Evaluar respuesta hemodinámica y perfusión",
+    "Guiar la resucitación solo por la presión arterial sin lactato ni llenado capilar",
+    "Continuar con bolos de cristaloides hasta normalizar la presión venosa central",
+    "Indicar diuréticos para prevenir la sobrecarga tras el primer bolo",
+    "Iniciar inotrópicos de entrada para aumentar el gasto cardíaco"
+   ],
+   "prompt": "Un paciente de 60 años con neumonía y fiebre presenta vasodilatación periférica, PAM de 58 mmHg y lactato elevado tras iniciar la resucitación. ¿Qué prioridad clínica corresponde?",
+   "why": "En el shock distributivo séptico la resucitación se guía por respuesta dinámica y marcadores de perfusión (lactato, llenado capilar, diuresis, estado mental), no por una cifra única de presión. Dar fluidos de forma indefinida o basarse en la presión venosa central expone a sobrecarga; alcanzar la PAM no garantiza perfusión tisular adecuada y exige reevaluación seriada."
+  },
+  "uci-critico-q27": {
+   "options": [
+    "Guiar todo por la presión arterial",
+    "Evaluar respuesta hemodinámica y perfusión",
+    "Dar bolos hasta normalizar la PVC",
+    "Iniciar inotrópicos de entrada",
+    "Diferir antibióticos hasta hemocultivos"
+   ],
+   "prompt": "Una paciente de 72 años con urosepsis tiene hipotensión, piel caliente y oliguria. ¿Qué acción se debe priorizar?",
+   "why": "En el shock distributivo séptico la resucitación se guía por respuesta dinámica y marcadores de perfusión (lactato, llenado capilar, diuresis, estado mental), no por una cifra única de presión. Dar fluidos de forma indefinida o basarse en la presión venosa central expone a sobrecarga; alcanzar la PAM no garantiza perfusión tisular adecuada y exige reevaluación seriada."
+  },
+  "uci-critico-q28": {
+   "options": [
+    "Diferir los antibióticos hasta contar con el resultado de los hemocultivos",
+    "Dar por resuelto el shock al alcanzar la PAM objetivo sin reevaluar la perfusión",
+    "Evaluar respuesta hemodinámica y perfusión",
+    "Suspender los vasopresores al subir la presión sin controlar el estado de perfusión",
+    "Guiar la resucitación solo por la presión arterial sin lactato ni llenado capilar"
+   ],
+   "prompt": "Un paciente con sepsis abdominal recibió 30 mL/kg de cristaloides y persiste con PAM baja. ¿Cuál es la opción más segura?",
+   "why": "En el shock distributivo séptico la resucitación se guía por respuesta dinámica y marcadores de perfusión (lactato, llenado capilar, diuresis, estado mental), no por una cifra única de presión. Dar fluidos de forma indefinida o basarse en la presión venosa central expone a sobrecarga; alcanzar la PAM no garantiza perfusión tisular adecuada y exige reevaluación seriada."
+  },
+  "uci-critico-q29": {
+   "options": [
+    "Suspender los vasopresores al subir la presión sin controlar el estado de perfusión",
+    "Guiar la resucitación solo por la presión arterial sin lactato ni llenado capilar",
+    "Continuar con bolos de cristaloides hasta normalizar la presión venosa central",
+    "Evaluar respuesta hemodinámica y perfusión",
+    "Indicar diuréticos para prevenir la sobrecarga tras el primer bolo"
+   ],
+   "prompt": "En una simulación, un paciente en shock séptico ya recibe noradrenalina. ¿Qué decisión es más justificable?",
+   "why": "En el shock distributivo séptico la resucitación se guía por respuesta dinámica y marcadores de perfusión (lactato, llenado capilar, diuresis, estado mental), no por una cifra única de presión. Dar fluidos de forma indefinida o basarse en la presión venosa central expone a sobrecarga; alcanzar la PAM no garantiza perfusión tisular adecuada y exige reevaluación seriada."
+  },
+  "uci-critico-q30": {
+   "options": [
+    "Continuar con bolos de cristaloides hasta normalizar la presión venosa central",
+    "Indicar diuréticos para prevenir la sobrecarga tras el primer bolo",
+    "Iniciar inotrópicos de entrada para aumentar el gasto cardíaco",
+    "Diferir los antibióticos hasta contar con el resultado de los hemocultivos",
+    "Evaluar respuesta hemodinámica y perfusión"
+   ],
+   "prompt": "Un hombre de 48 años con infección grave y vasodilatación recibe fluidos y vasopresores. ¿Qué intervención inicial es coherente?",
+   "why": "En el shock distributivo séptico la resucitación se guía por respuesta dinámica y marcadores de perfusión (lactato, llenado capilar, diuresis, estado mental), no por una cifra única de presión. Dar fluidos de forma indefinida o basarse en la presión venosa central expone a sobrecarga; alcanzar la PAM no garantiza perfusión tisular adecuada y exige reevaluación seriada."
+  },
+  "uci-critico-q31": {
+   "options": [
+    "Administrar un bolo de 30 mL/kg de cristaloides por la hipotensión",
+    "Evaluar función cardíaca y tolerancia a fluidos",
+    "Indicar nitroglicerina para descongestionar pese a la hipotensión",
+    "Atribuir la taquicardia a hipovolemia y reponer volumen",
+    "Iniciar betabloqueantes para controlar la frecuencia cardíaca"
+   ],
+   "prompt": "Un hombre de 65 años con infarto extenso presenta hipotensión, piel fría, oliguria y crepitantes bilaterales. ¿Qué prioridad clínica corresponde?",
+   "why": "La hipoperfusión con congestión pulmonar sugiere falla de bomba: hay que evaluar la función cardíaca (ECG, ecocardiograma, lactato) y la tolerancia a fluidos antes de reponer volumen, a diferencia del shock distributivo o hipovolémico. Los bolos amplios agravan el edema pulmonar, y la taquicardia es compensadora, no descarta falla ventricular."
+  },
+  "uci-critico-q32": {
+   "options": [
+    "Dar 30 mL/kg de cristaloides",
+    "Indicar nitroglicerina pese a hipotensión",
+    "Evaluar función cardíaca y tolerancia a fluidos",
+    "Iniciar betabloqueantes por taquicardia",
+    "Atribuir la taquicardia a hipovolemia"
+   ],
+   "prompt": "Una paciente de 70 años con miocardiopatía dilatada llega hipoperfundida, con edema agudo de pulmón y presión de 80/50 mmHg. ¿Qué acción se debe priorizar?",
+   "why": "La hipoperfusión con congestión pulmonar sugiere falla de bomba: hay que evaluar la función cardíaca (ECG, ecocardiograma, lactato) y la tolerancia a fluidos antes de reponer volumen, a diferencia del shock distributivo o hipovolémico. Los bolos amplios agravan el edema pulmonar, y la taquicardia es compensadora, no descarta falla ventricular."
+  },
+  "uci-critico-q33": {
+   "options": [
+    "Posponer el ecocardiograma hasta estabilizar la presión con volumen",
+    "Descartar compromiso de bomba si el primer ECG no muestra elevación del ST",
+    "Priorizar diuréticos en altas dosis sin evaluar la perfusión",
+    "Evaluar función cardíaca y tolerancia a fluidos",
+    "Administrar un bolo de 30 mL/kg de cristaloides por la hipotensión"
+   ],
+   "prompt": "Un paciente con infarto anterior tiene PAM baja, extremidades frías y congestión pulmonar en la radiografía. ¿Cuál es la opción más segura?",
+   "why": "La hipoperfusión con congestión pulmonar sugiere falla de bomba: hay que evaluar la función cardíaca (ECG, ecocardiograma, lactato) y la tolerancia a fluidos antes de reponer volumen, a diferencia del shock distributivo o hipovolémico. Los bolos amplios agravan el edema pulmonar, y la taquicardia es compensadora, no descarta falla ventricular."
+  },
+  "uci-critico-q34": {
+   "options": [
+    "Priorizar diuréticos en altas dosis sin evaluar la perfusión",
+    "Administrar un bolo de 30 mL/kg de cristaloides por la hipotensión",
+    "Indicar nitroglicerina para descongestionar pese a la hipotensión",
+    "Atribuir la taquicardia a hipovolemia y reponer volumen",
+    "Evaluar función cardíaca y tolerancia a fluidos"
+   ],
+   "prompt": "En una simulación, un paciente con IAM tiene hipoperfusión y ortopnea. ¿Qué decisión es más justificable?",
+   "why": "La hipoperfusión con congestión pulmonar sugiere falla de bomba: hay que evaluar la función cardíaca (ECG, ecocardiograma, lactato) y la tolerancia a fluidos antes de reponer volumen, a diferencia del shock distributivo o hipovolémico. Los bolos amplios agravan el edema pulmonar, y la taquicardia es compensadora, no descarta falla ventricular."
+  },
+  "uci-critico-q35": {
+   "options": [
+    "Evaluar función cardíaca y tolerancia a fluidos",
+    "Indicar nitroglicerina para descongestionar pese a la hipotensión",
+    "Atribuir la taquicardia a hipovolemia y reponer volumen",
+    "Iniciar betabloqueantes para controlar la frecuencia cardíaca",
+    "Posponer el ecocardiograma hasta estabilizar la presión con volumen"
+   ],
+   "prompt": "Un paciente de 58 años con shock y yugulares distendidas presenta congestión pulmonar y lactato elevado. ¿Qué intervención inicial es coherente?",
+   "why": "La hipoperfusión con congestión pulmonar sugiere falla de bomba: hay que evaluar la función cardíaca (ECG, ecocardiograma, lactato) y la tolerancia a fluidos antes de reponer volumen, a diferencia del shock distributivo o hipovolémico. Los bolos amplios agravan el edema pulmonar, y la taquicardia es compensadora, no descarta falla ventricular."
+  },
+  "uci-critico-q36": {
+   "options": [
+    "Administrar bicarbonato para corregir el pH antes de buscar la causa",
+    "Atribuir la acidosis a pérdidas digestivas de bicarbonato",
+    "Investigar lactato, cetonas y función renal",
+    "Indicar hiperventilación mecánica para normalizar el pH",
+    "Reponer solución salina en grandes volúmenes como único tratamiento"
+   ],
+   "prompt": "Un paciente de 52 años con vómitos y diarrea tiene pH 7,18, bicarbonato bajo y anión gap elevado. ¿Qué prioridad clínica corresponde?",
+   "why": "Una acidosis metabólica con anión gap elevado obliga a buscar la causa (lactato, cetoácidos, insuficiencia renal, tóxicos) y tratarla; corregir solo el número, por ejemplo con bicarbonato, no resuelve el problema de fondo. Una glucemia normal no descarta cetoacidosis, como ocurre con los inhibidores de SGLT2, y la cetonemia sigue siendo necesaria."
+  },
+  "uci-critico-q37": {
+   "options": [
+    "Dar bicarbonato sin buscar causa",
+    "Hiperventilar para normalizar el pH",
+    "Atribuirla a pérdidas digestivas",
+    "Investigar lactato, cetonas y función renal",
+    "Descartar cetoacidosis si glucemia normal"
+   ],
+   "prompt": "Una paciente de 30 años con diabetes tipo 1 e infección presenta pH 7,15 y anión gap de 24. ¿Qué acción se debe priorizar?",
+   "why": "Una acidosis metabólica con anión gap elevado obliga a buscar la causa (lactato, cetoácidos, insuficiencia renal, tóxicos) y tratarla; corregir solo el número, por ejemplo con bicarbonato, no resuelve el problema de fondo. Una glucemia normal no descarta cetoacidosis, como ocurre con los inhibidores de SGLT2, y la cetonemia sigue siendo necesaria."
+  },
+  "uci-critico-q38": {
+   "options": [
+    "Descartar cetoacidosis porque la glucemia no es muy elevada",
+    "Pedir solo un ionograma urinario para clasificar la acidosis tubular",
+    "Corregir la acidosis con bicarbonato hasta el pH normal y suspender el estudio",
+    "Administrar bicarbonato para corregir el pH antes de buscar la causa",
+    "Investigar lactato, cetonas y función renal"
+   ],
+   "prompt": "Un paciente con shock séptico tiene acidosis metabólica con anión gap elevado y lactato aumentado. ¿Cuál es la opción más segura?",
+   "why": "Una acidosis metabólica con anión gap elevado obliga a buscar la causa (lactato, cetoácidos, insuficiencia renal, tóxicos) y tratarla; corregir solo el número, por ejemplo con bicarbonato, no resuelve el problema de fondo. Una glucemia normal no descarta cetoacidosis, como ocurre con los inhibidores de SGLT2, y la cetonemia sigue siendo necesaria."
+  },
+  "uci-critico-q39": {
+   "options": [
+    "Investigar lactato, cetonas y función renal",
+    "Corregir la acidosis con bicarbonato hasta el pH normal y suspender el estudio",
+    "Administrar bicarbonato para corregir el pH antes de buscar la causa",
+    "Atribuir la acidosis a pérdidas digestivas de bicarbonato",
+    "Indicar hiperventilación mecánica para normalizar el pH"
+   ],
+   "prompt": "En una simulación, un paciente con insuficiencia renal aguda presenta acidosis metabólica con anión gap alto. ¿Qué decisión es más justificable?",
+   "why": "Una acidosis metabólica con anión gap elevado obliga a buscar la causa (lactato, cetoácidos, insuficiencia renal, tóxicos) y tratarla; corregir solo el número, por ejemplo con bicarbonato, no resuelve el problema de fondo. Una glucemia normal no descarta cetoacidosis, como ocurre con los inhibidores de SGLT2, y la cetonemia sigue siendo necesaria."
+  },
+  "uci-critico-q40": {
+   "options": [
+    "Atribuir la acidosis a pérdidas digestivas de bicarbonato",
+    "Investigar lactato, cetonas y función renal",
+    "Indicar hiperventilación mecánica para normalizar el pH",
+    "Reponer solución salina en grandes volúmenes como único tratamiento",
+    "Descartar cetoacidosis porque la glucemia no es muy elevada"
+   ],
+   "prompt": "Un hombre de 45 años en tratamiento con inhibidor de SGLT2 llega con malestar, taquipnea y acidosis con anión gap elevado y glucemia de 180 mg/dL. ¿Qué intervención inicial es coherente?",
+   "why": "Una acidosis metabólica con anión gap elevado obliga a buscar la causa (lactato, cetoácidos, insuficiencia renal, tóxicos) y tratarla; corregir solo el número, por ejemplo con bicarbonato, no resuelve el problema de fondo. Una glucemia normal no descarta cetoacidosis, como ocurre con los inhibidores de SGLT2, y la cetonemia sigue siendo necesaria."
+  },
+  "uci-critico-q41": {
+   "options": [
+    "Esperar el ionograma de control antes de tratar pese a los cambios del ECG",
+    "Indicar una resina de intercambio como única medida y repetir el ionograma",
+    "Suponer hemólisis de la muestra sin repetir ni monitorizar",
+    "Reconocer emergencia y activar protocolo de tratamiento",
+    "Administrar bicarbonato en bolo como tratamiento único sin acidosis"
+   ],
+   "prompt": "Un paciente de 70 años con enfermedad renal crónica tiene K+ de 7,2 mEq/L con ondas T altas y ensanchamiento del QRS. ¿Qué prioridad clínica corresponde?",
+   "why": "La hiperpotasemia con cambios electrocardiográficos es una emergencia: requiere monitorización, estabilización de la membrana miocárdica con calcio, desplazamiento intracelular (insulina con glucosa, beta-agonistas) y eliminación del potasio. El error tentador es tratar solo con medidas lentas (resinas, observación) o atribuir el valor a hemólisis cuando ya hay compromiso electrocardiográfico."
+  },
+  "uci-critico-q42": {
+   "options": [
+    "Esperar el ionograma de control",
+    "Indicar solo una resina de intercambio",
+    "Atribuir el valor a hemólisis",
+    "Tratar solo con furosemida",
+    "Reconocer emergencia y activar protocolo de tratamiento"
+   ],
+   "prompt": "Una paciente de 60 años en diálisis con K+ elevado presenta bradicardia y QRS ancho. ¿Qué acción se debe priorizar?",
+   "why": "La hiperpotasemia con cambios electrocardiográficos es una emergencia: requiere monitorización, estabilización de la membrana miocárdica con calcio, desplazamiento intracelular (insulina con glucosa, beta-agonistas) y eliminación del potasio. El error tentador es tratar solo con medidas lentas (resinas, observación) o atribuir el valor a hemólisis cuando ya hay compromiso electrocardiográfico."
+  },
+  "uci-critico-q43": {
+   "options": [
+    "Reconocer emergencia y activar protocolo de tratamiento",
+    "Corregir con furosemida sola y reevaluar al día siguiente",
+    "Suspender solo el aporte de potasio y observar sin tratamiento",
+    "Indicar diálisis de urgencia sin medidas previas de estabilización de membrana",
+    "Esperar el ionograma de control antes de tratar pese a los cambios del ECG"
+   ],
+   "prompt": "Un paciente con rabdomiólisis tiene hiperpotasemia y alteraciones electrocardiográficas. ¿Cuál es la opción más segura?",
+   "why": "La hiperpotasemia con cambios electrocardiográficos es una emergencia: requiere monitorización, estabilización de la membrana miocárdica con calcio, desplazamiento intracelular (insulina con glucosa, beta-agonistas) y eliminación del potasio. El error tentador es tratar solo con medidas lentas (resinas, observación) o atribuir el valor a hemólisis cuando ya hay compromiso electrocardiográfico."
+  },
+  "uci-critico-q44": {
+   "options": [
+    "Indicar diálisis de urgencia sin medidas previas de estabilización de membrana",
+    "Reconocer emergencia y activar protocolo de tratamiento",
+    "Esperar el ionograma de control antes de tratar pese a los cambios del ECG",
+    "Indicar una resina de intercambio como única medida y repetir el ionograma",
+    "Suponer hemólisis de la muestra sin repetir ni monitorizar"
+   ],
+   "prompt": "En una simulación, un paciente con K+ de 6,8 mEq/L muestra ondas T picudas en el monitor. ¿Qué decisión es más justificable?",
+   "why": "La hiperpotasemia con cambios electrocardiográficos es una emergencia: requiere monitorización, estabilización de la membrana miocárdica con calcio, desplazamiento intracelular (insulina con glucosa, beta-agonistas) y eliminación del potasio. El error tentador es tratar solo con medidas lentas (resinas, observación) o atribuir el valor a hemólisis cuando ya hay compromiso electrocardiográfico."
+  },
+  "uci-critico-q45": {
+   "options": [
+    "Indicar una resina de intercambio como única medida y repetir el ionograma",
+    "Suponer hemólisis de la muestra sin repetir ni monitorizar",
+    "Reconocer emergencia y activar protocolo de tratamiento",
+    "Administrar bicarbonato en bolo como tratamiento único sin acidosis",
+    "Corregir con furosemida sola y reevaluar al día siguiente"
+   ],
+   "prompt": "Un paciente de 55 años con lesión renal aguda y K+ de 7,0 mEq/L asintomático pero con ECG alterado. ¿Qué intervención inicial es coherente?",
+   "why": "La hiperpotasemia con cambios electrocardiográficos es una emergencia: requiere monitorización, estabilización de la membrana miocárdica con calcio, desplazamiento intracelular (insulina con glucosa, beta-agonistas) y eliminación del potasio. El error tentador es tratar solo con medidas lentas (resinas, observación) o atribuir el valor a hemólisis cuando ya hay compromiso electrocardiográfico."
+  },
+  "uci-critico-q46": {
+   "options": [
+    "Atribuir el cuadro a enfermedad renal crónica según la creatinina previa",
+    "Administrar furosemida en dosis altas para forzar la diuresis antes de buscar la causa",
+    "Indicar diálisis de entrada por la oliguria",
+    "Restringir líquidos desde el inicio sin evaluar la volemia",
+    "Evaluar perfusión, nefrotóxicos y obstrucción"
+   ],
+   "prompt": "Un paciente de 68 años con sepsis presenta oliguria de aparición reciente y aumento de creatinina. ¿Qué prioridad clínica corresponde?",
+   "why": "En la lesión renal aguda de aparición reciente se buscan primero las causas prerrenales (hipoperfusión, hipovolemia), renales (nefrotóxicos, necrosis tubular) y posrenales (obstrucción), porque muchas son reversibles. Forzar la diuresis, usar dopamina o asumir una enfermedad crónica retrasa la corrección de la causa; el balance hídrico y la perfusión guían la conducta."
+  },
+  "uci-critico-q47": {
+   "options": [
+    "Evaluar perfusión, nefrotóxicos y obstrucción",
+    "Forzar diuresis con furosemida",
+    "Indicar diálisis por la oliguria",
+    "Restringir líquidos de entrada",
+    "Atribuirla a enfermedad renal crónica"
+   ],
+   "prompt": "Una paciente de 75 años en posoperatorio de cirugía mayor tiene diuresis menor de 0,5 mL/kg/h durante 8 horas. ¿Qué acción se debe priorizar?",
+   "why": "En la lesión renal aguda de aparición reciente se buscan primero las causas prerrenales (hipoperfusión, hipovolemia), renales (nefrotóxicos, necrosis tubular) y posrenales (obstrucción), porque muchas son reversibles. Forzar la diuresis, usar dopamina o asumir una enfermedad crónica retrasa la corrección de la causa; el balance hídrico y la perfusión guían la conducta."
+  },
+  "uci-critico-q48": {
+   "options": [
+    "Indicar dopamina en dosis bajas para proteger el riñón",
+    "Evaluar perfusión, nefrotóxicos y obstrucción",
+    "Esperar la creatinina de las 48 horas antes de actuar",
+    "Mantener los nefrotóxicos hasta confirmar el diagnóstico con una creatinina seriada",
+    "Atribuir el cuadro a enfermedad renal crónica según la creatinina previa"
+   ],
+   "prompt": "Un hombre de 60 años con hiperplasia prostática y anuria brusca. ¿Cuál es la opción más segura?",
+   "why": "En la lesión renal aguda de aparición reciente se buscan primero las causas prerrenales (hipoperfusión, hipovolemia), renales (nefrotóxicos, necrosis tubular) y posrenales (obstrucción), porque muchas son reversibles. Forzar la diuresis, usar dopamina o asumir una enfermedad crónica retrasa la corrección de la causa; el balance hídrico y la perfusión guían la conducta."
+  },
+  "uci-critico-q49": {
+   "options": [
+    "Mantener los nefrotóxicos hasta confirmar el diagnóstico con una creatinina seriada",
+    "Atribuir el cuadro a enfermedad renal crónica según la creatinina previa",
+    "Evaluar perfusión, nefrotóxicos y obstrucción",
+    "Administrar furosemida en dosis altas para forzar la diuresis antes de buscar la causa",
+    "Indicar diálisis de entrada por la oliguria"
+   ],
+   "prompt": "En una simulación, un paciente recibió vancomicina y contraste y presenta oliguria nueva. ¿Qué decisión es más justificable?",
+   "why": "En la lesión renal aguda de aparición reciente se buscan primero las causas prerrenales (hipoperfusión, hipovolemia), renales (nefrotóxicos, necrosis tubular) y posrenales (obstrucción), porque muchas son reversibles. Forzar la diuresis, usar dopamina o asumir una enfermedad crónica retrasa la corrección de la causa; el balance hídrico y la perfusión guían la conducta."
+  },
+  "uci-critico-q50": {
+   "options": [
+    "Administrar furosemida en dosis altas para forzar la diuresis antes de buscar la causa",
+    "Indicar diálisis de entrada por la oliguria",
+    "Restringir líquidos desde el inicio sin evaluar la volemia",
+    "Evaluar perfusión, nefrotóxicos y obstrucción",
+    "Indicar dopamina en dosis bajas para proteger el riñón"
+   ],
+   "prompt": "Un paciente de 50 años con hipotensión por hemorragia presenta oliguria reciente y creatinina en ascenso. ¿Qué intervención inicial es coherente?",
+   "why": "En la lesión renal aguda de aparición reciente se buscan primero las causas prerrenales (hipoperfusión, hipovolemia), renales (nefrotóxicos, necrosis tubular) y posrenales (obstrucción), porque muchas son reversibles. Forzar la diuresis, usar dopamina o asumir una enfermedad crónica retrasa la corrección de la causa; el balance hídrico y la perfusión guían la conducta."
+  },
+  "uci-critico-q51": {
+   "options": [
+    "Investigar causas reversibles y delirium",
+    "Aumentar la sedación con benzodiazepinas para proteger los dispositivos",
+    "Administrar haloperidol como única medida sin buscar la causa",
+    "Indicar contención física y observar la evolución",
+    "Atribuir la agitación al síndrome de abstinencia sin otros estudios"
+   ],
+   "prompt": "Un paciente de 62 años internado en UCI por neumonía presenta agitación nueva con intentos de retirarse el tubo. ¿Qué prioridad clínica corresponde?",
+   "why": "La agitación nueva en el paciente crítico debe llevar a buscar causas reversibles (dolor, hipoxemia, hipoglucemia, retención urinaria, fármacos, sepsis, abstinencia) y a evaluar delirium con herramientas validadas. Profundizar sedación con benzodiazepinas empeora el delirium y enmascara el problema; los antipsicóticos y las contenciones no sustituyen el tratamiento de la causa."
+  },
+  "uci-critico-q52": {
+   "options": [
+    "Profundizar la sedación",
+    "Investigar causas reversibles y delirium",
+    "Indicar haloperidol como única medida",
+    "Contener físicamente y observar",
+    "Aguardar la resolución espontánea"
+   ],
+   "prompt": "Un paciente de 70 años en el tercer día de ventilación presenta fluctuación del estado mental y desatención. ¿Qué acción se debe priorizar?",
+   "why": "La agitación nueva en el paciente crítico debe llevar a buscar causas reversibles (dolor, hipoxemia, hipoglucemia, retención urinaria, fármacos, sepsis, abstinencia) y a evaluar delirium con herramientas validadas. Profundizar sedación con benzodiazepinas empeora el delirium y enmascara el problema; los antipsicóticos y las contenciones no sustituyen el tratamiento de la causa."
+  },
+  "uci-critico-q53": {
+   "options": [
+    "Suspender la analgesia por posible enmascaramiento del cuadro",
+    "Aguardar la resolución espontánea propia del delirium",
+    "Investigar causas reversibles y delirium",
+    "Aumentar la sedación con benzodiazepinas para proteger los dispositivos",
+    "Administrar haloperidol como única medida sin buscar la causa"
+   ],
+   "prompt": "Una paciente de 58 años crítica, previamente tranquila, desarrolla agitación súbita. ¿Cuál es la opción más segura?",
+   "why": "La agitación nueva en el paciente crítico debe llevar a buscar causas reversibles (dolor, hipoxemia, hipoglucemia, retención urinaria, fármacos, sepsis, abstinencia) y a evaluar delirium con herramientas validadas. Profundizar sedación con benzodiazepinas empeora el delirium y enmascara el problema; los antipsicóticos y las contenciones no sustituyen el tratamiento de la causa."
+  },
+  "uci-critico-q54": {
+   "options": [
+    "Aumentar la sedación con benzodiazepinas para proteger los dispositivos",
+    "Administrar haloperidol como única medida sin buscar la causa",
+    "Indicar contención física y observar la evolución",
+    "Investigar causas reversibles y delirium",
+    "Atribuir la agitación al síndrome de abstinencia sin otros estudios"
+   ],
+   "prompt": "En una simulación, un paciente en UCI se agita tras suspender la sedación. ¿Qué decisión es más justificable?",
+   "why": "La agitación nueva en el paciente crítico debe llevar a buscar causas reversibles (dolor, hipoxemia, hipoglucemia, retención urinaria, fármacos, sepsis, abstinencia) y a evaluar delirium con herramientas validadas. Profundizar sedación con benzodiazepinas empeora el delirium y enmascara el problema; los antipsicóticos y las contenciones no sustituyen el tratamiento de la causa."
+  },
+  "uci-critico-q55": {
+   "options": [
+    "Indicar contención física y observar la evolución",
+    "Atribuir la agitación al síndrome de abstinencia sin otros estudios",
+    "Suspender la analgesia por posible enmascaramiento del cuadro",
+    "Aguardar la resolución espontánea propia del delirium",
+    "Investigar causas reversibles y delirium"
+   ],
+   "prompt": "Un hombre de 65 años con sepsis presenta agitación nueva con CAM-ICU positivo. ¿Qué intervención inicial es coherente?",
+   "why": "La agitación nueva en el paciente crítico debe llevar a buscar causas reversibles (dolor, hipoxemia, hipoglucemia, retención urinaria, fármacos, sepsis, abstinencia) y a evaluar delirium con herramientas validadas. Profundizar sedación con benzodiazepinas empeora el delirium y enmascara el problema; los antipsicóticos y las contenciones no sustituyen el tratamiento de la causa."
+  },
+  "uci-critico-q56": {
+   "options": [
+    "Cambiar a antibióticos de espectro ampliado y esperar la evolución",
+    "Evaluar foco y necesidad de control de fuente",
+    "Retirar todos los catéteres sistemáticamente sin evaluar el foco",
+    "Cultivar solo la punta de los catéteres sin hemocultivos",
+    "Tratar la fiebre con antitérmicos y observar la tendencia"
+   ],
+   "prompt": "Un paciente de 66 años con catéter venoso central, sonda vesical y ventilación mecánica presenta fiebre y deterioro hemodinámico. ¿Qué prioridad clínica corresponde?",
+   "why": "En un paciente con dispositivos, la fiebre y el deterioro obligan a buscar el foco (pulmón, catéter, urinario, abdomen, herida), tomar cultivos y decidir el control de fuente, con antibióticos adecuados sin demora si hay sepsis. Retirar todo sin criterio o solo cambiar el antibiótico sin identificar el foco deja la fuente sin controlar."
+  },
+  "uci-critico-q57": {
+   "options": [
+    "Rotar a antibióticos de amplio espectro",
+    "Retirar todos los catéteres de rutina",
+    "Evaluar foco y necesidad de control de fuente",
+    "Tratar la fiebre con antitérmicos",
+    "Esperar cultivos antes de antibióticos"
+   ],
+   "prompt": "Una paciente de 70 años con catéter venoso central desde hace 10 días presenta fiebre y escalofríos. ¿Qué acción se debe priorizar?",
+   "why": "En un paciente con dispositivos, la fiebre y el deterioro obligan a buscar el foco (pulmón, catéter, urinario, abdomen, herida), tomar cultivos y decidir el control de fuente, con antibióticos adecuados sin demora si hay sepsis. Retirar todo sin criterio o solo cambiar el antibiótico sin identificar el foco deja la fuente sin controlar."
+  },
+  "uci-critico-q58": {
+   "options": [
+    "Aguardar los cultivos antes de iniciar cualquier antibiótico",
+    "Decidir la conducta según un valor aislado de procalcitonina",
+    "Cambiar a antibióticos de espectro ampliado y esperar la evolución",
+    "Evaluar foco y necesidad de control de fuente",
+    "Retirar todos los catéteres sistemáticamente sin evaluar el foco"
+   ],
+   "prompt": "Un paciente intubado hace 6 días presenta fiebre, secreciones purulentas y deterioro. ¿Cuál es la opción más segura?",
+   "why": "En un paciente con dispositivos, la fiebre y el deterioro obligan a buscar el foco (pulmón, catéter, urinario, abdomen, herida), tomar cultivos y decidir el control de fuente, con antibióticos adecuados sin demora si hay sepsis. Retirar todo sin criterio o solo cambiar el antibiótico sin identificar el foco deja la fuente sin controlar."
+  },
+  "uci-critico-q59": {
+   "options": [
+    "Cambiar a antibióticos de espectro ampliado y esperar la evolución",
+    "Retirar todos los catéteres sistemáticamente sin evaluar el foco",
+    "Cultivar solo la punta de los catéteres sin hemocultivos",
+    "Tratar la fiebre con antitérmicos y observar la tendencia",
+    "Evaluar foco y necesidad de control de fuente"
+   ],
+   "prompt": "En una simulación, un paciente con sonda vesical y catéter central tiene fiebre y shock. ¿Qué decisión es más justificable?",
+   "why": "En un paciente con dispositivos, la fiebre y el deterioro obligan a buscar el foco (pulmón, catéter, urinario, abdomen, herida), tomar cultivos y decidir el control de fuente, con antibióticos adecuados sin demora si hay sepsis. Retirar todo sin criterio o solo cambiar el antibiótico sin identificar el foco deja la fuente sin controlar."
+  },
+  "uci-critico-q60": {
+   "options": [
+    "Evaluar foco y necesidad de control de fuente",
+    "Cultivar solo la punta de los catéteres sin hemocultivos",
+    "Tratar la fiebre con antitérmicos y observar la tendencia",
+    "Aguardar los cultivos antes de iniciar cualquier antibiótico",
+    "Decidir la conducta según un valor aislado de procalcitonina"
+   ],
+   "prompt": "Un paciente de 55 años con laparotomía reciente presenta fiebre y deterioro con dispositivos invasivos. ¿Qué intervención inicial es coherente?",
+   "why": "En un paciente con dispositivos, la fiebre y el deterioro obligan a buscar el foco (pulmón, catéter, urinario, abdomen, herida), tomar cultivos y decidir el control de fuente, con antibióticos adecuados sin demora si hay sepsis. Retirar todo sin criterio o solo cambiar el antibiótico sin identificar el foco deja la fuente sin controlar."
+  },
+  "uci-critico-q61": {
+   "options": [
+    "Indicar nutrición parenteral total de entrada en todos los casos",
+    "Iniciar nutrición enteral a metas calóricas plenas desde el primer día",
+    "Planificar soporte nutricional y movilización individualizada",
+    "Postergar la movilización hasta el alta de la UCI",
+    "Mantener reposo absoluto mientras persista cualquier soporte"
+   ],
+   "prompt": "Un paciente de 60 años, hemodinámicamente estable tras la fase crítica, lleva 3 días en UCI sin aporte nutricional. ¿Qué prioridad clínica corresponde?",
+   "why": "Tras la fase crítica se recomienda planificar el soporte nutricional (preferentemente enteral, con progresión gradual y vigilancia de tolerancia y aspiración) y la movilización temprana individualizada para prevenir la debilidad adquirida. Prolongar el ayuno o el reposo sin indicación empeora los resultados; en cambio, alcanzar metas plenas de inmediato o restringir proteínas indiscriminadamente también es inadecuado."
+  },
+  "uci-critico-q62": {
+   "options": [
+    "Indicar nutrición parenteral de entrada",
+    "Postergar la movilización al alta",
+    "Mantener reposo absoluto en cama",
+    "Planificar soporte nutricional y movilización individualizada",
+    "Restringir proteínas en todos"
+   ],
+   "prompt": "Una paciente de 72 años con insuficiencia respiratoria resuelta continúa con ayuno prolongado y sedación mínima. ¿Qué acción se debe priorizar?",
+   "why": "Tras la fase crítica se recomienda planificar el soporte nutricional (preferentemente enteral, con progresión gradual y vigilancia de tolerancia y aspiración) y la movilización temprana individualizada para prevenir la debilidad adquirida. Prolongar el ayuno o el reposo sin indicación empeora los resultados; en cambio, alcanzar metas plenas de inmediato o restringir proteínas indiscriminadamente también es inadecuado."
+  },
+  "uci-critico-q63": {
+   "options": [
+    "Sostener el ayuno hasta que desaparezca todo residuo gástrico",
+    "Restringir las proteínas por riesgo de sobrecarga renal en todos los pacientes",
+    "Indicar nutrición parenteral total de entrada en todos los casos",
+    "Iniciar nutrición enteral a metas calóricas plenas desde el primer día",
+    "Planificar soporte nutricional y movilización individualizada"
+   ],
+   "prompt": "Un paciente de 55 años ya sin vasopresores permanece en reposo absoluto en cama. ¿Cuál es la opción más segura?",
+   "why": "Tras la fase crítica se recomienda planificar el soporte nutricional (preferentemente enteral, con progresión gradual y vigilancia de tolerancia y aspiración) y la movilización temprana individualizada para prevenir la debilidad adquirida. Prolongar el ayuno o el reposo sin indicación empeora los resultados; en cambio, alcanzar metas plenas de inmediato o restringir proteínas indiscriminadamente también es inadecuado."
+  },
+  "uci-critico-q64": {
+   "options": [
+    "Planificar soporte nutricional y movilización individualizada",
+    "Indicar nutrición parenteral total de entrada en todos los casos",
+    "Iniciar nutrición enteral a metas calóricas plenas desde el primer día",
+    "Postergar la movilización hasta el alta de la UCI",
+    "Mantener reposo absoluto mientras persista cualquier soporte"
+   ],
+   "prompt": "En una simulación, un paciente con tolerancia digestiva adecuada tras la fase crítica. ¿Qué decisión es más justificable?",
+   "why": "Tras la fase crítica se recomienda planificar el soporte nutricional (preferentemente enteral, con progresión gradual y vigilancia de tolerancia y aspiración) y la movilización temprana individualizada para prevenir la debilidad adquirida. Prolongar el ayuno o el reposo sin indicación empeora los resultados; en cambio, alcanzar metas plenas de inmediato o restringir proteínas indiscriminadamente también es inadecuado."
+  },
+  "uci-critico-q65": {
+   "options": [
+    "Postergar la movilización hasta el alta de la UCI",
+    "Planificar soporte nutricional y movilización individualizada",
+    "Mantener reposo absoluto mientras persista cualquier soporte",
+    "Sostener el ayuno hasta que desaparezca todo residuo gástrico",
+    "Restringir las proteínas por riesgo de sobrecarga renal en todos los pacientes"
+   ],
+   "prompt": "Un hombre de 68 años estable luego de la fase crítica tiene riesgo de debilidad adquirida en UCI. ¿Qué intervención inicial es coherente?",
+   "why": "Tras la fase crítica se recomienda planificar el soporte nutricional (preferentemente enteral, con progresión gradual y vigilancia de tolerancia y aspiración) y la movilización temprana individualizada para prevenir la debilidad adquirida. Prolongar el ayuno o el reposo sin indicación empeora los resultados; en cambio, alcanzar metas plenas de inmediato o restringir proteínas indiscriminadamente también es inadecuado."
+  },
+  "uci-critico-q66": {
+   "options": [
+    "Trasladar de inmediato para no demorar la atención definitiva",
+    "Derivar con el equipo disponible y completar el estudio en destino",
+    "Decidir con la familia sin considerar las directivas previas del paciente",
+    "Estabilizar lo posible y comunicar riesgos y soporte",
+    "Diferir el traslado hasta normalizar todos los parámetros vitales"
+   ],
+   "prompt": "Un paciente de 64 años con shock séptico requiere derivación a un centro de mayor complejidad. ¿Qué prioridad clínica corresponde?",
+   "why": "Un traslado seguro exige estabilizar lo posible antes de moverlo (vía aérea, acceso, soporte hemodinámico), coordinar con equipo y recursos adecuados, y comunicar riesgos, soporte necesario y preferencias del paciente o su familia. Trasladar con apuro sin estabilización o sin equipo aumenta la morbimortalidad; esperar la normalización total también puede ser inseguro cuando el centro receptor ofrece tratamiento definitivo."
+  },
+  "uci-critico-q67": {
+   "options": [
+    "Trasladar de inmediato sin demoras",
+    "Derivar y completar el estudio en destino",
+    "Diferir hasta normalizar los parámetros",
+    "Informar solo verbalmente al receptor",
+    "Estabilizar lo posible y comunicar riesgos y soporte"
+   ],
+   "prompt": "Una paciente de 70 años con insuficiencia respiratoria y limitación terapéutica previa documentada requiere derivación. ¿Qué acción se debe priorizar?",
+   "why": "Un traslado seguro exige estabilizar lo posible antes de moverlo (vía aérea, acceso, soporte hemodinámico), coordinar con equipo y recursos adecuados, y comunicar riesgos, soporte necesario y preferencias del paciente o su familia. Trasladar con apuro sin estabilización o sin equipo aumenta la morbimortalidad; esperar la normalización total también puede ser inseguro cuando el centro receptor ofrece tratamiento definitivo."
+  },
+  "uci-critico-q68": {
+   "options": [
+    "Estabilizar lo posible y comunicar riesgos y soporte",
+    "Transferir con informe verbal y completar la historia clínica después",
+    "Delegar la decisión del traslado exclusivamente en el centro receptor",
+    "Trasladar de inmediato para no demorar la atención definitiva",
+    "Derivar con el equipo disponible y completar el estudio en destino"
+   ],
+   "prompt": "Un paciente crítico con inestabilidad hemodinámica será trasladado en ambulancia a otra institución. ¿Cuál es la opción más segura?",
+   "why": "Un traslado seguro exige estabilizar lo posible antes de moverlo (vía aérea, acceso, soporte hemodinámico), coordinar con equipo y recursos adecuados, y comunicar riesgos, soporte necesario y preferencias del paciente o su familia. Trasladar con apuro sin estabilización o sin equipo aumenta la morbimortalidad; esperar la normalización total también puede ser inseguro cuando el centro receptor ofrece tratamiento definitivo."
+  },
+  "uci-critico-q69": {
+   "options": [
+    "Trasladar de inmediato para no demorar la atención definitiva",
+    "Estabilizar lo posible y comunicar riesgos y soporte",
+    "Derivar con el equipo disponible y completar el estudio en destino",
+    "Decidir con la familia sin considerar las directivas previas del paciente",
+    "Diferir el traslado hasta normalizar todos los parámetros vitales"
+   ],
+   "prompt": "En una simulación, un paciente intubado requiere traslado a un hospital con cirugía especializada. ¿Qué decisión es más justificable?",
+   "why": "Un traslado seguro exige estabilizar lo posible antes de moverlo (vía aérea, acceso, soporte hemodinámico), coordinar con equipo y recursos adecuados, y comunicar riesgos, soporte necesario y preferencias del paciente o su familia. Trasladar con apuro sin estabilización o sin equipo aumenta la morbimortalidad; esperar la normalización total también puede ser inseguro cuando el centro receptor ofrece tratamiento definitivo."
+  },
+  "uci-critico-q70": {
+   "options": [
+    "Decidir con la familia sin considerar las directivas previas del paciente",
+    "Diferir el traslado hasta normalizar todos los parámetros vitales",
+    "Estabilizar lo posible y comunicar riesgos y soporte",
+    "Transferir con informe verbal y completar la historia clínica después",
+    "Delegar la decisión del traslado exclusivamente en el centro receptor"
+   ],
+   "prompt": "Un paciente de 58 años con politraumatismo requiere derivación y la familia pide más información. ¿Qué intervención inicial es coherente?",
+   "why": "Un traslado seguro exige estabilizar lo posible antes de moverlo (vía aérea, acceso, soporte hemodinámico), coordinar con equipo y recursos adecuados, y comunicar riesgos, soporte necesario y preferencias del paciente o su familia. Trasladar con apuro sin estabilización o sin equipo aumenta la morbimortalidad; esperar la normalización total también puede ser inseguro cuando el centro receptor ofrece tratamiento definitivo."
+  }
+ },
+ "flags": [
+  {
+   "id": "uci-critico (todo el curso)",
+   "problema": "Las 70 preguntas son 14 escenarios repetidos 5 veces con la misma opción correcta genérica; los enunciados originales eran idénticos entre sí y sin datos clínicos.",
+   "propuesta": "Se reescribieron enunciados con viñetas distintas y se rotaron distractores; considerar fusionar o reemplazar variantes redundantes por preguntas con correctas distintas.",
+   "fuente": "Revisión interna; guías de referencia: ARDSNet, Surviving Sepsis Campaign 2021, KDIGO AKI, SCCM PADIS 2018"
+  }
+ ],
+ "stats": {
+  "revisadas": 70,
+  "reescritas": 70,
+  "flags": 1,
+  "noVerificadas": [
+   "Todas: sin consulta web; contenido basado en guías conocidas (ARDSNet 6 mL/kg peso predicho y meseta <=30, SSC, KDIGO, PADIS, manejo de hiperpotasemia)"
+  ]
+ }
+}

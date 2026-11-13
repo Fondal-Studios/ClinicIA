@@ -1,0 +1,497 @@
+{
+ "batch": "R01",
+ "upgrades": {
+  "vaa-1a": {
+   "options": [
+    "Colapso hemodinámico durante la intervención",
+    "Hipertensión reactiva marcada durante la laringoscopia directa",
+    "Laringoespasmo por plano anestésico superficial al inducir",
+    "Hipertensión intracraneal por la hipercapnia durante la maniobra",
+    "Broncoespasmo grave por la ventilación con presión positiva"
+   ],
+   "prompt": "Paciente con neumonía grave, SpO₂ 83 % y presión 78/45 mmHg que requiere intubación. ¿Qué riesgo, además del anatómico, es el más importante de anticipar en la inducción?",
+   "why": "La hipoxemia grave y la hipotensión reducen la tolerancia a la apnea y a los fármacos de inducción, y la presión positiva baja aún más el retorno venoso: el colapso hemodinámico es el riesgo fisiológico dominante. Los otros eventos pueden ocurrir, pero no son lo que este cuadro predice."
+  },
+  "vaa-1b": {
+   "options": [
+    "Inducción con relajante y confiar en ventilar con bolsa-mascarilla si falla",
+    "Plan principal, rescate, roles y límite de intentos",
+    "Intubación despierta sistemática en todo paciente con algún predictor de dificultad",
+    "Sedación profunda con respiración espontánea hasta lograr visualizar la glotis",
+    "Traqueostomía electiva previa a cualquier intento de intubación"
+   ]
+  },
+  "vaa-1c": {
+   "options": [
+    "Shock con acidosis metabólica grave",
+    "Apertura oral menor de 3 cm con Mallampati IV",
+    "Cuello corto con movilidad cervical muy limitada",
+    "Antecedente documentado de intubación difícil en cirugía previa",
+    "Obesidad con distancia tiromentoniana corta"
+   ]
+  },
+  "vaa-1d": {
+   "options": [
+    "Designar operador, monitorización, fármacos y responsable del plan de rescate",
+    "Asignar al operador más experimentado también el manejo de fármacos y monitorización",
+    "Repartir los roles recién después de la inducción, según cómo evolucione el paciente",
+    "Definir los roles y dejar el plan de rescate para decidir si falla el primer intento",
+    "Concentrar las funciones en dos personas para reducir interferencias en la comunicación"
+   ]
+  },
+  "vaa-2a": {
+   "options": [
+    "Aumentar reserva de oxígeno y retrasar desaturación",
+    "Eliminar el nitrógeno alveolar para que la intubación sea segura sin límite de tiempo",
+    "Corregir la hipercapnia previa a la inducción mediante hiperventilación",
+    "Mejorar la compliance pulmonar para facilitar la ventilación posterior con bolsa",
+    "Reducir el riesgo de aspiración al vaciar el estómago con oxígeno a alto flujo"
+   ]
+  },
+  "vaa-2b": {
+   "options": [
+    "Escalar estrategia de oxigenación con equipo entrenado y monitorización",
+    "Proceder a intubar con secuencia rápida de inmediato, sin optimizar la oxigenación",
+    "Mantener oxígeno por mascarilla simple y diferir hasta que la SpO₂ supere 94 %",
+    "Ventilar con bolsa-mascarilla a presión alta sostenida para forzar la oxigenación",
+    "Sedar al paciente para disminuir el consumo de oxígeno antes de cambiar el dispositivo"
+   ]
+  },
+  "vaa-2c": {
+   "options": [
+    "Perfusión y presión arterial",
+    "Temperatura central y glucemia capilar en forma continua",
+    "Diuresis horaria y balance hídrico acumulado",
+    "Hemoglobina e ionograma de control antes de cada intento",
+    "Presión intracraneal estimada por el estado pupilar"
+   ]
+  },
+  "vaa-2d": {
+   "options": [
+    "Una saturación aceptable no garantiza ventilación adecuada",
+    "Una SpO₂ de 100 % descarta hipercapnia durante la preoxigenación",
+    "Con saturación estable puede diferirse la capnografía hasta confirmar el tubo",
+    "La oximetría detecta de inmediato la ventilación esofágica no reconocida",
+    "La desaturación siempre antecede al fallo ventilatorio en el paciente apneico"
+   ]
+  },
+  "vaa-3a": {
+   "options": [
+    "Capnografía de onda sostenida",
+    "Auscultación de ambos campos y epigastrio con empañamiento del tubo",
+    "Radiografía de tórax con la punta del tubo sobre la carina",
+    "Ascenso simétrico del tórax con mejoría de la saturación",
+    "Oximetría de pulso con curva pletismográfica estable"
+   ]
+  },
+  "vaa-3b": {
+   "options": [
+    "Reintentar con el mismo laringoscopio tras una breve reoxigenación",
+    "Reevaluar y cambiar técnica o dispositivo según plan",
+    "Pasar de inmediato a cricotirotomía antes de probar otra técnica",
+    "Introducir el tubo a ciegas con guía y confirmar luego con capnografía",
+    "Administrar más relajante y profundizar la sedación para mejorar las condiciones"
+   ]
+  },
+  "vaa-3c": {
+   "options": [
+    "Puede aportar rescate de oxigenación en el algoritmo",
+    "Reemplaza la intubación traqueal definitiva en el paciente con estómago lleno",
+    "Protege contra la aspiración con la misma eficacia que un tubo con balón",
+    "Es la primera línea ante un CICO ya declarado, en lugar de la vía aérea quirúrgica",
+    "Solo está indicado en cirugía electiva y no forma parte de la vía aérea difícil"
+   ]
+  },
+  "vaa-3d": {
+   "options": [
+    "Elegir dispositivo y justificar estrategia",
+    "Certificar habilidad en laringoscopia sobre maniquí o paciente real",
+    "Habilitar para realizar cricotirotomía por punción en la práctica",
+    "Reemplazar la práctica supervisada de intubación con simulación presencial",
+    "Acreditar competencia como operador principal ante una vía aérea difícil"
+   ],
+   "prompt": "¿Qué puede entrenar adecuadamente un módulo virtual de preparación?"
+  },
+  "vaa-4a": {
+   "options": [
+    "Restaurar oxigenación y replantear plan con el equipo",
+    "Pasar a intubación a ciegas con guía para evitar nuevos intentos de laringoscopia",
+    "Administrar otra dosis de relajante para optimizar las condiciones de intubación",
+    "Pasar a cricotirotomía de inmediato porque dos fallos configuran un CICO",
+    "Despertar al paciente de inmediato suspendiendo la ventilación asistida"
+   ]
+  },
+  "vaa-4b": {
+   "options": [
+    "No intubable, no oxigenable",
+    "Intubación fallida con ventilación posible por mascarilla",
+    "Laringoscopia grado III con oxigenación conservada",
+    "Dos intentos fallidos con SpO₂ estable en 94 %",
+    "Visualización glótica pobre pese a videolaringoscopio"
+   ],
+   "prompt": "En el algoritmo DAS, ¿qué define el escenario CICO?",
+   "why": "CICO (can't intubate, can't oxygenate) se declara cuando fallan intubación, ventilación con mascarilla y supraglótico y el paciente no se oxigena; recién ahí corresponde la vía aérea quirúrgica. Una intubación fallida con oxigenación conservada no es CICO y se maneja con el resto del algoritmo."
+  },
+  "vaa-4c": {
+   "options": [
+    "Verbalizando un disparador claro para cambiar de plan",
+    "Fijando de antemano cinco intentos como tope con la misma técnica",
+    "Dejando el cambio de plan a criterio del operador cuando agote su técnica",
+    "Reservando el equipo de rescate sin abrirlo hasta declarar la falla definitiva",
+    "Asignando a un único líder la decisión sin que otros puedan señalar el límite"
+   ]
+  },
+  "vaa-4d": {
+   "options": [
+    "Intentos repetidos sin cambio de estrategia",
+    "Colocar un supraglótico de segunda generación como puente",
+    "Pedir ayuda adicional y replantear el plan con el equipo",
+    "Mantener la capnografía y la ventilación con bolsa-mascarilla",
+    "Decidir en equipo entre despertar y asegurar la vía con otra técnica"
+   ],
+   "prompt": "Tras rescatar la oxigenación, ¿qué conducta debe evitarse?"
+  },
+  "vaa-5a": {
+   "options": [
+    "Planificar protección cervical compatible con oxigenación y protocolo",
+    "Retirar el collarín de forma rutinaria para facilitar la laringoscopia directa",
+    "Mantener inmovilización rígida total subordinando la oxigenación a la protección espinal",
+    "Elegir intubación nasal a ciegas por el menor movimiento cervical en todos los casos",
+    "Diferir la vía aérea hasta descartar lesión cervical con tomografía"
+   ]
+  },
+  "vaa-5b": {
+   "options": [
+    "Revisar paciente, tubo, circuito y ventilación con monitorización",
+    "Aumentar la FiO₂ al 100 % y esperar la respuesta antes de revisar el tubo",
+    "Administrar sedación y relajante adicionales por posible asincronía con el ventilador",
+    "Solicitar radiografía de tórax y diferir otras acciones hasta tener el informe",
+    "Ajustar PEEP y volumen corriente según los valores previos del respirador"
+   ]
+  },
+  "vaa-5c": {
+   "options": [
+    "Capnografía continua y parámetros ventilatorios/hemodinámicos",
+    "Capnografía solo durante el traslado y radiografía de tórax al ingreso a terapia",
+    "Presión del balón del tubo y radiografía diaria como controles principales",
+    "Oximetría continua con gasometría arterial seriada cada cuatro horas",
+    "Oximetría y auscultación periódica del tubo cada hora"
+   ]
+  },
+  "vaa-5d": {
+   "options": [
+    "Aprobación de conocimientos evaluados",
+    "Certificación de competencia para intubar en la práctica clínica",
+    "Habilitación institucional para ejecutar cricotirotomía de emergencia",
+    "Equivalencia con un curso presencial de vía aérea con simulación",
+    "Acreditación profesional válida ante el colegio médico"
+   ]
+  },
+  "shk-1a": {
+   "options": [
+    "Puede presentar hipoperfusión",
+    "Tiene shock establecido solo cuando la sistólica cae por debajo de 90 mmHg",
+    "Corresponde a un delirium hospitalario sin compromiso circulatorio",
+    "La oliguria y la confusión reflejan insuficiencia renal primaria sin shock",
+    "La frialdad sugiere vasoconstricción por dolor y no hipoperfusión sistémica"
+   ]
+  },
+  "shk-1b": {
+   "options": [
+    "Alteración del sensorio y relleno capilar prolongado",
+    "Leucocitosis con proteína C reactiva elevada y fiebre",
+    "Sed intensa y sequedad de mucosas con presión normal",
+    "Hipertensión con bradicardia y pupilas anisocóricas",
+    "Taquipnea aislada con saturación de 95 % y extremidades tibias"
+   ]
+  },
+  "shk-1c": {
+   "options": [
+    "En contexto clínico y con tendencia de reevaluación",
+    "Como marcador de sepsis que permite descartar otros tipos de shock",
+    "Como meta terapéutica cuya normalización inmediata define el éxito de la reanimación",
+    "Como umbral fijo de 4 mmol/L que obliga a iniciar vasopresores en todo cuadro",
+    "Como criterio que solo importa si se acompaña de hipotensión sostenida"
+   ]
+  },
+  "shk-1d": {
+   "options": [
+    "Reevaluaciones frecuentes tras cada intervención",
+    "Completar el esquema inicial de fluidos y reevaluar recién al finalizarlo",
+    "Reevaluar a intervalos fijos de seis horas con metas predefinidas",
+    "Mantener el protocolo de ingreso mientras los signos vitales no empeoren",
+    "Delegar la reevaluación en un lactato de control cada 12 horas"
+   ],
+   "prompt": "Durante la reanimación de un paciente en shock, ¿qué conducta favorece la seguridad?"
+  },
+  "shk-2a": {
+   "options": [
+    "Disfunción de bomba cardiaca",
+    "Tromboembolismo pulmonar masivo con falla aguda del ventrículo derecho",
+    "Shock distributivo por reacción anafiláctica",
+    "Hipovolemia por sangrado digestivo oculto",
+    "Neumotórax a tensión con compromiso del retorno venoso"
+   ],
+   "prompt": "Dolor torácico opresivo, crepitantes bibasales, tercer ruido y signos de hipoperfusión. ¿Qué causa priorizarías investigar?",
+   "why": "Dolor torácico con congestión pulmonar y tercer ruido orienta a falla de bomba (shock cardiogénico, p. ej. isquemia). La hipovolemia y la anafilaxia no cursan con congestión, y las causas obstructivas se distinguen por pulmones limpios y otros hallazgos; igualmente deben descartarse con ecografía."
+  },
+  "shk-2b": {
+   "options": [
+    "Shock obstructivo",
+    "Shock cardiogénico por disfunción del ventrículo izquierdo",
+    "Shock distributivo de origen séptico",
+    "Shock hipovolémico por pérdida de volumen intravascular",
+    "Shock neurogénico por lesión medular alta"
+   ],
+   "prompt": "Hipotensión súbita, ingurgitación yugular, campos pulmonares limpios y signos de sobrecarga derecha tras una inmovilización prolongada. ¿Qué categoría considerar?"
+  },
+  "shk-2c": {
+   "options": [
+    "Ecografía clínica enfocada por personal entrenado",
+    "Tomografía de cuerpo entero antes de estabilizar la hemodinamia",
+    "Troponinas seriadas como primer estudio para definir el fenotipo",
+    "Catéter de arteria pulmonar de rutina en todo shock indiferenciado",
+    "Radiografía de tórax portátil como estudio suficiente para clasificar el shock"
+   ]
+  },
+  "shk-2d": {
+   "options": [
+    "Administrar siempre igual volumen sin considerar el fenotipo",
+    "Buscar y tratar la causa del shock en paralelo con la reanimación",
+    "Vigilar la respuesta con parámetros dinámicos tras cada intervención",
+    "Iniciar vasopresores precozmente ante hipotensión grave, sin esperar a completar los fluidos",
+    "Preferir cristaloides balanceados frente a solución fisiológica cuando se necesita gran volumen"
+   ],
+   "prompt": "¿Cuál de estas conductas es incorrecta en un paciente con shock?"
+  },
+  "shk-3a": {
+   "options": [
+    "Reevaluar tolerancia y necesidad de nuevos fluidos",
+    "Suspender los fluidos y pasar de inmediato a diuréticos para corregir la congestión",
+    "Completar el bolo programado y luego reevaluar la oxigenación",
+    "Cambiar a coloides sintéticos para necesitar menos volumen",
+    "Iniciar vasopresor y suspender definitivamente todo aporte de líquidos"
+   ]
+  },
+  "shk-3b": {
+   "options": [
+    "Una presión venosa central aislada",
+    "Variación del volumen sistólico tras elevación pasiva de las piernas",
+    "Variación de presión de pulso en ventilación controlada con volumen corriente adecuado",
+    "Incremento del gasto cardiaco tras un minibolo de fluidos",
+    "Variación respiratoria de la integral velocidad-tiempo subaórtica con ventilación controlada"
+   ],
+   "why": "La presión venosa central aislada predice mal la respuesta a fluidos porque depende de la distensibilidad y de la presión intratorácica. Las pruebas dinámicas bien realizadas (elevación pasiva de piernas, variación de presión de pulso o de volumen sistólico, minibolo) discriminan mejor, con sus condiciones de validez."
+  },
+  "shk-3c": {
+   "options": [
+    "Explorar respuesta hemodinámica reversible cuando es factible",
+    "Aportar volumen intravascular sostenido equivalente a un bolo de 500 mL",
+    "Valorar precarga-dependencia en hipertensión intraabdominal elevada, donde es más confiable",
+    "Diagnosticar shock cardiogénico cuando la presión no varía tras la maniobra",
+    "Ajustar la dosis de vasopresores según la respuesta de la presión a la maniobra"
+   ]
+  },
+  "shk-3d": {
+   "options": [
+    "Perfusión, presión, respiración y balance relevante",
+    "Presión arterial, frecuencia cardiaca y volumen infundido acumulado",
+    "Lactato y saturación venosa central como únicos objetivos de seguimiento",
+    "Diuresis y temperatura con control de laboratorio a las 24 horas",
+    "Presión venosa central y gasto urinario como metas fijas del protocolo"
+   ]
+  },
+  "shk-4a": {
+   "options": [
+    "Etiología del shock y objetivo clínico individualizado",
+    "Presión arterial media fija de 65 mmHg aplicada a todos los pacientes",
+    "Disponibilidad del fármaco en el servicio y experiencia del equipo con su uso",
+    "Llevar el primer vasopresor a su dosis máxima antes de asociar otro agente",
+    "Valor del lactato inicial como único criterio de elección entre agentes"
+   ]
+  },
+  "shk-4b": {
+   "options": [
+    "Acceso vascular, perfusión y extravasación",
+    "Reacción anafiláctica inmediata como principal efecto adverso",
+    "Hipoglucemia por interacción con el suero de dilución",
+    "Hiperpotasemia asociada a la infusión de catecolaminas",
+    "Depresión respiratoria con necesidad de vía aérea avanzada"
+   ],
+   "prompt": "Si se inicia una infusión de noradrenalina por vía periférica, ¿qué aspecto de seguridad hay que vigilar?"
+  },
+  "shk-4c": {
+   "options": [
+    "Revalorar perfusión y diagnóstico",
+    "Mantener la conducta actual porque la meta de presión fue alcanzada",
+    "Escalar el vasopresor hasta lograr una presión arterial media de 85 mmHg",
+    "Administrar furosemida para estimular la diuresis y observar la respuesta",
+    "Atribuir la confusión a sedación residual y esperar la evolución"
+   ],
+   "prompt": "La presión arterial media mejora, pero persisten oliguria y confusión. ¿Qué hacés?"
+  },
+  "shk-4d": {
+   "options": [
+    "Solicitar ayuda especializada si el cuadro supera capacidades locales",
+    "Estabilizar localmente hasta normalizar lactato y presión antes de contactar al centro de referencia",
+    "Trasladar sin estabilización previa para acortar el tiempo al tratamiento definitivo",
+    "Coordinar la derivación recién cuando falla la respuesta a vasopresores en dosis altas",
+    "Mantener el manejo local para no perder continuidad, con solo interconsulta telefónica"
+   ]
+  },
+  "trp-1a": {
+   "options": [
+    "Evaluar seguridad y gestionar recursos",
+    "Control manual cervical y evaluación de la vía aérea del primer paciente",
+    "Triaje primario de todas las víctimas con el método START",
+    "Colocación de collar cervical y tabla larga a los pacientes accesibles",
+    "Oxígeno y acceso venoso al paciente más grave"
+   ]
+  },
+  "trp-1b": {
+   "options": [
+    "Amenazas vitales detectadas en evaluación primaria",
+    "Mecanismo lesional de alta energía informado por testigos",
+    "Lesión de aspecto más grave o dolor referido por el paciente",
+    "Orden de hallazgo en la evaluación secundaria de cabeza a pies",
+    "Estabilización de fracturas visibles de huesos largos"
+   ]
+  },
+  "trp-1c": {
+   "options": [
+    "Puede orientar sospecha de lesiones no visibles",
+    "Permite omitir la reevaluación cuando los signos vitales son normales",
+    "Confirma el diagnóstico lesional antes de la valoración clínica",
+    "Es obligatorio para activar al equipo receptor y no modifica la conducta en escena",
+    "Reemplaza la revisión por regiones ante hallazgos externos mínimos"
+   ]
+  },
+  "trp-1d": {
+   "options": [
+    "Reevaluación y coordinación de traslado",
+    "Tiempo en escena prolongado hasta completar la evaluación secundaria",
+    "Procedimientos avanzados en escena aun con traslado disponible",
+    "Delegación de la comunicación con el hospital receptor hasta la llegada",
+    "Inmovilización total como único objetivo hasta el ingreso"
+   ]
+  },
+  "trp-2a": {
+   "options": [
+    "Control inmediato de hemorragia según protocolo y entrenamiento",
+    "Colocar vía venosa y reponer volumen antes de controlar el sangrado",
+    "Asegurar la vía aérea con intubación antes de intervenir sobre la hemorragia",
+    "Aplicar oxígeno a alto flujo y evaluar la respuesta antes de comprimir",
+    "Inmovilizar la columna y diferir el control de la hemorragia a la ambulancia"
+   ]
+  },
+  "trp-2b": {
+   "options": [
+    "Hemorragia interna",
+    "Shock neurogénico por lesión medular",
+    "Contusión miocárdica con falla de bomba",
+    "Reacción vasovagal por dolor y ansiedad",
+    "Neumotórax simple con hipoxemia"
+   ],
+   "prompt": "¿Qué causa debe sospecharse en primer lugar ante un traumatizado en shock sin sangrado externo visible?"
+  },
+  "trp-2c": {
+   "options": [
+    "Identificar amenazas, tratar lo disponible y trasladar oportunamente",
+    "Realizar el diagnóstico lesional completo antes de decidir el destino",
+    "Estabilizar hasta normalizar los signos vitales y recién entonces trasladar",
+    "Aplicar todos los procedimientos avanzados disponibles durante un tiempo prolongado en escena",
+    "Trasladar de inmediato al hospital más cercano sin intervenciones en escena"
+   ]
+  },
+  "trp-2d": {
+   "options": [
+    "Estado mental, perfusión, signos vitales y tendencia",
+    "Presión sistólica con umbral de 90 mmHg como único criterio de shock",
+    "Frecuencia cardiaca y presión arterial, con el índice de shock como único objetivo",
+    "Hemoglobina capilar y glucemia para estimar la pérdida hemática",
+    "Diuresis horaria con sonda vesical colocada en la ambulancia"
+   ]
+  },
+  "trp-3a": {
+   "options": [
+    "Evaluación y permeabilidad de la vía aérea con protección apropiada",
+    "Control de hemorragia externa y acceso venoso antes de manipular la vía aérea",
+    "Estabilización cervical con collar rígido antes de maniobrar sobre la vía aérea",
+    "Oxigenoterapia con mascarilla con reservorio y reevaluación a los cinco minutos",
+    "Evaluación neurológica con Glasgow completo antes de intervenir en la vía aérea"
+   ]
+  },
+  "trp-3b": {
+   "options": [
+    "Dificultad respiratoria progresiva tras trauma torácico",
+    "Dolor torácico pleurítico con saturación estable de 98 %",
+    "Hematoma en pared torácica con murmullo vesicular simétrico",
+    "Taquicardia aislada de 110 lpm con frecuencia respiratoria de 18",
+    "Fractura costal aislada con tos eficaz y sin disnea"
+   ]
+  },
+  "trp-3c": {
+   "options": [
+    "Equilibrar protección cervical con oxigenación y prioridades vitales",
+    "Mantener inmovilización cervical estricta aun si compromete la vía aérea",
+    "Retirar la inmovilización cuando el paciente refiere ausencia de dolor cervical",
+    "Inmovilizar solo a los pacientes con déficit neurológico evidente",
+    "Usar la tabla larga como método de traslado en todos los casos"
+   ]
+  },
+  "trp-3d": {
+   "options": [
+    "Oxigenación, evolución respiratoria y medidas efectuadas",
+    "Mecanismo, hora del evento y estudios complementarios solicitados",
+    "Diagnóstico presuntivo definitivo y pronóstico estimado de la lesión",
+    "Datos filiatorios y cobertura social junto con el resumen del procedimiento",
+    "Lesiones identificadas por región sin la evolución de los signos vitales"
+   ]
+  },
+  "trp-4a": {
+   "options": [
+    "La compensación puede ocultar deterioro circulatorio",
+    "La hipotensión es el primer signo confiable de shock en pediatría",
+    "El llenado capilar normal descarta shock aun con taquicardia sostenida",
+    "La presión arterial normal garantiza reserva fisiológica conservada",
+    "La respuesta transitoria a fluidos descarta hemorragia activa"
+   ]
+  },
+  "trp-4b": {
+   "options": [
+    "Estabilización materna y evaluación obstétrica apropiada",
+    "Monitoreo fetal prioritario y traslado a maternidad sin estabilización previa",
+    "Decúbito supino estricto para facilitar el acceso y el monitoreo",
+    "Evitar oxigenoterapia y fluidos para no alterar la perfusión placentaria",
+    "Cesárea de emergencia en escena ante cualquier signo de sufrimiento fetal"
+   ]
+  },
+  "trp-4c": {
+   "options": [
+    "Comunicación estructurada con mecanismo, hallazgos y tendencias",
+    "Resumen narrativo completo de la escena con diagnósticos presuntivos",
+    "Entrega verbal en el pasillo con registro escrito posterior sin datos de evolución",
+    "Informe del diagnóstico definitivo y del pronóstico estimado de las lesiones",
+    "Lectura de los últimos signos vitales e intervenciones, sin el mecanismo"
+   ]
+  },
+  "trp-4d": {
+   "options": [
+    "Aprendizaje teórico evaluado sobre preparación en trauma",
+    "Certificación PHTLS vigente para actuar como proveedor en trauma prehospitalario",
+    "Habilitación para desempeñarse como técnico en emergencias prehospitalarias",
+    "Competencia práctica en inmovilización y control de hemorragia verificada por instructor",
+    "Reconocimiento oficial del Ministerio de Salud para la práctica en ambulancias"
+   ]
+  }
+ },
+ "flags": [],
+ "stats": {
+  "revisadas": 52,
+  "reescritas": 52,
+  "flags": 0,
+  "noVerificadas": [
+   "Fuentes DAS 2015, SSC 2021, PHTLS no consultadas en línea; claves confirmadas por conocimiento clínico estándar"
+  ]
+ }
+}

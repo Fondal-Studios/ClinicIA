@@ -1,0 +1,527 @@
+{
+ "batch": "R04",
+ "upgrades": {
+  "metabolismo-graso-integral-m1-q1": {
+   "options": [
+    "Formación de micelas y absorción intestinal",
+    "Lipólisis intravascular mediada por lipoproteína lipasa endotelial",
+    "Síntesis hepática de VLDL a partir de ácidos grasos libres",
+    "Captación hepática de remanentes por el receptor LRP1",
+    "Transporte reverso de colesterol mediado por HDL"
+   ],
+   "why": "En la malabsorción de grasas con esteatorrea falla la digestión luminal y la absorción: sales biliares y lipasa pancreática permiten emulsificar y formar micelas que el enterocito absorbe, y recién después se ensamblan los quilomicrones. Los procesos plasmáticos o hepáticos (lipoproteína lipasa, VLDL, HDL) ocurren después de la absorción y no explican la esteatorrea."
+  },
+  "metabolismo-graso-integral-m1-q2": {
+   "options": [
+    "Lipólisis intravascular mediada por lipoproteína lipasa endotelial",
+    "Formación de micelas y absorción intestinal",
+    "Síntesis hepática de VLDL a partir de ácidos grasos libres",
+    "Captación hepática de remanentes por el receptor LRP1",
+    "Transporte reverso de colesterol mediado por HDL"
+   ],
+   "why": "En la malabsorción de grasas con esteatorrea falla la digestión luminal y la absorción: sales biliares y lipasa pancreática permiten emulsificar y formar micelas que el enterocito absorbe, y recién después se ensamblan los quilomicrones. Los procesos plasmáticos o hepáticos (lipoproteína lipasa, VLDL, HDL) ocurren después de la absorción y no explican la esteatorrea."
+  },
+  "metabolismo-graso-integral-m1-q3": {
+   "options": [
+    "Lipólisis intravascular mediada por lipoproteína lipasa endotelial",
+    "Síntesis hepática de VLDL a partir de ácidos grasos libres",
+    "Formación de micelas y absorción intestinal",
+    "Captación hepática de remanentes por el receptor LRP1",
+    "Transporte reverso de colesterol mediado por HDL"
+   ],
+   "why": "En la malabsorción de grasas con esteatorrea falla la digestión luminal y la absorción: sales biliares y lipasa pancreática permiten emulsificar y formar micelas que el enterocito absorbe, y recién después se ensamblan los quilomicrones. Los procesos plasmáticos o hepáticos (lipoproteína lipasa, VLDL, HDL) ocurren después de la absorción y no explican la esteatorrea."
+  },
+  "metabolismo-graso-integral-m1-q4": {
+   "options": [
+    "Formación de micelas y absorción intestinal",
+    "Lipólisis intravascular mediada por lipoproteína lipasa endotelial",
+    "Síntesis hepática de VLDL a partir de ácidos grasos libres",
+    "Captación hepática de remanentes por el receptor LRP1",
+    "Transporte reverso de colesterol mediado por HDL"
+   ],
+   "why": "En la malabsorción de grasas con esteatorrea falla la digestión luminal y la absorción: sales biliares y lipasa pancreática permiten emulsificar y formar micelas que el enterocito absorbe, y recién después se ensamblan los quilomicrones. Los procesos plasmáticos o hepáticos (lipoproteína lipasa, VLDL, HDL) ocurren después de la absorción y no explican la esteatorrea."
+  },
+  "metabolismo-graso-integral-m1-q5": {
+   "options": [
+    "Lipólisis intravascular mediada por lipoproteína lipasa endotelial",
+    "Formación de micelas y absorción intestinal",
+    "Síntesis hepática de VLDL a partir de ácidos grasos libres",
+    "Captación hepática de remanentes por el receptor LRP1",
+    "Transporte reverso de colesterol mediado por HDL"
+   ],
+   "why": "En la malabsorción de grasas con esteatorrea falla la digestión luminal y la absorción: sales biliares y lipasa pancreática permiten emulsificar y formar micelas que el enterocito absorbe, y recién después se ensamblan los quilomicrones. Los procesos plasmáticos o hepáticos (lipoproteína lipasa, VLDL, HDL) ocurren después de la absorción y no explican la esteatorrea."
+  },
+  "metabolismo-graso-integral-m2-q1": {
+   "options": [
+    "VLDL sintetizadas en el hígado",
+    "Quilomicrones",
+    "Remanentes de IDL circulantes",
+    "Lipoproteína(a) unida a apoB-100",
+    "LDL formadas por el catabolismo de VLDL"
+   ],
+   "why": "Los quilomicrones se ensamblan en el enterocito con apoB-48 y llevan los triglicéridos de la dieta por la linfa hacia la sangre. La VLDL transporta triglicéridos endógenos de origen hepático, la LDL es rica en colesterol y la HDL participa del transporte reverso; el error tentador es confundir triglicéridos endógenos con dietarios."
+  },
+  "metabolismo-graso-integral-m2-q2": {
+   "options": [
+    "VLDL sintetizadas en el hígado",
+    "Remanentes de IDL circulantes",
+    "Quilomicrones",
+    "Lipoproteína(a) unida a apoB-100",
+    "LDL formadas por el catabolismo de VLDL"
+   ],
+   "why": "Los quilomicrones se ensamblan en el enterocito con apoB-48 y llevan los triglicéridos de la dieta por la linfa hacia la sangre. La VLDL transporta triglicéridos endógenos de origen hepático, la LDL es rica en colesterol y la HDL participa del transporte reverso; el error tentador es confundir triglicéridos endógenos con dietarios."
+  },
+  "metabolismo-graso-integral-m2-q3": {
+   "options": [
+    "Quilomicrones",
+    "VLDL sintetizadas en el hígado",
+    "Remanentes de IDL circulantes",
+    "Lipoproteína(a) unida a apoB-100",
+    "LDL formadas por el catabolismo de VLDL"
+   ],
+   "why": "Los quilomicrones se ensamblan en el enterocito con apoB-48 y llevan los triglicéridos de la dieta por la linfa hacia la sangre. La VLDL transporta triglicéridos endógenos de origen hepático, la LDL es rica en colesterol y la HDL participa del transporte reverso; el error tentador es confundir triglicéridos endógenos con dietarios."
+  },
+  "metabolismo-graso-integral-m2-q4": {
+   "options": [
+    "VLDL sintetizadas en el hígado",
+    "Quilomicrones",
+    "Remanentes de IDL circulantes",
+    "Lipoproteína(a) unida a apoB-100",
+    "LDL formadas por el catabolismo de VLDL"
+   ],
+   "why": "Los quilomicrones se ensamblan en el enterocito con apoB-48 y llevan los triglicéridos de la dieta por la linfa hacia la sangre. La VLDL transporta triglicéridos endógenos de origen hepático, la LDL es rica en colesterol y la HDL participa del transporte reverso; el error tentador es confundir triglicéridos endógenos con dietarios."
+  },
+  "metabolismo-graso-integral-m2-q5": {
+   "options": [
+    "VLDL sintetizadas en el hígado",
+    "Remanentes de IDL circulantes",
+    "Quilomicrones",
+    "Lipoproteína(a) unida a apoB-100",
+    "LDL formadas por el catabolismo de VLDL"
+   ],
+   "why": "Los quilomicrones se ensamblan en el enterocito con apoB-48 y llevan los triglicéridos de la dieta por la linfa hacia la sangre. La VLDL transporta triglicéridos endógenos de origen hepático, la LDL es rica en colesterol y la HDL participa del transporte reverso; el error tentador es confundir triglicéridos endógenos con dietarios."
+  },
+  "metabolismo-graso-integral-m3-q1": {
+   "options": [
+    "Lipogénesis de novo hepática",
+    "Cetogénesis hepática",
+    "Lipólisis",
+    "Glucogenólisis hepática",
+    "Betaoxidación mitocondrial"
+   ],
+   "why": "En ayuno cae la insulina y aumentan catecolaminas y glucagón, que activan la lipólisis del tejido adiposo: la lipasa sensible a hormonas libera ácidos grasos y glicerol de los triglicéridos almacenados. La betaoxidación y la cetogénesis son pasos posteriores que utilizan esos ácidos grasos, y la glucogenólisis moviliza glucógeno, no triglicéridos."
+  },
+  "metabolismo-graso-integral-m3-q2": {
+   "options": [
+    "Lipólisis",
+    "Lipogénesis de novo hepática",
+    "Cetogénesis hepática",
+    "Glucogenólisis hepática",
+    "Betaoxidación mitocondrial"
+   ],
+   "why": "En ayuno cae la insulina y aumentan catecolaminas y glucagón, que activan la lipólisis del tejido adiposo: la lipasa sensible a hormonas libera ácidos grasos y glicerol de los triglicéridos almacenados. La betaoxidación y la cetogénesis son pasos posteriores que utilizan esos ácidos grasos, y la glucogenólisis moviliza glucógeno, no triglicéridos."
+  },
+  "metabolismo-graso-integral-m3-q3": {
+   "options": [
+    "Lipogénesis de novo hepática",
+    "Lipólisis",
+    "Cetogénesis hepática",
+    "Glucogenólisis hepática",
+    "Betaoxidación mitocondrial"
+   ],
+   "why": "En ayuno cae la insulina y aumentan catecolaminas y glucagón, que activan la lipólisis del tejido adiposo: la lipasa sensible a hormonas libera ácidos grasos y glicerol de los triglicéridos almacenados. La betaoxidación y la cetogénesis son pasos posteriores que utilizan esos ácidos grasos, y la glucogenólisis moviliza glucógeno, no triglicéridos."
+  },
+  "metabolismo-graso-integral-m3-q4": {
+   "options": [
+    "Lipogénesis de novo hepática",
+    "Cetogénesis hepática",
+    "Lipólisis",
+    "Glucogenólisis hepática",
+    "Betaoxidación mitocondrial"
+   ],
+   "why": "En ayuno cae la insulina y aumentan catecolaminas y glucagón, que activan la lipólisis del tejido adiposo: la lipasa sensible a hormonas libera ácidos grasos y glicerol de los triglicéridos almacenados. La betaoxidación y la cetogénesis son pasos posteriores que utilizan esos ácidos grasos, y la glucogenólisis moviliza glucógeno, no triglicéridos."
+  },
+  "metabolismo-graso-integral-m3-q5": {
+   "options": [
+    "Lipólisis",
+    "Lipogénesis de novo hepática",
+    "Cetogénesis hepática",
+    "Glucogenólisis hepática",
+    "Betaoxidación mitocondrial"
+   ],
+   "why": "En ayuno cae la insulina y aumentan catecolaminas y glucagón, que activan la lipólisis del tejido adiposo: la lipasa sensible a hormonas libera ácidos grasos y glicerol de los triglicéridos almacenados. La betaoxidación y la cetogénesis son pasos posteriores que utilizan esos ácidos grasos, y la glucogenólisis moviliza glucógeno, no triglicéridos."
+  },
+  "metabolismo-graso-integral-m4-q1": {
+   "options": [
+    "Betaoxidación",
+    "Lipogénesis de novo",
+    "Gluconeogénesis a partir de glicerol",
+    "Esterificación a triglicéridos",
+    "Síntesis de colesterol por la vía del mevalonato"
+   ],
+   "why": "La betaoxidación mitocondrial degrada los ácidos grasos en unidades de acetil-CoA que alimentan el ciclo de Krebs y la cadena respiratoria para generar ATP. La lipogénesis y la esterificación son vías de almacenamiento, no de obtención de energía, y la gluconeogénesis desde glicerol usa el esqueleto del glicerol, no el de los ácidos grasos."
+  },
+  "metabolismo-graso-integral-m4-q2": {
+   "options": [
+    "Lipogénesis de novo",
+    "Betaoxidación",
+    "Gluconeogénesis a partir de glicerol",
+    "Esterificación a triglicéridos",
+    "Síntesis de colesterol por la vía del mevalonato"
+   ],
+   "why": "La betaoxidación mitocondrial degrada los ácidos grasos en unidades de acetil-CoA que alimentan el ciclo de Krebs y la cadena respiratoria para generar ATP. La lipogénesis y la esterificación son vías de almacenamiento, no de obtención de energía, y la gluconeogénesis desde glicerol usa el esqueleto del glicerol, no el de los ácidos grasos."
+  },
+  "metabolismo-graso-integral-m4-q3": {
+   "options": [
+    "Lipogénesis de novo",
+    "Gluconeogénesis a partir de glicerol",
+    "Betaoxidación",
+    "Esterificación a triglicéridos",
+    "Síntesis de colesterol por la vía del mevalonato"
+   ],
+   "why": "La betaoxidación mitocondrial degrada los ácidos grasos en unidades de acetil-CoA que alimentan el ciclo de Krebs y la cadena respiratoria para generar ATP. La lipogénesis y la esterificación son vías de almacenamiento, no de obtención de energía, y la gluconeogénesis desde glicerol usa el esqueleto del glicerol, no el de los ácidos grasos."
+  },
+  "metabolismo-graso-integral-m4-q4": {
+   "options": [
+    "Betaoxidación",
+    "Lipogénesis de novo",
+    "Gluconeogénesis a partir de glicerol",
+    "Esterificación a triglicéridos",
+    "Síntesis de colesterol por la vía del mevalonato"
+   ],
+   "why": "La betaoxidación mitocondrial degrada los ácidos grasos en unidades de acetil-CoA que alimentan el ciclo de Krebs y la cadena respiratoria para generar ATP. La lipogénesis y la esterificación son vías de almacenamiento, no de obtención de energía, y la gluconeogénesis desde glicerol usa el esqueleto del glicerol, no el de los ácidos grasos."
+  },
+  "metabolismo-graso-integral-m4-q5": {
+   "options": [
+    "Lipogénesis de novo",
+    "Betaoxidación",
+    "Gluconeogénesis a partir de glicerol",
+    "Esterificación a triglicéridos",
+    "Síntesis de colesterol por la vía del mevalonato"
+   ],
+   "why": "La betaoxidación mitocondrial degrada los ácidos grasos en unidades de acetil-CoA que alimentan el ciclo de Krebs y la cadena respiratoria para generar ATP. La lipogénesis y la esterificación son vías de almacenamiento, no de obtención de energía, y la gluconeogénesis desde glicerol usa el esqueleto del glicerol, no el de los ácidos grasos."
+  },
+  "metabolismo-graso-integral-m5-q1": {
+   "options": [
+    "Disfunción de célula beta con hipoinsulinemia relativa",
+    "Resistencia a insulina",
+    "Hipoglucemia reactiva posprandial",
+    "Hiperglucemia en ayunas por exceso de glucagón",
+    "Déficit absoluto de insulina de origen autoinmune"
+   ],
+   "why": "Hiperinsulinemia con adiposidad visceral sugiere resistencia a la insulina: los tejidos responden menos y el páncreas compensa secretando más. La glucemia basal puede ser normal durante años, por lo que no la descarta; el déficit de secreción aparece más tarde en la historia natural, no como mecanismo inicial."
+  },
+  "metabolismo-graso-integral-m5-q2": {
+   "options": [
+    "Disfunción de célula beta con hipoinsulinemia relativa",
+    "Hipoglucemia reactiva posprandial",
+    "Resistencia a insulina",
+    "Hiperglucemia en ayunas por exceso de glucagón",
+    "Déficit absoluto de insulina de origen autoinmune"
+   ],
+   "why": "Hiperinsulinemia con adiposidad visceral sugiere resistencia a la insulina: los tejidos responden menos y el páncreas compensa secretando más. La glucemia basal puede ser normal durante años, por lo que no la descarta; el déficit de secreción aparece más tarde en la historia natural, no como mecanismo inicial."
+  },
+  "metabolismo-graso-integral-m5-q3": {
+   "options": [
+    "Resistencia a insulina",
+    "Disfunción de célula beta con hipoinsulinemia relativa",
+    "Hipoglucemia reactiva posprandial",
+    "Hiperglucemia en ayunas por exceso de glucagón",
+    "Déficit absoluto de insulina de origen autoinmune"
+   ],
+   "why": "Hiperinsulinemia con adiposidad visceral sugiere resistencia a la insulina: los tejidos responden menos y el páncreas compensa secretando más. La glucemia basal puede ser normal durante años, por lo que no la descarta; el déficit de secreción aparece más tarde en la historia natural, no como mecanismo inicial."
+  },
+  "metabolismo-graso-integral-m5-q4": {
+   "options": [
+    "Disfunción de célula beta con hipoinsulinemia relativa",
+    "Resistencia a insulina",
+    "Hipoglucemia reactiva posprandial",
+    "Hiperglucemia en ayunas por exceso de glucagón",
+    "Déficit absoluto de insulina de origen autoinmune"
+   ],
+   "why": "Hiperinsulinemia con adiposidad visceral sugiere resistencia a la insulina: los tejidos responden menos y el páncreas compensa secretando más. La glucemia basal puede ser normal durante años, por lo que no la descarta; el déficit de secreción aparece más tarde en la historia natural, no como mecanismo inicial."
+  },
+  "metabolismo-graso-integral-m5-q5": {
+   "options": [
+    "Disfunción de célula beta con hipoinsulinemia relativa",
+    "Hipoglucemia reactiva posprandial",
+    "Resistencia a insulina",
+    "Hiperglucemia en ayunas por exceso de glucagón",
+    "Déficit absoluto de insulina de origen autoinmune"
+   ],
+   "why": "Hiperinsulinemia con adiposidad visceral sugiere resistencia a la insulina: los tejidos responden menos y el páncreas compensa secretando más. La glucemia basal puede ser normal durante años, por lo que no la descarta; el déficit de secreción aparece más tarde en la historia natural, no como mecanismo inicial."
+  },
+  "metabolismo-graso-integral-m6-q1": {
+   "options": [
+    "Biopsia hepática inmediata para confirmar el diagnóstico",
+    "Suspender metformina por riesgo de toxicidad hepática",
+    "Evaluación metabólica y riesgo de fibrosis",
+    "Indicar vitamina E y silimarina en todos los casos",
+    "Repetir la ecografía cada tres meses para estadificar"
+   ],
+   "why": "En la esteatosis hepática asociada a disfunción metabólica con diabetes tipo 2 el riesgo de fibrosis avanzada es alto; se prioriza la evaluación metabólica y la estratificación con FIB-4 y, según el resultado, elastografía. La biopsia no es el primer paso, las transaminasas normales no excluyen fibrosis y la metformina no está contraindicada por la esteatosis."
+  },
+  "metabolismo-graso-integral-m6-q2": {
+   "options": [
+    "Evaluación metabólica y riesgo de fibrosis",
+    "Biopsia hepática inmediata para confirmar el diagnóstico",
+    "Suspender metformina por riesgo de toxicidad hepática",
+    "Indicar vitamina E y silimarina en todos los casos",
+    "Repetir la ecografía cada tres meses para estadificar"
+   ],
+   "why": "En la esteatosis hepática asociada a disfunción metabólica con diabetes tipo 2 el riesgo de fibrosis avanzada es alto; se prioriza la evaluación metabólica y la estratificación con FIB-4 y, según el resultado, elastografía. La biopsia no es el primer paso, las transaminasas normales no excluyen fibrosis y la metformina no está contraindicada por la esteatosis."
+  },
+  "metabolismo-graso-integral-m6-q3": {
+   "options": [
+    "Biopsia hepática inmediata para confirmar el diagnóstico",
+    "Evaluación metabólica y riesgo de fibrosis",
+    "Suspender metformina por riesgo de toxicidad hepática",
+    "Indicar vitamina E y silimarina en todos los casos",
+    "Repetir la ecografía cada tres meses para estadificar"
+   ],
+   "why": "En la esteatosis hepática asociada a disfunción metabólica con diabetes tipo 2 el riesgo de fibrosis avanzada es alto; se prioriza la evaluación metabólica y la estratificación con FIB-4 y, según el resultado, elastografía. La biopsia no es el primer paso, las transaminasas normales no excluyen fibrosis y la metformina no está contraindicada por la esteatosis."
+  },
+  "metabolismo-graso-integral-m6-q4": {
+   "options": [
+    "Biopsia hepática inmediata para confirmar el diagnóstico",
+    "Suspender metformina por riesgo de toxicidad hepática",
+    "Evaluación metabólica y riesgo de fibrosis",
+    "Indicar vitamina E y silimarina en todos los casos",
+    "Repetir la ecografía cada tres meses para estadificar"
+   ],
+   "why": "En la esteatosis hepática asociada a disfunción metabólica con diabetes tipo 2 el riesgo de fibrosis avanzada es alto; se prioriza la evaluación metabólica y la estratificación con FIB-4 y, según el resultado, elastografía. La biopsia no es el primer paso, las transaminasas normales no excluyen fibrosis y la metformina no está contraindicada por la esteatosis."
+  },
+  "metabolismo-graso-integral-m6-q5": {
+   "options": [
+    "Evaluación metabólica y riesgo de fibrosis",
+    "Biopsia hepática inmediata para confirmar el diagnóstico",
+    "Suspender metformina por riesgo de toxicidad hepática",
+    "Indicar vitamina E y silimarina en todos los casos",
+    "Repetir la ecografía cada tres meses para estadificar"
+   ],
+   "why": "En la esteatosis hepática asociada a disfunción metabólica con diabetes tipo 2 el riesgo de fibrosis avanzada es alto; se prioriza la evaluación metabólica y la estratificación con FIB-4 y, según el resultado, elastografía. La biopsia no es el primer paso, las transaminasas normales no excluyen fibrosis y la metformina no está contraindicada por la esteatosis."
+  },
+  "metabolismo-graso-integral-m7-q1": {
+   "options": [
+    "Pancreatitis aguda",
+    "Colecistitis aguda litiásica",
+    "Isquemia mesentérica aguda",
+    "Úlcera péptica perforada",
+    "Hepatitis alcohólica aguda"
+   ],
+   "why": "La hipertrigliceridemia muy elevada, sobre todo por encima de 500 a 1000 mg/dL, es causa reconocida de pancreatitis aguda, por lo que dolor abdominal con triglicéridos extremos obliga a sospecharla y a buscar causas secundarias. Una amilasa poco elevada no la descarta: en la pancreatitis hipertrigliceridémica puede estar subestimada por interferencia lipémica."
+  },
+  "metabolismo-graso-integral-m7-q2": {
+   "options": [
+    "Colecistitis aguda litiásica",
+    "Pancreatitis aguda",
+    "Isquemia mesentérica aguda",
+    "Úlcera péptica perforada",
+    "Hepatitis alcohólica aguda"
+   ],
+   "why": "La hipertrigliceridemia muy elevada, sobre todo por encima de 500 a 1000 mg/dL, es causa reconocida de pancreatitis aguda, por lo que dolor abdominal con triglicéridos extremos obliga a sospecharla y a buscar causas secundarias. Una amilasa poco elevada no la descarta: en la pancreatitis hipertrigliceridémica puede estar subestimada por interferencia lipémica."
+  },
+  "metabolismo-graso-integral-m7-q3": {
+   "options": [
+    "Colecistitis aguda litiásica",
+    "Isquemia mesentérica aguda",
+    "Pancreatitis aguda",
+    "Úlcera péptica perforada",
+    "Hepatitis alcohólica aguda"
+   ],
+   "why": "La hipertrigliceridemia muy elevada, sobre todo por encima de 500 a 1000 mg/dL, es causa reconocida de pancreatitis aguda, por lo que dolor abdominal con triglicéridos extremos obliga a sospecharla y a buscar causas secundarias. Una amilasa poco elevada no la descarta: en la pancreatitis hipertrigliceridémica puede estar subestimada por interferencia lipémica."
+  },
+  "metabolismo-graso-integral-m7-q4": {
+   "options": [
+    "Pancreatitis aguda",
+    "Colecistitis aguda litiásica",
+    "Isquemia mesentérica aguda",
+    "Úlcera péptica perforada",
+    "Hepatitis alcohólica aguda"
+   ],
+   "why": "La hipertrigliceridemia muy elevada, sobre todo por encima de 500 a 1000 mg/dL, es causa reconocida de pancreatitis aguda, por lo que dolor abdominal con triglicéridos extremos obliga a sospecharla y a buscar causas secundarias. Una amilasa poco elevada no la descarta: en la pancreatitis hipertrigliceridémica puede estar subestimada por interferencia lipémica."
+  },
+  "metabolismo-graso-integral-m7-q5": {
+   "options": [
+    "Colecistitis aguda litiásica",
+    "Pancreatitis aguda",
+    "Isquemia mesentérica aguda",
+    "Úlcera péptica perforada",
+    "Hepatitis alcohólica aguda"
+   ],
+   "why": "La hipertrigliceridemia muy elevada, sobre todo por encima de 500 a 1000 mg/dL, es causa reconocida de pancreatitis aguda, por lo que dolor abdominal con triglicéridos extremos obliga a sospecharla y a buscar causas secundarias. Una amilasa poco elevada no la descarta: en la pancreatitis hipertrigliceridémica puede estar subestimada por interferencia lipémica."
+  },
+  "metabolismo-graso-integral-m8-q1": {
+   "options": [
+    "Difieren en el porcentaje de grasa total, no en su distribución",
+    "Difieren en adiposidad visceral y comorbilidades",
+    "Difieren en la grasa subcutánea glúteo-femoral, que aumenta el riesgo",
+    "Difieren en el gasto energético basal, no en la distribución de grasa",
+    "Difieren en la talla, ya que el IMC sobrestima la grasa en personas altas"
+   ],
+   "why": "El IMC no distingue la distribución de la grasa: a igual IMC, quien acumula más grasa visceral y ectópica (hepática, muscular) tiene mayor riesgo cardiometabólico, y también influyen las comorbilidades. La grasa glúteo-femoral subcutánea es neutra o protectora, y el riesgo no se explica por la grasa total sola."
+  },
+  "metabolismo-graso-integral-m8-q2": {
+   "options": [
+    "Difieren en el porcentaje de grasa total, no en su distribución",
+    "Difieren en la grasa subcutánea glúteo-femoral, que aumenta el riesgo",
+    "Difieren en adiposidad visceral y comorbilidades",
+    "Difieren en el gasto energético basal, no en la distribución de grasa",
+    "Difieren en la talla, ya que el IMC sobrestima la grasa en personas altas"
+   ],
+   "why": "El IMC no distingue la distribución de la grasa: a igual IMC, quien acumula más grasa visceral y ectópica (hepática, muscular) tiene mayor riesgo cardiometabólico, y también influyen las comorbilidades. La grasa glúteo-femoral subcutánea es neutra o protectora, y el riesgo no se explica por la grasa total sola."
+  },
+  "metabolismo-graso-integral-m8-q3": {
+   "options": [
+    "Difieren en adiposidad visceral y comorbilidades",
+    "Difieren en el porcentaje de grasa total, no en su distribución",
+    "Difieren en la grasa subcutánea glúteo-femoral, que aumenta el riesgo",
+    "Difieren en el gasto energético basal, no en la distribución de grasa",
+    "Difieren en la talla, ya que el IMC sobrestima la grasa en personas altas"
+   ],
+   "why": "El IMC no distingue la distribución de la grasa: a igual IMC, quien acumula más grasa visceral y ectópica (hepática, muscular) tiene mayor riesgo cardiometabólico, y también influyen las comorbilidades. La grasa glúteo-femoral subcutánea es neutra o protectora, y el riesgo no se explica por la grasa total sola."
+  },
+  "metabolismo-graso-integral-m8-q4": {
+   "options": [
+    "Difieren en el porcentaje de grasa total, no en su distribución",
+    "Difieren en adiposidad visceral y comorbilidades",
+    "Difieren en la grasa subcutánea glúteo-femoral, que aumenta el riesgo",
+    "Difieren en el gasto energético basal, no en la distribución de grasa",
+    "Difieren en la talla, ya que el IMC sobrestima la grasa en personas altas"
+   ],
+   "why": "El IMC no distingue la distribución de la grasa: a igual IMC, quien acumula más grasa visceral y ectópica (hepática, muscular) tiene mayor riesgo cardiometabólico, y también influyen las comorbilidades. La grasa glúteo-femoral subcutánea es neutra o protectora, y el riesgo no se explica por la grasa total sola."
+  },
+  "metabolismo-graso-integral-m8-q5": {
+   "options": [
+    "Difieren en el porcentaje de grasa total, no en su distribución",
+    "Difieren en la grasa subcutánea glúteo-femoral, que aumenta el riesgo",
+    "Difieren en adiposidad visceral y comorbilidades",
+    "Difieren en el gasto energético basal, no en la distribución de grasa",
+    "Difieren en la talla, ya que el IMC sobrestima la grasa en personas altas"
+   ],
+   "why": "El IMC no distingue la distribución de la grasa: a igual IMC, quien acumula más grasa visceral y ectópica (hepática, muscular) tiene mayor riesgo cardiometabólico, y también influyen las comorbilidades. La grasa glúteo-femoral subcutánea es neutra o protectora, y el riesgo no se explica por la grasa total sola."
+  },
+  "metabolismo-graso-integral-m9-q1": {
+   "options": [
+    "Dieta muy baja en calorías sostenida a largo plazo",
+    "Eliminación completa de los hidratos de carbono",
+    "Plan individualizado y seguimiento",
+    "Ayuno intermitente como esquema único para la mayoría de los",
+    "Plan hipocalórico estándar de 1200 kcal para la mayoría de los"
+   ],
+   "why": "Las intervenciones sostenibles se adaptan a preferencias, entorno, saciedad y calidad de los alimentos, con seguimiento para sostener la adherencia. Ningún esquema único (ayuno, restricción extrema de hidratos o calorías fijas) supera al plan individualizado a largo plazo, y los déficits extremos suelen asociarse a abandono y recuperación del peso."
+  },
+  "metabolismo-graso-integral-m9-q2": {
+   "options": [
+    "Plan individualizado y seguimiento",
+    "Dieta muy baja en calorías sostenida a largo plazo",
+    "Eliminación completa de los hidratos de carbono",
+    "Ayuno intermitente como esquema único para la mayoría de los",
+    "Plan hipocalórico estándar de 1200 kcal para la mayoría de los"
+   ],
+   "why": "Las intervenciones sostenibles se adaptan a preferencias, entorno, saciedad y calidad de los alimentos, con seguimiento para sostener la adherencia. Ningún esquema único (ayuno, restricción extrema de hidratos o calorías fijas) supera al plan individualizado a largo plazo, y los déficits extremos suelen asociarse a abandono y recuperación del peso."
+  },
+  "metabolismo-graso-integral-m9-q3": {
+   "options": [
+    "Dieta muy baja en calorías sostenida a largo plazo",
+    "Plan individualizado y seguimiento",
+    "Eliminación completa de los hidratos de carbono",
+    "Ayuno intermitente como esquema único para la mayoría de los",
+    "Plan hipocalórico estándar de 1200 kcal para la mayoría de los"
+   ],
+   "why": "Las intervenciones sostenibles se adaptan a preferencias, entorno, saciedad y calidad de los alimentos, con seguimiento para sostener la adherencia. Ningún esquema único (ayuno, restricción extrema de hidratos o calorías fijas) supera al plan individualizado a largo plazo, y los déficits extremos suelen asociarse a abandono y recuperación del peso."
+  },
+  "metabolismo-graso-integral-m9-q4": {
+   "options": [
+    "Dieta muy baja en calorías sostenida a largo plazo",
+    "Eliminación completa de los hidratos de carbono",
+    "Plan individualizado y seguimiento",
+    "Ayuno intermitente como esquema único para la mayoría de los",
+    "Plan hipocalórico estándar de 1200 kcal para la mayoría de los"
+   ],
+   "why": "Las intervenciones sostenibles se adaptan a preferencias, entorno, saciedad y calidad de los alimentos, con seguimiento para sostener la adherencia. Ningún esquema único (ayuno, restricción extrema de hidratos o calorías fijas) supera al plan individualizado a largo plazo, y los déficits extremos suelen asociarse a abandono y recuperación del peso."
+  },
+  "metabolismo-graso-integral-m9-q5": {
+   "options": [
+    "Plan individualizado y seguimiento",
+    "Dieta muy baja en calorías sostenida a largo plazo",
+    "Eliminación completa de los hidratos de carbono",
+    "Ayuno intermitente como esquema único para la mayoría de los",
+    "Plan hipocalórico estándar de 1200 kcal para la mayoría de los"
+   ],
+   "why": "Las intervenciones sostenibles se adaptan a preferencias, entorno, saciedad y calidad de los alimentos, con seguimiento para sostener la adherencia. Ningún esquema único (ayuno, restricción extrema de hidratos o calorías fijas) supera al plan individualizado a largo plazo, y los déficits extremos suelen asociarse a abandono y recuperación del peso."
+  },
+  "metabolismo-graso-integral-m10-q1": {
+   "options": [
+    "Tratar comorbilidades y hábitos con equipo clínico",
+    "Indicar dieta hipocalórica y diferir la evaluación de la apnea",
+    "Prescribir farmacoterapia antiobesidad como único abordaje",
+    "Iniciar CPAP y diferir el manejo del peso hasta resolver la apnea",
+    "Derivar a cirugía bariátrica sin tratamiento médico previo"
+   ],
+   "why": "La obesidad con apnea del sueño requiere un abordaje integral: manejo del peso, actividad física que incluya fuerza, higiene del sueño, tratamiento de la apnea y control de comorbilidades con equipo interdisciplinario. Los fármacos y la cirugía son herramientas dentro de ese plan, no lo reemplazan, y la apnea y el peso se tratan en paralelo."
+  },
+  "metabolismo-graso-integral-m10-q2": {
+   "options": [
+    "Indicar dieta hipocalórica y diferir la evaluación de la apnea",
+    "Tratar comorbilidades y hábitos con equipo clínico",
+    "Prescribir farmacoterapia antiobesidad como único abordaje",
+    "Iniciar CPAP y diferir el manejo del peso hasta resolver la apnea",
+    "Derivar a cirugía bariátrica sin tratamiento médico previo"
+   ],
+   "why": "La obesidad con apnea del sueño requiere un abordaje integral: manejo del peso, actividad física que incluya fuerza, higiene del sueño, tratamiento de la apnea y control de comorbilidades con equipo interdisciplinario. Los fármacos y la cirugía son herramientas dentro de ese plan, no lo reemplazan, y la apnea y el peso se tratan en paralelo."
+  },
+  "metabolismo-graso-integral-m10-q3": {
+   "options": [
+    "Indicar dieta hipocalórica y diferir la evaluación de la apnea",
+    "Prescribir farmacoterapia antiobesidad como único abordaje",
+    "Tratar comorbilidades y hábitos con equipo clínico",
+    "Iniciar CPAP y diferir el manejo del peso hasta resolver la apnea",
+    "Derivar a cirugía bariátrica sin tratamiento médico previo"
+   ],
+   "why": "La obesidad con apnea del sueño requiere un abordaje integral: manejo del peso, actividad física que incluya fuerza, higiene del sueño, tratamiento de la apnea y control de comorbilidades con equipo interdisciplinario. Los fármacos y la cirugía son herramientas dentro de ese plan, no lo reemplazan, y la apnea y el peso se tratan en paralelo."
+  },
+  "metabolismo-graso-integral-m10-q4": {
+   "options": [
+    "Tratar comorbilidades y hábitos con equipo clínico",
+    "Indicar dieta hipocalórica y diferir la evaluación de la apnea",
+    "Prescribir farmacoterapia antiobesidad como único abordaje",
+    "Iniciar CPAP y diferir el manejo del peso hasta resolver la apnea",
+    "Derivar a cirugía bariátrica sin tratamiento médico previo"
+   ],
+   "why": "La obesidad con apnea del sueño requiere un abordaje integral: manejo del peso, actividad física que incluya fuerza, higiene del sueño, tratamiento de la apnea y control de comorbilidades con equipo interdisciplinario. Los fármacos y la cirugía son herramientas dentro de ese plan, no lo reemplazan, y la apnea y el peso se tratan en paralelo."
+  },
+  "metabolismo-graso-integral-m10-q5": {
+   "options": [
+    "Indicar dieta hipocalórica y diferir la evaluación de la apnea",
+    "Tratar comorbilidades y hábitos con equipo clínico",
+    "Prescribir farmacoterapia antiobesidad como único abordaje",
+    "Iniciar CPAP y diferir el manejo del peso hasta resolver la apnea",
+    "Derivar a cirugía bariátrica sin tratamiento médico previo"
+   ],
+   "why": "La obesidad con apnea del sueño requiere un abordaje integral: manejo del peso, actividad física que incluya fuerza, higiene del sueño, tratamiento de la apnea y control de comorbilidades con equipo interdisciplinario. Los fármacos y la cirugía son herramientas dentro de ese plan, no lo reemplazan, y la apnea y el peso se tratan en paralelo."
+  }
+ },
+ "flags": [
+  {
+   "id": "metabolismo-graso-integral-m3-q1..q5",
+   "problema": "La opción correcta 'Lipólisis' tiene 9 caracteres y el validador exige >=12 por opción; no se puede alargar sin cambiar el texto de la correcta.",
+   "propuesta": "Cambiar la correcta a 'Lipólisis del tejido adiposo' en todas las variantes, o relajar el validador.",
+   "fuente": "n/a (formato)"
+  },
+  {
+   "id": "metabolismo-graso-integral (todas)",
+   "problema": "Las 50 preguntas son 10 preguntas repetidas 5 veces con distinto prefijo de contexto ('En una consulta inicial:', etc.) y opciones barajadas; no aportan variedad.",
+   "propuesta": "Reemplazar por variantes con casos clínicos distintos o reducir a 10-15 preguntas.",
+   "fuente": "n/a"
+  }
+ ],
+ "stats": {
+  "revisadas": 50,
+  "reescritas": 50,
+  "flags": 2,
+  "noVerificadas": [
+   "Contenido de fisiología lipídica estándar (Harrison/Lehninger, ATP III/KDIGO-AASLD de memoria); no se abrió fuente externa. Umbral TG >500-1000 mg/dL y amilasa subestimada por lipemia no verificados con fuente."
+  ]
+ }
+}

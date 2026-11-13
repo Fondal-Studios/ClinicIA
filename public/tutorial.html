@@ -1,0 +1,39 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cómo usar ClinicIA · tutorial de 5 minutos</title>
+<style>
+:root{--navy:#0f2a4a;--malbec:#6b1f3a;--oro:#d9a441;--crema:#f7f1e6;--ink:#1d2a3a;font-family:system-ui,-apple-system,sans-serif}
+*{box-sizing:border-box}body{margin:0;background:var(--crema);color:var(--ink);line-height:1.5}
+header{background:linear-gradient(90deg,var(--navy),#16396a 60%,var(--malbec));color:#fff;padding:14px 16px;border-bottom:4px solid var(--oro)}header a{color:var(--oro);text-decoration:none;font-weight:700}
+main{max-width:720px;margin:0 auto;padding:16px}h1{color:var(--navy);margin:8px 0 4px;font-size:clamp(26px,6vw,36px)}.lead{font-size:18px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.tabs button{flex:1 1 140px;min-height:48px;border:2px solid var(--navy);background:#fff;border-radius:12px;font-weight:700;font-size:16px;color:var(--navy);cursor:pointer}.tabs button[aria-selected=true]{background:var(--navy);color:#fff}
+.step{background:#fff;border:2px solid #d8cdb8;border-radius:16px;padding:16px;margin:12px 0;display:flex;gap:14px}.num{flex:none;width:40px;height:40px;border-radius:50%;background:var(--malbec);color:#fff;display:grid;place-items:center;font-weight:800}.step h2{margin:0 0 4px;font-size:19px;color:var(--navy)}.step p{margin:0}
+.quiz{background:var(--navy);color:#fff;border-radius:16px;padding:16px;margin:16px 0}.quiz h2{margin:0 0 8px;color:var(--oro);font-size:18px}.quiz button{display:block;width:100%;text-align:left;min-height:48px;margin:8px 0;padding:10px 12px;border-radius:12px;border:2px solid #ffffff55;background:#ffffff14;color:#fff;font-size:16px;cursor:pointer}.quiz button.ok{background:#1f7a4f;border-color:#9be3bc}.quiz button.no{background:#7a2020;border-color:#f0a0a0}.fb{min-height:24px;margin-top:6px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}.actions a{flex:1 1 200px;text-align:center;padding:14px;border-radius:12px;background:var(--malbec);color:#fff;text-decoration:none;font-weight:700;min-height:48px}.actions a.alt{background:#fff;color:var(--navy);border:2px solid var(--navy)}
+.note{font-size:14px;color:#51463a}
+</style></head><body>
+<header><a href="/capacitacion.html?perfil=alumno">✚ ClinicIA</a> · Policía de Cafayate · Primeros respondientes</header>
+<main>
+<h1>Cómo usar ClinicIA</h1><p class="lead">Un tutorial de 5 minutos. Elegí quién sos:</p>
+<div class="tabs" role="tablist" aria-label="Tu perfil"><button role="tab" data-rol="respondedor">Policía, bombero o primer respondiente</button><button role="tab" data-rol="sanitario">Médico o personal sanitario</button><button role="tab" data-rol="instructor">Instructor</button></div>
+<div id="steps"></div><section class="quiz" aria-live="polite"><h2 id="qtitle"></h2><div id="opts"></div><div class="fb" id="fb"></div></section>
+<div class="actions" id="go"></div>
+<p class="note">ClinicIA es una plataforma gratuita de formación. El contenido es introductorio y está pendiente de validación docente: no reemplaza un título, una certificación oficial ni la práctica supervisada.</p>
+</main>
+<script>
+const T={
+respondedor:{steps:[['Abrí el enlace de la clase','Tu instructor te pasa un enlace. Abrilo en el celular: no hace falta instalar nada ni crear contraseña.'],['Escribí tu nombre y apellido','ClinicIA te da un usuario y un código (ejemplo XXXX-XXXX). Sacale captura o anotalo: es tu llave para volver.'],['Estudiá los módulos','Son 10 módulos cortos: escena segura, hemorragias, paro y DEA, trauma, fracturas, ACV, convulsiones, atragantamiento y el pase al hospital.'],['Practicá en tríos','Respondiente, testigo y observador. El instructor mira y valida en la planilla lo que realmente observa.'],['Rendí el examen','50 preguntas en el celular. Se aprueba con 40 correctas. Si cambiás de teléfono, tocá «Entrar con mi código».']],
+ q:['¿Qué hacés si cerrás el navegador o cambiás de celular?',['Empiezo de nuevo con otro nombre','Entro con mi usuario y mi código para seguir donde estaba','Le pido al instructor que me cree otra cuenta'],1,'Tu cuenta es real y queda guardada: con el usuario y el código volvés a tu avance.'],
+ go:[['Entrar como primer respondiente','/capacitacion.html?perfil=respondedor'],['Ver la guía del curso','/clase-policial.html','alt']]},
+sanitario:{steps:[['Elegí tu sección','Médicos, Enfermería, Kinesiología o Nutrición. Cada una tiene sus cursos, con requisitos, alcance y fuentes a la vista.'],['Entrá a un curso','Cada curso tiene módulos con teoría original, preguntas con devolución y un caso clínico interactivo.'],['Seguí el orden: teoría, práctica, casos','Primero entendé el concepto, después practicá con preguntas y por último decidí en un caso. Si fallás, ves por qué.'],['Rendí el examen integral y repasá errores','Cada curso indica su regla de aprobación. Tus errores quedan para repasarlos cuando quieras.'],['Creá tu cuenta para no perder el avance','Como invitado el progreso queda sólo en este navegador. Con cuenta se guarda y lo recuperás en cualquier dispositivo.']],
+ q:['Estudiás como invitado y cambiás de computadora. ¿Qué pasa con tu progreso?',['Se guarda solo en la nube','Queda en el navegador anterior: para llevarlo conmigo necesito una cuenta','Se pierde siempre'],1,'El invitado guarda en el navegador; la cuenta sincroniza el avance entre dispositivos.'],
+ go:[['Ver cursos de personal sanitario','/#personal-sanitario'],['Empezar con el mini curso','/#formacion','alt']]},
+instructor:{steps:[['Activá el modo instructor','Cualquier persona con cuenta puede ser instructor. Entrá en «Panel de instructor» y tocá «Activar modo instructor».'],['Elegí el curso que vas a dar','El panel muestra una guía por módulo: cómo arrancar, qué decir, puntos clave, la simulación y qué mirar al validar.'],['Creá tu grupo y compartí el enlace','Proyectá o mandá el enlace por WhatsApp. Con la aceptación automática, quien entra queda en el grupo.'],['Seguí el avance','Ves la lista de alumnos, módulos leídos, prácticas y exámenes. Los módulos muestran quién los leyó.'],['Validá sólo lo que observás','Las prácticas se validan una por una con la lista de observación. Lo no observado queda pendiente: no se aprueba en bloque.']],
+ q:['Tenés 30 alumnos y no llegaste a observar a todos. ¿Qué hacés con las prácticas?',['Las apruebo en bloque para cerrar la clase','Valido las que observé y dejo el resto pendiente para otra instancia','Las apruebo si rindieron el examen'],1,'Una práctica sólo se valida si fue observada. El resto queda pendiente en el panel.'],
+ go:[['Abrir el panel de instructor','/capacitacion.html?perfil=instructor'],['Plan de la jornada','/plan-clase.html','alt']]}};
+const $=s=>document.querySelector(s);let rol=new URLSearchParams(location.search).get('rol');if(!T[rol])rol='respondedor';
+function show(r){rol=r;const d=T[r];document.querySelectorAll('.tabs button').forEach(b=>b.setAttribute('aria-selected',b.dataset.rol===r));
+ $('#steps').innerHTML=d.steps.map((s,i)=>`<article class="step"><div class="num">${i+1}</div><div><h2>${s[0]}</h2><p>${s[1]}</p></div></article>`).join('');
+ $('#qtitle').textContent='Probá si te quedó claro: '+d.q[0];$('#fb').textContent='';$('#opts').innerHTML=d.q[1].map((o,i)=>`<button data-i="${i}">${o}</button>`).join('');
+ document.querySelectorAll('#opts button').forEach(b=>b.onclick=()=>{const ok=Number(b.dataset.i)===d.q[2];document.querySelectorAll('#opts button').forEach(x=>x.classList.remove('ok','no'));b.classList.add(ok?'ok':'no');$('#fb').textContent=(ok?'¡Correcto! ':'Todavía no. ')+d.q[3];});
+ $('#go').innerHTML=d.go.map(g=>`<a class="${g[2]||''}" href="${g[1]}">${g[0]}</a>`).join('');history.replaceState(null,'','?rol='+r);}
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>show(b.dataset.rol));show(rol);
+</script></body></html>
