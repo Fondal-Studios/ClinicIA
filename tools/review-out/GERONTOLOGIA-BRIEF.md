@@ -1,0 +1,14 @@
+# Cursos de gerontología (ClinicIA): instrucciones para el autor
+
+Repo: /home/user/ClinicIA (app educativa en español rioplatense, voseo). Modelo de formato y calidad: `public/learn/content/enfermeria.mjs` y `nutricion.mjs` (ya verificados) + helpers `public/learn/content/sanitarios-core.mjs` (`ref, lesson, makeCourse, scenario, finalize`). Leé uno de ellos entero antes de escribir. Fecha de contraste de fuentes: usá `ref(...)` (fija la fecha de hoy).
+
+## Método
+1. Investigá en la web (WebSearch/WebFetch; si WebSearch no está listado, ToolSearch "select:WebSearch") y abrí la fuente primaria de cada afirmación, en su versión VIGENTE hoy (noviembre 2026). Solo fuentes de acceso gratuito. Algunos hosts (AHA, JACC, PubMed) pueden estar bloqueados: si no podés abrir una fuente, no la des por verificada y no uses cifras de ella.
+2. **Regla de oro**: ninguna cifra, umbral, criterio o recomendación que no hayas visto textualmente en la fuente citada. Si no la verificás, formulala sin número o sacala. Dosis de fármacos: solo si la fuente gratuita la trae y la citás; si no, «según indicación y protocolo vigentes». Texto ORIGINAL (no copies), con casos ficticios. Dejá claro el alcance profesional y que la teoría no acredita destreza.
+3. Calidad de preguntas (la revisan expertos): enunciado en situación clínica; opción CORRECTA primero en cada fila (las posiciones de clave se reparten solas); 4 distractores de **alto nivel**: errores plausibles de un profesional competente pero incompleto (prioridad equivocada, umbral o dosis equivocados, fármaco/estudio equivocado, sobre/infratratamiento, cierre prematuro, regla de otra población), mismo registro y longitud aproximada que la correcta; la correcta NO debe ser la más larga en más de ~25 % de las preguntas; prohibido «todas/ninguna de las anteriores», relleno genérico y opciones descartables por tono; ningún distractor defendible. `why` ≥ 80 caracteres explicando por qué la correcta lo es y por qué falla el error más tentador, con la fuente.
+4. Cada curso: 5 módulos × 4 preguntas = 20 preguntas + 1 caso ramificado de 3 pasos (`scenario(...)`), `body` ≥130 palabras en ≥2 párrafos con ejemplo ficticio y límites de alcance, `objective`, `trap`, `evidence` (fuerte/condicional/consenso y límites), actividad con checklist ≥4. `makeCourse` con los campos que correspondan (ver especificación abajo). Terminá el archivo con `finalize(<array de cursos>)`.
+5. Guardá el archivo apenas termines cada curso (el entorno puede reiniciarse). Validá con `node tools/check-sanitarios.mjs <clave>` hasta OK, más `node --check`.
+6. No toques otros archivos ni hagas commit.
+
+## Informe final (<350 palabras)
+Fuentes con URL; las 8–10 afirmaciones más sensibles con fuente y sección donde las verificaste; qué quitaste por no poder verificarlo; qué fuentes no pudiste abrir; % de preguntas donde la correcta es la más larga.

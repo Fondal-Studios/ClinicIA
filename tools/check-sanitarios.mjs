@@ -1,13 +1,15 @@
 // Structural validator for allied-health course files: node tools/check-sanitarios.mjs enfermeria|nutricion
 import assert from 'node:assert/strict';
 const which=process.argv[2];
-const map={enfermeria:['../public/learn/content/enfermeria.mjs','nursing','enfermeria'],nutricion:['../public/learn/content/nutricion.mjs','nutrition','nutricionistas']};
-const [file,prefix,pro]=map[which]||[];assert.ok(file,'usage: enfermeria|nutricion');
+const map={enfermeria:['../public/learn/content/enfermeria.mjs','nursing','enfermeria',2],nutricion:['../public/learn/content/nutricion.mjs','nutrition','nutricionistas',2],
+ 'ger-medicos':['../public/learn/content/gerontologia-medicos.mjs','gerMed','medicos',2],'ger-enfermeria':['../public/learn/content/gerontologia-enfermeria.mjs','gerNursing','enfermeria',1],
+ 'ger-kinesiologia':['../public/learn/content/gerontologia-kinesiologia.mjs','gerKine','kinesiologos',1],'ger-nutricion':['../public/learn/content/gerontologia-nutricion.mjs','gerNutrition','nutricionistas',1]};
+const [file,prefix,pro,N]=map[which]||[];assert.ok(file,'usage: '+Object.keys(map).join('|'));
 const m=await import(file);const courses=m[prefix+'Courses'],cases=m[prefix+'Cases'],sources=m[prefix+'Sources'];
-assert.equal(courses.length,2,'2 courses');assert.equal(cases.length,2,'2 cases');
+assert.equal(courses.length,N,N+' courses');assert.equal(cases.length,N,N+' cases');
 const prompts=new Set(),ids=new Set();let words=0;
 for(const c of courses){
- assert.equal(c.pathway,'personal-sanitario');assert.equal(c.professionalCategory,pro);assert.equal(c.language,'es');assert.equal(c.lessons.length,5);
+ assert.ok(['personal-sanitario','medicina'].includes(c.pathway));assert.equal(c.professionalCategory,pro);assert.equal(c.language,'es');assert.equal(c.lessons.length,5);
  assert.equal(c.lessons.flatMap(l=>l.questions).length,20);assert.equal(c.outcomes.length,5);assert.ok(c.prerequisites&&c.scope&&c.reviewStatus.includes('pendiente'));
  const keys=[0,0,0,0,0];
  for(const l of c.lessons){

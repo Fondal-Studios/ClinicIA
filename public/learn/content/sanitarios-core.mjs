@@ -14,8 +14,8 @@ export function lesson(course,n,title,refs,objective,body,trap,evidence,activity
   simulation:{required:false,scenario:activity.scenario,roles,rotation:'Rotar roles. Explicar la decisión y repetir el pase después de la devolución.',checklist:activity.checklist,validation:'Actividad de razonamiento con caso ficticio. Las maniobras, la administración de fármacos y el manejo de equipos requieren entrenamiento presencial supervisado; este ejercicio no acredita destreza.'},
   questions:rows.map((row,i)=>question(`${id}-q${i+1}`,refs[0],title,(n-1)*4+i,row))};
 }
-export function makeCourse({id,title,summary,prerequisites,lessons,category,professionalCategory,audience,subtitle}){
- return {id,title,summary,category,professionalCategory,pathway:'personal-sanitario',audience,subtitle,prerequisites,language:'es',evidenceChecked:checked,examMinutes:40,
+export function makeCourse({id,title,summary,prerequisites,lessons,category,professionalCategory,audience,subtitle,pathway='personal-sanitario'}){
+ return {id,title,summary,category,professionalCategory,pathway,audience,subtitle,prerequisites,language:'es',evidenceChecked:checked,examMinutes:40,
   scope:'Formación continua independiente para adultos. No equivale a título, certificación oficial ni habilitación para procedimientos. Aplicación clínica según incumbencias legales, capacitación presencial y protocolos locales.',
   reviewStatus:`Bibliografía contrastada el ${checked.split('-').reverse().join('/')}; revisión docente especializada pendiente.`,
   completion:'Leer los cinco módulos y aprobar la evaluación integral con al menos 80% (16/20). Casos y simulaciones para practicar razonamiento; no acreditan destreza presencial.',
