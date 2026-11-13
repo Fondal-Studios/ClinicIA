@@ -10,7 +10,7 @@ table{border-collapse:collapse;width:100%;font-size:12px;margin-top:10px}th,td{b
 <p>Fecha: ____ / ____ / ________ · Grupo: ______________________ · Observador/a: ______________________</p>
 <p class="small">Marcá <strong>A</strong> (aprobada) o <strong>R</strong> (necesita repetir) <u>solo</u> si observaste la práctica completa. Dejá en blanco lo no observado: queda pendiente. Registrá luego cada resultado en el panel del instructor (Prácticas por revisar).</p>
 <div class="crit" id="crit"></div>
-<table id="grid"></table>
+<div style="overflow-x:auto"><table id="grid"></table></div>
 <script type="module">
 import {policeCourse} from '/learn/content/respuesta-policial.mjs';
 const req=policeCourse.lessons.filter(l=>l.simulation?.required);

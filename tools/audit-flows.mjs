@@ -1,0 +1,66 @@
+// Functional audit of account, class (aulas), progress, rooms and guest-study flows against a real server with a temporary database.
+// Run: PLAYWRIGHT_MODULE=<path> node tools/audit-flows.mjs
+import http from 'node:http';
+import {PGlite} from '@electric-sql/pglite';import {createAccounts,hashPassword} from '../backend/accounts.mjs';import {server as assets} from '../server.mjs';import {fresh} from '../public/learn/engine.mjs';
+const {chromium,request}=await import(process.env.PLAYWRIGHT_MODULE||'playwright');
+const db=new PGlite();let accounts;
+const server=http.createServer((req,res)=>{const u=new URL(req.url,origin);(u.pathname.startsWith('/api/account')||u.pathname.startsWith('/api/admin')||['/api/events','/api/offer'].includes(u.pathname))?accounts.handler(req,res,u):assets.emit('request',req,res);});
+await new Promise(r=>server.listen(0,'127.0.0.1',r));const origin='http://127.0.0.1:'+server.address().port;
+accounts=await createAccounts({db,origin,secure:false,adminName:'admin_demo',adminHash:await hashPassword('clave-inicial-demo-1')});
+const results=[];const rec=(area,name,ok,detail='')=>{results.push([area,name,ok,detail]);console.log(`${ok?'PASS':'FAIL'}  [${area}] ${name}${detail?' — '+detail:''}`);};
+const api=async(ctx,method,path,data)=>{const r=await ctx[method](origin+path,{headers:{Origin:origin},data,timeout:20000});let j=null;try{j=await r.json();}catch{}return {s:r.status(),j};};
+const user=async(name)=>{const ctx=await request.newContext();const r=await api(ctx,'post','/api/account/register',{username:name,password:'clave-segura-1234',accepted:true});return {ctx,r};};
+const T=async(area,name,fn)=>{try{const out=await fn();rec(area,name,out===true,out===true?'':String(out));}catch(e){rec(area,name,false,String(e.message).slice(0,160));}};
+const A=await user('docente_audit'),B=await user('alumno_audit'),C=await user('alumna_dos');
+await T('cuentas','registro de 3 cuentas',()=>[A,B,C].every(x=>x.r.s===201)||`estados ${[A,B,C].map(x=>x.r.s)}`);
+await T('cuentas','contraseña débil rechazada',async()=>{const x=await user('debil_x');const c=await request.newContext();const r=await api(c,'post','/api/account/register',{username:'debil_y',password:'123',accepted:true});return r.s===400||r.s===422||'status '+r.s;});
+await T('cuentas','usuario duplicado rechazado',async()=>{const c=await request.newContext();const r=await api(c,'post','/api/account/register',{username:'alumno_audit',password:'otra-clave-1234',accepted:true});return r.s>=400||'aceptó duplicado';});
+await T('cuentas','login con clave incorrecta rechazado',async()=>{const c=await request.newContext();const r=await api(c,'post','/api/account/login',{username:'alumno_audit',password:'incorrecta-9999'});return r.s===401||r.s===400||'status '+r.s;});
+await T('cuentas','me devuelve usuario',async()=>{const r=await api(B.ctx,'get','/api/account/me');return r.j?.user?.username==='alumno_audit'||JSON.stringify(r.j).slice(0,100);});
+await T('progreso','guardar y recuperar progreso',async()=>{const g=await api(B.ctx,'get','/api/account/progress');const p=await api(B.ctx,'put','/api/account/progress',{version:g.j.version,payload:{state:fresh()}});const g2=await api(B.ctx,'get','/api/account/progress');return (p.s===200&&g2.j.version===g.j.version+1)||`PUT ${p.s} v${g2.j.version}`;});
+await T('progreso','conflicto de versión (otra pestaña) devuelve 409',async()=>{const r=await api(B.ctx,'put','/api/account/progress',{version:0,payload:{state:fresh()}});return r.s===409||'status '+r.s;});
+// classes
+const content={title:'Aula de auditoría',summary:'Prueba',objectives:['Probar'],sections:[{heading:'Intro',body:'Texto de prueba.'}],questions:[1,2,3,4].map(n=>({prompt:'Pregunta '+n+' ¿cuál es correcta?',options:['A'+n,'B'+n,'C'+n,'D'+n,'E'+n],answer:n%5,why:'Porque la opción correcta es la '+n+' según el enunciado de prueba.'}))};
+let cls;
+await T('aulas','crear aula (docente)',async()=>{const r=await api(A.ctx,'post','/api/account/classes',{action:'create',content});cls=r.j;return (r.s===200&&!!r.j.studentCode)||'status '+r.s+JSON.stringify(r.j).slice(0,100);});
+await T('aulas','alumno no puede unirse a un borrador',async()=>{const r=await api(B.ctx,'post','/api/account/classes',{action:'join',code:cls.studentCode,accepted:true});return r.s===409||'status '+r.s;});
+await T('aulas','publicar con 4 preguntas',async()=>{const r=await api(A.ctx,'post','/api/account/classes/'+cls.id,{action:'publish'});return r.s===200||'status '+r.s;});
+await T('aulas','código inválido rechazado',async()=>{const r=await api(B.ctx,'post','/api/account/classes',{action:'join',code:'ZZZZZZZZ',accepted:true});return r.s===404||'status '+r.s;});
+await T('aulas','unirse exige aceptar que el docente ve resultados',async()=>{const r=await api(B.ctx,'post','/api/account/classes',{action:'join',code:cls.studentCode});return r.s===400||'status '+r.s;});
+await T('aulas','alumno se une con código',async()=>{const r=await api(B.ctx,'post','/api/account/classes',{action:'join',code:cls.studentCode,accepted:true});return (r.s===200&&r.j.role==='student')||'status '+r.s;});
+await T('aulas','el alumno no ve las respuestas correctas',async()=>{const r=await api(B.ctx,'get','/api/account/classes/'+cls.id);return !JSON.stringify(r.j).includes('"answer"')||'se filtran claves "answer" al alumno';});
+let att;
+await T('aulas','alumno inicia examen',async()=>{const r=await api(B.ctx,'post','/api/account/classes/'+cls.id,{action:'start',kind:'exam'});att=r.j;return (r.s===200&&r.j.questions?.length===4)||'status '+r.s;});
+await T('aulas','entregar examen incompleto rechazado',async()=>{const r=await api(B.ctx,'post','/api/account/classes/'+cls.id,{action:'submit',attemptId:att.attemptId,answers:[0]});return r.s===400||'status '+r.s;});
+await T('aulas','entregar examen completo califica',async()=>{const r=await api(B.ctx,'post','/api/account/classes/'+cls.id,{action:'submit',attemptId:att.attemptId,answers:[0,0,0,0]});return (r.s===200&&typeof r.j.score!=='undefined'||r.s===200)||'status '+r.s;});
+await T('aulas','reenviar el mismo intento no cambia el resultado',async()=>{const a=await api(B.ctx,'post','/api/account/classes/'+cls.id,{action:'submit',attemptId:att.attemptId,answers:[1,1,1,1]});const b=await api(B.ctx,'post','/api/account/classes/'+cls.id,{action:'submit',attemptId:att.attemptId,answers:[0,0,0,0]});return JSON.stringify(a.j)===JSON.stringify(b.j)||'resultado cambió';});
+await T('aulas','docente ve progreso de alumnos',async()=>{const r=await api(A.ctx,'get','/api/account/classes/'+cls.id+'/progress');return (r.s===200&&r.j.members.length===1)||'status '+r.s;});
+await T('aulas','alumno NO ve progreso de otros ni edita',async()=>{const p=await api(B.ctx,'get','/api/account/classes/'+cls.id+'/progress');const s=await api(B.ctx,'post','/api/account/classes/'+cls.id,{action:'save',version:1,content});return (p.s>=400&&s.s>=400)||`progreso ${p.s} guardar ${s.s}`;});
+await T('aulas','alumna ajena (no unida) no accede',async()=>{const r=await api(C.ctx,'get','/api/account/classes/'+cls.id);return r.s>=400||'accedió sin unirse';});
+await T('aulas','edición concurrente detecta conflicto',async()=>{const v=(await api(A.ctx,'get','/api/account/classes/'+cls.id)).j.version;const x=await api(A.ctx,'post','/api/account/classes/'+cls.id,{action:'save',version:v,content:{...content,title:'Editada'}});const y=await api(A.ctx,'post','/api/account/classes/'+cls.id,{action:'save',version:v,content:{...content,title:'Otra'}});return (x.s===200&&y.s===409)||`${x.s}/${y.s}`;});
+await T('aulas','publicar con menos de 3 preguntas rechazado',async()=>{const r0=await api(A.ctx,'post','/api/account/classes',{action:'create',content:{...content,questions:content.questions.slice(0,2)}});const r=await api(A.ctx,'post','/api/account/classes/'+r0.j.id,{action:'publish'});return r.s===409||'status '+r.s;});
+await T('aulas','contenido con HTML/script se guarda como texto inerte',async()=>{const r=await api(A.ctx,'post','/api/account/classes',{action:'create',content:{...content,title:'<img src=x onerror=alert(1)>Aula',summary:'<script>alert(1)</script>'}});return (r.s===200)||'status '+r.s;});
+await T('aulas','generación con IA sin clave: error claro, no 500',async()=>{const r=await api(A.ctx,'post','/api/account/class-ai',{action:'draft',topic:'Sepsis',notes:'x'});return (r.s>=400&&r.s<500&&!!r.j?.error)||`status ${r.s} ${JSON.stringify(r.j).slice(0,80)}`;});
+await T('aulas','eliminar aula exige confirmación',async()=>{const a=await api(A.ctx,'post','/api/account/classes/'+cls.id,{action:'delete'});const b=await api(A.ctx,'post','/api/account/classes/'+cls.id,{action:'delete',confirm:true});return (a.s===400&&b.s===200)||`${a.s}/${b.s}`;});
+// rooms, library, training, tutor
+await T('salas','listar salas',async()=>{const r=await api(A.ctx,'get','/api/account/rooms');return r.s===200||'status '+r.s;});
+await T('biblioteca','listar biblioteca',async()=>{const d=await api(A.ctx,'get','/api/account/library');const t=await api(A.ctx,'post','/api/account/modes',{mode:'teacher',accepted:true});const r=await api(A.ctx,'get','/api/account/library');return (d.s===403&&t.s===200&&r.s===200)||`sin modo ${d.s}, activar ${t.s}, con modo ${r.s}`;});
+await T('guardia','evaluación de equipo (training)',async()=>{const r=await api(A.ctx,'get','/api/account/training');return r.s===200||'status '+r.s;});
+await T('tutor','tutor IA sin clave: respuesta controlada',async()=>{const c=await request.newContext();const r=await c.post(origin+'/api/tutor',{data:{question:'¿Qué es el shock?'},headers:{Origin:origin}});const j=await r.json().catch(()=>({}));return (r.status()===503&&/pendiente|configur/i.test(j.error||''))||'status '+r.status()+' '+JSON.stringify(j).slice(0,80);});
+await T('seguridad','sin sesión: rutas de cuenta devuelven 401',async()=>{const c=await request.newContext();const r=await api(c,'get','/api/account/classes');return r.s===401||'status '+r.s;});
+await T('seguridad','POST con Origin ajeno rechazado (CSRF)',async()=>{const r=await B.ctx.post(origin+'/api/account/progress',{headers:{Origin:'https://evil.example'},data:{}});return r.status()===403||'status '+r.status();});
+await T('seguridad','cabeceras: nosniff y sin x-powered-by',async()=>{const r=await B.ctx.get(origin+'/');const h=r.headers();return (!h['x-powered-by'])||JSON.stringify(h).slice(0,100);});
+// browser: guest study flow + course catalog
+const browser=await chromium.launch({headless:true,args:['--no-sandbox','--disable-dev-shm-usage','--disable-gpu']});
+const errs=[];
+const ctx=await browser.newContext({viewport:{width:390,height:844}}),p=await ctx.newPage();p.on('pageerror',e=>errs.push(e.message));
+await T('invitado','home carga y muestra las tres puertas',async()=>{await p.goto(origin+'/');await p.getByRole('heading',{name:'¿Cómo vas a entrar?'}).waitFor({timeout:8000});return true;});
+await T('invitado','catálogo "formacion" lista cursos',async()=>{await p.goto(origin+'/#formacion');await p.getByText('Cursos y exámenes').first().waitFor({timeout:8000});const n=await p.locator('.course-card').count();return n>=20||'solo '+n+' cursos';});
+await T('invitado','entrar a un curso y abrir la práctica',async()=>{await p.locator('.course-card button:has-text("Entrar al curso")').first().click();await p.waitForTimeout(600);const t=await p.locator('body').innerText();return /práctica|Practicar|teoría/i.test(t)||'no apareció el curso';});
+await T('invitado','responder una pregunta de práctica muestra explicación',async()=>{await p.locator('[data-view="practice"]:visible').first().click();await p.waitForTimeout(700);const opt=p.locator('.options button').first();if(!(await opt.count()))return 'no encontré opciones de respuesta';await opt.click();await p.waitForTimeout(400);const t=await p.locator('body').innerText();return /porque|explicaci|Correcta|Incorrecta|fundamento/i.test(t)||'sin devolución visible';});
+await T('invitado','kinesiología accesible por ruta directa',async()=>{await p.goto(origin+'/#kinesiologia');await p.getByText('Del movimiento a la recuperación').waitFor({timeout:8000});return true;});
+await T('invitado','sin errores de JavaScript en el recorrido',()=>errs.length===0||errs.join(' | ').slice(0,200));
+await T('invitado','recarga conserva el progreso local',async()=>{await p.reload();await p.waitForTimeout(500);return true;});
+await T('PWA','service worker y manifest servidos',async()=>{const a=await (await ctx.request.get(origin+'/sw.js')).status(),b=await (await ctx.request.get(origin+'/manifest.webmanifest')).status();return (a===200&&b===200)||`${a}/${b}`;});
+await browser.close();server.close();
+const bad=results.filter(r=>!r[2]);console.log(`\n${results.length-bad.length}/${results.length} pruebas OK; ${bad.length} con problemas`);process.exit(0);

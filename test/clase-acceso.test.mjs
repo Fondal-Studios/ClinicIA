@@ -31,3 +31,16 @@ test('class access: quick accounts with a short code, automatic or bulk acceptan
   assert.equal((await call(a.cookie,'/api/account/capacitacion',{action:'roster',groupId})).status,403);
  }finally{server.close();await db.close();}
 });
+
+test('a classroom sharing one IP can re-enter with codes more than 40 times in 15 minutes, while each account stays rate-limited',async()=>{
+ const db=new PGlite();let accounts;
+ const server=http.createServer(async(req,res)=>{const url=new URL(req.url,'http://x');if(!(await accounts.handler(req,res,url))){res.writeHead(404);res.end();}});
+ await new Promise(r=>server.listen(0,'127.0.0.1',r));const base='http://127.0.0.1:'+server.address().port;accounts=await createAccounts({db,origin:base,secure:false});
+ try{
+  const login=async u=>(await fetch(base+'/api/account/login',{method:'POST',headers:{'Content-Type':'application/json',Origin:base},body:JSON.stringify({username:u,password:'XXXX-XXXX'})})).status;
+  const statuses=[];for(let i=0;i<60;i++)statuses.push(await login('alumno_'+i));
+  assert.ok(!statuses.includes(429),'no lockout across 60 different people on one IP');
+  const same=[];for(let i=0;i<12;i++)same.push(await login('alumno_objetivo'));
+  assert.ok(same.includes(429),'repeated guesses on a single account are still blocked');
+ }finally{server.close();}
+});

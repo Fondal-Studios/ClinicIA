@@ -110,7 +110,8 @@ export async function createAccounts({db,origin='http://localhost:3000',secure=t
     if(req.method!=='POST')fail(405,'Método no permitido.');
     const username=typeof body.username==='string'?body.username.trim():'',key=username.toLowerCase(),password=body.password;
     const ip=secure?(req.headers['x-forwarded-for']||'unknown').split(',').at(-1).trim():req.socket.remoteAddress;
-    await limit('auth-ip:'+ip,40,900);await limit('auth-user:'+key,10,900);
+    // A whole classroom shares one public IP: entering with a code is a login, so the per-IP cap must not lock out 30 people. Guessing is still capped per account.
+    await limit('auth-ip:'+ip+(path==='/api/account/login'?':login':''),path==='/api/account/login'?400:40,900);await limit('auth-user:'+key,10,900);
     if(!(/^[A-Za-z0-9_]{3,30}$/.test(username)||/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(username)&&username.length<=254)||typeof password!=='string'||password.length>128)fail(400,'Usá un nombre de usuario o una dirección de correo válida.');
     if(path.endsWith('/register')){
      if(password.length<10)fail(400,'Elegí una contraseña de al menos 10 caracteres.');if(body.accepted!==true)fail(400,'Aceptá las condiciones y la política de datos.');
