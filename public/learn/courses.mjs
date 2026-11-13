@@ -1,5 +1,6 @@
 import {kinesiologyCourses,kinesiologySources} from './content/kinesiologia.mjs';
 import {nursingCourses,nursingSources} from './content/enfermeria.mjs';
+import {applyQuestionUpgrades} from './content/apply-upgrades.mjs';
 import {nutritionCourses,nutritionSources} from './content/nutricion.mjs';
 import {policeCourse,policeSources} from './content/respuesta-policial.mjs';
 import {applyQuestionDifficultyRevisions} from './content/question-difficulty-revisions.mjs';
@@ -1346,5 +1347,7 @@ Object.assign(sources,kinesiologySources);
 courses.push(...kinesiologyCourses);
 Object.assign(sources,nursingSources,nutritionSources);
 courses.push(...nursingCourses,...nutritionCourses);
+// Last step: the one-by-one reviewed distractors replace legacy filler options (correct answer text and position never change).
+applyQuestionUpgrades(courses);
 export const catalog=courses;
 export const questions=courses.flatMap(c=>c.lessons.flatMap((l,li)=>l.questions.map((q,qi)=>({...q,source:q.source||l.source,courseId:c.id,lessonId:l.id,area:l.area||q.skill,li,qi}))));

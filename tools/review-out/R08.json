@@ -1,0 +1,544 @@
+{
+ "batch": "R08",
+ "upgrades": {
+  "estilo-vida-remision-dm2-q1": {
+   "options": [
+    "La remisión de diabetes tipo 2 tiene criterios bioquímicos específicos y no significa curación definitiva.",
+    "La remisión se define por una HbA1c menor de 6,5 % obtenida bajo tratamiento con metformina y sulfonilureas a dosis estables.",
+    "La remisión equivale a curación: una vez lograda, el riesgo de complicaciones micro y macrovasculares se normaliza por completo.",
+    "La remisión requiere normalizar el peso corporal, ya que se define por un IMC menor de 25 kg/m² más que por parámetros glucémicos.",
+    "La remisión se confirma con una sola HbA1c normal obtenida dos semanas después de suspender los hipoglucemiantes."
+   ],
+   "why": "El consenso internacional (ADA 2021) define la remisión como HbA1c menor de 6,5 % medida al menos 3 meses después de suspender el tratamiento hipoglucemiante. Es un estado de glucemia normalizada sin fármacos, no una curación: la diabetes puede reaparecer y el riesgo de complicaciones previas persiste, por eso se confirma con criterios formales y se mantiene el seguimiento. El error tentador es declarar la remisión con una HbA1c normal aislada o bajo medicación."
+  },
+  "estilo-vida-remision-dm2-q2": {
+   "options": [
+    "Clasificarlo como curado y darle el alta",
+    "Usar criterios formales y seguimiento",
+    "Exigir HbA1c menor de 5,7 % para hablar de remisión",
+    "Basar el diagnóstico en una glucemia en ayunas aislada",
+    "Esperar tres años sin fármacos antes de nombrar la remisión"
+   ],
+   "why": "El consenso internacional (ADA 2021) define la remisión como HbA1c menor de 6,5 % medida al menos 3 meses después de suspender el tratamiento hipoglucemiante. Es un estado de glucemia normalizada sin fármacos, no una curación: la diabetes puede reaparecer y el riesgo de complicaciones previas persiste, por eso se confirma con criterios formales y se mantiene el seguimiento. El error tentador es declarar la remisión con una HbA1c normal aislada o bajo medicación.",
+   "prompt": "Un hombre con DM2 suspendió la metformina hace 3 meses tras bajar 12 kg y tiene HbA1c de 6,3 %. ¿Cuál es la conducta más adecuada?"
+  },
+  "estilo-vida-remision-dm2-q3": {
+   "options": [
+    "Explicar que la remisión puede revertirse si se recupera el peso",
+    "Confirmar la HbA1c al menos tres meses después de retirar los fármacos",
+    "Declarar cura permanente",
+    "Mantener el control anual de HbA1c y de complicaciones",
+    "Registrar la remisión en la historia clínica con la fecha de confirmación"
+   ],
+   "why": "El consenso internacional (ADA 2021) define la remisión como HbA1c menor de 6,5 % medida al menos 3 meses después de suspender el tratamiento hipoglucemiante. Es un estado de glucemia normalizada sin fármacos, no una curación: la diabetes puede reaparecer y el riesgo de complicaciones previas persiste, por eso se confirma con criterios formales y se mantiene el seguimiento. El error tentador es declarar la remisión con una HbA1c normal aislada o bajo medicación."
+  },
+  "estilo-vida-remision-dm2-q4": {
+   "options": [
+    "Dejar de medir HbA1c una vez alcanzada la remisión.",
+    "Retirar la vigilancia de retina y de albuminuria.",
+    "Usar la glucemia capilar aislada como único criterio.",
+    "Evaluar beneficios, daños y preferencias.",
+    "Basar el seguimiento únicamente en la meta ponderal."
+   ],
+   "why": "El consenso internacional (ADA 2021) define la remisión como HbA1c menor de 6,5 % medida al menos 3 meses después de suspender el tratamiento hipoglucemiante. Es un estado de glucemia normalizada sin fármacos, no una curación: la diabetes puede reaparecer y el riesgo de complicaciones previas persiste, por eso se confirma con criterios formales y se mantiene el seguimiento. El error tentador es declarar la remisión con una HbA1c normal aislada o bajo medicación.",
+   "prompt": "Al informar a un paciente que alcanzó la remisión, ¿qué elemento mejora la seguridad del abordaje?"
+  },
+  "estilo-vida-remision-dm2-q5": {
+   "options": [
+    "Medir HbA1c solo si aparecen síntomas de hiperglucemia.",
+    "Dar el alta tras la primera HbA1c normal sin fármacos.",
+    "Repetir la HbA1c recién a los cinco años si es normal.",
+    "Reiniciar fármacos ante cualquier HbA1c de 6,0 %.",
+    "Reevaluar resultados y ajustar el plan."
+   ],
+   "why": "El consenso internacional (ADA 2021) define la remisión como HbA1c menor de 6,5 % medida al menos 3 meses después de suspender el tratamiento hipoglucemiante. Es un estado de glucemia normalizada sin fármacos, no una curación: la diabetes puede reaparecer y el riesgo de complicaciones previas persiste, por eso se confirma con criterios formales y se mantiene el seguimiento. El error tentador es declarar la remisión con una HbA1c normal aislada o bajo medicación.",
+   "prompt": "Al planificar el seguimiento de un paciente en remisión, ¿qué enfoque es más apropiado?"
+  },
+  "estilo-vida-remision-dm2-q6": {
+   "options": [
+    "El potencial de remisión varía según duración, función beta y condiciones individuales.",
+    "El potencial de remisión depende sobre todo de la edad, con probabilidad similar sea cual sea la duración de la diabetes.",
+    "El potencial de remisión es mayor en quienes llevan más de 10 años de diabetes, porque la reserva beta se estabiliza con el tiempo.",
+    "El potencial de remisión se limita a personas con obesidad grado 3; con IMC menor de 35 kg/m² no es alcanzable.",
+    "El potencial de remisión es independiente del tratamiento previo: la insulinización prolongada no modifica la reserva beta."
+   ],
+   "why": "Los ensayos de remisión (p. ej. DiRECT) incluyeron personas con diabetes de pocos años de evolución (menos de 6) y sin insulina, y la probabilidad de remisión fue mayor cuanto menor la duración y mayor la pérdida de peso. La reserva de célula beta, la evolución y el tratamiento previo orientan la elegibilidad. Prometer el resultado a todos, o restringirlo por criterios arbitrarios como la edad, no tiene sustento y genera falsas expectativas."
+  },
+  "estilo-vida-remision-dm2-q7": {
+   "options": [
+    "Garantizar la remisión por su corta evolución",
+    "Evaluar elegibilidad y expectativas",
+    "Reservar el abordaje para quienes tengan IMC mayor de 40",
+    "Priorizar a quienes ya reciben insulina por mayor gravedad",
+    "Limitar la oferta a menores de 40 años"
+   ],
+   "why": "Los ensayos de remisión (p. ej. DiRECT) incluyeron personas con diabetes de pocos años de evolución (menos de 6) y sin insulina, y la probabilidad de remisión fue mayor cuanto menor la duración y mayor la pérdida de peso. La reserva de célula beta, la evolución y el tratamiento previo orientan la elegibilidad. Prometer el resultado a todos, o restringirlo por criterios arbitrarios como la edad, no tiene sustento y genera falsas expectativas.",
+   "prompt": "Una mujer de 52 años con DM2 diagnosticada hace 2 años, IMC 34 kg/m² y tratada con metformina consulta por la posibilidad de remisión. ¿Cuál es la conducta más adecuada?"
+  },
+  "estilo-vida-remision-dm2-q8": {
+   "options": [
+    "Informar que una evolución corta de la diabetes favorece la remisión",
+    "Valorar la reserva de células beta según años de evolución y tratamiento",
+    "Prometer remisión a todos",
+    "Explorar intentos previos de pérdida de peso y su mantenimiento",
+    "Aclarar que algunas personas no remiten pese a adherir al plan"
+   ],
+   "why": "Los ensayos de remisión (p. ej. DiRECT) incluyeron personas con diabetes de pocos años de evolución (menos de 6) y sin insulina, y la probabilidad de remisión fue mayor cuanto menor la duración y mayor la pérdida de peso. La reserva de célula beta, la evolución y el tratamiento previo orientan la elegibilidad. Prometer el resultado a todos, o restringirlo por criterios arbitrarios como la edad, no tiene sustento y genera falsas expectativas."
+  },
+  "estilo-vida-remision-dm2-q9": {
+   "options": [
+    "Ofrecer el programa a toda persona con diabetes sin excepción.",
+    "Seleccionar por HbA1c basal como único criterio.",
+    "Omitir antecedentes de trastornos de la conducta alimentaria.",
+    "Evaluar beneficios, daños y preferencias.",
+    "Dar prioridad a la meta de peso sobre las comorbilidades."
+   ],
+   "why": "Los ensayos de remisión (p. ej. DiRECT) incluyeron personas con diabetes de pocos años de evolución (menos de 6) y sin insulina, y la probabilidad de remisión fue mayor cuanto menor la duración y mayor la pérdida de peso. La reserva de célula beta, la evolución y el tratamiento previo orientan la elegibilidad. Prometer el resultado a todos, o restringirlo por criterios arbitrarios como la edad, no tiene sustento y genera falsas expectativas.",
+   "prompt": "Al decidir a quién ofrecer un programa orientado a la remisión, ¿qué elemento mejora la seguridad del abordaje?"
+  },
+  "estilo-vida-remision-dm2-q10": {
+   "options": [
+    "Repetir el mismo programa sin modificaciones por 6 meses más.",
+    "Excluirlo definitivamente de cualquier abordaje intensivo.",
+    "Indicar una dieta aún más restrictiva sin revisar las barreras.",
+    "Pasar a insulina como único paso siguiente.",
+    "Reevaluar resultados y ajustar el plan."
+   ],
+   "why": "Los ensayos de remisión (p. ej. DiRECT) incluyeron personas con diabetes de pocos años de evolución (menos de 6) y sin insulina, y la probabilidad de remisión fue mayor cuanto menor la duración y mayor la pérdida de peso. La reserva de célula beta, la evolución y el tratamiento previo orientan la elegibilidad. Prometer el resultado a todos, o restringirlo por criterios arbitrarios como la edad, no tiene sustento y genera falsas expectativas.",
+   "prompt": "Un paciente no alcanzó la remisión a los 6 meses del programa. ¿Qué enfoque es más apropiado?"
+  },
+  "estilo-vida-remision-dm2-q11": {
+   "options": [
+    "Los cambios alimentarios deben ser seguros, sostenibles y compatibles con medicación.",
+    "Los cambios alimentarios deben priorizar la restricción calórica máxima, ajustando la medicación solo si aparecen síntomas.",
+    "Los cambios alimentarios deben ser idénticos en todos los pacientes, con un único patrón dietario validado para la remisión.",
+    "Los cambios alimentarios deben centrarse en eliminar un nutriente específico, ya que el patrón global tiene poco efecto glucémico.",
+    "Los cambios alimentarios pueden pautarse sin considerar los fármacos, ya que la glucemia se ajusta sola con la pérdida de peso."
+   ],
+   "why": "En DiRECT la fase de reemplazo de la dieta (unas 850 kcal/día durante 3 a 5 meses) fue seguida de reintroducción gradual y mantenimiento, y los antidiabéticos y antihipertensivos se retiraron al inicio por el riesgo de hipoglucemia e hipotensión. El plan nutricional debe coordinarse con el ajuste de fármacos y con monitoreo; el error tentador es indicar la dieta sin modificar la medicación o suspenderla sin control."
+  },
+  "estilo-vida-remision-dm2-q12": {
+   "options": [
+    "Mantener las dosis habituales hasta la primera consulta",
+    "Coordinar nutrición y tratamiento",
+    "Retirar la metformina y conservar la insulina",
+    "Pautar la dieta y esperar síntomas de hipoglucemia",
+    "Derivar a nutrición sin modificar el tratamiento"
+   ],
+   "why": "En DiRECT la fase de reemplazo de la dieta (unas 850 kcal/día durante 3 a 5 meses) fue seguida de reintroducción gradual y mantenimiento, y los antidiabéticos y antihipertensivos se retiraron al inicio por el riesgo de hipoglucemia e hipotensión. El plan nutricional debe coordinarse con el ajuste de fármacos y con monitoreo; el error tentador es indicar la dieta sin modificar la medicación o suspenderla sin control.",
+   "prompt": "Un paciente con DM2 tratado con glimepirida e insulina basal va a iniciar una dieta de muy bajo aporte calórico. ¿Cuál es la conducta más adecuada?"
+  },
+  "estilo-vida-remision-dm2-q13": {
+   "options": [
+    "Reducir sulfonilureas e insulina al iniciar la restricción calórica",
+    "Medir glucemias capilares con más frecuencia durante la fase de restricción",
+    "Suspender medicación sin control",
+    "Reintroducir los alimentos de forma gradual tras la fase inicial",
+    "Revisar antihipertensivos y diuréticos por riesgo de hipotensión"
+   ],
+   "why": "En DiRECT la fase de reemplazo de la dieta (unas 850 kcal/día durante 3 a 5 meses) fue seguida de reintroducción gradual y mantenimiento, y los antidiabéticos y antihipertensivos se retiraron al inicio por el riesgo de hipoglucemia e hipotensión. El plan nutricional debe coordinarse con el ajuste de fármacos y con monitoreo; el error tentador es indicar la dieta sin modificar la medicación o suspenderla sin control."
+  },
+  "estilo-vida-remision-dm2-q14": {
+   "options": [
+    "Indicar el mismo aporte calórico a todos los pacientes.",
+    "Omitir el control de electrolitos y de función renal.",
+    "Fijar la meta según la máxima pérdida semanal posible.",
+    "Evaluar beneficios, daños y preferencias.",
+    "Priorizar la rapidez de la pérdida por sobre la tolerancia."
+   ],
+   "why": "En DiRECT la fase de reemplazo de la dieta (unas 850 kcal/día durante 3 a 5 meses) fue seguida de reintroducción gradual y mantenimiento, y los antidiabéticos y antihipertensivos se retiraron al inicio por el riesgo de hipoglucemia e hipotensión. El plan nutricional debe coordinarse con el ajuste de fármacos y con monitoreo; el error tentador es indicar la dieta sin modificar la medicación o suspenderla sin control.",
+   "prompt": "Antes de indicar un plan de muy bajo aporte calórico, ¿qué elemento mejora la seguridad del abordaje?"
+  },
+  "estilo-vida-remision-dm2-q15": {
+   "options": [
+    "Retomar la alimentación previa una vez alcanzado el peso objetivo.",
+    "Suspender los controles porque la fase intensiva ya terminó.",
+    "Mantener la restricción calórica severa de forma indefinida.",
+    "Evaluar solo el peso y omitir la glucemia.",
+    "Reevaluar resultados y ajustar el plan."
+   ],
+   "why": "En DiRECT la fase de reemplazo de la dieta (unas 850 kcal/día durante 3 a 5 meses) fue seguida de reintroducción gradual y mantenimiento, y los antidiabéticos y antihipertensivos se retiraron al inicio por el riesgo de hipoglucemia e hipotensión. El plan nutricional debe coordinarse con el ajuste de fármacos y con monitoreo; el error tentador es indicar la dieta sin modificar la medicación o suspenderla sin control.",
+   "prompt": "Un paciente finalizó la fase de restricción y comienza la reintroducción alimentaria. ¿Qué enfoque de seguimiento es más apropiado?"
+  },
+  "estilo-vida-remision-dm2-q16": {
+   "options": [
+    "En personas seleccionadas la reducción de adiposidad ectópica puede mejorar control metabólico.",
+    "En personas seleccionadas la reducción de masa magra es lo que mejora la sensibilidad insulínica y el control metabólico.",
+    "En todas las personas con DM2 una pérdida de peso, sea cual sea su magnitud, produce remisión de la enfermedad en pocos meses.",
+    "En personas seleccionadas un descenso de 2 a 3 % del peso es suficiente para normalizar la HbA1c de forma sostenida.",
+    "En personas seleccionadas la mejoría metabólica se explica por mayor secreción de insulina, sin cambios en la grasa hepática."
+   ],
+   "why": "La hipótesis del ciclo gemelo (Taylor) propone que la pérdida de grasa hepática y pancreática restaura la sensibilidad hepática y la secreción de insulina. En DiRECT remitió el 46 % a los 12 meses y la tasa fue mucho mayor en quienes perdieron 15 kg o más. Es un mecanismo plausible, no una garantía individual: por eso se explica con cautela. El error tentador es reducirlo a 'perder peso = remitir'."
+  },
+  "estilo-vida-remision-dm2-q17": {
+   "options": [
+    "Asegurar que con igual pérdida tendrá igual resultado",
+    "Explicar mecanismos con cautela",
+    "Atribuir la diferencia a falta de adherencia",
+    "Presentar el peso como único determinante",
+    "Restar importancia a la fisiología individual"
+   ],
+   "why": "La hipótesis del ciclo gemelo (Taylor) propone que la pérdida de grasa hepática y pancreática restaura la sensibilidad hepática y la secreción de insulina. En DiRECT remitió el 46 % a los 12 meses y la tasa fue mucho mayor en quienes perdieron 15 kg o más. Es un mecanismo plausible, no una garantía individual: por eso se explica con cautela. El error tentador es reducirlo a 'perder peso = remitir'.",
+   "prompt": "Un paciente consulta porque un amigo logró la remisión con una dieta y él, con la misma, todavía no. ¿Cuál es la conducta más adecuada?"
+  },
+  "estilo-vida-remision-dm2-q18": {
+   "options": [
+    "Explicar que la grasa hepática y pancreática participa en la resistencia a la insulina",
+    "Aclarar que la magnitud de la pérdida de peso se asocia con la probabilidad de remisión",
+    "Asegurar resultados idénticos",
+    "Reconocer que parte de las personas no remite pese a perder peso",
+    "Señalar que recuperar peso puede reactivar la hiperglucemia"
+   ],
+   "why": "La hipótesis del ciclo gemelo (Taylor) propone que la pérdida de grasa hepática y pancreática restaura la sensibilidad hepática y la secreción de insulina. En DiRECT remitió el 46 % a los 12 meses y la tasa fue mucho mayor en quienes perdieron 15 kg o más. Es un mecanismo plausible, no una garantía individual: por eso se explica con cautela. El error tentador es reducirlo a 'perder peso = remitir'."
+  },
+  "estilo-vida-remision-dm2-q19": {
+   "options": [
+    "Fijar una meta de pérdida idéntica para todos los pacientes.",
+    "Anticipar una remisión segura para sostener la motivación.",
+    "Omitir la valoración de masa muscular y estado nutricional.",
+    "Evaluar beneficios, daños y preferencias.",
+    "Aplicar la meta de peso sin considerar comorbilidades."
+   ],
+   "why": "La hipótesis del ciclo gemelo (Taylor) propone que la pérdida de grasa hepática y pancreática restaura la sensibilidad hepática y la secreción de insulina. En DiRECT remitió el 46 % a los 12 meses y la tasa fue mucho mayor en quienes perdieron 15 kg o más. Es un mecanismo plausible, no una garantía individual: por eso se explica con cautela. El error tentador es reducirlo a 'perder peso = remitir'.",
+   "prompt": "Al plantear una pérdida de peso importante en una persona con DM2, ¿qué elemento mejora la seguridad del abordaje?"
+  },
+  "estilo-vida-remision-dm2-q20": {
+   "options": [
+    "Asumir que el peso perdido se mantendrá sin intervención.",
+    "Medir solo el peso y omitir los valores glucémicos.",
+    "Concluir éxito porque la HbA1c fue normal a los 3 meses.",
+    "Suspender el apoyo nutricional al alcanzar la meta.",
+    "Reevaluar resultados y ajustar el plan."
+   ],
+   "why": "La hipótesis del ciclo gemelo (Taylor) propone que la pérdida de grasa hepática y pancreática restaura la sensibilidad hepática y la secreción de insulina. En DiRECT remitió el 46 % a los 12 meses y la tasa fue mucho mayor en quienes perdieron 15 kg o más. Es un mecanismo plausible, no una garantía individual: por eso se explica con cautela. El error tentador es reducirlo a 'perder peso = remitir'.",
+   "prompt": "Al año de una pérdida de peso significativa, ¿qué enfoque de seguimiento es más apropiado?"
+  },
+  "estilo-vida-remision-dm2-q21": {
+   "options": [
+    "La actividad de fuerza contribuye a función muscular y salud metabólica.",
+    "La actividad de fuerza solo aporta beneficio metabólico cuando se combina con una pérdida de peso mayor al 10 %.",
+    "La actividad aeróbica reemplaza a la de fuerza, que no agrega beneficio sobre la sensibilidad insulínica.",
+    "La actividad de fuerza está contraindicada en la DM2 por el riesgo de hipoglucemia y de lesión articular.",
+    "La actividad de fuerza mejora la glucemia sobre todo por el gasto calórico de la sesión, no por la masa muscular."
+   ],
+   "why": "Las guías (ADA) recomiendan sumar al ejercicio aeróbico 2 a 3 sesiones semanales de fuerza en días no consecutivos: el músculo es el principal destino de la glucosa postprandial y el entrenamiento de resistencia mejora la sensibilidad insulínica y preserva masa magra durante la pérdida de peso. Se progresa gradualmente; el ejercicio extremo no es necesario y aumenta el riesgo de lesión y de hipoglucemia."
+  },
+  "estilo-vida-remision-dm2-q22": {
+   "options": [
+    "Indicar solo aeróbico de alta intensidad",
+    "Integrar fuerza progresiva",
+    "Iniciar con cargas máximas para ganar masa rápido",
+    "Posponer el ejercicio hasta alcanzar el peso objetivo",
+    "Limitar la actividad a caminatas ocasionales"
+   ],
+   "why": "Las guías (ADA) recomiendan sumar al ejercicio aeróbico 2 a 3 sesiones semanales de fuerza en días no consecutivos: el músculo es el principal destino de la glucosa postprandial y el entrenamiento de resistencia mejora la sensibilidad insulínica y preserva masa magra durante la pérdida de peso. Se progresa gradualmente; el ejercicio extremo no es necesario y aumenta el riesgo de lesión y de hipoglucemia.",
+   "prompt": "Un hombre de 58 años con DM2 y sobrepeso, sedentario, quiere empezar actividad física para sostener la remisión. ¿Cuál es la conducta más adecuada?"
+  },
+  "estilo-vida-remision-dm2-q23": {
+   "options": [
+    "Combinar entrenamiento aeróbico y de fuerza durante la semana",
+    "Aumentar la carga de forma gradual según tolerancia",
+    "Depender solo de ejercicio extremo",
+    "Revisar el estado de los pies antes de iniciar el programa",
+    "Ajustar la medicación en los días de mayor actividad física"
+   ],
+   "why": "Las guías (ADA) recomiendan sumar al ejercicio aeróbico 2 a 3 sesiones semanales de fuerza en días no consecutivos: el músculo es el principal destino de la glucosa postprandial y el entrenamiento de resistencia mejora la sensibilidad insulínica y preserva masa magra durante la pérdida de peso. Se progresa gradualmente; el ejercicio extremo no es necesario y aumenta el riesgo de lesión y de hipoglucemia."
+  },
+  "estilo-vida-remision-dm2-q24": {
+   "options": [
+    "Prescribir la misma rutina que a un deportista joven.",
+    "Obviar la revisión de pies y de retinopatía.",
+    "Priorizar cargas máximas desde las primeras sesiones.",
+    "Evaluar beneficios, daños y preferencias.",
+    "Evitar el control glucémico alrededor del ejercicio."
+   ],
+   "why": "Las guías (ADA) recomiendan sumar al ejercicio aeróbico 2 a 3 sesiones semanales de fuerza en días no consecutivos: el músculo es el principal destino de la glucosa postprandial y el entrenamiento de resistencia mejora la sensibilidad insulínica y preserva masa magra durante la pérdida de peso. Se progresa gradualmente; el ejercicio extremo no es necesario y aumenta el riesgo de lesión y de hipoglucemia.",
+   "prompt": "Antes de iniciar un programa de ejercicio de fuerza en una persona con DM2 y neuropatía periférica, ¿qué elemento mejora la seguridad del abordaje?"
+  },
+  "estilo-vida-remision-dm2-q25": {
+   "options": [
+    "Suspender el ejercicio por falta de efecto glucémico.",
+    "Duplicar de golpe el volumen semanal de entrenamiento.",
+    "Atribuir la falta de respuesta a mala adherencia sin modificar nada.",
+    "Reemplazar el entrenamiento por restricción calórica extrema.",
+    "Reevaluar resultados y ajustar el plan."
+   ],
+   "why": "Las guías (ADA) recomiendan sumar al ejercicio aeróbico 2 a 3 sesiones semanales de fuerza en días no consecutivos: el músculo es el principal destino de la glucosa postprandial y el entrenamiento de resistencia mejora la sensibilidad insulínica y preserva masa magra durante la pérdida de peso. Se progresa gradualmente; el ejercicio extremo no es necesario y aumenta el riesgo de lesión y de hipoglucemia.",
+   "prompt": "Tras 3 meses de entrenamiento regular la HbA1c no mejoró. ¿Qué enfoque es más apropiado?"
+  },
+  "estilo-vida-remision-dm2-q26": {
+   "options": [
+    "El sueño insuficiente se relaciona con regulación del apetito y metabolismo.",
+    "El sueño insuficiente afecta el rendimiento cognitivo, pero no modifica la sensibilidad insulínica ni el peso corporal.",
+    "El sueño insuficiente solo es relevante metabólicamente cuando hay apnea obstructiva diagnosticada.",
+    "El sueño insuficiente disminuye el apetito por mayor gasto energético nocturno, lo que favorece la pérdida de peso.",
+    "El sueño insuficiente es consecuencia de la diabetes y no un factor que influya sobre el control glucémico."
+   ],
+   "why": "La restricción de sueño altera la regulación del apetito (aumenta grelina, reduce leptina) y disminuye la sensibilidad insulínica; además la apnea obstructiva es frecuente en la obesidad y la DM2 y empeora el control glucémico. Por eso se interroga duración, calidad y síntomas y se estudia ante sospecha, en lugar de tratar con hipnóticos o atribuir los síntomas a la dieta."
+  },
+  "estilo-vida-remision-dm2-q27": {
+   "options": [
+    "Indicar un hipnótico para normalizar las horas",
+    "Investigar trastornos del sueño",
+    "Atribuir la somnolencia a la restricción calórica",
+    "Esperar al descenso de peso para reevaluar el sueño",
+    "Intensificar el ejercicio nocturno para mejorar el descanso"
+   ],
+   "why": "La restricción de sueño altera la regulación del apetito (aumenta grelina, reduce leptina) y disminuye la sensibilidad insulínica; además la apnea obstructiva es frecuente en la obesidad y la DM2 y empeora el control glucémico. Por eso se interroga duración, calidad y síntomas y se estudia ante sospecha, en lugar de tratar con hipnóticos o atribuir los síntomas a la dieta.",
+   "prompt": "Un paciente en un programa de remisión duerme 5 horas, ronca y refiere somnolencia diurna. ¿Cuál es la conducta más adecuada?"
+  },
+  "estilo-vida-remision-dm2-q28": {
+   "options": [
+    "Interrogar horarios de sueño y turnos laborales",
+    "Considerar la apnea obstructiva en personas con obesidad",
+    "Ignorar horarios y calidad",
+    "Incluir medidas de higiene del sueño en el plan",
+    "Valorar el trabajo nocturno como factor metabólico"
+   ],
+   "why": "La restricción de sueño altera la regulación del apetito (aumenta grelina, reduce leptina) y disminuye la sensibilidad insulínica; además la apnea obstructiva es frecuente en la obesidad y la DM2 y empeora el control glucémico. Por eso se interroga duración, calidad y síntomas y se estudia ante sospecha, en lugar de tratar con hipnóticos o atribuir los síntomas a la dieta."
+  },
+  "estilo-vida-remision-dm2-q29": {
+   "options": [
+    "Prescribir el mismo hipnótico a todos los pacientes.",
+    "Descartar apnea por la ausencia de ronquidos referidos.",
+    "Medir solo las horas de sueño y no su calidad.",
+    "Evaluar beneficios, daños y preferencias.",
+    "Omitir el uso de alcohol y cafeína en la anamnesis."
+   ],
+   "why": "La restricción de sueño altera la regulación del apetito (aumenta grelina, reduce leptina) y disminuye la sensibilidad insulínica; además la apnea obstructiva es frecuente en la obesidad y la DM2 y empeora el control glucémico. Por eso se interroga duración, calidad y síntomas y se estudia ante sospecha, en lugar de tratar con hipnóticos o atribuir los síntomas a la dieta.",
+   "prompt": "Al evaluar un sueño insuficiente en una persona con DM2 y obesidad, ¿qué elemento mejora la seguridad del abordaje?"
+  },
+  "estilo-vida-remision-dm2-q30": {
+   "options": [
+    "Repetir las mismas medidas por otros tres meses.",
+    "Concluir que se trata de un hábito sin base orgánica.",
+    "Atribuir la persistencia a falta de adherencia.",
+    "Indicar hipnóticos como tratamiento definitivo.",
+    "Reevaluar resultados y ajustar el plan."
+   ],
+   "why": "La restricción de sueño altera la regulación del apetito (aumenta grelina, reduce leptina) y disminuye la sensibilidad insulínica; además la apnea obstructiva es frecuente en la obesidad y la DM2 y empeora el control glucémico. Por eso se interroga duración, calidad y síntomas y se estudia ante sospecha, en lugar de tratar con hipnóticos o atribuir los síntomas a la dieta.",
+   "prompt": "A los 3 meses de aplicar medidas de higiene del sueño persisten la somnolencia y el sueño no reparador. ¿Qué enfoque es más apropiado?"
+  },
+  "estilo-vida-remision-dm2-q31": {
+   "options": [
+    "Al mejorar glucemia puede requerirse revisar fármacos con riesgo de hipoglucemia.",
+    "Al mejorar la glucemia debe mantenerse el esquema previo hasta que la HbA1c baje de 5,7 %, para evitar recaídas.",
+    "Al mejorar la glucemia debe suspenderse primero la metformina, por ser el fármaco con mayor riesgo de hipoglucemia.",
+    "Al mejorar la glucemia solo requiere ajuste la insulina; las sulfonilureas no producen hipoglucemia relevante.",
+    "Al mejorar la glucemia se suspenden todos los fármacos a la vez, sin evaluar la tolerancia de cada uno."
+   ],
+   "why": "Con la mejora glucémica y la pérdida de peso, los fármacos con riesgo de hipoglucemia (insulina, sulfonilureas) son los primeros que hay que reducir o retirar; la metformina, de bajo riesgo, suele mantenerse más tiempo. El ajuste debe ser individualizado, acordado con el equipo y con monitoreo. El error tentador es suspender de golpe o sin supervisión, o sostener dosis que ya no corresponden."
+  },
+  "estilo-vida-remision-dm2-q32": {
+   "options": [
+    "Mantener las dosis hasta la próxima HbA1c",
+    "Revisar medicación con profesional",
+    "Suspender metformina y mantener los secretagogos",
+    "Indicar colaciones extra para sostener las dosis actuales",
+    "Duplicar los controles sin cambiar el tratamiento"
+   ],
+   "why": "Con la mejora glucémica y la pérdida de peso, los fármacos con riesgo de hipoglucemia (insulina, sulfonilureas) son los primeros que hay que reducir o retirar; la metformina, de bajo riesgo, suele mantenerse más tiempo. El ajuste debe ser individualizado, acordado con el equipo y con monitoreo. El error tentador es suspender de golpe o sin supervisión, o sostener dosis que ya no corresponden.",
+   "prompt": "Una paciente con DM2 tratada con gliclazida e insulina basal baja 10 kg y presenta episodios de hipoglucemia. ¿Cuál es la conducta más adecuada?"
+  },
+  "estilo-vida-remision-dm2-q33": {
+   "options": [
+    "Reducir las sulfonilureas ante glucemias en descenso",
+    "Pautar con el equipo tratante un esquema de ajuste de insulina",
+    "Suspender insulina unilateralmente",
+    "Educar sobre síntomas y tratamiento de la hipoglucemia",
+    "Registrar las glucemias antes de cada cambio de dosis"
+   ],
+   "why": "Con la mejora glucémica y la pérdida de peso, los fármacos con riesgo de hipoglucemia (insulina, sulfonilureas) son los primeros que hay que reducir o retirar; la metformina, de bajo riesgo, suele mantenerse más tiempo. El ajuste debe ser individualizado, acordado con el equipo y con monitoreo. El error tentador es suspender de golpe o sin supervisión, o sostener dosis que ya no corresponden."
+  },
+  "estilo-vida-remision-dm2-q34": {
+   "options": [
+    "Reducir todos los fármacos con el mismo porcentaje.",
+    "Esperar a la HbA1c de control para cualquier ajuste.",
+    "Retirar primero los fármacos de menor riesgo de hipoglucemia.",
+    "Evaluar beneficios, daños y preferencias.",
+    "Delegar el ajuste en el paciente según su criterio."
+   ],
+   "why": "Con la mejora glucémica y la pérdida de peso, los fármacos con riesgo de hipoglucemia (insulina, sulfonilureas) son los primeros que hay que reducir o retirar; la metformina, de bajo riesgo, suele mantenerse más tiempo. El ajuste debe ser individualizado, acordado con el equipo y con monitoreo. El error tentador es suspender de golpe o sin supervisión, o sostener dosis que ya no corresponden.",
+   "prompt": "Antes de reducir o suspender antidiabéticos durante una pérdida de peso, ¿qué elemento mejora la seguridad del abordaje?"
+  },
+  "estilo-vida-remision-dm2-q35": {
+   "options": [
+    "Reiniciar la dosis completa previa de forma automática.",
+    "Atribuir el aumento a variabilidad del ensayo y repetir en un año.",
+    "Declarar el fracaso definitivo del programa.",
+    "Continuar sin fármacos mientras no haya síntomas.",
+    "Reevaluar resultados y ajustar el plan."
+   ],
+   "why": "Con la mejora glucémica y la pérdida de peso, los fármacos con riesgo de hipoglucemia (insulina, sulfonilureas) son los primeros que hay que reducir o retirar; la metformina, de bajo riesgo, suele mantenerse más tiempo. El ajuste debe ser individualizado, acordado con el equipo y con monitoreo. El error tentador es suspender de golpe o sin supervisión, o sostener dosis que ya no corresponden.",
+   "prompt": "Tras suspender los hipoglucemiantes, la HbA1c sube de 6,2 % a 6,8 % a los 6 meses. ¿Qué enfoque es más apropiado?"
+  },
+  "estilo-vida-remision-dm2-q36": {
+   "options": [
+    "La remisión requiere vigilancia de glucosa y complicaciones previas.",
+    "La remisión exime de la vigilancia de complicaciones, porque el riesgo vuelve al de la población general.",
+    "La remisión requiere vigilar solo la glucosa, ya que las complicaciones microvasculares revierten con ella.",
+    "La remisión se vigila con glucemias en ayunas semanales; la HbA1c no aporta información adicional.",
+    "La remisión requiere vigilar la glucosa solo durante el primer año, luego el riesgo de recaída desaparece."
+   ],
+   "why": "La remisión no equivale a curación: la recaída es frecuente (en DiRECT, remisión de 46 % al año y 36 % a los 2 años) y el daño microvascular previo puede persistir. Por eso se mantiene la HbA1c periódica (al menos anual) y el tamizaje de complicaciones según el riesgo previo. El error tentador es abandonar los controles al lograr glucemias normales."
+  },
+  "estilo-vida-remision-dm2-q37": {
+   "options": [
+    "Espaciar los controles a cada cinco años",
+    "Mantener seguimiento longitudinal",
+    "Limitar el control a una glucemia en ayunas anual",
+    "Sustituir el control por autoevaluación del paciente",
+    "Citarlo solo si reaparecen los síntomas"
+   ],
+   "why": "La remisión no equivale a curación: la recaída es frecuente (en DiRECT, remisión de 46 % al año y 36 % a los 2 años) y el daño microvascular previo puede persistir. Por eso se mantiene la HbA1c periódica (al menos anual) y el tamizaje de complicaciones según el riesgo previo. El error tentador es abandonar los controles al lograr glucemias normales.",
+   "prompt": "Un paciente en remisión hace un año faltó a dos controles y pregunta si puede dejar de venir. ¿Cuál es la conducta más adecuada?"
+  },
+  "estilo-vida-remision-dm2-q38": {
+   "options": [
+    "Medir la HbA1c al menos una vez al año",
+    "Continuar el tamizaje de retinopatía según el riesgo previo",
+    "Abandonar controles",
+    "Reforzar hábitos aunque la glucemia sea normal",
+    "Informar los signos que sugieren recaída"
+   ],
+   "why": "La remisión no equivale a curación: la recaída es frecuente (en DiRECT, remisión de 46 % al año y 36 % a los 2 años) y el daño microvascular previo puede persistir. Por eso se mantiene la HbA1c periódica (al menos anual) y el tamizaje de complicaciones según el riesgo previo. El error tentador es abandonar los controles al lograr glucemias normales."
+  },
+  "estilo-vida-remision-dm2-q39": {
+   "options": [
+    "Basar la vigilancia solo en la glucemia en ayunas.",
+    "Usar el mismo intervalo de control para todos los pacientes.",
+    "Suspender el tamizaje de complicaciones tras la remisión.",
+    "Evaluar beneficios, daños y preferencias.",
+    "Evitar anticipar al paciente la posibilidad de recaída."
+   ],
+   "why": "La remisión no equivale a curación: la recaída es frecuente (en DiRECT, remisión de 46 % al año y 36 % a los 2 años) y el daño microvascular previo puede persistir. Por eso se mantiene la HbA1c periódica (al menos anual) y el tamizaje de complicaciones según el riesgo previo. El error tentador es abandonar los controles al lograr glucemias normales.",
+   "prompt": "Al diseñar el seguimiento de un paciente en remisión, ¿qué elemento mejora la seguridad del abordaje?"
+  },
+  "estilo-vida-remision-dm2-q40": {
+   "options": [
+    "Esperar a que la HbA1c supere 6,5 % para actuar.",
+    "Reiniciar de inmediato un hipoglucemiante.",
+    "Considerar el aumento irrelevante si la glucemia es normal.",
+    "Repetir la HbA1c recién dentro de 12 meses.",
+    "Reevaluar resultados y ajustar el plan."
+   ],
+   "why": "La remisión no equivale a curación: la recaída es frecuente (en DiRECT, remisión de 46 % al año y 36 % a los 2 años) y el daño microvascular previo puede persistir. Por eso se mantiene la HbA1c periódica (al menos anual) y el tamizaje de complicaciones según el riesgo previo. El error tentador es abandonar los controles al lograr glucemias normales.",
+   "prompt": "Un paciente en remisión sube 5 kg en el último año. ¿Qué enfoque de seguimiento es más apropiado?"
+  },
+  "estilo-vida-remision-dm2-q41": {
+   "options": [
+    "La entrevista motivacional y objetivos compartidos ayudan a sostener cambios.",
+    "El apoyo conductual se reserva para quienes recuperan peso; durante la pérdida inicial basta con la indicación dietaria.",
+    "Los objetivos compartidos con el paciente resultan menos eficaces que las metas fijadas por el equipo para sostener cambios.",
+    "La entrevista motivacional busca persuadir al paciente con información de riesgos hasta que acepte el plan propuesto.",
+    "La educación informativa intensiva por sí sola alcanza para sostener los cambios de hábitos a largo plazo."
+   ],
+   "why": "La entrevista motivacional explora la ambivalencia y respeta la autonomía; junto con metas acordadas y pequeñas favorece la autoeficacia y la adherencia sostenida. La presión, la vergüenza o los consejos directivos sin explorar barreras suelen generar rechazo y abandono. Mantener la motivación requiere reevaluar barreras y ajustar el plan, no endurecerlo."
+  },
+  "estilo-vida-remision-dm2-q42": {
+   "options": [
+    "Reforzar la meta con advertencias sobre complicaciones",
+    "Explorar motivación y barreras",
+    "Reiniciar el plan idéntico con un control más estricto",
+    "Derivar a psicología como único abordaje",
+    "Fijar metas más exigentes para recuperar motivación"
+   ],
+   "why": "La entrevista motivacional explora la ambivalencia y respeta la autonomía; junto con metas acordadas y pequeñas favorece la autoeficacia y la adherencia sostenida. La presión, la vergüenza o los consejos directivos sin explorar barreras suelen generar rechazo y abandono. Mantener la motivación requiere reevaluar barreras y ajustar el plan, no endurecerlo.",
+   "prompt": "Un paciente recuperó 4 kg y dice que ya no le queda fuerza de voluntad. ¿Cuál es la conducta más adecuada?"
+  },
+  "estilo-vida-remision-dm2-q43": {
+   "options": [
+    "Acordar metas pequeñas y concretas con el paciente",
+    "Reconocer los avances aunque sean parciales",
+    "Usar presión y vergüenza",
+    "Preguntar qué dificultades encontró para aplicar el plan",
+    "Pedir permiso antes de ofrecer consejos o información"
+   ],
+   "why": "La entrevista motivacional explora la ambivalencia y respeta la autonomía; junto con metas acordadas y pequeñas favorece la autoeficacia y la adherencia sostenida. La presión, la vergüenza o los consejos directivos sin explorar barreras suelen generar rechazo y abandono. Mantener la motivación requiere reevaluar barreras y ajustar el plan, no endurecerlo."
+  },
+  "estilo-vida-remision-dm2-q44": {
+   "options": [
+    "Fijar metas idénticas para todos los pacientes.",
+    "Dar consejos directivos sin explorar su opinión.",
+    "Centrar el abordaje en el peso más que en la conducta.",
+    "Evaluar beneficios, daños y preferencias.",
+    "Evitar hablar de recaídas para no desmotivar."
+   ],
+   "why": "La entrevista motivacional explora la ambivalencia y respeta la autonomía; junto con metas acordadas y pequeñas favorece la autoeficacia y la adherencia sostenida. La presión, la vergüenza o los consejos directivos sin explorar barreras suelen generar rechazo y abandono. Mantener la motivación requiere reevaluar barreras y ajustar el plan, no endurecerlo.",
+   "prompt": "Al trabajar cambios de hábitos con un paciente ambivalente, ¿qué elemento mejora la seguridad del abordaje?"
+  },
+  "estilo-vida-remision-dm2-q45": {
+   "options": [
+    "Retirar el apoyo conductual por haber logrado la meta.",
+    "Sostener la motivación con advertencias sobre recaída.",
+    "Mantener el mismo plan de controles de por vida sin cambios.",
+    "Pasar a seguimiento anual con el resultado alcanzado.",
+    "Reevaluar resultados y ajustar el plan."
+   ],
+   "why": "La entrevista motivacional explora la ambivalencia y respeta la autonomía; junto con metas acordadas y pequeñas favorece la autoeficacia y la adherencia sostenida. La presión, la vergüenza o los consejos directivos sin explorar barreras suelen generar rechazo y abandono. Mantener la motivación requiere reevaluar barreras y ajustar el plan, no endurecerlo.",
+   "prompt": "Un paciente alcanzó la meta de peso hace 3 meses y dice sentirse curado. ¿Qué enfoque de seguimiento es más apropiado?"
+  },
+  "estilo-vida-remision-dm2-q46": {
+   "options": [
+    "La coordinación de médicos, nutrición y otros profesionales facilita cuidado seguro.",
+    "La coordinación entre profesionales es innecesaria cuando el médico indica la dieta y la rutina de ejercicio por escrito.",
+    "La coordinación del equipo se limita a derivar al paciente a nutrición, que asume también el ajuste de la medicación.",
+    "El cuidado seguro se logra cuando cada profesional fija sus propios objetivos de manera independiente.",
+    "La coordinación interdisciplinaria es necesaria solo en pacientes con complicaciones avanzadas de la diabetes."
+   ],
+   "why": "El abordaje de remisión combina decisiones médicas (fármacos y deprescripción), nutricionales, de actividad física y conductuales. Acordar roles, canales de comunicación y registro común evita indicaciones contradictorias y que alguien exceda sus incumbencias, como ajustar medicación sin ser quien la prescribe."
+  },
+  "estilo-vida-remision-dm2-q47": {
+   "options": [
+    "Dejar que cada uno defina sus objetivos por separado",
+    "Acordar roles y derivaciones",
+    "Concentrar en el médico toda indicación nutricional y de ejercicio",
+    "Permitir que cada profesional ajuste la medicación en su consulta",
+    "Derivar sin una vía definida de comunicación"
+   ],
+   "why": "El abordaje de remisión combina decisiones médicas (fármacos y deprescripción), nutricionales, de actividad física y conductuales. Acordar roles, canales de comunicación y registro común evita indicaciones contradictorias y que alguien exceda sus incumbencias, como ajustar medicación sin ser quien la prescribe.",
+   "prompt": "En un programa de remisión participan un médico, una nutricionista y un profesor de educación física. ¿Cuál es la conducta más adecuada?"
+  },
+  "estilo-vida-remision-dm2-q48": {
+   "options": [
+    "Derivar a salud mental ante signos de trastorno alimentario",
+    "Compartir el plan con los demás integrantes del equipo",
+    "Exceder incumbencias",
+    "Consultar al médico ante cambios en la glucemia",
+    "Registrar en la historia clínica las indicaciones de cada profesional"
+   ],
+   "why": "El abordaje de remisión combina decisiones médicas (fármacos y deprescripción), nutricionales, de actividad física y conductuales. Acordar roles, canales de comunicación y registro común evita indicaciones contradictorias y que alguien exceda sus incumbencias, como ajustar medicación sin ser quien la prescribe."
+  },
+  "estilo-vida-remision-dm2-q49": {
+   "options": [
+    "Mantener indicaciones independientes por especialidad.",
+    "Concentrar el seguimiento en un solo profesional sin intercambio.",
+    "Comunicar los cambios de medicación solo al paciente.",
+    "Evaluar beneficios, daños y preferencias.",
+    "Unificar el mensaje sin considerar las preferencias del paciente."
+   ],
+   "why": "El abordaje de remisión combina decisiones médicas (fármacos y deprescripción), nutricionales, de actividad física y conductuales. Acordar roles, canales de comunicación y registro común evita indicaciones contradictorias y que alguien exceda sus incumbencias, como ajustar medicación sin ser quien la prescribe.",
+   "prompt": "Al coordinar un equipo interdisciplinario en un programa de remisión, ¿qué elemento mejora la seguridad del abordaje?"
+  },
+  "estilo-vida-remision-dm2-q50": {
+   "options": [
+    "Dejar que el paciente elija qué indicación seguir.",
+    "Mantener el esquema vigente hasta el cierre del programa.",
+    "Reducir el número de profesionales sin revisar los roles.",
+    "Consolidar las indicaciones de un solo profesional sin discutirlas.",
+    "Reevaluar resultados y ajustar el plan."
+   ],
+   "why": "El abordaje de remisión combina decisiones médicas (fármacos y deprescripción), nutricionales, de actividad física y conductuales. Acordar roles, canales de comunicación y registro común evita indicaciones contradictorias y que alguien exceda sus incumbencias, como ajustar medicación sin ser quien la prescribe.",
+   "prompt": "A los tres meses el equipo advierte que el paciente recibe mensajes contradictorios. ¿Qué enfoque es más apropiado?"
+  }
+ },
+ "flags": [],
+ "stats": {
+  "revisadas": 50,
+  "reescritas": 50,
+  "flags": 0,
+  "noVerificadas": [
+   "Cifras de DiRECT (46 % a 12 meses, 36 % a 24 meses, ~850 kcal/día, duración <6 años, 86 % con ≥15 kg) y criterio ADA 2021 de remisión (HbA1c <6,5 % ≥3 meses sin fármacos): citados de memoria, sin abrir la fuente en línea"
+  ]
+ }
+}

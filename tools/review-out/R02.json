@@ -1,0 +1,672 @@
+{
+ "batch": "R02",
+ "upgrades": {
+  "amls-preparacion-q1": {
+   "options": [
+    "Controlar glucemia temprana",
+    "Solicitar una TC de cráneo antes de otras mediciones",
+    "Administrar naloxona empírica por la alteración del sensorio",
+    "Iniciar oxígeno a alto flujo y esperar la respuesta",
+    "Canalizar y pasar un bolo de solución fisiológica"
+   ],
+   "prompt": "Hombre de 58 años, diabético en tratamiento con insulina, hallado confundido, sudoroso y pálido; respira espontáneamente y tiene pulso radial. ¿Cuál es el enfoque inicial más apropiado?",
+   "why": "La hipoglucemia es una causa rápida, frecuente y reversible de confusión con sudoración en un diabético insulinizado, y se descarta en segundos con una glucemia capilar. Estudios de imagen, naloxona o fluidos sin ese dato demoran el tratamiento específico."
+  },
+  "amls-preparacion-q2": {
+   "options": [
+    "Realizar una radiografía de tórax antes de otra maniobra",
+    "Priorizar evaluación ABCDE",
+    "Administrar un diurético de asa por presunta congestión",
+    "Centrar la evaluación en un ECG de 12 derivaciones",
+    "Completar los antecedentes antes de examinar al paciente"
+   ],
+   "prompt": "Paciente adulto con disnea intensa, PA 80/50 mmHg y FC 130/min. ¿Cuál es el enfoque inicial más apropiado?",
+   "why": "Con disnea e hipotensión hay compromiso potencial de la vía aérea, la respiración y la circulación: la evaluación ABCDE ordena la detección y corrección de lo que amenaza la vida antes de definir la causa. Un diurético en un paciente hipotenso puede agravar el cuadro."
+  },
+  "amls-preparacion-q3": {
+   "options": [
+    "Pedir troponina y esperar su resultado antes del ECG",
+    "Indicar una radiografía de tórax como primer estudio",
+    "Obtener ECG oportunamente",
+    "Hacer un ecocardiograma a pie de cama antes del ECG",
+    "Derivar a prueba de esfuerzo diferida según estratificación"
+   ],
+   "prompt": "Hombre de 62 años con dolor torácico opresivo, palidez y sudoración fría. ¿Qué conducta inicial es más apropiada?",
+   "why": "El ECG de 12 derivaciones en pocos minutos del primer contacto identifica el infarto con elevación del ST y define la reperfusión; no debe esperar biomarcadores, que pueden ser normales al inicio, ni otros estudios."
+  },
+  "amls-preparacion-q4": {
+   "options": [
+    "Reabrir diagnóstico diferencial",
+    "Intensificar el tratamiento del diagnóstico inicial",
+    "Atribuir la discordancia a variabilidad individual y continuar",
+    "Solicitar más estudios confirmatorios del diagnóstico inicial",
+    "Sumar un segundo diagnóstico sin revisar el primero"
+   ],
+   "prompt": "Se planteó un diagnóstico inicial, pero la evolución y el examen físico no lo explican. ¿Cuál es el enfoque más apropiado?",
+   "why": "Cuando los hallazgos son discordantes hay que cuestionar la hipótesis de partida y reabrir el diferencial, para evitar el sesgo de anclaje. Buscar sólo confirmación o intensificar el tratamiento refuerza un posible error."
+  },
+  "amls-preparacion-q5": {
+   "options": [
+    "Solicitar una TC de cráneo sin contraste de inmediato",
+    "Reevaluar vía aérea",
+    "Administrar flumazenil o naloxona de forma empírica",
+    "Repetir la escala de Glasgow cada 30 minutos sin intervenir",
+    "Aumentar el oxígeno sin revisar la permeabilidad"
+   ],
+   "prompt": "Paciente estable en observación que pasa de alerta a somnoliento y responde sólo al estímulo verbal. ¿Cuál es la conducta prioritaria?",
+   "why": "El descenso del nivel de conciencia compromete la protección de la vía aérea; reevaluar su permeabilidad y la ventilación es lo primero, antes de la imagen o de antídotos empíricos. Observar sin intervenir pierde la ventana de actuación."
+  },
+  "amls-preparacion-q6": {
+   "options": [
+    "Administrar oxígeno a alto flujo y confiar en la saturación",
+    "Interpretar la frecuencia baja como signo de mejoría",
+    "Evaluar hipoventilación",
+    "Buscar causas de taquipnea compensatoria",
+    "Indicar sedación leve para normalizar el patrón"
+   ],
+   "prompt": "Paciente somnoliento con frecuencia respiratoria de 8/min y mala respuesta a la voz, sin dificultad aparente. ¿Qué debe evaluarse?",
+   "why": "Una frecuencia baja con depresión del sensorio sugiere hipoventilación con riesgo de hipercapnia y paro respiratorio; la saturación puede ser engañosa, sobre todo con oxígeno suplementario. Hay que evaluar la ventilación y asistirla si hace falta."
+  },
+  "amls-preparacion-q7": {
+   "options": [
+    "Sospechar obstrucción grave",
+    "Interpretar que la crisis cedió espontáneamente",
+    "Descartar broncoespasmo y buscar otra causa",
+    "Atribuir el hallazgo a una crisis leve con ansiedad",
+    "Considerar un neumotórax como único diagnóstico"
+   ],
+   "prompt": "Paciente asmático con disnea intensa, habla entrecortada y ausencia de sibilancias a la auscultación. ¿Cómo interpreta el hallazgo?",
+   "why": "En el asma grave el flujo aéreo es tan bajo que no genera sibilancias («tórax silencioso»); es un signo de obstrucción grave y riesgo de paro, no de mejoría. Requiere tratamiento intensivo inmediato."
+  },
+  "amls-preparacion-q8": {
+   "options": [
+    "Considerar crisis de pánico con hiperventilación",
+    "Considerar embolia pulmonar",
+    "Considerar neumonía lobar aguda",
+    "Considerar reagudización de EPOC",
+    "Considerar insuficiencia cardíaca descompensada"
+   ],
+   "prompt": "Mujer de 45 años, en el posoperatorio de una cirugía de cadera, con disnea súbita, síncope e hipotensión. ¿Qué diagnóstico debe considerarse?",
+   "why": "Posoperatorio ortopédico (factor de riesgo de trombosis) con disnea súbita y síncope orienta a embolia pulmonar, posiblemente de alto riesgo por la hipotensión. Los otros diagnósticos no explican el inicio brusco ni el síncope."
+  },
+  "amls-preparacion-q9": {
+   "options": [
+    "Interpretar la saturación normal como ventilación suficiente",
+    "Suspender el oxígeno al ver una saturación normal",
+    "Evaluar retención de CO2",
+    "Buscar neumonía con una radiografía de tórax inmediata",
+    "Investigar compensación de una acidosis metabólica"
+   ],
+   "prompt": "Paciente con sedantes, saturación 96 % con oxígeno suplementario y frecuencia respiratoria de 8/min, cada vez más somnoliento. ¿Qué debe evaluarse?",
+   "why": "La saturación mide oxigenación, no ventilación: con oxígeno suplementario puede ser normal mientras el CO2 se acumula. Con bradipnea y sedación hay que sospechar hipoventilación e hipercapnia y evaluar la ventilación."
+  },
+  "amls-preparacion-q10": {
+   "options": [
+    "Reconocer trabajo respiratorio aumentado",
+    "Atribuir el cuadro a ansiedad y observar sin intervenir",
+    "Esperar la caída de la saturación para escalar el soporte",
+    "Considerar normal el hallazgo si la saturación supera 92 %",
+    "Limitar la valoración a la auscultación pulmonar"
+   ],
+   "prompt": "Paciente con disnea que usa musculatura accesoria y presenta tiraje, con saturación de 94 %. ¿Cómo interpreta el hallazgo?",
+   "why": "La musculatura accesoria y el tiraje son signos de esfuerzo respiratorio aumentado y pueden preceder a la desaturación; esperar la hipoxemia retrasa el soporte y la agotamiento ventilatorio se instala con saturación todavía aceptable."
+  },
+  "amls-preparacion-q11": {
+   "options": [
+    "Repetir la glucemia en una hora antes de actuar",
+    "Reconocer hipoglucemia",
+    "Descartar un ACV como primera causa",
+    "Atribuir la confusión a un cuadro infeccioso",
+    "Considerar el valor esperable en un diabético"
+   ],
+   "prompt": "Paciente diabético confundido, con glucemia capilar de 42 mg/dL. ¿Cuál es la interpretación más apropiada?",
+   "why": "Una glucemia de 42 mg/dL con alteración del estado mental es hipoglucemia sintomática y requiere corrección inmediata; además explica el cuadro, por lo que no se justifica esperar ni buscar otra causa primero."
+  },
+  "amls-preparacion-q12": {
+   "options": [
+    "Sospechar estado hiperosmolar hiperglucémico",
+    "Sospechar cetoacidosis alcohólica",
+    "Sospechar cetoacidosis diabética",
+    "Sospechar acidosis láctica por metformina",
+    "Sospechar cetosis por ayuno prolongado"
+   ],
+   "prompt": "Paciente con antecedente de diabetes tipo 1, glucemia de 480 mg/dL, pH 7,10, cetonas positivas y respiración profunda. ¿Qué diagnóstico debe sospecharse?",
+   "why": "Hiperglucemia, acidosis metabólica y cetonemia en una persona con diabetes configuran cetoacidosis diabética. El estado hiperosmolar no tiene cetoacidosis significativa, y la cetoacidosis alcohólica o del ayuno cursan con glucemia normal o baja."
+  },
+  "amls-preparacion-q13": {
+   "options": [
+    "Considerar toxidrome opioide",
+    "Considerar toxidrome anticolinérgico",
+    "Considerar toxidrome simpaticomimético",
+    "Considerar toxidrome colinérgico",
+    "Considerar intoxicación por benzodiazepinas"
+   ],
+   "prompt": "Paciente estuporoso con pupilas puntiformes y frecuencia respiratoria de 6/min, sin sialorrea ni broncorrea ni fasciculaciones. ¿Qué toxidrome debe considerarse?",
+   "why": "Depresión respiratoria, depresión del sensorio y miosis puntiforme son la tríada del toxidrome opioide, que responde a naloxona con soporte ventilatorio. Los toxidromes anticolinérgico y simpaticomimético producen midriasis, y las benzodiazepinas solas no suelen causar miosis."
+  },
+  "amls-preparacion-q14": {
+   "options": [
+    "Iniciar un antiepiléptico de mantenimiento tras un único episodio",
+    "Buscar alteraciones metabólicas",
+    "Pedir un EEG urgente como único estudio inicial",
+    "Diagnosticar epilepsia y planificar seguimiento ambulatorio",
+    "Dar el alta tras una TC de cráneo normal"
+   ],
+   "prompt": "Adulto con una primera convulsión tónico-clónica ya resuelta. ¿Cuál es el enfoque más apropiado?",
+   "why": "Una primera convulsión puede ser sintomática de hipoglucemia, trastornos electrolíticos, tóxicos o lesión estructural; hay que buscarlas y corregirlas antes de rotular epilepsia o indicar tratamiento crónico."
+  },
+  "amls-preparacion-q15": {
+   "options": [
+    "Inducir el vómito para eliminar el tóxico",
+    "Administrar carbón activado antes de evaluar la vía aérea",
+    "Priorizar soporte vital",
+    "Identificar el tóxico antes de iniciar otras medidas",
+    "Esperar el resultado del screening toxicológico para actuar"
+   ],
+   "prompt": "Paciente inconsciente con intoxicación de origen incierto. ¿Cuál es el enfoque más apropiado?",
+   "why": "Sin saber el agente, lo que mata es la falla de la vía aérea, la ventilación y la circulación: se sostienen primero. La descontaminación y los antídotos vienen después, y la emesis o el carbón sin vía aérea protegida agregan riesgo de aspiración."
+  },
+  "amls-preparacion-q16": {
+   "options": [
+    "Reconocer hipoperfusión",
+    "Interpretar la oliguria como deshidratación leve aislada",
+    "Esperar la caída de la presión para actuar",
+    "Atribuir las extremidades frías a la temperatura ambiente",
+    "Considerar normal el estado si la saturación es adecuada"
+   ],
+   "prompt": "Paciente con extremidades frías, llenado capilar lento y oliguria; PA 105/70 mmHg. ¿Cómo interpreta el cuadro?",
+   "why": "Piel fría, llenado lento y oliguria indican hipoperfusión tisular aunque la presión arterial aún sea normal (shock compensado). La hipotensión es un signo tardío, por lo que no conviene esperarla."
+  },
+  "amls-preparacion-q17": {
+   "options": [
+    "Tratar como infección no complicada con antibiótico oral",
+    "Evaluar sepsis",
+    "Esperar los cultivos antes del antibiótico",
+    "Considerar sólo una respuesta inflamatoria sin sospechar sepsis",
+    "Limitar el manejo a antipirético e hidratación oral"
+   ],
+   "prompt": "Paciente con foco urinario, fiebre, confusión, lactato elevado y creatinina aumentada. ¿Cuál es el enfoque más apropiado?",
+   "why": "Infección con disfunción orgánica (alteración mental, lactato y creatinina elevados) define sepsis, que exige reconocimiento temprano, cultivos sin demorar el antibiótico y reanimación. Tratarla como infección simple subestima su gravedad."
+  },
+  "amls-preparacion-q18": {
+   "options": [
+    "Considerar resuelto el shock por la presión normalizada",
+    "Reducir el soporte vasoactivo por la presión alcanzada",
+    "Reevaluar perfusión",
+    "Suspender la reposición por una PA adecuada",
+    "Atribuir el moteado a vasoconstricción por frío"
+   ],
+   "prompt": "Paciente séptico cuya presión arterial se normalizó tras fluidos, pero persiste con piel moteada y relleno capilar enlentecido. ¿Cuál es el enfoque más apropiado?",
+   "why": "Una presión normal no equivale a perfusión adecuada: el moteado y el relleno lento indican hipoperfusión persistente, por lo que hay que reevaluar la perfusión y orientar el tratamiento a esos signos, no a una cifra aislada."
+  },
+  "amls-preparacion-q19": {
+   "options": [
+    "Comunicar tendencias e intervenciones",
+    "Limitar el informe a los signos vitales actuales",
+    "Entregar sólo el diagnóstico presuntivo final",
+    "Resumir los antecedentes y diferir las intervenciones al hospital",
+    "Transmitir únicamente la medicación administrada"
+   ],
+   "prompt": "Durante el pase de un paciente crítico entre hospitales, ¿qué debe comunicarse al equipo receptor?",
+   "why": "La entrega efectiva incluye la evolución (tendencias) y lo realizado, no sólo una foto del momento: permite al equipo receptor entender la respuesta al tratamiento y anticipar el deterioro."
+  },
+  "amls-preparacion-q20": {
+   "options": [
+    "Usar siempre el esquema de mayor espectro disponible",
+    "Considerar foco y epidemiología local",
+    "Elegir según la gravedad sin considerar el foco",
+    "Aplicar un esquema único para todos los focos",
+    "Postergar el antibiótico hasta contar con el cultivo"
+   ],
+   "prompt": "Paciente con sepsis en quien debe elegirse el tratamiento antimicrobiano empírico. ¿Qué se debe considerar?",
+   "why": "El esquema empírico debe cubrir los patógenos probables según el foco sospechado y la epidemiología y resistencias locales, e iniciarse sin demora. El espectro máximo indiscriminado o un esquema único no son apropiados."
+  },
+  "epc-preparacion-q1": {
+   "options": [
+    "Identificar trabajo respiratorio alterado",
+    "Interpretar el cuadro como llanto por ansiedad de separación",
+    "Esperar la caída de la saturación antes de actuar",
+    "Limitar la evaluación a la auscultación pulmonar",
+    "Considerar normales estos signos para su edad"
+   ],
+   "prompt": "Lactante de 8 meses con aleteo nasal, tiraje subcostal y frecuencia respiratoria de 62/min. ¿Cuál es el enfoque más apropiado?",
+   "why": "Aleteo nasal y tiraje con taquipnea son signos de aumento del trabajo respiratorio en el lactante y pueden preceder a la insuficiencia respiratoria; hay que reconocerlos y actuar sin esperar hipoxemia."
+  },
+  "epc-preparacion-q2": {
+   "options": [
+    "Medir la presión arterial como único criterio de shock",
+    "Evaluar apariencia y circulación",
+    "Centrar la evaluación en la frecuencia respiratoria",
+    "Tranquilizar a la familia y observar en sala",
+    "Priorizar la anamnesis completa antes del examen"
+   ],
+   "prompt": "Niño de 3 años pálido y letárgico, con poca respuesta a su entorno. ¿Qué debe evaluarse?",
+   "why": "Palidez con letargia indica compromiso de la apariencia y de la circulación cutánea; en pediatría la hipotensión es tardía, por lo que el abordaje comienza con la valoración rápida de apariencia y circulación."
+  },
+  "epc-preparacion-q3": {
+   "options": [
+    "Establecer el diagnóstico etiológico",
+    "Sustituir la evaluación primaria y los signos vitales",
+    "Estimar gravedad inicial",
+    "Calcular las dosis según el peso estimado",
+    "Definir el pronóstico a largo plazo"
+   ],
+   "prompt": "¿Para qué sirve el triángulo de evaluación pediátrica (apariencia, trabajo respiratorio y circulación cutánea)?",
+   "why": "El triángulo es una impresión general rápida, hecha a la vista y sin equipos, que estima la gravedad y la urgencia de intervenir. No da diagnóstico ni reemplaza la evaluación primaria posterior."
+  },
+  "epc-preparacion-q4": {
+   "options": [
+    "Evaluar oxigenación urgentemente",
+    "Tranquilizarse por su buena apariencia y observar",
+    "Atribuir la cianosis al frío ambiental",
+    "Postergar la valoración hasta completar el examen físico",
+    "Considerar normal si la frecuencia cardíaca es adecuada"
+   ],
+   "prompt": "Niño interactivo que juega, pero con cianosis perioral. ¿Cuál es el enfoque más apropiado?",
+   "why": "Una buena apariencia no excluye hipoxemia: la cianosis central obliga a evaluar la oxigenación de inmediato y a administrar oxígeno según la respuesta."
+  },
+  "epc-preparacion-q5": {
+   "options": [
+    "Completar una historia clínica detallada antes de intervenir",
+    "Continuar evaluación primaria",
+    "Solicitar estudios complementarios sin evaluación primaria",
+    "Dar por finalizada la evaluación y trasladar sin más",
+    "Repetir el triángulo hasta que se normalice"
+   ],
+   "prompt": "Triángulo de evaluación pediátrica con alteración en uno o más lados. ¿Cuál es el paso siguiente?",
+   "why": "Un triángulo anormal indica que hay que continuar con la evaluación primaria (ABCDE) y tratar lo que amenaza la vida en ese orden; la historia detallada y los estudios van después."
+  },
+  "epc-preparacion-q6": {
+   "options": [
+    "Administrar cafeína de forma empírica",
+    "Considerar un patrón respiratorio periódico normal",
+    "Activar valoración respiratoria urgente",
+    "Solicitar radiografía de tórax antes de intervenir",
+    "Medir la glucemia capilar y diferir la ventilación"
+   ],
+   "prompt": "Recién nacido de término que deja de respirar 25 segundos, con bradicardia y cianosis. ¿Cuál es el enfoque más apropiado?",
+   "why": "Una apnea con bradicardia y cianosis no es respiración periódica benigna: requiere valoración respiratoria urgente y soporte ventilatorio inmediato, que es lo que revierte la bradicardia hipóxica del neonato."
+  },
+  "epc-preparacion-q7": {
+   "options": [
+    "Considerar obstrucción superior",
+    "Considerar obstrucción de la vía aérea inferior",
+    "Considerar broncoespasmo de tipo asmático",
+    "Considerar neumonía con consolidación",
+    "Considerar derrame pleural"
+   ],
+   "prompt": "Niño de 2 años con tos perruna, disfonía y estridor inspiratorio. ¿Qué debe considerarse?",
+   "why": "El estridor inspiratorio localiza el problema en la vía aérea superior (extratorácica), por ejemplo crup; la obstrucción baja o parenquimatosa produce sibilancias espiratorias, crepitantes o matidez."
+  },
+  "epc-preparacion-q8": {
+   "options": [
+    "Interpretar la letargia como mejoría del broncoespasmo",
+    "Sospechar fatiga respiratoria",
+    "Considerar el cuadro leve por la menor cantidad de sibilancias",
+    "Atribuir la somnolencia al sueño tras el esfuerzo",
+    "Suponer un efecto adverso del salbutamol"
+   ],
+   "prompt": "Niño asmático con sibilancias que se vuelve letárgico, con menos esfuerzo respiratorio que antes. ¿Qué debe sospecharse?",
+   "why": "Letargia con disminución del esfuerzo en un niño con broncoespasmo grave indica fatiga respiratoria y riesgo de paro, no mejoría: se necesita soporte inmediato."
+  },
+  "epc-preparacion-q9": {
+   "options": [
+    "Usar dispositivos de adulto con menor volumen",
+    "Elegir el tamaño solo por la edad en meses",
+    "Adaptar a tamaño y anatomía",
+    "Estandarizar un único tamaño para todos los lactantes",
+    "Preferir el mayor calibre posible"
+   ],
+   "prompt": "Se debe elegir y preparar dispositivos de vía aérea para un lactante. ¿Cuál es el criterio más apropiado?",
+   "why": "Los dispositivos pediátricos deben adaptarse al tamaño y la anatomía del niño (por ejemplo, con ayuda de cinta por longitud); un dispositivo mal dimensionado ventila mal o lesiona la vía aérea."
+  },
+  "epc-preparacion-q10": {
+   "options": [
+    "Controlar esfuerzo y sensorio",
+    "Vigilar solo la saturación de oxígeno",
+    "Controlar la frecuencia cardíaca como único indicador",
+    "Medir temperatura y presión periódicamente",
+    "Esperar la cianosis como señal de deterioro"
+   ],
+   "prompt": "Niño con distrés respiratorio en observación. ¿Qué parámetros se controlan para detectar el deterioro?",
+   "why": "El esfuerzo respiratorio y el estado de conciencia son los mejores marcadores clínicos de la evolución: la fatiga y la hipoxia se manifiestan como menos esfuerzo y alteración del sensorio antes de la cianosis."
+  },
+  "epc-preparacion-q11": {
+   "options": [
+    "Descartar shock por la presión arterial normal",
+    "Considerar shock compensado",
+    "Atribuir la taquicardia a la fiebre y al llanto",
+    "Esperar la hipotensión para confirmar el shock",
+    "Interpretar la piel fría como efecto del ambiente"
+   ],
+   "prompt": "Niño con taquicardia, piel fría, relleno capilar lento y presión arterial normal. ¿Qué debe considerarse?",
+   "why": "En pediatría la presión se mantiene hasta fases avanzadas: taquicardia con mala perfusión periférica es shock compensado y debe tratarse antes de la hipotensión."
+  },
+  "epc-preparacion-q12": {
+   "options": [
+    "Evaluar la turgencia de la piel",
+    "Palpar la fontanela anterior",
+    "Valorar relleno capilar",
+    "Contar la frecuencia respiratoria",
+    "Auscultar los ruidos cardíacos"
+   ],
+   "prompt": "En un niño con sospecha de shock, ¿qué signo clínico rápido y sin equipos permite valorar la perfusión periférica?",
+   "why": "El tiempo de relleno capilar, junto con temperatura cutánea y pulsos, refleja la perfusión periférica. La turgencia y la fontanela informan sobre hidratación, no sobre perfusión."
+  },
+  "epc-preparacion-q13": {
+   "options": [
+    "Evaluar ritmo y estabilidad",
+    "Administrar adenosina antes de monitorizar",
+    "Indicar maniobras vagales prolongadas sin monitoreo",
+    "Solicitar un ecocardiograma antes de actuar",
+    "Tratar como taquicardia sinusal por fiebre"
+   ],
+   "prompt": "Niño con taquicardia de 220/min, palidez, relleno capilar de 4 segundos y sensorio decaído. ¿Cuál es el enfoque más apropiado?",
+   "why": "Hay que monitorizar, identificar el ritmo y decidir según la estabilidad: con mala perfusión y alteración del sensorio, la taquicardia es inestable y la conducta cambia (cardioversión) respecto de la estable."
+  },
+  "epc-preparacion-q14": {
+   "options": [
+    "Usar la dosis fija de adulto reducida a la mitad",
+    "Comprobar peso y dosis",
+    "Estimar la dosis por la edad aparente",
+    "Administrar la dosis habitual y ajustar por respuesta",
+    "Verificar sólo la vía de administración"
+   ],
+   "prompt": "Se prepara una medicación de urgencia para un niño. ¿Qué verificación es esencial?",
+   "why": "En pediatría casi todas las dosis dependen del peso: hay que confirmar el peso (medido o estimado) y recalcular la dosis; los errores de decimales o de dosis de adulto son una causa frecuente de eventos graves."
+  },
+  "epc-preparacion-q15": {
+   "options": [
+    "Considerar el cuadro una secuela hipóxica definitiva",
+    "Atribuir la confusión al efecto residual del evento",
+    "Reevaluar causas reversibles",
+    "Suspender el soporte tras la estabilización inicial",
+    "Esperar la recuperación espontánea sin nuevas medidas"
+   ],
+   "prompt": "Niño que continúa confuso después de recibir soporte inicial adecuado. ¿Cuál es el enfoque más apropiado?",
+   "why": "La persistencia de alteración del sensorio tras el soporte exige buscar causas reversibles (hipoglucemia, hipoxia, tóxicos, convulsión, infección) en lugar de asumir daño establecido."
+  },
+  "epc-preparacion-q16": {
+   "options": [
+    "Comunicar según desarrollo",
+    "Explicar el procedimiento con términos técnicos a la familia",
+    "Hacer el examen sin explicar para ganar tiempo",
+    "Separar al niño de sus cuidadores durante el examen",
+    "Prometer que no habrá procedimientos dolorosos"
+   ],
+   "prompt": "Niño asustado que llora y rechaza el examen. ¿Cuál es la mejor manera de abordarlo?",
+   "why": "La comunicación debe ajustarse a la etapa de desarrollo, con lenguaje simple y honesto y con los cuidadores presentes; la falsa promesa o la separación aumentan el miedo y la desconfianza."
+  },
+  "epc-preparacion-q17": {
+   "options": [
+    "Confrontar a los cuidadores para obtener una confesión",
+    "Activar circuito de protección",
+    "Esperar la confirmación diagnóstica antes de notificar",
+    "Registrar el hallazgo y no informar sin evidencia",
+    "Dar el alta con control ambulatorio por el pediatra"
+   ],
+   "prompt": "Niño con lesiones cutáneas cuya localización y mecanismo no coinciden con el relato de los cuidadores. ¿Cuál es el enfoque más apropiado?",
+   "why": "La discordancia entre lesiones y relato es un indicador de posible maltrato: corresponde documentar objetivamente y activar el circuito de protección sin confrontar ni esperar certeza, que es tarea de los equipos especializados."
+  },
+  "epc-preparacion-q18": {
+   "options": [
+    "Informar la edad y el diagnóstico presuntivo",
+    "Resumir las intervenciones sin los signos previos",
+    "Comunicar peso y tendencia de signos",
+    "Transmitir sólo los últimos signos vitales",
+    "Detallar los antecedentes familiares y escolares"
+   ],
+   "prompt": "En la transferencia de un paciente pediátrico, ¿qué datos son indispensables además de los del diagnóstico presuntivo?",
+   "why": "El peso condiciona dosis y equipos, y la tendencia de los signos muestra la evolución y la respuesta al tratamiento; sin ellos el equipo receptor no puede anticipar el deterioro."
+  },
+  "epc-preparacion-q19": {
+   "options": [
+    "Escuchar y preservar privacidad",
+    "Excluir a la familia durante todo el procedimiento",
+    "Limitar la información al mínimo para no generar angustia",
+    "Delegar la información en un familiar sin consultar al paciente",
+    "Compartir los datos con cualquier acompañante"
+   ],
+   "prompt": "Familiares quieren acompañar al niño durante la atención de urgencia. ¿Cuál es el enfoque más apropiado?",
+   "why": "La atención centrada en la familia implica escucharla, informarla y favorecer su presencia, resguardando la privacidad y la confidencialidad del paciente."
+  },
+  "epc-preparacion-q20": {
+   "options": [
+    "Presentarla como equivalente a la certificación NAEMT",
+    "No confundir con credencial NAEMT",
+    "Indicar que habilita a instruir cursos EPC oficiales",
+    "Señalar que acredita competencia práctica pediátrica",
+    "Consignar que es válida ante autoridades sanitarias"
+   ],
+   "prompt": "Al emitirse una constancia privada de ClinicIA por completar la preparación EPC, ¿qué debe quedar claro sobre su alcance?",
+   "why": "La constancia certifica únicamente la finalización de una preparación académica propia; no es una credencial de NAEMT ni acredita competencia práctica o habilitación para instruir."
+  },
+  "emergencia-neurologica-q1": {
+   "options": [
+    "Activar evaluación de ictus",
+    "Observar en el domicilio la evolución de las próximas horas",
+    "Solicitar una RM de columna cervical antes de actuar",
+    "Atribuir los síntomas a una migraña con aura",
+    "Tratar como una parálisis de Bell periférica"
+   ],
+   "prompt": "Hombre de 70 años con debilidad facial y del brazo derecho de inicio súbito. ¿Cuál es el enfoque más apropiado?",
+   "why": "Un déficit focal de inicio súbito es un ictus hasta demostrar lo contrario; el tiempo es crítico para la reperfusión, por lo que se activa la evaluación de ictus con traslado a un centro con neuroimagen."
+  },
+  "emergencia-neurologica-q2": {
+   "options": [
+    "Registrar la hora en que se detectó el síntoma",
+    "Documentar último momento conocido sano",
+    "Anotar la hora de llegada al hospital",
+    "Consignar la hora de la primera valoración médica",
+    "Estimar la hora media del intervalo"
+   ],
+   "prompt": "Paciente con afasia de reciente inicio, hallado por la familia a las 8:00 h, que estaba bien a las 22:00 del día anterior. ¿Qué hora debe documentarse?",
+   "why": "Las ventanas terapéuticas se calculan desde el último momento en que el paciente estuvo sano, no desde que se lo encontró enfermo; usar otra hora puede habilitar un tratamiento fuera de ventana."
+  },
+  "emergencia-neurologica-q3": {
+   "options": [
+    "Dar ácido acetilsalicílico antes de la neuroimagen",
+    "Indicar anticoagulación ante sospecha de embolia",
+    "Comprobar glucemia",
+    "Descender la presión arterial a cifras normales",
+    "Esperar una RM para confirmar el diagnóstico"
+   ],
+   "prompt": "En el ámbito prehospitalario, un paciente con hemiparesia de inicio reciente. ¿Qué verificación rápida es indispensable?",
+   "why": "La hipoglucemia puede simular un ictus y se corrige fácilmente, por lo que la glucemia capilar se mide en todo déficit focal. Antiagregar, anticoagular o bajar la presión sin descartar hemorragia puede perjudicar."
+  },
+  "emergencia-neurologica-q4": {
+   "options": [
+    "Activar atención urgente y soporte ABC",
+    "Introducir un objeto entre los dientes para proteger la lengua",
+    "Inmovilizar con fuerza para evitar lesiones",
+    "Esperar el cese espontáneo hasta 30 minutos",
+    "Indicar un anticonvulsivante de mantenimiento por vía oral"
+   ],
+   "prompt": "Adulto con convulsión tónico-clónica generalizada de más de 5 minutos. ¿Cuál es el enfoque más apropiado?",
+   "why": "Una crisis de más de 5 minutos es un estado epiléptico: requiere atención urgente, soporte de vía aérea, respiración y circulación, y tratamiento farmacológico inmediato. Colocar objetos o inmovilizar es dañino."
+  },
+  "emergencia-neurologica-q5": {
+   "options": [
+    "Atribuir el episodio a epilepsia primaria y derivar a control",
+    "Buscar causas metabólicas y estructurales",
+    "Iniciar profilaxis anticonvulsiva sin más estudios",
+    "Limitar la evaluación a un EEG programado",
+    "Considerarlo benigno si el examen posictal es normal"
+   ],
+   "prompt": "Adulto de 40 años con una primera convulsión, sin antecedentes. ¿Cuál es el enfoque más apropiado?",
+   "why": "Una primera convulsión en un adulto debe estudiarse en busca de causas metabólicas (glucosa, sodio, calcio), tóxicas y estructurales (lesión, hemorragia, tumor, infección) antes de rotularla epilepsia."
+  },
+  "emergencia-neurologica-q6": {
+   "options": [
+    "Considerar migraña con aura de inicio agudo",
+    "Considerar cefalea tensional intensa",
+    "Considerar hemorragia subaracnoidea",
+    "Considerar cefalea en racimos",
+    "Considerar arteritis de células gigantes"
+   ],
+   "prompt": "Mujer de 38 años, afebril, con cefalea explosiva de máxima intensidad en segundos, la peor de su vida. ¿Qué debe considerarse?",
+   "why": "La cefalea en trueno de inicio instantáneo debe considerarse hemorragia subaracnoidea hasta descartarla con imagen (y punción lumbar si corresponde): es una señal de alarma que no se asigna a cefaleas primarias sin estudio."
+  },
+  "emergencia-neurologica-q7": {
+   "options": [
+    "Sospechar infección del SNC",
+    "Sospechar golpe de calor por exposición",
+    "Sospechar encefalopatía hepática descompensada",
+    "Sospechar síndrome serotoninérgico",
+    "Sospechar crisis tirotóxica"
+   ],
+   "prompt": "Paciente con fiebre, confusión y rigidez de nuca. ¿Qué debe sospecharse?",
+   "why": "La tríada de fiebre, alteración del sensorio y rigidez de nuca sugiere meningitis o encefalitis: se actúa con rapidez, cultivos y antimicrobianos sin demorar por la imagen o la punción."
+  },
+  "emergencia-neurologica-q8": {
+   "options": [
+    "Interpretarla como anisocoria fisiológica",
+    "Valorar urgencia neurológica",
+    "Atribuirla a un colirio midriático previo",
+    "Repetir el examen en 24 horas",
+    "Derivar a control oftalmológico programado"
+   ],
+   "prompt": "Paciente con trauma craneal reciente y deterioro del nivel de conciencia que presenta una anisocoria nueva. ¿Cuál es el enfoque más apropiado?",
+   "why": "La anisocoria nueva con deterioro del sensorio sugiere herniación o compresión del tercer par: es una emergencia neurológica que requiere medidas inmediatas y neuroimagen."
+  },
+  "emergencia-neurologica-q9": {
+   "options": [
+    "Considerar migraña oftálmica benigna",
+    "Considerar progresión de cataratas",
+    "Considerar isquemia retiniana",
+    "Considerar conjuntivitis aguda",
+    "Considerar neuritis óptica retrobulbar"
+   ],
+   "prompt": "Mujer de 72 años con fibrilación auricular y pérdida brusca e indolora de la visión de un ojo. ¿Qué debe considerarse?",
+   "why": "La pérdida visual monocular súbita e indolora en una paciente con fibrilación auricular orienta a oclusión arterial retiniana embólica, equivalente a un ictus que requiere evaluación urgente."
+  },
+  "emergencia-neurologica-q10": {
+   "options": [
+    "Considerar causa central",
+    "Considerar vértigo posicional paroxístico benigno",
+    "Considerar neuritis vestibular",
+    "Considerar enfermedad de Ménière",
+    "Considerar laberintitis"
+   ],
+   "prompt": "Paciente con vértigo intenso, vómitos y ataxia severa que no puede sentarse sin apoyo. ¿Qué debe considerarse?",
+   "why": "La ataxia de tronco incapacitante con vértigo orienta a un origen central (cerebelo o tronco), como el infarto o la hemorragia, y no a las causas periféricas, en las que la marcha suele conservarse."
+  },
+  "emergencia-neurologica-q11": {
+   "options": [
+    "Solicitar una TC de cráneo como primer paso",
+    "Evaluar vía aérea y glucemia",
+    "Administrar naloxona y flumazenil en secuencia",
+    "Hacer una punción lumbar de inmediato",
+    "Iniciar tiamina y esperar la respuesta"
+   ],
+   "prompt": "Paciente en coma de origen desconocido. ¿Cuál es el enfoque inicial más apropiado?",
+   "why": "En el coma se asegura primero la vía aérea y se mide la glucemia, porque la hipoxia y la hipoglucemia son causas inmediatamente reversibles; luego se continúa con imagen y otras medidas."
+  },
+  "emergencia-neurologica-q12": {
+   "options": [
+    "Indicar fenitoína como primera línea sin otros datos",
+    "Administrar flumazenil para revertir la convulsión",
+    "Priorizar soporte y búsqueda de tóxicos",
+    "Inducir la emesis para reducir la absorción",
+    "Descartar la intoxicación y tratar como epilepsia"
+   ],
+   "prompt": "Paciente con convulsiones y sospecha de intoxicación. ¿Cuál es el enfoque más apropiado?",
+   "why": "Se sostiene la vía aérea y la ventilación, se controla la convulsión y se busca el tóxico. Fenitoína y flumazenil pueden ser ineficaces o dañinos en intoxicaciones, y la emesis no está indicada."
+  },
+  "emergencia-neurologica-q13": {
+   "options": [
+    "No descartar evento vascular",
+    "Descartar AIT por la resolución espontánea",
+    "Considerar benigno el cuadro si mejora",
+    "Diagnosticar migraña con aura sin más estudios",
+    "Dar el alta si la TC inicial es normal"
+   ],
+   "prompt": "Paciente con déficit neurológico que fluctúa y mejora por momentos. ¿Cuál es el enfoque más apropiado?",
+   "why": "Un déficit fluctuante puede ser un AIT o un ictus en evolución con alto riesgo de recurrencia precoz; la mejoría no lo descarta y una TC inicial normal no excluye isquemia."
+  },
+  "emergencia-neurologica-q14": {
+   "options": [
+    "Programar una consulta neurológica ambulatoria",
+    "Realizar evaluación neurológica urgente",
+    "Atribuir el cuadro a cansancio o estrés",
+    "Derivar a fonoaudiología para evaluación",
+    "Observar si se resuelve en las próximas 24 horas"
+   ],
+   "prompt": "Adulto con dificultad nueva para hablar y comprender, de inicio reciente. ¿Cuál es el enfoque más apropiado?",
+   "why": "Una alteración nueva del lenguaje es un signo focal que puede indicar ictus: requiere evaluación neurológica urgente, no una derivación diferida."
+  },
+  "emergencia-neurologica-q15": {
+   "options": [
+    "Mantener observación con controles horarios",
+    "Indicar analgesia y reposo en domicilio",
+    "Escalar evaluación inmediata",
+    "Repetir la evaluación en la próxima consulta",
+    "Considerar el cuadro propio de la conmoción"
+   ],
+   "prompt": "Paciente con trauma craneal, intervalo lúcido y luego somnolencia progresiva con vómitos. ¿Cuál es el enfoque más apropiado?",
+   "why": "El intervalo lúcido seguido de somnolencia progresiva sugiere hematoma expansivo (epidural o subdural): requiere escalar de inmediato a neuroimagen y evaluación neuroquirúrgica."
+  },
+  "emergencia-neurologica-q16": {
+   "options": [
+    "Considerar hemorragia intracraneal",
+    "Considerar cefalea tensional por estrés",
+    "Considerar migraña común",
+    "Considerar un efecto adverso del anticoagulante sin complicación",
+    "Considerar sinusitis"
+   ],
+   "prompt": "Paciente anticoagulado con cefalea intensa de reciente comienzo. ¿Qué debe considerarse?",
+   "why": "En un paciente anticoagulado, una cefalea nueva e intensa debe hacer pensar en hemorragia intracraneal hasta que la neuroimagen demuestre lo contrario."
+  },
+  "emergencia-neurologica-q17": {
+   "options": [
+    "Priorizar una punción lumbar urgente",
+    "Valorar compromiso respiratorio",
+    "Indicar inmunoglobulina antes de evaluar la ventilación",
+    "Solicitar un electromiograma antes de otra medida",
+    "Iniciar corticoides como tratamiento principal"
+   ],
+   "prompt": "Paciente con debilidad ascendente simétrica y arreflexia desde hace dos días, probable síndrome de Guillain-Barré. ¿Qué es prioritario?",
+   "why": "El riesgo vital del Guillain-Barré es la falla respiratoria por debilidad diafragmática; hay que valorar la mecánica ventilatoria y vigilar de cerca. Los corticoides no son eficaces en esta enfermedad."
+  },
+  "emergencia-neurologica-q18": {
+   "options": [
+    "Activar código ictus sin corregir la glucemia",
+    "Iniciar trombólisis por el déficit focal",
+    "Corregir y reevaluar déficit",
+    "Esperar la TC antes de corregir la glucemia",
+    "Atribuirlo a un ictus aunque se normalice la glucemia"
+   ],
+   "prompt": "Paciente con hemiparesia y glucemia capilar de 38 mg/dL. ¿Cuál es el enfoque más apropiado?",
+   "why": "La hipoglucemia puede causar focalidad reversible: se corrige y se reevalúa el déficit; si persiste, se continúa el estudio como ictus. Trombolizar sin corregir la glucemia es un error."
+  },
+  "emergencia-neurologica-q19": {
+   "options": [
+    "Comunicar inicio, hallazgos y tratamientos",
+    "Informar el diagnóstico presuntivo y los antecedentes",
+    "Transmitir la hora de llegada y los signos vitales",
+    "Resumir la escala NIHSS sin la hora de inicio",
+    "Detallar la medicación habitual y las alergias"
+   ],
+   "prompt": "Al transferir a un paciente con ictus agudo, ¿qué debe comunicarse?",
+   "why": "La decisión de reperfusión depende de la hora de inicio, el déficit y lo ya realizado (por ejemplo glucemia o tratamientos); sin esa información el equipo receptor pierde tiempo o toma decisiones erróneas."
+  },
+  "emergencia-neurologica-q20": {
+   "options": [
+    "Es equivalente a la credencial oficial de ASLS",
+    "No equivale a certificación oficial ASLS",
+    "Habilita para instruir cursos ASLS oficiales",
+    "Reemplaza la recertificación periódica de ASLS",
+    "Convalida horas para obtener la certificación ASLS"
+   ],
+   "prompt": "Al entregarse una constancia de preparación neurológica, ¿qué debe aclararse sobre su alcance?",
+   "why": "La constancia acredita una preparación académica propia de ClinicIA; no equivale a la certificación oficial ASLS ni la reemplaza."
+  }
+ },
+ "flags": [],
+ "stats": {
+  "revisadas": 60,
+  "reescritas": 60,
+  "flags": 0,
+  "noVerificadas": []
+ }
+}

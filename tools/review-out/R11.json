@@ -1,0 +1,738 @@
+{
+ "batch": "R11",
+ "upgrades": {
+  "sepsis-preparacion-2026-q1": {
+   "options": [
+    "Sospechar sepsis con disfunción orgánica",
+    "Diferir la sospecha hasta objetivar hipotensión sostenida",
+    "Atribuir la oliguria a deshidratación y rehidratar por vía oral",
+    "Descartar gravedad por leucocitosis y fiebre moderadas",
+    "Atribuir la confusión a delirium por la edad y observar"
+   ],
+   "why": "Fiebre con oliguria y alteración del sensorio sugiere infección con disfunción orgánica: hay que sospechar sepsis y buscar foco y compromiso de órganos de inmediato. Esperar hipotensión es la trampa más tentadora, porque la disfunción orgánica puede preceder al shock.",
+   "prompt": "Paciente de 72 años con fiebre, oliguria y confusión de comienzo reciente. ¿Cuál es el enfoque más apropiado?"
+  },
+  "sepsis-preparacion-2026-q2": {
+   "options": [
+    "Interpretar cada medición como un valor independiente",
+    "Detectar deterioro y respuesta",
+    "Guiarse por la frecuencia cardíaca y omitir diuresis y sensorio",
+    "Tomar la temperatura como marcador de respuesta al tratamiento",
+    "Comparar con la medición previa sin referencia al basal"
+   ],
+   "why": "El valor de los signos vitales está en la tendencia: permite detectar deterioro o respuesta al tratamiento. Un dato aislado, o un solo parámetro como la temperatura o la frecuencia cardíaca, puede tranquilizar falsamente.",
+   "prompt": "Paciente séptico en sala con controles seriados de signos vitales. ¿Cuál es el enfoque más apropiado para interpretarlos?"
+  },
+  "sepsis-preparacion-2026-q3": {
+   "options": [
+    "Descartar sepsis y suspender la búsqueda de foco",
+    "Diferir el lactato hasta que el score sea positivo",
+    "No excluir sepsis",
+    "Reemplazar el score por el recuento de leucocitos para decidir",
+    "Dar el alta con pautas de alarma por el score bajo"
+   ],
+   "why": "El qSOFA es una herramienta de alerta con sensibilidad limitada; un valor bajo no descarta sepsis y no debe usarse como único criterio para excluirla ni para demorar el estudio del foco. La sospecha clínica sigue guiando la conducta.",
+   "prompt": "Paciente con foco infeccioso evidente y qSOFA de 0 o 1. ¿Cuál es el enfoque más apropiado?"
+  },
+  "sepsis-preparacion-2026-q4": {
+   "options": [
+    "Evaluar perfusión y dar soporte oportuno",
+    "Atribuir la hipotensión a deshidratación y rehidratar por vía oral",
+    "Esperar el aislamiento del germen antes de iniciar soporte",
+    "Reanimar recién cuando se confirme lactato elevado",
+    "Iniciar vasopresores sin valorar antes volemia y perfusión"
+   ],
+   "why": "La hipotensión con infección obliga a valorar la perfusión y dar soporte hemodinámico sin demora. No se espera a la microbiología ni a un laboratorio; tampoco se indica un vasopresor sin evaluar volemia y perfusión.",
+   "prompt": "Paciente con foco infeccioso presunto e hipotensión. ¿Cuál es el enfoque más apropiado?"
+  },
+  "sepsis-preparacion-2026-q5": {
+   "options": [
+    "Indicar amplio espectro sin buscar un foco probable",
+    "Buscar foco y disfunción",
+    "Medir PCR y leucocitos y omitir la valoración de órganos",
+    "Confirmar sepsis ante una fiebre aislada",
+    "Definir el destino según la frecuencia cardíaca"
+   ],
+   "why": "La evaluación inicial busca dos cosas: el foco infeccioso probable y la disfunción orgánica. Un marcador inflamatorio o la fiebre solos no confirman sepsis, y elegir el antibiótico sin foco probable lo vuelve menos racional.",
+   "prompt": "Paciente con sospecha de sepsis en la evaluación inicial. ¿Cuál es el enfoque más apropiado?"
+  },
+  "sepsis-preparacion-2026-q6": {
+   "options": [
+    "Decidir si corresponde iniciar el antibiótico empírico",
+    "Excluir infección cuando resultan negativos",
+    "Orientar ajuste antimicrobiano",
+    "Establecer el diagnóstico de sepsis",
+    "Reemplazar la reevaluación clínica periódica"
+   ],
+   "why": "Los cultivos identifican el germen y su sensibilidad y permiten ajustar o desescalar el esquema empírico. No condicionan el inicio del tratamiento ni, si son negativos, descartan infección.",
+   "prompt": "Se obtuvieron hemocultivos y cultivos del foco antes del antibiótico en un paciente séptico. ¿Para qué sirven principalmente?"
+  },
+  "sepsis-preparacion-2026-q7": {
+   "options": [
+    "Considerar gravedad y resistencias locales",
+    "Elegir solo según el foco sin considerar la epidemiología local",
+    "Usar el mismo esquema en shock y en cuadro leve",
+    "Guiarse por un antibiograma institucional desactualizado",
+    "Priorizar el espectro más estrecho aunque haya shock"
+   ],
+   "why": "La elección empírica debe combinar la gravedad (en shock se justifica cobertura más amplia) y los patrones locales de resistencia, además del foco probable. Ignorar cualquiera de los dos lleva a subcubrir o a sobretratar.",
+   "prompt": "Paciente con sepsis a quien se debe elegir antibiótico empírico. ¿Cuál es el enfoque más apropiado?"
+  },
+  "sepsis-preparacion-2026-q8": {
+   "options": [
+    "Mantener el esquema por la respuesta parcial inicial",
+    "Revisar diagnóstico y cobertura",
+    "Ampliar el espectro ante cualquier desarrollo microbiológico",
+    "Atribuir el hallazgo a contaminación sin analizarlo",
+    "Suspender los antibióticos hasta repetir los cultivos"
+   ],
+   "why": "Resultados contradictorios obligan a revisar el diagnóstico y la cobertura, integrando clínica, foco y calidad de la muestra. Ni sostener el esquema por inercia ni ampliar o suspender automáticamente resuelve la discordancia.",
+   "prompt": "Paciente séptico con evolución tórpida cuyos nuevos cultivos no coinciden con la hipótesis inicial. ¿Cuál es el enfoque más apropiado?"
+  },
+  "sepsis-preparacion-2026-q9": {
+   "options": [
+    "Sostener el amplio espectro pese al germen sensible",
+    "Suspender el antibiótico apenas desaparece la fiebre",
+    "Ajustar cobertura a resultados",
+    "Pasar a monoterapia sin conocer el aislamiento",
+    "Fijar desde el inicio una duración rígida sin reevaluar"
+   ],
+   "why": "La desescalada consiste en ajustar el espectro a los resultados microbiológicos y a la evolución, no en suspender el tratamiento ni en mantener cobertura innecesariamente amplia.",
+   "prompt": "Paciente séptico estabilizado con germen aislado y sensibilidades disponibles. ¿Cuál es el enfoque más apropiado?"
+  },
+  "sepsis-preparacion-2026-q10": {
+   "options": [
+    "No demorar terapia urgente injustificadamente",
+    "Esperar el resultado del cultivo para iniciar antibiótico",
+    "Retrasar el soporte hasta definir el foco por imagen",
+    "Insistir en obtener todas las muestras aunque demoren el tratamiento",
+    "Completar la documentación antes de tratar"
+   ],
+   "why": "Los cultivos son deseables, pero no justifican demorar el antibiótico ni el soporte en un paciente crítico. Si obtenerlos retrasa el tratamiento, se prioriza el tratamiento.",
+   "prompt": "Paciente en shock séptico en quien obtener cultivos requeriría un retraso considerable. ¿Cuál es el enfoque más apropiado?"
+  },
+  "sepsis-preparacion-2026-q11": {
+   "options": [
+    "Dar por lograda la reanimación al normalizarse la presión media",
+    "Reevaluar perfusión",
+    "Guiarse por la mejoría de la frecuencia cardíaca",
+    "Descartar daño renal por una creatinina inicial normal",
+    "Suspender los controles por estabilidad tensional"
+   ],
+   "why": "La presión normalizada no asegura perfusión tisular adecuada: la oliguria sugiere hipoperfusión o lesión renal en curso. Hay que reevaluar perfusión con diuresis, sensorio, piel y lactato, no confiar en un único parámetro."
+  },
+  "sepsis-preparacion-2026-q12": {
+   "options": [
+    "Repetir el mismo volumen inicial sin valorar respuesta",
+    "Evaluar la congestión recién tras varias expansiones",
+    "Vigilar congestión",
+    "Extrapolar la respuesta inicial a los bolos siguientes",
+    "Restringir los líquidos desde el inicio por riesgo de edema"
+   ],
+   "why": "La reanimación con líquidos se guía por la respuesta y se acompaña de vigilancia de signos de congestión, porque el exceso de volumen perjudica. No se repite un volumen fijo ni se espera a varias expansiones para buscar sobrecarga.",
+   "prompt": "Paciente séptico que recibe cargas repetidas de cristaloides. ¿Cuál es el enfoque más apropiado?"
+  },
+  "sepsis-preparacion-2026-q13": {
+   "options": [
+    "Reevaluar tolerancia",
+    "Atribuir los crepitantes a la neumonía de base",
+    "Administrar otro bolo igual antes de reevaluar",
+    "Valorar sobrecarga solo por el peso corporal",
+    "Tratar la desaturación sin revisar la respuesta hemodinámica"
+   ],
+   "why": "Crepitantes nuevos tras volumen sugieren intolerancia o sobrecarga: hay que reevaluar la tolerancia antes de seguir expandiendo, integrando auscultación, oxigenación y respuesta hemodinámica."
+  },
+  "sepsis-preparacion-2026-q14": {
+   "options": [
+    "Guiarse por la presión venosa central aislada",
+    "Usar pruebas dinámicas cuando apliquen",
+    "Asumir respuesta a volumen por la hipotensión",
+    "Decidir los líquidos por el balance acumulado",
+    "Interpretar un ecocardiograma estático como respuesta cierta"
+   ],
+   "why": "Cuando no está claro si el paciente responderá a más líquidos, se prefieren medidas dinámicas de respuesta. La presión venosa central, los datos estáticos o el balance predicen mal esa respuesta."
+  },
+  "sepsis-preparacion-2026-q15": {
+   "options": [
+    "Evaluar la respuesta solo por el lactato inicial",
+    "Descartar sobrecarga porque mejoró la presión",
+    "Documentar respuesta y complicaciones",
+    "Registrar la diuresis sin su tendencia",
+    "Cerrar la reevaluación tras el primer control normal"
+   ],
+   "why": "Tras la reanimación hay que documentar la respuesta (perfusión, diuresis, lactato en tendencia) y las complicaciones como la sobrecarga. Un valor inicial o una mejoría aislada no alcanzan."
+  },
+  "sepsis-preparacion-2026-q16": {
+   "options": [
+    "Evaluar control del foco",
+    "Sostener el antibiótico como única medida",
+    "Dar por resuelto el foco al normalizarse la fiebre",
+    "Indicar drenaje sin valorar anatomía ni riesgos",
+    "Postergar la evaluación del foco hasta tener los cultivos finales"
+   ],
+   "why": "Una colección drenable requiere evaluar el control del foco, que no se logra solo con antibióticos. El drenaje se decide valorando anatomía y riesgo, y no debe esperar a los cultivos finales.",
+   "prompt": "Paciente séptico con una colección infecciosa profunda identificada por imagen. ¿Cuál es el enfoque más apropiado?"
+  },
+  "sepsis-preparacion-2026-q17": {
+   "options": [
+    "Atribuir la confusión a delirium sin revaluar la oxigenación",
+    "Reevaluar ABC y escalar soporte",
+    "Esperar una saturación críticamente baja para escalar",
+    "Interpretar la taquipnea como ansiedad",
+    "Decidir la escalada según la temperatura"
+   ],
+   "why": "El empeoramiento de oxigenación y conciencia es un signo de deterioro: se reevalúa la secuencia ABC y se escala el soporte sin esperar valores extremos. La confusión y la taquipnea no deben atribuirse a causas benignas sin descartar hipoxia."
+  },
+  "sepsis-preparacion-2026-q18": {
+   "options": [
+    "Comunicar los datos iniciales sin la evolución reciente",
+    "Informar los fármacos usados sin dosis ni horarios",
+    "Transmitir tendencias y pendientes",
+    "Describir la microbiología sin el estado de perfusión",
+    "Informar el diagnóstico sin las intervenciones pendientes"
+   ],
+   "why": "Un pase útil transmite cómo evoluciona el paciente y qué falta hacer. Los datos aislados o sin contexto temporal pueden llevar a decisiones equivocadas en el siguiente turno."
+  },
+  "sepsis-preparacion-2026-q19": {
+   "options": [
+    "Buscar falta de respuesta",
+    "Tomar un lactato aislado como prueba de eficacia",
+    "Valorar la respuesta solo por la presión arterial",
+    "Concluir estabilidad por una glucemia normal",
+    "Desestimar los cambios de piel, conciencia y diuresis"
+   ],
+   "why": "Las reevaluaciones seriadas buscan activamente la falta de respuesta, integrando varios parámetros de perfusión. Un solo marcador, como el lactato o la presión, puede ocultar un paciente que no mejora."
+  },
+  "sepsis-preparacion-2026-q20": {
+   "options": [
+    "Presentar la aprobación como competencia acreditada en UCI",
+    "No confundir con acreditación SCCM",
+    "Asignarle valor de certificación institucional",
+    "Equipararlo con una especialidad reconocida",
+    "Considerarlo una destreza práctica certificada"
+   ],
+   "why": "El certificado de ClinicIA es una constancia de un curso virtual evaluado por escrito; no es una acreditación de la SCCM ni habilita competencias prácticas o especialidades."
+  },
+  "rtpp-1-1": {
+   "options": [
+    "Abrir la puerta con guantes de goma para sacar a la víctima",
+    "Alejar el cable con un elemento de madera seco",
+    "Mantener distancia y pedir personal competente",
+    "Acercarse si la víctima responde y pedirle que salga",
+    "Cortar el cable con la herramienta aislada del móvil"
+   ],
+   "why": "Con cables energizados el riesgo eléctrico persiste aunque la víctima hable; solo personal competente puede neutralizarlo. Los guantes comunes o la madera no garantizan aislamiento."
+  },
+  "rtpp-1-2": {
+   "options": [
+    "Una referencia aproximada del barrio",
+    "Los datos de filiación de los involucrados",
+    "El nombre del responsable de la escena",
+    "Ubicación y acceso precisos",
+    "La cantidad de patrullas presentes"
+   ],
+   "why": "Sin ubicación y acceso precisos la ayuda puede demorarse o ir al lugar equivocado; el resto de los datos es secundario para el despacho."
+  },
+  "rtpp-1-3": {
+   "options": [
+    "Un diagnóstico por víctima antes de avisar",
+    "El detalle de las lesiones de la primera víctima evaluada",
+    "La identidad y la filiación de cada víctima",
+    "El número de patrullas presentes y la hora del hecho",
+    "Cantidad aproximada y riesgos visibles"
+   ],
+   "why": "Cantidad aproximada de víctimas y riesgos visibles permiten dimensionar y despachar los recursos adecuados; los detalles individuales pueden completarse después."
+  },
+  "rtpp-1-4": {
+   "options": [
+    "Protección personal disponible sin exponerte",
+    "Controlar el sangrado primero y colocarte guantes después",
+    "Usar guantes solo si la víctima parece infectada",
+    "Lavarte las manos al terminar como única medida",
+    "Reutilizar los guantes entre víctimas con sangrado leve"
+   ],
+   "why": "La protección personal se coloca antes del contacto con sangre y se renueva entre víctimas; lavarse después no reemplaza la barrera."
+  },
+  "rtpp-1-5": {
+   "options": [
+    "Continuar la asistencia hasta estabilizar a la víctima",
+    "Reevaluar seguridad y pedir apoyo",
+    "Retirar a la víctima de inmediato aunque el agresor siga presente",
+    "Reducir al agresor sin pedir refuerzos",
+    "Mantener silencio de radio para no escalar el conflicto"
+   ],
+   "why": "La seguridad se reevalúa durante toda la asistencia; si cambia, se prioriza la propia protección y se pide apoyo antes de seguir."
+  },
+  "rtpp-2-1": {
+   "options": [
+    "Control de la hemorragia externa",
+    "Alineación de la columna cervical",
+    "Anamnesis y antecedentes",
+    "Evaluación de la vía aérea",
+    "Administración de oxígeno"
+   ],
+   "why": "La A de ABCDE corresponde a Airway: evaluar y asegurar la vía aérea. La hemorragia masiva se controla de inmediato, pero no es la A."
+  },
+  "rtpp-2-2": {
+   "options": [
+    "Circulación y control del pulso",
+    "Control del sangrado y perfusión",
+    "Nivel de conciencia y pupilas",
+    "Exposición y control de la temperatura",
+    "Respiración y su dificultad"
+   ],
+   "why": "La B valora la respiración (frecuencia, esfuerzo, dificultad); la circulación, la conciencia y la exposición corresponden a C, D y E."
+  },
+  "rtpp-2-3": {
+   "options": [
+    "De inmediato junto con activación de ayuda",
+    "Tras asegurar la vía aérea y valorar la respiración",
+    "Tras controlar la columna cervical",
+    "Una vez completada la valoración neurológica",
+    "Cuando llegue el personal sanitario"
+   ],
+   "why": "Una hemorragia externa masiva amenaza la vida en minutos y se controla de inmediato, mientras se activa la ayuda; no se espera a completar el resto de la secuencia."
+  },
+  "rtpp-2-4": {
+   "options": [
+    "Mantener el aviso original y continuar el control",
+    "Repetir evaluación inicial y actualizar el aviso",
+    "Completar el registro y avisar al llegar la ambulancia",
+    "Atribuirlo al dolor o al estrés y seguir vigilando",
+    "Profundizar la valoración neurológica sin repetir el ABCDE"
+   ],
+   "why": "El deterioro de la conciencia obliga a repetir la evaluación inicial y a actualizar el aviso, porque la situación cambió."
+  },
+  "rtpp-2-5": {
+   "options": [
+    "Retirar toda la ropa y completar la inspección sin interrupción",
+    "Aplicar frío sobre las zonas lesionadas para reducir el dolor",
+    "Exponer lo necesario y volver a cubrir",
+    "Mantener la ropa mojada para no manipular al lesionado",
+    "No cubrir al paciente para vigilar mejor posibles hemorragias"
+   ],
+   "why": "Hay que exponer solo lo necesario para ver lesiones y volver a abrigar, porque la pérdida de calor agrava el cuadro del traumatizado."
+  },
+  "rtpp-3-1": {
+   "options": [
+    "Respiración lenta pero suficiente",
+    "Cuadro posictal sin urgencia",
+    "Intoxicación con respiración conservada",
+    "Hipoglucemia que se resuelve con azúcar",
+    "Paro cardíaco"
+   ],
+   "why": "Los jadeos aislados (respiración agónica) no son respiración normal y pueden acompañar un paro cardíaco; no deben tranquilizar.",
+   "prompt": "Adulto inconsciente que no responde a los estímulos y solo realiza jadeos ocasionales. ¿Qué sospechás?"
+  },
+  "rtpp-3-2": {
+   "options": [
+    "Activar ayuda e iniciar RCP, solicitando DEA",
+    "Realizar dos minutos de RCP antes de pedir ayuda y el DEA",
+    "Buscar el pulso carotídeo hasta 30 segundos antes de comprimir",
+    "Colocar a la persona en posición lateral de seguridad y vigilar",
+    "Dar ventilaciones boca a boca antes de iniciar compresiones"
+   ],
+   "why": "Ante un paro reconocido se activa el sistema de emergencias, se pide el DEA y se inicia RCP de inmediato; no se demora por pulso, ventilaciones previas o posición lateral."
+  },
+  "rtpp-3-3": {
+   "options": [
+    "Mantener las compresiones durante el análisis del ritmo",
+    "Evitar tocar al paciente siguiendo las indicaciones",
+    "Sostener al paciente para que no se desplace con la descarga",
+    "Reanudar las compresiones apenas suene el aviso de descarga",
+    "Verificar el pulso durante el análisis"
+   ],
+   "why": "El DEA necesita que nadie toque al paciente durante el análisis y la descarga, para evaluar bien el ritmo y evitar que alguien reciba la descarga."
+  },
+  "rtpp-3-4": {
+   "options": [
+    "Compresiones de baja profundidad sobre el compañero",
+    "DEA encendido con parches colocados sin descarga",
+    "Gestos sin presión y DEA apagado",
+    "Ventilaciones con barrera entre participantes",
+    "Compresiones reales hasta sentir resistencia del esternón"
+   ],
+   "why": "Con personas reales solo se simulan gestos, sin presión, y con el DEA apagado: no se debe dañar ni exponer a los compañeros."
+  },
+  "rtpp-3-5": {
+   "options": [
+    "Profundidad y frecuencia de las compresiones",
+    "Eficacia de la descarga del DEA",
+    "Calidad de la ventilación con barrera",
+    "Reconocimiento, activación y secuencia simulada",
+    "Competencia para realizar RCP de alta calidad"
+   ],
+   "why": "Sin maniquí solo se observan reconocimiento, activación y secuencia; la calidad de compresiones y ventilaciones no puede evaluarse."
+  },
+  "rtpp-4-1": {
+   "options": [
+    "Presión directa con protección",
+    "Lavar la herida antes de comprimir",
+    "Elevar el miembro y esperar a que ceda",
+    "Aplicar un vendaje flojo y revisarlo cada minuto",
+    "Colocar hielo sobre la herida"
+   ],
+   "why": "La presión directa sobre la herida, con protección personal, es la medida inicial para controlar la hemorragia externa grave. Lavar, elevar o aflojar para revisar demora el control."
+  },
+  "rtpp-4-2": {
+   "options": [
+    "Sumar capas de apósito sin comprimir más",
+    "Torniquete apropiado",
+    "Cambiar a un vendaje suelto sobre la zona",
+    "Retirar la presión para ver el origen del sangrado",
+    "Elevar el miembro manteniendo presión liviana"
+   ],
+   "why": "Si la presión directa no controla el sangrado de una extremidad, y estás capacitado, corresponde un torniquete apropiado. Aflojar o aliviar la presión permite que siga sangrando."
+  },
+  "rtpp-4-3": {
+   "options": [
+    "Que debe aflojarse a los cinco minutos",
+    "Solo el sitio de colocación, sin la hora",
+    "Hora de colocación y respuesta",
+    "Que puede retirarse al cesar el sangrado",
+    "El tipo de torniquete empleado, sin la hora"
+   ],
+   "why": "La hora de colocación y la respuesta orientan al equipo que continúa la atención; el torniquete no se afloja ni se retira en el lugar."
+  },
+  "rtpp-4-4": {
+   "options": [
+    "Descartar shock hasta poder medir la presión",
+    "Atribuir el cuadro a ansiedad y observar",
+    "Esperar a que aparezca hipotensión confirmada",
+    "Sospechar shock y pedir asistencia urgente",
+    "Darle líquidos por boca hasta que mejore"
+   ],
+   "why": "Palidez, sudor frío y confusión tras un trauma son signos de shock reconocibles sin tensiómetro; se pide ayuda urgente sin esperar una cifra."
+  },
+  "rtpp-4-5": {
+   "options": [
+    "En el muslo de un compañero, sin ajustar del todo",
+    "En el brazo de un compañero por pocos segundos",
+    "En la extremidad de un compañero sobre la ropa",
+    "En el antebrazo, con un vendaje a modo de prueba",
+    "En un soporte inanimado apropiado"
+   ],
+   "why": "En la simulación no se debe ocluir la circulación de participantes; el ajuste se practica sobre un soporte inanimado apropiado."
+  },
+  "rtpp-5-1": {
+   "options": [
+    "Colocarle el collar a toda víctima sin evaluarla",
+    "Permanecer lo más quieta posible y pedir asistencia",
+    "Sentarla con apoyo de cabeza hasta que llegue ayuda",
+    "Girar la cabeza suavemente para valorar la movilidad",
+    "Sostener la cabeza con tracción suave para alinear el cuello"
+   ],
+   "why": "Con dolor cervical se minimizan los movimientos y se pide asistencia. Girar, traccionar o hacer caminar puede agravar una lesión."
+  },
+  "rtpp-5-2": {
+   "options": [
+    "Aplicar collar rígido y valorar la vía aérea después",
+    "Inmovilizar el cuello y diferir la vía aérea",
+    "Atender la vía aérea minimizando movimientos",
+    "Dejar la obstrucción hasta que llegue el equipo",
+    "Atender primero las lesiones sangrantes menores"
+   ],
+   "why": "La vía aérea es prioritaria: se atiende con el mínimo movimiento posible; la protección cervical no debe impedir la oxigenación."
+  },
+  "rtpp-5-3": {
+   "options": [
+    "Se mantiene la inmovilización hasta que llegue la ambulancia",
+    "Se completa el examen antes de moverlo",
+    "Se lo arrastra por los pies aunque el riesgo ceda",
+    "Puede requerirse movilización de emergencia coordinada",
+    "Se pospone el aviso hasta que esté fuera de peligro"
+   ],
+   "why": "Ante peligro inmediato como un incendio, la seguridad obliga a una movilización de emergencia coordinada, aun con sospecha de lesión cervical."
+  },
+  "rtpp-5-4": {
+   "options": [
+    "Colocarlo a todo accidentado de tránsito",
+    "Priorizarlo sobre la vía aérea y la hemorragia",
+    "Considerarlo suficiente sin sostén manual de la cabeza",
+    "Ajustarlo con firmeza para impedir todo movimiento",
+    "No aplicarlo automáticamente a todo accidentado"
+   ],
+   "why": "El collar no se coloca de forma automática: la restricción del movimiento debe ser razonada y acorde a la capacitación, sin retrasar prioridades ni forzar la posición.",
+   "prompt": "¿Qué enseñanza sobre el collar cervical corresponde al primer respondiente?"
+  },
+  "rtpp-5-5": {
+   "options": [
+    "Tracciones y movimientos forzados",
+    "Sujeción manual simulada de la cabeza, sin presión",
+    "Verbalización de la valoración de sensibilidad",
+    "Comunicación del mecanismo de lesión",
+    "Pedido simulado de ayuda con roles asignados"
+   ],
+   "why": "En la práctica con compañeros se evitan tracciones y movimientos forzados; el ensayo de comunicación, roles y valoración verbal no requiere maniobras lesivas."
+  },
+  "rtpp-6-1": {
+   "options": [
+    "Cubrir la herida con un apósito limpio",
+    "Presionar sobre los bordes, no sobre el hueso",
+    "Reintroducir el hueso",
+    "Inmovilizar en la posición hallada",
+    "Registrar la hora y el mecanismo"
+   ],
+   "why": "No se debe reintroducir el hueso: aumenta el daño y el riesgo de infección. Se cubre, se controla el sangrado y se pide asistencia."
+  },
+  "rtpp-6-2": {
+   "options": [
+    "Alineándola con tracción suave antes de inmovilizar",
+    "Enderezándola para que quede apta para la férula",
+    "Masajeando la zona para disminuir el dolor",
+    "En la posición encontrada sin forzar",
+    "Pidiéndole que apoye el peso para probar estabilidad"
+   ],
+   "why": "La deformidad se sostiene en la posición encontrada: alinear, traccionar o cargar peso puede lesionar vasos y nervios."
+  },
+  "rtpp-6-3": {
+   "options": [
+    "Considerarlo esperable y mantener la inmovilización",
+    "Ajustar más el sostén para evitar el movimiento",
+    "Esperar a llegar al hospital para revisarlo",
+    "Aplicar calor local para recuperar la sensibilidad",
+    "Reevaluar posible compromiso y pedir ayuda"
+   ],
+   "why": "Dedos fríos y hormigueo tras inmovilizar sugieren compromiso circulatorio o nervioso por la medida: se reevalúa y se pide ayuda."
+  },
+  "rtpp-6-4": {
+   "options": [
+    "Evitar retirarlo y solicitar asistencia",
+    "Extraerlo y comprimir la herida directamente",
+    "Moverlo para comprobar la profundidad",
+    "Rotarlo suavemente para liberar los tejidos",
+    "Empujarlo hasta que quede firme"
+   ],
+   "why": "El objeto incrustado puede estar taponando vasos: retirarlo o moverlo agrava la hemorragia y la lesión. Se estabiliza en el lugar y se pide asistencia."
+  },
+  "rtpp-6-5": {
+   "options": [
+    "Tratar primero la deformidad del brazo",
+    "Aviso urgente y vigilancia respiratoria",
+    "Inmovilizar el tórax con un vendaje circular ajustado",
+    "Esperar a que el dolor ceda antes de avisar",
+    "Descomprimir el tórax con una aguja si se sospecha neumotórax"
+   ],
+   "why": "La dificultad respiratoria tras un golpe torácico es una amenaza vital: aviso urgente y vigilancia respiratoria. Las maniobras invasivas están fuera del alcance del curso y un vendaje ajustado puede empeorar la ventilación."
+  },
+  "rtpp-7-1": {
+   "options": [
+    "Intoxicación etílica sin urgencia",
+    "Crisis de ansiedad con hiperventilación",
+    "Lesión de hombro por esfuerzo",
+    "Posible ACV",
+    "Paro cardíaco en evolución"
+   ],
+   "why": "Los déficits focales de inicio brusco (habla, fuerza) sugieren un ACV y requieren respuesta urgente; no deben atribuirse a alcohol o ansiedad.",
+   "prompt": "Persona despierta con habla súbitamente alterada y debilidad de un brazo. ¿Qué sospechás?"
+  },
+  "rtpp-7-2": {
+   "options": [
+    "La hora en que se encontró a la persona con síntomas",
+    "La hora de llegada de la ambulancia",
+    "La hora del último control de presión",
+    "La hora de la última comida",
+    "Última vez que se lo vio bien"
+   ],
+   "why": "La última vez que se lo vio bien define la ventana de tiempo para las decisiones de tratamiento; el momento del hallazgo puede ser muy posterior al inicio real."
+  },
+  "rtpp-7-3": {
+   "options": [
+    "Activar asistencia y vigilar cambios",
+    "Esperar unos minutos a ver si el dolor cede",
+    "Trasladarlo en el móvil sin avisar a emergencias",
+    "Hacerlo caminar para descartar origen muscular",
+    "Darle de beber agua y evaluarlo luego"
+   ],
+   "why": "El dolor torácico con sudoración puede ser un evento cardíaco: se activa asistencia sin esperar un diagnóstico y se vigilan los cambios, incluido un posible paro."
+  },
+  "rtpp-7-4": {
+   "options": [
+    "Dolor torácico intenso con sudoración",
+    "Ausencia de respuesta y respiración no normal",
+    "Antecedente de hipertensión o tabaquismo",
+    "Debilidad de un brazo o desviación facial",
+    "Pulso irregular"
+   ],
+   "why": "El paro se reconoce por la falta de respuesta y la respiración ausente o anormal; los síntomas o antecedentes no lo definen.",
+   "prompt": "¿Qué distingue un paro cardíaco de un ACV en una persona despierta?"
+  },
+  "rtpp-7-5": {
+   "options": [
+    "Registrar la hora de inicio de los síntomas",
+    "Observar la respiración",
+    "Dar alimentos o bebidas",
+    "Informar la debilidad al sistema de emergencias",
+    "Mantener la cabeza semiincorporada con vigilancia"
+   ],
+   "why": "Con la deglución alterada, dar alimentos o bebidas aumenta el riesgo de aspiración; el resto son conductas adecuadas."
+  },
+  "rtpp-8-1": {
+   "options": [
+    "El olor a alcohol explica la confusión",
+    "Alcanza con dejarla dormir bajo custodia",
+    "Con aliento alcohólico se descarta un trauma craneal",
+    "La evaluación sanitaria puede esperar a que se aclare",
+    "Puede coexistir una emergencia médica"
+   ],
+   "why": "El alcohol puede coexistir con trauma, hipoglucemia u otras causas; una apariencia no debe cerrar la evaluación."
+  },
+  "rtpp-8-2": {
+   "options": [
+    "Proteger de golpes y observar duración",
+    "Sujetarla para limitar los movimientos",
+    "Colocarle un objeto entre los dientes para proteger la lengua",
+    "Sentarla para facilitar la respiración",
+    "Darle de beber al finalizar las sacudidas"
+   ],
+   "why": "Durante la convulsión se protege de golpes y se mide la duración; sujetar o poner objetos en la boca causa lesiones."
+  },
+  "rtpp-8-3": {
+   "options": [
+    "Considerarlo estado poscrítico normal y colocarla de lado",
+    "Activar respuesta al paro e iniciar RCP según capacitación",
+    "Esperar dos minutos a que recupere la respiración",
+    "Darle bebida azucarada por posible hipoglucemia",
+    "Controlar el pulso hasta 30 segundos antes de actuar"
+   ],
+   "why": "Si tras la convulsión no responde ni respira normalmente, se trata como paro: se activa la respuesta y se inicia RCP según capacitación."
+  },
+  "rtpp-8-4": {
+   "options": [
+    "Interpretarlo como agotamiento tras el forcejeo y vigilar",
+    "Colocarlo boca abajo para que descanse",
+    "Evaluar respiración y pedir asistencia urgente",
+    "Dejarlo en el calabozo y controlarlo a intervalos",
+    "Esperar al relevo para informar el cambio"
+   ],
+   "why": "El paso de agitación a somnolencia intensa puede indicar deterioro médico (hipoxia, intoxicación, lesión): se evalúa la respiración y se pide asistencia urgente."
+  },
+  "rtpp-8-5": {
+   "options": [
+    "Aproximarse entre varios y rodearla",
+    "Inmovilizarla rápido en el piso antes de dialogar",
+    "Acercarse para evaluarle de inmediato los signos vitales",
+    "Distancia segura, calma y pedido de apoyo",
+    "Sostener una charla prolongada sin pedir apoyo"
+   ],
+   "why": "Mantener distancia segura, calma y pedir apoyo protege a todos; la contención verbal no reemplaza la seguridad ni la evaluación sanitaria."
+  },
+  "rtpp-9-1": {
+   "options": [
+    "Obstrucción grave de vía aérea",
+    "Tos eficaz que solo requiere vigilancia",
+    "Infarto de miocardio en curso",
+    "Reacción alérgica leve",
+    "Fractura costal con dolor torácico"
+   ],
+   "why": "No poder hablar ni toser eficazmente al comer indica obstrucción grave de la vía aérea, que requiere actuar de inmediato."
+  },
+  "rtpp-9-2": {
+   "options": [
+    "Pedir ayuda antes de explorar la boca",
+    "Barrido ciego con los dedos",
+    "Retirar un objeto visible y accesible",
+    "Observar si la persona responde",
+    "Seguir el entrenamiento vigente"
+   ],
+   "why": "El barrido ciego con los dedos puede empujar el objeto más adentro; solo se retira lo visible y accesible."
+  },
+  "rtpp-9-3": {
+   "options": [
+    "Darle agua por boca y reevaluar en media hora",
+    "Cubrirlo con mantas para favorecer la sudoración",
+    "Sospechar golpe de calor, pedir ayuda e iniciar enfriamiento seguro",
+    "Aplicar hielo solo en la cabeza y observar",
+    "Sentarlo a la sombra hasta que se aclare la confusión"
+   ],
+   "why": "Confusión intensa tras exposición al calor sugiere golpe de calor, una emergencia: se pide ayuda y se enfría de forma segura; abrigar o demorar empeora el cuadro."
+  },
+  "rtpp-9-4": {
+   "options": [
+    "Aguardar la aparición de hipotensión para avisar",
+    "Darle un antihistamínico de uso personal y observar",
+    "Tratarlo como un problema cutáneo y vigilar",
+    "Solicitar asistencia urgente por posible reacción grave",
+    "Acostarlo con las piernas elevadas sin avisar"
+   ],
+   "why": "Ronchas con dificultad respiratoria progresiva sugieren anafilaxia: la compromiso respiratorio vuelve urgente el cuadro y exige asistencia inmediata."
+  },
+  "rtpp-9-5": {
+   "options": [
+    "Palmadas suaves entre las escápulas",
+    "Compresiones abdominales superficiales",
+    "Simulacro con un objeto real en la boca",
+    "Maniobra completa con presión moderada",
+    "Verbalización y gestos sin fuerza sobre compañeros"
+   ],
+   "why": "En clase la desobstrucción se representa con palabras y gestos sin fuerza; cualquier contacto real puede causar lesión."
+  },
+  "rtpp-10-1": {
+   "options": [
+    "Inconsciente por posible infarto; se solicita ambulancia",
+    "No responde, respira con jadeos, ubicación precisa y ayuda solicitada",
+    "Persona grave con dolor y mareo, en la avenida",
+    "Mal estado general, edad aproximada y hora del llamado",
+    "Paro cardíaco confirmado; ya se inició la reanimación"
+   ],
+   "why": "Un aviso útil describe hallazgos observables, la ubicación precisa y la ayuda pedida, en lugar de etiquetas o diagnósticos presuntos."
+  },
+  "rtpp-10-2": {
+   "options": [
+    "Una presión estimada a ojo presentada como medida",
+    "Presión normal por estar despierto",
+    "Signos observados y que no se midió presión",
+    "Solo la impresión diagnóstica de shock",
+    "Omitir la presión del informe para no dar datos incompletos"
+   ],
+   "why": "Se distingue lo observado de lo medido: informar signos y aclarar que no se midió la presión evita transmitir datos falsos."
+  },
+  "rtpp-10-3": {
+   "options": [
+    "Repetir solo el nombre y la repartición",
+    "Cortar apenas se informan los datos principales",
+    "Agradecer y cortar sin esperar la repetición de datos",
+    "Confirmar recepción y datos críticos",
+    "Dar el mensaje por recibido si no hubo objeción"
+   ],
+   "why": "Confirmar la recepción y repetir los datos críticos reduce errores de comunicación, sobre todo con interferencias."
+  },
+  "rtpp-10-4": {
+   "options": [
+    "Mantener el aviso inicial hasta que llegue la ambulancia",
+    "Actualizar tras completar la planilla del procedimiento",
+    "Informar el cambio al entregar al paciente",
+    "Corregir el aviso solo si la central lo consulta",
+    "Actualizar de inmediato junto con la respuesta asistencial"
+   ],
+   "why": "El deterioro cambia la prioridad y los recursos necesarios: se actualiza de inmediato mientras se sigue la respuesta asistencial."
+  },
+  "rtpp-10-5": {
+   "options": [
+    "Mecanismo, hallazgos, medidas, hora y evolución",
+    "Hallazgos y medidas sin mecanismo ni evolución",
+    "Solo el estado actual al controlarse el sangrado",
+    "Mecanismo y diagnóstico presuntivo, sin hora ni evolución",
+    "Medidas realizadas, omitiendo la hora de colocación"
+   ],
+   "why": "La entrega debe permitir la continuidad del cuidado: mecanismo, hallazgos, medidas, hora y evolución. Con sangrado controlado la hora y la evolución siguen siendo críticas."
+  }
+ },
+ "flags": [
+  {
+   "id": "rtpp-7-1",
+   "problema": "La opción correcta 'Posible ACV' (11 caracteres) no pasa el validador (mínimo 12) y no puedo cambiarla por el brief.",
+   "propuesta": "Reemplazar la correcta por 'Posible ACV, activar emergencias' (o similar) y ajustar la posición/longitud de los distractores.",
+   "fuente": "Criterio de formato de validate-upgrades.mjs; contenido clínico (déficit focal súbito = sospecha de ACV) correcto."
+  }
+ ],
+ "stats": {
+  "revisadas": 70,
+  "reescritas": 70,
+  "flags": 1,
+  "noVerificadas": [
+   "sepsis-preparacion-2026 (20 preguntas): SSC 2026 no verificada contra la fuente primaria; fundamentos redactados sin cifras",
+   "respuesta-policial: contenido de primeros auxilios sin fuente externa consultada (no verificado en línea)"
+  ]
+ }
+}

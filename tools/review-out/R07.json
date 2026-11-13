@@ -1,0 +1,567 @@
+{
+ "batch": "R07",
+ "upgrades": {
+  "medicina-funcional-fundamentos-q1": {
+   "options": [
+    "Una historia integral relaciona síntomas, antecedentes, hábitos y factores sociales.",
+    "Una historia longitudinal se limita a registrar el motivo de consulta y los diagnósticos codificados de cada visita.",
+    "Una historia integral prioriza los resultados de laboratorio, porque los síntomas referidos son subjetivos y poco fiables.",
+    "Una historia longitudinal se completa en la primera consulta y solo se actualiza ante un evento agudo.",
+    "Una historia integral reemplaza al examen físico cuando se cuenta con una cronología detallada del paciente."
+   ],
+   "why": "La historia longitudinal es más que una lista de diagnósticos: integra síntomas, antecedentes, hábitos y contexto social a lo largo del tiempo, y se actualiza en cada contacto. No sustituye al examen físico ni a los estudios; los ordena."
+  },
+  "medicina-funcional-fundamentos-q2": {
+   "options": [
+    "Repetir toda la batería de estudios previos",
+    "Construir cronología clínica",
+    "Tratar primero el síntoma más reciente",
+    "Atribuir el cuadro al envejecimiento",
+    "Indicar suplementos de forma empírica"
+   ],
+   "why": "Ordenar los eventos, fármacos y estudios en una línea de tiempo permite ver secuencias y relaciones que las consultas aisladas ocultan, y guía qué estudiar. Repetir todo o tratar el último síntoma fragmenta el razonamiento.",
+   "prompt": "Una mujer de 45 años consulta por fatiga, insomnio y aumento de peso de dos años de evolución; trae estudios dispersos de distintos centros. ¿Cuál es la conducta más adecuada?"
+  },
+  "medicina-funcional-fundamentos-q3": {
+   "options": [
+    "Registrar la medicación previa suspendida",
+    "Contrastar el relato con registros anteriores",
+    "Asumir causalidad por coincidencia",
+    "Reinterrogar hitos vitales ante nuevos datos",
+    "Documentar la secuencia temporal de síntomas"
+   ],
+   "why": "Que un evento preceda a otro no prueba que lo cause: la coincidencia temporal es una hipótesis, no una conclusión. Las otras opciones son prácticas válidas de una buena anamnesis.",
+   "prompt": "¿Cuál es el principal error al interpretar la cronología de una historia clínica longitudinal?"
+  },
+  "medicina-funcional-fundamentos-q4": {
+   "options": [
+    "Priorizar la intervención de menor costo directo.",
+    "Seguir el protocolo de la última consulta especializada.",
+    "Ampliar el esquema hasta lograr alivio sintomático.",
+    "Evaluar beneficios, daños y preferencias.",
+    "Adoptar lo que funcionó en pacientes similares."
+   ],
+   "why": "La seguridad depende de contrastar para esa persona qué se espera ganar, qué daños son posibles y qué valora ella. El costo, la anécdota o la inercia de la última consulta no reemplazan ese balance.",
+   "prompt": "Al proponer una intervención a partir de la historia longitudinal de un paciente, ¿qué elemento mejora la seguridad del abordaje?"
+  },
+  "medicina-funcional-fundamentos-q5": {
+   "options": [
+    "Mantener el plan inicial hasta completar un año.",
+    "Reevaluar solo si el paciente reconsulta por empeoramiento.",
+    "Dar por exitoso el plan ante la mejoría de un síntoma.",
+    "Repetir el estudio completo en cada visita de control.",
+    "Reevaluar resultados y ajustar el plan."
+   ],
+   "why": "La historia es longitudinal justamente porque se reevalúa: se comparan resultados con los objetivos y se ajusta. Un plan fijo, un control reactivo o la mejoría de un solo síntoma no bastan.",
+   "prompt": "Tras indicar un plan construido a partir de la historia longitudinal, ¿qué enfoque de seguimiento es más apropiado?"
+  },
+  "medicina-funcional-fundamentos-q6": {
+   "options": [
+    "Las asociaciones observacionales no demuestran causalidad ni eficacia terapéutica.",
+    "Una asociación observacional consistente en varios estudios basta para demostrar eficacia terapéutica.",
+    "La plausibilidad biológica de un mecanismo equivale a evidencia de eficacia clínica en pacientes.",
+    "Una correlación fuerte en estudios de cohorte equivale a efecto causal, aun sin ajustar por confusores.",
+    "Los estudios de cohorte, a diferencia de los ensayos, controlan siempre todos los factores de confusión."
+   ],
+   "why": "Los estudios observacionales generan hipótesis, pero confusión, sesgo de selección y causalidad inversa impiden concluir efecto causal o eficacia; para eso se necesitan, en general, ensayos aleatorizados. Que un mecanismo sea plausible o que un hallazgo se repita no lo cambia."
+  },
+  "medicina-funcional-fundamentos-q7": {
+   "options": [
+    "Recomendarlo porque el hallazgo es consistente",
+    "Distinguir asociación de causalidad",
+    "Atribuir el efecto al mecanismo propuesto",
+    "Ajustar por edad y sexo y asumir efecto causal",
+    "Extrapolarlo a toda la población adulta"
+   ],
+   "why": "Quienes eligen suplementos suelen diferir en hábitos, nivel socioeconómico y cuidados (confusión), por lo que hay que separar asociación de causalidad antes de recomendar. Un ajuste parcial no elimina la confusión residual.",
+   "prompt": "Un estudio de cohorte muestra que quienes toman cierto suplemento tienen menos eventos cardiovasculares. ¿Cuál es la conducta más adecuada al interpretarlo?"
+  },
+  "medicina-funcional-fundamentos-q8": {
+   "options": [
+    "Informar el tamaño del efecto con su intervalo",
+    "Mencionar posibles factores de confusión",
+    "Presentar correlación como prueba",
+    "Aclarar que se requiere un ensayo para confirmarlo",
+    "Declarar las limitaciones del diseño del estudio"
+   ],
+   "why": "Presentar una correlación como prueba induce a decisiones clínicas sin respaldo. Informar el efecto con su incertidumbre, los confusores y las limitaciones es comunicación correcta.",
+   "prompt": "¿Cuál es el principal error al comunicar un hallazgo de un estudio observacional?"
+  },
+  "medicina-funcional-fundamentos-q9": {
+   "options": [
+    "Confiar en la coherencia con el mecanismo propuesto.",
+    "Exigir que el efecto sea estadísticamente significativo.",
+    "Esperar a que la mayoría de los colegas la adopte.",
+    "Evaluar beneficios, daños y preferencias.",
+    "Ajustar el análisis por edad y sexo y aceptar el efecto."
+   ],
+   "why": "Con evidencia débil, la decisión debe pesar el posible beneficio frente a los daños y lo que el paciente valora. La plausibilidad, la significación estadística o el uso extendido no sustituyen ese balance.",
+   "prompt": "Ante una intervención respaldada solo por estudios observacionales, ¿qué elemento mejora la seguridad del abordaje?"
+  },
+  "medicina-funcional-fundamentos-q10": {
+   "options": [
+    "Atribuir la mejoría observada a la intervención.",
+    "Continuar mientras no haya eventos adversos graves.",
+    "Extender su uso a otros pacientes con mejoría.",
+    "Esperar a la próxima publicación sobre el tema.",
+    "Reevaluar resultados y ajustar el plan."
+   ],
+   "why": "Evaluar resultados frente a objetivos previos y ajustar permite detectar falta de efecto o daños. La mejoría de un paciente puede deberse a regresión a la media, historia natural o efecto placebo, de modo que no prueba eficacia.",
+   "prompt": "Tras iniciar una intervención con respaldo observacional, ¿qué enfoque de seguimiento es más apropiado?"
+  },
+  "medicina-funcional-fundamentos-q11": {
+   "options": [
+    "La elección de intervenciones debe valorar ensayos, sesgos, beneficios y daños.",
+    "La elección de intervenciones debe priorizar el mecanismo fisiopatológico propuesto sobre los resultados clínicos.",
+    "La elección de intervenciones debe basarse en la experiencia acumulada del profesional con casos tratados con éxito.",
+    "La elección de intervenciones debe valorar sobre todo la significación estadística, sin considerar el tamaño del efecto.",
+    "La elección de intervenciones puede apoyarse en desenlaces subrogados, sin confirmar el impacto en desenlaces clínicos."
+   ],
+   "why": "Decidir con calidad de evidencia implica mirar el diseño de los ensayos, su riesgo de sesgo y el balance entre beneficios y daños. La plausibilidad, la experiencia personal, un valor de p aislado o los desenlaces subrogados pueden engañar."
+  },
+  "medicina-funcional-fundamentos-q12": {
+   "options": [
+    "Adoptarla por su plausibilidad mecanística",
+    "Evaluar evidencia de calidad",
+    "Probarla un tiempo y juzgar por la respuesta",
+    "Priorizar la opinión de expertos del área",
+    "Usarla si el riesgo parece bajo"
+   ],
+   "why": "Antes de adoptar, hay que valorar el diseño, el riesgo de sesgo y la consistencia de la evidencia. Las series de casos y testimonios no controlan placebo, historia natural ni sesgos de selección.",
+   "prompt": "Un colega propone incorporar al protocolo de la clínica una terapia respaldada por series de casos y testimonios favorables. ¿Cuál es la conducta más adecuada?"
+  },
+  "medicina-funcional-fundamentos-q13": {
+   "options": [
+    "Valorar el riesgo de sesgo del estudio",
+    "Buscar revisiones sistemáticas previas",
+    "Preferir testimonios",
+    "Considerar el tamaño del efecto",
+    "Revisar los conflictos de interés"
+   ],
+   "why": "Los testimonios son vulnerables a sesgo de selección, placebo y recuerdo, y no permiten estimar efecto. Las otras opciones son pasos habituales de la lectura crítica.",
+   "prompt": "¿Cuál es el principal error al valorar la evidencia sobre una terapia?"
+  },
+  "medicina-funcional-fundamentos-q14": {
+   "options": [
+    "Elegir la que tenga más publicaciones favorables.",
+    "Adoptar la de mayor efecto informado en estudios pequeños.",
+    "Aceptar resultados sobre biomarcadores intermedios.",
+    "Evaluar beneficios, daños y preferencias.",
+    "Seguir la recomendación de quien la desarrolló."
+   ],
+   "why": "La seguridad surge de sopesar beneficios probados, daños posibles y preferencias. El número de publicaciones, los estudios pequeños, los biomarcadores y la opinión del desarrollador pueden sobreestimar el beneficio.",
+   "prompt": "Al incorporar una terapia nueva a la práctica, ¿qué elemento mejora la seguridad del abordaje?"
+  },
+  "medicina-funcional-fundamentos-q15": {
+   "options": [
+    "Mantenerla si el paciente refiere sentirse mejor.",
+    "Aumentar la dosis si no hay respuesta temprana.",
+    "Comparar con el testimonio de otros pacientes.",
+    "Considerar válida la respuesta tras un solo control.",
+    "Reevaluar resultados y ajustar el plan."
+   ],
+   "why": "Con evidencia limitada hay que medir resultados concretos, compararlos con los objetivos y ajustar o suspender. La impresión subjetiva y un único control no distinguen efecto real de placebo.",
+   "prompt": "Tras adoptar una terapia con evidencia limitada, ¿qué enfoque de seguimiento es más apropiado?"
+  },
+  "medicina-funcional-fundamentos-q16": {
+   "options": [
+    "Las prioridades deben integrar comorbilidades, medicación y objetivos del paciente.",
+    "Las prioridades deben ordenarse según la guía de la enfermedad con mayor mortalidad, aplicada sin modificaciones.",
+    "Las prioridades deben fijarlas los especialistas de cada órgano afectado, con sus propias metas terapéuticas.",
+    "Las prioridades deben centrarse en normalizar todos los parámetros de laboratorio alterados.",
+    "Las prioridades se definen por la cantidad de diagnósticos activos, más que por el impacto funcional."
+   ],
+   "why": "En multimorbilidad las guías de una sola enfermedad no se suman sin más: hay que integrar comorbilidades, fármacos, carga de tratamiento y lo que el paciente quiere lograr. Normalizar cifras o contar diagnósticos no refleja ese equilibrio."
+  },
+  "medicina-funcional-fundamentos-q17": {
+   "options": [
+    "Priorizar la patología con mayor mortalidad",
+    "Conciliar tratamientos y riesgos",
+    "Derivar a cada especialista para ajustar su parte",
+    "Indicar un suplemento para cada sistema afectado",
+    "Suspender los fármacos más recientes"
+   ],
+   "why": "Conciliar significa revisar la medicación completa, interacciones, daños y metas del paciente, y decidir en conjunto qué mantener, ajustar o retirar. Priorizar un solo órgano o derivar por partes reproduce la fragmentación.",
+   "prompt": "Un hombre de 74 años con diabetes tipo 2, insuficiencia cardíaca, EPOC y artrosis consulta con siete fármacos indicados por distintos especialistas. ¿Cuál es la conducta más adecuada?"
+  },
+  "medicina-funcional-fundamentos-q18": {
+   "options": [
+    "Revisar la medicación en cada visita",
+    "Considerar la carga de tratamiento",
+    "Tratar sistemas por separado",
+    "Consultar sus objetivos y expectativas",
+    "Deprescribir lo de beneficio dudoso"
+   ],
+   "why": "Tratar cada sistema por separado acumula fármacos, interacciones y carga para el paciente. Las otras opciones son prácticas recomendadas en el abordaje de multimorbilidad.",
+   "prompt": "¿Cuál es el principal error al abordar a un paciente con multimorbilidad?"
+  },
+  "medicina-funcional-fundamentos-q19": {
+   "options": [
+    "Aplicar las metas de la guía de la enfermedad índice.",
+    "Priorizar el que más parámetros de laboratorio corrija.",
+    "Delegar la decisión en el especialista del órgano involucrado.",
+    "Evaluar beneficios, daños y preferencias.",
+    "Preferir los fármacos recientemente incorporados a las guías."
+   ],
+   "why": "Cada fármaco nuevo suma riesgos de interacción y carga; el balance individual de beneficios, daños y preferencias es lo que protege. Las guías de una enfermedad se desarrollaron en general sin considerar la multimorbilidad.",
+   "prompt": "En un paciente con multimorbilidad y polifarmacia, ¿qué elemento mejora la seguridad al agregar un tratamiento?"
+  },
+  "medicina-funcional-fundamentos-q20": {
+   "options": [
+    "Agregar una nueva guía ante cada síntoma nuevo.",
+    "Mantener todos los fármacos hasta la próxima internación.",
+    "Controlar solo la enfermedad que motivó el ajuste.",
+    "Delegar cada control en el especialista correspondiente.",
+    "Reevaluar resultados y ajustar el plan."
+   ],
+   "why": "Los efectos de un ajuste (beneficio, eventos adversos, función, adherencia) se evalúan en el paciente completo y se corrigen; si no, la polifarmacia se perpetúa.",
+   "prompt": "En un paciente con multimorbilidad, tras ajustar los tratamientos, ¿qué enfoque de seguimiento es más apropiado?"
+  },
+  "medicina-funcional-fundamentos-q21": {
+   "options": [
+    "La calidad del sueño afecta bienestar y salud cardiometabólica.",
+    "La calidad del sueño afecta el bienestar subjetivo, pero no modifica el riesgo cardiometabólico.",
+    "La calidad del sueño es consecuencia de las enfermedades cardiometabólicas y no contribuye a ellas.",
+    "La calidad del sueño depende casi exclusivamente de la higiene del sueño, no de trastornos primarios.",
+    "La duración del sueño influye en la salud cardiometabólica, pero su fragmentación no."
+   ],
+   "why": "El sueño insuficiente o fragmentado se asocia con peor control metabólico y mayor riesgo cardiovascular, con relación bidireccional. Existen además trastornos primarios, como la apnea, que requieren diagnóstico específico."
+  },
+  "medicina-funcional-fundamentos-q22": {
+   "options": [
+    "Indicar melatonina sin más estudios",
+    "Evaluar sueño y apnea",
+    "Solicitar cortisol salival seriado",
+    "Iniciar un hipnótico de acción corta",
+    "Tratarlo como depresión de entrada"
+   ],
+   "why": "El cuadro sugiere apnea obstructiva del sueño, tratable y con impacto cardiovascular; requiere evaluación con cuestionarios y estudio del sueño. Medicar el sueño o estudiar el cortisol sin esa evaluación puede empeorar el cuadro o desviar el diagnóstico.",
+   "prompt": "Un hombre de 52 años con obesidad, hipertensión de difícil control, ronquido y somnolencia diurna consulta por cansancio persistente. ¿Cuál es la conducta más adecuada?"
+  },
+  "medicina-funcional-fundamentos-q23": {
+   "options": [
+    "Indagar el uso de cafeína y pantallas",
+    "Revisar medicación que altere el sueño",
+    "Atribuir todo a toxinas",
+    "Explorar horarios laborales y turnos",
+    "Considerar un insomnio crónico asociado"
+   ],
+   "why": "Atribuir todo a toxinas no tiene respaldo y cierra el diagnóstico antes de explorar causas frecuentes como apnea, hábitos, fármacos, dolor o trastornos del ánimo.",
+   "prompt": "¿Cuál es el principal error al evaluar a un paciente con mala calidad de sueño?"
+  },
+  "medicina-funcional-fundamentos-q24": {
+   "options": [
+    "Priorizar el hipnótico de acción más rápida.",
+    "Indicar melatonina por ser de venta libre.",
+    "Mantener el fármaco indefinidamente si funciona.",
+    "Evaluar beneficios, daños y preferencias.",
+    "Indicar el esquema de mayor potencia hipnótica."
+   ],
+   "why": "Los hipnóticos tienen daños relevantes (caídas, deterioro cognitivo, dependencia); conviene sopesarlos con los beneficios y las preferencias, y considerar primero opciones no farmacológicas. Que sea de venta libre o potente no equivale a seguro.",
+   "prompt": "Al elegir cómo tratar el insomnio crónico en un adulto, ¿qué elemento mejora la seguridad del abordaje?"
+  },
+  "medicina-funcional-fundamentos-q25": {
+   "options": [
+    "Suspender el seguimiento al normalizarse un estudio.",
+    "Mantener el hipnótico indefinidamente si funciona.",
+    "Considerar resuelto el cuadro tras una buena semana.",
+    "Citar en seis meses sin evaluar la respuesta previa.",
+    "Reevaluar resultados y ajustar el plan."
+   ],
+   "why": "El sueño se evalúa en el tiempo (síntomas, somnolencia, adherencia, efectos adversos) y el plan se ajusta, incluyendo suspender fármacos cuando corresponda.",
+   "prompt": "Tras iniciar el tratamiento de un trastorno del sueño, ¿qué enfoque de seguimiento es más apropiado?"
+  },
+  "medicina-funcional-fundamentos-q26": {
+   "options": [
+    "El estrés puede modular síntomas y adherencia, sin sustituir diagnósticos orgánicos.",
+    "El estrés explica la mayoría de los síntomas persistentes cuando los estudios básicos son normales.",
+    "El estrés influye en síntomas psicológicos, pero no modifica la percepción de síntomas físicos.",
+    "El estrés crónico puede sustituir el estudio orgánico cuando existe un desencadenante vital claro.",
+    "El estrés modula síntomas, pero no la adherencia, que depende solo del conocimiento del paciente."
+   ],
+   "why": "El estrés y la salud mental modulan la percepción de síntomas, el sueño y la adherencia, pero no eximen de buscar enfermedad orgánica: ambas dimensiones se evalúan en paralelo."
+  },
+  "medicina-funcional-fundamentos-q27": {
+   "options": [
+    "Solicitar cortisol salival para cuantificar el estrés",
+    "Explorar factores psicosociales",
+    "Indicar ansiolíticos de entrada por el duelo",
+    "Completar estudios hasta hallar una causa orgánica",
+    "Derivar a psiquiatría y cerrar el estudio clínico"
+   ],
+   "why": "Explorar estresores, ánimo, ansiedad y apoyo social complementa un estudio orgánico proporcionado. El cortisol salival no tiene utilidad validada para diagnosticar estrés, y ni medicar de entrada ni buscar sin límite una causa orgánica son lo indicado.",
+   "prompt": "Una mujer de 38 años con palpitaciones, cefalea y mal sueño atraviesa un duelo reciente; el examen físico y el ECG son normales. ¿Cuál es la conducta más adecuada?"
+  },
+  "medicina-funcional-fundamentos-q28": {
+   "options": [
+    "Preguntar por eventos vitales recientes",
+    "Tamizar depresión y ansiedad con escalas",
+    "Descartar enfermedad por estrés",
+    "Explorar apoyo social y carga laboral",
+    "Registrar estresores junto con datos clínicos"
+   ],
+   "why": "Descartar enfermedad por estrés lleva a pasar por alto causas orgánicas (tiroideas, cardíacas, anemia, etc.) que pueden coexistir. Las demás opciones son parte de una evaluación biopsicosocial.",
+   "prompt": "¿Cuál es el principal error al evaluar síntomas en una persona bajo estrés?"
+  },
+  "medicina-funcional-fundamentos-q29": {
+   "options": [
+    "Indicar ansiolíticos de manera preventiva.",
+    "Usar pruebas de cortisol para guiar la dosis.",
+    "Priorizar las técnicas de mayor popularidad.",
+    "Evaluar beneficios, daños y preferencias.",
+    "Escalar la dosis hasta que el paciente refiera calma."
+   ],
+   "why": "Pesar beneficios, daños (por ejemplo, dependencia con benzodiacepinas) y preferencias permite elegir entre psicoterapia, actividad física u otras opciones. La popularidad o la escalada de dosis no garantizan seguridad.",
+   "prompt": "Al proponer una intervención para síntomas asociados a estrés, ¿qué elemento mejora la seguridad del abordaje?"
+  },
+  "medicina-funcional-fundamentos-q30": {
+   "options": [
+    "Dar por logrado el objetivo si el paciente se siente mejor.",
+    "Ajustar el plan solo ante crisis agudas de ansiedad.",
+    "Reemplazar los controles por medición de cortisol.",
+    "Ampliar el esquema ante la falta de efecto inmediato.",
+    "Reevaluar resultados y ajustar el plan."
+   ],
+   "why": "Se compara la evolución con objetivos acordados (síntomas, función, sueño) y se modifica el plan; el cortisol no sirve como marcador de seguimiento y una mejoría puntual no define el éxito.",
+   "prompt": "Tras iniciar el manejo de síntomas relacionados con estrés, ¿qué enfoque de seguimiento es más apropiado?"
+  },
+  "medicina-funcional-fundamentos-q31": {
+   "options": [
+    "Los hallazgos sobre microbiota no justifican pruebas o suplementos indiscriminados.",
+    "Los hallazgos sobre microbiota justifican pruebas comerciales de heces ante síntomas digestivos inespecíficos.",
+    "Los hallazgos sobre microbiota respaldan el uso sistemático de probióticos para prevenir cualquier enfermedad.",
+    "Los hallazgos sobre microbiota carecen de aplicaciones clínicas validadas en cualquier contexto.",
+    "Los hallazgos sobre microbiota permiten hoy guiar tratamientos individuales de enfermedades metabólicas."
+   ],
+   "why": "La investigación sobre microbiota es prometedora, pero la mayoría de los perfiles comerciales no tiene utilidad clínica validada ni guía tratamientos. Hay aplicaciones sí establecidas, como el trasplante de microbiota fecal en la infección recurrente por C. difficile."
+  },
+  "medicina-funcional-fundamentos-q32": {
+   "options": [
+    "Solicitar el estudio para personalizar la dieta",
+    "Distinguir aplicaciones validadas",
+    "Indicar probióticos multicepa de forma empírica",
+    "Indicar una dieta de eliminación amplia",
+    "Tratar la disbiosis con antibióticos orales"
+   ],
+   "why": "Hay que separar lo validado (evaluar signos de alarma, causas orgánicas, enfermedades funcionales según criterios) de lo no validado. Los estudios comerciales y las fórmulas personalizadas carecen de utilidad probada.",
+   "prompt": "Una paciente con distensión abdominal crónica pide un estudio comercial de microbioma intestinal y una fórmula de probióticos «a medida». ¿Cuál es la conducta más adecuada?"
+  },
+  "medicina-funcional-fundamentos-q33": {
+   "options": [
+    "Evaluar signos de alarma digestivos",
+    "Revisar el uso reciente de antibióticos",
+    "Solicitar paneles universales",
+    "Indicar estudios dirigidos ante sospecha clínica",
+    "Considerar el trasplante fecal en C. difficile recurrente"
+   ],
+   "why": "Los paneles universales generan resultados sin significado clínico, costos y tratamientos innecesarios. Las otras conductas responden a indicaciones o sospecha clínica.",
+   "prompt": "¿Cuál es el principal error al abordar síntomas digestivos desde la evidencia sobre microbiota?"
+  },
+  "medicina-funcional-fundamentos-q34": {
+   "options": [
+    "Elegir la cepa con más ventas en el mercado.",
+    "Iniciar con la mayor dosis comercial disponible.",
+    "Indicar la dieta más restrictiva para no perder causas.",
+    "Evaluar beneficios, daños y preferencias.",
+    "Guiarse por el perfil de microbiota comercial."
+   ],
+   "why": "Aun productos «inocuos» pueden causar daño (restricciones que llevan a déficits, probióticos en inmunodeprimidos); hay que sopesar el beneficio esperado y lo que el paciente acepta. Ventas, dosis o perfiles comerciales no miden eso.",
+   "prompt": "Antes de indicar probióticos o una dieta de eliminación por síntomas digestivos, ¿qué elemento mejora la seguridad del abordaje?"
+  },
+  "medicina-funcional-fundamentos-q35": {
+   "options": [
+    "Mantener el producto aunque no haya cambios clínicos.",
+    "Repetir el estudio de microbiota para confirmar la mejoría.",
+    "Ampliar la restricción alimentaria ante la persistencia.",
+    "Cerrar el caso al normalizarse el estudio comercial.",
+    "Reevaluar resultados y ajustar el plan."
+   ],
+   "why": "Se evalúan síntomas y calidad de vida frente a objetivos, y se suspende lo que no funciona. Los estudios de microbiota no son marcadores de respuesta validados.",
+   "prompt": "Tras indicar probióticos o una dieta por síntomas digestivos, ¿qué enfoque de seguimiento es más apropiado?"
+  },
+  "medicina-funcional-fundamentos-q36": {
+   "options": [
+    "Los suplementos pueden interactuar con medicamentos y tener calidad variable.",
+    "Los suplementos de venta libre no interactúan con medicamentos si se toman en dosis habituales.",
+    "Los suplementos de origen natural tienen calidad estandarizada y contenido verificado por el fabricante.",
+    "Los suplementos solo interactúan con medicamentos cuando se administran por vía parenteral.",
+    "Los suplementos tienen calidad variable, pero sus interacciones son irrelevantes en personas sin polifarmacia."
+   ],
+   "why": "Los suplementos pueden alterar el metabolismo o el efecto de fármacos (por ejemplo, el hipérico induce enzimas y reduce niveles de varios medicamentos) y su contenido real varía entre productos. El riesgo existe también con dosis habituales y sin polifarmacia."
+  },
+  "medicina-funcional-fundamentos-q37": {
+   "options": [
+    "Autorizarlos si son de marca reconocida",
+    "Verificar indicación e interacciones",
+    "Permitir uno por vez y controlar en seis meses",
+    "Indicar solo los de origen vegetal",
+    "Adelantar un ajuste preventivo de la warfarina"
+   ],
+   "why": "Verificar si hay indicación y qué interacciones existen es previo a autorizar: el hipérico puede reducir el efecto anticoagulante y ginkgo o aceite de pescado podrían aumentar el sangrado. Ser vegetal o de marca no garantiza seguridad.",
+   "prompt": "Una paciente de 66 años anticoagulada con warfarina pregunta si puede tomar hipérico, ginkgo y aceite de pescado «para la memoria». ¿Cuál es la conducta más adecuada?"
+  },
+  "medicina-funcional-fundamentos-q38": {
+   "options": [
+    "Preguntar por todos los productos que consume",
+    "Registrar marca, dosis y duración del uso",
+    "Asumir inocuidad natural",
+    "Consultar bases de interacciones confiables",
+    "Informar la posible variabilidad entre lotes"
+   ],
+   "why": "«Natural» no significa seguro: muchos productos tienen efectos farmacológicos, interacciones y contaminantes. Las otras opciones son parte de una evaluación adecuada.",
+   "prompt": "¿Cuál es el principal error al indagar sobre suplementos en una consulta?"
+  },
+  "medicina-funcional-fundamentos-q39": {
+   "options": [
+    "Elegir productos con etiqueta de origen natural.",
+    "Comenzar con una dosis alta para ver la respuesta.",
+    "Basarse en la tolerancia referida por otros usuarios.",
+    "Evaluar beneficios, daños y preferencias.",
+    "Usar combinaciones que cubran varias deficiencias a la vez."
+   ],
+   "why": "Solo con una indicación definida y balance de beneficios, daños y preferencias se justifica indicar el suplemento. El origen natural, la dosis alta o las combinaciones aumentan la exposición sin evidencia de beneficio.",
+   "prompt": "Al considerar un suplemento en un paciente polimedicado, ¿qué elemento mejora la seguridad del abordaje?"
+  },
+  "medicina-funcional-fundamentos-q40": {
+   "options": [
+    "Mantener la dosis mientras no aparezcan reacciones graves.",
+    "Sostenerlo si el paciente refiere sentirse mejor.",
+    "Reevaluar solo ante un evento adverso evidente.",
+    "Agregar otro suplemento ante una respuesta parcial.",
+    "Reevaluar resultados y ajustar el plan."
+   ],
+   "why": "Se controla el objetivo (clínico o de laboratorio) y los efectos adversos, y se suspende o ajusta si no hay beneficio; la sensación subjetiva sola no confirma eficacia.",
+   "prompt": "Tras indicar un suplemento con una indicación definida, ¿qué enfoque de seguimiento es más apropiado?"
+  },
+  "medicina-funcional-fundamentos-q41": {
+   "options": [
+    "El acceso a alimentos, trabajo y vivienda influye en oportunidades de salud.",
+    "El acceso a alimentos, trabajo y vivienda influye en la salud principalmente a través de la elección individual de hábitos.",
+    "El acceso a alimentos, trabajo y vivienda condiciona la salud solo en poblaciones bajo la línea de pobreza.",
+    "El acceso a alimentos, trabajo y vivienda es ajeno al rol clínico y se aborda mejor fuera de la consulta.",
+    "El acceso a alimentos, trabajo y vivienda modifica el riesgo, pero no la efectividad de las intervenciones indicadas."
+   ],
+   "why": "Los determinantes sociales condicionan el riesgo, el acceso al cuidado y la posibilidad de cumplir indicaciones, a lo largo de todo el gradiente social. Reconocerlos en la consulta cambia lo que es factible y efectivo."
+  },
+  "medicina-funcional-fundamentos-q42": {
+   "options": [
+    "Mantener el plan y reforzar la educación nutricional",
+    "Adaptar recomendaciones al contexto",
+    "Derivar a nutrición para un plan más estricto",
+    "Indicar controles más frecuentes para exigir adherencia",
+    "Postergar cualquier intervención hasta que su situación mejore"
+   ],
+   "why": "Un plan irrealizable por barreras materiales fracasa aunque sea correcto en teoría; hay que adaptar las metas a recursos, horarios y prioridades. Insistir o endurecer el plan no resuelve la barrera.",
+   "prompt": "Un trabajador con turnos rotativos e inseguridad alimentaria, con prediabetes, recibió la indicación de dieta de alimentos frescos y gimnasio tres veces por semana. ¿Cuál es la conducta más adecuada?"
+  },
+  "medicina-funcional-fundamentos-q43": {
+   "options": [
+    "Preguntar por barreras económicas",
+    "Revisar costo y acceso a la medicación",
+    "Culpar falta de adherencia",
+    "Indagar condiciones de trabajo y vivienda",
+    "Derivar a trabajo social si corresponde"
+   ],
+   "why": "Culpar al paciente por la falta de adherencia ignora barreras estructurales y daña el vínculo. Indagar las barreras es el paso que permite corregirlas.",
+   "prompt": "¿Cuál es el principal error cuando un paciente no logra cumplir las recomendaciones?"
+  },
+  "medicina-funcional-fundamentos-q44": {
+   "options": [
+    "Fijar metas idénticas a las de la guía poblacional.",
+    "Priorizar el cambio con mayor efecto estimado.",
+    "Reforzar la intervención más intensiva disponible.",
+    "Evaluar beneficios, daños y preferencias.",
+    "Indicar la opción más económica del mercado."
+   ],
+   "why": "Sopesar beneficios, daños (por ejemplo, riesgo de hipoglucemia con ciertos esquemas, costo o estigma) y preferencias permite elegir lo que el paciente puede sostener. Metas rígidas o intensidad máxima ignoran el contexto.",
+   "prompt": "Al indicar cambios de hábitos a una persona con recursos limitados, ¿qué elemento mejora la seguridad del abordaje?"
+  },
+  "medicina-funcional-fundamentos-q45": {
+   "options": [
+    "Retomar el plan estándar si no hay adherencia.",
+    "Evaluar solo la adherencia sin explorar las barreras.",
+    "Dar por logrado el plan si el paciente lo aceptó.",
+    "Postergar el control hasta que mejore su situación.",
+    "Reevaluar resultados y ajustar el plan."
+   ],
+   "why": "Se mide lo logrado frente a objetivos realistas, se identifican nuevas barreras y se ajusta el plan; volver al estándar o culpar a la adherencia repite el error inicial.",
+   "prompt": "Tras adaptar las recomendaciones al contexto del paciente, ¿qué enfoque de seguimiento es más apropiado?"
+  },
+  "medicina-funcional-fundamentos-q46": {
+   "options": [
+    "La atención centrada en la persona integra valores, riesgos, preferencias y seguimiento.",
+    "La atención centrada en la persona consiste en aceptar las solicitudes del paciente de estudios o tratamientos.",
+    "La atención centrada en la persona transmite la información del riesgo y deja la decisión final al profesional.",
+    "La atención centrada en la persona reemplaza la evidencia disponible por las preferencias del paciente.",
+    "La atención centrada en la persona se limita a mejorar el trato y la comunicación durante la consulta."
+   ],
+   "why": "La decisión compartida combina la mejor evidencia con los valores y preferencias de la persona, explicita riesgos y beneficios, y se revisa en el seguimiento. No es complacer pedidos, ni decidir por el paciente, ni solo cortesía."
+  },
+  "medicina-funcional-fundamentos-q47": {
+   "options": [
+    "Fijar el objetivo según la guía de referencia",
+    "Acordar objetivos medibles",
+    "Indicar el esquema de máxima intensidad",
+    "Delegar la elección del plan en el paciente",
+    "Definir el plan y explicarlo en la próxima visita"
+   ],
+   "why": "Acordar metas medibles que reflejen lo que importa al paciente (por ejemplo, trabajar, evitar internaciones) y la evidencia disponible permite evaluar el progreso. Aplicar la guía sin diálogo o delegar toda la decisión rompe el proceso compartido.",
+   "prompt": "Un paciente con hipertensión e insuficiencia cardíaca expresa que prioriza seguir trabajando y evitar internaciones. ¿Cuál es la conducta más adecuada al definir el plan?"
+  },
+  "medicina-funcional-fundamentos-q48": {
+   "options": [
+    "Explicar alternativas con sus riesgos",
+    "Respetar una decisión informada de rechazo",
+    "Imponer planes sin consentimiento",
+    "Revisar el plan si cambian sus prioridades",
+    "Documentar la conversación y las decisiones"
+   ],
+   "why": "Imponer planes vulnera la autonomía y el consentimiento informado. Respetar una decisión informada, aun de rechazo, es parte de la decisión compartida.",
+   "prompt": "¿Cuál es el principal error en el proceso de decisión compartida?"
+  },
+  "medicina-funcional-fundamentos-q49": {
+   "options": [
+    "Aceptar la preferencia expresada sin discutir alternativas.",
+    "Seguir la opción con mayor beneficio relativo.",
+    "Presentar solo la opción mejor respaldada.",
+    "Evaluar beneficios, daños y preferencias.",
+    "Transferir la decisión al familiar acompañante."
+   ],
+   "why": "Evaluar en conjunto beneficios absolutos, daños y preferencias evita tanto el paternalismo como la aceptación acrítica. El beneficio relativo solo puede exagerar el efecto.",
+   "prompt": "Al acordar un plan con un paciente informado, ¿qué elemento mejora la seguridad del abordaje?"
+  },
+  "medicina-funcional-fundamentos-q50": {
+   "options": [
+    "Mantener los objetivos fijados originalmente.",
+    "Evaluar solo el cumplimiento de las indicaciones.",
+    "Cambiar el plan por decisión del profesional.",
+    "Dar por cumplido el acuerdo tras la primera visita.",
+    "Reevaluar resultados y ajustar el plan."
+   ],
+   "why": "Las preferencias y circunstancias cambian: se revisa el progreso frente a los objetivos y se ajusta el plan con el paciente.",
+   "prompt": "Tras acordar objetivos con el paciente, ¿qué enfoque de seguimiento es más apropiado?"
+  }
+ },
+ "flags": [
+  {
+   "id": "medicina-funcional-fundamentos-q4",
+   "problema": "Las preguntas q4, q9, q14, q19, q24, q29, q34, q39, q44, q49 comparten la misma opción correcta genérica ('Evaluar beneficios, daños y preferencias.'): es una práctica válida pero no específica del tema; se mitigó con enunciados contextualizados y distractores propios de cada tema.",
+   "propuesta": "Considerar reemplazar la correcta por una conducta específica de cada tema en una próxima revisión.",
+   "fuente": "Atención basada en evidencia / decisiones compartidas (principio general)"
+  },
+  {
+   "id": "medicina-funcional-fundamentos-q28",
+   "problema": "La opción correcta 'Descartar enfermedad por estrés' (q28) y la frase 'Explorar factores psicosociales' (q27) son ambiguas si se leen aislada; q28 pregunta por el error y la formulación 'descartar enfermedad por estrés' puede interpretarse como 'descartar el estrés'.",
+   "propuesta": "Reformular la correcta de q28 como 'Atribuir los síntomas al estrés sin descartar enfermedad orgánica'.",
+   "fuente": "Redacción; sin cambio de clave"
+  }
+ ],
+ "stats": {
+  "revisadas": 50,
+  "reescritas": 50,
+  "flags": 2,
+  "noVerificadas": [
+   "fuente 'ifm' no consultada en línea: los fundamentos se basan en principios generales de medicina basada en evidencia y en datos ampliamente establecidos (interacciones warfarina-hipérico, trasplante fecal en C. difficile recurrente); no se citan cifras"
+  ]
+ }
+}

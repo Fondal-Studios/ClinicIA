@@ -1,0 +1,534 @@
+{
+ "batch": "R05",
+ "upgrades": {
+  "obesidad-integral-q1": {
+   "options": [
+    "La obesidad es una enfermedad crónica multifactorial que requiere atención longitudinal.",
+    "La obesidad es consecuencia de un balance energético positivo que se corrige con indicaciones dietarias puntuales.",
+    "La obesidad es un factor de riesgo y se considera enfermedad recién cuando aparece una comorbilidad metabólica.",
+    "La obesidad es una condición recidivante cuyo tratamiento puede suspenderse al alcanzar la meta de peso.",
+    "La obesidad es un trastorno predominantemente conductual y su abordaje central es la consejería motivacional."
+   ],
+   "why": "La obesidad se reconoce como enfermedad crónica, recidivante y multifactorial (genética, biología del apetito, entorno, fármacos, factores psicosociales), por lo que requiere seguimiento longitudinal. Reducirla a un balance energético o a la voluntad ignora la regulación biológica del peso que favorece la recuperación del peso perdido."
+  },
+  "obesidad-integral-q2": {
+   "options": [
+    "Indicar un plan hipocalórico estándar y controlar el peso mensualmente",
+    "Evaluar comorbilidades y preferencias",
+    "Iniciar farmacoterapia antiobesidad desde la primera consulta",
+    "Fijar una meta de peso según el IMC ideal y reforzar la motivación",
+    "Pedir un estudio endocrinológico extenso antes de cualquier intervención"
+   ],
+   "prompt": "Una mujer de 41 años con IMC de 34 kg/m² consulta por aumento de peso sostenido y dice haber «fracasado» en varias dietas. ¿Cuál es la conducta más adecuada?",
+   "why": "El abordaje inicial de la obesidad comienza por caracterizar comorbilidades, historia y preferencias de la paciente, y recién entonces elegir intervenciones. Indicar una dieta estándar o un fármaco de entrada saltea esa evaluación y repite el esquema que ya no funcionó."
+  },
+  "obesidad-integral-q3": {
+   "options": [
+    "Considerar la regulación biológica que favorece la recuperación del peso perdido",
+    "Explorar determinantes sociales y ambientales del aumento de peso",
+    "Atribuirla solo a falta de voluntad",
+    "Ofrecer seguimiento prolongado aun con pérdida de peso modesta",
+    "Reconocer el efecto de ciertos fármacos sobre el peso corporal"
+   ],
+   "why": "Atribuir la obesidad a falta de voluntad contradice la evidencia sobre su origen multifactorial y refuerza el estigma, que a su vez reduce la consulta y la adherencia. Las otras opciones son prácticas recomendadas del abordaje de una enfermedad crónica."
+  },
+  "obesidad-integral-q4": {
+   "options": [
+    "Priorizar la pérdida de peso más rápida posible en cada consulta",
+    "Unificar el tratamiento según la categoría de IMC del paciente",
+    "Reservar el tratamiento para quienes ya presentan una comorbilidad establecida",
+    "Evaluar beneficios, daños y preferencias.",
+    "Medir el éxito únicamente por el peso alcanzado a corto plazo"
+   ],
+   "prompt": "¿Qué elemento mejora la seguridad del abordaje de la obesidad como enfermedad crónica?",
+   "why": "La toma de decisiones compartida, que pondera beneficios, daños y preferencias de cada persona, es lo que mejora la seguridad del tratamiento de una enfermedad crónica. Estandarizar por IMC o perseguir la pérdida rápida ignora la heterogeneidad de los pacientes y sus riesgos."
+  },
+  "obesidad-integral-q5": {
+   "options": [
+    "Mantener el plan inicial mientras el peso no supere el basal",
+    "Espaciar los controles cuando la pérdida de peso es lenta",
+    "Suspender el tratamiento al primer estancamiento del peso",
+    "Limitar el control a la medición del peso y del IMC",
+    "Reevaluar resultados y ajustar el plan."
+   ],
+   "why": "Al ser una enfermedad crónica, el seguimiento implica reevaluar respuesta, tolerancia y comorbilidades y ajustar el plan; no se interpreta el estancamiento aislado como fracaso ni se reduce el control al peso."
+  },
+  "obesidad-integral-q6": {
+   "options": [
+    "El IMC es un indicador de cribado y no describe distribución adiposa ni funcionalidad.",
+    "El IMC define por sí solo el riesgo cardiometabólico con idéntico punto de corte en toda población.",
+    "La circunferencia de cintura reemplaza al IMC y lo vuelve innecesario en la evaluación de la adiposidad.",
+    "Un IMC normal descarta exceso de adiposidad visceral y riesgo metabólico asociado a la grasa ectópica.",
+    "La bioimpedancia es el estándar diagnóstico de obesidad y debe preceder a toda decisión terapéutica."
+   ],
+   "why": "El IMC es una medida útil de cribado, pero no informa distribución de la grasa, composición corporal ni función. Por eso se complementa con perímetro de cintura y evaluación clínica; un IMC normal no descarta adiposidad visceral ni riesgo metabólico."
+  },
+  "obesidad-integral-q7": {
+   "options": [
+    "Pedir una densitometría corporal total de rutina",
+    "Agregar cintura y evaluación clínica",
+    "Tranquilizarlo si el peso se mantuvo estable en el último año",
+    "Medir pliegues cutáneos como único criterio de riesgo",
+    "Calcular el peso ideal y cuantificar el exceso en kilos"
+   ],
+   "prompt": "En un varón de 45 años con IMC de 28 kg/m² y aumento reciente del perímetro abdominal, ¿cuál es la conducta más adecuada para estimar su riesgo asociado a la adiposidad?",
+   "why": "El riesgo se estima combinando IMC, perímetro de cintura y evaluación clínica de comorbilidades. La densitometría no es de rutina y los pliegues o el peso ideal no reemplazan esa evaluación integral."
+  },
+  "obesidad-integral-q8": {
+   "options": [
+    "Medir la circunferencia de cintura con técnica estandarizada",
+    "Interpretar el IMC según edad y origen étnico de la persona",
+    "Concluir riesgo exclusivamente por IMC",
+    "Valorar presión arterial y glucemia junto con la antropometría",
+    "Registrar la evolución de la composición corporal cuando esté disponible"
+   ],
+   "why": "Definir riesgo solo por IMC puede sobrestimarlo (masa magra elevada) o subestimarlo (adiposidad visceral con IMC normal). Las demás opciones son prácticas válidas de la evaluación de adiposidad."
+  },
+  "obesidad-integral-q9": {
+   "options": [
+    "Basar la categoría de riesgo en el peso medido con balanza calibrada",
+    "Usar un único punto de corte de cintura para todas las poblaciones",
+    "Delegar la valoración de comorbilidades en estudios de imagen de rutina",
+    "Evaluar beneficios, daños y preferencias.",
+    "Reservar la medición de cintura para pacientes con IMC en rango de obesidad"
+   ],
+   "prompt": "¿Qué elemento mejora la seguridad del abordaje de la evaluación clínica de la adiposidad?",
+   "why": "Antes de definir conducta se ponderan beneficios, daños y preferencias a partir de una evaluación completa. Un único dato antropométrico, un corte universal o la medición selectiva de cintura generan clasificaciones erróneas de riesgo."
+  },
+  "obesidad-integral-q10": {
+   "options": [
+    "Repetir solo el peso en cada control y suspender la medición de cintura",
+    "Mantener la clasificación inicial de riesgo sin repetir la evaluación",
+    "Reemplazar el seguimiento clínico por mediciones de composición corporal",
+    "Definir el éxito por la variación del IMC sin considerar comorbilidades",
+    "Reevaluar resultados y ajustar el plan."
+   ],
+   "why": "El seguimiento incluye repetir antropometría y revisar comorbilidades para ajustar el plan; mantener la clasificación inicial o centrarse en un único parámetro puede ocultar cambios de riesgo."
+  },
+  "obesidad-integral-q11": {
+   "options": [
+    "El lenguaje centrado en la persona favorece confianza y acceso a cuidados.",
+    "El uso del término «obeso» es neutro y no modifica la relación terapéutica con el paciente.",
+    "El estigma por peso afecta la autoestima, pero no la utilización de los servicios de salud.",
+    "Expresar la preocupación por el peso con firmeza motiva al paciente y mejora la adherencia.",
+    "Evitar toda mención del peso en la consulta es la forma más eficaz de prevenir el estigma."
+   ],
+   "why": "El lenguaje centrado en la persona («persona con obesidad») reduce el estigma, favorece la confianza y el acceso a cuidados. El estigma internalizado y percibido se asocia a evitación de consultas y peor adherencia; tampoco corresponde silenciar el tema: se lo aborda con permiso y respeto."
+  },
+  "obesidad-integral-q12": {
+   "options": [
+    "Mencionar el peso de entrada como causa del dolor",
+    "Pedir permiso para hablar del peso",
+    "Evitar nombrar el peso para no incomodar al paciente",
+    "Indicar una dieta sin consultar su interés en el tema",
+    "Derivar a nutrición sin explicar el motivo de la derivación"
+   ],
+   "prompt": "Un paciente con obesidad consulta por lumbalgia y el profesional considera que el peso influye. ¿Cuál es la conducta más adecuada?",
+   "why": "Pedir permiso para hablar del peso respeta la autonomía y mantiene el vínculo. Atribuir de entrada el síntoma al peso puede sesgar el diagnóstico y generar estigma, y callar el tema lo deja sin abordaje."
+  },
+  "obesidad-integral-q13": {
+   "options": [
+    "Usar lenguaje centrado en la persona durante la consulta",
+    "Ofrecer camillas y mobiliario adecuados al tamaño corporal",
+    "Culpabilizar al paciente",
+    "Explorar experiencias previas de atención y de estigma",
+    "Acordar las metas con el paciente en lugar de imponerlas"
+   ],
+   "why": "Culpabilizar refuerza el estigma, deteriora la confianza y lleva a evitar la atención. Las demás opciones son estrategias de atención respetuosa."
+  },
+  "obesidad-integral-q14": {
+   "options": [
+    "Fijar la meta de peso en la primera consulta para dar un horizonte claro",
+    "Comunicar el riesgo cardiometabólico de modo directo antes de explorar su opinión",
+    "Interpretar el abandono del plan como falta de motivación del paciente",
+    "Evaluar beneficios, daños y preferencias.",
+    "Usar la categoría de IMC como argumento central para sostener la adherencia"
+   ],
+   "prompt": "¿Qué elemento mejora la seguridad del abordaje del estigma y el lenguaje en la consulta por peso?",
+   "why": "Ponderar beneficios, daños y preferencias, e invitar al paciente a participar, evita imponer metas o mensajes de riesgo que refuercen el estigma. Atribuir la dificultad solo a la motivación o usar el IMC como reproche empeora el vínculo."
+  },
+  "obesidad-integral-q15": {
+   "options": [
+    "Medir el progreso únicamente por el peso en cada control",
+    "Insistir con el mismo plan ante falta de respuesta, reforzando el esfuerzo",
+    "Reducir la frecuencia de controles ante una pérdida de peso lenta",
+    "Reservar la conversación sobre barreras para cuando el paciente la solicite",
+    "Reevaluar resultados y ajustar el plan."
+   ],
+   "why": "El seguimiento respetuoso reevalúa resultados y barreras junto con el paciente y ajusta el plan sin culpabilizar; insistir en el esfuerzo o medir solo el peso ignora factores que condicionan la respuesta."
+  },
+  "obesidad-integral-q16": {
+   "options": [
+    "La obesidad se relaciona con diabetes, apnea del sueño y enfermedad cardiovascular.",
+    "El riesgo cardiometabólico depende del IMC y es similar en todas las personas de igual categoría.",
+    "La apnea del sueño es una complicación de la obesidad que aparece solo en varones con cuello ancho.",
+    "La esteatosis hepática asociada a disfunción metabólica aparece solo en personas con diabetes establecida.",
+    "Las complicaciones de la obesidad se presentan solo en grados graves y no con obesidad leve."
+   ],
+   "why": "La obesidad se asocia con diabetes tipo 2, apnea obstructiva del sueño, hipertensión, dislipemia, enfermedad hepática esteatósica y enfermedad cardiovascular, incluso en grados leves. El riesgo varía entre personas con igual IMC según la distribución de la grasa."
+  },
+  "obesidad-integral-q17": {
+   "options": [
+    "Medir la glucemia y atribuir el riesgo a ese resultado",
+    "Buscar comorbilidades relevantes",
+    "Esperar la aparición de síntomas para solicitar estudios",
+    "Priorizar la pérdida de peso y estudiar luego si no hay respuesta",
+    "Derivar a cardiología antes de otra evaluación"
+   ],
+   "prompt": "Una mujer de 52 años con IMC de 36 kg/m² y perímetro de cintura aumentado consulta por control. ¿Cuál es la conducta más adecuada?",
+   "why": "Corresponde buscar activamente comorbilidades (glucemia, lípidos, presión arterial, apnea, hígado) aunque no haya síntomas, porque condicionan el riesgo y la elección del tratamiento. Un único estudio o esperar síntomas retrasa el diagnóstico."
+  },
+  "obesidad-integral-q18": {
+   "options": [
+    "Tamizar glucemia y perfil lipídico según riesgo",
+    "Interrogar síntomas sugestivos de apnea del sueño",
+    "Evaluar solo peso",
+    "Medir la presión arterial en cada control",
+    "Valorar esteatosis hepática con índices no invasivos"
+   ],
+   "why": "Evaluar solo el peso omite comorbilidades que determinan riesgo y tratamiento. Las otras opciones son componentes de la evaluación cardiometabólica."
+  },
+  "obesidad-integral-q19": {
+   "options": [
+    "Estudiar la glucemia en ayunas como único marcador de riesgo metabólico",
+    "Seleccionar la estrategia según la categoría de IMC sin analizar complicaciones",
+    "Interpretar la ausencia de síntomas como ausencia de riesgo cardiometabólico",
+    "Evaluar beneficios, daños y preferencias.",
+    "Definir el éxito solo por el porcentaje de pérdida de peso"
+   ],
+   "prompt": "¿Qué elemento mejora la seguridad del abordaje de las complicaciones cardiometabólicas de la obesidad?",
+   "why": "Elegir tratamiento ponderando beneficios, daños y preferencias en función de las complicaciones presentes mejora la seguridad. Las comorbilidades suelen ser asintomáticas, y el éxito debe incluir su evolución, no solo el peso."
+  },
+  "obesidad-integral-q20": {
+   "options": [
+    "Repetir solo la glucemia, dado que es la complicación más frecuente",
+    "Considerar controlado el riesgo al lograr la pérdida de peso planeada",
+    "Suspender los estudios de comorbilidades tras un primer resultado normal",
+    "Evaluar el progreso solo por el porcentaje de pérdida de peso",
+    "Reevaluar resultados y ajustar el plan."
+   ],
+   "why": "Las complicaciones evolucionan: se reevalúan periódicamente junto con el peso para ajustar el plan; un resultado normal aislado o la pérdida de peso por sí sola no garantiza control del riesgo."
+  },
+  "obesidad-integral-q21": {
+   "options": [
+    "Los cambios previos y barreras de acceso orientan un plan realista.",
+    "Los intentos previos sin éxito indican falta de adherencia y justifican un plan más restrictivo.",
+    "La historia de peso solo es útil en pacientes que consultan por primera vez por obesidad.",
+    "El peso máximo alcanzado define por sí solo la intensidad del tratamiento a indicar.",
+    "Los fármacos recibidos por otras patologías son irrelevantes para el plan de manejo del peso."
+   ],
+   "why": "Conocer los tratamientos previos, la evolución del peso, los fármacos que lo modifican y las barreras de acceso permite diseñar un plan realista y evitar repetir estrategias ineficaces. Interpretar la recuperación de peso como falta de adherencia desconoce su base biológica."
+  },
+  "obesidad-integral-q22": {
+   "options": [
+    "Repetir la dieta con la que obtuvo el mayor descenso en el pasado",
+    "Explorar historia y contexto",
+    "Iniciar una dieta de muy bajo aporte calórico por la recuperación previa",
+    "Indicar farmacoterapia de entrada por el fracaso de los intentos previos",
+    "Derivar a cirugía por haber recuperado peso repetidas veces"
+   ],
+   "prompt": "Un hombre de 38 años con IMC de 33 kg/m² refiere haber bajado y recuperado peso varias veces y consulta por un nuevo plan. ¿Cuál es la conducta más adecuada?",
+   "why": "Antes de indicar algo corresponde explorar la historia de peso, tratamientos previos, fármacos, trastornos alimentarios y contexto. La recuperación de peso por sí sola no es criterio de cirugía ni justifica una restricción mayor."
+  },
+  "obesidad-integral-q23": {
+   "options": [
+    "Registrar fármacos que pueden favorecer el aumento de peso",
+    "Indagar trastornos de la conducta alimentaria",
+    "Prescribir idéntico plan a todos",
+    "Reconocer barreras económicas y de acceso a alimentos",
+    "Documentar el peso máximo y los momentos de cambio"
+   ],
+   "why": "Un plan idéntico para todos ignora historia, comorbilidades y contexto. Las demás opciones son elementos de la anamnesis dirigida."
+  },
+  "obesidad-integral-q24": {
+   "options": [
+    "Basar el plan en la mayor pérdida de peso lograda anteriormente",
+    "Reemplazar la anamnesis por la medición actual de composición corporal",
+    "Priorizar el peso máximo histórico sobre el contexto actual del paciente",
+    "Evaluar beneficios, daños y preferencias.",
+    "Revisar solo los medicamentos indicados para el tratamiento de la obesidad"
+   ],
+   "prompt": "¿Qué elemento mejora la seguridad del abordaje a partir de la historia de peso y tratamientos previos?",
+   "why": "La seguridad mejora ponderando beneficios, daños y preferencias sobre una historia completa, incluidos fármacos de otras indicaciones y antecedentes de trastornos alimentarios. Un dato aislado (peso máximo, mejor respuesta previa) no sustituye esa valoración."
+  },
+  "obesidad-integral-q25": {
+   "options": [
+    "Continuar sin cambios el esquema previo si el paciente lo tolera",
+    "Asumir que la recuperación de peso refleja falta de adherencia",
+    "Limitar el seguimiento a registrar el peso en cada control",
+    "Escalar el tratamiento cada vez que se detenga la pérdida de peso",
+    "Reevaluar resultados y ajustar el plan."
+   ],
+   "why": "El seguimiento reevalúa respuesta, barreras y tolerancia para ajustar el plan; escalar automáticamente o atribuir la recuperación a falta de adherencia no considera el contexto."
+  },
+  "obesidad-integral-q26": {
+   "options": [
+    "Los patrones dietarios deben individualizarse por cultura, salud y adherencia.",
+    "Un único patrón con déficit calórico fijo es el más eficaz y debe indicarse a todos los pacientes.",
+    "Los planes de muy bajo aporte calórico son la primera opción por su mayor descenso inicial.",
+    "La eficacia de un patrón alimentario se explica solo por su composición de macronutrientes.",
+    "Los productos sustitutivos de comidas permiten prescindir de la educación alimentaria."
+   ],
+   "why": "Diversos patrones alimentarios pueden ser eficaces; el mejor es el que la persona puede sostener, adaptado a cultura, comorbilidades, recursos y preferencias. La adherencia pesa más que la composición exacta de macronutrientes."
+  },
+  "obesidad-integral-q27": {
+   "options": [
+    "Indicar una dieta de muy bajo aporte calórico para obtener resultados rápidos",
+    "Derivar o trabajar con nutrición",
+    "Entregar una dieta estándar impresa y controlar a los seis meses",
+    "Indicar ayuno intermitente como método preferente de primera línea",
+    "Reducir drásticamente los carbohidratos sin ajustar el tratamiento hipoglucemiante"
+   ],
+   "prompt": "Una mujer de 45 años con obesidad, diabetes tipo 2 con tratamiento hipoglucemiante y antecedente de dietas muy restrictivas pide una indicación nutricional. ¿Cuál es la conducta más adecuada?",
+   "why": "Corresponde un plan individualizado con apoyo de nutrición, coordinando el ajuste de la medicación. Una dieta muy restrictiva repite experiencias previas y, con hipoglucemiantes, puede causar hipoglucemia."
+  },
+  "obesidad-integral-q28": {
+   "options": [
+    "Adaptar el patrón alimentario a la cultura y los recursos",
+    "Explorar hambre, saciedad y conducta alimentaria",
+    "Imponer restricción extrema",
+    "Asegurar aporte adecuado de proteínas y micronutrientes",
+    "Acordar cambios graduales con el paciente"
+   ],
+   "why": "La restricción extrema compromete el aporte nutricional, se sostiene mal y favorece la recuperación del peso. Las otras opciones son prácticas de la intervención nutricional."
+  },
+  "obesidad-integral-q29": {
+   "options": [
+    "Priorizar la restricción energética por sobre la suficiencia nutricional",
+    "Usar planes estandarizados sin adaptar a recursos ni cultura",
+    "Seleccionar el patrón alimentario sin explorar hambre y saciedad",
+    "Evaluar beneficios, daños y preferencias.",
+    "Valorar la adherencia solo por el peso, sin registrar barreras"
+   ],
+   "prompt": "¿Qué elemento mejora la seguridad del abordaje del tratamiento nutricional?",
+   "why": "Ponderar beneficios, daños y preferencias permite elegir un plan nutricionalmente suficiente y sostenible. Priorizar la restricción, estandarizar o medir adherencia solo por peso aumenta el riesgo de déficit y abandono."
+  },
+  "obesidad-integral-q30": {
+   "options": [
+    "Intensificar la restricción calórica cuando el peso se estanca",
+    "Considerar la adherencia insuficiente si no hay descenso mensual",
+    "Mantener el patrón inicial aunque no cubra los requerimientos",
+    "Registrar solo el peso y no las barreras ni las preferencias",
+    "Reevaluar resultados y ajustar el plan."
+   ],
+   "why": "El seguimiento nutricional revisa respuesta, adherencia, barreras y suficiencia nutricional y ajusta el plan; intensificar la restricción ante un estancamiento puede ser contraproducente."
+  },
+  "obesidad-integral-q31": {
+   "options": [
+    "La combinación de ejercicio aeróbico y fuerza se adapta a capacidad funcional.",
+    "El ejercicio aeróbico de alta intensidad es la única modalidad que mejora el pronóstico de la obesidad.",
+    "El entrenamiento de fuerza está contraindicado en la obesidad por el riesgo articular asociado.",
+    "La actividad física solo es útil si produce por sí sola una pérdida de peso clínicamente importante.",
+    "La meta de actividad se define por el gasto calórico necesario para compensar la ingesta del día."
+   ],
+   "why": "La combinación de ejercicio aeróbico y de fuerza, adaptada a la capacidad funcional y a las comorbilidades, mejora aptitud cardiorrespiratoria, masa magra y riesgo metabólico, aun con poca pérdida de peso. El entrenamiento de fuerza no está contraindicado por la obesidad."
+  },
+  "obesidad-integral-q32": {
+   "options": [
+    "Iniciar con trote diario de 30 minutos para acelerar el descenso",
+    "Progresión gradual individualizada",
+    "Postergar toda actividad hasta lograr una pérdida de peso inicial",
+    "Indicar ejercicio de alto impacto para maximizar el gasto energético",
+    "Exigir una prueba de esfuerzo máxima como requisito para cualquier actividad"
+   ],
+   "prompt": "Un hombre de 58 años, sedentario, con IMC de 38 kg/m², gonartrosis e hipertensión controlada, quiere empezar a hacer ejercicio. ¿Cuál es la conducta más adecuada?",
+   "why": "Con sedentarismo, gonartrosis y obesidad se inicia con actividad de bajo impacto y progresión gradual según tolerancia. El alto impacto o el trote inicial aumentan el riesgo articular, y postergar el ejercicio pierde beneficios independientes del peso."
+  },
+  "obesidad-integral-q33": {
+   "options": [
+    "Adaptar la actividad a las limitaciones articulares",
+    "Incluir ejercicios de fuerza además de aeróbicos",
+    "Exigir ejercicio máximo inicial",
+    "Preferir actividades de bajo impacto al inicio",
+    "Fraccionar la actividad en bloques cortos si hay baja tolerancia"
+   ],
+   "why": "Exigir un esfuerzo máximo inicial aumenta el riesgo de lesión y de abandono. Las otras opciones son estrategias de progresión segura."
+  },
+  "obesidad-integral-q34": {
+   "options": [
+    "Indicar ejercicio aeróbico intenso tras valorar solo la tolerancia cardiovascular",
+    "Aplicar la misma progresión a la mayoría de los los pacientes, sin importar su capacidad funcional",
+    "Interpretar la fatiga referida como falta de compromiso con el tratamiento",
+    "Evaluar beneficios, daños y preferencias.",
+    "Medir el progreso principalmente por el descenso de peso en la balanza"
+   ],
+   "prompt": "¿Qué elemento mejora la seguridad del abordaje de la actividad física en una persona con obesidad?",
+   "why": "Ponderar beneficios, daños y preferencias, incluyendo articulaciones, comorbilidades y capacidad funcional, mejora la seguridad. La fatiga refleja limitación funcional real, y el peso en la balanza no capta mejoras en aptitud física."
+  },
+  "obesidad-integral-q35": {
+   "options": [
+    "Aumentar la intensidad cada semana, independientemente de la tolerancia",
+    "Considerar fallida la intervención si no baja el peso en el primer mes",
+    "Mantener la misma carga aunque aparezca dolor articular persistente",
+    "Evaluar solo el peso, sin medir aptitud física ni funcionalidad",
+    "Reevaluar resultados y ajustar el plan."
+   ],
+   "why": "El seguimiento revisa tolerancia, dolor, adherencia y aptitud física para ajustar la carga; subir la intensidad sin criterio o medir solo el peso puede causar lesiones o abandono."
+  },
+  "obesidad-integral-q36": {
+   "options": [
+    "Los fármacos se consideran según indicaciones, contraindicaciones y seguimiento médico.",
+    "Los fármacos se reservan para quienes fracasaron con cirugía bariátrica y mantienen un IMC elevado.",
+    "La farmacoterapia se indica solo con obesidad grave y nunca en sobrepeso con comorbilidades.",
+    "Alcanzada la meta de peso, el fármaco se suspende sin riesgo de recuperación ponderal.",
+    "Los agonistas del receptor de GLP-1 producen efectos equivalentes con independencia del agente y la dosis."
+   ],
+   "why": "La farmacoterapia complementa el estilo de vida en personas que cumplen la indicación aprobada de cada fármaco, con revisión de contraindicaciones y seguimiento de eficacia y tolerancia. Como la obesidad es crónica, suspender al llegar a la meta suele acompañarse de recuperación de peso."
+  },
+  "obesidad-integral-q37": {
+   "options": [
+    "Elegir el fármaco de mayor descenso publicado y titular rápido a dosis máxima",
+    "Evaluar riesgo beneficio y seguridad",
+    "Esperar a que alcance IMC de 40 kg/m² para considerar farmacoterapia",
+    "Prescribir un fármaco sin indicación aprobada por su efecto anorexígeno",
+    "Indicar un suplemento herbario de venta libre como alternativa segura"
+   ],
+   "prompt": "Un paciente de 50 años con IMC de 32 kg/m² e hipertensión no logró descenso con cambios de estilo de vida y consulta por farmacoterapia. ¿Cuál es la conducta más adecuada?",
+   "why": "Cumple criterios para considerar farmacoterapia, pero la elección se hace evaluando riesgo-beneficio, contraindicaciones, interacciones y preferencias, con titulación gradual. No es necesario esperar un IMC mayor, y los suplementos de venta libre carecen de evidencia de seguridad."
+  },
+  "obesidad-integral-q38": {
+   "options": [
+    "Informar los efectos adversos gastrointestinales esperables",
+    "Verificar embarazo y planes de gestación en mujeres en edad fértil",
+    "Usar medicamentos sin evaluación",
+    "Revisar interacciones con la medicación habitual",
+    "Programar controles de tolerancia y respuesta"
+   ],
+   "why": "Prescribir sin evaluar contraindicaciones, gestación ni interacciones expone a daños evitables. Las otras opciones son parte de una prescripción segura."
+  },
+  "obesidad-integral-q39": {
+   "options": [
+    "Elegir farmacoterapia sin valorar contraindicaciones ni posibilidad de gestación",
+    "Interrumpir el seguimiento al alcanzar la meta de peso inicial",
+    "Evaluar eficacia solo por el peso sin considerar tolerancia clínica",
+    "Evaluar beneficios, daños y preferencias.",
+    "Prescribir según disponibilidad comercial aunque no tenga indicación aprobada"
+   ],
+   "prompt": "¿Qué elemento mejora la seguridad del abordaje de la farmacoterapia de la obesidad?",
+   "why": "Ponderar beneficios, daños y preferencias antes y durante el tratamiento es la base de una farmacoterapia segura. Ignorar contraindicaciones, tolerancia o indicación aprobada expone a eventos adversos evitables."
+  },
+  "obesidad-integral-q40": {
+   "options": [
+    "Continuar el fármaco mientras el peso baje, sin revisar tolerancia",
+    "Retirar el tratamiento ante la primera meseta de peso",
+    "Aumentar la dosis ante cualquier falta de respuesta, sin límite",
+    "Suspender los controles al alcanzar la meta de peso",
+    "Reevaluar resultados y ajustar el plan."
+   ],
+   "why": "El seguimiento evalúa eficacia, tolerancia y respuesta clínica para decidir mantener, ajustar o suspender según criterios del fármaco; retirar ante una meseta o subir la dosis sin límite no es una conducta segura."
+  },
+  "obesidad-integral-q41": {
+   "options": [
+    "La cirugía puede ser una opción en personas seleccionadas tras valoración multidisciplinaria.",
+    "La cirugía se reserva para quienes fracasaron con todos los fármacos disponibles y tienen IMC muy elevado.",
+    "La pérdida de peso posquirúrgica es estable y no requiere suplementación ni controles nutricionales.",
+    "La técnica se elige según la preferencia del paciente, sin considerar reflujo, diabetes ni antecedentes.",
+    "La cirugía sustituye el tratamiento nutricional y de estilo de vida, que dejan de ser necesarios."
+   ],
+   "why": "La cirugía metabólica es una opción eficaz en personas seleccionadas según criterios de IMC y comorbilidades, tras evaluación por un equipo multidisciplinario, con elección individualizada de la técnica y seguimiento de por vida (nutrición, suplementos, salud mental)."
+  },
+  "obesidad-integral-q42": {
+   "options": [
+    "Derivar de inmediato al cirujano para que decida la técnica",
+    "Evaluar criterios y seguimiento",
+    "Indicar la cirugía directamente por ser la intervención más eficaz",
+    "Exigir primero un descenso farmacológico de peso como condición",
+    "Postergar la derivación hasta que logre bajar el IMC con dieta"
+   ],
+   "prompt": "Un paciente de 44 años con IMC de 41 kg/m² y diabetes tipo 2 pregunta por la cirugía bariátrica. ¿Cuál es la conducta más adecuada?",
+   "why": "El paciente probablemente cumple criterios, pero la indicación requiere evaluar criterios, riesgos, expectativas y plan de seguimiento con un equipo. No se exige un fracaso farmacológico previo ni se posterga hasta bajar el IMC."
+  },
+  "obesidad-integral-q43": {
+   "options": [
+    "Informar el riesgo de déficits nutricionales posquirúrgicos",
+    "Valorar salud mental y conducta alimentaria previas",
+    "Prometer curación universal",
+    "Explicar la necesidad de seguimiento de por vida",
+    "Discutir complicaciones tempranas y tardías posibles"
+   ],
+   "why": "Prometer curación universal genera expectativas irreales: la respuesta varía, puede haber recuperación de peso y complicaciones. Las demás opciones forman parte de un consentimiento informado completo."
+  },
+  "obesidad-integral-q44": {
+   "options": [
+    "Definir la elegibilidad quirúrgica solo según el IMC histórico más alto",
+    "Considerar la cirugía como reemplazo del seguimiento nutricional",
+    "Derivar sin evaluar antes riesgo anestésico y comorbilidades",
+    "Evaluar beneficios, daños y preferencias.",
+    "Anticipar una respuesta idéntica en todo paciente seleccionado"
+   ],
+   "prompt": "¿Qué elemento mejora la seguridad del abordaje de la cirugía metabólica?",
+   "why": "Ponderar beneficios, daños y preferencias, junto con la evaluación de riesgos y comorbilidades, es lo que mejora la seguridad. La elegibilidad no depende solo del IMC histórico, y la cirugía no sustituye el seguimiento nutricional."
+  },
+  "obesidad-integral-q45": {
+   "options": [
+    "Espaciar los controles tras el primer año por buena evolución",
+    "Limitar el seguimiento a la medición del peso posquirúrgico",
+    "Suspender la suplementación al normalizarse los primeros laboratorios",
+    "Atribuir toda recuperación de peso a abandono de las indicaciones",
+    "Reevaluar resultados y ajustar el plan."
+   ],
+   "why": "El seguimiento posquirúrgico es de por vida: reevalúa peso, nutrición, suplementos, comorbilidades y salud mental y ajusta el plan; la recuperación de peso puede tener causas biológicas y no solo conductuales."
+  },
+  "obesidad-integral-q46": {
+   "options": [
+    "El seguimiento a largo plazo integra hábitos, salud mental y respuesta clínica.",
+    "El mantenimiento del peso perdido depende sobre todo de la fuerza de voluntad sostenida del paciente.",
+    "Tras la fase de pérdida de peso, el seguimiento puede espaciarse sin riesgo de recuperación.",
+    "Una recuperación parcial de peso indica que el tratamiento fracasó y debe suspenderse.",
+    "La adaptación metabólica posterior a la pérdida de peso desaparece pronto y no favorece la recaída."
+   ],
+   "why": "El mantenimiento exige seguimiento prolongado que integre hábitos, salud mental, comorbilidades y respuesta clínica. Tras perder peso hay cambios biológicos que favorecen su recuperación, por lo que la recaída no debe leerse como fracaso moral ni como motivo de suspensión."
+  },
+  "obesidad-integral-q47": {
+   "options": [
+    "Repetir el plan inicial con mayor restricción calórica",
+    "Ajustar objetivos sin culpabilizar",
+    "Suspender el tratamiento hasta que recupere la motivación",
+    "Cambiar de inmediato a una intervención más invasiva",
+    "Reforzar la adherencia atribuyendo la recuperación al abandono"
+   ],
+   "prompt": "Una paciente que había bajado el 10 % de su peso recupera la mitad en un año y se muestra angustiada. ¿Cuál es la conducta más adecuada?",
+   "why": "La recuperación parcial es frecuente en una enfermedad crónica: se revisan causas, se ajustan objetivos y tratamiento y se acompaña sin culpabilizar. Intensificar la restricción o escalar sin revisar causas no corrige los determinantes de la recaída."
+  },
+  "obesidad-integral-q48": {
+   "options": [
+    "Revisar el entorno y el tratamiento previo ante la recuperación de peso",
+    "Explorar síntomas de ansiedad y depresión",
+    "Considerar recaída fracaso moral",
+    "Mantener controles y un plan de contingencia durante años",
+    "Reajustar metas con el paciente tras una recaída"
+   ],
+   "why": "Ver la recaída como fracaso moral es incorrecto y estigmatizante: la recuperación de peso tiene bases biológicas y ambientales. Las demás opciones son prácticas adecuadas de mantenimiento."
+  },
+  "obesidad-integral-q49": {
+   "options": [
+    "Concluir falta de eficacia a partir de una variación aislada del peso",
+    "Dejar en segundo plano el seguimiento de comorbilidades en la fase de mantenimiento",
+    "Interpretar la recaída sin revisar entorno ni tratamiento previo",
+    "Evaluar beneficios, daños y preferencias.",
+    "Asumir que el peso estable certifica control sostenido de las comorbilidades"
+   ],
+   "prompt": "¿Qué elemento mejora la seguridad del abordaje del mantenimiento del peso y las recaídas?",
+   "why": "Ponderar beneficios, daños y preferencias en la fase de mantenimiento evita decisiones por variaciones aisladas del peso y mantiene el control de comorbilidades. Peso estable no equivale a comorbilidades controladas."
+  },
+  "obesidad-integral-q50": {
+   "options": [
+    "Suspender el tratamiento ante una variación aislada del peso",
+    "Espaciar el seguimiento de comorbilidades durante el mantenimiento",
+    "Atribuir la recaída al entorno sin revisar el tratamiento previo",
+    "Dar por logrado el objetivo si el peso se estabiliza",
+    "Reevaluar resultados y ajustar el plan."
+   ],
+   "why": "Durante el mantenimiento se reevalúan resultados, comorbilidades y tratamiento y se ajusta el plan; decidir por una variación aislada o dar por cumplido el objetivo al estabilizarse el peso puede ocultar recaídas."
+  }
+ },
+ "flags": [],
+ "stats": {
+  "revisadas": 50,
+  "reescritas": 50,
+  "flags": 0,
+  "noVerificadas": [
+   "Toda la revisión se basó en consenso clínico general (guías de obesidad); no se abrieron fuentes externas"
+  ]
+ }
+}

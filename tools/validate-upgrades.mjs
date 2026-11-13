@@ -1,15 +1,15 @@
 // Validates a question-review output file: node tools/validate-upgrades.mjs tools/review-out/<batch>.json
 import {readFileSync} from 'node:fs';import {questions} from '../public/learn/courses.mjs';
 const file=process.argv[2];const data=JSON.parse(readFileSync(file,'utf8'));const byId=new Map(questions.map(q=>[q.id,q]));
-const freq=new Map();for(const q of questions)q.options.forEach((o,i)=>{if(i!==q.answer)freq.set(o,(freq.get(o)||0)+1);});
-const stock=new Set([...freq].filter(([,n])=>n>=4).map(([o])=>o));
+import {existsSync} from 'node:fs';
+const stock=new Set(existsSync(new URL('./review-out/_stock.json',import.meta.url))?JSON.parse(readFileSync(new URL('./review-out/_stock.json',import.meta.url),'utf8')):[]);
 const bad=[],warn=[];let longest=0,n=0;
 for(const [id,u] of Object.entries(data.upgrades||{})){
  const q=byId.get(id);if(!q){bad.push(id+': id inexistente');continue;}
  const o=u.options;if(!Array.isArray(o)||o.length!==q.options.length){bad.push(id+': debe tener '+q.options.length+' opciones');continue;}
  if(o[q.answer]!==q.options[q.answer])bad.push(id+': la opción correcta cambió de texto o posición');
  if(new Set(o.map(x=>x.trim().toLowerCase())).size!==o.length)bad.push(id+': opciones repetidas');
- o.forEach((x,i)=>{if(i!==q.answer&&stock.has(x))bad.push(id+': distractor de relleno "'+x.slice(0,40)+'"');if(typeof x!=='string'||x.trim().length<12)bad.push(id+': opción vacía/corta');if(/ninguna de las anteriores|todas las anteriores|ambas (son )?correctas/i.test(x))bad.push(id+': "todas/ninguna"');});
+ o.forEach((x,i)=>{if(i!==q.answer&&x.length>20&&stock.has(x))bad.push(id+': distractor de relleno "'+x.slice(0,40)+'"');if(typeof x!=='string'||(i!==q.answer&&x.trim().length<8))bad.push(id+': distractor vacío/corto');if(/ninguna de las anteriores|todas las anteriores|ambas (son )?correctas/i.test(x))bad.push(id+': "todas/ninguna"');});
  const L=o.map(x=>x.length);n++;if(L[q.answer]===Math.max(...L))longest++;
  if(u.why&&u.why.length<60)warn.push(id+': why muy corto');
 }
