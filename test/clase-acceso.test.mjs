@@ -50,3 +50,14 @@ test('health endpoint reports whether accounts are configured and which commit r
  try{const r=await fetch('http://127.0.0.1:'+server.address().port+'/api/health');const j=await r.json();assert.equal(r.status,200);assert.equal(j.ok,true);assert.equal(typeof j.accountsConfigured,'boolean');assert.deepEqual(Object.keys(j).sort(),['accountsConfigured','commit','ok']);}
  finally{server.close();}
 });
+
+test('static assets are served gzip-compressed and revalidate with ETag for slow phone networks',async()=>{
+ const {server}=await import('../server.mjs');await new Promise(r=>server.listen(0,'127.0.0.1',r));const base='http://127.0.0.1:'+server.address().port;
+ try{
+  const plain=await fetch(base+'/learn/courses.mjs',{headers:{'Accept-Encoding':'identity'}});const raw=(await plain.arrayBuffer()).byteLength;assert.equal(plain.headers.get('content-encoding'),null);
+  const {request}=await import('node:http');
+  const gz=await new Promise((res,rej)=>request(base+'/learn/courses.mjs',{headers:{'Accept-Encoding':'gzip'}},r=>{const c=[];r.on('data',d=>c.push(d));r.on('end',()=>res({h:r.headers,n:Buffer.concat(c).length}));}).on('error',rej).end());
+  assert.equal(gz.h['content-encoding'],'gzip');assert.ok(gz.n<raw/3,`gzip ${gz.n} vs ${raw}`);
+  const etag=gz.h.etag;assert.ok(etag);const again=await fetch(base+'/learn/courses.mjs',{headers:{'If-None-Match':etag}});assert.equal(again.status,304);
+ }finally{server.close();}
+});
