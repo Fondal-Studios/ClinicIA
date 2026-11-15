@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cuentas y permisos · ClinicIA</title>
+<link rel="stylesheet" href="/style.css">
+<style>.acct{border:1px solid #b6cbc4;border-radius:12px;padding:12px;margin:10px 0;background:#fff;color:#173b38}.acct h3{margin:0 0 4px;word-break:break-all}.row{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}.row button,.row select,.row input{min-height:40px}.pill{display:inline-block;padding:2px 8px;border-radius:999px;background:#d6eae2;font-size:13px;margin-right:4px}.off{background:#eee}</style>
+</head>
+<body class="admin-body">
+<main class="admin-main">
+<a href="/admin.html">← Administración</a>
+<span class="eyebrow">CLINICIA · ADMINISTRACIÓN</span>
+<h1>Cuentas y permisos</h1>
+<p>Acá ves las cuentas que se crean y podés <strong>liberar un nivel sin cobro</strong> (por ejemplo, para el personal del hospital), darlo por un tiempo y quitarlo cuando quieras. También podés activar el modo instructor o institución. Las cuentas administradoras no se cambian desde acá.</p>
+<form id="search" class="row"><input name="q" placeholder="Buscar usuario" maxlength="60" aria-label="Buscar usuario"><button class="primary" type="submit">Buscar</button></form>
+<p id="status" role="status">Verificando acceso…</p>
+<div id="list"></div>
+<div class="row"><button id="prev" type="button">← Anteriores</button><button id="next" type="button">Siguientes →</button></div>
+</main>
+<script type="module" src="/admin-cuentas.mjs"></script>
+</body>
+</html>
