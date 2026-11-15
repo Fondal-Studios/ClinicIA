@@ -3,8 +3,8 @@
 // La teoría y los bancos de preguntas de los cursos de estudio se sirven como archivos estáticos al navegador y no se pueden ocultar sin rediseñarlos.
 import {trainingCourses} from '../public/learn/content/capacitacion-catalog.mjs';
 export const paywallOn=(env=process.env)=>env.CLINICIA_PAYWALL==='true';
-// Gratis: el curso policial y todos los refuerzos y minicursos. De pago (nivel alumno): el resto del catálogo, p. ej. las rotaciones.
-export const isFreeCourse=id=>{const c=trainingCourses.find(c=>c.id===id);return !!c&&(c.id==='respuesta-policial'||!!c.refresher||!!c.mini);};
+// Gratis: el curso policial, los refuerzos, los minicursos y las rotaciones de rotantes (rot-*). El resto del catálogo requiere el nivel alumno.
+export const isFreeCourse=id=>{const c=trainingCourses.find(c=>c.id===id);return !!c&&(c.id==='respuesta-policial'||String(c.id).startsWith('rot-')||!!c.refresher||!!c.mini);};
 const need=(level,message)=>Object.assign(new Error(message),{status:402,code:'payment_required',plan:level});
 export function createAccessGuard({payments,env=process.env}){
  return async function guard(user,level,courseId){

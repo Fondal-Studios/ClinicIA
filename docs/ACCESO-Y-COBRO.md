@@ -3,8 +3,8 @@
 ## Niveles
 | Nivel | Referencia | Incluye |
 |---|---|---|
-| Gratis | USD 0 | Curso policial, refuerzos y minicursos del catálogo de capacitación; estudio en el dispositivo |
-| Alumno | USD 4,99 · 30 días | Lo gratis + exámenes y certificados del resto del catálogo (p. ej. rotaciones) |
+| Gratis | USD 0 | Curso policial, refuerzos, minicursos y **todas las rotaciones (rotantes)**; estudio en el dispositivo |
+| Alumno | USD 4,99 · 30 días | Hoy **no bloquea nada en el servidor** (todo el catálogo de capacitación es gratis). Falta definir qué incluye, p. ej. más uso del tutor de IA |
 | Instructor | USD 9,99 · 30 días | Todo lo de alumno + crear grupos, aulas y clases con IA; insignia «Instructor validado» |
 
 ## Bloqueo (apagado por defecto)
@@ -21,3 +21,6 @@ No hay un enlace de pago fijo: cada compra genera su propio checkout de Mercado 
 
 ## Pendiente
 Revisión legal de `/terminos.html` y `/privacidad.html`, facturación electrónica, prueba real en el modo de pruebas de Mercado Pago, y decidir si los alumnos de un grupo de un instructor pago acceden gratis.
+
+## Panel de cuentas y permisos (administración)
+`/admin-cuentas.html` (enlace desde `/admin.html`): lista y busca cuentas, muestra su nivel y actividad, **libera un nivel sin cobro** por 30 días a 10 años con una nota (p. ej. «Hospital»), lo quita cuando quieras y activa o quita el modo instructor o institución. Las cuentas administradoras no se modifican desde acá y nadie puede asignarse administración por la API. Las liberaciones quedan en `clinic_grants` con quién las dio.

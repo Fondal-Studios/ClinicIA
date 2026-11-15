@@ -1,6 +1,7 @@
 import {randomUUID,createHmac,timingSafeEqual} from 'node:crypto';
 export const paymentSchema=`CREATE TABLE IF NOT EXISTS clinic_orders(id text PRIMARY KEY,user_id text NOT NULL REFERENCES clinic_users(id) ON DELETE CASCADE,request_key text NOT NULL,title text NOT NULL,amount_cents integer NOT NULL,currency text NOT NULL DEFAULT 'ARS',status text NOT NULL DEFAULT 'creating',preference_id text,checkout_url text,collector_id text,payment_id text UNIQUE,valid_until timestamptz,created_at timestamptz NOT NULL DEFAULT now(),updated_at timestamptz NOT NULL DEFAULT now(),UNIQUE(user_id,request_key));
 ALTER TABLE clinic_orders ADD COLUMN IF NOT EXISTS plan text NOT NULL DEFAULT 'alumno';
+CREATE TABLE IF NOT EXISTS clinic_grants(id text PRIMARY KEY,user_id text NOT NULL REFERENCES clinic_users(id) ON DELETE CASCADE,plan text NOT NULL,valid_until timestamptz NOT NULL,note text NOT NULL DEFAULT '',granted_by text REFERENCES clinic_users(id) ON DELETE SET NULL,revoked_at timestamptz,created_at timestamptz NOT NULL DEFAULT now());
 CREATE TABLE IF NOT EXISTS clinic_withdrawals(id text PRIMARY KEY,user_id text NOT NULL REFERENCES clinic_users(id) ON DELETE CASCADE,order_id text NOT NULL UNIQUE REFERENCES clinic_orders(id) ON DELETE CASCADE,reason text NOT NULL DEFAULT '',status text NOT NULL DEFAULT 'received',created_at timestamptz NOT NULL DEFAULT now());`;
 const fail=(status,message)=>{throw Object.assign(new Error(message),{status});};
 // Dos niveles de acceso. El precio de referencia es en USD; Mercado Pago Argentina cobra en ARS, así que el monto cobrado sale de CLINICIA_PRICE_<PLAN>_ARS
@@ -58,9 +59,16 @@ export function createPayments({db,origin,env=process.env,request=fetch}){
  async function reconcilePending(){const rows=(await db.query("SELECT id,user_id FROM clinic_orders WHERE preference_id IS NOT NULL AND (status IN ('pending','in_process','authorized') OR (status='approved' AND valid_until>now())) AND updated_at<now()-interval '5 minutes' ORDER BY updated_at LIMIT 100")).rows;
   const summary={checked:0,changed:0,errors:0};for(const r of rows){summary.checked++;try{const before=(await db.query('SELECT status FROM clinic_orders WHERE id=$1',[r.id])).rows[0].status;const after=await verify(r.user_id,r.id);if(after.status!==before)summary.changed++;}catch{summary.errors++;}}return summary;}
  // Nivel de acceso vigente: una orden aprobada y no vencida. El nivel instructor incluye el de alumno.
- async function access(userId){const rows=(await db.query("SELECT plan,max(valid_until) AS until FROM clinic_orders WHERE user_id=$1 AND status='approved' AND valid_until>now() GROUP BY plan",[userId])).rows;
-  const by=Object.fromEntries(rows.map(r=>[r.plan,r.until]));const a=by.alumno||null,i=by.instructor||null;const stu=[a,i].filter(Boolean).sort((x,y)=>new Date(y)-new Date(x))[0]||null;
+ async function access(userId){const rows=(await db.query("SELECT plan,max(valid_until) AS until FROM clinic_orders WHERE user_id=$1 AND status='approved' AND valid_until>now() GROUP BY plan UNION ALL SELECT plan,max(valid_until) FROM clinic_grants WHERE user_id=$1 AND revoked_at IS NULL AND valid_until>now() GROUP BY plan",[userId])).rows;
+  const latest=p=>rows.filter(r=>r.plan===p).map(r=>r.until).sort((x,y)=>new Date(y)-new Date(x))[0]||null;
+  const a=latest('alumno'),i=latest('instructor');const stu=[a,i].filter(Boolean).sort((x,y)=>new Date(y)-new Date(x))[0]||null;
   return {alumno:{active:!!stu,validUntil:stu},instructor:{active:!!i,validUntil:i}};}
+ // Liberación manual por administración (p. ej. hospital): cuenta con nivel sin pasar por el cobro. Se puede revocar.
+ async function grant(adminId,userId,plan,days,note=''){if(!PLANS[plan])fail(400,'Nivel inválido.');const d=Math.floor(Number(days));if(!(d>=1&&d<=3650))fail(400,'La duración debe ser de 1 a 3650 días.');
+  if(!(await db.query('SELECT 1 FROM clinic_users WHERE id=$1',[String(userId||'')])).rows.length)fail(404,'Cuenta no encontrada.');
+  const id=randomUUID();const r=await db.query("INSERT INTO clinic_grants(id,user_id,plan,valid_until,note,granted_by) VALUES($1,$2,$3,now()+($4||' days')::interval,$5,$6) RETURNING id,plan,valid_until",[id,userId,plan,String(d),String(note||'').slice(0,200),adminId]);return {id:r.rows[0].id,plan,validUntil:r.rows[0].valid_until};}
+ async function revokeGrant(grantId){const r=await db.query("UPDATE clinic_grants SET revoked_at=now() WHERE id=$1 AND revoked_at IS NULL RETURNING id",[String(grantId||'')]);if(!r.rows.length)fail(404,'Liberación no encontrada o ya revocada.');return {id:r.rows[0].id,revoked:true};}
+ async function grantsOf(userIds){if(!userIds.length)return {};const r=(await db.query("SELECT id,user_id,plan,valid_until,note,revoked_at,created_at FROM clinic_grants WHERE user_id=ANY($1) ORDER BY created_at DESC",[userIds])).rows;const out={};for(const g of r)(out[g.user_id]??=[]).push({id:g.id,plan:g.plan,validUntil:g.valid_until,note:g.note,revoked:!!g.revoked_at,active:!g.revoked_at&&new Date(g.valid_until)>new Date()});return out;}
  // Botón de arrepentimiento: el comprador pide dejar sin efecto la compra dentro de 10 días corridos desde la aprobación.
  // Solo se registra el pedido; la devolución la ejecuta una persona desde Mercado Pago.
  async function withdraw(userId,orderId,reason=''){const o=(await db.query('SELECT * FROM clinic_orders WHERE id=$1 AND user_id=$2',[String(orderId||''),userId])).rows[0];if(!o)fail(404,'Orden no encontrada.');
@@ -69,5 +77,5 @@ export function createPayments({db,origin,env=process.env,request=fetch}){
   const id=randomUUID();const r=await db.query("INSERT INTO clinic_withdrawals(id,user_id,order_id,reason) VALUES($1,$2,$3,$4) ON CONFLICT(order_id) DO NOTHING RETURNING *",[id,userId,o.id,String(reason||'').slice(0,500)]);
   return {id:r.rows[0]?.id||(await db.query('SELECT id FROM clinic_withdrawals WHERE order_id=$1',[o.id])).rows[0].id,status:'received',repeated:!r.rows.length};}
  async function withdrawals(){return (await db.query("SELECT w.id,w.order_id,w.reason,w.status,w.created_at,u.username,o.plan,o.amount_cents,o.currency FROM clinic_withdrawals w JOIN clinic_users u ON u.id=w.user_id JOIN clinic_orders o ON o.id=w.order_id ORDER BY w.created_at DESC LIMIT 200")).rows;}
- return {offer:()=>publicPaymentOffer(config()),orders,checkout,verify,webhook,reconcilePending,access,withdraw,withdrawals};
+ return {offer:()=>publicPaymentOffer(config()),orders,checkout,verify,webhook,reconcilePending,access,grant,revokeGrant,grantsOf,withdraw,withdrawals};
 }
