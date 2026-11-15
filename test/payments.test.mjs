@@ -46,3 +46,23 @@ test('webhook requires a valid signature, re-reads the payment and credits exact
   assert.deepEqual(await api.reconcilePending(),{checked:0,changed:0,errors:0});
  }finally{await db.close();}
 });
+test('two access levels: alumno USD 4.99 and instructor USD 9.99, server-side amounts, validated instructor includes student access',async()=>{
+ const db=new PGlite();await db.exec(schema+paymentSchema);await db.query("INSERT INTO clinic_users(id,username,username_key,password_hash,recovery_hash) VALUES('u1','User1','user1','hash','hash')");
+ const env={MERCADOPAGO_ACCESS_TOKEN:'fake-server-token',CLINICIA_PRICE_ALUMNO_ARS:'5000',CLINICIA_PRICE_INSTRUCTOR_ARS:'10000',CLINICIA_PRODUCT_TITLE:'ClinicIA',CLINICIA_PRODUCT_DESCRIPTION:'Acceso',CLINICIA_SELLER_NAME:'Seller',CLINICIA_SUPPORT_EMAIL:'t@example.com',CLINICIA_PAYMENTS_ENABLED:'true'};
+ const offer=publicPaymentOffer(paymentConfig(env));assert.deepEqual(offer.plans.map(p=>[p.id,p.usd,p.amount,p.enabled]),[['alumno',4.99,5000,true],['instructor',9.99,10000,true]]);
+ assert.equal(paymentConfig({...env,CLINICIA_PRICE_INSTRUCTOR_ARS:''}).plans.instructor.enabled,false,'sin precio en ARS el nivel no se vende');
+ const sent=[];let pay;const request=async(url,args)=>{if(url.endsWith('/checkout/preferences')){const b=JSON.parse(args.body);sent.push(b);return {ok:true,json:async()=>({id:'pref-'+sent.length,collector_id:7,init_point:'https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=x'})};}return {ok:true,json:async()=>url.includes('/search')?{results:[pay]}:pay};};
+ const api=createPayments({db,origin:'https://clinic.example',env,request});
+ try{
+  assert.deepEqual((await api.access('u1')).instructor,{active:false,validUntil:null});
+  const k1='11111111-1111-1111-1111-111111111111',k2='22222222-2222-2222-2222-222222222222';
+  await assert.rejects(()=>api.checkout('u1',{requestKey:k1,accepted:true,plan:'admin'}),e=>e.status===400);
+  const o=await api.checkout('u1',{requestKey:k1,accepted:true,plan:'instructor',amount:1,unit_price:1});assert.equal(o.plan,'instructor');assert.equal(o.amount,10000);assert.equal(sent[0].items[0].unit_price,10000);assert.equal(sent[0].items[0].id,'clinicia-instructor');
+  const a=await api.checkout('u1',{requestKey:k2,accepted:true,plan:'alumno'});assert.equal(a.amount,5000);assert.equal(a.plan,'alumno');
+  pay={id:501,status:'approved',collector_id:7,currency_id:'ARS',transaction_amount:10000,external_reference:o.id,date_approved:new Date().toISOString()};
+  assert.equal((await api.verify('u1',o.id)).status,'approved');
+  const acc=await api.access('u1');assert.equal(acc.instructor.active,true);assert.equal(acc.alumno.active,true,'instructor incluye alumno');
+  await db.query("UPDATE clinic_orders SET valid_until=now()-interval '1 day' WHERE id=$1",[o.id]);
+  const exp=await api.access('u1');assert.equal(exp.instructor.active,false);assert.equal(exp.alumno.active,false,'vencido: sin acceso');
+ }finally{await db.close();}
+});
