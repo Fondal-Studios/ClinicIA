@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Términos y condiciones · ClinicIA</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body style="display:block">
+<main class="legal-content">
+<a href="/">← ClinicIA</a>
+<h1>Términos y condiciones</h1>
+<p><strong>Borrador de trabajo · versión del 15 de noviembre de 2026.</strong> Este texto fue preparado para describir cómo funciona ClinicIA y <strong>debe ser revisado por un abogado antes de comenzar a cobrar</strong>.</p>
+<h2>1. Qué es ClinicIA</h2>
+<p>Una herramienta independiente de estudio y capacitación para adultos: teoría, preguntas, simulacros, cursos con evaluación y conversaciones educativas con inteligencia artificial. <strong>No es un servicio asistencial, no reemplaza el juicio de un profesional y no debe usarse para decidir la atención de un paciente real.</strong> Los certificados que se emiten acreditan haber completado una actividad de ClinicIA; no son títulos oficiales ni certificaciones de entidades externas (por ejemplo AHA, PHTLS, ATLS).</p>
+<h2>2. Contenido y validación</h2>
+<p>El contenido está pendiente de validación docente y puede contener errores. La inteligencia artificial puede equivocarse. Ante una diferencia, prevalecen las guías vigentes y el criterio de tu instructor o institución.</p>
+<h2>3. Cuenta</h2>
+<p>Sos responsable de tu usuario, tu contraseña o código de acceso y de tu código de recuperación. Una cuenta es personal. Podemos suspender cuentas que se usen para fraude, para vulnerar la seguridad o para cargar datos de pacientes identificables.</p>
+<h2>4. Niveles de acceso y precio</h2>
+<ul>
+<li><strong>Acceso alumno</strong>: precio de referencia USD 4,99.</li>
+<li><strong>Acceso instructor</strong>: precio de referencia USD 9,99; incluye el nivel alumno y la cuenta de instructor validada.</li>
+</ul>
+<p>El pago se procesa en Mercado Pago <strong>en pesos argentinos</strong>; el monto exacto en pesos se muestra antes de pagar. Es un pago único con vigencia de 30 días desde la aprobación, sin renovación automática. Los datos de tu tarjeta los procesa Mercado Pago; ClinicIA no los recibe ni los guarda. El nivel instructor valida el acceso a las herramientas de instructor, pero <strong>no verifica título ni matrícula profesional</strong>.</p>
+<h2>5. Piloto gratuito</h2>
+<p>Mientras el piloto esté abierto, parte del contenido es gratuito. Podemos cambiar qué es gratuito y qué es pago avisando en la aplicación; una compra vigente conserva lo que incluía al momento de pagarla.</p>
+<h2>6. Derecho de arrepentimiento y devoluciones</h2>
+<p>Podés revocar la compra dentro de los <strong>10 días corridos</strong> desde la aprobación del pago, desde la página <a href="/devoluciones.html">Devoluciones y arrepentimiento</a>. La devolución se tramita por el mismo medio de pago. Pasado ese plazo, escribinos a soporte y revisamos tu caso.</p>
+<h2>7. Propiedad intelectual y créditos</h2>
+<p>Los textos y esquemas originales pertenecen a ClinicIA. Algunas imágenes son de terceros con licencias libres; sus autores y licencias figuran en <a href="/creditos.html">Créditos de imágenes</a>. No podés copiar ni revender el contenido sin permiso.</p>
+<h2>8. Datos personales</h2>
+<p>El tratamiento de datos se describe en <a href="/privacidad.html">Datos y condiciones</a>. No cargues datos identificables de pacientes en el tutor ni en las aulas.</p>
+<h2>9. Responsabilidad</h2>
+<p>ClinicIA se ofrece tal como está. En la medida que la ley lo permita, no respondemos por decisiones clínicas tomadas con este material ni por interrupciones del servicio. Esto no limita los derechos que la Ley de Defensa del Consumidor te reconoce.</p>
+<h2>10. Contacto y cambios</h2>
+<p>Vendedor y soporte: <span id="seller">consultando…</span>. Podemos actualizar estos términos; el uso continuado luego del aviso implica aceptación. Ley aplicable: la de la República Argentina.</p>
+</main>
+<script>fetch('/api/offer').then(r=>r.json()).then(j=>{const p=j.payments||{};document.getElementById('seller').textContent=p.seller&&p.support?p.seller+' · '+p.support:'a definir antes de comenzar a cobrar';}).catch(()=>{document.getElementById('seller').textContent='a definir antes de comenzar a cobrar';});</script>
+</body>
+</html>
