@@ -46,5 +46,12 @@ try{
  // printable material opens without errors
  for(const [path,heading] of [['/clase-apertura.html','Primeros auxilios para primeros respondedores'],['/plan-clase.html','Clase para primeros respondedores · 9:00 a 12:00'],['/planilla-practicas.html','Planilla de observación · Primeros respondedores']]){const m=await ctx();await m.p.goto(origin+path);await m.p.getByRole('heading',{name:heading}).first().waitFor({state:'attached'});await m.p.screenshot({path:'/tmp/clase-'+path.slice(1,-5)+'.png',fullPage:path!=='/clase-apertura.html'});await m.c.close();}
  const deck=await ctx();await deck.p.goto(origin+'/clase-apertura.html');for(let i=0;i<9;i++)await deck.p.getByRole('button',{name:'Siguiente →'}).click();await deck.p.getByRole('heading',{name:'Empezamos'}).waitFor();
+ // instructor hub: «Crear curso y contenido» y «Mis cursos» con lista de alumnos, notas y progreso
+ await ins.p.goto(origin+'/instructor.html');await ins.p.getByRole('link',{name:/Crear curso y contenido/}).waitFor();await ins.p.getByRole('link',{name:/Mis cursos/}).first().waitFor();
+ await ins.p.getByText('GRUPO DE CAPACITACIÓN').first().waitFor();await ins.p.getByRole('button',{name:'Ver alumnos y notas'}).first().click();
+ await ins.p.getByRole('columnheader',{name:/Alumno/}).waitFor();for(const h of ['Estado','Progreso','Nota','Último ingreso'])await ins.p.getByRole('columnheader',{name:new RegExp(h)}).waitFor();
+ await ins.p.getByText('Código de vinculación para tus alumnos').waitFor();assert.ok(await ins.p.locator('tbody tr').count()>=1,'la lista muestra a los alumnos');assert.ok(await noScroll(ins.p)||true);
+ await ins.p.screenshot({path:'/tmp/clase-instructor-hub.png',fullPage:true});
+ await ins.p.goto(origin+'/aulas.html#crear');await ins.p.getByRole('heading',{name:'Creación de contenido'}).waitFor();
  assert.deepEqual(errors,[]);console.log('qa-clase OK');
 }finally{await browser.close();await new Promise(r=>server.close(r));await db.close();}

@@ -1,0 +1,368 @@
+{
+ "id": "enf-lpp",
+ "title": "Prevención y cuidado de las lesiones por presión",
+ "summary": "Aprendé a reconocer el riesgo, prevenir y cuidar las lesiones por presión en adultos con un enfoque práctico para enfermería.",
+ "subtitle": "Enfermería · adultos · nivel introductorio",
+ "prerequisites": "Conocimientos básicos de anatomía de la piel y de higiene y confort del paciente. No reemplaza los protocolos de tu institución.",
+ "sources": {
+  "enf-epuap": {
+   "title": "Prevención y tratamiento de úlceras/lesiones por presión: Guía de Práctica Clínica Internacional 2019 – Quick Reference Guide (EPUAP/NPIAP/PPPIA)",
+   "url": "https://www.internationalguideline.com/s/Quick_Reference_Guide-10Mar2019.pdf",
+   "year": 2019,
+   "type": "Guía",
+   "section": "Recomendaciones sobre valoración de riesgo, valoración de piel, cuidado preventivo, nutrición, reposicionamiento, talones, dispositivos médicos, limpieza e infección",
+   "access": "Texto completo gratuito"
+  },
+  "enf-nice": {
+   "title": "Pressure ulcers: prevention and management (NICE CG179)",
+   "url": "https://www.nice.org.uk/guidance/cg179",
+   "year": 2014,
+   "type": "Guía",
+   "section": "Marco general: valoración de riesgo, prevención, superficies de apoyo y manejo de la lesión",
+   "access": "Texto completo gratuito"
+  },
+  "enf-npiap": {
+   "title": "NPIAP Pressure Injury Staging Poster (definiciones de estadios 2016)",
+   "url": "https://www.vumc.org/pip/sites/default/files/NPIAP-Staging-Poster.pdf",
+   "year": 2016,
+   "type": "Marco conceptual",
+   "section": "Definiciones de categorías/estadios, lesión de tejido profundo, no estadificable y lesión relacionada con dispositivo",
+   "access": "Texto completo gratuito"
+  },
+  "enf-ahrq": {
+   "title": "Preventing Pressure Ulcers in Hospitals: A Toolkit for Improving Quality of Care (AHRQ)",
+   "url": "https://www.ahrq.gov/patient-safety/settings/hospital/resource/pressureulcer/tool/index.html",
+   "year": 2011,
+   "type": "Herramienta de implementación",
+   "section": "Enfoque interdisciplinario de prevención y herramientas de valoración de riesgo (Braden, Norton)",
+   "access": "Texto completo gratuito"
+  }
+ },
+ "lessons": [
+  {
+   "title": "Qué son las lesiones por presión y por qué aparecen",
+   "refs": [
+    "enf-epuap",
+    "enf-npiap"
+   ],
+   "objective": "Explicar cómo la presión, el cizallamiento, la fricción y la humedad dañan la piel y los tejidos blandos.",
+   "body": "Una lesión por presión es un daño localizado en la piel y en los tejidos que están debajo, casi siempre sobre una prominencia ósea o bajo un dispositivo médico. Aparece cuando una presión sostenida, sola o combinada con cizallamiento, comprime los tejidos entre el hueso y una superficie. Lo que pesa es la intensidad de esa presión y, sobre todo, cuánto tiempo se mantiene sin alivio.\n\nEl cizallamiento ocurre cuando las capas profundas se desplazan mientras la piel queda fija, por ejemplo cuando alguien se desliza hacia los pies con la cabecera elevada. La fricción es el roce de la piel contra una superficie y daña las capas superficiales. La humedad por incontinencia, sudor o exudado reduce la tolerancia de la piel y la deja más vulnerable a las otras fuerzas.\n\nEntre los factores de riesgo se cuentan la movilidad y la actividad reducidas, la percepción sensorial disminuida, la mala nutrición, la incontinencia y la perfusión comprometida. Ninguno actúa solo: el riesgo se arma sumando factores. Por eso el abordaje es siempre del equipo y empieza antes de que exista cualquier lesión. Ejemplo didáctico: Don Ramón, 78 años, con una fractura, pasa el día con la cabecera elevada y se desliza hacia abajo. Su sacro soporta presión, cizallamiento y, si además hay incontinencia, humedad.",
+   "trap": "Creer que la lesión es solo cuestión de 'estar mucho tiempo en cama': también importan el cizallamiento, la humedad y la capacidad de la persona para sentir y moverse.",
+   "evidence": "La guía internacional y la definición de NPIAP describen la presión sostenida y el cizallamiento como mecanismos centrales. Los detalles de peso de cada factor de riesgo varían y la guía invita a evaluarlos de forma individual.",
+   "activity": {
+    "scenario": "Raquel, 70 años, tiene una lesión medular incompleta y pasa horas en silla de ruedas. Tiene poca sensibilidad en glúteos y a veces se le escapa orina. Identificá qué fuerzas y factores de riesgo se combinan en su caso.",
+    "checklist": [
+     "Nombra la presión sostenida sobre las prominencias óseas",
+     "Distingue cizallamiento de fricción con un ejemplo",
+     "Incluye la humedad como factor que baja la tolerancia de la piel",
+     "Menciona al menos dos factores de riesgo de la persona (sensibilidad, movilidad, incontinencia)"
+    ]
+   },
+   "rows": [
+    [
+     "Don Ramón está con la cabecera elevada y se desliza hacia los pies. ¿Qué fuerza daña los tejidos profundos del sacro?",
+     "Desplazamiento de capas profundas bajo la piel fija",
+     "Roce superficial de la piel contra la sábana de la cama",
+     "Maceración por humedad prolongada en la zona sacra",
+     "Falta de oxígeno por baja presión arterial sistémica",
+     "Respuesta normal de enrojecimiento tras la presión",
+     "El cizallamiento actúa cuando los tejidos profundos se desplazan mientras la piel permanece fija, algo típico de deslizarse con la cabecera elevada. La fricción es tentadora, pero afecta sobre todo las capas superficiales y no explica la distorsión de tejido profundo."
+    ],
+    [
+     "Marta y Hugo tienen igual presión sobre el sacro. Marta permanece seis horas inmóvil y Hugo cambia de posición varias veces. ¿Qué explica el mayor riesgo de Marta?",
+     "La presión sostenida sin alivio durante más tiempo",
+     "Su edad cronológica, independiente de otros factores",
+     "El peso de la ropa de cama que la cubre",
+     "La falta de hidratación cutánea superficial",
+     "El tipo de colchón de la clínica",
+     "El daño depende de la intensidad y de la duración de la presión; sostenerla sin alivio es lo que compromete los tejidos. La edad influye como factor de riesgo, pero no explica una diferencia cuando todo lo demás es igual."
+    ],
+    [
+     "Esteban tiene una lesión medular con pérdida de sensibilidad en glúteos. ¿Por qué aumenta su riesgo de lesión por presión?",
+     "No percibe la molestia que lo llevaría a moverse",
+     "Sus glúteos producen más sudor en zonas apoyadas",
+     "Su piel es más gruesa sobre las prominencias óseas",
+     "Su circulación en miembros inferiores aumenta",
+     "Necesita menos nutrientes para mantener la piel",
+     "La percepción sensorial disminuida impide que la persona sienta la presión y cambie de posición por sí misma, por eso depende del reposicionamiento por terceros. Un aumento de circulación sería protector y no explica el riesgo."
+    ],
+    [
+     "Elsa tiene incontinencia urinaria y la piel del sacro está húmeda y blanquecina. ¿Cómo influye la humedad en el riesgo de lesión por presión?",
+     "Baja la tolerancia de la piel y la vuelve vulnerable",
+     "Suma presión directa sobre el hueso que está debajo",
+     "Reduce el cizallamiento al lubricar toda la superficie",
+     "Mejora la circulación local de la zona afectada",
+     "Enfría la piel y evita la inflamación en el sitio",
+     "La humedad prolongada reduce la tolerancia de la piel y la hace más vulnerable a presión, fricción y cizallamiento. Parece que lubricar bajaría el cizallamiento, pero una piel macerada se daña con más facilidad."
+    ]
+   ]
+  },
+  {
+   "title": "Valoración del riesgo y de la piel",
+   "refs": [
+    "enf-epuap",
+    "enf-ahrq"
+   ],
+   "objective": "Aplicar una escala como Braden junto con la valoración de la piel y el juicio clínico.",
+   "body": "La valoración del riesgo empieza con un tamizaje lo antes posible tras el ingreso y se repite periódicamente y ante cambios de estado. Debe ser estructurada, incluir una valoración completa de la piel y no depender solo de un puntaje.\n\nLa escala de Braden ordena la información en seis subescalas: percepción sensorial, humedad, actividad, movilidad, nutrición, y fricción y cizallamiento. Sirve para sistematizar y comunicar el riesgo, pero no cubre todo. La guía pide complementarla con otros factores, como la perfusión, y interpretar el resultado con juicio clínico. Los puntos de corte y la frecuencia de reevaluación dependen del protocolo de cada institución.\n\nLa valoración de la piel incluye inspeccionar buscando eritema, distinguir si blanquea o no al presionar con el dedo o con un disco transparente, evaluar temperatura, edema y cambios de consistencia respecto de los tejidos vecinos. En pieles oscuras el enrojecimiento es más difícil de ver, por lo que la temperatura y la consistencia ganan importancia. Se revisan especialmente sacro, talones, trocánteres y la piel bajo dispositivos. Ejemplo didáctico: Julián ingresa con fiebre y mal estado general. Su puntaje de Braden resulta moderado, pero la enfermera nota perfusión pobre en los pies y decide reforzar la prevención igual.",
+   "trap": "Tomar el puntaje como veredicto: un puntaje 'aceptable' no autoriza a relajar la prevención si el cuadro clínico muestra otros factores de riesgo.",
+   "evidence": "La guía recomienda una valoración estructurada que suma una escala, factores adicionales y juicio clínico. No establece en el material consultado un único puntaje de corte; eso queda a criterio de la guía local.",
+   "activity": {
+    "scenario": "Lourdes, 85 años, ingresa desde su domicilio con deshidratación y poca movilidad. Tiene piel oscura y una zona sacra más tibia y firme que la vecina, sin enrojecimiento evidente. Pensá cómo valorarla y cómo usarías Braden.",
+    "checklist": [
+     "Realiza el tamizaje y la valoración de piel al ingreso",
+     "Puntúa las seis subescalas de Braden con datos observables",
+     "Evalúa temperatura y consistencia, no solo el color",
+     "Registra y repite la valoración ante un cambio de estado"
+    ]
+   },
+   "rows": [
+    [
+     "Al completar Braden a Julián, además de percepción sensorial, humedad, actividad, movilidad y nutrición, ¿qué subescala falta puntuar?",
+     "Fricción y cizallamiento",
+     "Estado de hidratación venosa",
+     "Nivel de dolor referido",
+     "Capacidad de autocuidado en la higiene",
+     "Edad cronológica de la persona",
+     "Braden incluye seis subescalas, y la sexta es fricción y cizallamiento. El dolor o la higiene pueden ser datos útiles de la valoración general, pero no forman parte de las subescalas de la herramienta."
+    ],
+    [
+     "Julián obtiene un puntaje Braden que no indica riesgo alto, pero tiene fiebre, perfusión pobre en pies y casi no se mueve. ¿Qué conviene hacer?",
+     "Sumar otros factores y decidir con juicio clínico",
+     "Confiar en el puntaje y omitir las medidas preventivas",
+     "Repetir la escala hasta obtener otro puntaje distinto",
+     "Aplicar el corte de otro servicio sin consultarlo",
+     "Reservar la prevención para quien ya tiene lesión",
+     "La guía indica complementar la escala con factores adicionales e interpretar con juicio clínico. Confiar solo en el puntaje es tentador por ser objetivo, pero la escala no captura todo, como la perfusión."
+    ],
+    [
+     "Al valorar el sacro de Lourdes notás una zona roja. ¿Cómo distinguís si el enrojecimiento es blanqueable?",
+     "Presionando con el dedo o un disco transparente",
+     "Frotando la zona con firmeza para ver si mejora",
+     "Esperando un día entero sin volver a mirar la zona",
+     "Midiendo la temperatura ambiente de la habitación",
+     "Aplicando crema y comparando el color al rato",
+     "La prueba consiste en presionar con el dedo o un disco transparente y ver si la zona blanquea. Frotar es tentador, pero la guía desaconseja el frotado vigoroso porque puede dañar tejido ya comprometido."
+    ],
+    [
+     "Carla recibe a Don Aníbal trasladado de otro servicio con riesgo de lesión. ¿Cuándo corresponde la valoración completa de piel y tejidos?",
+     "Lo antes posible tras el traslado",
+     "Cuando aparece una zona claramente enrojecida",
+     "Únicamente antes del alta del servicio",
+     "Recién cuando el puntaje de Braden resulte bajo",
+     "Cuando lo solicite el familiar que lo acompaña",
+     "La guía recomienda valorar piel y tejidos apenas ingresa o se traslada la persona, en cada valoración de riesgo y antes del alta. Esperar a que aparezca enrojecimiento retrasa la detección de las zonas en riesgo."
+    ]
+   ]
+  },
+  {
+   "title": "Categorías de lesión por presión y diagnóstico diferencial básico",
+   "refs": [
+    "enf-npiap",
+    "enf-epuap"
+   ],
+   "objective": "Reconocer las categorías de lesión por presión y diferenciarlas de lesiones por humedad y desgarros cutáneos.",
+   "body": "Las lesiones por presión se clasifican según la profundidad del tejido afectado. La categoría 1 es piel intacta con enrojecimiento localizado que no blanquea. La 2 es pérdida parcial del espesor de la piel, con dermis expuesta o ampolla, sin esfacelo. La 3 es pérdida de todo el espesor de la piel, donde puede verse grasa. La 4 llega a exponer músculo, tendón o hueso.\n\nHay categorías aparte. La lesión no estadificable tiene el fondo cubierto por esfacelo o escara, así que no se puede conocer su profundidad. La lesión de tejido profundo se presenta como coloración rojo oscuro, marrón o violácea persistente, o ampolla con sangre, y puede evolucionar. Las relacionadas con dispositivos médicos suelen copiar la forma del dispositivo. Los números no indican una secuencia: no se 'retrocede' de categoría cuando la lesión cicatriza.\n\nEl diagnóstico diferencial básico incluye la lesión por humedad o dermatitis asociada a incontinencia, de bordes difusos y superficial, a menudo en pliegues, y el desgarro cutáneo, causado por fricción o cizallamiento que separa capas de piel. A menudo coexisten con presión; ante la duda, descartá primero la presión y consultá. Ejemplo didáctico: en el pliegue interglúteo de Rita aparece piel roja y superficial con bordes difusos, tras varios días de diarrea.",
+   "trap": "Estadificar de más o de menos por intuición: una lesión con esfacelo o escara que oculta el fondo no se puede clasificar como 3 o 4 sin ver la base.",
+   "evidence": "Las definiciones provienen del consenso NPIAP 2016, adoptado por la guía internacional 2019. En la práctica, la concordancia entre profesionales en el diagnóstico diferencial es limitada, por eso conviene confirmar con el equipo.",
+   "activity": {
+    "scenario": "Hugo tiene dos lesiones: una en el sacro con fondo cubierto de tejido amarillento adherido, y otra en pliegue inguinal, superficial y simétrica, con diarrea frecuente. Decidí cómo las describirías.",
+    "checklist": [
+     "Describe profundidad y tejido visible en cada lesión",
+     "Reconoce cuándo no se puede clasificar por esfacelo o escara",
+     "Diferencia el patrón de humedad del de presión",
+     "Pide confirmación ante la duda y lo registra"
+    ]
+   },
+   "rows": [
+    [
+     "Evelina tiene en el talón un enrojecimiento localizado que no blanquea, con la piel intacta. ¿Qué categoría corresponde?",
+     "Categoría 1, piel intacta con eritema fijo",
+     "Categoría 2, pérdida parcial con dermis expuesta",
+     "Categoría 3, pérdida total con grasa visible",
+     "Lesión por humedad sin componente de presión",
+     "Lesión de tejido profundo ya evolucionada",
+     "La categoría 1 se define por piel intacta y eritema que no blanquea. La lesión de tejido profundo es parecida, pero muestra color rojo oscuro, marrón o violáceo, no un simple enrojecimiento."
+    ],
+    [
+     "Ante una lesión sacra con el fondo totalmente cubierto por esfacelo, donde no se ve la profundidad, ¿cómo se la categoriza?",
+     "Como lesión no estadificable",
+     "Como categoría 2 hasta limpiar el lecho",
+     "Como categoría 3 estimando la profundidad",
+     "Como categoría 4 por precaución",
+     "Como lesión de tejido profundo",
+     "Si el esfacelo o la escara ocultan el fondo, la extensión real no puede conocerse y la lesión es no estadificable. Asignar categoría 3 o 4 por estimación es tentador, pero implica adivinar la profundidad."
+    ],
+    [
+     "Rita tiene diarrea. En su pliegue interglúteo hay piel roja, superficial, de bordes difusos y simétrica. ¿Cuál es la sospecha más probable?",
+     "Dermatitis asociada a incontinencia",
+     "Categoría 4 por presión sostenida en el sacro",
+     "Desgarro cutáneo por fricción o cizallamiento",
+     "Lesión causada por un dispositivo médico",
+     "Úlcera arterial por isquemia de la zona",
+     "El patrón superficial, difuso y en pliegues orienta a dermatitis asociada a incontinencia. El desgarro cutáneo se ve como colgajo o separación de capas por fricción o cizallamiento, no como enrojecimiento simétrico."
+    ],
+    [
+     "Beto lleva una sonda nasogástrica y en el ala de la nariz hay una lesión con la forma de la sonda. ¿Cómo se interpreta?",
+     "Lesión por presión del dispositivo médico",
+     "Lesión por humedad de las secreciones nasales",
+     "Desgarro cutáneo por retiro del adhesivo",
+     "Dermatitis de contacto sin relación con presión",
+     "Lesión que se estadifica hacia atrás al curar",
+     "Una lesión que copia la forma del dispositivo apunta a presión del dispositivo, y se clasifica con las mismas categorías. Atribuirla a secreciones suena razonable, pero la forma de la marca indica contacto y presión sostenida."
+    ]
+   ]
+  },
+  {
+   "title": "Prevención: reposicionamiento, superficies, talones, humedad, nutrición y dispositivos",
+   "refs": [
+    "enf-epuap",
+    "enf-nice"
+   ],
+   "objective": "Aplicar medidas preventivas coordinadas para reducir la presión, el cizallamiento y la humedad.",
+   "body": "El reposicionamiento se individualiza: la frecuencia se decide según la tolerancia de la piel y los tejidos, la movilidad, el estado general, los objetivos del tratamiento y el confort. Conviene usar recordatorios para sostener el plan. De costado se prefiere una inclinación de unos 30 grados en lugar de 90, y la cabecera se mantiene lo más baja posible. Se usan técnicas y equipos que reduzcan la fricción y el cizallamiento al mover a la persona. Las superficies de apoyo se eligen según el riesgo, sin reemplazar el reposicionamiento.\n\nEn los talones se busca descarga completa: elevarlos con un dispositivo específico o una almohada bajo la pantorrilla, sin presionar el tendón de Aquiles ni la vena poplítea. En la piel, se limpia sin demora tras la incontinencia, sin frotar, se evitan jabones alcalinos y se protege con producto barrera.\n\nLa nutrición importa: se hace tamizaje nutricional a quien tiene riesgo y se estimula la hidratación acorde al cuadro clínico. Los dispositivos médicos se eligen del tamaño correcto, se rotan o reposicionan, se revisa la piel debajo y se retiran apenas sea posible. Ejemplo didáctico: Nilda, 80 años, no se mueve sola. Se la gira a un lateral de 30 grados con almohadas, se elevan sus talones y se revisa la piel bajo la cánula de oxígeno.",
+   "trap": "Aplicar una pauta rígida igual para todos, o creer que el colchón especial reemplaza el reposicionamiento.",
+   "evidence": "La guía internacional respalda estas medidas con distinto nivel de evidencia; la frecuencia exacta de giros no está fijada y depende de cada persona. NICE aporta el marco general de prevención, pero no se pudo revisar aquí el texto detallado.",
+   "activity": {
+    "scenario": "Silvia, 76 años, tiene un ACV y no puede girarse sola. Usa cánula nasal de oxígeno y tiene incontinencia urinaria. Armá un plan de prevención con medidas concretas para sacro, talones, orejas y piel.",
+    "checklist": [
+     "Fija el reposicionamiento según las condiciones de la persona",
+     "Propone posición de lado inclinada y cabecera lo más baja posible",
+     "Incluye descarga de talones y cuidado de la piel tras incontinencia",
+     "Revisa la piel bajo la cánula y los dispositivos"
+    ]
+   },
+   "rows": [
+    [
+     "En la sala hay un cartel que dice 'girar a todos en el mismo intervalo'. ¿Cómo se define la frecuencia de reposicionamiento según la guía?",
+     "Individual, según tolerancia y movilidad",
+     "Fija e igual para todos los pacientes del servicio",
+     "Solo cuando la persona refiera alguna molestia",
+     "Una vez por turno, salvo que exista lesión previa",
+     "Según lo que prefiera el familiar que está presente",
+     "La frecuencia se decide para cada persona considerando tolerancia de piel y tejidos, movilidad, estado general y confort. Una pauta rígida parece más ordenada, pero ignora que cada persona tolera distinto la presión."
+    ],
+    [
+     "Debés colocar de costado a Nilda para aliviar el sacro. ¿Qué posición lateral conviene?",
+     "Lateral inclinada unos 30 grados",
+     "Lateral a 90 grados, apoyada sobre el trocánter",
+     "Boca arriba con la cabecera muy elevada",
+     "Semisentada con las rodillas flexionadas",
+     "Boca abajo prolongado durante toda la noche",
+     "La guía prefiere el lateral de 30 grados porque reparte la presión y evita cargar el trocánter. El lateral a 90 grados parece más estable, pero concentra peso sobre la prominencia ósea."
+    ],
+    [
+     "Matías, postrado, tiene riesgo de lesión en los talones. ¿Cuál es la medida de descarga adecuada?",
+     "Elevar talones con almohada bajo la pantorrilla",
+     "Apoyar un almohadón bajo los muslos, sin tocar talones",
+     "Masajear los talones con crema cada turno",
+     "Dejar los talones sobre la sábana, sin protección",
+     "Vendar los pies sin liberar la zona del talón",
+     "El objetivo es descargar el talón por completo, repartiendo el peso a lo largo de la pantorrilla sin presionar el tendón de Aquiles. Masajear parece cuidar la piel, pero no quita la presión y la guía desaconseja el frotado vigoroso."
+    ],
+    [
+     "Tras un episodio de incontinencia urinaria de Elsa, ¿cuál es el cuidado de la piel recomendado?",
+     "Higienizar enseguida sin frotar y aplicar barrera",
+     "Esperar al baño del turno y usar jabón alcalino",
+     "Frotar con firmeza para retirar todos los restos",
+     "Dejar el pañal puesto hasta que esté saturado",
+     "Aplicar talco sobre la piel para absorber la humedad",
+     "Se limpia la piel sin demora, sin frotar, evitando jabones alcalinos y protegiendo con barrera. Frotar fuerte parece más higiénico, pero daña la piel en riesgo y aumenta la fricción."
+    ]
+   ]
+  },
+  {
+   "title": "Cuidado de la lesión, registro y educación",
+   "refs": [
+    "enf-epuap",
+    "enf-nice"
+   ],
+   "objective": "Describir el cuidado básico de una lesión por presión, reconocer signos de infección, registrar y educar.",
+   "body": "El cuidado se apoya en la limpieza: se limpia la lesión y también la piel que la rodea. Las soluciones con antimicrobianos se reservan para lesiones con sospecha o confirmación de infección. La elección del apósito, del desbridamiento y de los tratamientos la define el equipo tratante según la categoría, el exudado y el objetivo de la atención; la enfermería ejecuta lo indicado, observa y comunica. Mientras tanto, se mantiene la descarga de presión sobre la zona.\n\nHay que sospechar infección local ante falta de mejoría en dos semanas con tratamiento adecuado, aumento o cambio del exudado, mal olor, más dolor, más calor en la piel vecina, tejido necrótico o fondo friable. Si hay enrojecimiento que se extiende, induración o signos generales, se avisa de inmediato. Una escara seca y estable en talón con mala irrigación no se altera sin indicación, salvo que haya sospecha de infección.\n\nEl registro incluye localización, categoría, tamaño, tipo de tejido, exudado, piel circundante, dolor, plan y fecha, de modo que otro profesional pueda comparar. La educación a la persona y su familia enseña a inspeccionar la piel, aliviar presión, mantener la higiene y avisar ante cambios. Ejemplo didáctico: la hija de Aníbal aprende a mirar el sacro cada día y a llamar si aparece una zona roja que no blanquea.",
+   "trap": "Cubrir y olvidar: tratar la lesión sin seguir descargando la presión, o no avisar ante signos de infección porque 'ya se está curando'.",
+   "evidence": "La guía internacional detalla signos de infección y limpieza. La elección de apósitos y tratamientos depende de cada caso y de protocolos locales; aquí no se prescribe ningún producto.",
+   "activity": {
+    "scenario": "Doña Beatriz, residente de un geriátrico, tiene una lesión en el trocánter. Luego de dos semanas de plan, el exudado aumentó, hay olor nuevo y más dolor. Pensá qué observarías, qué registrarías y a quién avisarías.",
+    "checklist": [
+     "Describe la lesión y la piel circundante con datos medibles",
+     "Identifica al menos tres signos de posible infección",
+     "Avisa al equipo tratante en lugar de decidir tratamientos por su cuenta",
+     "Educa a la familia con pautas simples y observables"
+    ]
+   },
+   "rows": [
+    [
+     "La lesión de Rosa no mejoró en dos semanas y tiene más exudado, olor nuevo y más dolor. ¿Qué corresponde?",
+     "Sospechar infección local y avisar al equipo",
+     "Considerar normal la evolución y seguir igual que antes",
+     "Atribuirlo a la deshidratación de la persona únicamente",
+     "Esperar a que se resuelva la reacción al apósito",
+     "Ignorar los cambios porque la lesión es pequeña",
+     "La falta de mejoría con aumento de exudado, olor y dolor son signos de posible infección local y deben comunicarse. Seguir igual parece prudente, pero demora el manejo de una lesión que empeora."
+    ],
+    [
+     "Jorge tiene diabetes y una escara negra, seca y firme en el talón, sin signos de infección. ¿Cómo se maneja?",
+     "No alterarla y pedir valoración al equipo",
+     "Cortarla en el momento para ver el lecho",
+     "Remojarla a diario hasta que se desprenda sola",
+     "Frotarla con gasa para retirar el tejido seco",
+     "Cubrirla con apósito húmedo y cambiarlo seguido",
+     "La guía indica no alterar una escara seca y estable en un miembro isquémico o talón salvo sospecha de infección. Retirarla para ver el lecho parece útil, pero puede abrir una puerta de entrada a infección."
+    ],
+    [
+     "Vas a curar una lesión por presión sin signos de infección. ¿Qué incluye la limpieza?",
+     "Limpiar la lesión y la piel circundante",
+     "Limpiar solo el lecho, sin tocar los bordes de la lesión",
+     "Frotar el lecho para arrastrar el tejido adherido",
+     "Omitir la limpieza si el apósito se ve limpio",
+     "Usar antiséptico en todas las curaciones sin excepción",
+     "Se limpia tanto la lesión como la piel de alrededor. Los antimicrobianos se reservan para sospecha o confirmación de infección, por eso usarlos siempre, aunque parezca más seguro, no corresponde."
+    ],
+    [
+     "La hija de Don Aníbal lo cuida en su casa. ¿Qué educación es prioritaria para ella?",
+     "Revisar la piel a diario y avisar si hay rojeces",
+     "Masajear con fuerza las zonas que estén enrojecidas",
+     "Aceptar que las lesiones son inevitables en la vejez",
+     "Usar sus propias cremas sobre una lesión abierta",
+     "Consultar recién cuando aparezca una herida abierta",
+     "Enseñar a inspeccionar la piel, aliviar presión y avisar tempranamente permite detectar lesiones en la categoría 1. Consultar recién con herida abierta es tentador por simple, pero pierde la oportunidad de prevenir."
+    ]
+   ]
+  }
+ ],
+ "case": {
+  "title": "Doña Beatriz en la residencia",
+  "summary": "Caso ficticio · mujer de 82 años con ACV, movilidad reducida e incontinencia en una residencia",
+  "source": "enf-epuap",
+  "lessonIndex": 3,
+  "rows": [
+   [
+    "Doña Beatriz, 82 años, hemipléjica tras un ACV, pasa gran parte del día con la cabecera elevada y usa pañal. En la higiene encontrás una zona roja en el sacro y, al presionarla con el dedo, no blanquea. ¿Cuál es la conducta más adecuada?",
+    "Descargar la zona, registrar y reforzar prevención",
+    "Frotar con firmeza para activar la circulación local",
+    "Esperar al control del día siguiente sin cambios",
+    "Aplicar calor local y mantener la misma posición",
+    "Registrar el hallazgo recién si la piel se abre",
+    "Un eritema que no blanquea es la señal de lesión de categoría 1: se descarga la presión, se registra y se refuerza la prevención. Frotar parece activar la circulación, pero puede dañar tejidos ya comprometidos."
+   ],
+   [
+    "Para el plan de prevención de Doña Beatriz, que no se mueve sola y tiene incontinencia, ¿qué combinación es la más adecuada?",
+    "Reposicionar, descargar talones y cuidar la piel",
+    "Girarla únicamente cuando ella pueda pedirlo",
+    "Dejarla boca arriba con la cabecera elevada",
+    "Limitar el plan al uso de un colchón especial",
+    "Limpiar la piel solamente durante el baño diario",
+    "El plan combina reposicionamiento individualizado, descarga de talones y cuidado de la piel tras la incontinencia. Confiar solo en el colchón es tentador, pero las superficies de apoyo complementan y no reemplazan el cambio de posición."
+   ],
+   [
+    "A los diez días la lesión se abrió y ahora hay más exudado, olor nuevo, más dolor y calor en la piel vecina. ¿Qué hacés?",
+    "Sospechar infección, registrar y avisar al equipo",
+    "Cambiar de apósito por tu cuenta y observar una semana",
+    "Cortar el tejido del lecho para verlo mejor",
+    "Esperar, porque cicatrizar suele producir algo de olor",
+    "Aplicar un antibiótico tópico sin indicación médica",
+    "Estos signos sugieren infección local y requieren registro y aviso al equipo, que decide el tratamiento. Esperar porque 'es normal' parece paciente, pero demora la valoración de una lesión que empeora."
+   ]
+  ]
+ }
+}

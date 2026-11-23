@@ -12,6 +12,7 @@ export function createAccessGuard({payments,env=process.env}){
   if(level==='alumno'&&courseId&&isFreeCourse(courseId))return;
   const a=await payments.access(user.id);
   if(level==='instructor'&&!a.instructor.active)throw need('instructor','Esta función requiere el Acceso instructor (USD 9,99).');
+  if(level==='profesional'&&!a.profesional.active)throw need('profesional','Mi consultorio requiere el Acceso profesional.');
   if(level==='alumno'&&!a.alumno.active)throw need('alumno','Este curso requiere el Acceso alumno (USD 4,99).');
  };
 }

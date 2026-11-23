@@ -1,0 +1,399 @@
+{
+ "id": "nut-gapa",
+ "title": "Guías alimentarias para la población argentina y educación alimentaria",
+ "summary": "Aprendé a usar las GAPA, el etiquetado frontal y la consejería breve para orientar una alimentación variada, accesible y sin culpa.",
+ "subtitle": "Nutrición · adultos · nivel introductorio",
+ "prerequisites": "Conocimientos básicos de grupos de alimentos y nutrientes. No requiere experiencia clínica.",
+ "sources": {
+  "nut-gapa-web": {
+   "title": "Gráfica de alimentación saludable y 10 mensajes de las GAPA (Ministerio de Salud de la Nación)",
+   "url": "https://argentina.gob.ar/salud/alimentacion-saludable/grafico",
+   "year": 2016,
+   "type": "Guía",
+   "section": "Los 10 mensajes, los grupos de la gráfica y el sexto grupo opcional de ultraprocesados",
+   "access": "Texto completo gratuito"
+  },
+  "nut-gapa-res": {
+   "title": "Resolución 693/2019: aprobación de las Guías Alimentarias para la Población Argentina",
+   "url": "https://e-legis-ar.msal.gov.ar/htdocs/legisalud/migration/pdf/33336.pdf",
+   "year": 2019,
+   "type": "Norma",
+   "section": "Aprobación de las GAPA como referencia nacional y de su manual de aplicación",
+   "access": "Texto completo gratuito"
+  },
+  "nut-gapa-doc": {
+   "title": "Guías Alimentarias para la Población Argentina: resumen ejecutivo",
+   "url": "https://iah.msal.gov.ar/doc/Documento110.pdf",
+   "year": 2015,
+   "type": "Guía",
+   "section": "Estructura en 10 mensajes principales con mensajes secundarios",
+   "access": "Texto completo gratuito"
+  },
+  "nut-ley": {
+   "title": "Ley 27.642 de Promoción de la Alimentación Saludable",
+   "url": "https://www.argentina.gob.ar/normativa/nacional/ley-27642-356607/texto",
+   "year": 2021,
+   "type": "Norma",
+   "section": "Arts. 2 a 12: nutrientes críticos, sellos, leyendas, exenciones, publicidad y escuelas",
+   "access": "Texto completo gratuito"
+  },
+  "nut-dec": {
+   "title": "Decreto Reglamentario 151/2022 de la Ley 27.642",
+   "url": "https://www.argentina.gob.ar/normativa/nacional/362577/texto",
+   "year": 2022,
+   "type": "Norma",
+   "section": "Reglamentación de sellos, perfil de nutrientes OPS, etapas de implementación",
+   "access": "Texto completo gratuito"
+  },
+  "nut-oms": {
+   "title": "Healthy diet (ficha técnica de la OMS)",
+   "url": "https://www.who.int/news-room/fact-sheets/detail/healthy-diet",
+   "year": 2026,
+   "type": "Ficha técnica",
+   "section": "Principios de una dieta saludable, límites de sal y azúcares libres, grasas trans",
+   "access": "Texto completo gratuito"
+  },
+  "nut-fao": {
+   "title": "Dietary guidelines: Argentina (FAO)",
+   "url": "https://www.fao.org/nutrition/education/dietary-guidelines/regions/argentina/en/",
+   "year": 2016,
+   "type": "Ficha de país",
+   "section": "Historia y características de las guías alimentarias argentinas",
+   "access": "Texto completo gratuito"
+  }
+ },
+ "lessons": [
+  {
+   "title": "Qué son las GAPA, sus mensajes y su gráfica",
+   "refs": [
+    "nut-gapa-web",
+    "nut-gapa-res",
+    "nut-gapa-doc",
+    "nut-fao"
+   ],
+   "objective": "Describir el propósito, los diez mensajes y la gráfica de las Guías Alimentarias para la Población Argentina.",
+   "body": "Las Guías Alimentarias para la Población Argentina (GAPA) son el documento del Ministerio de Salud de la Nación que traduce la evidencia sobre nutrición en mensajes simples, pensados para la cultura y los alimentos del país. En 2019 una resolución las aprobó como referencia nacional para diseñar políticas públicas y materiales educativos, junto con un manual de aplicación para docentes y equipos de salud.\n\nSe organizan en diez mensajes. El primero invita a incluir alimentos de todos los grupos y a hacer al menos 30 minutos de actividad física; los siguientes hablan de agua segura, frutas y verduras, reducción de sal, límite de bebidas azucaradas y productos con exceso de grasas, azúcar y sal, lácteos, carnes, huevo, legumbres, cereales, aceites, frutas secas y semillas, y alcohol responsable. La gráfica reparte los grupos de alimentos a lo largo del día: frutas y verduras ocupan la mayor parte; papa, batata, choclo y mandioca van con legumbres y cereales por su composición parecida; y aparece un sexto grupo opcional, de color rojo, para ultraprocesados con exceso de azúcar, grasa o sal, que no aportan nutrientes esenciales y no se recomienda incorporar a diario.\n\nPara educar, conviene usar la gráfica como mapa y los mensajes como frases breves que la persona pueda recordar y aplicar en su casa.\n\nEjemplo didáctico: Carolina arma un taller para un comedor barrial y dibuja en un afiche los grupos de la gráfica, con el sector rojo aparte y marcado como opcional.",
+   "trap": "Pensar que las GAPA prohíben cualquier alimento industrializado o que el sector rojo es un grupo más que hay que cubrir cada día.",
+   "evidence": "La página oficial del Ministerio y la resolución de 2019 respaldan los mensajes, la gráfica y su carácter de referencia nacional. No son una prescripción individual: orientan a la población general y no reemplazan una evaluación nutricional.",
+   "activity": {
+    "scenario": "Daniela, estudiante avanzada, debe explicar las GAPA en 5 minutos a un grupo de vecinos. Tiene la gráfica impresa y los diez mensajes, pero tiende a leerlos de corrido.",
+    "checklist": [
+     "Presenta primero el propósito y la fuente oficial",
+     "Selecciona tres mensajes y los vincula con la gráfica",
+     "Aclara que el sexto grupo es opcional y no se recomienda a diario",
+     "Cierra con una pregunta para que el grupo cuente cómo comen hoy"
+    ]
+   },
+   "rows": [
+    [
+     "Un colega duda de si las GAPA son solo una sugerencia informal. ¿Qué respaldo oficial tienen como referencia en el país?",
+     "Una resolución de 2019 las aprobó como referencia nacional para políticas y educación",
+     "Son una recomendación de una sociedad científica privada, sin uso oficial en general en general",
+     "Son un material de divulgación de la industria alimentaria",
+     "Son una norma obligatoria para todos, con sanciones si no se cumplen",
+     "Son una traducción de guías de otro país, sin adaptación local",
+     "Las GAPA fueron aprobadas como referencia nacional mediante una resolución del Ministerio de Salud en 2019, junto con un manual de aplicación. Eso las vuelve base de políticas y educación, pero no una obligación individual, que es la confusión más tentadora."
+    ],
+    [
+     "Al mirar la gráfica, Julieta pregunta cómo se ubican los ultraprocesados con exceso de azúcar, grasa o sal. ¿Qué respuesta es adecuada?",
+     "Son un sexto grupo opcional, de color rojo, que no se recomienda sumar a diario",
+     "Forman un grupo de consumo diario, en porciones pequeñas, para completar calorías",
+     "Se incluyen dentro del grupo de cereales porque se hacen con harinas",
+     "No figuran en la gráfica porque las guías solo describen alimentos frescos",
+     "Reemplazan al grupo de lácteos cuando la persona no puede tomar leche",
+     "La gráfica los presenta como sexto grupo opcional, de color rojo, porque no aportan nutrientes esenciales y no se recomiendan a diario. Decir que son de consumo diario en porciones chicas falla porque los vuelve un grupo necesario."
+    ],
+    [
+     "En un taller, una asistente pregunta dónde van la papa, la batata, el choclo y la mandioca en la gráfica. ¿Cuál es la respuesta?",
+     "Con legumbres y cereales, por tener una composición similar a la de los cereales",
+     "Con frutas y verduras, por ser vegetales que se cosechan de la tierra y se cocinan",
+     "Con carnes y huevo, porque aportan saciedad y se usan como plato principal",
+     "Con aceites y frutas secas, porque se consumen en cantidades chicas como acompañamiento",
+     "En el sector rojo opcional, porque son almidones y conviene evitarlos en la dieta diaria",
+     "La gráfica ubica estos alimentos junto a legumbres y cereales por su composición parecida. Ponerlos con frutas y verduras es el error más tentador, porque son vegetales, pero eso les haría contar como porciones de ese grupo."
+    ],
+    [
+     "Martín, que casi no se mueve, quiere saber qué pide el primer mensaje de las GAPA además de comer de todos los grupos.",
+     "Realizar al menos 30 minutos de actividad física",
+     "Realizar actividad física solo si hay exceso de peso",
+     "Descansar entre comidas para favorecer la digestión",
+     "Contar las calorías de cada comida registrada",
+     "Hacer ayuno entre la cena y el desayuno cada día",
+     "El primer mensaje combina la alimentación variada con al menos 30 minutos de actividad física. La alternativa de hacerla solo con exceso de peso falla porque el mensaje se dirige a toda la población, no a un diagnóstico."
+    ]
+   ]
+  },
+  {
+   "title": "Grupos de alimentos: de las guías a porciones y compras",
+   "refs": [
+    "nut-gapa-web",
+    "nut-gapa-doc",
+    "nut-oms"
+   ],
+   "objective": "Traducir los mensajes de las GAPA sobre cada grupo de alimentos en pautas concretas para comer y comprar.",
+   "body": "Cada grupo de la gráfica tiene un mensaje claro. Para frutas y verduras, la guía propone 5 porciones diarias, en variedad de tipos y colores, y la gráfica les da la mayor parte del espacio. Para los lácteos, consumir a diario leche, yogur o queso, preferentemente descremados. Con las carnes, quitar la grasa visible, aumentar el pescado e incluir el huevo. Para legumbres y cereales, preferir integrales, sumando papa, batata, choclo o mandioca. Los aceites se usan crudos como condimento, y se pueden sumar frutas secas o semillas. En cuanto al agua, el mensaje es tomar 8 vasos de agua segura por día en lugar de bebidas azucaradas.\n\nA la hora de comprar, estos mensajes se convierten en una lista: verduras y frutas de estación en cantidad y variedad, legumbres secas o en conserva, cereales integrales, huevos, algún lácteo y aceite. Para el tamaño exacto de cada porción conviene usar el manual de aplicación o la indicación de un profesional, porque las guías dan mensajes y no una prescripción individual.\n\nUna buena práctica educativa es medir porciones con referencias cotidianas, como un puñado o un plato, y preguntar qué alimentos ya hay en la casa antes de sumar compras nuevas.\n\nEjemplo didáctico: Lucía reemplaza en su lista una gaseosa por una jarra de agua en la mesa y agrega lentejas secas y dos verduras de estación que antes no compraba.",
+   "trap": "Creer que 5 porciones se cubren con un solo tipo de verdura o con jugos envasados, o que el agua puede ser reemplazada por bebidas azucaradas.",
+   "evidence": "Los mensajes de las GAPA respaldan cada recomendación. Las guías no fijan acá gramos exactos por porción, así que el curso no los da: esa precisión depende del manual o del profesional.",
+   "activity": {
+    "scenario": "Rocío compra para dos adultos y una adolescente con un presupuesto limitado. Su carrito tiene gaseosas, fideos, un paquete de salchichas y poca verdura. Se le pide proponer ajustes según las GAPA.",
+    "checklist": [
+     "Identifica qué grupos faltan en el carrito",
+     "Propone frutas o verduras de estación en variedad",
+     "Sugiere una legumbre y un cereal integral como opciones",
+     "Reemplaza las bebidas azucaradas por agua segura"
+    ]
+   },
+   "rows": [
+    [
+     "Nicolás come una sola fruta por día y dice que ya cumple con la recomendación. ¿Qué indican las GAPA para frutas y verduras?",
+     "Consumir a diario 5 porciones de frutas y verduras en variedad de tipos y colores",
+     "Consumir una fruta y una verdura por día, siempre del mismo color para simplificar",
+     "Consumir tres porciones de frutas por día, y reservar las verduras para el almuerzo",
+     "Consumir frutas y verduras solo en las comidas principales y evitarlas en las colaciones",
+     "Consumir jugos envasados, que equivalen a las porciones de fruta de todo el día",
+     "El mensaje 3 pide 5 porciones diarias de frutas y verduras en variedad de tipos y colores. Una fruta por día queda lejos, y los jugos envasados no equivalen a la fruta y verdura enteras."
+    ],
+    [
+     "Para disminuir el consumo de grasa, Ana pregunta qué hacer con las carnes según las GAPA. ¿Qué recomienda el mensaje correspondiente?",
+     "Quitar la grasa visible, aumentar el pescado e incluir huevo en la semana",
+     "Eliminar toda carne roja y reemplazarla por embutidos y fiambres",
+     "Consumir carne una vez por semana y reemplazarla por quesos untables en la práctica",
+     "Elegir cortes con mucha grasa porque aportan sabor y saciedad",
+     "Evitar el huevo por su colesterol y reemplazarlo por más carne",
+     "El mensaje 7 indica quitar la grasa visible, aumentar el pescado e incluir huevo. Eliminar la carne roja y pasar a fiambres falla porque no es lo que dicen las guías y los fiambres suelen tener mucha sal."
+    ],
+    [
+     "Hernán cocina con abundante aceite en la sartén y pregunta cómo usarlo según las GAPA. ¿Qué sugiere el mensaje sobre aceites?",
+     "Consumir aceite crudo como condimento, sumando frutas secas o semillas",
+     "Usar aceite solo para freír, ya que crudo resulta pesado y poco rendidor",
+     "Reemplazar el aceite por manteca para cocinar porque es más natural",
+     "Evitar frutas secas y semillas por su cantidad de calorías",
+     "Consumir aceite a cucharadas por la mañana como complemento nutricional",
+     "El mensaje 9 propone usar el aceite crudo como condimento e incluir frutas secas o semillas. La idea de usarlo solo para freír es el error más común: la guía lo presenta como aliño, no como medio de cocción."
+    ],
+    [
+     "Sofía toma varias gaseosas por día y casi no bebe agua. ¿Qué plantean las GAPA sobre la hidratación?",
+     "Tomar a diario 8 vasos de agua segura y limitar las bebidas azucaradas",
+     "Tomar agua solo con sed y reemplazar el resto con jugos envasados",
+     "Tomar 8 vasos de gaseosa light porque no tienen azúcar",
+     "Tomar 8 vasos entre las comidas y ninguno durante ellas",
+     "Tomar solo infusiones calientes, porque el agua fría no se recomienda en general",
+     "El mensaje 2 pide tomar a diario 8 vasos de agua segura, y el 5 limitar las bebidas azucaradas. Cambiar por gaseosa light no sigue el mensaje, que prioriza el agua y no otras bebidas endulzadas."
+    ]
+   ]
+  },
+  {
+   "title": "Ultraprocesados, sal, azúcar, grasas y etiquetado frontal",
+   "refs": [
+    "nut-gapa-web",
+    "nut-oms",
+    "nut-ley",
+    "nut-dec"
+   ],
+   "objective": "Interpretar los límites de sal y azúcares y los sellos de advertencia de la Ley 27.642 al elegir productos envasados.",
+   "body": "Las GAPA piden reducir la sal y los alimentos con mucho sodio, y limitar las bebidas azucaradas y los productos con exceso de grasas, azúcar y sal. La OMS ofrece referencias: menos de 5 g de sal por día, azúcares libres por debajo del 10% de la energía total (y menos del 5% como meta con beneficios adicionales) y evitar las grasas trans de producción industrial.\n\nLa Ley 27.642 ayuda a identificar productos envasados con excesos. Los nutrientes críticos son azúcares, sodio, grasas saturadas y grasas totales; cuando un producto supera los límites, lleva un sello octogonal negro con la leyenda \"EXCESO EN\" el nutriente que corresponda, o \"EXCESO EN CALORÍAS\". Cada sello advierte un nutriente, por lo que un envase puede tener varios. Los límites se basan en el perfil de nutrientes de la OPS y se detallan en el decreto reglamentario, que conviene consultar para valores exactos. Si el producto tiene edulcorantes o cafeína lleva leyendas aparte que indican que no son recomendables para niños. Los productos con sellos no pueden usar personajes ni regalos dirigidos a la infancia ni venderse en escuelas.\n\nUn producto sin sellos no es automáticamente recomendable: sirve para comparar, no reemplaza mirar los ingredientes.\n\nEjemplo didáctico: Mariano compara dos yogures; uno tiene el sello \"EXCESO EN AZÚCARES\" y el otro ninguno, y elige el segundo para el desayuno de sus hijos.",
+   "trap": "Creer que un producto sin sellos es siempre una buena opción, o que el sello de calorías aparece solo, sin otros sellos de azúcares o grasas.",
+   "evidence": "El texto de la ley y su decreto respaldan nutrientes críticos, formas y leyendas de los sellos. Los puntos de corte numéricos están en tablas del decreto y no se reproducen acá: consultalos antes de usarlos en consejería.",
+   "activity": {
+    "scenario": "Pedro y Laura comparan dos galletitas en el supermercado. Una tiene dos sellos octogonales y la otra no tiene ninguno, pero su lista de ingredientes es muy larga.",
+    "checklist": [
+     "Nombra qué nutriente advierte cada sello",
+     "Aclara que sin sellos no significa recomendable",
+     "Compara también la lista de ingredientes",
+     "Explica el criterio sin generar culpa en la persona"
+    ]
+   },
+   "rows": [
+    [
+     "Una paciente lee en un paquete que dice \"EXCESO EN SODIO\" y \"EXCESO EN AZÚCARES\". ¿Cómo se interpreta esa información?",
+     "Cada sello advierte un nutriente crítico y son dos excesos distintos del producto",
+     "Que el producto es tóxico y no debe consumirse bajo ninguna circunstancia en la práctica",
+     "Que el producto tiene un solo exceso y el segundo sello se repite",
+     "Que el producto fue aprobado y sus nutrientes son adecuados",
+     "Que el producto es apto para niños pero no para adultos",
+     "Cada sello de la Ley 27.642 señala el exceso de un nutriente crítico, por lo que dos sellos indican dos excesos distintos. Pensar que el producto es tóxico es tentador, pero el sello orienta la elección y no es una prohibición."
+    ],
+    [
+     "Gabriel compró un cereal de desayuno sin ningún sello y asegura que es lo mejor que puede darles a sus hijos. ¿Qué conviene responder?",
+     "Que sin sellos no es sinónimo de recomendable; hay que mirar ingredientes",
+     "Que es correcto, porque la ausencia de sellos certifica un producto saludable",
+     "Que el producto debe tener sellos y seguramente está mal rotulado",
+     "Que los sellos solo existen en bebidas y no en alimentos sólidos",
+     "Que los productos sin sellos son sustituibles por cualquier ultraprocesado",
+     "El sello avisa excesos en nutrientes críticos, pero no certifica calidad: un producto sin sellos puede seguir siendo ultraprocesado. La respuesta de que es lo mejor que puede darles confunde la ausencia de advertencia con una garantía."
+    ],
+    [
+     "Marta pregunta cuánta sal recomienda la OMS para un adulto sano. ¿Cuál es la referencia?",
+     "Menos de 5 g de sal por día, repartida entre todas las comidas",
+     "Menos de 15 g de sal por día, repartida en las comidas principales",
+     "Menos de 5 g de sodio por día, sin contar la sal de los envasados",
+     "Eliminar totalmente la sal, aun la que viene en los alimentos",
+     "No hay un límite recomendado porque depende del gusto de cada persona",
+     "La OMS indica consumir menos de 5 g de sal por día y que sea yodada. Confundir sal con sodio es el error tentador: la referencia habla de gramos de sal, no de sodio."
+    ],
+    [
+     "En un envase de bebida figura la leyenda \"CONTIENE EDULCORANTES, NO RECOMENDABLE EN NIÑOS/AS\". ¿Qué significa en el marco de la Ley 27.642?",
+     "Es una leyenda precautoria, ubicada bajo los sellos, por tener edulcorantes",
+     "Es un sello de exceso de azúcares, que aparece cuando la bebida tiene azúcar",
+     "Es la leyenda que indica que la bebida no tiene calorías y es apta para todos",
+     "Es una advertencia opcional que cada fabricante elige poner o no poner",
+     "Es el sello que reemplaza al de grasas totales en productos líquidos",
+     "La ley exige una leyenda precautoria, debajo de los sellos, cuando el producto contiene edulcorantes; otra similar cubre la cafeína. Confundirla con el sello de azúcares es tentador, pero la presencia de edulcorantes es otro criterio."
+    ]
+   ]
+  },
+  {
+   "title": "Menú semanal accesible, compras y cocina familiar",
+   "refs": [
+    "nut-gapa-web",
+    "nut-gapa-res",
+    "nut-oms"
+   ],
+   "objective": "Planificar un menú semanal de bajo costo y organizar la compra y la cocina de una familia según las GAPA.",
+   "body": "Un menú semanal accesible parte de lo que ya hay en la casa y de lo que se puede cocinar. Las GAPA recomiendan priorizar comidas caseras con alimentos frescos o naturales, así que conviene distribuir los grupos de la gráfica a lo largo de los días: frutas y verduras en casi todas las comidas, legumbres y cereales como base, huevo, lácteos y, si se puede, carnes o pescado, con el aceite como condimento.\n\nPara cuidar el bolsillo ayudan tres hábitos: revisar heladera y alacena antes de salir, hacer una lista según el menú y comprar frutas y verduras de estación, que suelen ser más variadas y baratas. En la cocina, cocinar de más una legumbre o una verdura y reutilizarla en otra comida ahorra tiempo y evita desperdicio. Los productos ultraprocesados de la zona roja quedan como opcionales, sin ser el centro del menú, y el agua segura acompaña todas las comidas.\n\nLa planificación se enseña mejor con una grilla simple de la semana y la participación de toda la familia, para que cada persona elija algo que le guste dentro de las opciones.\n\nEjemplo didáctico: Romina cocina un guiso de lentejas con verduras el domingo, usa la mitad el lunes en un tarteras con huevo y a la noche prepara ensalada con una fruta de postre.",
+   "trap": "Pensar que comer según las GAPA es necesariamente caro, o planificar sin revisar lo que ya hay en la despensa, lo que genera compras repetidas y desperdicio.",
+   "evidence": "Las GAPA respaldan priorizar alimentos frescos y comidas caseras y combinar grupos. Las cifras de costo varían por región y época, por eso no se dan precios; las estrategias de compra son recomendaciones prácticas de educación alimentaria y no resultados de un ensayo específico.",
+   "activity": {
+    "scenario": "La familia Suárez, con dos adultos y dos chicos, quiere ordenar la comida de la semana con un presupuesto ajustado. Hoy compran casi todo en el día y con frecuencia recurren a pedidos de comida.",
+    "checklist": [
+     "Arma una grilla semanal con los grupos de la gráfica",
+     "Hace una lista de compras tras revisar la despensa",
+     "Incluye al menos una legumbre y una verdura de estación",
+     "Propone reutilizar una preparación en otra comida"
+    ]
+   },
+   "rows": [
+    [
+     "Verónica quiere ahorrar en la compra semanal. ¿Cuál es el primer paso más útil en la planificación de la familia?",
+     "Revisar lo que ya hay en la casa y armar la lista según el menú previsto",
+     "Comprar siempre ofertas de productos que tengan descuentos por cantidad",
+     "Comprar todo lo que se pueda en el primer día de la semana, sin lista previa",
+     "Comprar alimentos congelados listos porque evitan cocinar durante la semana entera",
+     "Evitar las frutas y verduras porque se estropean antes que otros alimentos",
+     "Revisar la despensa y armar una lista basada en el menú evita compras repetidas y desperdicio. Comprar por ofertas sin lista es lo más tentador, pero suele sumar productos que no encajan con los grupos de las guías."
+    ],
+    [
+     "Una familia cocina una olla de lentejas con verduras el domingo. ¿Cuál es la mejor manera de aprovecharla según el enfoque del módulo?",
+     "Reutilizarla en otras comidas de la semana, por ejemplo en una tarta",
+     "Descartar lo que sobra para que nadie repita el mismo plato",
+     "Comprar una legumbre distinta cada día para evitar repeticiones en general",
+     "Guardarla varios días a temperatura ambiente para comerla después",
+     "Reemplazarla en las comidas siguientes por comidas listas envasadas",
+     "Cocinar de más una legumbre y reutilizarla en otras comidas ahorra tiempo, dinero y desperdicio, y mantiene la comida casera. Descartar lo que sobra es lo opuesto al objetivo de economizar."
+    ],
+    [
+     "Para armar el menú de la semana, Cecilia quiere basarse en la gráfica de las GAPA. ¿Qué criterio es más adecuado?",
+     "Repartir los grupos en los días, con frutas y verduras en mayor parte",
+     "Repetir los mismos tres platos para simplificar, sin importar los grupos",
+     "Basar casi todas las comidas en productos envasados del grupo rojo",
+     "Reservar las frutas y verduras para las cenas de los fines de semana, por costo",
+     "Eliminar los cereales y las legumbres para reducir los costos totales",
+     "La gráfica reparte los grupos a lo largo del día y da a frutas y verduras la mayor parte del espacio. Repetir tres platos sin pensar en los grupos es tentador por su comodidad, pero no asegura la variedad que piden las guías."
+    ],
+    [
+     "Leandro cree que cocinar en casa con alimentos frescos es más difícil y caro que comprar ultraprocesados. ¿Qué argumento educativo es más ajustado?",
+     "Las GAPA priorizan lo casero y fresco; se logra con lista y reutilización",
+     "Que los ultraprocesados son más baratos en todos los casos, por lo que no hay opción",
+     "Que cocinar en casa solo es posible si la familia tiene mucho tiempo libre y dinero",
+     "Que las guías exigen cocinar todos los platos desde cero sin usar ningún envasado",
+     "Que el costo no puede reducirse con ninguna estrategia de planificación",
+     "Las GAPA priorizan comidas caseras con alimentos frescos y las estrategias de lista, estación y reutilización ayudan a hacerlo viable. Afirmar que los ultraprocesados son más baratos en todos los casos es un absoluto que no se puede sostener."
+    ]
+   ]
+  },
+  {
+   "title": "Educación alimentaria y consejería breve",
+   "refs": [
+    "nut-gapa-res",
+    "nut-gapa-web",
+    "nut-oms"
+   ],
+   "objective": "Aplicar escucha, metas pequeñas y comunicación sin culpa en una consejería alimentaria breve, e identificar cuándo derivar.",
+   "body": "La educación alimentaria busca que la persona pueda decidir y cocinar mejor, no que repita una lista de reglas. El manual de aplicación de las GAPA se pensó como una herramienta pedagógica para equipos de salud y docentes, y los mensajes cortos de las guías sirven como punto de partida para conversar.\n\nUna consejería breve puede ordenarse en pasos: preguntar qué y cómo come la persona hoy, escuchar sus condiciones reales (tiempo, dinero, gustos, quién cocina), elegir con ella una meta pequeña y concreta, por ejemplo cambiar una bebida por agua o sumar una verdura a una comida, y acordar cuándo volver a revisarla. Conviene evitar el lenguaje de culpa o de alimentos \"buenos\" y \"malos\": hablar de opciones y frecuencia resulta más útil y respetuoso.\n\nLa consejería general tiene límites. Si aparecen signos de un trastorno de la conducta alimentaria, una enfermedad que requiera una pauta específica, un embarazo con inquietudes particulares o un niño con problemas de crecimiento, corresponde derivar al profesional que corresponda, como un médico o un nutricionista matriculado, sin dar indicaciones propias.\n\nEjemplo didáctico: Valeria, que trabaja todo el día, dice que no tiene tiempo de cocinar; juntas acuerdan como meta preparar dos viandas de legumbres el domingo y revisarlo en dos semanas.",
+   "trap": "Dar una lista larga de cambios de una sola vez, o usar un tono de reproche que lleva a la persona a esconder lo que come.",
+   "evidence": "La resolución de 2019 y su manual respaldan el uso educativo de las GAPA. La evidencia sobre cuál técnica de consejería es mejor excede este curso; lo que se presenta son buenas prácticas de comunicación y no un protocolo único.",
+   "activity": {
+    "scenario": "Gustavo cuenta que toma gaseosa en cada comida y dice sentirse mal por eso. Tiene poco tiempo y comparte la compra con su pareja. Querés acompañarlo en una consulta de diez minutos.",
+    "checklist": [
+     "Pregunta antes de aconsejar y resume lo que escuchó",
+     "Propone una única meta pequeña y medible",
+     "Usa un lenguaje sin culpa ni etiquetas morales",
+     "Define cuándo volver a ver la meta y a quién derivar si hace falta"
+    ]
+   },
+   "rows": [
+    [
+     "Una persona llega diciendo que come muy mal y que se siente una fracasada. ¿Cuál es el mejor primer movimiento en la consejería?",
+     "Preguntar por su día de comidas y escuchar antes de proponer algo",
+     "Entregarle una lista de alimentos prohibidos para empezar el lunes",
+     "Decirle que tiene que bajar de peso y darle una dieta estricta",
+     "Reforzar que es su responsabilidad y que necesita más voluntad",
+     "Derivarla de inmediato, sin conversar, porque dice sentirse mal",
+     "Escuchar primero permite conocer tiempo, dinero y gustos, y construir una propuesta realista. Entregar una lista de prohibidos es tentador por ser rápido, pero ignora su situación y refuerza la culpa."
+    ],
+    [
+     "Después de escuchar a Mariela, que casi no come verduras, querés fijar una meta. ¿Cuál es la más adecuada para una primera consulta?",
+     "Sumar una verdura a una comida por día y revisarlo en dos semanas",
+     "Cambiar toda su alimentación desde el día siguiente en cada comida",
+     "Comer cinco porciones de verduras por día desde la semana próxima",
+     "Eliminar cualquier alimento procesado de su casa lo antes posible",
+     "Anotar todas las calorías durante un mes antes de consultar",
+     "Una meta pequeña, concreta y con fecha de revisión, como sumar una verdura, es más viable y favorece la confianza. Plantear cinco porciones de golpe es lo más tentador, pero es un salto grande que suele frustrar."
+    ],
+    [
+     "Un paciente cuenta que comió una pizza el fin de semana y pide perdón. ¿Qué respuesta refleja una comunicación sin culpa?",
+     "Hablar de frecuencia y opciones, sin llamar buenos o malos a los alimentos",
+     "Aclarar que esa comida es mala y que no debería repetirse bajo ningún motivo",
+     "Pedirle que anote cada falta para controlarla y revisarla en detalle cada semana",
+     "Sugerirle que compense con ayuno o restricción el día siguiente",
+     "Indicar que su conducta indica falta de compromiso con las guías",
+     "La comunicación sin culpa evita etiquetar alimentos y se centra en la frecuencia y las opciones. Sugerir compensar con restricción parece lógico, pero refuerza la relación punitiva con la comida y puede ser un signo de alerta."
+    ],
+    [
+     "Durante una consejería, una adolescente cuenta que se saltea comidas por miedo a engordar y que se siente muy angustiada. ¿Qué corresponde hacer?",
+     "Derivarla a un profesional de salud, sin darle pautas propias en la consulta",
+     "Darle un plan de comidas con calorías precisas para recuperar el control",
+     "Explicarle los 10 mensajes de las GAPA y esperar que se resuelva",
+     "Elogiar su fuerza de voluntad y sugerir que siga con la restricción",
+     "Pedirle que no hable del tema con su familia para evitar presión por costumbre",
+     "Los signos de un posible trastorno de la conducta alimentaria superan el alcance de una consejería general y requieren derivar a un profesional de salud. Dar un plan con calorías es tentador, pero es una prescripción que no corresponde y puede agravar el cuadro."
+    ]
+   ]
+  }
+ ],
+ "case": {
+  "title": "Una familia que quiere ordenar su alimentación",
+  "summary": "Caso ficticio · Familia con presupuesto ajustado, hijos pequeños y mucha comida envasada",
+  "source": "nut-gapa-web",
+  "lessonIndex": 3,
+  "rows": [
+   [
+    "Caso ficticio: Marcela y Diego tienen dos hijos y poco presupuesto. Compran casi todo envasado y bebidas azucaradas. Piden una primera mejora realista. ¿Qué propuesta es la más adecuada?",
+    "Una meta pequeña: sumar verduras de estación y cambiar una gaseosa por agua",
+    "Reemplazar todos los alimentos de la casa por frescos desde la próxima compra de la semana",
+    "Eliminar toda comida envasada y bebidas con azúcar de forma inmediata",
+    "Pasar a un plan estricto de calorías para cada integrante de la familia",
+    "Indicarles suplementos vitamínicos para compensar la dieta durante el mes",
+    "Una meta pequeña y concreta como sumar verduras de estación y cambiar una bebida por agua respeta su presupuesto y es sostenible. Un cambio total inmediato es tentador, pero suele abandonarse y no parte de lo que la familia puede hacer."
+   ],
+   [
+    "Marcela compara dos galletitas: una con dos sellos \"EXCESO EN AZÚCARES\" y \"EXCESO EN GRASAS SATURADAS\" y otra sin sellos. ¿Cómo la orientarías?",
+    "Los sellos marcan excesos; la que no los tiene compara mejor, con ingredientes",
+    "La galletita con sellos es la más natural porque advierte lo que contiene",
+    "Ambas son iguales porque los sellos son solo una cuestión de marketing comercial",
+    "La galletita sin sellos puede darse sin límite, porque certifica que es saludable",
+    "Los sellos de grasas solo aplican a productos de origen animal y a los fritos",
+    "Cada sello señala el exceso de un nutriente crítico, por lo que comparar sellos es una guía simple; que no tenga sellos no la vuelve ilimitada. La idea de que sin sellos es ilimitada falla porque el sello no certifica calidad."
+   ],
+   [
+    "Diego dice con vergüenza que a veces piden empanadas congeladas y que siente que arruina todo. ¿Qué respuesta es la más adecuada?",
+    "Valorar lo que ya hacen y retomar la meta acordada, sin reproche",
+    "Decirle que debe evitar siempre esos productos y que no son una opción",
+    "Pedirle que no vuelva a comprarlas hasta la próxima consulta de seguimiento",
+    "Señalar que su falta de constancia es la causa principal del problema",
+    "Derivarlo a un profesional de salud mental por sentirse culpable",
+    "Una comunicación sin culpa reconoce lo que ya hacen y se centra en la frecuencia y las opciones. Prohibir esos alimentos, que parece firme, refuerza la vergüenza y reduce la probabilidad de que la familia siga la meta."
+   ]
+  ]
+ }
+}

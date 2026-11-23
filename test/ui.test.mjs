@@ -12,7 +12,7 @@ test('theory never appears before a practice answer; all courses, ECG, review an
  await import('../public/app.mjs');
  const click=async(action,data={})=>{await handlers.click({target:{closest:()=>({dataset:{action,...data}})}});await new Promise(r=>setImmediate(r));};
  const currentQuestion=()=>questions.find(q=>html.includes(`<h1 class="question">${esc(q.prompt)}</h1>`));
- assert.ok(html.includes('¿Cómo vas a usar ClinicIA?'));['Soy alumno','Soy instructor'].forEach(t=>assert.ok(html.includes('<h2>'+t+'</h2>')));assert.ok(!html.includes('<h2>Médicos</h2>'),'el inicio tiene solo dos puertas');assert.ok(!html.includes('consultorio.html'));assert.ok(html.includes('/capacitacion.html?perfil=instructor'));
+ assert.ok(html.includes('¿Cómo vas a usar ClinicIA?'));['Soy alumno','Soy instructor'].forEach(t=>assert.ok(html.includes('<h2>'+t+'</h2>')));assert.ok(!html.includes('<h2>Médicos</h2>'),'el inicio no mezcla perfiles de alumno');assert.ok(html.includes('<h2>Modo profesional</h2>')&&html.includes('/consultorio.html'),'Mi consultorio vive bajo Modo profesional');assert.ok(html.includes('/instructor.html'));
  await click('general-practice');assert.ok(html.includes('class="question"'),'general practice starts a mixed Examen Único session without choosing a course');
  hash='#formacion';events.hashchange();assert.ok(html.includes('¿Cómo querés estudiar?'));assert.ok(html.includes('Práctica general')&&html.includes('Preparar un curso o examen'));assert.ok(html.includes('Entrar al curso'));
 
