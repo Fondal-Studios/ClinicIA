@@ -39,7 +39,7 @@ test('guard: un curso de pago exige haberlo comprado; Instructor y Profesional s
  const guard=createAccessGuard({payments,env:{CLINICIA_PAYWALL:'true'}}),user={id:'u',role:'student'};
  await assert.rejects(()=>guard(user,'curso','acls'),e=>e.status===402&&e.plan==='curso');await guard(user,'curso','rot-cirugia');
  st.courses=['acls'];await guard(user,'curso','acls');await assert.rejects(()=>guard(user,'curso','pals'),e=>e.status===402);
- await assert.rejects(()=>guard(user,'instructor'),e=>e.status===402&&/USD 5/.test(e.message));await assert.rejects(()=>guard(user,'profesional'),e=>e.status===402&&/USD 10/.test(e.message));
+ await assert.rejects(()=>guard(user,'instructor'),e=>e.status===402&&/USD 4,99/.test(e.message));await assert.rejects(()=>guard(user,'profesional'),e=>e.status===402&&/USD 9,99/.test(e.message));
  st.profesional=true;await guard(user,'instructor');await guard(user,'profesional');
  st.profesional=false;await guard({id:'a',role:'admin'},'profesional');await createAccessGuard({payments,env:{}})(user,'profesional');
 });

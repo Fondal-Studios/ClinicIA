@@ -13,8 +13,8 @@ export function createAccessGuard({payments,env=process.env}){
   if(!paywallOn(env)||user?.role==='admin')return;
   if(level==='curso'&&!isPaidCourse(courseId))return;
   const a=await payments.access(user.id);
-  if(level==='instructor'&&!a.instructor.active)throw need('instructor','Esta función requiere el nivel Instructor (USD 5 por mes).');
-  if(level==='profesional'&&!a.profesional.active)throw need('profesional','Mi consultorio requiere el nivel Profesional (USD 10 por mes).');
+  if(level==='instructor'&&!a.instructor.active)throw need('instructor','Esta función requiere el nivel Instructor (USD 4,99 por mes).');
+  if(level==='profesional'&&!a.profesional.active)throw need('profesional','Mi consultorio requiere el nivel Profesional (USD 9,99 por mes).');
   if(level==='curso'&&!a.courses.includes(courseId))throw need('curso','Este curso es de pago.');
  };
 }

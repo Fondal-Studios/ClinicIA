@@ -15,7 +15,8 @@ const fail=(status,message)=>{throw Object.assign(new Error(message),{status});}
 export const PLANS={
  instructor:{label:'Instructor',usd:PRICES_USD.instructor,days:30,summary:'Crear cursos y contenido con IA, grupos con código, seguimiento de alumnos (lista, notas, progreso) y validación de prácticas.'},
  profesional:{label:'Profesional',usd:PRICES_USD.profesional,days:30,summary:'Todo lo del nivel Instructor, más Mi consultorio: pacientes, turnos e historia clínica breve en tu dispositivo, con dictado por voz transcripto de forma local y validación del médico.'},
- curso:{label:'Curso de pago',usd:PRICES_USD.curso,days:3650,summary:'Acceso permanente a un curso de preparación de certificación.'}
+ curso:{label:'Curso de pago',usd:PRICES_USD.curso,days:3650,summary:'Acceso permanente a un curso de preparación de certificación.'},
+ pack:{label:'Pack de certificaciones',usd:PRICES_USD.pack,days:3650,summary:'Los siete cursos de preparación de certificaciones (ACLS, PALS, FCCS, PHTLS, ATLS, AMLS y EPC), acceso permanente.'}
 };
 export const daysOfPlan=plan=>PLANS[plan]?.days||30;
 const arsCents=v=>{v=String(v||'');return /^\d{1,7}(\.\d{1,2})?$/.test(v)?Math.round(Number(v)*100):0;};
@@ -71,7 +72,7 @@ export function createPayments({db,origin,env=process.env,request=fetch}){
  async function access(userId){const rows=(await db.query("SELECT plan,course_id,max(valid_until) AS until FROM clinic_orders WHERE user_id=$1 AND status='approved' AND valid_until>now() GROUP BY plan,course_id UNION ALL SELECT plan,course_id,max(valid_until) FROM clinic_grants WHERE user_id=$1 AND revoked_at IS NULL AND valid_until>now() GROUP BY plan,course_id",[userId])).rows;
   const latest=p=>rows.filter(r=>r.plan===p).map(r=>r.until).sort((x,y)=>new Date(y)-new Date(x))[0]||null;
   const ins=latest('instructor'),pro=latest('profesional');const instAny=[ins,pro].filter(Boolean).sort((x,y)=>new Date(y)-new Date(x))[0]||null;
-  return {instructor:{active:!!instAny,validUntil:instAny},profesional:{active:!!pro,validUntil:pro},courses:[...new Set(rows.filter(r=>r.plan==='curso'&&r.course_id).map(r=>r.course_id))]};}
+  const pack=latest('pack');return {instructor:{active:!!instAny,validUntil:instAny},profesional:{active:!!pro,validUntil:pro},pack:{active:!!pack,validUntil:pack},courses:pack?[...PAID_COURSES]:[...new Set(rows.filter(r=>r.plan==='curso'&&r.course_id).map(r=>r.course_id))]};}
  // Liberación manual por administración (p. ej. hospital): cuenta con acceso sin pasar por el cobro. Se puede revocar.
  async function grant(adminId,userId,plan,days,note='',courseId=''){if(!PLANS[plan])fail(400,'Producto inválido.');if(plan==='curso'&&!isPaidCourse(courseId))fail(400,'Elegí un curso de pago.');const d=Math.floor(Number(days||(plan==='curso'?3650:30)));if(!(d>=1&&d<=3650))fail(400,'La duración debe ser de 1 a 3650 días.');
   if(!(await db.query('SELECT 1 FROM clinic_users WHERE id=$1',[String(userId||'')])).rows.length)fail(404,'Cuenta no encontrada.');

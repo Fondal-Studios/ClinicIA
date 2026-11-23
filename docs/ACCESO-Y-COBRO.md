@@ -1,17 +1,20 @@
 # Acceso, cobro y devoluciones (actualizado 2026-11-23)
 
+Precios decididos con base en una comparación de mercado: ver `docs/PRECIOS-INVESTIGACION.md`. Todos los precios de referencia terminan en .99; los montos en pesos también deberían terminar en 99.
+
 ## Modelo
 | Qué | Precio de referencia | Cómo se cobra |
 |---|---|---|
 | **Alumno** | **Gratis** | — |
 | Cursos de certificación (ACLS, PALS, FCCS, PHTLS, ATLS, AMLS, EPC) | USD 2,99 por curso | Pago único, acceso permanente (10 años) |
-| **Instructor** | USD 5 por mes | 30 días; se renueva pagando de nuevo |
-| **Profesional** | USD 10 por mes | 30 días; incluye Instructor y **Mi consultorio** |
+| **Pack de certificaciones** (los 7) | USD 9,99 | Pago único, acceso permanente |
+| **Instructor** | USD 4,99 por mes | 30 días; se renueva pagando de nuevo |
+| **Profesional** | USD 9,99 por mes | 30 días; incluye Instructor y **Mi consultorio** |
 Rotantes, curso policial, refuerzos, minicursos, kinesiología, enfermería, nutrición, medicina integral, exámenes de ingreso y reválida: **gratis**.
 La lista de cursos de pago y los precios USD están en `public/learn/precios.mjs`; cambiar un curso de pago o un precio de referencia es editar ese archivo (o las variables `CLINICIA_PLAN_<CURSO|INSTRUCTOR|PROFESIONAL>_USD`).
 
 ## Variables en Render para cobrar
-`MERCADOPAGO_ACCESS_TOKEN`, `MERCADOPAGO_WEBHOOK_SECRET`, `CLINICIA_PRICE_CURSO_ARS`, `CLINICIA_PRICE_INSTRUCTOR_ARS`, `CLINICIA_PRICE_PROFESIONAL_ARS` (pesos; actualizar con el tipo de cambio), `CLINICIA_PRODUCT_TITLE`, `CLINICIA_PRODUCT_DESCRIPTION`, `CLINICIA_SELLER_NAME`, `CLINICIA_SUPPORT_EMAIL`, `CLINICIA_PAYMENTS_ENABLED=true`. Bloqueo: `CLINICIA_PAYMENTS_ENABLED` activa el cobro y `CLINICIA_PAYWALL=true` activa el bloqueo (apagado por defecto = piloto abierto).
+`MERCADOPAGO_ACCESS_TOKEN`, `MERCADOPAGO_WEBHOOK_SECRET`, `CLINICIA_PRICE_CURSO_ARS`, `CLINICIA_PRICE_PACK_ARS`, `CLINICIA_PRICE_INSTRUCTOR_ARS`, `CLINICIA_PRICE_PROFESIONAL_ARS` (pesos; actualizar con el tipo de cambio), `CLINICIA_PRODUCT_TITLE`, `CLINICIA_PRODUCT_DESCRIPTION`, `CLINICIA_SELLER_NAME`, `CLINICIA_SUPPORT_EMAIL`, `CLINICIA_PAYMENTS_ENABLED=true`. Bloqueo: `CLINICIA_PAYMENTS_ENABLED` activa el cobro y `CLINICIA_PAYWALL=true` activa el bloqueo (apagado por defecto = piloto abierto).
 
 ## Qué se bloquea de verdad y qué no
 - **Servidor (real):** crear grupos, aulas y clases con IA → Instructor o Profesional. El administrador nunca se bloquea.
