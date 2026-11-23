@@ -12,12 +12,12 @@ test('theory never appears before a practice answer; all courses, ECG, review an
  await import('../public/app.mjs');
  const click=async(action,data={})=>{await handlers.click({target:{closest:()=>({dataset:{action,...data}})}});await new Promise(r=>setImmediate(r));};
  const currentQuestion=()=>questions.find(q=>html.includes(`<h1 class="question">${esc(q.prompt)}</h1>`));
- assert.ok(html.includes('¿Qué querés estudiar hoy?'));['Mis cursos y rotaciones','Preparar Revalida o residencias','Continuar aprendiendo'].forEach(t=>assert.ok(html.includes('<h2>'+t+'</h2>')));assert.ok(!html.includes('consultorio.html'));assert.ok(html.includes('/capacitacion.html'));
+ assert.ok(html.includes('¿Cómo vas a usar ClinicIA?'));['Soy alumno','Soy instructor'].forEach(t=>assert.ok(html.includes('<h2>'+t+'</h2>')));assert.ok(!html.includes('<h2>Médicos</h2>'),'el inicio tiene solo dos puertas');assert.ok(!html.includes('consultorio.html'));assert.ok(html.includes('/capacitacion.html?perfil=instructor'));
  await click('general-practice');assert.ok(html.includes('class="question"'),'general practice starts a mixed Examen Único session without choosing a course');
  hash='#formacion';events.hashchange();assert.ok(html.includes('¿Cómo querés estudiar?'));assert.ok(html.includes('Práctica general')&&html.includes('Preparar un curso o examen'));assert.ok(html.includes('Entrar al curso'));
 
  hash='#personal-sanitario';events.hashchange();assert.ok(html.includes('<h1>Personal sanitario</h1>')&&html.includes('href="#kinesiologia"'));
- hash='#kinesiologia';events.hashchange();assert.ok(html.includes('<strong>Kinesiólogos</strong>'));
+ hash='#kinesiologia';events.hashchange();assert.ok(html.includes('<strong>Kinesiología</strong>'));assert.ok(html.includes('href="#alumno"'),'migas de pan hasta Alumno');
  for(const c of courses.filter(c=>c.category==='kinesiologia'))assert.ok(html.includes('data-id="'+c.id+'"'));
  assert.ok(!html.includes('data-id="respuesta-policial"'),'first responder courses do not enter physiotherapy');
  hash='#examen-unico/home';events.hashchange();

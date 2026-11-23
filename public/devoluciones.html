@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Devoluciones y arrepentimiento · ClinicIA</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body style="display:block">
+<main class="legal-content">
+<a href="/">← ClinicIA</a>
+<h1>Devoluciones y arrepentimiento</h1>
+<p>Si compraste un nivel de acceso y te arrepentís, tenés <strong>10 días corridos</strong> desde la aprobación del pago para revocar la compra. La devolución la tramitamos por el mismo medio de pago, normalmente a través de Mercado Pago. Condiciones completas en los <a href="/terminos.html">Términos y condiciones</a>.</p>
+<h2>Botón de arrepentimiento</h2>
+<p id="msg" role="status">Para pedir la revocación, ingresá a tu cuenta desde <a href="/">Inicio</a>.</p>
+<form id="form" hidden>
+<label>Compra a revocar<select name="orderId" id="orders" required></select></label>
+<label>Motivo (opcional)<textarea name="reason" maxlength="500" rows="3"></textarea></label>
+<button class="primary" type="submit">Revocar mi compra</button>
+</form>
+<p class="muted">Registramos tu pedido y una persona lo gestiona; el reintegro no es instantáneo. Soporte: <span id="support">a definir antes de comenzar a cobrar</span>.</p>
+</main>
+<script type="module">
+const $=s=>document.querySelector(s),msg=$('#msg');
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+async function api(path,body){const r=await fetch(path,{method:body?'POST':'GET',credentials:'same-origin',cache:'no-store',headers:{'Content-Type':'application/json'},...(body?{body:JSON.stringify(body)}:{})});const j=await r.json();if(!r.ok)throw Object.assign(new Error(j.error||'No se pudo completar la consulta.'),{status:r.status});return j;}
+try{const o=await api('/api/offer');if(o.payments?.support)$('#support').textContent=o.payments.support;}catch{}
+try{const b=await api('/api/account/billing');const ok=b.orders.filter(o=>o.status==='approved');
+ if(!ok.length)msg.textContent='No tenés compras aprobadas para revocar.';
+ else{msg.textContent='Elegí la compra que querés revocar.';$('#orders').innerHTML=ok.map(o=>`<option value="${esc(o.id)}">${esc(o.title)} · ${esc(o.amount)} ${esc(o.currency)}</option>`).join('');$('#form').hidden=false;}
+}catch(e){if(e.status!==401)msg.textContent=e.message;}
+$('#form').addEventListener('submit',async e=>{e.preventDefault();const f=new FormData(e.target);e.target.querySelector('button').disabled=true;
+ try{const r=await api('/api/account/withdrawal',{orderId:f.get('orderId'),reason:f.get('reason')});msg.textContent=r.repeated?'Ya habíamos registrado este pedido. Te contactaremos.':'Pedido registrado. Te contactaremos para completar la devolución.';e.target.hidden=true;}
+ catch(err){msg.textContent=err.message;e.target.querySelector('button').disabled=false;}});
+</script>
+</body>
+</html>

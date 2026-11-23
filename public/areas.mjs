@@ -1,14 +1,14 @@
 // Global area bar shared by every page, so it is always clear which part of ClinicIA you are in.
 // Formación: estudiar y practicar · Aulas: clases con código · Mi consultorio: pacientes · Tutor IA: consultas con IA.
 const AREAS=[
- ['formacion','Formación','./#formacion'],
- ['aulas','Aulas','./aulas.html'],
- ['capacitacion','Primeros auxilios','./capacitacion.html'],
+ ['formacion','Mis cursos','./#alumno'],
+ ['aulas','Aulas con código','./aulas.html'],
  ['tutor','Tutor IA','./#tutor']
 ];
 export function activeArea(path=location.pathname,hash=location.hash){
  if(/\/(aulas|clase)\.html$/.test(path))return 'aulas';
  if(/\/consultorio\.html$/.test(path))return 'consultorio';
+ if(/\/capacitacion\.html$/.test(path))return 'capacitacion';
  if(/\/(guardia|salas)\.html$/.test(path))return 'formacion';
  if(/\/admin\.html$/.test(path))return 'admin';
  if(/\/(pagos|privacidad|lanzamiento|formacion-admin)\.html$/.test(path))return '';
@@ -20,8 +20,8 @@ export function activeArea(path=location.pathname,hash=location.hash){
 const MODE_LABEL={student:'Estudiante',teacher:'Instructor',institution:'Institución',admin:'Administrador'};
 const MODE_AREAS={
  student:AREAS,
- teacher:[['aulas','Mis clases','./aulas.html'],['biblioteca','Biblioteca','./aulas.html#biblioteca'],['formacion','Formación','./#formacion'],['tutor','Tutor IA','./#tutor'],['capacitacion','Capacitaciones','./capacitacion.html']],
- institution:[['aulas','Aulas','./aulas.html'],['formacion','Formación','./#formacion'],['tutor','Tutor IA','./#tutor']],
+ teacher:[['capacitacion','Mis alumnos','./capacitacion.html?perfil=instructor'],['aulas','Crear cursos','./aulas.html'],['biblioteca','Biblioteca','./aulas.html#biblioteca'],['tutor','Tutor IA','./#tutor']],
+ institution:[['aulas','Aulas','./aulas.html'],['formacion','Mis cursos','./#alumno'],['tutor','Tutor IA','./#tutor']],
  admin:[['admin','Telemetría','./admin.html'],['formacion','Formación','./#formacion'],['aulas','Aulas','./aulas.html']]
 };
 let session={user:null,mode:'student'};

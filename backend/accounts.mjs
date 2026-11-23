@@ -3,6 +3,7 @@ import {resolveHospitalIssuer} from './hospital-issuer.mjs';
 import {createCapacitacion,capacitacionSchema} from './capacitacion.mjs';
 import {createTraining,trainingSchema} from './training.mjs';
 import {createPayments,paymentSchema} from './payments.mjs';
+import {createAccessGuard} from './access.mjs';
 import {createClasses,classSchema} from './classes.mjs';
 import {createMaterials,materialSchema,LIMITS as materialLimits} from './materials.mjs';
 import {createVault,vaultSchema} from './vault.mjs';
@@ -53,7 +54,7 @@ export async function createAccounts({db,origin='http://localhost:3000',secure=t
  await db.exec(schema+paymentSchema+trainingSchema+classSchema+vaultSchema+capacitacionSchema+materialSchema+adminRecoverySchema);
  const training=createTraining({db});
 
- const payments=createPayments({db,origin});
+ const payments=createPayments({db,origin});const guard=createAccessGuard({payments});
  const vault=createVault({db});
  const require=createRequire(import.meta.url);
  const materials=createMaterials({db,ai:require('../netlify/lib/course-builder.js'),quota:require('../netlify/lib/quota.js'),ocr:require('../netlify/lib/ocr.js')});
@@ -144,9 +145,9 @@ export async function createAccounts({db,origin='http://localhost:3000',secure=t
     const recovery=randomBytes(24).toString('hex');await db.query('UPDATE clinic_users SET password_hash=$1,recovery_hash=$2,must_change=false WHERE id=$3',[await hashPassword(body.password),digest(recovery),u.id]);await db.query('DELETE FROM clinic_sessions WHERE user_id=$1',[u.id]);await issue(res,u);return send(200,{user:publicUser({...u,must_change:false}),recoveryCode:recovery});
    }
    if(u.must_change)fail(403,'Cambiá tu contraseña inicial antes de continuar.');
-   if(path==='/api/account/capacitacion'){await limit('capacitacion:'+req.method+u.id,1800,3600);const out=await capacitacion.handle(u,req.method,body);if(out?.user&&req.method==='GET')out.user.instructorValidated=(await payments.access(u.id)).instructor.active;return send(200,out);}
+   if(path==='/api/account/capacitacion'){await limit('capacitacion:'+req.method+u.id,1800,3600);if(req.method==='POST'){if(body.action==='create-group')await guard(u,'instructor');if(body.action==='start')await guard(u,'alumno',body.courseId);}const out=await capacitacion.handle(u,req.method,body);if(out?.user&&req.method==='GET')out.user.instructorValidated=(await payments.access(u.id)).instructor.active;return send(200,out);}
    if(path==='/api/account/training'){await limit('training:'+req.method+u.id,60,3600);return send(200,await training.assessment(u,req.method,body));}
-   if(path==='/api/account/classes'||path.startsWith('/api/account/classes/')){await limit('classes:'+req.method+u.id,req.method==='GET'?600:240,3600);if(req.method==='POST'&&(body.action==='start'))await limit('class-attempt:'+u.id,60,86400);if(req.method==='POST'&&body.action==='create')await limit('class-create:'+u.id,20,86400);return send(200,await classes.handle(u,req.method,path,body));}
+   if(path==='/api/account/classes'||path.startsWith('/api/account/classes/')){await limit('classes:'+req.method+u.id,req.method==='GET'?600:240,3600);if(req.method==='POST'&&(body.action==='start'))await limit('class-attempt:'+u.id,60,86400);if(req.method==='POST'&&body.action==='create'){await guard(u,'instructor');await limit('class-create:'+u.id,20,86400);}return send(200,await classes.handle(u,req.method,path,body));}
    if(path==='/api/account/modes'&&req.method==='POST'){
     await limit('modes:'+u.id,20,3600);if(!['teacher','institution'].includes(body.mode)||body.accepted!==true)fail(400,'Modo inválido o falta aceptar las responsabilidades.');
     const next=[...new Set([...modesOf(u).filter(m=>m!=='student'&&m!=='admin'),body.mode])].join(',')||'student';
@@ -158,7 +159,7 @@ export async function createAccounts({db,origin='http://localhost:3000',secure=t
     return send(200,librarySearch({...u,modes:modesOf(u).join(',')},{type:q.type,course:q.course,lesson:q.lesson,q:q.q,page:q.page}));
    }
    if(path==='/api/account/patients'){await limit('vault:'+req.method+u.id,req.method==='GET'?600:300,3600);res.setHeader('Cache-Control','no-store');return send(200,await vault.handle(u,req.method,body));}
-   if(path==='/api/account/class-ai'&&req.method==='POST'){await limit('class-ai:'+body.action+u.id,body.action==='draft'?6:40,3600);return send(200,await classes.generate(u,body));}
+   if(path==='/api/account/class-ai'&&req.method==='POST'){await guard(u,'instructor');await limit('class-ai:'+body.action+u.id,body.action==='draft'?6:40,3600);return send(200,await classes.generate(u,body));}
    if(path==='/api/account/materials'){
     await limit('materials:'+req.method+u.id,req.method==='GET'?600:120,3600);
     if(req.method==='GET')return send(200,await materials.list(u));
@@ -176,6 +177,7 @@ export async function createAccounts({db,origin='http://localhost:3000',secure=t
    if(path==='/api/account/rooms'||/^\/api\/account\/rooms\/[a-f0-9]{12}$/.test(path)){await limit('rooms:'+req.method+u.id,req.method==='GET'?600:120,3600);const code=path.split('/')[4];if(!code&&req.method==='POST')await limit('room-create:'+u.id,5,86400);return send(200,await training.rooms(u,req.method,body,code));}
    if(path==='/api/account/billing'&&req.method==='GET')return send(200,{offer:payments.offer(),orders:await payments.orders(u.id),access:await payments.access(u.id)});
    if(path==='/api/account/checkout'&&req.method==='POST'){await limit('checkout:'+u.id,5,60);return send(200,await payments.checkout(u.id,body));}
+   if(path==='/api/account/withdrawal'&&req.method==='POST'){await limit('withdrawal:'+u.id,5,3600);return send(200,await payments.withdraw(u.id,body.orderId,body.reason));}
    if(path==='/api/account/payment-status'&&req.method==='POST'){await limit('payment-check:'+u.id,20,60);if(typeof body.orderId!=='string'||body.orderId.length>50)fail(400,'Orden inválida.');return send(200,await payments.verify(u.id,body.orderId));}
    if(path==='/api/account/question-report'&&req.method==='POST'){await limit('report:'+u.id,20,3600);if(!questions.some(q=>q.id===body.questionId)||!['ambiguous','incorrect','obvious'].includes(body.reason))fail(400,'Reporte inválido.');await db.query('INSERT INTO clinic_question_reports(user_id,question_id,reason) VALUES($1,$2,$3) ON CONFLICT DO NOTHING',[u.id,body.questionId,body.reason]);return send(200,{ok:true});}
    if(path==='/api/account/progress'){
@@ -190,6 +192,16 @@ export async function createAccounts({db,origin='http://localhost:3000',secure=t
    if(path==='/api/account/delete'&&req.method==='POST'){await limit('delete:'+u.id,5,900);if(u.role==='admin')fail(403,'La cuenta administradora no se elimina desde aquí.');if(typeof body.password!=='string'||!await verifyPassword(body.password,u.password_hash))fail(401,'Contraseña incorrecta.');await db.query("DELETE FROM clinic_rooms WHERE data->'members' @> $1::jsonb",[JSON.stringify([{id:u.id}])]);await db.query('DELETE FROM clinic_users WHERE id=$1',[u.id]);res.setHeader('Set-Cookie',`clinic_session=; Path=/; HttpOnly; SameSite=Strict; Max-Age=0${secure?'; Secure':''}`);return send(200,{ok:true});}
    if(path.startsWith('/api/admin')){
     if(u.role!=='admin')fail(403,'Acceso exclusivo para administración.');
+    if(path==='/api/admin/users'&&req.method==='GET'){await limit('admin-users:'+u.id,120,3600);const q=String(url.searchParams.get('q')||'').trim().slice(0,60).toLowerCase();const page=Math.max(0,Math.min(1000,Number(url.searchParams.get('page'))||0));
+     const rows=(await db.query("SELECT id,username,role,modes,created_at,last_seen FROM clinic_users WHERE ($1='' OR username_key LIKE '%'||$1||'%') ORDER BY created_at DESC LIMIT 50 OFFSET $2",[q.replace(/[%_\\]/g,''),page*50])).rows;
+     const grants=await payments.grantsOf(rows.map(r=>r.id));const users=[];for(const r of rows)users.push({id:r.id,username:r.username,role:r.role,modes:modesOf(r),createdAt:r.created_at,lastSeen:r.last_seen,access:await payments.access(r.id),grants:grants[r.id]||[]});
+     const total=(await db.query('SELECT count(*) AS n FROM clinic_users')).rows[0].n;return send(200,{users,total:Number(total),page,pageSize:50});}
+    if(path==='/api/admin/grant'&&req.method==='POST'){await limit('admin-grant:'+u.id,120,3600);return send(200,await payments.grant(u.id,body.userId,body.plan,body.days,body.note));}
+    if(path==='/api/admin/revoke-grant'&&req.method==='POST'){await limit('admin-grant:'+u.id,120,3600);return send(200,await payments.revokeGrant(body.grantId));}
+    if(path==='/api/admin/user-modes'&&req.method==='POST'){await limit('admin-modes:'+u.id,120,3600);if(!['teacher','institution'].includes(body.mode)||typeof body.enabled!=='boolean')fail(400,'Modo inválido.');
+     const t=(await db.query('SELECT id,role,modes FROM clinic_users WHERE id=$1',[String(body.userId||'')])).rows[0];if(!t)fail(404,'Cuenta no encontrada.');if(t.role==='admin')fail(400,'Los permisos de una cuenta administradora no se cambian desde acá.');
+     const cur=modesOf(t).filter(m=>m!=='student'&&m!=='admin'&&m!==body.mode);const next=[...cur,...(body.enabled?[body.mode]:[])].join(',')||'student';const r=await db.query('UPDATE clinic_users SET modes=$1 WHERE id=$2 RETURNING *',[next,t.id]);return send(200,{id:t.id,modes:modesOf(r.rows[0])});}
+    if(path==='/api/admin/withdrawals'&&req.method==='GET')return send(200,{withdrawals:await payments.withdrawals()});
     if(path==='/api/admin/payments/reconcile'&&req.method==='POST'){await limit('reconcile:'+u.id,6,60);return send(200,await payments.reconcilePending());}
     if(path==='/api/admin/training'&&req.method==='GET')return send(200,await training.roster());
     if(path==='/api/admin/telemetry'&&req.method==='GET'){
