@@ -6,7 +6,7 @@ const {chromium}=await import(process.env.PLAYWRIGHT_MODULE||'playwright');
 const port=4801,server=spawn('node',['server.mjs'],{env:{...process.env,PORT:String(port)},stdio:'ignore'});await new Promise(r=>setTimeout(r,2500));
 const base='http://localhost:'+port,browser=await chromium.launch({headless:true,args:['--no-sandbox','--use-fake-device-for-media-stream','--use-fake-ui-for-media-stream']});
 try{
- const ctx=await browser.newContext({viewport:{width:390,height:844},permissions:['microphone']}),page=await ctx.newPage(),errors=[],posts=[];
+ const ctx=await browser.newContext({viewport:{width:390,height:844},permissions:['microphone','clipboard-read','clipboard-write']}),page=await ctx.newPage(),errors=[],posts=[];
  page.on('pageerror',e=>errors.push(e.message));page.on('request',r=>{if(r.method()!=='GET'&&!r.url().startsWith('data:'))posts.push(r.method()+' '+r.url());});
  await page.addInitScript(()=>{globalThis.CLINIA_TRANSCRIBE=async()=> 'Datos personales: María López, 54 años. Antecedentes: hipertensión. Motivo de consulta: dolor torácico de dos días. Enfermedad actual: dolor opresivo al esfuerzo. Tratamiento: reposo y control en 48 horas.';});
  await page.goto(base+'/consultorio.html');await page.getByRole('heading',{name:'Mi consultorio'}).waitFor();
@@ -16,6 +16,13 @@ try{
  await page.getByRole('button',{name:/Dictar/}).click();await page.getByRole('button',{name:/Terminar dictado/}).waitFor();await page.waitForTimeout(600);await page.getByRole('button',{name:/Terminar dictado/}).click();
  await page.getByText('Listo. Revisá cada sección').waitFor();
  assert.match(await page.locator('textarea[name=antecedentes]').inputValue(),/hipertensión/);assert.match(await page.locator('textarea[name=motivo]').inputValue(),/dolor torácico/);assert.match(await page.locator('textarea[name=tratamiento]').inputValue(),/reposo/);
+ // receta electrónica: un clic abre el recetario y copia los datos mínimos (la receta no se emite acá)
+ await ctx.route('https://receto.com.ar/**',r=>r.fulfill({contentType:'text/html',body:'<title>Receto</title>'}));
+ const [popup]=await Promise.all([ctx.waitForEvent('page'),page.getByRole('button',{name:/Recetar con Receto/}).click()]);
+ await popup.waitForLoadState();assert.match(popup.url(),/^https:\/\/receto\.com\.ar\/app/);await popup.close();
+ await page.getByText('Datos copiados.').first().waitFor();
+ const clip=await page.evaluate(()=>navigator.clipboard.readText());assert.match(clip,/PACIENTE: María López/);assert.match(clip,/DNI: 30111222/);assert.match(clip,/INDICACIONES \/ TRATAMIENTO: reposo/);assert.ok(!/hipertensión|Antecedentes/i.test(clip),'no se copian los antecedentes');
+ await page.locator('#rx-ref').fill('CUIR-PRUEBA');await page.getByRole('button',{name:'Ya emití la receta'}).click();await page.getByText(/Receta emitida en Receto/).waitFor();
  await page.getByRole('button',{name:'Validar y marcar turno como dado'}).click();assert.match(await page.locator('#status').innerText(),/Marcá que revisaste/);
  await page.locator('input[name=ok]').check();await page.getByRole('button',{name:'Validar y marcar turno como dado'}).click();assert.match(await page.locator('#status').innerText(),/nombre del médico/);
  await page.locator('input[name=doctor]').fill('Dra. Gómez');await page.getByRole('button',{name:'Validar y marcar turno como dado'}).click();

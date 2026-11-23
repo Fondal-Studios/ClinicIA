@@ -25,3 +25,16 @@ test('los datos viven solo en el almacenamiento local, se exportan, se importan 
  assert.equal(createStore(m).state.patients.length,1,'persiste al recargar');a.wipe();assert.equal(createStore(m).state.patients.length,0);
  const c=createStore(mem());assert.equal(c.importLegacy({patients:{1:{nombre:'Rosa Gil'},2:{}},encounters:{9:{patientId:'1',motivo:'Tos',createdAt:1700000000000,resumen:'tos seca'}}}),1);assert.equal(c.done().length,1);assert.equal(c.done()[0].record.enfermedad,'tos seca');
 });
+import {prescriptionText,recetarioUrl,RECETARIOS} from '../public/consultorio-lib.mjs';
+test('recetario: texto con los datos mínimos, dirección https válida y registro opcional de la receta emitida',()=>{
+ const t=prescriptionText({name:'Ana Pérez',dni:'30111222',birth:'1970-05-01',coverage:'OSDE',phone:'',notes:'no se copia'},{diagnostico:'Hipertensión arterial',tratamiento:'Enalapril según indicación',antecedentes:'privado',enfermedad:'privado'});
+ assert.equal(t,'PACIENTE: Ana Pérez\nDNI: 30111222\nFECHA DE NACIMIENTO: 1970-05-01\nCOBERTURA: OSDE\nDIAGNÓSTICO: Hipertensión arterial\nINDICACIONES / TRATAMIENTO: Enalapril según indicación');
+ assert.ok(!/privado|no se copia|TELÉFONO/.test(t),'no se copian antecedentes, notas ni campos vacíos');
+ assert.equal(prescriptionText({name:'Luis'},{motivo:'Control'}),'PACIENTE: Luis\nDIAGNÓSTICO: Control','sin diagnóstico usa el motivo');
+ assert.equal(recetarioUrl(),RECETARIOS[0].url);assert.equal(recetarioUrl({id:'receto'}),'https://receto.com.ar/app');
+ assert.equal(recetarioUrl({id:'otro',url:'https://mi-recetario.example/app'}),'https://mi-recetario.example/app');
+ for(const bad of ['http://inseguro.example','javascript:alert(1)','no es url',''])assert.equal(recetarioUrl({id:'otro',url:bad}),'','rechaza '+bad);
+ const st=createStore(mem());const p=st.addPatient({name:'Ana Pérez'});const v=st.addVisit(p.id,'2026-12-01T10:00:00Z');
+ st.markPrescribed(v.id,{platform:'Receto',ref:'ABC-123'});assert.equal(st.state.visits[0].prescriptions[0].ref,'ABC-123');assert.throws(()=>st.markPrescribed('no'),/no encontrado/);
+ assert.equal(createStore(Object.assign(mem(),{}) ).state.visits.length,0);
+});

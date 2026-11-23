@@ -17,6 +17,15 @@ export function sectionize(text){
  return out;
 }
 const uid=()=>{const c=globalThis.crypto;if(c?.randomUUID)return c.randomUUID();return [...c.getRandomValues(new Uint8Array(16))].map(x=>x.toString(16).padStart(2,'0')).join('');}; // identificadores con aleatoriedad criptográfica
+// Recetario electrónico (opción A): ClinicIA no emite recetas. Prepara los datos para pegarlos en un recetario inscripto en el ReNaPDiS y abre ese recetario.
+export const RECETARIOS=[{id:'receto',name:'Receto (gratuito)',url:'https://receto.com.ar/app'},{id:'otro',name:'Otro recetario habilitado',url:''}];
+export const RECETARIOS_OFICIAL='https://www.argentina.gob.ar/receta-electronica/profesionales';
+export function recetarioUrl(cfg){const r=RECETARIOS.find(x=>x.id===cfg?.id)||RECETARIOS[0];const raw=r.id==='otro'?String(cfg?.url||''):r.url;try{const u=new URL(raw);return u.protocol==='https:'?u.href:'';}catch{return '';}}
+// Solo los datos mínimos que pide una receta: paciente, diagnóstico e indicaciones. No incluye antecedentes ni la transcripción.
+export function prescriptionText(patient,record){
+ const L=[['PACIENTE',patient?.name],['DNI',patient?.dni],['FECHA DE NACIMIENTO',patient?.birth],['COBERTURA',patient?.coverage],['TELÉFONO',patient?.phone],['DIAGNÓSTICO',record?.diagnostico||record?.motivo],['INDICACIONES / TRATAMIENTO',record?.tratamiento]];
+ return L.filter(([,v])=>String(v||'').trim()).map(([k,v])=>k+': '+String(v).trim()).join('\n');
+}
 export const emptyState=()=>({version:2,patients:[],visits:[]});
 export function createStore(storage,key='clinia_consultorio_v2'){
  let state;
@@ -35,6 +44,8 @@ export function createStore(storage,key='clinia_consultorio_v2'){
    v.record=Object.fromEntries(SECTIONS.map(([k])=>[k,String(sections?.[k]||'').trim()]));v.transcript=String(transcript);
    if(validated){v.status='dado';v.validatedBy=String(doctor).trim();v.validatedAt=new Date().toISOString();}else if(v.status!=='dado')v.status='pendiente';
    save();return v;},
+  // Registra que se emitió una receta en un recetario externo (referencia opcional: código de la receta). No guarda la receta.
+  markPrescribed(id,{platform='',ref=''}={}){const v=state.visits.find(v=>v.id===id);if(!v)throw new Error('Turno no encontrado.');(v.prescriptions??=[]).push({platform:String(platform).slice(0,60),ref:String(ref).slice(0,120),at:new Date().toISOString()});save();return v;},
   pending(){return state.visits.filter(v=>v.status==='pendiente').sort((a,b)=>a.when.localeCompare(b.when));},
   done(){return state.visits.filter(v=>v.status==='dado').sort((a,b)=>b.when.localeCompare(a.when));},
   historyOf(patientId){return state.visits.filter(v=>v.patientId===patientId&&v.status==='dado').sort((a,b)=>b.when.localeCompare(a.when));},

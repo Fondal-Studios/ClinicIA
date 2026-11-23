@@ -1,4 +1,4 @@
-import {createStore,sectionize,SECTIONS,csvOfVisits} from './consultorio-lib.mjs';
+import {createStore,sectionize,SECTIONS,csvOfVisits,RECETARIOS,RECETARIOS_OFICIAL,recetarioUrl,prescriptionText} from './consultorio-lib.mjs';
 const $=s=>document.querySelector(s),view=$('#view'),statusEl=$('#status');
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const store=createStore(localStorage);
@@ -6,6 +6,17 @@ let tab='turnos',visitId=null,patientId=null,recorder=null,busy=false,draft={sec
 const when=d=>new Date(d).toLocaleString('es-AR',{dateStyle:'short',timeStyle:'short'});
 const say=m=>{statusEl.textContent=m||'';};
 const model=()=>localStorage.getItem('clinia_whisper_model')||'Xenova/whisper-base';
+const recetarioCfg=()=>{try{return JSON.parse(localStorage.getItem('clinia_recetario')||'null')||{id:'receto'};}catch{return {id:'receto'};}};
+const recetarioName=()=>RECETARIOS.find(r=>r.id===recetarioCfg().id)?.name.replace(/ \(.*\)/,'')||'recetario';
+// Un clic: abre el recetario (ventana nueva) y deja en el portapapeles los datos mínimos del paciente y las indicaciones para pegarlos allá.
+async function recetar(visit){
+ const url=recetarioUrl(recetarioCfg());if(!url){say('Elegí tu recetario en Ajustes → Recetario electrónico.');return;}
+ const p=store.patient(visit.patientId),form=visit.id===visitId?$('#f-record'):null,text=prescriptionText(p,form?readSections(form):visit.record);
+ window.open(url,'_blank','noopener');
+ let copied=false;try{await navigator.clipboard.writeText(text);copied=true;}catch{}
+ lastRx={visitId:visit.id,text,copied};say(copied?'Datos copiados. En el recetario: «Crear receta» y pegá (Ctrl+V o mantené presionado).':'Se abrió el recetario. Copiá los datos de abajo y pegalos allá.');render();
+}
+let lastRx=null;
 async function api(path){const r=await fetch(path,{credentials:'same-origin',cache:'no-store'});const j=await r.json().catch(()=>({}));if(!r.ok)throw Object.assign(new Error(j.error||''),{status:r.status});return j;}
 // Acceso premium (nivel Profesional). Con el bloqueo apagado (piloto) queda abierto. Esta verificación es del lado del navegador: protege la comodidad de uso,
 // no un secreto, porque los datos y el dictado viven en el propio dispositivo.
@@ -19,7 +30,7 @@ function patientSelect(){return `<select name="patientId" required aria-label="P
 function turnos(){
  const pend=store.pending(),done=store.done().slice(0,10);
  return `<div class="card"><h2>Nuevo turno</h2><form id="f-visit"><div class="row">${patientSelect()}<input type="datetime-local" name="when" required aria-label="Fecha y hora"></div><label>Motivo (opcional)<input name="reason" maxlength="300"></label><div class="row"><button class="primary" type="submit">Dar turno</button><button type="button" data-tab="pacientes">+ Paciente nuevo</button></div></form></div>
- <h2>Turnos pendientes (${pend.length})</h2>${pend.map(v=>`<article class="card"><span class="pill">PENDIENTE${v.record?' · borrador':''}</span> <strong>${esc(when(v.when))}</strong> · ${esc(store.patient(v.patientId)?.name||'')}<p class="muted">${esc(v.reason)}</p><div class="row"><button class="primary" data-open="${esc(v.id)}">Atender</button><button data-cancel="${esc(v.id)}">Cancelar turno</button></div></article>`).join('')||'<p class="muted">No hay turnos pendientes.</p>'}
+ <h2>Turnos pendientes (${pend.length})</h2>${pend.map(v=>`<article class="card"><span class="pill">PENDIENTE${v.record?' · borrador':''}</span> <strong>${esc(when(v.when))}</strong> · ${esc(store.patient(v.patientId)?.name||'')}<p class="muted">${esc(v.reason)}</p><div class="row"><button class="primary" data-open="${esc(v.id)}">Atender</button><button data-recetar="${esc(v.id)}">Recetar</button><button data-cancel="${esc(v.id)}">Cancelar turno</button></div></article>`).join('')||'<p class="muted">No hay turnos pendientes.</p>'}
  <h2>Turnos dados (últimos 10)</h2>${done.map(v=>`<article class="card"><span class="pill">ATENDIDO</span> ${esc(when(v.when))} · ${esc(store.patient(v.patientId)?.name||'')}<p class="muted">${esc(v.record?.motivo||v.reason)} · Validó: ${esc(v.validatedBy)}</p><button data-open="${esc(v.id)}">Ver historia</button></article>`).join('')||'<p class="muted">Todavía no hay turnos dados.</p>'}`;
 }
 function pacientes(){
@@ -28,17 +39,23 @@ function pacientes(){
  if(sel){const p=sel;return `<p><button data-tab="pacientes" data-clear>← Pacientes</button></p><div class="card"><h2>${esc(p.name)}</h2><form id="f-edit"><label>Nombre y apellido<input name="name" value="${esc(p.name)}" required></label><div class="row"><label>DNI<input name="dni" value="${esc(p.dni)}" inputmode="numeric"></label><label>Nacimiento<input type="date" name="birth" value="${esc(p.birth)}"></label></div><div class="row"><label>Teléfono<input name="phone" value="${esc(p.phone)}" inputmode="tel"></label><label>Cobertura<input name="coverage" value="${esc(p.coverage)}"></label></div><label>Notas<textarea name="notes" rows="3">${esc(p.notes)}</textarea></label><button class="primary" type="submit">Guardar datos</button></form></div><h3>Historia clínica breve</h3>${store.historyOf(p.id).map(v=>`<article class="card"><strong>${esc(when(v.when))}</strong> · Validó ${esc(v.validatedBy)}${SECTIONS.filter(([k])=>v.record?.[k]).map(([k,t])=>`<p><strong>${esc(t)}:</strong> ${esc(v.record[k])}</p>`).join('')}</article>`).join('')||'<p class="muted">Sin consultas validadas.</p>'}<button class="primary" data-newvisit="${esc(p.id)}">Dar un turno a este paciente</button>`;}
  return `<div class="card"><h2>Nuevo paciente</h2><form id="f-patient"><label>Nombre y apellido<input name="name" required minlength="2"></label><div class="row"><label>DNI<input name="dni" inputmode="numeric"></label><label>Nacimiento<input type="date" name="birth"></label></div><div class="row"><label>Teléfono<input name="phone" inputmode="tel"></label><label>Cobertura<input name="coverage"></label></div><button class="primary" type="submit">Guardar paciente</button></form></div><label>Buscar por nombre o DNI<input id="q" type="search" value="${esc($('#q')?.value||'')}"></label><div id="plist">${list.map(p=>`<article class="card"><strong>${esc(p.name)}</strong> <span class="muted">${esc(p.dni)}</span><div class="row"><button data-patient="${esc(p.id)}">Abrir ficha</button></div></article>`).join('')||'<p class="muted">No hay pacientes.</p>'}</div>`;
 }
+function rxCard(v){
+ const done=(v.prescriptions||[]).map(x=>`<p class="muted">✔ Receta emitida en ${esc(x.platform)} · ${esc(when(x.at))}${x.ref?' · '+esc(x.ref):''}</p>`).join('');
+ const help=lastRx&&lastRx.visitId===v.id?`<label>Datos para pegar en el recetario<textarea readonly rows="6">${esc(lastRx.text)}</textarea></label><div class="row"><button id="rx-copy">Copiar de nuevo</button></div><label>Código de la receta (opcional, para dejarlo anotado)<input id="rx-ref" maxlength="120"></label><button id="rx-done" class="primary">Ya emití la receta</button>`:'';
+ return `<div class="card"><h3>Receta electrónica</h3>${done}<div class="row"><button class="primary" id="rx-open">Recetar con ${esc(recetarioName())} →</button></div><p class="muted">Abre el recetario y copia al portapapeles los datos del paciente y las indicaciones. La receta se firma y emite en el recetario.</p>${help}</div>`;
+}
 function consulta(){
  const v=store.state.visits.find(x=>x.id===visitId),p=store.patient(v.patientId),locked=v.status==='dado';
  return `<p><button data-tab="turnos" data-close>← Turnos</button></p><div class="card"><h2>${esc(p?.name||'')}</h2><p>${esc(when(v.when))} · ${locked?'<span class="pill">ATENDIDO · validó '+esc(v.validatedBy)+'</span>':'<span class="pill">EN CURSO</span>'}</p>
  ${locked?'':`<div class="row"><button id="rec" class="primary">🎙 Dictar</button><span id="rec-state" class="muted">Hablá con calma y nombrá cada sección: «datos personales», «antecedentes», «motivo de consulta», «enfermedad actual», «tratamiento».</span></div><progress id="prog" max="100" value="0" hidden></progress>`}</div>
- <form id="f-record" class="card">${SECTIONS.map(([k,t])=>`<label>${esc(t)}<textarea name="${k}" rows="${k==='enfermedad'||k==='antecedentes'?4:2}" ${locked?'readonly':''}>${esc((draft.sections[k]??v.record?.[k])||'')}</textarea></label>`).join('')}
+ ${rxCard(v)}<form id="f-record" class="card">${SECTIONS.map(([k,t])=>`<label>${esc(t)}<textarea name="${k}" rows="${k==='enfermedad'||k==='antecedentes'?4:2}" ${locked?'readonly':''}>${esc((draft.sections[k]??v.record?.[k])||'')}</textarea></label>`).join('')}
  ${draft.sections.sinClasificar?`<label>Texto sin clasificar (no se guarda: pasalo a una sección)<textarea name="_x" rows="2" readonly>${esc(draft.sections.sinClasificar)}</textarea></label>`:''}
  <details><summary>Transcripción original</summary><p class="muted">${esc(draft.transcript||v.transcript||'—')}</p></details>
  ${locked?'':`<div class="warn"><strong>Validación del médico.</strong> La transcripción puede tener errores, sobre todo en nombres de fármacos, dosis y números. Leé y corregí todo antes de validar.</div><label>Médico que firma<input name="doctor" value="${esc(localStorage.getItem('clinia_doctor')||'')}" autocomplete="name"></label><label><input type="checkbox" name="ok" style="width:auto;min-height:0"> Revisé el contenido y lo valido como correcto</label><div class="row"><button type="submit" data-act="draft">Guardar borrador</button><button class="primary" type="submit" data-act="validate">Validar y marcar turno como dado</button></div>`}</form>`;
 }
 function ajustes(){
  return `<div class="card"><h2>Dictado por voz (local)</h2><p>Modelo de transcripción:</p><select id="model">${[['Xenova/whisper-base','Equilibrado (recomendado para celular)'],['Xenova/whisper-small','Más preciso: descarga más grande y más lento']].map(([v,t])=>`<option value="${v}"${model()===v?' selected':''}>${t}</option>`).join('')}</select><p class="muted">La primera vez se descarga el modelo (decenas o cientos de MB); luego queda guardado en el navegador y funciona sin enviar nada a internet. Es Whisper multilingüe preentrenado, no un modelo entrenado en vocabulario médico: por eso siempre pasa por tu validación.</p></div>
+ <div class="card"><h2>Recetario electrónico</h2><p>Mi consultorio <strong>no emite recetas</strong>: te lleva a un recetario inscripto en el Registro Nacional de Plataformas Digitales Sanitarias (ReNaPDiS), con un clic, y copia los datos para pegarlos. La receta la firmás vos en el recetario.</p><label>Mi recetario<select id="rx-id">${RECETARIOS.map(r=>`<option value="${r.id}"${recetarioCfg().id===r.id?' selected':''}>${esc(r.name)}</option>`).join('')}</select></label><label>Dirección del recetario (solo si elegiste «Otro»)<input id="rx-url" type="url" placeholder="https://…" value="${esc(recetarioCfg().url||'')}"></label><p class="muted">Necesitás una cuenta en ese recetario (en Receto: email, matrícula y DNI, que ellos validan). Después queda abierta en tu navegador. <a href="${RECETARIOS_OFICIAL}" target="_blank" rel="noopener">Ver el listado oficial de recetarios habilitados ↗</a>. Verificá que el que uses figure ahí.</p></div>
  <div class="card"><h2>Respaldo</h2><div class="row"><button data-export>Descargar respaldo (JSON)</button><button data-csv>Descargar turnos (CSV)</button></div><label>Restaurar respaldo<input type="file" id="restore" accept="application/json"></label><p class="muted">Restaurar reemplaza los datos de este dispositivo.</p></div>
  <div class="card"><h2>Consultorio anterior</h2><p class="muted">Si usabas la versión anterior en este navegador, podés importar los pacientes y consultas guardados localmente. No se modifica el original. Los pacientes cuyo nombre se guardaba cifrado en el servidor no se pueden importar.</p><button data-legacy>Importar datos anteriores</button></div>
  <div class="card"><h2>Borrar todo</h2><button data-wipe>Borrar todos los datos de este dispositivo</button></div>`;
@@ -66,6 +83,10 @@ document.addEventListener('click',async e=>{const t=e.target.closest('button');i
   if(t.id==='rec')return toggleRecord(t);
   if(t.dataset.tab){tab=t.dataset.tab;if('clear' in t.dataset)patientId=null;if('close' in t.dataset){visitId=null;draft={sections:{},transcript:''};}if(t.closest('.tabs')){visitId=null;patientId=null;}return render();}
   if(t.dataset.open){visitId=t.dataset.open;draft={sections:{},transcript:''};return render();}
+  if(t.dataset.recetar){const v=store.state.visits.find(x=>x.id===t.dataset.recetar);if(v)return recetar(v);return;}
+  if(t.id==='rx-open'){return recetar(store.state.visits.find(x=>x.id===visitId));}
+  if(t.id==='rx-copy'){try{await navigator.clipboard.writeText(lastRx?.text||'');say('Datos copiados.');}catch{say('No se pudo copiar: seleccioná el texto y copialo.');}return;}
+  if(t.id==='rx-done'){store.markPrescribed(visitId,{platform:recetarioName(),ref:$('#rx-ref')?.value||''});lastRx=null;say('Receta registrada en el turno.');return render();}
   if(t.dataset.cancel){if(confirm('¿Cancelar este turno?')){store.cancelVisit(t.dataset.cancel);render();}return;}
   if(t.dataset.patient){patientId=t.dataset.patient;return render();}
   if(t.dataset.newvisit){tab='turnos';patientId=t.dataset.newvisit;return render();}
@@ -85,6 +106,7 @@ document.addEventListener('submit',e=>{e.preventDefault();const f=e.target;try{
   say(validated?'Turno atendido y validado.':'Borrador guardado.');if(validated){visitId=null;draft={sections:{},transcript:''};tab='turnos';}render();}
 }catch(err){say(err.message);}});
 document.addEventListener('input',e=>{if(e.target.id==='q'){const l=store.search(e.target.value);$('#plist').innerHTML=l.map(p=>`<article class="card"><strong>${esc(p.name)}</strong> <span class="muted">${esc(p.dni)}</span><div class="row"><button data-patient="${esc(p.id)}">Abrir ficha</button></div></article>`).join('')||'<p class="muted">No hay pacientes.</p>';}});
-document.addEventListener('change',e=>{if(e.target.id==='model'){localStorage.setItem('clinia_whisper_model',e.target.value);say('Modelo cambiado.');}
+document.addEventListener('change',e=>{if(e.target.id==='rx-id'||e.target.id==='rx-url'){localStorage.setItem('clinia_recetario',JSON.stringify({id:$('#rx-id').value,url:$('#rx-url').value}));say('Recetario guardado.');}
+ if(e.target.id==='model'){localStorage.setItem('clinia_whisper_model',e.target.value);say('Modelo cambiado.');}
  if(e.target.id==='restore'&&e.target.files[0]){e.target.files[0].text().then(t=>{if(confirm('Esto reemplaza los datos de este dispositivo. ¿Continuar?')){const r=store.importJSON(t);say('Respaldo restaurado: '+r.patients+' pacientes, '+r.visits+' turnos.');render();}}).catch(err=>say(err.message));}});
 (async()=>{if(await gate()){$('#app').hidden=false;render();}})();
