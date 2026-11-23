@@ -24,7 +24,7 @@ async function openCourse(k,item){kind=k;current=item;filter='';status.textConte
    const share=d.joinCode?`<div class="card"><p>Código de vinculación para tus alumnos:</p><p class="code">${esc(d.joinCode)}</p><p class="muted">Enlace: ${esc(location.origin)}/capacitacion.html?codigo=${esc(d.joinCode)}</p><div class="row"><label><input type="checkbox" data-auto ${d.autoAccept?'checked':''}> Aceptar automáticamente a quien use el código</label><button data-accept-all>Aceptar a todos los pendientes</button></div></div>`:'';
    paint(share+`<p><a href="/capacitacion.html?perfil=instructor">Validar prácticas y ver la guía por módulo →</a></p>`);}
   else{const d=await api('/api/account/classes/'+encodeURIComponent(item.id)+'/progress');current.pass=d.passPct;rows=toRows(k,d);paint(`<p>Aprobación: ${esc(d.passPct)} % · <a href="/aulas.html#${esc(item.id)}">Editar el aula →</a></p>`);}
-  $('#mis-cursos').hidden=true;detalle.hidden=false;status.textContent='';
+  $('#mis-cursos').hidden=true;$('.big').hidden=true;detalle.hidden=false;status.textContent='';
  }catch(e){status.textContent=e.message;}
 }
 async function load(){
@@ -39,7 +39,7 @@ async function load(){
 }
 document.addEventListener('click',async e=>{const t=e.target.closest('button');if(!t)return;
  if(t.dataset.open){const [k,id]=t.dataset.open.split(':');const item=k==='class'?window.__mine.aulas.find(c=>c.id===id):window.__mine.grupos.find(g=>g.id===id);return openCourse(k==='class'?'class':'group',item);}
- if('back' in t.dataset){detalle.hidden=true;$('#mis-cursos').hidden=false;return;}
+ if('back' in t.dataset){detalle.hidden=true;$('#mis-cursos').hidden=false;$('.big').hidden=false;return;}
  if(t.dataset.sort){sort={key:t.dataset.sort,dir:sort.key===t.dataset.sort?-sort.dir:1};return paintKeep();}
  if('csv' in t.dataset){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['﻿'+csv()],{type:'text/csv'}));a.download='alumnos.csv';a.click();return;}
  if('refresh' in t.dataset)return openCourse(kind,current);

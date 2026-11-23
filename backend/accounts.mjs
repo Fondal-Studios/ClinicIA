@@ -93,7 +93,7 @@ export async function createAccounts({db,origin='http://localhost:3000',secure=t
     return send(200,await materials.upload(u,Buffer.concat(chunks),url.searchParams.get('title')));
    }
    let body={};if(req.method!=='GET'){if(!String(req.headers['content-type']||'').startsWith('application/json'))fail(415,'Se requiere JSON.');let text='';for await(const chunk of req){text+=chunk;if(Buffer.byteLength(text)>500000)fail(413,'Datos demasiado grandes.');}try{body=JSON.parse(text||'{}');}catch{fail(400,'JSON inválido.');}if(!body||typeof body!=='object'||Array.isArray(body))fail(400,'Datos inválidos.');}
-   if(path==='/api/offer'&&req.method==='GET'){const r=await db.query("SELECT value FROM clinic_settings WHERE key='offer'");return send(200,{pilotOpen:true,offer:r.rows[0]?.value||null,payments:payments.offer()});}
+   if(path==='/api/offer'&&req.method==='GET'){const r=await db.query("SELECT value FROM clinic_settings WHERE key='offer'");return send(200,{pilotOpen:true,offer:r.rows[0]?.value||null,payments:payments.offer(),paywall:paywallOn()});}
    if(path==='/api/account/quick'&&req.method==='POST'){
     // Class access: a name and a short code instead of a password. The account is real and persistent; the code is the password.
     const ip=secure?(req.headers['x-forwarded-for']||'unknown').split(',').at(-1).trim():req.socket.remoteAddress;await limit('quick-ip:'+ip,300,900);
