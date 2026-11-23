@@ -10,6 +10,12 @@ const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=randomInt(i+1);
 const line=(v,n)=>typeof v==='string'?v.replace(/\s+/g,' ').trim().slice(0,n):'';
 const text=(v,n)=>typeof v==='string'?v.replace(/\r/g,'').replace(/[ \t]+/g,' ').replace(/\n{3,}/g,'\n\n').trim().slice(0,n):'';
 const https=u=>{try{const x=new URL(u);return x.protocol==='https:'?x.href.slice(0,500):'';}catch{return '';}};
+// Imágenes de las clases: solo las del propio sitio o de hosts de imágenes libres conocidos (evita rastreadores y contenido no controlado).
+export const IMAGE_HOSTS=['upload.wikimedia.org','assets.openstax.org','smart.servier.com'];
+const image=v=>{if(!v||typeof v!=='object')return null;const alt=line(v.alt,200),credit=line(v.credit,200);let url='';
+ if(typeof v.url==='string'&&/^\/learn\/img\/ref\/[A-Za-z0-9._-]+\.(png|jpe?g|svg|webp)$/.test(v.url))url=v.url;
+ else{const u=https(v.url);try{if(u&&IMAGE_HOSTS.includes(new URL(u).hostname))url=u;}catch{}}
+ return url&&alt&&credit?{url,alt,credit}:null;};
 const list=(v,max)=>Array.isArray(v)?v.slice(0,max):[];
 
 // Everything stored goes through here: teachers edit freely, but shape, sizes and links are enforced on the server because students render this content.
@@ -30,8 +36,8 @@ export function cleanClass(raw){
  const pairs=list(raw.game?.pairs,12).map(p=>({term:line(p?.term,80),definition:line(p?.definition,200)})).filter(p=>p.term&&p.definition);
  return {
   title,summary:line(raw.summary,500),objectives:list(raw.objectives,8).map(o=>line(o,200)).filter(Boolean),
-  sections:list(raw.sections,12).map(s=>({heading:line(s?.heading,120),body:text(s?.body,2500),sources:refs(s?.sources)})).filter(s=>s.heading&&s.body),
-  slides:list(raw.slides,30).map(s=>({title:line(s?.title,100),bullets:list(s?.bullets,6).map(b=>line(b,160)).filter(Boolean),notes:text(s?.notes,600),sources:refs(s?.sources)})).filter(s=>s.title&&s.bullets.length),
+  sections:list(raw.sections,12).map(s=>({heading:line(s?.heading,120),body:text(s?.body,2500),image:image(s?.image),sources:refs(s?.sources)})).filter(s=>s.heading&&s.body),
+  slides:list(raw.slides,30).map(s=>({title:line(s?.title,100),bullets:list(s?.bullets,6).map(b=>line(b,160)).filter(Boolean),notes:text(s?.notes,600),image:image(s?.image),sources:refs(s?.sources)})).filter(s=>s.title&&s.bullets.length),
   questions:list(raw.questions,60).map(question).filter(Boolean),
   case:scenario&&caseQ?{scenario,question:caseQ}:null,
   game:pairs.length>=4&&new Set(pairs.map(p=>p.term.toLowerCase())).size===pairs.length?{type:'match',pairs}:null,

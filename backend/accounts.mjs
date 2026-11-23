@@ -3,7 +3,7 @@ import {resolveHospitalIssuer} from './hospital-issuer.mjs';
 import {createCapacitacion,capacitacionSchema} from './capacitacion.mjs';
 import {createTraining,trainingSchema} from './training.mjs';
 import {createPayments,paymentSchema} from './payments.mjs';
-import {createAccessGuard} from './access.mjs';
+import {createAccessGuard,paywallOn} from './access.mjs';
 import {createClasses,classSchema} from './classes.mjs';
 import {createMaterials,materialSchema,LIMITS as materialLimits} from './materials.mjs';
 import {createVault,vaultSchema} from './vault.mjs';
@@ -175,7 +175,7 @@ export async function createAccounts({db,origin='http://localhost:3000',secure=t
     fail(400,'Acción inválida.');
    }
    if(path==='/api/account/rooms'||/^\/api\/account\/rooms\/[a-f0-9]{12}$/.test(path)){await limit('rooms:'+req.method+u.id,req.method==='GET'?600:120,3600);const code=path.split('/')[4];if(!code&&req.method==='POST')await limit('room-create:'+u.id,5,86400);return send(200,await training.rooms(u,req.method,body,code));}
-   if(path==='/api/account/billing'&&req.method==='GET')return send(200,{offer:payments.offer(),orders:await payments.orders(u.id),access:await payments.access(u.id)});
+   if(path==='/api/account/billing'&&req.method==='GET')return send(200,{offer:payments.offer(),orders:await payments.orders(u.id),access:await payments.access(u.id),paywall:paywallOn()});
    if(path==='/api/account/checkout'&&req.method==='POST'){await limit('checkout:'+u.id,5,60);return send(200,await payments.checkout(u.id,body));}
    if(path==='/api/account/withdrawal'&&req.method==='POST'){await limit('withdrawal:'+u.id,5,3600);return send(200,await payments.withdraw(u.id,body.orderId,body.reason));}
    if(path==='/api/account/payment-status'&&req.method==='POST'){await limit('payment-check:'+u.id,20,60);if(typeof body.orderId!=='string'||body.orderId.length>50)fail(400,'Orden inválida.');return send(200,await payments.verify(u.id,body.orderId));}

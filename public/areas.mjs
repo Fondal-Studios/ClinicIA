@@ -8,7 +8,7 @@ const AREAS=[
 export function activeArea(path=location.pathname,hash=location.hash){
  if(/\/(aulas|clase)\.html$/.test(path))return 'aulas';
  if(/\/consultorio\.html$/.test(path))return 'consultorio';
- if(/\/capacitacion\.html$/.test(path))return 'capacitacion';
+ if(/\/(capacitacion|instructor)\.html$/.test(path))return 'capacitacion';
  if(/\/(guardia|salas)\.html$/.test(path))return 'formacion';
  if(/\/admin\.html$/.test(path))return 'admin';
  if(/\/(pagos|privacidad|lanzamiento|formacion-admin)\.html$/.test(path))return '';
@@ -20,7 +20,7 @@ export function activeArea(path=location.pathname,hash=location.hash){
 const MODE_LABEL={student:'Estudiante',teacher:'Instructor',institution:'Institución',admin:'Administrador'};
 const MODE_AREAS={
  student:AREAS,
- teacher:[['capacitacion','Mis alumnos','./capacitacion.html?perfil=instructor'],['aulas','Crear cursos','./aulas.html'],['biblioteca','Biblioteca','./aulas.html#biblioteca'],['tutor','Tutor IA','./#tutor']],
+ teacher:[['capacitacion','Mis cursos','./instructor.html'],['aulas','Crear contenido','./aulas.html#crear'],['biblioteca','Biblioteca','./aulas.html#biblioteca'],['tutor','Tutor IA','./#tutor']],
  institution:[['aulas','Aulas','./aulas.html'],['formacion','Mis cursos','./#alumno'],['tutor','Tutor IA','./#tutor']],
  admin:[['admin','Telemetría','./admin.html'],['formacion','Formación','./#formacion'],['aulas','Aulas','./aulas.html']]
 };

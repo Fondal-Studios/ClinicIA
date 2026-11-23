@@ -1,0 +1,383 @@
+{
+ "id": "nut-valoracion",
+ "title": "Valoración nutricional del adulto: tamizaje, antropometría y riesgo",
+ "summary": "Un recorrido introductorio por la entrevista, el tamizaje con MUST, la antropometría, los criterios GLIM y el plan de cuidado de la persona adulta.",
+ "subtitle": "Nutrición · adultos · nivel introductorio",
+ "prerequisites": "Nociones básicas de nutrición y de aritmética (porcentajes y cocientes). No se requiere experiencia clínica previa.",
+ "sources": {
+  "nut-must": {
+   "title": "'MUST': Malnutrition Universal Screening Tool, guía de los cinco pasos (BAPEN)",
+   "url": "https://www.bapen.org.uk/pdfs/must/must-full.pdf",
+   "year": 2003,
+   "type": "Instrumento de tamizaje",
+   "section": "Cinco pasos, tablas de puntaje de IMC, pérdida de peso y enfermedad aguda, categorías de riesgo y pautas de manejo",
+   "access": "Texto completo gratuito"
+  },
+  "nut-oms-imc": {
+   "title": "OMS, Nutrition Landscape Information System: malnutrición en mujeres (cortes de IMC en adultos)",
+   "url": "https://www.who.int/data/nutrition/nlis/info/malnutrition-in-women",
+   "year": 2024,
+   "type": "Marco conceptual",
+   "section": "Puntos de corte de IMC en adultos: bajo peso, normal, sobrepeso y obesidad",
+   "access": "Texto completo gratuito"
+  },
+  "nut-oms-cintura": {
+   "title": "Waist circumference and waist-hip ratio: report of a WHO expert consultation",
+   "url": "https://who.int/publications/i/item/9789241501491",
+   "year": 2011,
+   "type": "Informe de consulta de expertos",
+   "section": "Circunferencia de cintura y cociente cintura-cadera como indicadores de riesgo",
+   "access": "Texto completo gratuito"
+  },
+  "nut-glim": {
+   "title": "GLIM criteria for the diagnosis of malnutrition: a consensus report from the global clinical nutrition community",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6438340/",
+   "year": 2019,
+   "type": "Consenso",
+   "section": "Criterios fenotípicos y etiológicos, y gradación de severidad (Estadio 1 y 2)",
+   "access": "Texto completo gratuito"
+  },
+  "nut-glim25": {
+   "title": "GLIM consensus approach to diagnosis of malnutrition: a 5-year update",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/40223699/",
+   "year": 2025,
+   "type": "Consenso (actualización)",
+   "section": "Revisión de los criterios de masa muscular e inflamación a cinco años de la publicación original",
+   "access": "Resumen gratuito"
+  },
+  "nut-espen": {
+   "title": "ESPEN guideline on nutritional support for polymorbid medical inpatients",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/37478809/",
+   "year": 2023,
+   "type": "Guía",
+   "section": "Estimación de energía (27-30 kcal/kg/día) y proteínas (al menos 1,0 g/kg/día) en pacientes internados polimórbidos",
+   "access": "Resumen gratuito; texto completo en el sitio de ESPEN"
+  }
+ },
+ "lessons": [
+  {
+   "title": "Entrevista, anamnesis alimentaria y tamizaje con MUST",
+   "refs": [
+    "nut-must"
+   ],
+   "objective": "Aplicar la herramienta MUST para puntuar el riesgo nutricional a partir de una entrevista bien orientada.",
+   "body": "La valoración nutricional empieza con una conversación. La entrevista reúne el motivo de consulta, los antecedentes de enfermedad y medicación, los cambios recientes de peso y de apetito, las dificultades para masticar o tragar, los síntomas digestivos y las condiciones sociales y económicas que limitan el acceso a los alimentos. La anamnesis alimentaria agrega qué, cuánto, cuándo y con quién come la persona. Preguntá con curiosidad y sin juzgar: se cuenta más cuando no se siente una evaluación.\n\nEl tamizaje es un paso rápido, distinto de la valoración completa: sirve para detectar a quién conviene mirar más a fondo. MUST, de BAPEN, tiene cinco pasos. Primero se puntúa el IMC (mayor a 20 suma 0, de 18,5 a 20 suma 1, menor a 18,5 suma 2). Después la pérdida de peso no planificada en los últimos 3 a 6 meses (menos del 5 % suma 0, de 5 a 10 % suma 1, más del 10 % suma 2). Luego se suman 2 puntos si hay enfermedad aguda con ingesta nula o probablemente nula por más de 5 días. Por último se suman los tres puntajes y se aplican las pautas de manejo.\n\nEl total de 0 es riesgo bajo, 1 es riesgo medio y 2 o más es riesgo alto. En riesgo medio se observa y se documenta la ingesta; en riesgo alto se trabaja con objetivos y se deriva a nutrición. MUST es solo para adultos y no detecta déficits de vitaminas ni de minerales. Ejemplo didáctico: Rubén tiene 68 años, IMC 19,2, bajó el 6 % de su peso en cuatro meses y no cursa una enfermedad aguda; suma 1 + 1 + 0 = 2, riesgo alto.",
+   "trap": "Tratar el resultado del tamizaje como un diagnóstico de desnutrición: MUST solo indica riesgo y orienta qué hacer después.",
+   "evidence": "La guía de BAPEN describe los cinco pasos, los puntajes y las pautas de manejo por categoría de riesgo. Es una herramienta pensada para adultos y no reemplaza el juicio clínico ni la valoración completa.",
+   "activity": {
+    "scenario": "Elsa, de 80 años, vive sola, dice que 'ya no tiene hambre' y su ropa le queda holgada. Pesa 52 kg, mide 1,60 m y hace cuatro meses pesaba 56 kg. No tuvo ninguna enfermedad aguda reciente.",
+    "checklist": [
+     "Calculé el IMC con peso en kg sobre talla al cuadrado",
+     "Puntué por separado IMC, pérdida de peso y enfermedad aguda",
+     "Sumé los tres puntajes y nombré la categoría de riesgo",
+     "Indiqué qué haría según la categoría y cuándo repetiría el tamizaje"
+    ]
+   },
+   "rows": [
+    [
+     "Camila, de 45 años, consulta por cansancio. Antes de pedirle un registro de comidas, ¿qué conviene explorar en la entrevista?",
+     "Cambios de peso, de apetito, síntomas digestivos y acceso a comida",
+     "Qué peso ideal desearía alcanzar y qué dietas hizo en los últimos años",
+     "Qué suplementos podría empezar a tomar a partir de esta misma semana",
+     "Los resultados de laboratorio, sin preguntarle por su rutina diaria",
+     "Qué comen sus familiares, dejando de lado lo que come ella misma",
+     "La anamnesis recoge cambios de peso y apetito, síntomas digestivos y acceso a los alimentos porque son las pistas que orientan el riesgo y las causas de una baja ingesta. Los distractores se centran en deseos, suplementos o laboratorio, pero no describen cómo se alimenta realmente la persona."
+    ],
+    [
+     "En MUST, ¿qué puntaje de IMC suma una persona con IMC de 19,0?",
+     "1 punto, porque el IMC está entre 18,5 y 20",
+     "0 puntos, porque el IMC es mayor a 18,5",
+     "2 puntos, porque el IMC es menor a 20",
+     "3 puntos, porque se suman IMC y edad",
+     "0 puntos, porque el puntaje arranca por debajo de 18",
+     "En MUST el IMC de 18,5 a 20 puntúa 1; mayor a 20 puntúa 0 y menor a 18,5 puntúa 2. El distractor más tentador es 2 puntos, que confunde el corte de 20 con el de 18,5."
+    ],
+    [
+     "Elsa, de 80 años, tiene IMC 21 y bajó el 7 % de su peso en 4 meses, sin enfermedad aguda. ¿Qué riesgo MUST presenta?",
+     "Riesgo medio: suma 1, se observa y se documenta",
+     "Riesgo bajo: suma 0, alcanza con la atención de rutina",
+     "Riesgo alto: suma 2, corresponde derivar a nutrición",
+     "Riesgo alto: la edad mayor a 75 años suma un punto",
+     "Sin riesgo: el IMC supera 20 y no hay enfermedad aguda",
+     "El IMC de 21 suma 0, la pérdida del 7 % (entre 5 y 10 %) suma 1 y no hay enfermedad aguda: el total es 1, riesgo medio, con observación y registro de ingesta. Falla el riesgo bajo porque ignora la pérdida de peso, que ya puntúa."
+    ],
+    [
+     "¿Cuál es el propósito del tamizaje con MUST frente a la valoración nutricional completa?",
+     "Identificar quién está en riesgo y necesita valorarse más",
+     "Confirmar el diagnóstico de desnutrición y definir su severidad",
+     "Calcular los requerimientos de energía y de proteínas por día",
+     "Detectar déficits específicos de vitaminas y de minerales",
+     "Decidir qué tipo de soporte nutricional conviene iniciar ya",
+     "El tamizaje sirve para identificar el riesgo y priorizar a quién valorar mejor; no diagnostica ni calcula requerimientos. Confundirlo con un diagnóstico es lo más tentador, pero la confirmación se hace con criterios como GLIM."
+    ]
+   ]
+  },
+  {
+   "title": "Antropometría: peso, talla, IMC y cintura",
+   "refs": [
+    "nut-oms-imc",
+    "nut-oms-cintura"
+   ],
+   "objective": "Calcular e interpretar el IMC y la circunferencia de cintura reconociendo los límites de cada indicador.",
+   "body": "Un buen dato antropométrico depende de la técnica. Pesá con balanza calibrada, con ropa liviana y sin calzado; medí la talla de pie, con la espalda recta. Si la persona no puede ponerse de pie, existen estimaciones alternativas (por ejemplo, a partir de la longitud del cúbito) que conviene registrar como estimadas. El IMC resulta de dividir el peso en kilos por la talla en metros elevada al cuadrado.\n\nLa OMS clasifica a los adultos así: menos de 18,5 es bajo peso (y menos de 17,0 se describe como delgadez moderada o severa), de 18,5 a 24,9 es peso normal, 25,0 o más es sobrepeso y 30,0 o más es obesidad. La circunferencia de cintura aporta lo que el IMC no muestra: la acumulación de grasa abdominal. Se suelen usar como puntos de corte de riesgo aumentado 94 cm en varones y 80 cm en mujeres, y de riesgo sustancialmente aumentado 102 cm y 88 cm. Algunas poblaciones, como las asiáticas, tienen cortes propios: no los apliques sin verificar la guía correspondiente.\n\nEl IMC tiene límites claros: no distingue masa magra de masa grasa, no informa dónde se acumula la grasa y se distorsiona con edema o ascitis. Una persona puede tener IMC normal con poca masa muscular y mucha grasa abdominal. Por eso se interpreta junto con la cintura, la historia de peso y la clínica. Ejemplo didáctico: Marcela mide 1,60 m y pesa 72 kg; su IMC es 28,1 (sobrepeso) y su cintura de 90 cm supera el corte de 88 cm.",
+   "trap": "Dividir el peso por la talla y no por la talla al cuadrado, o dar por tranquilizador un IMC normal sin mirar la cintura ni la composición corporal.",
+   "evidence": "La OMS publica los cortes de IMC para adultos; el informe de la consulta de expertos sobre cintura y cociente cintura-cadera revisa su utilidad como indicadores de riesgo. Los valores de cintura citados aquí no pudieron confirmarse en el texto del informe durante la redacción: verificalos antes de usarlos en práctica.",
+   "activity": {
+    "scenario": "Sonia, de 52 años, mide 1,65 m y pesa 63 kg; su cintura es de 92 cm. Dice que 'está en su peso', pero la ropa del abdomen le aprieta cada año más.",
+    "checklist": [
+     "Calculé el IMC con la talla al cuadrado",
+     "Ubiqué la categoría OMS que corresponde",
+     "Comparé la cintura con el corte de riesgo de las mujeres",
+     "Expliqué qué no me dice el IMC en este caso"
+    ]
+   },
+   "rows": [
+    [
+     "Mariano mide 1,75 m y pesa 90 kg. ¿Cuál es su IMC y su categoría OMS?",
+     "IMC 29,4: sobrepeso",
+     "IMC 30,0: obesidad",
+     "IMC 51,4: obesidad severa",
+     "IMC 22,5: peso normal",
+     "IMC 29,4: obesidad",
+     "El IMC es 90 dividido 1,75 al cuadrado, es decir 29,4, que cae en sobrepeso (25,0 a 29,9). El resultado de 51,4 surge de dividir por la talla sin elevarla al cuadrado, un error muy común."
+    ],
+    [
+     "Un adulto de 40 años tiene IMC 17,8. ¿Qué categoría OMS corresponde?",
+     "Bajo peso, por estar debajo de 18,5",
+     "Peso normal, porque el rango comienza en 17,0",
+     "Delgadez moderada o severa, por estar bajo 18,5",
+     "Peso normal, si la persona tiene más de 65 años",
+     "Sin categoría, porque el IMC no se usa bajo 18",
+     "La OMS considera bajo peso un IMC menor a 18,5; la delgadez moderada o severa se reserva para valores menores a 17,0. Falla el distractor del corte de 17,0 como inicio de lo normal, porque confunde ambos umbrales."
+    ],
+    [
+     "Sonia tiene IMC 23 (peso normal) y una cintura de 92 cm. ¿Cómo se interpreta la cintura?",
+     "Muestra riesgo sustancialmente aumentado pese al IMC",
+     "No aporta información: con IMC normal el riesgo es bajo",
+     "Es normal, porque el corte para mujeres es de 102 cm",
+     "Diagnostica obesidad y alcanza para decidir todo el plan",
+     "Solo sirve en varones; en mujeres no se interpreta nunca",
+     "La cintura refleja grasa abdominal, algo que el IMC no muestra; 92 cm supera el corte de 88 cm usado para mujeres, así que el riesgo está sustancialmente aumentado aunque el IMC sea normal. Es un indicador de riesgo, no un diagnóstico."
+    ],
+    [
+     "¿Cuál es una limitación del IMC al valorar a una persona adulta?",
+     "No distingue masa magra de grasa ni su ubicación",
+     "Solo puede calcularse con estudios de imagen del cuerpo",
+     "Pierde validez en toda persona adulta mayor de 40 años",
+     "Requiere conocer el sexo para elegir el punto de corte",
+     "Depende de la altitud del lugar donde vive la persona",
+     "El IMC relaciona peso y talla, por lo que no discrimina entre músculo y grasa ni informa su distribución; por eso se complementa con cintura y clínica. Falla la idea de que cambia con el sexo: los cortes OMS de IMC son los mismos para varones y mujeres."
+    ]
+   ]
+  },
+  {
+   "title": "Pérdida de peso involuntaria y desnutrición según GLIM",
+   "refs": [
+    "nut-glim",
+    "nut-glim25"
+   ],
+   "objective": "Diagnosticar y graduar la desnutrición aplicando los criterios fenotípicos y etiológicos de GLIM.",
+   "body": "GLIM se usa después de un tamizaje positivo. El diagnóstico exige al menos un criterio fenotípico y al menos uno etiológico. Los fenotípicos son tres: pérdida de peso (más del 5 % en los últimos 6 meses o más del 10 % más allá de los 6 meses), IMC bajo (menor a 20 en menores de 70 años y menor a 22 en mayores de 70; para poblaciones asiáticas el consenso propone menos de 18,5 y menos de 20) y masa muscular reducida, medida con un método validado.\n\nLos criterios etiológicos son dos. Uno es la ingesta o la asimilación reducida: ingesta de 50 % o menos de los requerimientos por más de una semana, cualquier reducción por más de dos semanas o una condición digestiva crónica que afecte la absorción. El otro es la inflamación, por una enfermedad aguda, una lesión o una enfermedad crónica.\n\nLa severidad se gradúa solo con criterios fenotípicos. Estadio 1 (moderada): pérdida de 5 a 10 % en 6 meses o de 10 a 20 % más allá; IMC menor a 20 (menores de 70) o menor a 22 (mayores de 70). Estadio 2 (severa): pérdida mayor al 10 % en 6 meses o mayor al 20 % más allá; IMC menor a 18,5 o menor a 20, según la edad. Ejemplo didáctico: Graciela, de 72 años, bajó el 12 % en cinco meses y come la mitad de lo habitual desde hace diez días; tiene un criterio fenotípico y uno etiológico, con estadio 2.",
+   "trap": "Pedir los tres criterios fenotípicos o exigir inflamación para diagnosticar: alcanza con un criterio de cada tipo, y la severidad sale solo de los fenotípicos.",
+   "evidence": "El consenso GLIM de 2019 propone esta estructura y los umbrales citados, con acceso abierto. Una actualización de 2025 revisa los criterios de masa muscular e inflamación, por lo que conviene consultar la versión vigente.",
+   "activity": {
+    "scenario": "Ricardo, de 58 años, pasó por una cirugía abdominal hace un mes. Perdió el 11 % de su peso en 4 meses, su IMC es 21 y hace dos semanas come menos de la mitad de sus requerimientos.",
+    "checklist": [
+     "Identifiqué el criterio fenotípico presente y su umbral",
+     "Identifiqué el criterio etiológico presente y su umbral",
+     "Concluí si se cumple la combinación mínima de GLIM",
+     "Gradué la severidad usando solo criterios fenotípicos"
+    ]
+   },
+   "rows": [
+    [
+     "¿Qué combinación de criterios confirma desnutrición según GLIM?",
+     "Al menos un criterio fenotípico y al menos uno etiológico",
+     "Dos criterios fenotípicos, sin necesidad de uno etiológico",
+     "IMC bajo más un tamizaje positivo con la herramienta MUST",
+     "Un criterio etiológico, ya que la inflamación define el cuadro",
+     "Pérdida de peso mayor al 5 % en cualquier plazo de tiempo",
+     "GLIM combina un criterio fenotípico (qué se observa en el cuerpo) con uno etiológico (por qué ocurre). Con dos fenotípicos y ninguna causa no se cumple el esquema, que es el distractor más tentador."
+    ],
+    [
+     "Ana, de 55 años, perdió el 8 % de su peso en 5 meses; IMC 22; come cerca de la mitad desde hace 10 días. ¿Qué indica GLIM?",
+     "Desnutrición en estadio 1 (moderada)",
+     "Desnutrición en estadio 2 (severa), por el IMC bajo",
+     "No cumple criterios: falta el criterio de inflamación",
+     "Desnutrición en estadio 2, porque come la mitad",
+     "Sin desnutrición, porque el IMC es mayor a 20",
+     "Hay un criterio fenotípico (pérdida mayor al 5 % en 6 meses) y uno etiológico (ingesta de 50 % o menos por más de una semana). La pérdida de 5 a 10 % corresponde al estadio 1. La inflamación no es obligatoria: un criterio etiológico alcanza."
+    ],
+    [
+     "¿Qué umbral de pérdida de peso usa GLIM como criterio fenotípico?",
+     "Más del 5 % en 6 meses o más del 10 % después",
+     "Más del 2 % en una semana o más del 5 % en un mes",
+     "Más del 10 % en 6 meses o más del 20 % después",
+     "Más del 3 % en 3 meses, sin importar la causa de fondo",
+     "Más del 5 % en 12 meses o más del 10 % en 2 años",
+     "El criterio fenotípico de pérdida de peso es más del 5 % en 6 meses o más del 10 % más allá de ese plazo. Los valores de más del 10 % y 20 % son el umbral de severidad (estadio 2), el distractor más tentador."
+    ],
+    [
+     "Jorge, de 45 años, bajó el 12 % de su peso en 4 meses y tiene un criterio etiológico presente. ¿Qué estadio corresponde?",
+     "Estadio 2 (severa), por pérdida mayor al 10 % en 6 meses",
+     "Estadio 1 (moderada), porque su IMC todavía no es bajo",
+     "Estadio 1 (moderada): la pérdida está entre 5 y 10 %",
+     "Estadio 3 (crítica), por superar el 10 % de pérdida",
+     "No se gradúa: la gravedad depende del criterio etiológico",
+     "La severidad se gradúa solo con criterios fenotípicos; una pérdida mayor al 10 % en 6 meses es estadio 2 (severa), sin importar que el IMC sea normal. GLIM no tiene un estadio 3 y la causa no modifica el estadio."
+    ]
+   ]
+  },
+  {
+   "title": "Ingesta y requerimientos de energía y proteínas",
+   "refs": [
+    "nut-espen",
+    "nut-glim"
+   ],
+   "objective": "Estimar la cobertura de la ingesta respecto de los requerimientos usando rangos de guías y datos de la persona.",
+   "body": "Evaluar la ingesta es comparar lo que la persona come con lo que probablemente necesita. Las herramientas habituales son el recordatorio de 24 horas, el cuestionario de frecuencia de consumo, el registro de varios días y la historia dietética. Todas tienen límites: el recordatorio refleja un solo día y suele subregistrarse, y la memoria falla. Por eso conviene combinar métodos y preguntar por los cambios recientes.\n\nPara estimar requerimientos podés partir de rangos de guías. La guía ESPEN para pacientes internados polimórbidos propone estimar el gasto energético total con 27 a 30 kcal por kg de peso corporal por día y un aporte de proteínas de al menos 1,0 g por kg por día. Son puntos de partida para esa población, no valores universales: la obesidad, las enfermedades renales o la enfermedad crítica exigen otros criterios y la consulta a guías específicas. Después se ajusta según la evolución de peso, la actividad y la tolerancia.\n\nCon la ingesta y el requerimiento estimado calculás el porcentaje cubierto, un dato que conecta con GLIM (ingesta de 50 % o menos por más de una semana). Ejemplo didáctico: Hugo pesa 60 kg; el rango da 1620 a 1800 kcal y al menos 60 g de proteínas por día. Si come cerca de 900 kcal, cubre aproximadamente la mitad de lo estimado.",
+   "trap": "Aplicar un rango de kcal/kg como si fuera una prescripción exacta y válida para cualquier persona, sin ajustar por contexto clínico ni seguir la evolución.",
+   "evidence": "La guía ESPEN de 2023 para pacientes internados polimórbidos respalda 27 a 30 kcal/kg y al menos 1,0 g/kg de proteínas como estimaciones; su resumen es gratuito. Los valores son para esa población y no sustituyen la evaluación individual.",
+   "activity": {
+    "scenario": "Nélida, de 70 años, pesa 55 kg. En un recordatorio de 24 horas desayunó té con tostadas, almorzó una sopa y cenó una porción pequeña de pollo con puré. Dice que 'esa semana comió menos que lo normal'.",
+    "checklist": [
+     "Estimé energía con el rango por kg y calculé los extremos",
+     "Estimé el mínimo de proteínas por día",
+     "Estimé de forma aproximada el porcentaje de cobertura de su ingesta",
+     "Anoté la limitación del método con que obtuve la ingesta"
+    ]
+   },
+   "rows": [
+    [
+     "Hugo (60 kg) come cerca de 900 kcal/día. Con la estimación de 27 a 30 kcal/kg, ¿qué proporción cubre?",
+     "Aproximadamente la mitad (rango de 1620 a 1800 kcal)",
+     "Cerca del 75 %, con un objetivo estimado de 1200 kcal",
+     "Más del 100 %, porque supera las 800 kcal indicadas",
+     "Cerca del 30 %, con un objetivo estimado de 3000 kcal",
+     "No puede estimarse sin calorimetría indirecta previa",
+     "Con 60 kg el rango 27 a 30 kcal/kg da 1620 a 1800 kcal, y 900 kcal es cerca de la mitad. La guía admite fórmulas por peso como estimación, por eso el distractor de exigir calorimetría falla."
+    ],
+    [
+     "¿Qué aporte mínimo de proteínas orienta la guía ESPEN para Hugo, que pesa 60 kg?",
+     "Al menos 60 g por día, es decir 1,0 g/kg",
+     "Al menos 30 g por día, es decir 0,5 g/kg",
+     "Al menos 90 g por día, es decir 1,5 g/kg",
+     "Al menos 48 g por día, es decir 0,8 g/kg",
+     "Al menos 120 g por día, es decir 2,0 g/kg",
+     "La guía propone al menos 1,0 g/kg/día de proteínas, que en 60 kg equivale a 60 g por día. El valor de 48 g (0,8 g/kg) es el más tentador porque se asocia con recomendaciones para adultos sanos, no con esta población."
+    ],
+    [
+     "¿Qué limitación hay que tener presente al usar un recordatorio de 24 horas?",
+     "Refleja un solo día y suele subregistrarse",
+     "Exige pesar cada alimento en un laboratorio especializado",
+     "Mide con precisión el estado de micronutrientes de la persona",
+     "No puede usarse con personas mayores de 60 años de edad",
+     "Requiere un diario escrito que se completa durante semanas",
+     "El recordatorio de 24 horas capta un día y depende de la memoria, con tendencia al subregistro, por lo que puede no representar la ingesta habitual. Por eso se combina con otros métodos y con preguntas sobre cambios recientes."
+    ],
+    [
+     "¿Por qué un rango de kcal/kg de ESPEN no se aplica automáticamente a cualquier persona?",
+     "Es una estimación para polimórbidos y se ajusta al contexto",
+     "Porque la guía obliga a medir siempre con calorimetría indirecta",
+     "Porque fue desarrollado para deportistas de alto rendimiento",
+     "Porque el valor cambia según el horario de las comidas",
+     "Porque la guía prohíbe estimar requerimientos por kilo de peso",
+     "El rango surge de una guía para pacientes internados polimórbidos y es un punto de partida: obesidad, enfermedad renal o enfermedad crítica requieren otros criterios, y se ajusta con la evolución. La guía no prohíbe estimar por kilo de peso, que es justamente lo que propone."
+    ]
+   ]
+  },
+  {
+   "title": "Plan de cuidado, seguimiento y derivación",
+   "refs": [
+    "nut-must",
+    "nut-glim"
+   ],
+   "objective": "Diseñar un plan con metas medibles, indicadores de respuesta y criterios claros para derivar al equipo médico.",
+   "body": "Un plan de cuidado nace del riesgo y de las causas identificadas. Empezá por metas pequeñas, medibles y acordadas con la persona: por ejemplo, aumentar la ingesta a un porcentaje del requerimiento estimado, completar tres comidas y dos colaciones o sostener el peso durante dos semanas. Las intervenciones se escalonan: primero optimizar la alimentación habitual (fraccionar, enriquecer preparaciones con alimentos comunes, adecuar texturas) y, si no alcanza, consultar al equipo médico. Indicar suplementos o soporte artificial corresponde a ese equipo y no a este nivel de intervención.\n\nEl seguimiento mira indicadores de respuesta: peso, porcentaje de ingesta cubierto, síntomas que limitan comer, funcionalidad y estado de ánimo. MUST propone repetir el tamizaje cada semana en hospital, al menos una vez por mes en residencias y una vez por año en la comunidad para grupos especiales, y registrar la categoría de riesgo cuando la persona cambia de ámbito. Derivá sin demora ante ingesta casi nula, vómitos o diarrea persistentes, dificultad para tragar, pérdida rápida de peso, edemas o sospecha de enfermedad subyacente.\n\nComunicá con lenguaje claro, preguntá por preferencias y obstáculos, acordá metas y pedí que la persona te repita el plan con sus palabras. Ejemplo didáctico: Rubén, de riesgo alto, acuerda sumar una colación por día y pesarse cada semana; si en dos controles no hay respuesta, o aparece disfagia, se deriva.",
+   "trap": "Entregar un plan extenso y genérico de una sola vez y no definir cuándo se revisa ni qué signos obligan a derivar.",
+   "evidence": "BAPEN describe pautas de manejo y frecuencias de re-tamizaje por ámbito de atención; GLIM aporta criterios para graduar la severidad. Los criterios de derivación aquí mencionados son orientativos y deben ajustarse a los protocolos de cada servicio.",
+   "activity": {
+    "scenario": "Lidia, de 77 años, vive en una residencia. Tuvo riesgo medio de MUST el mes pasado; hoy rechaza gran parte de las comidas, tose al tragar líquidos y bajó otro kilo en dos semanas.",
+    "checklist": [
+     "Definí una meta medible y un plazo de revisión",
+     "Nombré los indicadores de respuesta que voy a registrar",
+     "Identifiqué los signos que justifican derivar al equipo médico",
+     "Describí cómo explicaría el plan para que ella lo repita"
+    ]
+   },
+   "rows": [
+    [
+     "Rubén tiene riesgo alto en MUST. ¿Qué meta de seguimiento resulta más útil?",
+     "Meta medible y acordada: sumar una colación y pesarse por semana",
+     "Pedirle que coma mejor y revisar el caso recién dentro de seis meses",
+     "Que alcance su peso ideal dentro del primer mes de trabajo",
+     "Indicarle un suplemento y no volver a controlarlo después",
+     "Cambiar toda su alimentación en una única consulta inicial",
+     "Las metas medibles, acordadas con la persona y con un plazo de revisión permiten ver la respuesta y ajustar. 'Comer mejor' sin plazo es el distractor más tentador, pero no se puede medir ni revisar."
+    ],
+    [
+     "¿Cuál de estas situaciones justifica derivar al equipo médico?",
+     "Ingesta casi nula con vómitos persistentes y pérdida rápida",
+     "Una persona que quiere ordenar sus horarios de comida habituales",
+     "Una preferencia por comer menos carne roja durante la semana",
+     "Un aumento de 1 kg en un mes sin otros síntomas asociados",
+     "Una consulta con IMC 24 y buena ingesta habitual en general",
+     "Ingesta casi nula, vómitos persistentes y pérdida rápida de peso son signos de alarma que requieren evaluación médica además de la nutricional. Los demás distractores no indican riesgo clínico inmediato y se manejan en el plan nutricional."
+    ],
+    [
+     "Según MUST, ¿con qué frecuencia se repite el tamizaje en una persona internada con riesgo bajo?",
+     "Cada semana mientras dure la internación",
+     "Una vez por mes mientras dure la internación",
+     "Una vez por año, igual que en la comunidad",
+     "Una única vez, al momento del ingreso",
+     "Cada seis meses en todos los ámbitos",
+     "MUST indica repetir el tamizaje cada semana mientras dure la internación cuando el riesgo es bajo; en residencias es mensual y en la comunidad anual para grupos especiales. El distractor de una vez por año confunde el ámbito comunitario con el hospitalario."
+    ],
+    [
+     "Al explicar el plan a Lidia, ¿qué estrategia favorece la adherencia?",
+     "Lenguaje claro, metas acordadas y que repita el plan con sus palabras",
+     "Entregar una lista extensa de prohibiciones para que la lea sola en casa",
+     "Hablar con términos técnicos para transmitir seriedad profesional",
+     "Centrarse solo en el peso y evitar preguntar por su contexto",
+     "Indicar el plan sin consultar sus preferencias ni costumbres",
+     "La adherencia mejora con lenguaje claro, metas acordadas y verificación de que la persona entendió, pidiéndole que repita el plan. Entregar listas de prohibiciones es tentador, pero se centra en el deber y no en lo que ella puede hacer."
+    ]
+   ]
+  }
+ ],
+ "case": {
+  "title": "Norma: pérdida de peso y poca ingesta",
+  "summary": "Caso ficticio · mujer de 74 años con pérdida de peso en cinco meses",
+  "source": "nut-glim",
+  "lessonIndex": 2,
+  "rows": [
+   [
+    "Norma, de 74 años, mide 1,58 m y pesa 49 kg (IMC 19,6); hace cinco meses pesaba 55 kg. No tiene enfermedad aguda. ¿Qué puntaje y riesgo da MUST?",
+    "3 puntos: riesgo alto (IMC 1, pérdida de peso 2, enfermedad aguda 0)",
+    "1 punto: riesgo medio, porque la pérdida no se puntúa en mayores",
+    "2 puntos: riesgo alto, porque solo cuenta la pérdida de peso",
+    "4 puntos: riesgo alto, sumando un punto por la edad",
+    "0 puntos: riesgo bajo, porque no hay enfermedad aguda",
+    "El IMC de 19,6 suma 1 y la pérdida de unos 11 % suma 2 (más del 10 %); sin enfermedad aguda el total es 3, riesgo alto. La pérdida de peso se puntúa a toda edad, y la edad no agrega puntos."
+   ],
+   [
+    "Norma, además, come cerca de la mitad de lo que necesita desde hace tres semanas. ¿Qué indica GLIM y con qué severidad?",
+    "Desnutrición en estadio 2, por la pérdida mayor al 10 % en 6 meses",
+    "Desnutrición en estadio 1, porque el IMC es mayor a 18,5",
+    "Sin desnutrición, porque falta medir la masa muscular",
+    "No se puede decidir sin descartar inflamación",
+    "Desnutrición en estadio 1, por la ingesta del 50 %",
+    "Hay un criterio fenotípico (pérdida mayor al 10 % en 6 meses, que además marca estadio 2) y uno etiológico (ingesta de 50 % o menos por más de una semana). No hace falta medir masa muscular ni inflamación: un criterio de cada tipo alcanza."
+   ],
+   [
+    "¿Qué conducta es adecuada para el plan inicial de Norma?",
+    "Registrar el riesgo, fijar metas de ingesta, controlar el peso y derivar al equipo médico",
+    "Indicar un suplemento comercial específico y reevaluar en tres meses",
+    "Aconsejar una dieta hipocalórica para reducir su cintura",
+    "Repetir el tamizaje dentro de un mes sin intervenir antes",
+    "No derivar, porque su IMC es mayor a 18,5",
+    "Con riesgo alto y desnutrición severa corresponde fijar metas de ingesta, hacer seguimiento del peso y derivar al equipo médico para estudiar causas y definir el soporte. Indicar un suplemento específico excede este nivel y espera demasiado."
+   ]
+  ]
+ }
+}

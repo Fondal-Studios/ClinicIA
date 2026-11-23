@@ -6,14 +6,14 @@ CREATE TABLE IF NOT EXISTS clinic_withdrawals(id text PRIMARY KEY,user_id text N
 const fail=(status,message)=>{throw Object.assign(new Error(message),{status});};
 // Dos niveles de acceso. El precio de referencia es en USD; Mercado Pago Argentina cobra en ARS, así que el monto cobrado sale de CLINICIA_PRICE_<PLAN>_ARS
 // (el dueño actualiza el tipo de cambio). Nunca se acepta un monto enviado por el cliente.
-export const PLANS={alumno:{label:'Acceso alumno',usd:4.99,days:30,summary:'Todos los cursos, simulacros, evaluaciones y certificados teóricos para tu cuenta.'},instructor:{label:'Acceso instructor',usd:9.99,days:30,summary:'Todo lo del nivel alumno, más cuenta de instructor validada: crear grupos y clases, invitar alumnos, seguir su avance y validar prácticas.'}};
+export const PLANS={alumno:{label:'Acceso alumno',usd:4.99,days:30,summary:'Todos los cursos, simulacros, evaluaciones y certificados teóricos para tu cuenta.'},instructor:{label:'Acceso instructor',usd:9.99,days:30,summary:'Todo lo del nivel alumno, más cuenta de instructor validada: crear grupos y clases, invitar alumnos, seguir su avance y validar prácticas.'},profesional:{label:'Acceso profesional · Mi consultorio',usd:19.99,days:30,summary:'Registro de pacientes, turnos e historia clínica breve en tu propio dispositivo, con dictado por voz transcripto de forma local y validación del médico.'}};
 const arsCents=v=>{v=String(v||'');return /^\d{1,7}(\.\d{1,2})?$/.test(v)?Math.round(Number(v)*100):0;};
 export function paymentConfig(env=process.env){
  const price=String(env.CLINICIA_PRICE_ARS||'');const cents=/^\d{1,7}(\.\d{1,2})?$/.test(price)?Math.round(Number(price)*100):0;
  const title=String(env.CLINICIA_PRODUCT_TITLE||'').slice(0,100),description=String(env.CLINICIA_PRODUCT_DESCRIPTION||'').slice(0,1200),seller=String(env.CLINICIA_SELLER_NAME||'').slice(0,120),support=String(env.CLINICIA_SUPPORT_EMAIL||'');
  const ready=Boolean(env.MERCADOPAGO_ACCESS_TOKEN&&cents>0&&cents<=100000000&&title&&description&&seller&&/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(support));
  const base=Boolean(env.MERCADOPAGO_ACCESS_TOKEN&&title&&description&&seller&&/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(support));const on=env.CLINICIA_PAYMENTS_ENABLED==='true';
- const plans=Object.fromEntries(Object.entries(PLANS).map(([id,p])=>{const c=id==='alumno'?(arsCents(env.CLINICIA_PRICE_ALUMNO_ARS)||cents):arsCents(env.CLINICIA_PRICE_INSTRUCTOR_ARS);const usd=Number(env['CLINICIA_PLAN_'+id.toUpperCase()+'_USD']);const ok=base&&c>0&&c<=100000000;return [id,{id,label:p.label,summary:p.summary,usd:Number.isFinite(usd)&&usd>0?usd:p.usd,cents:c,days:p.days,ready:ok,enabled:ok&&on}];}));
+ const plans=Object.fromEntries(Object.entries(PLANS).map(([id,p])=>{const c=id==='alumno'?(arsCents(env.CLINICIA_PRICE_ALUMNO_ARS)||cents):arsCents(env['CLINICIA_PRICE_'+id.toUpperCase()+'_ARS']);const usd=Number(env['CLINICIA_PLAN_'+id.toUpperCase()+'_USD']);const ok=base&&c>0&&c<=100000000;return [id,{id,label:p.label,summary:p.summary,usd:Number.isFinite(usd)&&usd>0?usd:p.usd,cents:c,days:p.days,ready:ok,enabled:ok&&on}];}));
  const anyPlan=Object.values(plans).some(p=>p.ready);return {ready:ready||anyPlan,enabled:(ready||anyPlan)&&on,token:env.MERCADOPAGO_ACCESS_TOKEN||'',cents,title,description,seller,support,currency:'ARS',plans};
 }
 export function publicPaymentOffer(config=paymentConfig()){return {enabled:config.enabled,ready:config.ready,title:config.title,description:config.description,amount:config.cents/100,currency:config.currency,seller:config.seller,support:config.support,durationDays:30,pilotOpen:true,plans:Object.values(config.plans||{}).map(p=>({id:p.id,label:p.label,summary:p.summary,usd:p.usd,amount:p.cents/100,currency:'ARS',enabled:p.enabled,durationDays:p.days}))};}
@@ -61,8 +61,8 @@ export function createPayments({db,origin,env=process.env,request=fetch}){
  // Nivel de acceso vigente: una orden aprobada y no vencida. El nivel instructor incluye el de alumno.
  async function access(userId){const rows=(await db.query("SELECT plan,max(valid_until) AS until FROM clinic_orders WHERE user_id=$1 AND status='approved' AND valid_until>now() GROUP BY plan UNION ALL SELECT plan,max(valid_until) FROM clinic_grants WHERE user_id=$1 AND revoked_at IS NULL AND valid_until>now() GROUP BY plan",[userId])).rows;
   const latest=p=>rows.filter(r=>r.plan===p).map(r=>r.until).sort((x,y)=>new Date(y)-new Date(x))[0]||null;
-  const a=latest('alumno'),i=latest('instructor');const stu=[a,i].filter(Boolean).sort((x,y)=>new Date(y)-new Date(x))[0]||null;
-  return {alumno:{active:!!stu,validUntil:stu},instructor:{active:!!i,validUntil:i}};}
+  const a=latest('alumno'),i=latest('instructor'),pro=latest('profesional');const stu=[a,i].filter(Boolean).sort((x,y)=>new Date(y)-new Date(x))[0]||null;
+  return {alumno:{active:!!stu,validUntil:stu},instructor:{active:!!i,validUntil:i},profesional:{active:!!pro,validUntil:pro}};}
  // Liberación manual por administración (p. ej. hospital): cuenta con nivel sin pasar por el cobro. Se puede revocar.
  async function grant(adminId,userId,plan,days,note=''){if(!PLANS[plan])fail(400,'Nivel inválido.');const d=Math.floor(Number(days));if(!(d>=1&&d<=3650))fail(400,'La duración debe ser de 1 a 3650 días.');
   if(!(await db.query('SELECT 1 FROM clinic_users WHERE id=$1',[String(userId||'')])).rows.length)fail(404,'Cuenta no encontrada.');

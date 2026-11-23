@@ -49,7 +49,7 @@ test('webhook requires a valid signature, re-reads the payment and credits exact
 test('two access levels: alumno USD 4.99 and instructor USD 9.99, server-side amounts, validated instructor includes student access',async()=>{
  const db=new PGlite();await db.exec(schema+paymentSchema);await db.query("INSERT INTO clinic_users(id,username,username_key,password_hash,recovery_hash) VALUES('u1','User1','user1','hash','hash')");
  const env={MERCADOPAGO_ACCESS_TOKEN:'fake-server-token',CLINICIA_PRICE_ALUMNO_ARS:'5000',CLINICIA_PRICE_INSTRUCTOR_ARS:'10000',CLINICIA_PRODUCT_TITLE:'ClinicIA',CLINICIA_PRODUCT_DESCRIPTION:'Acceso',CLINICIA_SELLER_NAME:'Seller',CLINICIA_SUPPORT_EMAIL:'t@example.com',CLINICIA_PAYMENTS_ENABLED:'true'};
- const offer=publicPaymentOffer(paymentConfig(env));assert.deepEqual(offer.plans.map(p=>[p.id,p.usd,p.amount,p.enabled]),[['alumno',4.99,5000,true],['instructor',9.99,10000,true]]);
+ const offer=publicPaymentOffer(paymentConfig(env));assert.deepEqual(offer.plans.map(p=>[p.id,p.usd,p.amount,p.enabled]),[['alumno',4.99,5000,true],['instructor',9.99,10000,true],['profesional',19.99,0,false]]);
  assert.equal(paymentConfig({...env,CLINICIA_PRICE_INSTRUCTOR_ARS:''}).plans.instructor.enabled,false,'sin precio en ARS el nivel no se vende');
  const sent=[];let pay;const request=async(url,args)=>{if(url.endsWith('/checkout/preferences')){const b=JSON.parse(args.body);sent.push(b);return {ok:true,json:async()=>({id:'pref-'+sent.length,collector_id:7,init_point:'https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=x'})};}return {ok:true,json:async()=>url.includes('/search')?{results:[pay]}:pay};};
  const api=createPayments({db,origin:'https://clinic.example',env,request});

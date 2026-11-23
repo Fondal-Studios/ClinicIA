@@ -1,0 +1,422 @@
+{
+ "id": "enf-medicacion",
+ "title": "Administración segura de medicamentos en enfermería",
+ "summary": "Aprendé a verificar, preparar, calcular y registrar la administración de medicamentos con foco en la seguridad del paciente.",
+ "subtitle": "Enfermería · adultos · nivel introductorio",
+ "prerequisites": "Conocimientos básicos de anatomía y fisiología y de técnicas de enfermería; no se requiere experiencia previa en administración de medicamentos.",
+ "sources": {
+  "enf-who-mwh": {
+   "title": "Medication Without Harm (Tercer Desafío Mundial por la Seguridad del Paciente)",
+   "url": "https://www.who.int/initiatives/medication-without-harm",
+   "year": 2017,
+   "type": "Marco conceptual",
+   "section": "Meta de reducir a la mitad el daño grave y evitable por medicamentos en cinco años; áreas de foco: polifarmacia, situaciones de alto riesgo y transiciones de la atención",
+   "access": "Texto completo gratuito"
+  },
+  "enf-who-highrisk": {
+   "title": "Medication Without Harm: Medication safety in high-risk situations",
+   "url": "https://www.who.int/initiatives/medication-without-harm/medication-safety-in-high-risk-situations",
+   "year": 2019,
+   "type": "Guía",
+   "section": "Situaciones de alto riesgo: medicamentos de alto riesgo, factores del profesional y del paciente, factores del sistema; recursos sobre nombres parecidos y electrolitos concentrados",
+   "access": "Texto completo gratuito"
+  },
+  "enf-who-5med": {
+   "title": "5 Moments for Medication Safety (herramienta para pacientes, OMS)",
+   "url": "https://qualityhealthservices.who.int/quality-toolkit/qt-catalog-item/5-moments-for-medication-safety",
+   "year": 2019,
+   "type": "Estándar técnico",
+   "section": "Cinco momentos: empezar, tomar, agregar, revisar y dejar de tomar un medicamento, con preguntas para conversar con el equipo de salud",
+   "access": "Texto completo gratuito"
+  },
+  "enf-ismp-high": {
+   "title": "ISMP List of High-Alert Medications in Acute Care Settings",
+   "url": "https://home.ecri.org/blogs/ismp-resources/high-alert-medications-in-acute-care-settings",
+   "year": 2024,
+   "type": "Estándar técnico",
+   "section": "Lista de medicamentos con mayor riesgo de daño significativo si se usan mal y salvaguardas sugeridas (estandarizar, limitar acceso, alertas, redundancias)",
+   "access": "Texto completo gratuito"
+  },
+  "enf-ismp-abrev": {
+   "title": "ISMP List of Error-Prone Abbreviations, Symbols, and Dose Designations",
+   "url": "https://home.ecri.org/blogs/ismp-resources/list-of-error-prone-abbreviations",
+   "year": 2024,
+   "type": "Estándar técnico",
+   "section": "Recomendación de no usar estas abreviaturas en comunicación verbal, manuscrita ni electrónica (rótulos, registros, pantallas de bombas); ejemplo cc/mL",
+   "access": "Texto completo gratuito"
+  },
+  "enf-ismp-dc": {
+   "title": "Independent double checks: worth the effort if used judiciously and properly (ISMP)",
+   "url": "https://home.ecri.org/blogs/ismp-alerts-and-articles-library/independent-double-checks-worth-the-effort-if-used-judiciously-and-properly",
+   "year": 2019,
+   "type": "Guía",
+   "section": "Definición de doble control independiente y uso selectivo, no para todo medicamento ni tarea",
+   "access": "Texto completo gratuito"
+  },
+  "enf-psnet-admin": {
+   "title": "Medication Administration Errors (AHRQ PSNet Primer)",
+   "url": "https://psnet.ahrq.gov/primer/medication-administration-errors",
+   "year": 2019,
+   "type": "Marco conceptual",
+   "section": "Los cinco correctos (paciente, medicamento, dosis, vía y hora) y su valor como verificación cuando se hace de forma independiente",
+   "access": "Texto completo gratuito"
+  },
+  "enf-who-hh": {
+   "title": "Five moments for hand hygiene (OMS)",
+   "url": "https://www.who.int/publications/m/item/five-moments-for-hand-hygiene",
+   "year": 2021,
+   "type": "Estándar técnico",
+   "section": "Los 5 momentos de higiene de manos: antes de tocar al paciente, antes de un procedimiento limpio/aséptico, después de riesgo de fluidos corporales, después de tocar al paciente y después de tocar su entorno",
+   "access": "Texto completo gratuito"
+  },
+  "enf-who-curr": {
+   "title": "Patient safety curriculum guide: multi-professional edition (OMS)",
+   "url": "https://www.who.int/publications/i/item/9789241501958",
+   "year": 2011,
+   "type": "Guía",
+   "section": "Currículo de seguridad del paciente para formación en enfermería y otras profesiones, incluido el aprendizaje a partir de los errores",
+   "access": "Texto completo gratuito"
+  },
+  "enf-arg-calidad": {
+   "title": "Plan Nacional de Calidad en Salud 2026-2030 (Ministerio de Salud de la Nación)",
+   "url": "https://www.argentina.gob.ar/salud/plan-nacional-de-calidad-en-salud-2026-2030",
+   "year": 2026,
+   "type": "Marco conceptual",
+   "section": "Objetivos que incluyen implementar el Programa Nacional de Garantía de Calidad de la Atención Médica (PNGCAM)",
+   "access": "Texto completo gratuito"
+  }
+ },
+ "lessons": [
+  {
+   "title": "Marco de la seguridad del paciente y los correctos de la administración",
+   "refs": [
+    "enf-who-mwh",
+    "enf-psnet-admin",
+    "enf-who-curr"
+   ],
+   "objective": "Explicar el enfoque de sistemas de la seguridad de la medicación y aplicar los cinco correctos como verificación real.",
+   "body": "En 2017 la OMS lanzó el desafío mundial “Medicación sin daño”, con la meta de reducir a la mitad, en cinco años, el daño grave y evitable relacionado con los medicamentos. Puso el foco en tres áreas: la polifarmacia, las situaciones de alto riesgo y las transiciones de la atención. La idea de fondo es que el error de medicación rara vez es culpa de una sola persona: ocurre cuando fallan varias barreras de un sistema, y enfermería suele ser una de las últimas.\n\nPor eso se enseñan los “correctos” de la administración: paciente, medicamento, dosis, vía y hora. Son una verificación final, no un reemplazo de un sistema seguro. Solo detectan errores si se hacen de verdad: con la orden, el rótulo y el paciente identificado a la vista, en el momento de administrar y no de memoria ni “porque ya lo conozco”. Algunas instituciones agregan otros controles según su protocolo.\n\nPensá cada correcto como una pregunta concreta: ¿es esta persona?, ¿es este fármaco y el que está indicado?, ¿la cantidad coincide con la orden y con la unidad?, ¿es esta la vía?, ¿es el momento indicado? Si una sola respuesta genera duda, se frena y se consulta antes de seguir.\n\nEjemplo didáctico: Romina cuida a Lucía desde hace una semana. Esta mañana prepara la medicación en la sala de enfermería sin mirar la orden, porque “ya se la sabe”. Cotejar el rótulo con la orden vigente y con la paciente identificada, junto a la cama, habría mostrado que la indicación cambió ayer.",
+   "trap": "Creer que conocer bien al paciente o la rutina permite saltear la verificación: los cambios de indicación son justo lo que la memoria no registra.",
+   "evidence": "El desafío de la OMS y el primer sobre los cinco correctos respaldan el enfoque de sistemas y la lista de verificación; no establecen un protocolo único de enfermería, que depende de cada institución.",
+   "activity": {
+    "scenario": "Tomás recibe el turno y encuentra la medicación de la tarde preparada por un colega, con rótulos escritos a mano. Tiene mucho trabajo y piensa administrarla tal cual está. Analizá qué verificaciones corresponden y qué barreras del sistema podrían haber fallado.",
+    "checklist": [
+     "Nombra los cinco correctos y los vincula con la orden vigente.",
+     "Identifica qué documento o rótulo debe tener a la vista al administrar.",
+     "Propone qué hacer ante cualquier duda antes de continuar.",
+     "Distingue una falla individual de una falla de sistema."
+    ]
+   },
+   "rows": [
+    [
+     "Durante una capacitación, la jefa de servicio presenta el desafío mundial de la OMS “Medicación sin daño”. ¿Cuál es su meta declarada?",
+     "Reducir a la mitad el daño grave y evitable por medicamentos en cinco años",
+     "Eliminar por completo los errores de prescripción de hospitales públicos en diez años",
+     "Reducir a la mitad el consumo de medicamentos en adultos mayores en cinco años",
+     "Pasar todos los registros de papel a historia clínica electrónica en cinco años",
+     "Reemplazar la verificación de enfermería por dispensación automatizada en cinco años",
+     "El desafío de la OMS apunta a reducir a la mitad el daño grave y evitable asociado a los medicamentos en cinco años. No busca bajar el consumo ni reemplazar la verificación de enfermería: la tentación de pensar en tecnología como solución olvida que la meta es reducir el daño, no sustituir personas."
+    ],
+    [
+     "Lucía debe nombrar en un taller las tres áreas de acción prioritarias del desafío de la OMS sobre medicación. ¿Cuáles son?",
+     "Polifarmacia, situaciones de alto riesgo y transiciones de la atención",
+     "Costos de medicamentos, publicidad y venta libre sin receta archivada",
+     "Vacunación, antibióticos y medicamentos oncológicos en hospitales de agudos",
+     "Formación docente, infraestructura edilicia y telemedicina en atención primaria",
+     "Farmacovigilancia, medicamentos genéricos y trazabilidad de lotes en farmacia",
+     "Las tres áreas de foco son polifarmacia, situaciones de alto riesgo y transiciones de la atención. La farmacovigilancia y los genéricos son temas relacionados con medicamentos, por eso son tentadores, pero no son las tres áreas que definió el desafío de la OMS."
+    ],
+    [
+     "Martín va a administrar una dosis por vía oral. ¿Cuál es el conjunto de verificaciones básico de los cinco correctos?",
+     "Paciente, medicamento, dosis, vía y hora",
+     "Paciente, diagnóstico, dosis, vía y médico indicador",
+     "Medicamento, laboratorio, dosis, hora y número de cama",
+     "Paciente, medicamento, dosis, familiar y turno de trabajo",
+     "Prescriptor, medicamento, lote, vía y hora de preparación",
+     "Los cinco correctos son paciente, medicamento, dosis, vía y hora. El distractor con diagnóstico o prescriptor suena clínico, pero esas variables no son parte del conjunto básico: el control se centra en lo que se le va a dar a quién, cuánto, por dónde y cuándo."
+    ],
+    [
+     "Un enfermero revisa los cinco correctos una sola vez, a primera hora, para todos sus pacientes. ¿Qué práctica hace que la verificación de verdad detecte errores?",
+     "Cotejar rótulo, orden y paciente al administrar",
+     "Revisar los correctos una vez al inicio del turno para todos",
+     "Confiar en reconocer al paciente que ya se atendió antes",
+     "Delegar el control en quien preparó la medicación antes",
+     "Completar los correctos en el registro después de administrar",
+     "Los correctos detectan errores cuando se cotejan rótulo, orden y paciente en el momento de administrar, no de memoria. Revisar solo al inicio del turno falla porque las indicaciones pueden cambiar y la identidad se confirma junto al paciente, no antes."
+    ]
+   ]
+  },
+  {
+   "title": "Prescripción, verificación, alergias y abreviaturas peligrosas",
+   "refs": [
+    "enf-ismp-abrev",
+    "enf-psnet-admin",
+    "enf-who-highrisk"
+   ],
+   "objective": "Verificar una orden completa, identificar alergias y evitar abreviaturas propensas a error.",
+   "body": "Antes de preparar cualquier medicamento, leé la orden completa: paciente, fármaco, dosis con su unidad, vía, frecuencia, fecha y firma del prescriptor. Si falta un dato, está ilegible o te genera dudas, no la interpretes ni la completes por suposición: consultá al prescriptor, aclarala y dejá constancia. Administrar “lo que seguramente quiso decir” es una forma frecuente de convertir un error ajeno en un error propio.\n\nLas alergias se verifican dos veces: en la historia clínica o el registro de la institución y preguntándole al paciente, incluyendo reacciones previas que no figuren. Si el paciente refiere una alergia que no está registrada, se avisa al prescriptor antes de administrar y se registra. Que no aparezca en la ficha no significa que no exista.\n\nLas abreviaturas también son una barrera. El ISMP mantiene una lista de abreviaturas, símbolos y designaciones de dosis propensos a error, que recomienda no usar en ninguna comunicación: verbal, manuscrita o electrónica, incluyendo rótulos, registros de administración y pantallas de bombas de infusión. Un ejemplo es “cc”, que puede confundirse con “u” de unidades; se recomienda escribir “mL”. Las instituciones suelen armar su propia lista de “no usar” a partir de estas.\n\nEjemplo didáctico: Sebastián encuentra una indicación con un volumen escrito en “cc” y una letra difícil de leer. En lugar de adivinar, llama a la médica de guardia, confirma el dato, lo registra en mL y recién entonces prepara.",
+   "trap": "Completar de memoria o por costumbre una orden dudosa, o dar por descartada una alergia porque no figura en la ficha.",
+   "evidence": "La lista del ISMP es una recomendación técnica de referencia internacional, útil para armar listas locales; las abreviaturas exactas a evitar deben consultarse en la versión vigente y en la política de cada institución.",
+   "activity": {
+    "scenario": "Agustina recibe una indicación escrita a mano con una abreviatura que no reconoce y sin unidad clara en la dosis. Además, el paciente comenta que una vez “le hizo mal un antibiótico” pero no recuerda cuál. Decidí qué hacer antes de preparar.",
+    "checklist": [
+     "Detecta los datos faltantes o ilegibles de la orden.",
+     "Consulta al prescriptor en lugar de interpretar la indicación.",
+     "Registra y comunica la alergia referida por el paciente.",
+     "Reemplaza la abreviatura riesgosa por una forma escrita completa."
+    ]
+   },
+   "rows": [
+    [
+     "Una orden indica un volumen escrito en “cc”. ¿Qué recomienda el ISMP en cuanto a esa unidad?",
+     "Usar mL, porque cc puede leerse como unidades",
+     "Escribir cm3 porque es el equivalente más aceptado",
+     "Mantener cc si la letra del prescriptor es clara",
+     "Escribir c.c. con puntos para evitar la confusión",
+     "Reemplazar cc por gotas cuando el volumen es chico",
+     "El ISMP recomienda usar mL en lugar de cc, que puede confundirse con u (unidades). Poner puntos o mantener cc si la letra es clara no elimina el riesgo, porque la confusión depende de cómo se lee y se copia, no solo de cómo se escribe."
+    ],
+    [
+     "Sebastián no logra leer la dosis de una orden manuscrita. ¿Qué corresponde hacer?",
+     "Consultar al prescriptor y no administrar hasta aclararla",
+     "Administrar la dosis más baja posible hasta que vuelva el médico",
+     "Preguntar a un colega cuál suele ser la dosis habitual",
+     "Tomar la dosis de la orden anterior del mismo paciente",
+     "Administrar y anotar la duda en observaciones al final del turno",
+     "Una orden ilegible se aclara con el prescriptor antes de administrar y se deja constancia. Dar la dosis “más baja” parece prudente pero es también una decisión sin respaldo: infradosificar es otro error, no una solución segura."
+    ],
+    [
+     "Un paciente cuenta que una vez tuvo una reacción a un antibiótico, pero ese dato no figura en la historia clínica. ¿Qué hace el enfermero?",
+     "Avisar al prescriptor antes de administrar y registrar la alergia",
+     "Administrar con vigilancia porque no figura en la historia clínica",
+     "Descartar la alergia porque el paciente no recuerda el nombre exacto",
+     "Dar la primera dosis y esperar a ver si hay reacción",
+     "Pedir a la familia que firme conformidad y continuar con la dosis",
+     "Ante una alergia referida y no registrada, se avisa al prescriptor antes de administrar y se registra el dato. “Administrar con vigilancia” es tentador, pero expone al paciente a la reacción que justamente se quiere evitar."
+    ],
+    [
+     "Una jefa explica la lista de abreviaturas propensas a error del ISMP. ¿En qué comunicaciones recomienda evitarlas?",
+     "En todas: verbales, manuscritas y electrónicas, incluidos rótulos",
+     "Solo en las recetas manuscritas entregadas a pacientes ambulatorios",
+     "En las indicaciones médicas, pero no en los registros de enfermería",
+     "Únicamente en las comunicaciones verbales durante el pase de guardia",
+     "Solo en historias clínicas en papel, no en pantallas ni etiquetas",
+     "El ISMP recomienda evitar estas abreviaturas en toda comunicación: verbal, manuscrita y electrónica, incluyendo rótulos, registros y pantallas de bombas. Limitarlas a las indicaciones médicas deja afuera los registros de enfermería, donde el mismo error también puede nacer."
+    ]
+   ]
+  },
+  {
+   "title": "Preparación y administración por vía con higiene y técnica aséptica",
+   "refs": [
+    "enf-who-hh",
+    "enf-psnet-admin",
+    "enf-who-highrisk"
+   ],
+   "objective": "Aplicar higiene de manos y controles propios de cada vía al preparar y administrar medicamentos.",
+   "body": "La higiene de manos es la primera barrera. La OMS define cinco momentos: antes de tocar al paciente, antes de un procedimiento limpio o aséptico, después de un riesgo de exposición a fluidos corporales, después de tocar al paciente y después de tocar su entorno. Preparar y aplicar una inyección es un procedimiento limpio o aséptico, por lo que la higiene va antes de la punción, además de los otros momentos que correspondan.\n\nPreparar en un lugar limpio y sin interrupciones, leer el rótulo contra la orden y usar material de un solo uso reduce errores y contaminación. Al llegar al paciente, identificalo pidiéndole que diga su nombre y cotejalo con la pulsera o documento, en vez de preguntar “¿usted es…?”, que invita a decir que sí. Después de administrar, seguí los protocolos locales para descartar el material.\n\nPor vía oral, comprobá que el paciente pueda tragar con seguridad y quedate hasta que tome la dosis; no dejes medicación sobre la mesa. Por vía intramuscular o subcutánea, seguí la técnica institucional y evitá zonas lesionadas. Por vía endovenosa, revisá antes el sitio y la permeabilidad del acceso; si hay dolor, hinchazón o enrojecimiento, detené la infusión y avisá, porque puede haber salida del líquido fuera de la vena.\n\nEjemplo didáctico: Nicolás acomoda la mesa de luz y el tendido de la cama de Don Aníbal sin tocarlo. Antes de pasar a la otra habitación se higieniza las manos, porque tocó el entorno del paciente.",
+   "trap": "Pensar que usar guantes reemplaza la higiene de manos, o que si no hubo contacto directo con el paciente no hay momento de higiene.",
+   "evidence": "Los 5 momentos de la OMS están bien establecidos para higiene de manos; los controles específicos por vía son prácticas generales de enfermería y deben ajustarse al protocolo institucional vigente.",
+   "activity": {
+    "scenario": "Valeria debe dar un comprimido oral y luego aplicar una inyección subcutánea a una paciente que tose al tragar. Entre una y otra tarea toca la barandilla de la cama. Ordená los pasos de higiene y de verificación que realizarías.",
+    "checklist": [
+     "Ubica en qué momentos de higiene de manos corresponde higienizar.",
+     "Verifica la capacidad de tragar antes de la vía oral.",
+     "Identifica a la paciente por nombre, no con pregunta cerrada.",
+     "Describe cómo actuaría ante señales anormales en el sitio de un acceso."
+    ]
+   },
+   "rows": [
+    [
+     "Elena va a preparar y aplicar una inyección subcutánea. ¿Qué momento de higiene de manos de la OMS se aplica justo antes de la punción?",
+     "Antes de un procedimiento limpio o aséptico",
+     "Después de un riesgo de exposición a fluidos corporales",
+     "Después de tocar el entorno del paciente",
+     "Después de tocar al paciente al retirarse",
+     "Antes de tocar al paciente al ingresar al cuarto",
+     "Antes de punzar corresponde higienizar las manos por el momento de procedimiento limpio o aséptico: protege al paciente de microorganismos que lleguen al sitio de la inyección. El momento de exposición a fluidos es posterior y protege al personal, de ahí que confunda."
+    ],
+    [
+     "Tras acomodar la mesa de luz y el tendido de la cama, sin tocar al paciente, Nicolás irá a otra habitación. ¿Corresponde higiene de manos?",
+     "Sí, por el momento de tocar el entorno del paciente",
+     "No, porque no hubo contacto directo con el paciente",
+     "No, si usó guantes durante toda la tarea",
+     "Sí, pero solo al terminar el turno junto con el resto",
+     "No, porque el entorno solo importa en aislamiento",
+     "Tocar el entorno del paciente es uno de los cinco momentos de higiene de manos de la OMS, aunque no haya contacto directo. Los guantes no sustituyen la higiene: el entorno puede transportar microorganismos hacia otros pacientes."
+    ],
+    [
+     "Una paciente adulta mayor tose cuando traga y el enfermero iba a dejarle un comprimido sobre la mesa de luz. ¿Qué corresponde?",
+     "Evaluar si puede tragar con seguridad y presenciar la toma",
+     "Dejarlo con un vaso al alcance y anotarlo como administrado",
+     "Triturarlo sin consultar y mezclarlo con alimento",
+     "Pedir a un familiar que se lo dé y registrar luego",
+     "Postergar toda la medicación del turno hasta nueva orden",
+     "Por vía oral se verifica que el paciente pueda tragar con seguridad y se presencia la toma. Dejar la dosis sobre la mesa impide confirmar que se tomó y anotarla antes de verlo es un registro falso; triturar sin consultar puede alterar el efecto de algunos fármacos."
+    ],
+    [
+     "Camila va a iniciar un fármaco por una vía periférica ya colocada. ¿Qué corresponde hacer antes de administrar?",
+     "Revisar el sitio y comprobar que el acceso esté permeable",
+     "Elegir la velocidad más rápida para terminar dentro del turno",
+     "Mezclar el fármaco en la bolsa en curso para ahorrar un pinchazo",
+     "Conectar sin verificar compatibilidad con lo que ya pasa",
+     "Continuar con el sitio enrojecido y avisar al terminar",
+     "Antes de administrar por vía endovenosa se revisa el sitio y la permeabilidad del acceso. Seguir con el sitio enrojecido es tentador porque ahorra tiempo, pero puede haber salida del líquido fuera de la vena y daño tisular."
+    ]
+   ]
+  },
+  {
+   "title": "Medicamentos de alto riesgo y cálculo de dosis y goteo",
+   "refs": [
+    "enf-ismp-high",
+    "enf-who-highrisk",
+    "enf-ismp-dc"
+   ],
+   "objective": "Reconocer medicamentos de alto riesgo y resolver cálculos de dosis y goteo con regla de tres.",
+   "body": "Los medicamentos de alto riesgo no son necesariamente los que más se equivocan, sino los que causan daño más grave cuando algo sale mal. El ISMP publica una lista para hospitales de agudos; en versiones previas incluía categorías como insulina, opioides endovenosos, cloruro de potasio concentrado endovenoso y bloqueantes neuromusculares. Las salvaguardas que propone son estandarizar, limitar el acceso, usar etiquetas auxiliares y alertas, y sumar redundancias. El doble control independiente (dos personas que verifican por separado, sin conocer lo que halló la otra) es una de ellas, pero el ISMP aconseja usarlo con criterio y no para todo.\n\nPara calcular, usá la regla de tres. Si hay 250 unidades de una sustancia ficticia en 5 mL y se indican 100 unidades, el volumen es 100 × 5 ÷ 250 = 2 mL. Para una bomba, mL/h = volumen total ÷ horas. Para goteo, gotas/min = (volumen × gotas por mL) ÷ minutos; el factor del equipo está impreso en su envase.\n\nSiempre revisá unidades y que el resultado sea razonable: un número que parece enorme o diminuto es una señal para frenar y recalcular.\n\nEjemplo didáctico: se indican 500 mL en 4 horas con equipo de 20 gotas/mL. En bomba: 500 ÷ 4 = 125 mL/h. Por goteo: 500 × 20 ÷ 240 minutos = 41,7, es decir, unas 42 gotas por minuto.",
+   "trap": "Olvidar pasar horas a minutos al calcular gotas, o confundir mL/h con gotas/min y programar la velocidad equivocada.",
+   "evidence": "El ISMP respalda la lista de alto riesgo y el uso selectivo del doble control; los ejemplos de cálculo son aritmética con números ficticios y no reemplazan las tablas ni los protocolos institucionales.",
+   "activity": {
+    "scenario": "Ornella debe pasar 200 mL de una solución en 2 horas con un equipo de 20 gotas/mL, y además la jefa pide un doble control independiente para otra indicación de alto riesgo. Resolvé el cálculo en mL/h y en gotas/min y explicá cómo harías el control.",
+    "checklist": [
+     "Calcula los mL/h dividiendo el volumen por las horas.",
+     "Convierte horas a minutos antes de calcular gotas/min.",
+     "Verifica que el resultado sea razonable en magnitud.",
+     "Describe un control en el que cada persona verifica por separado."
+    ]
+   },
+   "rows": [
+    [
+     "Una enfermera repasa qué son los medicamentos de alto riesgo según el ISMP. ¿Cuál es la mejor definición?",
+     "Los de mayor riesgo de daño significativo cuando se usan mal",
+     "Los que se equivocan con más frecuencia que cualquier otro grupo",
+     "Los de mayor costo para la institución y con autorización especial",
+     "Los que solo se administran por vía endovenosa en terapia intensiva",
+     "Los que requieren receta archivada y registro en libro especial",
+     "Un medicamento de alto riesgo se define por la gravedad potencial del daño si se usa mal, no por su costo ni por cuántos errores genera. Pensar que son los que más fallan es tentador, pero lo decisivo es la severidad cuando ocurre el error."
+    ],
+    [
+     "La jefa propone un doble control independiente para una infusión de alto riesgo. ¿Qué lo hace independiente?",
+     "Dos personas verifican por separado, sin conocer el resultado",
+     "Una persona verifica y la segunda firma lo que preparó la primera",
+     "Una persona verifica dos veces con diez minutos de diferencia",
+     "El segundo revisa mirando el cálculo que dejó anotado el primero",
+     "Ambos verifican juntos leyendo en voz alta el mismo cálculo",
+     "El doble control es independiente cuando dos personas verifican por separado, sin conocer lo que halló la otra. Mirar el cálculo del primero induce a repetir su error: se pierde la independencia que le da valor a la barrera."
+    ],
+    [
+     "Se indican 600 mL de una solución en 6 horas con bomba de infusión. ¿A cuántos mL/h se programa?",
+     "100 mL/h",
+     "60 mL/h",
+     "120 mL/h",
+     "600 mL/h",
+     "10 mL/h",
+     "Los mL/h resultan de dividir el volumen total por las horas: 600 ÷ 6 = 100 mL/h. Los 60 mL/h salen de confundir las cifras o dividir por 10; revisar la magnitud del resultado ayuda a notar ese desvío."
+    ],
+    [
+     "Se indican 300 mL en 3 horas con equipo de 20 gotas/mL. ¿Cuántas gotas por minuto se regulan?",
+     "Cerca de 33 gotas/min",
+     "Cerca de 100 gotas/min",
+     "Cerca de 20 gotas/min",
+     "Cerca de 50 gotas/min",
+     "Cerca de 60 gotas/min",
+     "Gotas/min = 300 × 20 ÷ 180 minutos ≈ 33. Dar 100 mezcla mL/h con gotas/min; ocurre al olvidar multiplicar por el factor del equipo y pasar las horas a minutos."
+    ]
+   ]
+  },
+  {
+   "title": "Registro, errores, casi-errores, reporte sin culpa y educación al paciente",
+   "refs": [
+    "enf-who-curr",
+    "enf-who-5med",
+    "enf-arg-calidad",
+    "enf-who-mwh"
+   ],
+   "objective": "Registrar con precisión, distinguir error de casi-error y reportar con enfoque de aprendizaje, educando al paciente.",
+   "body": "El registro se completa después de administrar, con los datos reales: medicamento, dosis, vía, hora y firma. Anotar por adelantado o de memoria al final del turno genera registros que no reflejan lo ocurrido y que otros colegas usarán para decidir. Si una dosis no se administra, se registra el motivo.\n\nUn error de medicación es un evento que llegó al paciente; un casi-error es el que se detecta y corrige antes de llegar. Ambos enseñan: muestran dónde falló una barrera. La guía curricular de la OMS incluye el aprendizaje a partir de los errores como tema de formación. En un sistema sin culpa se pregunta qué falló en el proceso y cómo evitar que se repita, no a quién castigar. Ante un error, primero se atiende al paciente, luego se avisa al prescriptor o responsable y se reporta por el circuito institucional con hechos objetivos. En Argentina, el Plan Nacional de Calidad en Salud 2026-2030 incluye entre sus objetivos implementar el PNGCAM.\n\nLa educación al paciente también protege. La OMS propone cinco momentos para la seguridad de la medicación: empezar, tomar, agregar, revisar y dejar de tomar un medicamento, con preguntas para conversar con el equipo de salud. Ayudar a que el paciente las use fortalece la última barrera: él mismo.\n\nEjemplo didáctico: Daniela nota que la bolsa rotulada para otro paciente iba a colgarse en la cama 4. La corrige antes de conectarla y reporta el casi-error, indicando el cambio de turno como factor.",
+   "trap": "No reportar los casi-errores porque “no pasó nada”, perdiendo la información que permitiría arreglar el proceso.",
+   "evidence": "La guía de la OMS y la herramienta de cinco momentos respaldan el aprendizaje de los errores y la participación del paciente; los circuitos de reporte y su formato dependen de cada institución y de la normativa local.",
+   "activity": {
+    "scenario": "Mariano descubre que una dosis de la mañana quedó sin administrar por una confusión de horario, y la paciente aún no sufrió consecuencias visibles. Pensá cómo actuarías, qué registrarías y cómo conversarías con la paciente.",
+    "checklist": [
+     "Atiende primero a la paciente y avisa al responsable.",
+     "Registra hechos objetivos sin juicios sobre personas.",
+     "Reporta por el circuito institucional, incluidos casi-errores.",
+     "Explica a la paciente qué pasó y qué preguntas puede hacer."
+    ]
+   },
+   "rows": [
+    [
+     "Daniela nota que iba a colgar la bolsa rotulada para otro paciente y la corrige antes de conectarla. ¿Cómo se clasifica?",
+     "Casi-error: se corrigió antes de llegar y conviene reportarlo",
+     "Error sin importancia que no amerita reporte porque no hubo daño",
+     "Evento adverso grave que debe comunicarse solo a la familia",
+     "Incidente resuelto que se informa solo si el supervisor pregunta",
+     "Falla exclusiva del sistema de farmacia, sin relación con enfermería",
+     "Un casi-error se detecta y corrige antes de llegar al paciente y conviene reportarlo porque muestra dónde falló una barrera. Considerarlo un error sin importancia por no haber daño pierde justamente esa oportunidad de aprendizaje."
+    ],
+    [
+     "En una reunión se explica el reporte sin culpa. ¿Qué busca este enfoque?",
+     "Hallar fallas del sistema para aprender y evitar repeticiones",
+     "Determinar quién cometió el error para aplicar sanciones graduales",
+     "Mantener los errores fuera del registro para proteger al equipo",
+     "Reemplazar la comunicación con el paciente y su familia",
+     "Limitar el reporte a los errores que causaron daño visible",
+     "El reporte sin culpa busca identificar fallas del sistema para aprender y prevenir repeticiones. Limitarlo a errores con daño visible es tentador, pero deja afuera los casi-errores, que son la fuente de aprendizaje más abundante."
+    ],
+    [
+     "Un enfermero anota todas las dosis de la mañana antes de pasar por las habitaciones, para ganar tiempo. ¿Qué corresponde?",
+     "Registrar apenas se administra, con la hora y vía reales",
+     "Registrar por adelantado cuando la indicación es de rutina",
+     "Registrar al final del turno con la lista de memoria",
+     "Registrar solo dosis con incidentes y omitir las normales",
+     "Dejar que otro colega registre por haber preparado",
+     "El registro se hace inmediatamente después de administrar y con datos reales, porque otros profesionales deciden según lo anotado. Anotar por adelantado parece eficiente, pero deja constancia de algo que puede no ocurrir."
+    ],
+    [
+     "Mirta, internada, se prepara para llevar a casa un medicamento nuevo. ¿Cuál es uno de los cinco momentos de la herramienta de la OMS para pacientes?",
+     "Revisar la medicación que se está tomando",
+     "Comprar la medicación en la farmacia habitual",
+     "Guardar la medicación en el hogar",
+     "Compartir la medicación con familiares",
+     "Cambiar de marca comercial el medicamento",
+     "La herramienta de la OMS propone cinco momentos para pacientes: empezar, tomar, agregar, revisar y dejar de tomar un medicamento. Revisar la medicación es uno de ellos; comprar o guardar medicamentos son pasos prácticos que no forman parte de los cinco momentos."
+    ]
+   ]
+  }
+ ],
+ "case": {
+  "title": "Una infusión en la sala de clínica médica",
+  "summary": "Caso ficticio · Marisol, enfermera, administra una infusión endovenosa y un comprimido a un adulto internado",
+  "source": "enf-psnet-admin",
+  "lessonIndex": 2,
+  "rows": [
+   [
+    "Marisol llega a la cama de Horacio Benítez, que está dormido y tiene pulsera de identificación. Va a administrar la medicación indicada. ¿Cómo confirma la identidad?",
+    "Pedirle que diga su nombre y cotejarlo con pulsera y orden",
+    "Confirmar su identidad por el número de cama anotado en la planilla",
+    "Preguntarle si es el señor Benítez y seguir con su respuesta afirmativa",
+    "Reconocerlo porque lo atendió ayer y omitir la pulsera",
+    "Pedir al compañero de habitación que confirme el nombre",
+    "La identidad se confirma pidiendo al paciente que diga su nombre y cotejando con pulsera y orden. Preguntar “¿usted es…?” o confiar en la cama o en el reconocimiento visual son atajos que fallan si hubo cambios de cama o de paciente."
+   ],
+   [
+    "La orden indica pasar 250 mL de solución en 2 horas con bomba de infusión. ¿A cuántos mL/h programa Marisol?",
+    "125 mL/h",
+    "62 mL/h",
+    "250 mL/h",
+    "500 mL/h",
+    "50 mL/h",
+    "Los mL/h se obtienen dividiendo volumen entre horas: 250 ÷ 2 = 125 mL/h. Los 62 mL/h salen de dividir por 4 en lugar de por 2, un error de cálculo frecuente cuando se hace sin revisar la magnitud del resultado."
+   ],
+   [
+    "Durante la infusión, el paciente refiere dolor y el sitio del acceso se ve hinchado. ¿Qué hace Marisol?",
+    "Detener la infusión, no usar ese acceso y avisar al equipo",
+    "Aumentar la velocidad para completar la dosis en el tiempo indicado",
+    "Continuar y registrar la molestia al terminar la infusión",
+    "Aplicar compresas y seguir sin avisar si el paciente tolera",
+    "Reducir el goteo a la mitad y observar la próxima hora",
+    "Dolor e hinchazón en el sitio sugieren salida del líquido fuera de la vena: se detiene la infusión, se deja de usar ese acceso y se avisa. Reducir el goteo y observar parece prudente pero sigue administrando por un acceso dañado."
+   ]
+  ]
+ }
+}

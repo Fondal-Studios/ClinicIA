@@ -79,3 +79,11 @@ test('teacher creates, edits, publishes; students join by code, take exams grade
   assert.deepEqual(await api.handle(T,'POST',base,{action:'delete',confirm:true}),{deleted:true});assert.equal((await db.query('SELECT count(*)::int AS n FROM clinic_class_attempts')).rows[0].n,0);
  }finally{await db.close();}
 });
+test('class images: only the site\'s own images or known free-image hosts, with alt text and credit',()=>{
+ const base={title:'Aula con imágenes',sections:[{heading:'A',body:'Texto',image:null}],slides:[{title:'S',bullets:['uno'],image:null}]};
+ const withImg=img=>cleanClass({...base,sections:[{heading:'A',body:'Texto',image:img}],slides:[{title:'S',bullets:['uno'],image:img}]});
+ const ok={url:'https://upload.wikimedia.org/wikipedia/commons/7/79/Chest-compression-hand-placement.jpg',alt:'Manos sobre el tórax',credit:'Autor · CC0 · Commons'};
+ assert.deepEqual(withImg(ok).sections[0].image,ok);assert.deepEqual(withImg(ok).slides[0].image,ok);
+ assert.equal(withImg({...ok,url:'/learn/img/ref/heimlich.png'}).slides[0].image.url,'/learn/img/ref/heimlich.png');
+ for(const bad of [{...ok,url:'https://tracker.example.com/pixel.png'},{...ok,url:'http://upload.wikimedia.org/a.jpg'},{...ok,url:'/etc/passwd'},{...ok,url:'/learn/img/ref/../../server.mjs'},{...ok,alt:''},{...ok,credit:''},{...ok,url:'javascript:alert(1)'}])assert.equal(withImg(bad).sections[0].image,null,JSON.stringify(bad.url));
+});

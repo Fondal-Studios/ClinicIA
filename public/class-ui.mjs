@@ -14,9 +14,10 @@ export function match(game){
  shuffle(game.pairs).forEach(p=>add(defs,h('button',{type:'button',class:'option',onclick:e=>{if(!pick||e.currentTarget.disabled)return;if(pick.definition===p.definition){e.currentTarget.disabled=true;terms.querySelector('[data-t="'+CSS.escape(pick.term)+'"]').disabled=true;done++;msg.textContent=done===game.pairs.length?'¡Completaste el juego!':'Bien. Quedan '+(game.pairs.length-done)+'.';}else msg.textContent='Esa definición no corresponde a «'+pick.term+'». Probá otra.';pick=null;clear();}},p.definition)));
  add(box,h('h3',{},'Juego: unir conceptos'),msg,terms,defs);return box;
 }
+export function figure(img){return img?h('figure',{class:'class-figure'},h('img',{src:img.url,alt:img.alt,loading:'lazy',style:'max-width:100%;height:auto;display:block;margin:auto'}),h('figcaption',{class:'muted'},'Imagen: '+img.credit)):null;}
 export function slideshow(slides,byId){
  let i=0;const box=h('div',{class:'slideshow',tabindex:'0'}),stage=h('div',{class:'slide','aria-live':'polite'}),count=h('span',{});
- const draw=()=>{const s=slides[i];fill(stage,h('h2',{},s.title),h('ul',{},s.bullets.map(b=>h('li',{},b))),s.notes?h('details',{},h('summary',{},'Notas para quien presenta'),h('p',{},s.notes)):null,sourceLinks(s.sources,byId));count.textContent=(i+1)+' / '+slides.length;};
+ const draw=()=>{const s=slides[i];fill(stage,h('h2',{},s.title),figure(s.image),h('ul',{},s.bullets.map(b=>h('li',{},b))),s.notes?h('details',{},h('summary',{},'Notas para quien presenta'),h('p',{},s.notes)):null,sourceLinks(s.sources,byId));count.textContent=(i+1)+' / '+slides.length;};
  const go=d=>{i=Math.min(slides.length-1,Math.max(0,i+d));draw();};
  box.addEventListener('keydown',e=>{if(e.key==='ArrowRight')go(1);else if(e.key==='ArrowLeft')go(-1);});
  add(box,stage,h('div',{class:'actions'},h('button',{type:'button',onclick:()=>go(-1)},'← Anterior'),count,h('button',{type:'button',onclick:()=>go(1)},'Siguiente →'),h('button',{type:'button',onclick:()=>box.requestFullscreen?.()},'Pantalla completa')));

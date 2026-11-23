@@ -1,4 +1,5 @@
 import {kinesiologyCourses,kinesiologySources} from './content/kinesiologia.mjs';
+import {healthCourses,healthSources} from './content/enfermeria-nutricion.mjs';
 import {policeCourse,policeSources} from './content/respuesta-policial.mjs';
 import {applyQuestionDifficultyRevisions} from './content/question-difficulty-revisions.mjs';
 import {emergencyCourses,emergencySources} from './content/emergentologia.mjs';
@@ -1342,5 +1343,7 @@ courses.push(policeCourse);
 // Keep the authored physiotherapy curriculum out of legacy content rewrites.
 Object.assign(sources,kinesiologySources);
 courses.push(...kinesiologyCourses);
+Object.assign(sources,healthSources);
+courses.push(...healthCourses);
 export const catalog=courses;
 export const questions=courses.flatMap(c=>c.lessons.flatMap((l,li)=>l.questions.map((q,qi)=>({...q,source:q.source||l.source,courseId:c.id,lessonId:l.id,area:l.area||q.skill,li,qi}))));
