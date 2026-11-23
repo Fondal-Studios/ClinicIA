@@ -3,16 +3,18 @@
 // La teoría y los bancos de preguntas de los cursos de estudio se sirven como archivos estáticos al navegador y no se pueden ocultar sin rediseñarlos.
 import {trainingCourses} from '../public/learn/content/capacitacion-catalog.mjs';
 export const paywallOn=(env=process.env)=>env.CLINICIA_PAYWALL==='true';
-// Gratis: el curso policial, los refuerzos, los minicursos y las rotaciones de rotantes (rot-*). El resto del catálogo requiere el nivel alumno.
-export const isFreeCourse=id=>{const c=trainingCourses.find(c=>c.id===id);return !!c&&(c.id==='respuesta-policial'||String(c.id).startsWith('rot-')||!!c.refresher||!!c.mini);};
+import {isPaidCourse} from '../public/learn/precios.mjs';
+// Gratis: todo salvo los cursos de pago (certificaciones; ver public/learn/precios.mjs). Rotantes, curso policial, refuerzos y minicursos son siempre gratis.
+export const isFreeCourse=id=>!isPaidCourse(id);
+export {isPaidCourse};
 const need=(level,message)=>Object.assign(new Error(message),{status:402,code:'payment_required',plan:level});
 export function createAccessGuard({payments,env=process.env}){
  return async function guard(user,level,courseId){
   if(!paywallOn(env)||user?.role==='admin')return;
-  if(level==='alumno'&&courseId&&isFreeCourse(courseId))return;
+  if(level==='curso'&&!isPaidCourse(courseId))return;
   const a=await payments.access(user.id);
-  if(level==='instructor'&&!a.instructor.active)throw need('instructor','Esta función requiere el Acceso instructor (USD 9,99).');
-  if(level==='profesional'&&!a.profesional.active)throw need('profesional','Mi consultorio requiere el Acceso profesional.');
-  if(level==='alumno'&&!a.alumno.active)throw need('alumno','Este curso requiere el Acceso alumno (USD 4,99).');
+  if(level==='instructor'&&!a.instructor.active)throw need('instructor','Esta función requiere el nivel Instructor (USD 5 por mes).');
+  if(level==='profesional'&&!a.profesional.active)throw need('profesional','Mi consultorio requiere el nivel Profesional (USD 10 por mes).');
+  if(level==='curso'&&!a.courses.includes(courseId))throw need('curso','Este curso es de pago.');
  };
 }

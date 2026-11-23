@@ -27,7 +27,7 @@ test('persistent accounts isolate users, deny privilege escalation, protect sess
   assert.equal((await call('/api/account/question-report','POST',{questionId:'fake',reason:'incorrect'},a.cookie)).status,400);
   for(let i=0;i<2;i++)assert.equal((await call('/api/account/question-report','POST',{questionId:'eu-pruebas-1',reason:'ambiguous',text:'Never save'},a.cookie)).status,200);
   assert.equal((await db.query('SELECT * FROM clinic_question_reports')).rows.length,1);
-  assert.equal((await call('/api/account/checkout','POST',{requestKey:'12345678-1234-1234-1234-123456789012',accepted:true},a.cookie)).status,503);
+  assert.equal((await call('/api/account/checkout','POST',{requestKey:'12345678-1234-1234-1234-123456789012',accepted:true,plan:'instructor'},a.cookie)).status,503);
   const admin=await call('/api/account/login','POST',{username:'TestAdmin',password:'initial-test-password'});assert.equal(admin.status,200);assert.equal(admin.body.user.mustChange,true);assert.equal((await call('/api/admin/telemetry','GET',null,admin.cookie)).status,403);
   const updated=await call('/api/account/password','POST',{currentPassword:'initial-test-password',password:'new-test-password-long'},admin.cookie);assert.equal(updated.status,200);assert.equal((await call('/api/admin/telemetry','GET',null,admin.cookie)).status,401);
   const metrics=await call('/api/admin/telemetry','GET',null,updated.cookie);assert.equal(metrics.status,200);assert.equal(metrics.body.reports[0].question_id,'eu-pruebas-1');assert.equal(metrics.body.paymentsActive,false);assert.equal(Number(metrics.body.counts.accounts),2);assert.equal(metrics.body.events[0].name,'practice');assert.ok(!JSON.stringify(metrics.body).includes('secret'));

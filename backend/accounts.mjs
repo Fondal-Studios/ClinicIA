@@ -145,7 +145,7 @@ export async function createAccounts({db,origin='http://localhost:3000',secure=t
     const recovery=randomBytes(24).toString('hex');await db.query('UPDATE clinic_users SET password_hash=$1,recovery_hash=$2,must_change=false WHERE id=$3',[await hashPassword(body.password),digest(recovery),u.id]);await db.query('DELETE FROM clinic_sessions WHERE user_id=$1',[u.id]);await issue(res,u);return send(200,{user:publicUser({...u,must_change:false}),recoveryCode:recovery});
    }
    if(u.must_change)fail(403,'Cambiá tu contraseña inicial antes de continuar.');
-   if(path==='/api/account/capacitacion'){await limit('capacitacion:'+req.method+u.id,1800,3600);if(req.method==='POST'){if(body.action==='create-group')await guard(u,'instructor');if(body.action==='start')await guard(u,'alumno',body.courseId);}const out=await capacitacion.handle(u,req.method,body);if(out?.user&&req.method==='GET')out.user.instructorValidated=(await payments.access(u.id)).instructor.active;return send(200,out);}
+   if(path==='/api/account/capacitacion'){await limit('capacitacion:'+req.method+u.id,1800,3600);if(req.method==='POST'){if(body.action==='create-group')await guard(u,'instructor');if(body.action==='start')await guard(u,'curso',body.courseId);}const out=await capacitacion.handle(u,req.method,body);if(out?.user&&req.method==='GET')out.user.instructorValidated=(await payments.access(u.id)).instructor.active;return send(200,out);}
    if(path==='/api/account/training'){await limit('training:'+req.method+u.id,60,3600);return send(200,await training.assessment(u,req.method,body));}
    if(path==='/api/account/classes'||path.startsWith('/api/account/classes/')){await limit('classes:'+req.method+u.id,req.method==='GET'?600:240,3600);if(req.method==='POST'&&(body.action==='start'))await limit('class-attempt:'+u.id,60,86400);if(req.method==='POST'&&body.action==='create'){await guard(u,'instructor');await limit('class-create:'+u.id,20,86400);}return send(200,await classes.handle(u,req.method,path,body));}
    if(path==='/api/account/modes'&&req.method==='POST'){
@@ -175,7 +175,7 @@ export async function createAccounts({db,origin='http://localhost:3000',secure=t
     fail(400,'Acción inválida.');
    }
    if(path==='/api/account/rooms'||/^\/api\/account\/rooms\/[a-f0-9]{12}$/.test(path)){await limit('rooms:'+req.method+u.id,req.method==='GET'?600:120,3600);const code=path.split('/')[4];if(!code&&req.method==='POST')await limit('room-create:'+u.id,5,86400);return send(200,await training.rooms(u,req.method,body,code));}
-   if(path==='/api/account/billing'&&req.method==='GET')return send(200,{offer:payments.offer(),orders:await payments.orders(u.id),access:await payments.access(u.id),paywall:paywallOn()});
+   if(path==='/api/account/billing'&&req.method==='GET')return send(200,{offer:payments.offer(),orders:await payments.orders(u.id),access:await payments.access(u.id),paywall:paywallOn(),bypass:u.role==='admin'});
    if(path==='/api/account/checkout'&&req.method==='POST'){await limit('checkout:'+u.id,5,60);return send(200,await payments.checkout(u.id,body));}
    if(path==='/api/account/withdrawal'&&req.method==='POST'){await limit('withdrawal:'+u.id,5,3600);return send(200,await payments.withdraw(u.id,body.orderId,body.reason));}
    if(path==='/api/account/payment-status'&&req.method==='POST'){await limit('payment-check:'+u.id,20,60);if(typeof body.orderId!=='string'||body.orderId.length>50)fail(400,'Orden inválida.');return send(200,await payments.verify(u.id,body.orderId));}
@@ -196,7 +196,7 @@ export async function createAccounts({db,origin='http://localhost:3000',secure=t
      const rows=(await db.query("SELECT id,username,role,modes,created_at,last_seen FROM clinic_users WHERE ($1='' OR username_key LIKE '%'||$1||'%') ORDER BY created_at DESC LIMIT 50 OFFSET $2",[q.replace(/[%_\\]/g,''),page*50])).rows;
      const grants=await payments.grantsOf(rows.map(r=>r.id));const users=[];for(const r of rows)users.push({id:r.id,username:r.username,role:r.role,modes:modesOf(r),createdAt:r.created_at,lastSeen:r.last_seen,access:await payments.access(r.id),grants:grants[r.id]||[]});
      const total=(await db.query('SELECT count(*) AS n FROM clinic_users')).rows[0].n;return send(200,{users,total:Number(total),page,pageSize:50});}
-    if(path==='/api/admin/grant'&&req.method==='POST'){await limit('admin-grant:'+u.id,120,3600);return send(200,await payments.grant(u.id,body.userId,body.plan,body.days,body.note));}
+    if(path==='/api/admin/grant'&&req.method==='POST'){await limit('admin-grant:'+u.id,120,3600);return send(200,await payments.grant(u.id,body.userId,body.plan,body.days,body.note,body.courseId));}
     if(path==='/api/admin/revoke-grant'&&req.method==='POST'){await limit('admin-grant:'+u.id,120,3600);return send(200,await payments.revokeGrant(body.grantId));}
     if(path==='/api/admin/user-modes'&&req.method==='POST'){await limit('admin-modes:'+u.id,120,3600);if(!['teacher','institution'].includes(body.mode)||typeof body.enabled!=='boolean')fail(400,'Modo inválido.');
      const t=(await db.query('SELECT id,role,modes FROM clinic_users WHERE id=$1',[String(body.userId||'')])).rows[0];if(!t)fail(404,'Cuenta no encontrada.');if(t.role==='admin')fail(400,'Los permisos de una cuenta administradora no se cambian desde acá.');
