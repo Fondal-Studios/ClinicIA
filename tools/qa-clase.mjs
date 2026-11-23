@@ -13,9 +13,9 @@ const errors=[],noScroll=p=>p.evaluate(()=>document.documentElement.scrollWidth<
 const ctx=async()=>{const c=await browser.newContext({viewport:{width:390,height:844}}),p=await c.newPage();p.on('pageerror',e=>errors.push(e.message));p.on('dialog',d=>d.accept());return {c,p};};
 try{
  // the three doors, on the home and on the training entry
- const home=await ctx();await home.p.goto(origin+'/');await home.p.getByRole('heading',{name:'¿Cómo vas a entrar?'}).waitFor();
- for(const t of ['Primeros respondedores','Médicos','Instructores'])assert.ok(await home.p.getByRole('heading',{name:t,exact:true}).count()>=1,'home door '+t);assert.ok(await noScroll(home.p));await home.p.screenshot({path:'/tmp/clase-home.png',fullPage:true});
- await home.p.goto(origin+'/capacitacion.html');await home.p.getByRole('heading',{name:'¿Cómo vas a entrar?'}).waitFor();for(const t of ['Primeros respondedores','Médicos','Instructores'])await home.p.getByRole('heading',{name:t,exact:true}).waitFor();await home.p.screenshot({path:'/tmp/clase-doors.png',fullPage:true});
+ const home=await ctx();await home.p.goto(origin+'/');await home.p.getByRole('heading',{name:'¿Cómo vas a usar ClinicIA?'}).waitFor();
+ for(const t of ['Soy alumno','Soy instructor'])assert.ok(await home.p.getByRole('heading',{name:t,exact:true}).count()>=1,'home door '+t);assert.equal(await home.p.getByRole('heading',{name:'Médicos',exact:true}).count(),0,'el inicio tiene solo dos puertas');assert.ok(await noScroll(home.p));await home.p.screenshot({path:'/tmp/clase-home.png',fullPage:true});
+ await home.p.getByRole('link',{name:'Entrar como alumno'}).click();for(const t of ['Primeros respondedores','Personal sanitario','Médicos'])await home.p.getByRole('heading',{name:t,exact:true}).waitFor();await home.p.screenshot({path:'/tmp/clase-doors.png',fullPage:true});
  // instructor
  const ins=await ctx();let r=await ins.c.request.post(origin+'/api/account/login',{headers:{Origin:origin},data:{username:'instructor_demo',password:'clave-inicial-demo-1'}});assert.equal(r.status(),200);
  r=await ins.c.request.post(origin+'/api/account/password',{headers:{Origin:origin},data:{currentPassword:'clave-inicial-demo-1',password:'otra-clave-segura-2'}});assert.equal(r.status(),200);

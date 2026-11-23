@@ -1,0 +1,38 @@
+// Mapa de entrada de ClinicIA. Una sola fuente de verdad para la navegación:
+// Inicio (Alumno | Instructor) → Alumno (Primeros respondedores | Personal sanitario | Médicos) → [Kinesiología | Enfermería | Nutrición | área médica] → curso.
+// Un curso queda a 4 clics como máximo; al tercero la persona ya definió por dónde entra.
+import {trainingCourses} from './learn/content/capacitacion-catalog.mjs';
+const S=id=>({kind:'study',id}),T=id=>({kind:'training',id});
+export const SECTIONS={
+ 'primeros-respondedores':{title:'Primeros respondedores',lead:'Policías, bomberos, paramédicos y equipos de respuesta: primeros auxilios, simulaciones en grupo y examen.',courses:['respuesta-policial','refuerzo-rcp','refuerzo-hemorragias','refuerzo-radio','evacuacion-escena','evacuacion-traslado','evacuacion-coordinacion'].map(T),parent:'alumno'},
+ kinesiologia:{title:'Kinesiología',lead:'Cuatro cursos introductorios para kinesiólogos y estudiantes avanzados bajo supervisión.',courses:['kine-clinica','kine-respiratoria','kine-uci','kine-ventilacion'].map(S),parent:'personal-sanitario'},
+ enfermeria:{title:'Enfermería',lead:'Todavía no hay cursos escritos específicamente para enfermería. Estos cursos generales sirven para tu práctica; los propios están en preparación.',courses:[S('guardia-equipo'),S('neonatal'),S('acls'),S('pals'),T('refuerzo-rcp'),T('refuerzo-hemorragias')],parent:'personal-sanitario',soon:'Cursos propios de enfermería: en preparación.'},
+ nutricion:{title:'Nutrición',lead:'Todavía no hay cursos escritos específicamente para nutricionistas. Estos cursos de medicina integral cubren obesidad, diabetes y metabolismo; sin revisión de nutricionistas aún.',courses:['obesidad-integral','diabetes-integral-2026','estilo-vida-remision-dm2','salud-cardiometabolica','metabolismo-graso-integral'].map(S),parent:'personal-sanitario',soon:'Cursos propios de nutrición: en preparación.'},
+ 'medicos-examenes':{title:'Exámenes y residencias',lead:'Preparación de exámenes de ingreso y reválida.',courses:['examen-unico','revalida'].map(S),parent:'medicos'},
+ 'medicos-emergencias':{title:'Emergencias y cuidados críticos',lead:'Soporte vital, vía aérea, shock, trauma, sepsis, neurología y terapia intensiva.',courses:['acls','pals','fccs','via-aerea-avanzada','shock-critico','trauma-prehospitalario','phtls','atls','amls-preparacion','epc-preparacion','pocus-preparacion','sepsis-preparacion-2026','emergencia-neurologica','uci-critico-integral','proati'].map(S),parent:'medicos'},
+ 'medicos-perinatal':{title:'Perinatal',lead:'Reanimación neonatal y urgencias obstétricas.',courses:['neonatal','obstetricia'].map(S),parent:'medicos'},
+ 'medicos-integral':{title:'Medicina integral',lead:'Salud cardiometabólica, obesidad, diabetes y estilo de vida.',courses:['salud-cardiometabolica','metabolismo-graso-integral','obesidad-integral','diabetes-integral-2026','medicina-funcional-fundamentos','estilo-vida-remision-dm2'].map(S),parent:'medicos'},
+ 'medicos-guardia':{title:'Guardia y trabajo en equipo',lead:'Manejo básico de guardia, individual y en equipo.',courses:['guardia-medica','guardia-equipo'].map(S),parent:'medicos'},
+ 'medicos-rotantes':{title:'Rotantes',lead:'Ginecología, pediatría, cirugía, clínica y emergencias. Gratis para rotantes.',courses:['rot-ginecologia','rot-pediatria','rot-cirugia','rot-clinica','rot-emergencias'].map(T),parent:'medicos'}
+};
+export const MEDICOS_AREAS=['medicos-examenes','medicos-emergencias','medicos-perinatal','medicos-integral','medicos-guardia','medicos-rotantes'];
+export const ENTRY_VIEWS=['hub','alumno','personal-sanitario','medicos',...Object.keys(SECTIONS)];
+const PARENTS={alumno:['hub','Inicio'],'primeros-respondedores':['alumno','Alumno'],'personal-sanitario':['alumno','Alumno'],medicos:['alumno','Alumno']};
+const titleOf=v=>({hub:'Inicio',alumno:'Alumno','personal-sanitario':'Personal sanitario',medicos:'Médicos'}[v]||SECTIONS[v]?.title);
+const parentOf=v=>PARENTS[v]?.[0]||SECTIONS[v]?.parent;
+export function crumbs(view,esc=String){const chain=[];for(let v=view;v;v=parentOf(v))chain.unshift(v);return `<nav class="crumb" aria-label="Dónde estás">${chain.map((v,i)=>i===chain.length-1?`<strong>${esc(titleOf(v))}</strong>`:`<a href="#${v}">${esc(titleOf(v))}</a>`).join(' › ')}</nav>`;}
+const door=(href,pill,h,p,cta)=>`<article><span class="pill">${pill}</span><h2>${h}</h2><p>${p}</p><a class="primary" href="${href}">${cta} →</a></article>`;
+export function courseHref(ref){return ref.kind==='study'?`#${ref.id}/home`:`/capacitacion.html?curso=${encodeURIComponent(ref.id)}`;}
+export function courseOf(ref,courses){return ref.kind==='study'?courses.find(c=>c.id===ref.id):trainingCourses.find(c=>c.id===ref.id);}
+function courseCard(ref,courses,esc){const c=courseOf(ref,courses);if(!c)return '';const free=ref.kind==='training';
+ return `<article class="course-card"><span class="pill">${free?'GRATIS':'CURSO'}</span><h3>${esc(c.title)}</h3><p>${esc(c.summary||c.subtitle||'')}</p><a class="primary" href="${courseHref(ref)}" data-id="${esc(ref.id)}">Entrar al curso →</a></article>`;}
+export function entryView(view,{courses,esc=String}={}){
+ if(view==='hub')return `<section class="doors-home"><span class="eyebrow">CLINICIA</span><h1>¿Cómo vas a usar ClinicIA?</h1><p class="lead">Elegí tu lugar. Son pocos pasos hasta tu curso.</p><div class="cards area-cards">${door('#alumno','APRENDER','Soy alumno','Cursos, simulaciones, evaluaciones y tu progreso.','Entrar como alumno')}${door('/capacitacion.html?perfil=instructor','ENSEÑAR','Soy instructor','Grupos con código, progreso de tus alumnos, creador de cursos y validación de prácticas.','Entrar como instructor')}</div><p class="muted">¿Entrás a una clase con un código? <a href="/capacitacion.html?perfil=respondedor">Ingresá acá</a>.</p></section>`;
+ if(view==='alumno')return `${crumbs(view,esc)}<h1>Soy alumno</h1><p class="lead">¿Cuál es tu perfil?</p><div class="cards area-cards">${door('#primeros-respondedores','POLICÍAS, BOMBEROS, PARAMÉDICOS','Primeros respondedores','Primeros auxilios, simulaciones en grupo y examen. Entrás con tu nombre, sin contraseña.','Ver cursos')}${door('#personal-sanitario','KINESIOLOGÍA · ENFERMERÍA · NUTRICIÓN','Personal sanitario','Cursos para equipos de salud no médicos.','Elegir mi área')}${door('#medicos','MEDICINA','Médicos','Emergencias, terapia intensiva, exámenes y rotaciones.','Elegir mi área')}</div>`;
+ if(view==='personal-sanitario')return `${crumbs(view,esc)}<h1>Personal sanitario</h1><p class="lead">Elegí tu área y verás su catálogo de cursos.</p><div class="cards area-cards">${['kinesiologia','enfermeria','nutricion'].map(k=>door('#'+k,k.toUpperCase().replace('Í','I'),esc(SECTIONS[k].title),esc(SECTIONS[k].lead),'Ver cursos')).join('')}</div>`;
+ if(view==='medicos')return `${crumbs(view,esc)}<h1>Médicos</h1><p class="lead">Elegí tu área.</p><div class="cards area-cards">${MEDICOS_AREAS.map(k=>door('#'+k,'ÁREA',esc(SECTIONS[k].title),esc(SECTIONS[k].lead),'Ver cursos')).join('')}</div>`;
+ const s=SECTIONS[view];if(!s)return null;
+ return `${crumbs(view,esc)}<h1>${esc(s.title)}</h1><p class="lead">${esc(s.lead)}</p>${s.soon?`<p class="notice">${esc(s.soon)}</p>`:''}<div class="course-grid">${s.courses.map(r=>courseCard(r,courses,esc)).join('')}</div>`;
+}
+// Para pruebas y para el mapa: clics mínimos desde Inicio hasta cada curso.
+export function clicksTo(courseRef){let best=Infinity;for(const [k,s] of Object.entries(SECTIONS)){if(!s.courses.some(r=>r.kind===courseRef.kind&&r.id===courseRef.id))continue;let n=1,v=k;while(parentOf(v)){n++;v=parentOf(v);}best=Math.min(best,n);}return best;}
