@@ -48,8 +48,9 @@ test('webhook requires a valid signature, re-reads the payment and credits exact
 });
 test('precios: alumno gratis; curso de pago (acceso permanente), Instructor y Profesional mensuales; montos del servidor; Profesional incluye Instructor',async()=>{
  const db=new PGlite();await db.exec(schema+paymentSchema);await db.query("INSERT INTO clinic_users(id,username,username_key,password_hash,recovery_hash) VALUES('u1','User1','user1','hash','hash')");
- const env={MERCADOPAGO_ACCESS_TOKEN:'fake-server-token',CLINICIA_PRICE_CURSO_ARS:'3000',CLINICIA_PRICE_INSTRUCTOR_ARS:'5000',CLINICIA_PRICE_PROFESIONAL_ARS:'10000',CLINICIA_PRODUCT_TITLE:'ClinicIA',CLINICIA_PRODUCT_DESCRIPTION:'Acceso',CLINICIA_SELLER_NAME:'Seller',CLINICIA_SUPPORT_EMAIL:'t@example.com',CLINICIA_PAYMENTS_ENABLED:'true'};
- const offer=publicPaymentOffer(paymentConfig(env));assert.deepEqual(offer.plans.map(p=>[p.id,p.usd,p.amount,p.enabled,p.durationDays]),[['instructor',5,5000,true,30],['profesional',10,10000,true,30],['curso',2.99,3000,true,3650]]);
+ const env={MERCADOPAGO_ACCESS_TOKEN:'fake-server-token',CLINICIA_PRICE_CURSO_ARS:'3000',CLINICIA_PRICE_PACK_ARS:'9000',CLINICIA_PRICE_INSTRUCTOR_ARS:'5000',CLINICIA_PRICE_PROFESIONAL_ARS:'10000',CLINICIA_PRODUCT_TITLE:'ClinicIA',CLINICIA_PRODUCT_DESCRIPTION:'Acceso',CLINICIA_SELLER_NAME:'Seller',CLINICIA_SUPPORT_EMAIL:'t@example.com',CLINICIA_PAYMENTS_ENABLED:'true'};
+ const offer=publicPaymentOffer(paymentConfig(env));assert.deepEqual(offer.plans.map(p=>[p.id,p.usd,p.amount,p.enabled,p.durationDays]),[['instructor',4.99,5000,true,30],['profesional',9.99,10000,true,30],['curso',2.99,3000,true,3650],['pack',9.99,9000,true,3650]]);
+ for(const p of offer.plans)assert.match(p.usd.toFixed(2),/\.99$/,'todos los precios de referencia terminan en .99: '+p.id);
  assert.ok(offer.paidCourses.includes('acls')&&offer.paidCourses.includes('pals')&&!offer.paidCourses.includes('rot-cirugia'));
  assert.equal(paymentConfig({...env,CLINICIA_PRICE_PROFESIONAL_ARS:''}).plans.profesional.enabled,false,'sin precio en ARS el producto no se vende');
  assert.equal(paymentConfig({...env,CLINICIA_PLAN_PROFESIONAL_USD:'12'}).plans.profesional.usd,12,'el precio de referencia se puede cambiar');
@@ -70,6 +71,11 @@ test('precios: alumno gratis; curso de pago (acceso permanente), Instructor y Pr
   const a2=await api.access('u1');assert.equal(a2.profesional.active,true);assert.equal(a2.instructor.active,true,'Profesional incluye Instructor');
   await db.query("UPDATE clinic_orders SET valid_until=now()-interval '1 day' WHERE id=$1",[p.id]);
   const a3=await api.access('u1');assert.equal(a3.profesional.active,false);assert.equal(a3.instructor.active,false);assert.deepEqual(a3.courses,['acls'],'el curso comprado no vence');
+  // pack: los siete cursos de certificación con una sola compra
+  const k4=n=>String(n).repeat(8)+'-2222-2222-2222-222222222222';const pk=await api.checkout('u1',{requestKey:k4(4),accepted:true,plan:'pack'});assert.equal(pk.amount,9000);assert.equal(sent.at(-1).items[0].id,'clinicia-pack');
+  pay={id:603,status:'approved',collector_id:7,currency_id:'ARS',transaction_amount:9000,external_reference:pk.id,date_approved:new Date().toISOString()};await api.verify('u1',pk.id);
+  const a4=await api.access('u1');assert.equal(a4.pack.active,true);assert.deepEqual(a4.courses.sort(),['acls','amls-preparacion','atls','epc-preparacion','fccs','phtls','pals'].sort(),'el pack abre los siete cursos');assert.equal(a4.instructor.active,false,'el pack no da Instructor');
+  await db.query("UPDATE clinic_orders SET status='refunded',valid_until=NULL WHERE id=$1",[pk.id]);assert.deepEqual((await api.access('u1')).courses,['acls']);
   // liberación manual de un curso
   const g=await api.grant('u1','u1','curso',null,'Hospital','pals');assert.equal(g.courseId,'pals');await assert.rejects(()=>api.grant('u1','u1','curso',30,'','rot-cirugia'),e=>e.status===400);
   assert.deepEqual((await api.access('u1')).courses.sort(),['acls','pals']);await api.revokeGrant(g.id);assert.deepEqual((await api.access('u1')).courses,['acls']);
