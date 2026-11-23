@@ -24,3 +24,7 @@ test('each profile shows only its own courses and is honest about missing specia
  assert.equal(courseHref({kind:'study',id:'acls'}),'#acls/home');assert.equal(courseHref({kind:'training',id:'rot-cirugia'}),'/capacitacion.html?curso=rot-cirugia');
  assert.ok(ENTRY_VIEWS.includes('enfermeria')&&ENTRY_VIEWS.includes('nutricion'));
 });
+test('no feature is left without a way in: practice, team guard, tutor, aulas and consultorio are reachable from the entry screens',()=>{
+ const all=entryView('alumno',{courses,esc})+entryView('medicos',{courses,esc});assert.ok(!entryView('hub',{courses,esc}).includes('consultorio'),'el inicio queda limpio');
+ for(const href of ['#formacion','/salas.html','#tutor','/aulas.html','/consultorio.html'])assert.ok(all.includes('href="'+href+'"'),'sin acceso a '+href);
+});
