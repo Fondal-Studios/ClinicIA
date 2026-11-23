@@ -16,7 +16,7 @@ export function sectionize(text){
  picked.forEach((h,i)=>{const part=clean(raw.slice(h.end,picked[i+1]?picked[i+1].at:raw.length));out[h.key]=out[h.key]?out[h.key]+' '+part:part;});
  return out;
 }
-const uid=()=>(globalThis.crypto?.randomUUID?.()||String(Date.now())+Math.random().toString(16).slice(2));
+const uid=()=>{const c=globalThis.crypto;if(c?.randomUUID)return c.randomUUID();return [...c.getRandomValues(new Uint8Array(16))].map(x=>x.toString(16).padStart(2,'0')).join('');}; // identificadores con aleatoriedad criptográfica
 export const emptyState=()=>({version:2,patients:[],visits:[]});
 export function createStore(storage,key='clinia_consultorio_v2'){
  let state;
