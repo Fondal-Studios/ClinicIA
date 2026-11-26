@@ -1,0 +1,112 @@
+{
+ "_leer": "Inventario de módulos de ClinicIA. Cada archivo de public/ pertenece a un solo módulo. Un módulo solo puede importar archivos de sí mismo o de «compartido» (test/modulos.test.mjs lo comprueba). Los enlaces entre páginas no cuentan como dependencia.",
+ "compartido": {
+  "descripcion": "Núcleo común: cuentas, pagos y precios, barra de áreas, estilos, instalación y administración.",
+  "archivos": [
+   "style.css",
+   "capacitacion.css",
+   "areas.mjs",
+   "accounts.mjs",
+   "training-ui.mjs",
+   "payments.mjs",
+   "pagos.html",
+   "terminos.html",
+   "devoluciones.html",
+   "privacidad.html",
+   "creditos.html",
+   "offline.html",
+   "sw.js",
+   "manifest.webmanifest",
+   "lanzamiento.html",
+   "recuperar-cuenta.html",
+   "recuperar-cuenta.mjs",
+   "admin.html",
+   "admin.mjs",
+   "admin-cuentas.html",
+   "admin-cuentas.mjs",
+   "learn/precios.mjs",
+   "assets/**"
+  ]
+ },
+ "alumno": {
+  "descripcion": "Estudio y capacitación: inicio y mapa de entrada, cursos, preguntas, simulacros, tutor, capacitación de primeros respondedores, guardia y salas.",
+  "archivos": [
+   "index.html",
+   "app.mjs",
+   "entrada.mjs",
+   "capacitacion.html",
+   "capacitacion.mjs",
+   "guardia.html",
+   "guardia.mjs",
+   "salas.html",
+   "salas.mjs",
+   "formacion-admin.html",
+   "formacion-admin.mjs",
+   "clase-apertura.html",
+   "clase-policial.html",
+   "plan-clase.html",
+   "planilla-practicas.html",
+   "learn/**"
+  ]
+ },
+ "instructor": {
+  "descripcion": "Crear cursos y contenido con IA (aulas), editor con imágenes, mis cursos, lista de alumnos y notas, estudio de materiales.",
+  "archivos": [
+   "instructor.html",
+   "instructor.mjs",
+   "aulas.html",
+   "aulas.mjs",
+   "class-ui.mjs",
+   "clase.html",
+   "clase.mjs",
+   "estudio.html",
+   "estudio.mjs"
+  ]
+ },
+ "profesional": {
+  "descripcion": "Mi consultorio: pacientes, turnos, historia clínica resumida, dictado con transcripción local, receta electrónica en un clic. 100 % local en el dispositivo; no necesita servidor.",
+  "archivos": [
+   "consultorio.html",
+   "consultorio.mjs",
+   "consultorio-lib.mjs",
+   "consultorio-whisper.mjs",
+   "consultorio.webmanifest"
+  ],
+  "opcionales": [
+   "areas.mjs",
+   "accounts.mjs"
+  ],
+  "autonomo": {
+   "entrada": "consultorio.html",
+   "necesita": [
+    "style.css",
+    "sw.js",
+    "offline.html",
+    "assets/icon-192.png",
+    "assets/icon-512.png"
+   ]
+  }
+ },
+ "backend": {
+  "_nota": "Hoy backend/accounts.mjs compone todos los módulos (pendiente invertirlo con un registro de módulos). El módulo profesional no usa servidor.",
+  "compartido": [
+   "accounts.mjs",
+   "payments.mjs",
+   "access.mjs",
+   "admin-recovery.mjs",
+   "hospital-issuer.mjs"
+  ],
+  "alumno": [
+   "capacitacion.mjs",
+   "training.mjs"
+  ],
+  "instructor": [
+   "classes.mjs",
+   "library.mjs",
+   "materials.mjs"
+  ],
+  "profesional": [
+   "vault.mjs"
+  ]
+ }
+}

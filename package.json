@@ -10,7 +10,8 @@
     "pretest": "npm ci --ignore-scripts --include=dev",
     "audit:learning": "node tools/audit-learning.mjs",
     "audit:questions": "node tools/audit-questions.mjs --strict",
-    "audit:academic": "node tools/audit-academic.mjs"
+    "audit:academic": "node tools/audit-academic.mjs",
+    "modulo:profesional": "node tools/build-modulo.mjs profesional"
   },
   "dependencies": {
     "pdf-lib": "^1.17.1",
