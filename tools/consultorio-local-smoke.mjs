@@ -13,7 +13,7 @@ async function flow(label,viewport){
  await ctx.route('**/api/account/me',r=>r.fulfill({json:{user}}));await ctx.route('**/api/offer',r=>r.fulfill({json:{paywall:false}}));
  await ctx.route('https://receto.com.ar/**',r=>r.fulfill({contentType:'text/html',body:'<title>Receto</title>'}));
  await page.addInitScript(()=>{globalThis.CLINIA_TRANSCRIBE=async()=> 'Antecedentes: hipertensión. Motivo de consulta: dolor de cabeza de dos días. Enfermedad actual: cefalea holocraneana. Diagnóstico: cefalea tensional. Tratamiento: reposo e hidratación.';let n=0;window.__printed=[];window.print=()=>{window.__printed.push({cls:document.body.className,text:document.querySelector('#print-area').innerText});};});
- const list=()=>page.locator('#plist');
+ const list=()=>page.locator('#plist'),wide=viewport.width>=1000,back=async()=>{if(!wide)await page.getByRole('button',{name:'← Mis pacientes'}).click();};
  // 1. Inicio → Modo profesional → cae en «Mis pacientes»
  await page.goto(base+'/');await page.getByRole('link',{name:'Entrar como profesional'}).click();await page.getByRole('heading',{name:'Mi consultorio'}).waitFor();
  assert.equal(await page.getByRole('tab',{name:'Mis pacientes'}).getAttribute('aria-selected'),'true','la pantalla inicial es Mis pacientes');
@@ -24,6 +24,7 @@ async function flow(label,viewport){
  const f=n=>page.locator('#f-patient [name='+n+']');
  await f('lastName').fill('López');await f('firstName').fill('María');await f('dni').fill('30.111.222');await f('birth').fill('1970-05-01');await f('sex').selectOption('F');await f('address').fill('Belgrano 123, Salta');await f('phone').fill('3875551234');await f('email').fill('maria@example.com');await f('coverage').fill('OSDE');await f('affiliate').fill('123456');await f('emergency').fill('Juan López 3875000000');
  await f('background').fill('Hipertensión arterial');await f('allergies').fill('Penicilina');await f('medication').fill('Enalapril 10 mg');await f('firstReason').fill('Dolor de cabeza');
+ if(wide){await page.setViewportSize({width:800,height:800});assert.equal(await page.locator('.split').count(),0,'a 800 px vuelve al diseño de una columna');assert.ok(await noScroll(page),'sin desborde a 800 px');await page.setViewportSize({width:1280,height:800});await page.locator('.split').waitFor();assert.equal(await f('lastName').inputValue(),'López','al cambiar el tamaño de la ventana no se pierde lo escrito');assert.equal(await f('background').inputValue(),'Hipertensión arterial');}
  assert.ok(await noScroll(page),label+': sin desborde en el alta');await page.screenshot({path:`/tmp/consultorio-${label}-alta.png`,fullPage:true});
  await page.getByRole('button',{name:'Guardar paciente'}).click();
  // 3. Se abre la consulta con el motivo cargado → dictado → recetario → validar
@@ -37,21 +38,23 @@ async function flow(label,viewport){
  // 4. Vuelve a la ficha: datos, historia resumida e historial
  await page.getByRole('heading',{name:'López, María'}).waitFor();assert.equal(await page.getByRole('alert').count(),0,'no quedan avisos de error viejos');await page.getByText('Historial de consultas (1)').waitFor();await page.getByText('ATENDIDA').first().waitFor();await page.getByText('cefalea tensional').first().waitFor();
  assert.equal(await page.locator('#f-hc [name=allergies]').inputValue(),'Penicilina');assert.equal(await page.locator('#f-edit [name=coverage]').inputValue(),'OSDE');assert.ok(await noScroll(page),label+': sin desborde en la ficha');await page.screenshot({path:`/tmp/consultorio-${label}-ficha.png`,fullPage:true});
+ if(wide){assert.ok(await page.locator('.split .pane-list #plist').isVisible(),'en computadora la lista queda a la izquierda');assert.ok(await page.locator('.split .pane-detail #f-edit').isVisible(),'y la ficha a la derecha');const a=await page.locator('.pane-list').boundingBox(),b=await page.locator('.pane-detail').boundingBox();assert.ok(a.x+a.width<=b.x+1,'lista y detalle lado a lado');}
+ else assert.equal(await page.locator('.split').count(),0,'en celular no hay doble panel');
  // 5. Segundo paciente (sin motivo: queda en su ficha)
- await page.getByRole('button',{name:'← Mis pacientes'}).click();await page.getByText('1 paciente').waitFor();
+ await back();await page.getByText('1 paciente').waitFor();
  await page.getByRole('button',{name:'+ Agregar nuevo paciente'}).click();await f('lastName').fill('Pérez');await f('firstName').fill('Juan');await f('dni').fill('25000111');await page.getByRole('button',{name:'Guardar paciente'}).click();await page.getByRole('heading',{name:'Pérez, Juan'}).waitFor();
  // 6. DNI repetido: no se duplica y ofrece abrir la ficha existente
- await page.getByRole('button',{name:'← Mis pacientes'}).click();await page.getByRole('button',{name:'+ Agregar nuevo paciente'}).click();await f('lastName').fill('Gómez');await f('firstName').fill('Pedro');await f('dni').fill('30111222');await page.getByRole('button',{name:'Guardar paciente'}).click();
+ await back();await page.getByRole('button',{name:'+ Agregar nuevo paciente'}).click();await f('lastName').fill('Gómez');await f('firstName').fill('Pedro');await f('dni').fill('30111222');await page.getByRole('button',{name:'Guardar paciente'}).click();
  await page.getByRole('alert').getByText(/Ya existe un paciente con el documento 30111222: López, María/).waitFor();assert.equal(await f('lastName').inputValue(),'Gómez','el formulario conserva lo escrito');
  await page.getByRole('button',{name:'Abrir esa ficha'}).click();await page.getByRole('heading',{name:'López, María'}).waitFor();
  // 7. Buscador: por apellido (con y sin tilde, parcial) y por DNI (con y sin puntos)
- await page.getByRole('button',{name:'← Mis pacientes'}).click();await page.getByText('2 pacientes').waitFor();
+ await back();await page.getByText('2 pacientes').waitFor();
  const q=page.locator('#q');
  await q.fill('lopez');await list().getByText('López, María').waitFor();assert.equal(await list().getByText('Pérez, Juan').count(),0,'filtra por apellido sin tildes');
  await q.fill('PÉR');await list().getByText('Pérez, Juan').waitFor();assert.equal(await list().getByText('López, María').count(),0);
  await q.fill('30111222');await list().getByText('López, María').waitFor();await q.fill('25.000.111');await list().getByText('Pérez, Juan').waitFor();assert.equal(await list().getByText('López, María').count(),0,'por DNI con puntos');
  await q.fill('zzz');await list().getByText('No encontramos a nadie con «zzz»').waitFor();
- await list().getByRole('button',{name:'Agregar nuevo paciente'}).click();assert.equal(await f('lastName').inputValue(),'zzz','el alta arranca con lo buscado');await page.getByRole('button',{name:'← Mis pacientes'}).click();
+ await list().getByRole('button',{name:'Agregar nuevo paciente'}).click();assert.equal(await f('lastName').inputValue(),'zzz','el alta arranca con lo buscado');await back();
  await page.locator('#q').fill('');await page.getByText('2 pacientes').waitFor();
  // 8. Paciente que ya tuve: lo busco por DNI, abro la ficha, edito, imprimo la planilla y hago una consulta nueva
  await page.locator('#q').fill('30111222');await page.getByRole('button',{name:'Abrir ficha'}).click();await page.getByRole('heading',{name:'López, María'}).waitFor();
@@ -70,6 +73,15 @@ async function flow(label,viewport){
  await page.getByRole('tab',{name:'Ajustes'}).click();const [dl]=await Promise.all([page.waitForEvent('download'),page.getByRole('button',{name:'Listado de pacientes (CSV)'}).click()]);
  const csv=(await import('node:fs')).readFileSync(await dl.path(),'utf8');assert.match(csv,/Apellido,Nombre,Documento/);assert.match(csv,/"López","María","30111222"/);assert.match(csv,/"Pérez","Juan","25000111"/);
  assert.ok(await noScroll(page),label+': sin desborde en Ajustes');
+ // 12. Instalación como aplicación (manifiesto propio, service worker) y funcionamiento sin conexión
+ const man=await (await ctx.request.get(base+'/consultorio.webmanifest')).json();assert.equal(man.start_url,'/consultorio.html');assert.equal(man.display,'standalone');assert.ok(man.scope==='/consultorio'&&'/consultorio.html'.startsWith(man.scope),'el inicio queda dentro del alcance');for(const i of man.icons)assert.equal((await ctx.request.get(base+i.src)).status(),200);
+ assert.equal(await page.locator('link[rel=manifest]').getAttribute('href'),'/consultorio.webmanifest');
+ await page.evaluate(()=>{const e=new Event('beforeinstallprompt');e.prompt=()=>{};e.userChoice=Promise.resolve({outcome:'accepted'});window.dispatchEvent(e);});await page.getByRole('button',{name:/Instalar Mi consultorio/}).click();await page.locator('#install').waitFor({state:'hidden'});
+ await page.evaluate(()=>navigator.serviceWorker.ready);await page.reload();await page.waitForFunction(()=>navigator.serviceWorker.controller);
+ user=null;await page.reload();await page.getByText('2 pacientes').waitFor();assert.match(await page.locator('#who').innerText(),/No hay sesión iniciada: se usan los datos de dra\.gomez/,'con la sesión vencida los pacientes no desaparecen');
+ await ctx.unroute('**/api/account/me');await ctx.unroute('**/api/offer');await ctx.setOffline(true);await page.reload();await page.getByRole('heading',{name:'Mi consultorio'}).waitFor();await page.getByText('2 pacientes').waitFor();assert.match(await page.locator('#who').innerText(),/Sin conexión: se usan los datos de dra\.gomez/,'sin internet abre y muestra los pacientes');
+ await page.getByRole('button',{name:'Abrir ficha'}).first().click();await page.getByRole('button',{name:'Nueva consulta ahora'}).waitFor();await ctx.setOffline(false);
+ assert.ok(await noScroll(page),label+': sin desborde sin conexión');
  assert.deepEqual(posts,[],label+': no se envía ningún dato: '+posts.join(', '));assert.deepEqual(errors,[]);console.log('Mis pacientes OK ·',label);await ctx.close();
 }
 try{
