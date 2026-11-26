@@ -15,9 +15,9 @@
 2. **Mis cursos**: aulas y grupos de capacitación. Dentro de cada uno: lista de alumnos (buscar y ordenar), estado, progreso, nota, último ingreso, código de vinculación, aceptar alumnos, descargar CSV. La validación de prácticas y la guía por módulo siguen en `/capacitacion.html?perfil=instructor`.
 
 ## Modo profesional · Mi consultorio (`/consultorio.html`)
-Función premium (nivel **Profesional**, precio de referencia USD 19,99 **a confirmar**; bloqueo apagado hasta `CLINICIA_PAYWALL=true`).
-- Todo **local**: pacientes, turnos (pendientes y dados) e historia clínica breve en el navegador; respaldo en JSON.
-- Dictado con **Whisper local** (WebAssembly/WebGPU, `consultorio-whisper.mjs`): el audio y el texto no salen del dispositivo; solo se descarga el modelo la primera vez.
-- El texto se reparte en secciones (datos personales, antecedentes, motivo, enfermedad actual, tratamiento…) por los títulos que el médico dice; **nada queda como atendido sin la validación del médico**.
-- Reemplaza al consultorio anterior (que mandaba textos a la IA y guardaba identidades en el servidor). Las rutas del servidor del consultorio anterior (`/api/account/patients`, funciones de IA clínica) quedan sin uso desde la página.
-- **Limitaciones**: la transcripción real con el modelo no se pudo probar en el entorno de desarrollo (sin descarga de modelos); el bloqueo premium es del lado del navegador; Whisper es preentrenado, no entrenado en vocabulario médico.
+Tercera puerta del Inicio; premium (nivel **Profesional**, USD 9,99 por mes; bloqueo apagado hasta `CLINICIA_PAYWALL=true`). Cae en **Mis pacientes**: «Agregar nuevo paciente», buscador por apellido o DNI, ficha (datos filiatorios, historia clínica resumida, historial de consultas, planilla imprimible), **Turnos** y **Ajustes**. Guía completa en `docs/MIS-PACIENTES.md`.
+- Todo **local**, separado por cuenta en el dispositivo; respaldo en JSON y listado CSV.
+- Dictado con **Whisper local** y **validación del médico** obligatoria para marcar una consulta como atendida.
+- **Receta electrónica en un clic** (abre el recetario y copia los datos mínimos): `docs/RECETA-ELECTRONICA.md`.
+- Reemplaza al consultorio anterior (que mandaba textos a la IA y guardaba identidades en el servidor).
+- **Limitaciones**: la transcripción real con el modelo no se probó en el entorno de desarrollo; el bloqueo premium es del lado del navegador; no es una historia clínica electrónica con validez legal.

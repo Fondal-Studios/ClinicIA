@@ -13,20 +13,24 @@
  .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.row>*{flex:1 1 auto;width:auto}
  .pill{display:inline-block;padding:2px 8px;border-radius:999px;background:#d6e2dc;font-size:13px}.warn{background:#fff7e6;border-left:4px solid #c77700;padding:10px;margin:10px 0;color:#173b38}
  .rec{background:#b3261e;color:#fff}.muted{color:#51635f}
+ #print-area{display:none}
+ @media print{body.printing>*:not(#print-area){display:none!important}body.printing #print-area{display:block!important;padding:0;color:#000;background:#fff;font:12pt/1.4 system-ui,sans-serif}.planilla h1{font-size:18pt}.planilla h2{font-size:13pt;border-bottom:1px solid #000;margin-top:14pt;break-after:avoid}.planilla table{width:100%;border-collapse:collapse}.planilla th{text-align:left;width:34%;vertical-align:top;padding:3pt 6pt 3pt 0}.planilla td{padding:3pt 0}.pl-visit{break-inside:avoid;border-top:1px solid #999;margin-top:8pt}}
 </style>
 </head>
 <body>
 <main>
 <span class="eyebrow">CLINICIA · MODO PROFESIONAL</span>
 <h1>Mi consultorio</h1>
-<p class="warn"><strong>Tus datos quedan en este dispositivo.</strong> Los pacientes, turnos y dictados se guardan solo en este navegador y la transcripción de voz se hace acá, sin enviar audio ni texto a ningún servidor. Hacé respaldos desde «Ajustes» porque, si borrás los datos del navegador, se pierden.</p>
+<p class="warn"><strong>Tus pacientes se guardan en este dispositivo, asociados a tu cuenta.</strong> Los datos, los turnos y los dictados no se envían a ningún servidor y la transcripción de voz se hace acá. Hacé respaldos desde «Ajustes»: si borrás los datos del navegador, se pierden.</p>
 <p id="status" role="status"></p>
 <div id="gate" hidden></div>
 <div id="app" hidden>
- <div class="tabs" role="tablist"><button data-tab="turnos" role="tab">Turnos</button><button data-tab="pacientes" role="tab">Pacientes</button><button data-tab="ajustes" role="tab">Ajustes</button></div>
+ <p id="who" class="muted"></p>
+ <div class="tabs" role="tablist"><button data-tab="pacientes" role="tab">Mis pacientes</button><button data-tab="turnos" role="tab">Turnos</button><button data-tab="ajustes" role="tab">Ajustes</button></div>
  <section id="view"></section>
 </div>
 </main>
+<div id="print-area" aria-hidden="true"></div>
 <script type="module" src="/areas.mjs"></script>
 <script type="module" src="/consultorio.mjs"></script>
 </body>
