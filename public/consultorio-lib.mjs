@@ -27,16 +27,47 @@ export function prescriptionText(patient,record){
  return L.filter(([,v])=>String(v||'').trim()).map(([k,v])=>k+': '+String(v).trim()).join('\n');
 }
 export const emptyState=()=>({version:2,patients:[],visits:[]});
+// ---- Pacientes: apellido y nombre por separado, documento normalizado, búsqueda por apellido o DNI ----
+export const normDoc=v=>String(v||'').replace(/[.\s-]/g,'').toUpperCase();
+export const displayName=p=>p?.lastName?`${p.lastName}, ${p.firstName||''}`.replace(/, $/,''):String(p?.name||'');
+export function ageOf(birth,now=new Date()){const b=new Date(birth);if(!birth||Number.isNaN(b.getTime()))return null;let a=now.getFullYear()-b.getFullYear();const m=now.getMonth()-b.getMonth();if(m<0||(m===0&&now.getDate()<b.getDate()))a--;return a>=0&&a<130?a:null;}
+const FIELDS=['lastName','firstName','dni','birth','sex','address','phone','email','coverage','affiliate','emergency','background','family','allergies','medication','notes'];
+const SEX=['','F','M','X'];
+// Pacientes guardados antes de separar apellido y nombre: «María López» → nombre María, apellido López; «López, María» también.
+function upgrade(p){if(p.lastName!==undefined)return p;const raw=String(p.name||'').trim();let last=raw,first='';if(raw.includes(',')){[last,first]=raw.split(',').map(x=>x.trim());}else{const t=raw.split(/\s+/);if(t.length>1){last=t.pop();first=t.join(' ');}}
+ return {...p,lastName:last,firstName:first,sex:p.sex||'',address:p.address||'',email:p.email||'',affiliate:p.affiliate||'',emergency:p.emergency||'',background:p.background||'',family:p.family||'',allergies:p.allergies||'',medication:p.medication||'',dni:normDoc(p.dni),name:first?`${first} ${last}`:last};}
+function clean(input,current={}){
+ const x={...current};for(const k of FIELDS)if(k in input)x[k]=String(input[k]??'').trim();
+ if('dni' in input)x.dni=normDoc(input.dni);
+ const last=String(x.lastName||'').trim(),first=String(x.firstName||'').trim();
+ if(last.length<2)throw new Error('Escribí el apellido del paciente.');if(!first)throw new Error('Escribí el nombre del paciente.');
+ if(x.dni&&!/^[A-Z0-9]{5,15}$/.test(x.dni))throw new Error('El documento solo puede tener letras y números (de 5 a 15).');
+ if(x.birth&&(Number.isNaN(new Date(x.birth).getTime())||new Date(x.birth)>new Date()))throw new Error('La fecha de nacimiento no es válida.');
+ if(!SEX.includes(x.sex))x.sex='';
+ if(x.email&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(x.email))throw new Error('El correo no es válido.');
+ x.name=`${first} ${last}`;return x;
+}
+const sortKey=p=>fold(`${p.lastName||p.name||''} ${p.firstName||''}`);
 export function createStore(storage,key='clinia_consultorio_v2'){
  let state;
- const load=()=>{try{const s=JSON.parse(storage.getItem(key)||'null');state=s&&s.version===2&&Array.isArray(s.patients)&&Array.isArray(s.visits)?s:emptyState();}catch{state=emptyState();}return state;};
+ const load=()=>{try{const s=JSON.parse(storage.getItem(key)||'null');state=s&&s.version===2&&Array.isArray(s.patients)&&Array.isArray(s.visits)?s:emptyState();}catch{state=emptyState();}state.patients=state.patients.map(upgrade);return state;};
  const save=()=>{storage.setItem(key,JSON.stringify(state));};
  load();
+ const dupOf=(dni,exceptId)=>dni?state.patients.find(p=>p.dni===dni&&p.id!==exceptId)||null:null;
  const api={
   get state(){return state;},reload:load,
-  addPatient(p){const name=String(p.name||'').trim();if(name.length<2)throw new Error('Escribí el nombre del paciente.');const x={id:uid(),name,dni:String(p.dni||'').trim(),birth:String(p.birth||''),phone:String(p.phone||'').trim(),coverage:String(p.coverage||'').trim(),notes:String(p.notes||''),createdAt:Date.now()};state.patients.push(x);save();return x;},
-  updatePatient(id,patch){const x=state.patients.find(p=>p.id===id);if(!x)throw new Error('Paciente no encontrado.');for(const k of ['name','dni','birth','phone','coverage','notes'])if(k in patch)x[k]=String(patch[k]??'');save();return x;},
+  // Acepta {lastName,firstName,…} o, por compatibilidad, {name:'Nombre Apellido'}.
+  addPatient(input){const inp={...input};if(inp.lastName===undefined&&inp.name){const u=upgrade({name:inp.name});inp.lastName=u.lastName;inp.firstName=u.firstName;}
+   const x=clean(inp);const dup=dupOf(x.dni);if(dup){const e=new Error(`Ya existe un paciente con el documento ${x.dni}: ${displayName(dup)}.`);e.duplicate=dup;throw e;}
+   const p={id:uid(),...Object.fromEntries(FIELDS.map(k=>[k,''])),...x,createdAt:Date.now(),updatedAt:Date.now()};state.patients.push(p);save();return p;},
+  updatePatient(id,patch){const cur=state.patients.find(p=>p.id===id);if(!cur)throw new Error('Paciente no encontrado.');
+   const patch2={...patch};if(patch2.lastName===undefined&&patch2.name){const u=upgrade({name:patch2.name});patch2.lastName=u.lastName;patch2.firstName=u.firstName;}
+   const x=clean(patch2,cur);const dup=dupOf(x.dni,id);if(dup){const e=new Error(`Ese documento ya pertenece a ${displayName(dup)}.`);e.duplicate=dup;throw e;}
+   Object.assign(cur,x,{updatedAt:Date.now()});save();return cur;},
+  findByDni(dni){const d=normDoc(dni);return d?state.patients.find(p=>p.dni===d)||null:null;},
   addVisit(patientId,when,reason=''){if(!state.patients.some(p=>p.id===patientId))throw new Error('Elegí un paciente.');const t=new Date(when);if(Number.isNaN(t.getTime()))throw new Error('Fecha y hora inválidas.');const v={id:uid(),patientId,when:t.toISOString(),reason:String(reason).slice(0,300),status:'pendiente',record:null,transcript:'',validatedBy:'',validatedAt:null};state.visits.push(v);save();return v;},
+  // Consulta sin turno previo (el paciente está en el consultorio): se crea con la hora actual.
+  startVisitNow(patientId,reason=''){return api.addVisit(patientId,new Date(),reason);},
   cancelVisit(id){const v=state.visits.find(v=>v.id===id);if(!v)throw new Error('Turno no encontrado.');if(v.status==='dado')throw new Error('Un turno atendido no se cancela.');v.status='cancelado';save();return v;},
   // Guarda el registro. Solo con validación del médico el turno pasa a «dado»; sin ella queda en borrador.
   saveRecord(id,{sections,transcript='',validated=false,doctor=''}){const v=state.visits.find(v=>v.id===id);if(!v)throw new Error('Turno no encontrado.');if(v.status==='cancelado')throw new Error('El turno está cancelado.');
@@ -49,16 +80,37 @@ export function createStore(storage,key='clinia_consultorio_v2'){
   pending(){return state.visits.filter(v=>v.status==='pendiente').sort((a,b)=>a.when.localeCompare(b.when));},
   done(){return state.visits.filter(v=>v.status==='dado').sort((a,b)=>b.when.localeCompare(a.when));},
   historyOf(patientId){return state.visits.filter(v=>v.patientId===patientId&&v.status==='dado').sort((a,b)=>b.when.localeCompare(a.when));},
+  // Historial completo del paciente (atendidas y pendientes; sin las canceladas), de la más reciente a la más antigua.
+  visitsOf(patientId){return state.visits.filter(v=>v.patientId===patientId&&v.status!=='cancelado').sort((a,b)=>b.when.localeCompare(a.when));},
+  lastVisitOf(patientId){return api.historyOf(patientId)[0]||null;},
   patient(id){return state.patients.find(p=>p.id===id)||null;},
-  search(q){const f=fold(String(q||'').trim());return state.patients.filter(p=>!f||fold(p.name).includes(f)||p.dni.includes(f)).sort((a,b)=>a.name.localeCompare(b.name));},
+  // Búsqueda por apellido, nombre o documento (sin tildes, sin puntos). Con texto vacío devuelve todos. Orden alfabético por apellido.
+  search(q){const text=String(q||'').trim();const tokens=fold(text).split(/\s+/).filter(Boolean);const doc=normDoc(text);
+   const list=state.patients.filter(p=>{if(!tokens.length)return true;if(doc.length>=3&&/^\d+$/.test(doc)&&p.dni.includes(doc))return true;const hay=fold(`${p.lastName} ${p.firstName} ${p.name}`);return tokens.every(t=>hay.includes(t)||(t.length>=3&&p.dni.includes(normDoc(t))));});
+   return list.sort((a,b)=>sortKey(a).localeCompare(sortKey(b)));},
   exportJSON(){return JSON.stringify(state,null,1);},
-  importJSON(text){let s;try{s=JSON.parse(text);}catch{throw new Error('El archivo no es un respaldo válido.');}if(!s||s.version!==2||!Array.isArray(s.patients)||!Array.isArray(s.visits))throw new Error('El archivo no es un respaldo de Mi consultorio.');state=s;save();return {patients:s.patients.length,visits:s.visits.length};},
+  importJSON(text){let s;try{s=JSON.parse(text);}catch{throw new Error('El archivo no es un respaldo válido.');}if(!s||s.version!==2||!Array.isArray(s.patients)||!Array.isArray(s.visits))throw new Error('El archivo no es un respaldo de Mi consultorio.');state={...s,patients:s.patients.map(upgrade)};save();return {patients:s.patients.length,visits:s.visits.length};},
   // Importa el consultorio anterior (clinia_v1, mismo navegador) sin tocar el original. Los pacientes cuyo nombre está en el servidor cifrado no se pueden importar.
-  importLegacy(legacy){let n=0;const map={};for(const [id,p] of Object.entries(legacy?.patients||{})){if(!p?.nombre)continue;const x=api.addPatient({name:p.nombre,dni:p.dni||'',birth:p.nacimiento||'',phone:p.telefono||'',notes:'Importado del consultorio anterior'});map[id]=x.id;n++;}
+  importLegacy(legacy){let n=0;const map={};for(const [id,p] of Object.entries(legacy?.patients||{})){if(!p?.nombre)continue;const u=upgrade({name:p.nombre});let x;try{x=api.addPatient({lastName:u.lastName,firstName:u.firstName||'-',dni:p.dni||'',birth:p.nacimiento||'',phone:p.telefono||'',notes:'Importado del consultorio anterior'});}catch{continue;}map[id]=x.id;n++;}
    for(const e of Object.values(legacy?.encounters||{})){const pid=map[e.patientId];if(!pid)continue;const v=api.addVisit(pid,e.createdAt?new Date(e.createdAt):new Date(),String(e.motivo||'').slice(0,300));const rec={};for(const [k] of SECTIONS)rec[k]='';rec.enfermedad=String(e.resumen||e.enfermedadActual||'');v.record=rec;v.status='dado';v.validatedBy='Importado';v.validatedAt=new Date().toISOString();}
    save();return n;},
   wipe(){state=emptyState();save();}
  };
  return api;
 }
-export const csvOfVisits=(store,list)=>{const q=v=>'"'+String(v??'').replace(/"/g,'""')+'"';return ['Fecha,Paciente,Estado,Motivo,Validado por',...list.map(v=>[v.when,store.patient(v.patientId)?.name,v.status,v.reason,v.validatedBy].map(q).join(','))].join('\n');};
+// Los datos de pacientes se guardan en el dispositivo, separados por cuenta (así dos médicos que comparten una computadora no mezclan pacientes).
+export const storeKeyFor=user=>'clinia_consultorio_v2:'+(user?.id||'local');
+// La primera vez que una cuenta abre el consultorio se copian (sin borrar) los datos guardados antes de separar por cuenta.
+export function migrateLegacyKey(storage,toKey,fromKey='clinia_consultorio_v2'){try{if(storage.getItem(toKey)===null&&storage.getItem(fromKey)!==null){storage.setItem(toKey,storage.getItem(fromKey));return true;}}catch{}return false;}
+export const csvOfVisits=(store,list)=>['Fecha,Paciente,Estado,Motivo,Validado por',...list.map(v=>[v.when,displayName(store.patient(v.patientId)),v.status,v.reason,v.validatedBy].map(csvCell).join(','))].join('\n');
+
+const csvCell=v=>{let t=String(v??'');if(/^[=+\-@\t\r]/.test(t))t="'"+t;return '"'+t.replace(/"/g,'""')+'"';}; // evita fórmulas al abrir en una planilla
+export const csvOfPatients=store=>['Apellido,Nombre,Documento,Fecha de nacimiento,Sexo,Teléfono,Correo,Cobertura,Nº de afiliado,Última consulta',...store.search('').map(p=>[p.lastName,p.firstName,p.dni,p.birth,p.sex,p.phone,p.email,p.coverage,p.affiliate,store.lastVisitOf(p.id)?.when?.slice(0,10)||''].map(csvCell).join(','))].join('\n');
+// Planilla imprimible del paciente: datos filiatorios, historia clínica resumida e historial de consultas.
+const escH=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+export function planillaHtml(p,visits,{doctor='',now=new Date()}={}){
+ const row=(k,v)=>String(v||'').trim()?`<tr><th>${escH(k)}</th><td>${escH(v)}</td></tr>`:'';
+ const age=ageOf(p.birth,now),SEXL={F:'Femenino',M:'Masculino',X:'X'};
+ const vis=visits.map(v=>`<section class="pl-visit"><h3>${escH(new Date(v.when).toLocaleDateString('es-AR'))} · ${v.status==='dado'?'Atendida':'Pendiente'}${v.validatedBy?' · Validó '+escH(v.validatedBy):''}</h3>${v.record?SECTIONS.filter(([k])=>v.record[k]).map(([k,t])=>`<p><strong>${escH(t)}:</strong> ${escH(v.record[k])}</p>`).join(''):`<p>${escH(v.reason||'Sin registro')}</p>`}</section>`).join('')||'<p>Sin consultas registradas.</p>';
+ return `<article class="planilla"><h1>Planilla de paciente</h1><p class="pl-meta">Impresa el ${escH(now.toLocaleDateString('es-AR'))}${doctor?' · '+escH(doctor):''}</p><h2>Datos filiatorios</h2><table>${row('Apellido y nombre',displayName(p))}${row('Documento',p.dni)}${row('Fecha de nacimiento',p.birth?p.birth+(age!==null?' ('+age+' años)':''):'')}${row('Sexo',SEXL[p.sex]||'')}${row('Domicilio',p.address)}${row('Teléfono',p.phone)}${row('Correo',p.email)}${row('Cobertura',[p.coverage,p.affiliate&&'Nº '+p.affiliate].filter(Boolean).join(' · '))}${row('Contacto de emergencia',p.emergency)}</table><h2>Historia clínica resumida</h2><table>${row('Antecedentes personales',p.background)}${row('Antecedentes familiares',p.family)}${row('Alergias',p.allergies)}${row('Medicación habitual',p.medication)}${row('Notas',p.notes)}</table><h2>Historial de consultas</h2>${vis}</article>`;
+}

@@ -38,3 +38,46 @@ test('recetario: texto con los datos mínimos, dirección https válida y regist
  st.markPrescribed(v.id,{platform:'Receto',ref:'ABC-123'});assert.equal(st.state.visits[0].prescriptions[0].ref,'ABC-123');assert.throws(()=>st.markPrescribed('no'),/no encontrado/);
  assert.equal(createStore(Object.assign(mem(),{}) ).state.visits.length,0);
 });
+import {normDoc,displayName,ageOf,csvOfPatients,csvOfVisits,planillaHtml,storeKeyFor,migrateLegacyKey} from '../public/consultorio-lib.mjs';
+const person=(o={})=>({lastName:'López',firstName:'María',dni:'30.111.222',birth:'1970-05-01',sex:'F',phone:'3875551234',coverage:'OSDE',affiliate:'123',background:'HTA',allergies:'Penicilina',...o});
+test('Mis pacientes: alta con datos filiatorios e historia resumida; el DNI se normaliza y no se puede repetir',()=>{
+ const st=createStore(mem());
+ assert.throws(()=>st.addPatient({lastName:'L',firstName:'María'}),/apellido/);assert.throws(()=>st.addPatient({lastName:'López',firstName:''}),/nombre/);
+ assert.throws(()=>st.addPatient(person({dni:'12'})),/documento/);assert.throws(()=>st.addPatient(person({birth:'2999-01-01'})),/nacimiento/);assert.throws(()=>st.addPatient(person({email:'no'})),/correo/);
+ const p=st.addPatient(person());assert.equal(p.dni,'30111222');assert.equal(p.name,'María López');assert.equal(displayName(p),'López, María');assert.equal(p.allergies,'Penicilina');assert.equal(p.affiliate,'123');
+ const dup=(()=>{try{st.addPatient(person({firstName:'Otra',dni:'30111222'}));}catch(e){return e;}})();assert.match(dup.message,/Ya existe un paciente con el documento 30111222/);assert.equal(dup.duplicate.id,p.id);
+ const q=st.addPatient(person({lastName:'Pérez',firstName:'Juan',dni:'25000111'}));assert.throws(()=>st.updatePatient(q.id,{dni:'30.111.222'}),/ya pertenece a López, María/);
+ st.updatePatient(q.id,{phone:'3875000000',allergies:'Ninguna'});assert.equal(st.patient(q.id).phone,'3875000000');assert.equal(st.patient(q.id).lastName,'Pérez','editar un campo no pierde los demás');
+ assert.equal(st.addPatient({lastName:'Gil',firstName:'Rosa'}).dni,'','el documento es opcional');assert.equal(st.addPatient({lastName:'Gil',firstName:'Ana'}).dni,'','sin documento no hay duplicado');
+ assert.equal(st.addPatient({name:'Luis Díaz'}).lastName,'Díaz','compatibilidad con «Nombre Apellido»');assert.equal(st.addPatient({name:'Soto, Ema'}).firstName,'Ema');
+});
+test('búsqueda por apellido o documento: sin tildes, parcial, con puntos; orden alfabético por apellido',()=>{
+ const st=createStore(mem());for(const [l,f,d] of [['Pérez','Juan','25000111'],['López','María','30111222'],['Álvarez','Zoe','27333444'],['Lopez','Hugo','']])st.addPatient({lastName:l,firstName:f,dni:d});
+ assert.deepEqual(st.search('').map(displayName),['Álvarez, Zoe','Lopez, Hugo','López, María','Pérez, Juan'],'todos, por apellido');
+ assert.deepEqual(st.search('lopez').map(displayName),['Lopez, Hugo','López, María'],'sin tildes');assert.deepEqual(st.search('LÓP').map(displayName),['Lopez, Hugo','López, María'],'parcial y en mayúsculas');
+ assert.deepEqual(st.search('30111222').map(displayName),['López, María']);assert.deepEqual(st.search('30.111.222').map(displayName),['López, María'],'con puntos');assert.deepEqual(st.search('3011').map(displayName),['López, María'],'documento parcial');
+ assert.deepEqual(st.search('maría lópez').map(displayName),['López, María'],'nombre y apellido juntos');assert.deepEqual(st.search('alvarez').map(displayName),['Álvarez, Zoe']);
+ assert.deepEqual(st.search('zzz'),[]);assert.equal(st.findByDni('30.111.222').lastName,'López');assert.equal(st.findByDni('99999999'),null);assert.equal(normDoc(' 30.111-222 '),'30111222');
+});
+test('historial: consultas atendidas y pendientes por paciente; consulta sin turno; edad',()=>{
+ const st=createStore(mem());const p=st.addPatient(person()),o=st.addPatient(person({lastName:'Otro',dni:'11222333'}));
+ const a=st.addVisit(p.id,'2026-01-10T10:00:00Z','Control'),b=st.startVisitNow(p.id,'Dolor de cabeza');st.addVisit(o.id,'2026-01-11T10:00:00Z');
+ st.saveRecord(a.id,{sections:{motivo:'Control',diagnostico:'HTA'},validated:true,doctor:'Dra. Gómez'});
+ assert.equal(st.visitsOf(p.id).length,2);assert.equal(st.historyOf(p.id).length,1);assert.equal(st.lastVisitOf(p.id).id,a.id);assert.equal(st.lastVisitOf(o.id),null,'sin atendidas no hay última consulta');
+ assert.equal(st.visitsOf(p.id)[0].id,b.id,'la más reciente primero');st.cancelVisit(b.id);assert.equal(st.visitsOf(p.id).length,1,'las canceladas no figuran');
+ assert.equal(ageOf('1970-05-01',new Date('2026-05-01')),56);assert.equal(ageOf('1970-05-02',new Date('2026-05-01')),55);assert.equal(ageOf(''),null);
+});
+test('los pacientes se guardan separados por cuenta en el dispositivo y no se mezclan; los datos anteriores se copian a la primera cuenta',()=>{
+ const m=mem();const old=createStore(m);old.addPatient({name:'Ana Pérez',dni:'1111111'});
+ const k1=storeKeyFor({id:'u1'}),k2=storeKeyFor({id:'u2'});assert.notEqual(k1,k2);assert.equal(storeKeyFor(null),'clinia_consultorio_v2:local');
+ assert.equal(migrateLegacyKey(m,k1),true);assert.equal(migrateLegacyKey(m,k1),false,'no pisa lo ya migrado');
+ const a=createStore(m,k1),b=createStore(m,k2);assert.equal(a.state.patients.length,1);assert.equal(a.state.patients[0].lastName,'Pérez','el paciente antiguo se actualiza al formato nuevo');assert.equal(b.state.patients.length,0,'otra cuenta no ve esos pacientes');
+ b.addPatient(person());assert.equal(createStore(m,k1).state.patients.length,1);assert.equal(createStore(m,k2).state.patients.length,1);assert.notEqual(createStore(m,k1).state.patients[0].id,createStore(m,k2).state.patients[0].id);
+});
+test('listado CSV y planilla imprimible: sin fórmulas peligrosas y con todo escapado',()=>{
+ const st=createStore(mem());const p=st.addPatient(person({lastName:'=cmd',firstName:'<b>X</b>',notes:'</p><script>alert(1)</script>'}));const v=st.addVisit(p.id,'2026-01-10T10:00:00Z');st.saveRecord(v.id,{sections:{motivo:'<img src=x onerror=alert(1)>',tratamiento:'Reposo'},validated:true,doctor:'Dra. Gómez'});
+ const csv=csvOfPatients(st);assert.match(csv,/"'=cmd"/,'una celda que empieza con = se neutraliza');assert.match(csv.split('\n')[0],/^Apellido,Nombre,Documento/);assert.match(csvOfVisits(st,st.done()),/Dra\. Gómez/);
+ const html=planillaHtml(st.patient(p.id),st.visitsOf(p.id),{doctor:'Dra. Gómez',now:new Date('2026-06-01')});
+ assert.match(html,/Planilla de paciente/);assert.match(html,/Datos filiatorios/);assert.match(html,/Historia clínica resumida/);assert.match(html,/Historial de consultas/);assert.match(html,/Penicilina/);assert.match(html,/Reposo/);assert.match(html,/Validó Dra\. Gómez/);
+ assert.ok(!html.includes('<script>')&&!html.includes('<img src=x')&&!html.includes('<b>X</b>'),'todo el contenido va escapado');
+});
